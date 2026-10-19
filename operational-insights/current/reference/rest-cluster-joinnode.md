@@ -1,0 +1,97 @@
+---
+title: Joining Nodes into Clusters
+description: Nodes can be added to clusters with the <code>POST
+  /node/controller/doJoinCluster</code> HTTP method and URI.
+pubDate: 2026-10-19T14:21:08.937Z
+meta:
+  component:
+    title: Operational Insights Enterprise
+    version: "3.0"
+  topic_type: reference
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/3.0/modules/reference/pages/rest-cluster-joinnode.adoc
+  xref: xref:enterprise-analytics:reference:rest-cluster-joinnode.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/operational-insights/current/reference/rest-cluster-joinnode.html)
+
+# Joining Nodes into Clusters
+
+> Nodes can be added to clusters with the `POST /node/controller/doJoinCluster` HTTP method and URI. 
+
+## [](#syntax)Syntax
+
+HTTP request syntax:
+
+POST /node/controller/doJoinCluster
+Host: localhost:8091
+Authorization: Basic xxxxxxxxxxxx
+Accept: */*
+Content-Length: xxxxxxxxxx
+Content-Type: application/x-www-form-urlencoded
+clusterMemberHostIp=[ip-address]&clusterMemberPort=[port]&user=[admin]&password=[password]
+
+Curl request syntax:
+
+curl -u [admin]:[password] -d clusterMemberHostIp=[ip-address] \
+  -d clusterMemberPort=[port] \
+  -d user=[admin] -d password=[password]
+  -d services=kv,cbas
+  http://[localhost]:8091/node/controller/doJoinCluster
+
+## [](#description)Description
+
+This REST request adds an individual server node to a cluster. Two clusters cannot be merged together into a single cluster, however, a single node can be added to an existing cluster. The `clusterMemberHostIp` and `clusterMemberPort` parameters must be specified to add a node to a cluster.
+
+Every Operational Insights node runs exactly the Data Service (`kv`) and the Analytics Service (`cbas`), and the joining node is given both. The `services` parameter can therefore be omitted; if it is specified, its value must be `kv,cbas`, otherwise the request fails with an error of the form `Invalid services list. Expected [kv,cbas], got […​]`.
+
+To ensure cluster-security, in Operational Insights, restrictions can be placed on joining, based on the establishment of _node-naming conventions_. Only nodes whose names correspond to at least one of the stipulated conventions can be joined. For information, see [Restrict Node-Addition](rest-specify-node-addition-conventions.md).
+
+### [](#node-certificate-validation)Validating Node Certificates
+
+The node-name _must_ be correctly identified in the node certificate as a Subject Alternative Name. If such identification is not correctly configured, failure may occur when attempting to add or join the node to a cluster. For information, see [Validating Node Certificates](../manage/manage-nodes/add-node-and-rebalance.md#node-certificate-validation).
+
+## [](#http-method-and-uri)HTTP method and URI
+
+POST /node/controller/doJoinCluster
+
+The following parameters are required:
+
+__Table 1\. /node/controller/doJoinCluster parameters__
+| Argument            | Description                                                                                                                                |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| clusterMemberHostIp | Hostname or IP address of a member of the cluster that the node receiving the POST is joining.                                             |
+| clusterMemberPort   | Port number for the RESTful interface to the system. If the cluster requires credentials, provide the administrator username and password. |
+
+## [](#example)Example
+
+HTTP request example:
+
+POST /node/controller/doJoinCluster
+Host: 10.5.2.54:8091
+Authorization: Basic xxxxxxxxxxxx
+Accept: */*
+Content-Length: xxxxxxxxxx
+Content-Type: application/x-www-form-urlencoded
+clusterMemberHostIp=192.168.0.1&clusterMemberPort=8091&user=admin&password=admin123
+
+Curl request example:
+
+curl -u Administrator:password -d 'clusterMemberHostIp=192.168.0.1' \
+  -d 'clusterMemberPort=8091' \
+  -d 'user=admin' -d 'password=password' \
+  http://10.5.2.54:8091/node/controller/doJoinCluster
+
+## [](#response-codes)Response codes
+
+200 OK with Location header pointing to pool details of pool just joined - successful join
+400 Bad Request - missing parameters, etc.
+401 Unauthorized - credentials required, but not supplied
+403 Forbidden bad credentials - invalid credentials
+
+When failure results from certificate checking (see [Certificates](../manage/manage-security/manage-certificates.md)), a message of the following form is provided: `Attention: Prepare join failed. Unable to validate certificate on host: 127.0.0.1. Please make sure the certificate on this host contains host name '127.0.0.1' in Subject Alternative Name. Refer to Couchbase docs for more info on how to create node certificates.`
+
+## [](#restricting-the-joining-of-nodes)Restricting the Joining of Nodes
+
+To ensure cluster-security, restrictions can be placed on joining, based on the establishment of _node-naming conventions_. Only nodes whose names correspond to at least one of the stipulated conventions can be joined. For information, see [Restrict Node-Addition](rest-specify-node-addition-conventions.md).

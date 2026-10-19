@@ -1,9 +1,9 @@
 ---
 title: Compatibility
 description: Platform compatibility, and features available in different SDK
-  versions, and compatibility between Server and SDK. Plus notes on Cloud,
-  networks, and AWS Lambda.
-pubDate: 2026-10-03T04:27:21.374Z
+  versions, and compatibility between Operational Insights (Capella) and the
+  SDK. Plus notes on Cloud, networks, and AWS Lambda.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Java Columnar SDK
@@ -18,7 +18,7 @@ antora:
 
 # Compatibility
 
-> Platform compatibility, and features available in different SDK versions, and compatibility between Server and SDK. Plus notes on Cloud, networks, and AWS Lambda. 
+> Platform compatibility, and features available in different SDK versions, and compatibility between Operational Insights (Capella) and the SDK. Plus notes on Cloud, networks, and AWS Lambda. 
 
 The 1.0 Java Columnar SDK requires Java 17 or later to be installed. We recommend using the most recent long-term support (LTS) version of OpenJDK.
 
@@ -75,9 +75,9 @@ Couchbase SDKs are developed to be run in an environment with local area network
 
 Couchbase does document, for purposes of convenience when developing and performing basic operational work, what may need to be tuned when network throughputs and latencies are higher. If you encounter issues, even with these tunables, you should attempt the same workload from a supported, LAN-like environment.
 
-## [](#capella-columnar-compatibility)Capella Columnar Compatibility
+## [](#capella-operational-insights-capella-compatibility)Capella Operational Insights (Capella) Compatibility
 
-Capella Columnar is a fully hosted service, continually updated, and offering the latest version — with users having a few weeks to upgrade from the previous version. As such, the latest Couchbase Columnar SDKs are tested against the latest versions. Where older versions of the Java Columnar SDK pre-date significant new features in Columnar, those differences will be noted in this section.
+Operational Insights (Capella) is a fully hosted service, continually updated, and offering the latest version — with users having a few weeks to upgrade from the previous version. As such, the latest Couchbase Columnar SDKs are tested against the latest versions. Where older versions of the Java Columnar SDK pre-date significant new features in Columnar, those differences will be noted in this section.
 
 ## [](#sdk-api-stability)SDK API Stability
 

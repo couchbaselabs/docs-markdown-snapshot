@@ -3,7 +3,7 @@ title: Get Started with the Couchbase AI Data Plane APIs
 description: To get started with the Couchbase Capella APIs for the Couchbase AI
   Data Plane, you must create an API key. An API key authenticates and
   authorizes you to access the APIs.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase AI Data Plane
@@ -253,7 +253,7 @@ To delete a Model Service API key:
 ## [](#next-steps)Next Steps
 
 * To make an API call, see [Make an API Call with the Couchbase AI Data Plane APIs](api-use.md).
-* For a full reference guide for the Management API, see [Capella Operational Management API Reference](../../cloud/management-api-reference/index.md).
+* For a full reference guide for the Management API, see [Couchbase Capella Management API Reference](../../cloud/management-api-reference/index.md).
 * For a full reference guide for the Model Service API, see [Inference API Reference](../model-service-api-reference/rest-api.md).
 * For a reference of the Management API errors, see [Management API Error Messages ](api-errors.md#management-api-errors).
 * For a reference of the AI Data Plane Model Service API errors, see [Model Service API Error Messages ](api-errors.md#model-api-errors).

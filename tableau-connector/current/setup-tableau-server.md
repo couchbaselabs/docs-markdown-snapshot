@@ -1,14 +1,14 @@
 ---
 title: Install the Couchbase Tableau Connector on Tableau Server
 description: You can install the Couchbase Tableau Connector on Tableau Server.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Tableau Connector
-    version: "2.0"
+    version: "3.0"
   topic_type: guide
 antora:
-  editUrl: https://github.com/couchbase/docs-tableau/edit/release/2.0/modules/ROOT/pages/setup-tableau-server.adoc
+  editUrl: https://github.com/couchbase/docs-tableau/edit/release/3.0/modules/ROOT/pages/setup-tableau-server.adoc
   xref: xref:tableau-connector::setup-tableau-server.adoc[]
 ---
 
@@ -22,7 +22,8 @@ antora:
 This enables publishing of reports and workbooks that are created on Tableau Desktop to a Tableau Server project. The connector also allows users to publish the data sources they created on Tableau Desktop with the Couchbase Tableau Connector to Tableau Server. Other users with access to the project can build their own reports and workbooks using the same data sources.
 
 > [!NOTE]
-> Before you install, download the appropriate connector version from the [Release Notes](release-notes.md) page.
+> * Before you install, download the appropriate connector version from the [Release Notes](release-notes.md) page.
+> * For steps to install the connector on Tableau Desktop, see [Install the Couchbase Tableau Connector on Tableau Desktop](setup-tableau-desktop.md).
 
 ## [](#install-the-connector-on-tableau-server-for-windows)Install the Connector on Tableau Server for Windows
 
@@ -30,7 +31,7 @@ On Windows:
 
 1. Copy the `.taco` file into `C:\ProgramData\Tableau\Tableau Server\data\tabsvc\vizqlserver\Connectors`.
 2. Copy the `.jar` file into `C:\Program Files\Tableau\Drivers`.
-3. To apply the changes and install the connector run the following command.  
+3. To apply the changes and install the connector, run the following command.  
 ```console  
 tsm pending-changes apply  
 ```
@@ -53,26 +54,37 @@ To verify if the Couchbase Tableau Connector is installed correctly:
 1. Log in to **Tableau Server**.
 2. Go to **Home** **New Workbook** **Connect to Data** **Connectors**.
 
-Here, you should now see the option to select Couchbase Analytics by Couchbase.
+Here, you should now see the option to select Operational Insights by Couchbase.
 
-## [](#ssl)Set Up SSL Support for Tableau Server
+## [](#ssl)Configure SSL Certificates for Tableau Server
 
-Typically, you do not need to perform these steps. There is no need to provide a certificate if you are using a certificate from a public certificate authority. Certificates of well-known public certification authorities are trusted by default.
+If you use a certificate from a trusted public certificate authority (CA), no manual SSL configuration is required.
 
-To configure SSL support for Tableau Connector:
+If you use a certificate from a private CA or require client certificate authentication, you must configure a properties file as follows.
 
-1. Make sure you know the absolute paths to the certificate or keystore. You should only supply one of the certificate path or the keystore path, not both.
-2. Create a file called `couchbase-analytics.properties` and save it in the following directory, depending on whether you are running macOS or Windows:  
+1. Create a file named `couchbase-operational-insights.properties` and save it in the following directory:  
 Windows  
 Save the file to `ProgramData\Tableau\Tableau Server\data\tabsvc\vizqlserver\Datasources`  
-MacOS  
+Linux  
 Save the file to `/var/opt/tableau/tableau_server/data/tabsvc/vizqlserver/Datasources/`
-3. To provide the Certificate file path, add the following line in the properties file.  
+2. To trust a certificate from a private CA, specify the path to the certificate using `sslCertPath`.  
+The certificate must be a PEM-encoded file. `sslCertPath` replaces the default trust store instead of adding to it.  
 ```text  
-sslCertPath=<path to your certificate file>  
-```
-4. To provide the keystore path, add the following lines in the properties file.  
+sslCertPath=<path to your PEM-encoded CA certificate>  
+```  
+> [!NOTE]  
+> The connector does not support the `sslKeystorePath` and `sslKeystorePassword` properties and ignores them if specified.
+3. To authenticate using a client certificate, configure either PEM files or a keystore.  
+PEM Files  
 ```text  
-sslKeystorePath=<path to your keystore>  
-sslKeystorePassword=<your keystore password>  
-```
+clientCertPath=<path to client certificate pem>  
+clientKeyPath=<path to client key pem>  
+# Optional; required only if the private key is encrypted  
+clientKeyPassword=<private key password>  
+```  
+Keystore  
+```text  
+clientCertKeystorePath=<path to keystore file>  
+clientCertKeystorePassword=<keystore password>  
+```  
+The keystore must contain exactly one entry.

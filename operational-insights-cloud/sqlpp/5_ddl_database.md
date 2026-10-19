@@ -1,0 +1,43 @@
+---
+title: CREATE DATABASE Statements
+description: This topic describes how you use the <code>CREATE</code> statement
+  to create Operational Insights databases.
+pubDate: 2026-10-19T14:21:08.937Z
+meta:
+  component:
+    title: Operational Insights Capella
+    version: ""
+  topic_type: reference
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_ddl_database.adoc
+  xref: xref:analytics:sqlpp:5_ddl_database.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/operational-insights-cloud/sqlpp/5_ddl_database.html)
+
+# CREATE DATABASE Statements
+
+> This topic describes how you use the `CREATE` statement to create Operational Insights databases. 
+
+For general `CREATE` statement syntax, see [CREATE Statements](5%5Fddl%5Fcreate.md).
+
+## [](#syntax)Syntax
+
+**CreateDatabase EBNF** 
+
+```EBNF
+CreateDatabase ::= "CREATE" "DATABASE" Identifier ("IF" "NOT" "EXISTS")?
+```
+
+**CreateDatabase Diagram** 
+
+![CREATE](_images/CreateDatabase.png) 
+
+For information about specifying a database name, see [Entities in Operational Insights Services](1a%5Fentities.md).
+
+## [](#example)Example
+
+```SQL++
+  CREATE DATABASE music;
+```

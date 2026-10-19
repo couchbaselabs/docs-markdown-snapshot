@@ -8,7 +8,7 @@ description: Capella operational is the easiest way to use Couchbase Server. Get
   Couchbase under the Capella family of products. The Couchbase AI Data Plane is
   a fully managed set of tools that help you build, deploy, and scale your
   agentic and retrieval-augmented generation (RAG) AI applications.
-pubDate: 2026-10-06T04:29:29.001Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase Documentation
@@ -58,10 +58,10 @@ Create your account and start building mobile and edge apps with Capella App Ser
 Create your account and follow our tutorial on how to load data into your Analytics cluster.
 
 * [Sign Up](https://cloud.couchbase.com/sign-up)
-* [About Capella Analytics](../analytics/intro/intro.md)
-* [Create a Cluster](../analytics/admin/prepare-project.md)
-* [Access Data](../analytics/intro/examples.md)
-* [Query and Explore with the Workbench](../analytics/query/workbench.md)
+* [About Operational Insights Capella](../operational-insights-cloud/intro/intro.md)
+* [Create a Cluster](../operational-insights-cloud/admin/prepare-project.md)
+* [Access Data](../operational-insights-cloud/intro/examples.md)
+* [Query and Explore with the Workbench](../operational-insights-cloud/query/workbench.md)
 
 ###  Get Started With the Couchbase AI Data Plane
 
@@ -70,7 +70,7 @@ Create your account and start working with the AI Data Plane.
 * [Sign Up](https://cloud.couchbase.com/sign-up)
 * [Couchbase AI Data Plane](../ai/get-started/intro.md)
 * [Process Your Data For the Couchbase AI Data Plane](../ai/build/vectorization-service/data-processing.md)
-* [Deploy a Large Language Model (LLM)](../ai/build/model-service/deploy-llm-model.md)
-* [Deploy an Embedding Model](../ai/build/model-service/deploy-embed-model.md)
+* [Deploy a Provisioned Large Language Model (LLM)](../ai/build/model-service/deploy-llm-model.md)
+* [Deploy a Provisioned Embedding Model](../ai/build/model-service/deploy-embed-model.md)
 * [Integrate an Agent with the Agent Catalog](../ai/build/integrate-agent-with-catalog.md)
 * [Use Couchbase AI Data Plane AI Functions](../ai/build/ai-functions.md)

@@ -2,7 +2,7 @@
 title: Download Couchbase Tableau Connector
 description: Download and install the Couchbase Tableau Connector to connect
   your data sources to Tableau Desktop or Tableau Server.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Tableau Connector
@@ -22,7 +22,7 @@ antora:
 
 The connector is distributed as a ZIP archive that contains the Tableau Connector (`.taco`) file, the Couchbase JDBC driver (`.jar`) file, and a README file.
 
-To download the connector, go to the [Release Notes](release-notes.md) page and select the version of the connector you want to download. Be sure to select a version that is compatible with Enterprise Analytics.
+To download the connector, go to the [Release Notes](release-notes.md) page and select the version of the connector you want to download. Be sure to select a version that is compatible with your Couchbase product.
 
 > [!IMPORTANT]
 > By downloading the Couchbase Tableau Connector, you agree to the terms of the [Couchbase Tableau Connector License Agreement](https://www.couchbase.com/toollicenses/tableau/).

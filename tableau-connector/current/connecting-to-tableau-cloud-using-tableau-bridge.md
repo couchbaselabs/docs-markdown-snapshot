@@ -1,13 +1,13 @@
 ---
 title: Connecting to Tableau Cloud using the Tableau Bridge
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Tableau Connector
-    version: "2.0"
+    version: "3.0"
   topic_type: guide
 antora:
-  editUrl: https://github.com/couchbase/docs-tableau/edit/release/2.0/modules/ROOT/pages/connecting-to-tableau-cloud-using-tableau-bridge.adoc
+  editUrl: https://github.com/couchbase/docs-tableau/edit/release/3.0/modules/ROOT/pages/connecting-to-tableau-cloud-using-tableau-bridge.adoc
   xref: xref:tableau-connector::connecting-to-tableau-cloud-using-tableau-bridge.adoc[]
 ---
 
@@ -35,13 +35,13 @@ cd Docker
 cp <download location>/TableauBridge-20243.24.1211.0901.x86_64.rpm .  
 ```
 
-## [](#download-the-couchbase-analytics-tableau-connector)Download the Couchbase Analytics Tableau Connector
+## [](#download-the-couchbase-tableau-connector)Download the Couchbase Tableau Connector
 
-1. Download the latest version of the Couchbase Analytics Tableau Connector from [here](release-notes.md).
+1. Download the latest version of the Couchbase Tableau Connector from [here](release-notes.md).
 2. Unzip the downloaded zip archive and copy the `.taco` and `.jar` files to the working directory you created in the [Download the Tableau Bridge package](#download-the-tableau-bridge) section.  
 ```shell  
-cp <download location>/couchbase-tableau-connector-1/couchbase-analytics-1.1.3.taco .  
-cp <download location>/couchbase-tableau-connector-1/couchbase-jdbc-driver-1.0.5.jar .  
+cp <extract location>/couchbase-operational-insights-v3.0.0.taco .  
+cp <extract location>/couchbase-operational-insights-jdbc-driver-3.0.0.tableau.jar .  
 ```
 
 ## [](#create-the-docker-file)Create the Docker file
@@ -56,8 +56,8 @@ FROM registry.access.redhat.com/ubi8/ubi:latest
 RUN yum -y update  
 COPY TableauBridge-20243.24.1211.0901.x86_64.rpm /opt  
 RUN ACCEPT_EULA=y yum install -y /opt/TableauBridge-20243.24.1211.0901.x86_64.rpm  
-COPY couchbase-jdbc-driver-1.0.5.jar /opt/tableau/tableau_driver/jdbc/  
-COPY couchbase-analytics-1.1.3.taco /root/Documents/My_Tableau_Bridge_Repository/Connectors/  
+COPY couchbase-operational-insights-jdbc-driver-3.0.0.tableau.jar /opt/tableau/tableau_driver/jdbc/  
+COPY couchbase-operational-insights-v3.0.0.taco /root/Documents/My_Tableau_Bridge_Repository/Connectors/  
 ```  
 > [!NOTE]  
 > Make sure the name of the `.rpm` file matches the file downloaded in the [Download the Tableau Bridge package](#download-the-tableau-bridge) section.
@@ -76,7 +76,7 @@ docker images | grep bridge
 ## [](#start-an-instance-of-the-bridge-container)Start an instance of the Bridge Container
 
 1. Start a second instance of the shell.
-2. Use the following command to start the container with the `bride_base` image in the new shell.  
+2. Use the following command to start the container with the `bridge_base` image in the new shell.  
 ```shell  
 docker run -it bridge_base /bin/bash  
 ```  

@@ -1,6 +1,6 @@
 ---
 title: Python Analytics SDK
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Python Analytics SDK
@@ -17,10 +17,10 @@ antora:
 
 # Python Analytics SDK
 
-The Analytics Python SDK allows you to connect to an [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) cluster from Python. For connecting to a Couchbase Server Cluster — self-managed, or Capella Operational — see our [Python Operational SDK](../../../python-sdk/current/hello-world/overview.md).
+The Analytics Python SDK allows you to connect to an [Enterprise Analytics](../../../operational-insights/current/intro/intro.md) cluster from Python. For connecting to a Couchbase Server Cluster — self-managed, or Capella Operational — see our [Python Operational SDK](../../../python-sdk/current/hello-world/overview.md).
 
 > [!TIP]
-> Connecting to a [_Capella_ Analytics](../../../analytics/intro/intro.md) cluster from Python currently requires a [Python Columnar SDK](../../../python-columnar-sdk/current/hello-world/overview.md).
+> Connecting to a [_Capella_ Analytics](#columnar:intro:intro.adoc) cluster from Python currently requires a [Python Columnar SDK](../../../python-columnar-sdk/current/hello-world/overview.md).
 
   
 ##  Using Your Analytics Cluster

@@ -2,7 +2,7 @@
 title: Process Your Data For the Couchbase AI Data Plane
 description: Use the Couchbase AI Data Plane Workflows to prepare, process, and
   vectorize text for use with other AI Data Plane features.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase AI Data Plane
@@ -27,7 +27,7 @@ The following Workflows are available through the Couchbase AI Data Plane:
 * **Data from Capella**: Use when your data has already been pre-processed and stored in a Capella operational cluster.
 
 > [!NOTE]
-> All Workflows require an embedding model to generate vectors. You can use an embedding model [hosted by the AI Data Plane Model Service](../model-service/deploy-embed-model.md), [OpenAI](https://openai.com/), or [Amazon Bedrock](https://aws.amazon.com/bedrock/).
+> All Workflows require an embedding model to generate vectors. You can use an embedding model [hosted by the AI Data Plane Model Service](../model-service/deploy-embed-model.md), [OpenAI](https://openai.com/), or [Amazon Bedrock](https://aws.amazon.com/bedrock/). You can use private endpoints only for models hosted by the AI Data Plane Model Service or Amazon Bedrock.
 
 You must configure specific [data preprocessing options](#data-preprocess) when using an Unstructured Data Workflow. Keep the [Unstructured Data Processing Limitations](#limitations) in mind when processing unstructured data.
 

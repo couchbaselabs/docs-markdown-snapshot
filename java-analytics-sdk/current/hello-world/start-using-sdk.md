@@ -1,8 +1,8 @@
 ---
 title: Java Analytics SDK Quickstart Guide
 description: Install, connect, try. A quick start guide to get you up and
-  running with Enterprise Analytics and the Java Analytics SDK.
-pubDate: 2026-10-03T04:27:21.374Z
+  running with Operational Insights and the Java Analytics SDK.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Java Analytics SDK
@@ -17,13 +17,13 @@ antora:
 
 # Java Analytics SDK Quickstart Guide
 
-> Install, connect, try. A quick start guide to get you up and running with Enterprise Analytics and the Java Analytics SDK. 
+> Install, connect, try. A quick start guide to get you up and running with Operational Insights and the Java Analytics SDK. 
 
-[Enterprise Analytics](../../../analytics/intro/intro.md) is a real-time analytical database (RT-OLAP) for real time apps and operational intelligence. Although maintaining some syntactic similarities with [the operational SDKs](../../../home/sdk.md), the Java Analytics SDK is developed from the ground-up for column-based analytical use cases, and supports streaming APIs to handle large datasets.
+[Operational Insights](../../../operational-insights-cloud/intro/intro.md) is a real-time analytical database (RT-OLAP) for real time apps and operational intelligence. Although maintaining some syntactic similarities with [the operational SDKs](../../../home/sdk.md), the Java Analytics SDK is developed from the ground-up for column-based analytical use cases, and supports streaming APIs to handle large datasets.
 
 ## [](#before-you-start)Before You Start
 
-Install and configure an [Enterprise Analytics Cluster](../../../enterprise-analytics/current/intro/intro.md).
+Install and configure an [Operational Insights Enterprise Cluster](../../../operational-insights/current/intro/intro.md).
 
 ### [](#minimum-java-version)Minimum Java Version
 
@@ -34,7 +34,7 @@ The Java Analytics SDK requires Java 8 or later. We recommend using the most rec
 
 ## [](#maven-project-template)Maven Project Template
 
-The SDK's source code repository includes an [example Maven project](https://github.com/couchbaselabs/couchbase-analytics-jvm-clients/tree/main/couchbase-analytics-java-client/examples/maven-project-template)you can copy to get started quickly.
+The SDK's source code repository includes an [example Maven project](https://github.com/couchbase/couchbase-insights-jvm-clients/tree/main/couchbase-insights-java-client/examples/maven-project-template)you can copy to get started quickly.
 
 ## [](#adding-the-sdk-to-an-existing-project)Adding the SDK to an Existing Project
 
@@ -44,9 +44,9 @@ To see log messages from the SDK, [include an SLF4J binding in your project](../
 
 ## [](#connecting-and-executing-a-query)Connecting and Executing a Query
 
-Java Analytics SDK 1.1 adds support for JWT and client certificate authentication, as well as a new Server Asynchronous Request API that uses request handles to fetch results. Introduced in the self-managed Enterprise Analytics Server 2.2, this API eliminates the need for long-running server connections.
+Java Analytics SDK 1.1 supports the Server Asynchronous Request API that uses request handles to fetch results. Introduced in the self-managed Operational Insights Enterprise Server 2.2, this API eliminates the need for long-running server connections.
 
-The examples in this first section of the page are for the standard API — async on the client side — working with Enterprise Analytics 2.0 and later (with Server Asynchronous Request API examples following in the [Server Async section](#server-asynchronous-api)). You can still use this API with Enterprise Analytics 2.2 and later, in addition to the new API.
+The examples in this first section of the page are for the standard API — async on the client side — working with Operational Insights 2.0 and later (with Server Asynchronous Request API examples following in the [Server Async section](#server-asynchronous-api)). You can still use this API with Operational Insights 2.2 and later, in addition to the new API.
 
 ### [](#server-synchronous-request-api)Server Synchronous Request API
 
@@ -112,7 +112,7 @@ If you are using a different port — for example, connecting to a cluster witho
 
 ### [](#server-asynchronous-api)Server Asynchronous Request API
 
-Enterprise Analytics 2.2 introduces a Server Asynchronous Request API. The SDK sends a request, polls for results, and then fetches once the result is available.
+Operational Insights 2.2 introduces a Server Asynchronous Request API. The SDK sends a request, polls for results, and then fetches once the result is available.
 
 Server Asynchronous API Example
 
@@ -173,6 +173,6 @@ static void queryHandleExample(Queryable clusterOrScope) throws InterruptedExcep
 
 ## [](#migration-from-row-based-analytics)Migration from Row-Based Analytics
 
-If you are migrating a project from CBAS — our Analytics service on Capella Operational and Couchbase Server, using our operational SDKs — then information on migration can be found in the [Enterprise Analytics docs](../../../enterprise-analytics/current/migration/overview.md).
+If you are migrating a project from CBAS — our Analytics service on Capella Operational and Couchbase Server, using our operational SDKs — then information on migration can be found in the [Enterprise Analytics docs](../../../operational-insights/current/migration/overview.md).
 
-In particular, refer to the [SDK section](../../../enterprise-analytics/current/migration/migration-process.md#sdk-migration) of the Enterprise Analytics migration pages.
+In particular, refer to the [SDK section](../../../operational-insights/current/migration/migration-process.md#sdk-migration) of the Enterprise Analytics migration pages.

@@ -1,0 +1,56 @@
+---
+title: Full Installation
+description: Installation instructions for the Node.js Operational Insights SDK.
+pubDate: 2026-10-19T14:21:08.937Z
+meta:
+  component:
+    title: Node.js Operational Insights SDK
+    version: "1.0"
+antora:
+  editUrl: https://github.com/couchbase/docs-operational-insights-sdk-nodejs/edit/release/1.0/modules/project-docs/pages/sdk-full-installation.adoc
+  xref: xref:nodejs-operational-insights-sdk:project-docs:sdk-full-installation.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/nodejs-operational-insights-sdk/current/project-docs/sdk-full-installation.html)
+
+# Full Installation
+
+> Installation instructions for the Node.js Operational Insights SDK. 
+
+## [](#before-you-start)Before You Start
+
+Set up an [Operational Insights](#operational-insights:intro:intro.adoc) cluster.
+
+### [](#prerequisites)Prerequisites
+
+The Operational Insights Node.js SDK supports LTS versions of Node.js — these are 26, 24, and 22 at the time of the 1.1.0 release (October 2026). See the [compatibility page](compatibility.md#platform-compatibility) for more information about platform support.
+
+We recommend using the most recent long-term support (LTS) version of Node.js — at the time of the 1.0 Node.js Operational Insights SDK (October 2026) this is version 26.
+
+## [](#getting-the-sdk)Getting the SDK
+
+The SDK can be installed via `npm`:
+
+```console
+npm install couchbase-operational-insights
+```
+
+## [](#other-installation-methods)Other Installation Methods
+
+A select set of packages with prebuilt binaries are available on the [GitHub Releases page](https://github.com/couchbase/operational-insights-nodejs-client/releases). If a packages is not available for your specific platform, See the [GitHub Building page](https://github.com/couchbase/operational-insights-nodejs-client/blob/main/BUILDING.md) for details on how to build the SDK's binary.
+
+### [](#installing-from-a-downloaded-package)Installing from a Downloaded Package
+
+To install the SDK from a package on the [GitHub Releases page](https://github.com/couchbase/operational-insights-nodejs-client/releases):
+
+1. Download the appropriate package
+2. Unzip the downloaded file
+3. Install via npm: `npm install <path to unzipped file>`
+
+### [](#building-from-source)Building from Source
+
+If a compatible package is not available, the SDK's binary will need to be built from source:
+
+* Follow the steps on the [GitHub Building page](https://github.com/couchbase/operational-insights-nodejs-client/blob/main/BUILDING.md).
+* After the build succeeds, the SDK can be used by running Node scripts from within the cloned repository — or the SDK can be installed via `npm`: `npm install <path to cloned repository>`.

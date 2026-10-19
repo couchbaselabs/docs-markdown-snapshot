@@ -1,6 +1,6 @@
 ---
 title: Couchbase Java SDK 3.11
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Java SDK
@@ -129,8 +129,8 @@ Deployment
 * [Full Installation](../project-docs/sdk-full-installation.md)
 
 > [!TIP]
-> Analytics SDKs
+> Operational Insights SDKs
 > 
-> SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase's analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the .NET, Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](../../../home/analytics-sdk.md) for more information.
+> SDKs for [Operational Insights Enterprise](../../../operational-insights/current/intro/intro.md) — Couchbase's analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the .NET, Go, Java, Node.js, and Python platforms. See the [Operational Insights Enterprise SDK pages](../../../home/analytics-sdk.md) for more information.
 > 
-> Currently, different SDKs are needed to connect to [Capella Analytics](../../../analytics/intro/intro.md) — as this service does not have Enterprise Analytics' load balancer, and uses a different connection protocol. Capella Analytics SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Capella Analytics SDK pages](../../../home/columnar-sdk.md) for more information.
+> Currently, different SDKs are needed to connect to [Operational Insights Capella](../../../operational-insights-cloud/intro/intro.md) — as this service does not have Operational Insights Enterprise's load balancer, and uses a different connection protocol. Operational Insights Capella SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Operational Insights Capella (Columnar) SDK pages](../../../home/columnar-sdk.md) for more information.

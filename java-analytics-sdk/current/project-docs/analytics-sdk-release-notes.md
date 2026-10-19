@@ -1,8 +1,8 @@
 ---
 title: Analytics SDK Release Notes
 description: Release notes, brief installation instructions, and download
-  archive for the Enterprise Analytics Java Client.
-pubDate: 2026-10-03T04:27:21.374Z
+  archive for the Analytics Java Client for Operational Insights.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Java Analytics SDK
@@ -17,9 +17,9 @@ antora:
 
 # Analytics SDK Release Notes
 
-> Release notes, brief installation instructions, and download archive for the Enterprise Analytics Java Client. 
+> Release notes, brief installation instructions, and download archive for the Analytics Java Client for Operational Insights. 
 
-Version 1.1 of the Java Analytics SDK implements the 1.1 [SDK API](compatibility.md#api-version). See the [compatibility pages](#compatibility.html#couchbase-feature-availability-matrix) for more information on feature compatibility with different versions of Enterprise Analytics.
+Version 1.1 of the Java Analytics SDK implements the 1.1 [Analytics SDK API](compatibility.md#api-version). See the [compatibility pages](#compatibility.html#couchbase-feature-availability-matrix) for more information on feature compatibility with different versions of Operational Insights.
 
 ## [](#installation)Installation
 

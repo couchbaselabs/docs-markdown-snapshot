@@ -1,7 +1,7 @@
 ---
 title: Make an API Call with the Couchbase AI Data Plane APIs
 description: How to make an API call with the Couchbase AI Data Plane APIs.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase AI Data Plane
@@ -368,7 +368,7 @@ HTTP Response
 
 ## [](#next-steps)Next Steps
 
-* For a full reference guide of the Management API, see [Capella Operational Management API Reference](../../cloud/management-api-reference/index.md).
+* For a full reference guide of the Management API, see [Couchbase Capella Management API Reference](../../cloud/management-api-reference/index.md).
 * For a full reference guide of the Model Service API, see [Inference API Reference](../model-service-api-reference/rest-api.md).
 * For a reference of the Management API errors, see [Management API Error Messages ](api-errors.md#management-api-errors).
 * For a reference of the AI Data Plane Model Service API errors, see [Model Service API Error Messages ](api-errors.md#model-api-errors).

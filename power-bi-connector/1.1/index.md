@@ -2,7 +2,7 @@
 title: Introduction
 description: The Couchbase Power BI Connector provides data visualization for
   the Couchbase platform, using Microsoft's data visualization software.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Power BI Connector
@@ -115,7 +115,7 @@ To obtain the `connection string`.
   2. Click on **Download** to transfer a copy of the root certificate to your local machine.  
   ![download root certificate](_images/download-root-certificate.png)
 
-For details on creating a Capella Columnar instance, first see [Creating a Capella Columnar Cluster](../../analytics/admin/prepare-project.md).
+For details on creating a Capella Columnar instance, first see [Creating a Capella Columnar Cluster](#columnar:admin:prepare-project.adoc).
 
 You will need to access the Capella administration console to get the connection string for your columnar database.
 

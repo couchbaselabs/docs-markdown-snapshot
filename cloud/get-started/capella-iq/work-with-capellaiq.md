@@ -2,7 +2,7 @@
 title: Work Faster with Capella iQ
 description: Capella iQ is your partner in getting started with Couchbase
   Capella. Use it to create SQL++ queries, sample data, and more.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Capella Operational
@@ -22,22 +22,22 @@ antora:
 
 Capella iQ uses the power of a large language model (LLM) to make it even easier for you to work with Couchbase Capella. It does this by incorporating Couchbase-specific knowledge to produce Couchbase-specific answers.
 
-Capella iQ is available as part of Capella's [query editor](../../clusters/query-service/query-workbench.md) and the Capella Analytics [workbench](../../../analytics/query/workbench.md).
+Capella iQ is available as part of Capella's [query editor](../../clusters/query-service/query-workbench.md) and the Operational Insights [workbench](../../../operational-insights-cloud/query/workbench.md).
 
 ## [](#what-can-capella-iq-do)What Can Capella iQ Do?
 
 With Capella iQ, you can use natural language prompts to:
 
-* Create SQL++ or [SQL++ for Capella Analytics](../../../analytics/sqlpp/1%5Fintro.md) queries
+* Create SQL++ or [SQL++ for Operational Insights Cloud](../../../operational-insights-cloud/sqlpp/1%5Fintro.md) queries
 * Create sample datasets
 * Provide index suggestions for clusters
 * Get SDK-specific connection code for clusters
-* Create [cluster objects](../../../analytics/sources/database-objects.md) in Capella Analytics
+* Create [cluster objects](../../../operational-insights-cloud/sources/database-objects.md) in Operational Insights
 
 For more information about using these capabilities, see [Get Started with Capella iQ](get-started-with-iq.md).
 
 > [!NOTE]
-> Some features differ between Capella iQ for operational clusters and Capella iQ for [Capella Analytics](../../../analytics/intro/intro.md). For more information about Capella iQ for Analytics, see [Get Assistance from Capella iQ](../../../analytics/query/iq.md).
+> Some features differ between Capella iQ for operational clusters and Capella iQ for [Operational Insights](../../../operational-insights-cloud/intro/intro.md). For more information about Capella iQ for Analytics, see [Get Assistance from Capella iQ](../../../operational-insights-cloud/query/iq.md).
 
 ### [](#explore-results-with-iq-insights)Explore Results with iQ Insights
 
@@ -53,7 +53,7 @@ Capella iQ uses a [large language model (LLM)](#model-provider) to generate resp
 
 Before you can use Capella iQ, an [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner) must:
 
-* Accept the [supplemental terms](https://www.couchbase.com/capella-feature-specific-terms/). Once the supplemental terms are accepted, all users in that organization can use Capella iQ for Capella clusters and Capella Analytics clusters.  
+* Accept the [supplemental terms](https://www.couchbase.com/capella-feature-specific-terms/). Once the supplemental terms are accepted, all users in that organization can use Capella iQ for Capella clusters and Operational Insights clusters.  
 For more information, see [Accept Capella iQ Supplemental Terms](configure-capellaiq.md#T&C).
 * Select a [model provider](#model-provider) for Capella iQ. Once a model provider is selected, all users in that organization can use that provider for Capella iQ for all clusters in that organization.  
 For more information, see [Select Your Capella iQ Model Provider](configure-capellaiq.md#select-model-provider).

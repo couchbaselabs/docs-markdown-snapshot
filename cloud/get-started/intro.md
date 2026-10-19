@@ -3,7 +3,7 @@ title: Welcome to Couchbase Capella
 description: Capella is the easiest way to use our Couchbase NoSQL database. Get
   access to SQL-like querying, Full-Text Search, powerful eventing, and connect
   to mobile and IoT devices at the edge.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Capella Operational
@@ -62,7 +62,7 @@ Ready to dive into development? Explore our APIs and SDKs.
 
 * [Manage Deployments with the Capella Operational Management API](../management-api-guide/management-api-intro.md)
 * [Manage App Services with the App Services API](../../app-services/references/rest-api-introduction.md)
-* [SDKs & Connectors](../../home/sdk.md)
+* [SDKs for Couchbase Operational Database](../../home/sdk.md)
 * [SQL++ for Query Reference](../n1ql/n1ql-language-reference/index.md)
 
 ###  Optimize A Cluster

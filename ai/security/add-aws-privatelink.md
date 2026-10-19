@@ -3,7 +3,7 @@ title: Add an AWS PrivateLink Connection
 description: Add an AWS PrivateLink connection that peers your Amazon Web
   Service (AWS) network with the Couchbase AI Data Plane using AWS as its cloud
   provider.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase AI Data Plane
@@ -22,7 +22,16 @@ antora:
 > Add an AWS PrivateLink connection that peers your Amazon Web Service (AWS) network with the Couchbase AI Data Plane using AWS as its cloud provider. 
 
 > [!IMPORTANT]
-> To link a Capella operational cluster with a model on the [Model Service](../get-started/intro.md#model), you only need to enable private networking. You do not have to perform any other configuration, the Couchbase AI Data Plane handles the connection automatically.
+> Private Model Connection
+> 
+> To privately connect an AI Data Plane service to a model, you do not need to manually configure anything through your cloud provider's CLI. Capella automatically provisions and manages the underlying private networking infrastructure. Connect the following AI Data Plane services privately to model providers:
+> 
+> * For [AI Functions](../build/ai-functions.md) associated with an AI Data Plane model, enable private networking during [enablement](../build/ai-functions.md#enable-ai-functions).
+> * For [Workflows](../build/vectorization-service/data-processing.md), enable private endpoints during workflow creation:
+> 
+>   * [Vectorize Structured Data from Capella](../build/vectorization-service/vectorize-structured-data-capella.md#choose-embedding)
+>   * [Vectorize Structured Data from Amazon S3](../build/vectorization-service/vectorize-structured-data-s3.md#choose-embedding)
+>   * [Process and Vectorize Unstructured Data](../build/vectorization-service/vectorize-unstructured-data.md#choose-embedding)
 
 Private endpoints for the Couchbase AI Data Plane are region-based. You're linking the AWS region for your AI Data Plane features to your AWS VPC.
 

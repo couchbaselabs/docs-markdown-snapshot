@@ -2,7 +2,7 @@
 title: About Billing Alerts
 description: Couchbase Capella billing alerts notify you about important
   information related to your usage and billing for operational clusters.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Capella Operational
@@ -75,4 +75,4 @@ The following recipients are available for billing alerts:
 * [Manage Billing Alerts](manage-billing-alerts.md)
 * [Manage Your Billing](billing.md)
 * [Manage Billing Information](manage-billing.md)
-* [View Capella Usage and Invoices](usage-invoices.md)
+* [View Capella Usage](usage-invoices.md)

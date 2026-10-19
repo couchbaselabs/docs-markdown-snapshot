@@ -3,7 +3,7 @@ title: View Health Advisor
 description: Capella Health Advisor analyzes the health of your operational
   cluster and provides expert advice to optimize its configurations,
   performance, and stability.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Capella Operational
@@ -39,7 +39,7 @@ To view existing Health Advisor reports:
 * A [project role](../../projects/project-roles.md) in any project where you want to view a Health Advisor report.
 
 > [!NOTE]
-> This feature is not available to use with Capella Analytics clusters, free tier operational clusters or operational clusters deployed with the **Basic** plan. Use the [**Monitoring** dashboards](metrics-dashboard.md) to view cluster metrics for all Capella operational clusters or [upgrade your plan](../../billing/upgrade-account.md) to get expert advice on your cluster.
+> This feature is not available to use with Operational Insights clusters, free tier operational clusters or operational clusters deployed with the **Basic** plan. Use the [**Monitoring** dashboards](metrics-dashboard.md) to view cluster metrics for all Capella operational clusters or [upgrade your plan](../../billing/upgrade-account.md) to get expert advice on your cluster.
 
 ## [](#generate-a-new-health-advisor-report)Generate a New Health Advisor Report
 

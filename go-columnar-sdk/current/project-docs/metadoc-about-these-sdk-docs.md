@@ -2,7 +2,7 @@
 title: About These Docs
 description: Meta documentation -- what you might need to know to get the best
   from these docs, from their intent to their Information Architecture.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Go Columnar SDK
@@ -23,7 +23,7 @@ Welcome to the [Go Columnar SDK 1.0](compatibility.md#api-version) docs — this
 
 ## [](#assumptions-presumptions)Assumptions & Presumptions
 
-Couchbase is a complex and powerful product, with many components. The Columnar SDKs simply interact with Capella Columnar, not Couchbase Server and its various services — but some of that complexity spills across into the Columnar SDKs and their documentation.
+Couchbase is a complex and powerful product, with many components. The Columnar SDKs simply interact with Operational Insights (Capella), not Couchbase Server and its various services — but some of that complexity spills across into the Columnar SDKs and their documentation.
 
 Some concepts, such as Role-Based Access Control, do need to be understood in greater depth — but this is documented [in the appropriate place in the Server docs](../../../server/7.6/learn/security/roles.md), and the [Capella docs](../../../cloud/projects/project-roles.md), and linked from the [Getting Started Guide](../hello-world/start-using-sdk.md). Additionally, things which are essential in production can be a barrier to getting up and running quickly in order to try something out — so the _Full Admin_ RBAC role is used in the _Hello World_ code example, contrary to best practice (but this is, of course, called out).
 
@@ -35,7 +35,7 @@ Furthermore, for developers with less experience of databases in the distributed
 
 ### [](#limits-of-the-sdk-docs)Limits of the SDK Docs
 
-Large as this docset is, it can only cover a subset of the complete Columnar SDK API. For a comprehensive answer to anything not completely covered in these docs, your first port of call should always be the [API reference](https://docs.couchbase.com/sdk-api/columnar-go-client). For many languages, you will also access this from your chosen IDE.
+Large as this docset is, it can only cover a subset of the complete Columnar SDK API. For a comprehensive answer to anything not completely covered in these docs, your first port of call should always be the [API reference](https://pkg.go.dev/github.com/couchbase/gocbcolumnar). For many languages, you will also access this from your chosen IDE.
 
 ## [](#getting-started)Getting Started
 
@@ -49,7 +49,7 @@ It also contains information on connecting to the database, and a section of tro
 
 * [Querying Your Data](../concept-docs/querying-your-data.md)
 
-The heart of the Columnar Service — real-time OLAP querying, with Couchbase's familiar SQL++ query language.
+The heart of the Operational Insights (Capella) Service — real-time OLAP querying, with Couchbase's familiar SQL++ query language.
 
 ## [](#sdk-deployment)SDK Deployment
 
@@ -61,7 +61,7 @@ A section on those non-programmatic considerations — [compatibility guides](co
 
 * [Reference Pages](../ref/index.md)
 
-The key reference doc is the API guide, which should be an accurate and complete source of truth for programming with the Go SDK's API. Any error here should be filed directly against the individual SDKs bug tracker — via the GitHub issues on <https://github.com/couchbase/couchbase-columnar-go-client — >; although a ticket against the docs [here](https://issues.couchbase.com/projects/DOC/issues) will always be converted to the correct project.
+The key reference doc is the API guide, which should be an accurate and complete source of truth for programming with the Go SDK's API. Any error here should be filed directly against the individual SDKs bug tracker — via the GitHub issues on <https://github.com/couchbase/gocbcolumnar — >; although a ticket against the docs [here](https://issues.couchbase.com/projects/DOC/issues) will always be converted to the correct project.
 
 The first link in the navigation for the Reference Section is to the API Guide for the _latest version_ of the SDK. Links to previous versions can be found with the [Release Notes](columnar-sdk-release-notes.md).
 

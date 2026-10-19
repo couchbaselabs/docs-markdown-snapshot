@@ -1,9 +1,9 @@
 ---
 title: Compatibility
 description: Platform compatibility, and features available in different SDK
-  versions, and compatibility between Server and SDK. Plus notes on Cloud,
-  networks, and AWS Lambda.
-pubDate: 2026-10-03T04:27:21.374Z
+  versions, and compatibility between Operational Insights (Capella) and SDK.
+  Plus notes on Cloud, networks, and AWS Lambda.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Go Columnar SDK
@@ -18,7 +18,7 @@ antora:
 
 # Compatibility
 
-> Platform compatibility, and features available in different SDK versions, and compatibility between Server and SDK. Plus notes on Cloud, networks, and AWS Lambda. 
+> Platform compatibility, and features available in different SDK versions, and compatibility between Operational Insights (Capella) and SDK. Plus notes on Cloud, networks, and AWS Lambda. 
 
 The 1.0 Go Columnar SDK requires Go 1.22 or 1.23, using [Go Modules](https://go.dev/blog/using-go-modules).
 
@@ -62,7 +62,7 @@ Couchbase does document, for purposes of convenience when developing and perform
 
 ## [](#capella-columnar-compatibility)Capella Columnar Compatibility
 
-Capella Columnar is a fully hosted service, continually updated, and offering the latest version — with users having a few weeks to upgrade from the previous version. As such, the latest Couchbase Columnar SDKs are tested against the latest versions. Where older versions of the Go Columnar SDK pre-date significant new features in Columnar, those differences will be noted in this section.
+Operational Insights (Capella) is a fully hosted service, continually updated, and offering the latest version — with users having a few weeks to upgrade from the previous version. As such, the latest Couchbase Columnar SDKs are tested against the latest versions. Where older versions of the Go Columnar SDK pre-date significant new features in Operational Insights (Capella), those differences will be noted in this section.
 
 ## [](#sdk-api-stability)SDK API Stability
 

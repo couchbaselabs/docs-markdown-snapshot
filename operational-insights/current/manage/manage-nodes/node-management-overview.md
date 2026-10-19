@@ -1,0 +1,48 @@
+---
+title: Nodes and Clusters
+description: A Couchbase-Server <em>cluster</em> consists of one or more
+  <em>nodes</em>, each of which is a system running an instance of Operational
+  Insights.
+pubDate: 2026-10-19T14:21:08.937Z
+meta:
+  component:
+    title: Operational Insights Enterprise
+    version: "3.0"
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/3.0/modules/manage/pages/manage-nodes/node-management-overview.adoc
+  xref: xref:enterprise-analytics:manage:manage-nodes/node-management-overview.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/operational-insights/current/manage/manage-nodes/node-management-overview.html)
+
+# Nodes and Clusters
+
+> A Couchbase-Server _cluster_ consists of one or more _nodes_, each of which is a system running an instance of Operational Insights. 
+
+## [](#managing-nodes-and-clusters)Managing Nodes and Clusters
+
+An Operational Insights _node_ is a physical or virtual machine that hosts a single instance of Operational Insights. A conceptual overview is provided in [Nodes](../../../../server/current/learn/clusters-and-availability/nodes.md). The current section provides step-by-step procedures for node-management. This includes:
+
+* _Initializing_ and _provisioning_ a node, thereby making it a one-node cluster.
+* _Adding_ and _removing_ nodes from clusters.
+* _Listing_ nodes currently in the cluster.
+* Performing _failover_ on nodes, when they need to be removed from the cluster.
+* _Rebalancing_ the cluster, after a node has been removed for scheduled or otherwise planned maintenance.
+* _Recovering_ a node, following failover.
+* _Applying_ node-to-node encryption, to ensure security of communications across the cluster.
+* _Changing_ the cluster's address family.
+
+## [](#prerequisites)Prerequisites
+
+Before proceeding with the instructions in this section, you must have installed and started Operational Insights.
+
+For links to all per platform installation-instructions, see [Install](../../install/supported-platform.md).
+
+For information about starting and stopping Operational Insights on different platforms, see [Start and Stop](../../install/start-stop-cb-operational-insights.md).
+
+## [](#certificate-management)Certificate Management
+
+The examples in this section assume that nodes are protected with the out-of-the-box, _self-signed_ SSL/TLS certificate that is provided with Operational Insights by default. This allows nodes to be added to the cluster with no need for explicit certificate-related management; since each node has the same certificate. However, this certificate is only intended for use in pre-production environments.
+
+If, across the cluster, an _authority-signed_ certificate is substituted for the default (as would be required for production deployments), no further node can subsequently be added until a certificate signed by the same authority has been installed on it. An attempt incorporate into a cluster a new node that is not appropriately certificate-protected results in an error. For more information, see [Node Certificates](../../../../server/current/learn/clusters-and-availability/nodes.md#node-certificates).

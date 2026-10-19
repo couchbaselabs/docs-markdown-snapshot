@@ -1,7 +1,7 @@
 ---
 title: Capella Operational Management API Change Log
 description: The change log for the Couchbase Capella Operational Management API.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Capella Operational
@@ -16,7 +16,7 @@ antora:
 
 # Capella Operational Management API Change Log
 
-This page is for Capella operational. For the Couchbase AI Data Plane, see [The Couchbase AI Data Plane API Change Log](../../ai/api-guide/api-log.md). For Capella Analytics, see [Capella Analytics Management API Change Log](../../analytics/management-api-guide/management-api-log.md).
+This page is for Capella operational. For the Couchbase AI Data Plane, see [The Couchbase AI Data Plane API Change Log](../../ai/api-guide/api-log.md). For Operational Insights, see [Operational Insights Management API Change Log](../../operational-insights-cloud/management-api-guide/management-api-log.md).
 
 ## [](#version-4-0-0)Version 4.0.0
 
@@ -219,4 +219,4 @@ Initial release.
 ## [](#see-also)See Also
 
 * For details of the Management API, see [Manage Deployments with the Capella Operational Management API](management-api-intro.md).
-* For a full reference guide, see [Capella Operational Management API Reference](../management-api-reference/index.md).
+* For a full reference guide, see [Couchbase Capella Management API Reference](../management-api-reference/index.md).

@@ -6,7 +6,7 @@ description: The Developer Data Platform for Critical Applications in Our AI
   offline-first Couchbase Lite, for transactional workloads with SDKs in a dozen
   popular programming languages, for real-time analytics, and build agentic
   apps.
-pubDate: 2026-10-17T04:21:50.088Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase Documentation
@@ -41,7 +41,7 @@ Develop an app for [Capella Operational](https://docs.couchbase.com/cloud/develo
 
 ###  Real Time Analytics with Analytics SDKs
 
-[Enterprise Analytics](../enterprise-analytics/current/intro/intro.md) brings the power of NoSQL to the world of analytics. Self-managed Enterprise Analytics brings real-time adaptive applications to your datacenter or private cloud — or try this service fully-hosted as [Capella Analytics](../analytics/intro/intro.md), which integrates seamlessly with the Couchbase Capella cloud platform. [Analytics SDKs](analytics-sdk.md) support streaming APIs to handle large datasets.
+[Operational Insights](../operational-insights/current/intro/intro.md) brings the power of NoSQL to the world of analytics. Self-managed Operational Insights brings real-time adaptive applications to your datacenter or private cloud — or try this service fully-hosted as [Operational Insights Capella](#columnar:intro:intro.adoc), which integrates seamlessly with the Couchbase Capella cloud platform. [Analytics SDKs](analytics-sdk.md) support streaming APIs to handle large datasets.
 
 * [.NET Analytics SDK Docs](../dotnet-analytics-sdk/current/hello-world/overview.md)
 * [Go Analytics SDK Docs](../go-analytics-sdk/current/hello-world/overview.md)

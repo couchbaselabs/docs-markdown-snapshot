@@ -1,0 +1,34 @@
+---
+title: Full Installation
+description: Installation instructions for the Couchbase Go Client.
+pubDate: 2026-10-19T14:21:08.937Z
+meta:
+  component:
+    title: Go Operational Insights SDK
+    version: "1.0"
+antora:
+  editUrl: https://github.com/couchbase/docs-operational-insights-sdk-go/edit/release/1.0/modules/project-docs/pages/sdk-full-installation.adoc
+  xref: xref:go-operational-insights-sdk:project-docs:sdk-full-installation.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/go-operational-insights-sdk/current/project-docs/sdk-full-installation.html)
+
+# Full Installation
+
+> Installation instructions for the Couchbase Go Client. 
+
+Operational Insights SDKs are developed from the ground-up and while they maintain some syntactic similarities with the [operational SDKs](../../../home/sdk.md), they are purpose built for analytical use cases. They support streaming APIs to handle large datasets, as well as the common features expected to be present in any modern database SDK — such as connection management and robust error handling.
+
+## [](#installing-the-sdk)Installing the SDK
+
+You can use `go get` to download the SDK:
+
+```console
+$ go get github.com/couchbase/gocboperationalinsights@v1.0.0
+```
+
+> [!NOTE]
+> In line with the [Golang project](https://golang.org/doc/devel/release.html#policy), Couchbase supports both the current, and the previous, versions of Go. Earlier versions may work, but are not supported.
+
+Information about new features, fixes, and known issues — as well as information about how to install earlier release versions — is in the [release notes](operational-insights-sdk-release-notes.md).

@@ -1,0 +1,81 @@
+---
+title: Role Based Access Control (RBAC)
+description: For authorizing users, Operational Insights provides <em>Role-Based
+  Access Control</em>.
+pubDate: 2026-10-19T14:21:08.937Z
+meta:
+  component:
+    title: Operational Insights Enterprise
+    version: "3.0"
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/3.0/modules/manage/pages/manage-security/rbac-overview.adoc
+  xref: xref:enterprise-analytics:manage:manage-security/rbac-overview.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/operational-insights/current/manage/manage-security/rbac-overview.html)
+
+# Role Based Access Control (RBAC)
+
+> For authorizing users, Operational Insights provides _Role-Based Access Control_. 
+
+Operational Insights uses Role-Based Access Control (RBAC) to manage access to system resources. In this model, privileges are assigned to fixed roles, which can then be granted to users—either directly or through user groups. Users can represent individuals, administrators, or applications.
+
+RBAC in Operational Insights supports multiple predefined roles, allowing for fine-grained access control. Privileges can be granted both to roles and directly to users, providing flexible and secure permission management.
+
+## [](#platform-and-service-roles)Platform Roles and Service Roles
+
+Operational Insights authorizes users at two levels:
+
+* _Platform roles_ decide who can reach the service, and who can administer the cluster. They are assigned on the **Users & Groups** tab of the **Security** screen, or with the CLI or REST API. See [Users, Groups, and Roles](manage-users-and-roles.md) and [User Role Privileges](user-roles-privileges.md).
+* _Service roles_ and _privileges_ decide what a user can do once they reach the service: which databases, scopes, collections, views, links, catalogs, libraries, and functions they can read, write, create, or drop. They are managed with the [GRANT](../../sqlpp/5%5Fddl%5Fgrant%5Fstatement.md) and [REVOKE](../../sqlpp/5%5Fddl%5Frevoke%5Fstatement.md) statements, or on the **Service RBAC** tab of the **Security** screen. See [System Defined Roles](system-defined-roles.md), [User Defined Roles](user-defined-role.md), and [Manage Service Roles with the UI](manage-service-roles.md).
+
+A platform role that can manage the service, such as Full Admin, bypasses service roles entirely.
+
+## [](#example-scenarios)Example Scenarios
+
+Operational Insights RBAC provides a secure solution for each of the following scenarios:
+
+* An application consists of several services, each of which has a different purpose. Compliance demands that each service be given a different set of read and write privileges, in order to constrain its activities to those absolutely required.
+* An application is available to several different classes of user. Each user-class has a different set of requirements for reading and writing data. Compliance demands that each user-class be given no more than the minimum privileges for supporting its requirements.
+* Test and production environments respectively require different degrees of constraint to be applied to read and write access. Administrators, developers, applications, and services should therefore each be granted one set of privileges for the test environment, and another (more restrictive) for the production.
+
+## [](#rbac-concepts)RBAC Concepts
+
+The following concepts are essential to an understanding of Operational Insights RBAC:
+
+* _Resource_: An entity the access to which must be controlled. A resource can be specified either individually, by name; or as a group for example, all databases, by means of a wildcard character. The complete list of resources to which RBAC is applied is provided in [System Defined Roles](system-defined-roles.md).
+* _Privilege_: The right, assigned by Operational Insights, to apply an action to a resource. Possible actions include _read_, _write_, and _execute_. The associations of privileges to resources and roles are explained in [User Role Privileges](user-roles-privileges.md).
+* _Role_: An entity associated with a fixed set of privileges. The association of privileges to roles is described in [User Defined Roles](user-defined-role.md).
+* _User_: An identity, recognized by Operational Insights, based on the passing of a _username_ and _password_. A user can be assigned one or more _roles_: the privileges associated with each assigned role determine the resource-access granted the user. Users can be _local_ (defined on Operational Insights) or _external_ (defined on a remote, network-accessible system). Each user might be an administrator or an application. For information about how to manage users, see [Manage Users and Roles](manage-users-and-roles.md).
+* _Owner_: The user who creates an object, such as a database, collection, or function, automatically receives a fixed set of privileges on that object. For the full list of these implicit, per-object privileges, see [Owner Concept](owner-concept.md).
+
+## [](#rbac-security-model)RBAC Security Model
+
+Couchbase RBAC controls access to cluster-resources. Resources can only be accessed by users. A user may be an administrator or an application.
+
+Users can be added to Operational Insights by the Full Administrator. Each user must be defined with a username and password. When attempting to access resources, each user must authenticate by means of these credentials.
+
+A user can be assigned one or more roles by the Full Administrator. Each role is itself associated with a subset of privileges; a privilege being a form of action, such as Read, Write, Execute, or Manage. Each privilege is associated with a resource.
+
+For example, the Data Reader role features the Read privilege, which is applied to the data of a database. When a user has been assigned the Data Reader role, and attempts to gain read-access to the database's data by submitting their credentials, Operational Insights identifies the user, recognises their assigned role and privilege, and duly authorises read-access.
+
+> [!NOTE]
+> Resource-access can optionally be specified by means of _parameterisation_. This means that a wildcard character has been used, during role-assignment, to specify that a privilege applies to all resource-instances within a resource-class: for example, to all databases.
+
+## [](#defining-users-and-groups)Defining Users and Groups
+
+Operational Insights allows users to be defined individually, on the cluster. Each user so defined is of one of the following kinds:
+
+* A _local user_. The username and password are defined and maintained on Operational Insights.
+* An _external user_. The username is recorded on Operational Insights. However, the username and password are defined and maintained outside the cluster: for example, on a remote LDAP server.
+
+Couchbase-Server roles can be assigned both to local and to external users. Roles can be assigned in either or both of the following ways:
+
+* _Directly_. The user is associated directly with one or more Couchbase-Server roles.
+* _By Group_. A Couchbase-Server _user-group_ is defined, and roles are assigned to the user-group. The user is made a member of the user-group, and thereby inherits all the roles of the group. A user can be a member of any number of groups.
+
+> [!NOTE]
+> By means of _LDAP Group Support_, the roles assigned to a Couchbase-Server user-group can be inherited by users not defined on Operational Insights. For a detailed account, see [Authentication Domains](configure-ldap.md).
+
+See [Manage Users, Groups, and Roles](manage-users-and-roles.md), for details on creating users and assigning roles.

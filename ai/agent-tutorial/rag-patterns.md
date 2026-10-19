@@ -2,7 +2,7 @@
 title: About RAG Blueprints
 description: Learn about common RAG (Retrieval-Augmented Generation) patterns
   and how they are applied in knowledge bases, support, and search.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase AI Data Plane
@@ -120,7 +120,7 @@ For a knowledge base assistant, consider using an embedding model like `nv-embed
 
 In general, choose a richer model that gives better semantic embeddings, or higher recall scores, or a model that's tuned to your specific use case. Better semantics helps connect information across the chunks in your documents.
 
-For more information about how to deploy an embedding model on the AI Data Plane, like `nv-embedqa-mistral-7b-v2`, see [Deploy an Embedding Model](../build/model-service/deploy-embed-model.md).
+For more information about how to deploy an embedding model on the AI Data Plane, like `nv-embedqa-mistral-7b-v2`, see [Deploy a Provisioned Embedding Model](../build/model-service/deploy-embed-model.md).
 
 Similarity Metric
 
@@ -205,7 +205,7 @@ For a customer support assistant, consider using an embedding model like `nv-emb
 
 You can choose a smaller model for this use case to save and support better scaling on query volumes, since you need shorter, predictable responses.
 
-For more information about how to deploy an embedding model on the AI Data Plane, like `nv-embedqa-e5-v5`, see [Deploy an Embedding Model](../build/model-service/deploy-embed-model.md).
+For more information about how to deploy an embedding model on the AI Data Plane, like `nv-embedqa-e5-v5`, see [Deploy a Provisioned Embedding Model](../build/model-service/deploy-embed-model.md).
 
 Similarity Metric
 
@@ -280,7 +280,7 @@ For a search and discovery tool, consider using an embedding model like `arctic-
 
 You want a larger, more capable model to handle the number of vectors and the size of the dataset for this use case.
 
-For more information about how to deploy an embedding model on the AI Data Plane, like `arctic-embed-l`, see [Deploy an Embedding Model](../build/model-service/deploy-embed-model.md).
+For more information about how to deploy an embedding model on the AI Data Plane, like `arctic-embed-l`, see [Deploy a Provisioned Embedding Model](../build/model-service/deploy-embed-model.md).
 
 Similarity Metric
 

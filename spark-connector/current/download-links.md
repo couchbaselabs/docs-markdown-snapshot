@@ -1,6 +1,6 @@
 ---
 title: Download and API Reference
-pubDate: 2026-10-14T04:27:20.555Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Spark Connector
@@ -24,17 +24,17 @@ For Apache Spark 4.1 and 4.2, use:
 
 * **GroupId:** com.couchbase.client
 * **ArtifactId:** spark-connector\_2.13
-* **Version:** 4.0.1
+* **Version:** 4.0.2
 
 In SBT use:
 
 ```scala
-libraryDependencies += "com.couchbase.client" %% "spark-connector" % "4.0.1"
+libraryDependencies += "com.couchbase.client" %% "spark-connector" % "4.0.2"
 ```
 
 and then follow the [Scala getting started documentation](getting-started.md).
 
-The library package can also be downloaded: [Download (Scala 2.13 / Java)](https://packages.couchbase.com/clients/connectors/spark/4.0.1/Couchbase-Spark-Connector%5F2.13-4.0.1.zip)| [API Reference](https://docs.couchbase.com/sdk-api/couchbase-spark-connector-4.0.1/api/com/couchbase/index.html)
+The library package can also be downloaded: [Download (Scala 2.13 / Java)](https://packages.couchbase.com/clients/connectors/spark/4.0.2/Couchbase-Spark-Connector%5F2.13-4.0.2.zip)| [API Reference](https://docs.couchbase.com/sdk-api/couchbase-spark-connector-4.0.2/api/com/couchbase/index.html)
 
 Note that the download also contains an assembled jar, which means they contain all the dependencies in one "fat jar". This means that you don't need to juggle multiple dependencies if you want to use the jar as part of Spark's command line access tools (like the shell) or add it to the classpath of workers.
 

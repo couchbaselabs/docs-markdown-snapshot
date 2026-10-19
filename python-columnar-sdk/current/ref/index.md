@@ -1,7 +1,8 @@
 ---
 title: Reference Pages
-description: Essential reference infomation for developing with Columnar.
-pubDate: 2026-10-03T04:27:21.374Z
+description: Essential reference infomation for developing with Operational
+  Insights (Capella).
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Python Columnar SDK
@@ -16,7 +17,7 @@ antora:
 
 # Reference Pages
 
-> Essential reference infomation for developing with Columnar. 
+> Essential reference infomation for developing with Operational Insights (Capella). 
 
 This section contains the following reference docs:
 

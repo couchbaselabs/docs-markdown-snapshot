@@ -1,6 +1,6 @@
 ---
 title: Get Involved
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Go Columnar SDK
@@ -17,7 +17,7 @@ antora:
 
 ## [](#contributing)Contributing
 
-Couchbase welcomes community contributions to the Java SDK. The [Go Columnar SDK source code](https://github.com/couchbase/couchbase-columnar-go-client) is available on GitHub. Please see the [CONTRIBUTING](https://github.com/couchbase/couchbase-jvm-clients/blob/master/CONTRIBUTING.md) file for further information.
+Couchbase welcomes community contributions to the Go SDK. The [Go Columnar SDK source code](https://github.com/couchbase/gocbcolumnar) is available on GitHub.
 
 ## [](#other-ways-to-contribute)Other Ways to Contribute
 

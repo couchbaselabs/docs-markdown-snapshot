@@ -1,8 +1,8 @@
 ---
 title: Query Agent Catalog Traces with SQL++
-description: You can also use SQL++ through the Query Service or Capella
-  Analytics to query your Agent Catalog activity logs.
-pubDate: 2026-10-03T04:27:21.374Z
+description: You can also use SQL++ through the Query Service or Operational
+  Insights to query your Agent Catalog activity logs.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase AI Data Plane
@@ -18,7 +18,7 @@ antora:
 
 # Query Agent Catalog Traces with SQL++
 
-> You can also use SQL++ through the Query Service or Capella Analytics to query your Agent Catalog activity logs. 
+> You can also use SQL++ through the Query Service or Operational Insights to query your Agent Catalog activity logs. 
 
 Using queries might return more details on traces that you cannot see through the [Agent Tracer UI](view-traces.md).
 
@@ -30,7 +30,7 @@ This should be the same cluster you add to your environment variables for the Ag
 For more information about how to add Services to a cluster, see [Modify the Cluster Configuration](../../../cloud/clusters/modify-database.md#modify-existing-service).
 * You have [indexed and published tools and prompts to the Agent Catalog](../integrate-agent-with-catalog.md#index-publish).
 * You have [Add Spans and Callbacks to Your Agent](add-spans-callbacks.md).
-* If you want to use Capella Analytics to query traces, you must [create a Capella Analytics cluster](../../../analytics/admin/prepare-project.md) and [configure your Agent Catalog cluster as a remote data source](../../../analytics/sources/remote-cb-capella.md).
+* If you want to use Operational Insights to query traces, you must [create an Operational Insights cluster](../../../operational-insights-cloud/admin/prepare-project.md) and [configure your Agent Catalog cluster as a remote data source](../../../operational-insights-cloud/sources/remote-cb-capella.md).
 * Your user account has the [Organization Owner](../../../cloud/organizations/organization-user-roles.md#organization-role-organization-owner) or [Project Creator](../../../cloud/organizations/organization-user-roles.md#organization-role-project-creator) organization role, or 1 of the following project roles:
 
   * [Project Owner](../../../cloud/projects/project-roles.md#project-owner-role)
@@ -43,7 +43,7 @@ For more information about how to add Services to a cluster, see [Modify the Clu
 To query traces from the Agent Catalog:
 
 * Query Service
-* Capella Analytics
+* Operational Insights
 
 1. In the Capella UI, on the **Operational** page, click the name of the cluster where you uploaded your Agent Catalog activity.
 2. Go to **Data Tools** **Query**.
@@ -65,7 +65,7 @@ To query traces from the Agent Catalog:
 The following example queries use a generated data view called `Sessions` to return data on specific sessions in your agent activity. This can include agent handoff information, for help with debugging multi-agent systems.
 
 * Query Service
-* Capella Analytics
+* Operational Insights
 
 Copy and paste the following query into the Query Service's Query Workbench, replacing the placeholders with the bucket and scope for your Agent Catalog activity logs:
 
@@ -96,7 +96,7 @@ FROM
     WHERE kind = "edge"
     LIMIT 10;
 
-Copy and paste the following query into the Capella Analytics workbench. Replace the placeholders with the database, scope, and collection link name from your Analytics cluster remote link to your Agent Catalog activity logs. This query creates the `Sessions` data view:
+Copy and paste the following query into the Operational Insights workbench. Replace the placeholders with the database, scope, and collection link name from your Analytics cluster remote link to your Agent Catalog activity logs. This query creates the `Sessions` data view:
 
 ```sqlpp
 CREATE OR REPLACE ANALYTICS VIEW `[DATABASE_NAME]`.`[SCOPE_NAME]`.Sessions AS
@@ -166,7 +166,7 @@ FROM
     LIMIT 10;
 ```
 
-If you want to specifically filter for agent handoff messages in the `Sessions` view, add a [WHERE clause](../../../analytics/sqlpp/3%5Fquery.md#Where%5Fhaving%5Fclauses) to your query for `kind = "edge"`:
+If you want to specifically filter for agent handoff messages in the `Sessions` view, add a [WHERE clause](../../../operational-insights-cloud/sqlpp/3%5Fquery.md#Where%5Fhaving%5Fclauses) to your query for `kind = "edge"`:
 
 FROM
       `[DATABASE_NAME]`.`[SCOPE_NAME]`.Sessions s
@@ -196,7 +196,7 @@ The records in the `Sessions` view contain the following information:
 The following example queries use a generated data view called `Exchanges` to return data on specific exchanges, or the events between a user's input and the agent's response.
 
 * Query Service
-* Capella Analytics
+* Operational Insights
 
 Copy and paste the following query into the Query Service's Query Workbench, replacing `agent-catalog` and `agent-activity` with the bucket and scope for your Agent Catalog activity logs:
 
@@ -214,7 +214,7 @@ FROM
     LIMIT 1;
 ```
 
-Copy and paste the following query into the Capella Analytics workbench. Replace the placeholders with the database, scope, and collection link name from your Analytics cluster remote link to your Agent Catalog activity logs. This query creates the `Exchanges` data view:
+Copy and paste the following query into the Operational Insights workbench. Replace the placeholders with the database, scope, and collection link name from your Analytics cluster remote link to your Agent Catalog activity logs. This query creates the `Exchanges` data view:
 
 ```sqlpp
 CREATE OR REPLACE ANALYTICS VIEW `[BUCKET_NAME]`.`[SCOPE_NAME]`.Exchanges AS
@@ -363,13 +363,13 @@ FROM
 
 The records in the `Exchanges` view contain the following information:
 
-| Key                                        | Description                                                                                                                                                                                                                                                                                      |
-| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| sid                                        | The session ID value. Set a session string on a span to customize this value, or accept the default generated UUIDs. For more information, see the [Agent Catalog documentation on Log.Span](https://couchbaselabs.github.io/agent-catalog/log.html#agentc%5Fcore.activity.models.log.Log.Span). |
-| root                                       | The name of the root span, as configured in [Add a Root Span to Your Agentic App](add-spans-callbacks.md#root-span).                                                                                                                                                                             |
-| input                                      | The user's input to the agent app.                                                                                                                                                                                                                                                               |
-| output (out in the Capella Analytics view) | The assistant's response to the user's input.                                                                                                                                                                                                                                                    |
-| content                                    | All intermediate content logs between the input and output events, including messages sent to the LLM, tools executed, and so on.                                                                                                                                                                |
+| Key                                           | Description                                                                                                                                                                                                                                                                                      |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| sid                                           | The session ID value. Set a session string on a span to customize this value, or accept the default generated UUIDs. For more information, see the [Agent Catalog documentation on Log.Span](https://couchbaselabs.github.io/agent-catalog/log.html#agentc%5Fcore.activity.models.log.Log.Span). |
+| root                                          | The name of the root span, as configured in [Add a Root Span to Your Agentic App](add-spans-callbacks.md#root-span).                                                                                                                                                                             |
+| input                                         | The user's input to the agent app.                                                                                                                                                                                                                                                               |
+| output (out in the Operational Insights view) | The assistant's response to the user's input.                                                                                                                                                                                                                                                    |
+| content                                       | All intermediate content logs between the input and output events, including messages sent to the LLM, tools executed, and so on.                                                                                                                                                                |
 
 ### [](#tools-view)Query the ToolInvocations View
 
@@ -378,7 +378,7 @@ The following example queries use a generated data view called `ToolInvocations`
 You must have [configured your logs to record and associate tool calls with tool results](add-spans-callbacks.md#tool-results).
 
 * Query Service
-* Capella Analytics
+* Operational Insights
 
 Copy and paste the following query into the Query Service's Query Workbench, replacing `agent-catalog` and `agent-activity` with the bucket and scope for your Agent Catalog activity logs:
 
@@ -395,7 +395,7 @@ FROM
     LIMIT 1;
 ```
 
-Copy and paste the following query into the Capella Analytics workbench. Replace the placeholders with the database, scope, and collection link name from your Analytics cluster remote link to your Agent Catalog activity logs. This query creates the `ToolInvocations` data view:
+Copy and paste the following query into the Operational Insights workbench. Replace the placeholders with the database, scope, and collection link name from your Analytics cluster remote link to your Agent Catalog activity logs. This query creates the `ToolInvocations` data view:
 
 ```sqlpp
 CREATE OR REPLACE ANALYTICS VIEW `[BUCKET_NAME]`.`[SCOPE_NAME]`.ToolInvocations AS

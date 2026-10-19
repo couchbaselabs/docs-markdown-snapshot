@@ -1,7 +1,7 @@
 ---
 title: Running Queries
 description: How to run queries in Couchbase Analytics.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase Server
@@ -122,7 +122,7 @@ again including the envelope that we've seen in the example above.
 
 ## [](#Using%5Fthe%5FSDKs)Using the SDKs, ODBC, or JDBC
 
-You can also run Analytics queries using a software development kit (SDK). For details, refer to [SDKs & Connectors](../../../home/sdk.md) and select the required language.
+You can also run Analytics queries using a software development kit (SDK). For details, refer to [SDKs for Couchbase Operational Database](../../../home/sdk.md) and select the required language.
 
 For example, to get more information about running an Analytics query using the Java SDK, refer to [Analytics using the Java SDK](https://docs.couchbase.com/java-sdk/3.0/howtos/analytics-using-sdk.html). A similar page is available for each SDK.
 

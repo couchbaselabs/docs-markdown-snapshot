@@ -1,15 +1,15 @@
 ---
 title: Configure the Connection
-description: Set up a connection between Tableau and Enterprise Analytics using
-  the Couchbase Tableau Connector.
-pubDate: 2026-10-03T04:27:21.374Z
+description: Set up a connection between Tableau and Operational Insights
+  Enterprise using the Couchbase Tableau Connector.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Tableau Connector
-    version: "2.0"
+    version: "3.0"
   topic_type: guide
 antora:
-  editUrl: https://github.com/couchbase/docs-tableau/edit/release/2.0/modules/ROOT/pages/configure-connection.adoc
+  editUrl: https://github.com/couchbase/docs-tableau/edit/release/3.0/modules/ROOT/pages/configure-connection.adoc
   xref: xref:tableau-connector::configure-connection.adoc[]
 ---
 
@@ -18,34 +18,31 @@ antora:
 
 # Configure the Connection
 
-> Set up a connection between Tableau and Enterprise Analytics using the Couchbase Tableau Connector. 
+> Set up a connection between Tableau and Operational Insights Enterprise using the Couchbase Tableau Connector. 
 
 ## [](#set-up-the-connection)Set Up the Connection
 
-To set up a connection between Tableau and Enterprise Analytics:
+To connect Tableau to your Couchbase cluster:
 
 1. Open **Tableau Desktop**.
 2. Go to **Connect** **To a Server** **More**.
-3. Select a Couchbase Tableau Connector. If there are multiple connectors installed, select the one that is compatible with Enterprise Analytics.
+3. Select a Couchbase Tableau Connector. If there are multiple connectors installed, select the one that is compatible with your Couchbase product.
 4. In the connection dialog, enter the following details:
 
-| **Server**         | The host and port details. The default HTTP port is 8095, while the default HTTPS/TLS port is 18095.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Scope**          | (Optional) The scope to extract data from. You can leave this field blank or use Default if your data is in the default scope.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| **Authentication** | The authentication method to use for the connection. Based on the authentication method you select, the required fields differ. Authentication Method Required Fields Description Username and Password Username, Password Enter user credentials. LDAP Username, Password Enter LDAP credentials. Client Certificate Client Certificate Select the client certificate mode. You can select either PEM Files (Certificate + Key) or Keystore (JKS/PKCS12). OAuth 2.0 OAuth Provider Select the OAuth provider from the list. The list contains the default Keycloak configuration and any custom configurations you created. For more information, see [Create a Custom Configuration File](#create-a-custom-configuration-file). To use OAuth 2.0 authentication, you need: Tableau Connector 2.0 or later Enterprise Analytics 2.2 or later An Identity Provider (IdP) A custom XML configuration file For more information, see [OAuth 2.0 Authentication](#oauth-2-0-authentication). |
+| **Server**         | Enter the server host details (host:port). To connect directly to a node, specify port 8095. If you select **Require SSL**, specify port 18095 instead. If you connect through a load balancer, you can omit the port. The connector then uses port 80, or port 443 if you select **Require SSL**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Scope**          | (Optional) The scope to extract data from. You can leave this field blank or use Default if your data is in the default scope.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| **Authentication** | The authentication method to use for the connection. Based on the authentication method you select, the required fields differ. Authentication Method Required Fields Description Username and Password Username, Password Enter user credentials. LDAP Username, Password Enter LDAP credentials. Client Certificate No fields appear in the dialog. You must configure client certificate properties in the couchbase-operational-insights.properties file. For more information, see [Configure SSL Certificates](setup-tableau-desktop.md#ssl). OAuth 2.0 OAuth Provider Select the OAuth provider from the list. The list contains the default Keycloak configuration and any custom configurations you created. For more information, see [Create a Custom Configuration File](#create-a-custom-configuration-file). To use OAuth 2.0 authentication, you need: Enterprise Analytics 2.2 or later, or Operational Insights Enterprise 3.0 or later An Identity Provider (IdP) A custom XML configuration file For more information, see [OAuth 2.0 Authentication](#oauth-2-0-authentication). |
 5. (Optional) Select the **Require SSL** option, if required.  
-To set up SSL support, see:
-
-  * [SSL Support for Tableau Desktop](setup-tableau-desktop.md#ssl)
-  * [SSL Support for Tableau Server](setup-tableau-server.md#ssl)
+You must select **Require SSL** when using **Client Certificate** authentication. If you do not select this option, the connector connects without TLS and does not send the client certificate, causing the sign-in to fail with an authentication error. For more information about configuring certificates, see [Configure SSL Certificates](setup-tableau-desktop.md#ssl).
 6. For advanced settings, click the **Advanced** tab. You can set the connection timeout and scan consistency mode. If you set the scan consistency to `Request plus`, a dropdown appears to select the scan wait time.
 7. Click **Sign In**.
 
 ## [](#oauth-2-0-authentication)OAuth 2.0 Authentication
 
-The Tableau Connector 2.0 supports OAuth 2.0 authentication for Enterprise Analytics 2.2 and later.
+You can use OAuth 2.0 authentication to connect the Tableau Connector.
 
-This authentication method uses an external Identity Provider (IdP) to issue an JSON Web Token (JWT). When you initiate a connection, the Tableau Connector opens a browser window for you to log in to the IdP. After you log in, the connector retrieves the access token and passes it to the JDBC driver to authenticate your connection.
+This authentication method uses an external Identity Provider (IdP) to issue a JSON Web Token (JWT). When you initiate a connection, the Tableau Connector opens a browser window for you to log in to the IdP. After you log in, the connector retrieves the access token and passes it to the JDBC driver to authenticate your connection.
 
 Tableau manages token refreshing automatically, so you do not need to manually refresh the token.
 
@@ -58,13 +55,13 @@ To use OAuth 2.0 authentication, you need to:
 
 The following table lists the IdP details you need to set up OAuth 2.0 authentication.
 
-| Item                    | Description                                                                                                                                                                                                                                                              |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Identity Provider (IdP) | An OIDC-compliant IdP must be running and accessible from Tableau. For example: [Keycloak](https://www.keycloak.org/) [Okta](https://www.okta.com/) [Microsoft Azure AD/Entra ID](https://www.microsoft.com/en-in/security/business/identity-access/microsoft-entra-id). |
-| Issuer URL              | The base OIDC discovery URL of your IdP realm.For example: <http://192.168.88.4:8080/realms/cb>                                                                                                                                                                          |
-| Public Client ID        | A public OIDC client registered on your IdP that: Does not use a client secret. Allows the redirect URIs used by Tableau.                                                                                                                                                |
-| Scopes                  | The registered client must have at least the following scopes enabled: openid offline\_access (required for token refresh) You can add additional scopes as well.                                                                                                        |
-| User Account            | A valid user account on the IdP and the same user must be registered as an external user on Couchbase.                                                                                                                                                                   |
+| Item                    | Description                                                                                                                                                                                                                                                             |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Identity Provider (IdP) | An OIDC-compliant IdP must be running and accessible from Tableau. For example: [Keycloak](https://www.keycloak.org/) [Okta](https://www.okta.com/) [Microsoft Azure AD/Entra ID](https://www.microsoft.com/en-in/security/business/identity-access/microsoft-entra-id) |
+| Issuer URL              | The base OIDC discovery URL of your IdP realm.For example: <http://192.168.88.4:8080/realms/cb>                                                                                                                                                                         |
+| Public Client ID        | A public OIDC client registered on your IdP that: Does not use a client secret. Allows the redirect URIs used by Tableau.                                                                                                                                               |
+| Scopes                  | The registered client must have at least the following scopes enabled: openid offline\_access (required for token refresh) You can add additional scopes as well.                                                                                                       |
+| User Account            | A valid user account on the IdP. The same user must be registered as an external user on Couchbase.                                                                                                                                                                     |
 
 Once you've established these details, create a custom configuration file.
 
@@ -86,7 +83,7 @@ Open a template file in a text editor and update the attributes using the follow
 > [!NOTE]
 > If you do not follow these exactly, Tableau silently ignores the file and your configuration options do not appear in the connection dialog.
 
-* **Set the plugin class**: Set `dbclass` to `enterprise-analytics`. This links the configuration to the correct connector and must match the exact plugin class of your taco.
+* **Set the plugin class**: Set `dbclass` to `couchbase-operational-insights`. This links the configuration to the correct connector and must match the exact plugin class of your `.taco` file.
 * **Prefix the configuration ID**: The `oauthConfigId` attribute must start with `custom_`. For example, `custom_myidp`.
 * **Format redirect URIs**: Use a separate `<redirectUrisDesktop>` element for each redirect URI. Do not combine multiple URIs in a single element.
 * **Use absolute URLs**: Provide full, absolute URLs for the `authUri` and `tokenUri` elements. Tableau does not support OIDC discovery in override files.  
@@ -97,7 +94,7 @@ The following is an example of a complete XML file for a custom IdP.
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <pluginOAuthConfig>
-    <dbclass>enterprise-analytics</dbclass>
+    <dbclass>couchbase-operational-insights</dbclass>
     <oauthConfigId>custom_myidp</oauthConfigId>
     <configLabel>My IdP (my org)</configLabel>
     <clientIdDesktop>YOUR_CLIENT_ID</clientIdDesktop>
@@ -135,7 +132,7 @@ For more information about the XML, see [Tableau OAuth Configuration and Usage](
 
 #### [](#save-the-xml-file)Save the XML File
 
-Name your XML file (for example, `enterprise-analytics-okta.xml`) and save it in one of the following locations.
+Name your XML file (for example, `operational-insights-okta.xml`) and save it in one of the following locations.
 
 * Windows: `%USERPROFILE%\Documents\My Tableau Repository\OAuthConfigs\`
 * macOS: `~/Documents/My Tableau Repository/OAuthConfigs/`

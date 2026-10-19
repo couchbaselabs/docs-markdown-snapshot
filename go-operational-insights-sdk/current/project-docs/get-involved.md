@@ -1,0 +1,27 @@
+---
+title: Get Involved
+pubDate: 2026-10-19T14:21:08.937Z
+meta:
+  component:
+    title: Go Operational Insights SDK
+    version: "1.0"
+antora:
+  editUrl: https://github.com/couchbase/docs-operational-insights-sdk-go/edit/release/1.0/modules/project-docs/pages/get-involved.adoc
+  xref: xref:go-operational-insights-sdk:project-docs:get-involved.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/go-operational-insights-sdk/current/project-docs/get-involved.html)
+
+# Get Involved
+
+## [](#contributing)Contributing
+
+Couchbase welcomes community contributions to the Go Operational Insights SDK. The [Go Operational Insights SDK source code](https://github.com/couchbase/gocbinsights) is available on GitHub.
+
+## [](#other-ways-to-contribute)Other Ways to Contribute
+
+Other Ways to Contribute
+
+* Join the discussion in our [forum](https://forums.couchbase.com/) and on our [Discord server](https://discord.com/invite/sQ5qbPZuTh).
+* Improve the documentation — [bug reports and pull requests are welcome](../../../home/contribute/index.md).

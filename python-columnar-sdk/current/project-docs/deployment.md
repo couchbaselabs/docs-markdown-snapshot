@@ -1,7 +1,7 @@
 ---
 title: Deployment
 description: Transition from dev environment to prod, and keep up with the latest fixes.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Python Columnar SDK
@@ -41,4 +41,4 @@ The best way to accommodate developing an application that is to be deployed to 
 > 
 > Do not combine the Python Columnar SDK with the Python Operational SDK on the same app server (or development machine). This combination is not tested and not supported. There may be problems with different versions of shared dependencies if you try this. This only applies to the Node.js and Python Columnar SDKs.
 > 
-> Note, this does not apply to combining our Enterprise Analytics SDKs with our Operational SDKs. See the [Analytics SDK page](../../../home/analytics-sdk.md) for a reminder of which Analytics SDK to use with which Analytics service.
+> Note, this does not apply to combining our Operational Insights SDKs with our Operational SDKs. See the [Operational Insights SDK page](../../../home/operational-insights-sdk.md) for a reminder of which Insights SDK to use with which Insights or Analytics service.

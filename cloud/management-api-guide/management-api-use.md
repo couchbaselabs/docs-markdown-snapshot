@@ -1,7 +1,7 @@
 ---
 title: Make an API Call with the Capella Operational Management API
 description: How to make an API call with the Couchbase Capella Operational Management API.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Capella Operational
@@ -19,7 +19,7 @@ antora:
 
 > How to make an API call with the Couchbase Capella Operational Management API. 
 
-This page is for Capella operational. For the Couchbase AI Data Plane, see [Make an API Call with the Couchbase AI Data Plane APIs](../../ai/api-guide/api-use.md). For Capella Analytics, see [Make an API Call with the Capella Analytics Management API](../../analytics/management-api-guide/management-api-use.md).
+This page is for Capella operational. For the Couchbase AI Data Plane, see [Make an API Call with the Couchbase AI Data Plane APIs](../../ai/api-guide/api-use.md). For Operational Insights, see [Make an API Call with the Operational Insights Management API](../../operational-insights-cloud/management-api-guide/management-api-use.md).
 
 ## [](#prerequisites)Prerequisites
 
@@ -284,5 +284,5 @@ HTTP Response
 
 ## [](#next-steps)Next Steps
 
-* For a full reference guide, see [Capella Operational Management API Reference](../management-api-reference/index.md).
+* For a full reference guide, see [Couchbase Capella Management API Reference](../management-api-reference/index.md).
 * For an error reference, see [Capella Operational Management API Errors](management-api-errors.md).

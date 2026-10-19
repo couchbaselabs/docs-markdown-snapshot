@@ -2,7 +2,7 @@
 title: Developer Intro
 description: This section contains tutorials, how-to guides, and information
   about Couchbase Services to help you develop applications.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Capella Operational
@@ -83,7 +83,7 @@ Use App Services in combination with Couchbase Mobile to develop mobile apps.
 
 Couchbase offers numerous software development kits (SDKs) that provide programmatic access to Couchbase Capella.
 
-* [SDKs & Connectors](../../home/sdk.md)
+* [SDKs for Couchbase Operational Database](../../home/sdk.md)
 
 ## Integrations
 

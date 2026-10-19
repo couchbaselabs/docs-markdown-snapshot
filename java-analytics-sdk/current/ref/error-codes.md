@@ -1,8 +1,8 @@
 ---
 title: Error Messages
 description: The standardized error codes and eceptions returned by the
-  Enterprise Analytics Java SDK, from cluster connection to SQL++ query.
-pubDate: 2026-10-14T04:27:20.555Z
+  Analytics Java SDK, from cluster connection to SQL++ query.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Java Analytics SDK
@@ -17,7 +17,7 @@ antora:
 
 # Error Messages
 
-> The standardized error codes and eceptions returned by the Enterprise Analytics Java SDK, from cluster connection to SQL++ query. 
+> The standardized error codes and eceptions returned by the Analytics Java SDK, from cluster connection to SQL++ query. 
 
 An `AnalticsException` is thrown when an interaction with the Analytics cluster fails.
 
@@ -27,6 +27,6 @@ An `AnalticsException` is thrown when an interaction (or attempted interaction) 
 
 ## [](#other-analytics-error-codes)Other Analytics Error Codes
 
-For other errors the Java Analytics SDK passes through the Analytics error codes from Enterprise Analytics.
+For other errors the Java Analytics SDK passes through the Analytics error codes from Operational Insights.
 
 For a full list of these error codes, see [Analytics Error Codes](../../../server/current/analytics/error-codes.md).

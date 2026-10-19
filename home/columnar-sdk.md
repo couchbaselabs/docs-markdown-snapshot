@@ -1,10 +1,11 @@
 ---
-title: Develop with Capella Analytics
-description: Capella Analytics is a real-time analytical database (RT-OLAP) for
-  real time apps and operational intelligence. Capella Analytics is a
-  standalone, managed offering from Couchbase under the Capella family of
-  products — a self-managed Enterprise Analytics product is also available.
-pubDate: 2026-10-03T04:27:21.374Z
+title: Develop with Operational Insights Capella
+description: Operational Insights Capella is a real-time analytical database
+  (RT-OLAP) for real time apps and operational intelligence. Operational
+  Insights Capella is a standalone, managed offering from Couchbase under the
+  Capella family of products — a self-managed Operational Insights Enterprise
+  product is also available.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase Documentation
@@ -17,26 +18,26 @@ antora:
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/home/columnar-sdk.html)
 
-# Develop with Capella Analytics
+# Develop with Operational Insights Capella
 
-# Develop with Capella Analytics
+# Develop with Operational Insights Capella
 
-[Capella Analytics](../analytics/intro/intro.md) is a real-time analytical database (RT-OLAP) for real time apps and operational intelligence. Capella Analytics is a standalone, managed offering from Couchbase under the Capella family of products — a self-managed [Enterprise Analytics](../enterprise-analytics/current/intro/intro.md) product is also available.
+[Operational Insights Capella](../operational-insights-cloud/intro/intro.md) is a real-time analytical database (RT-OLAP) for real time apps and operational intelligence. Operational Insights Capella is a standalone, managed offering from Couchbase under the Capella family of products — a self-managed [Operational Insights Enterprise](../operational-insights/current/intro/intro.md) product is also available.
 
 > [!TIP]
 > Which Analytics Service?
 > 
-> Capella Analytics and Enterprise Analytics are column-based real-time analytical databases.
+> Operational Insights Capella and Operational Insights Enterprise are column-based real-time analytical databases.
 > 
-> Capella Analytics SDKs, also known as Columnar SDKs, are similar to the Enterprise Analytics SDKs. They must be used to connect to the current Capella Analytics Service, as it presents a different connection interface, without Enterprise Analytics' load balancer.
+> Operational Insights Capella SDKs, also known as Columnar SDKs, are similar to the Operational Insights SDKs. They must be used to connect to the current Operational Insights Capella Service, as it presents a different connection interface, without Operational Insights Enterprise's load balancer.
 > 
-> To connect to self-managed Enterprise Analytics, use our [Enterprise Analytics SDKs](analytics-sdk.md).
+> To connect to self-managed Operational Insights Enterprise, use our [Operational Insights SDKs](operational-insights-sdk.md).
 > 
-> [CBAS (Couchbase Analytics Service)](../server/current/learn/services-and-indexes/services/analytics-service.md) is our classic OLAP available as part of self-managed Couchbase Server and Capella Operational. Use the [operational SDKs](sdk.md) to develop for this service.
+> [Analytics Service (CBAS)](../server/current/learn/services-and-indexes/services/analytics-service.md) is our classic OLAP available as part of self-managed Couchbase Server and Capella Operational. Use the [operational SDKs](sdk.md) to develop for this service.
 
-## SDK APIs to work with Capella Analytics:
+## SDK APIs to work with Operational Insights Capella:
 
-Columnar SDKs are developed from the ground-up and while they maintain some syntactic similarities with the [operational SDKs](sdk.md), they are purpose built for Capella Analytics's real-time analytical use cases. They support streaming APIs to handle large datasets, as well as the common features expected to be present in any modern database SDK — such as connection management and robust error handling.
+Columnar SDKs are developed from the ground-up and while they maintain some syntactic similarities with the [operational SDKs](sdk.md), they are purpose built for Operational Insights Capella's real-time analytical use cases. They support streaming APIs to handle large datasets, as well as the common features expected to be present in any modern database SDK — such as connection management and robust error handling.
 
 * Go
 * Java

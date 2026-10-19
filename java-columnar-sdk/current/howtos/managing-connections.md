@@ -1,8 +1,8 @@
 ---
 title: Managing Connections
-description: This section describes how to connect the Java Columnar SDK to a
-  Couchbase cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+description: This section describes how to connect the Java Columnar SDK to an
+  Operational Insights (Capella) cluster.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Java Columnar SDK
@@ -17,9 +17,9 @@ antora:
 
 # Managing Connections
 
-> This section describes how to connect the Java Columnar SDK to a Couchbase cluster. It contains best practices as well as advanced connection options. 
+> This section describes how to connect the Java Columnar SDK to an Operational Insights (Capella) cluster. It contains best practices as well as advanced connection options. 
 
-Our [Getting Started pages](../hello-world/start-using-sdk.md) cover the basics of making a connection to a Capella Columnar cluster. This page is a wider look at the topic.
+Our [Getting Started pages](../hello-world/start-using-sdk.md) cover the basics of making a connection to an Operational Insights (Capella) cluster. This page is a wider look at the topic.
 
 ## [](#connecting-to-a-cluster)Connecting to a Cluster
 
@@ -31,7 +31,7 @@ import com.couchbase.columnar.client.java.Credential;
 import com.couchbase.columnar.client.java.QueryResult;
 ```
 
-A connection to a Capella Columnar cluster is represented by a `Cluster` object. A `Cluster` provides access to databases, scopes, and collections, as well as various Columnar services and management interfaces. The simplest way to create a `Cluster` object is to call `Cluster.newInstance()` with a [connection string](#connection-strings), username, and password:
+A connection to an Operational Insights (Capella) cluster is represented by a `Cluster` object. A `Cluster` provides access to databases, scopes, and collections, as well as various Columnar services and management interfaces. The simplest way to create a `Cluster` object is to call `Cluster.newInstance()` with a [connection string](#connection-strings), username, and password:
 
 ```java
 public class Example {
@@ -62,7 +62,7 @@ A Couchbase connection string is a comma-delimited list of IP addresses and/or h
 
 The parameter list is just like the query component of a URI; name-value pairs have an equals sign (`=`) separating the name and value, with an ampersand (`&`) between each pair. Just as in a URI, the first parameter is prefixed by a question mark (`?`).
 
-For Columnar, as for all Capella products, connection must be made with Transport Layer Security (TLS) — for full encryption of client-side traffic — for which the `couchbases://` schema is used as the root of the connection string (note the trailing **s**).
+For Operational Insights (Capella), as for all Capella products, connection must be made with Transport Layer Security (TLS) — for full encryption of client-side traffic — for which the `couchbases://` schema is used as the root of the connection string (note the trailing **s**).
 
 Simple connection string
 

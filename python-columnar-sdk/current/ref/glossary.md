@@ -2,7 +2,7 @@
 title: Glossary
 description: Unpicking the tangled alphabet soup of the Capella Columnar
   Platform, from an SDK perspective.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Python Columnar SDK
@@ -20,9 +20,9 @@ antora:
 
 > Unpicking the tangled alphabet soup of the Capella Columnar Platform, from an SDK perspective. 
 
-Couchbase Analytics SDK documentation uses terms from Enterprise Analytics which may carry different meanings from those same terms in other parts of Couchbase. Below you will find short definitions of Analytics-related terms, with links to the pages that describe them in more detail, or show practical examples of their use. In particular, we look to define terms that may — of necessity — carry slight variations of meaning from their operational cluster use.
+Columnar SDK documentation uses terms from Operational Insights (Capella) which may carry different meanings from those same terms in other parts of Couchbase. Below you will find short definitions of Analytics-related terms, with links to the pages that describe them in more detail, or show practical examples of their use. In particular, we look to define terms that may — of necessity — carry slight variations of meaning from their operational cluster use.
 
-* [Standalone Collection](../../../analytics/sources/manage-columnar.md#work-with-a-standalone-collection) — documents from one or more existing Columnar collections can be organized into standalone collections.
+* [Standalone Collection](../../../operational-insights-cloud/sources/manage-columnar.md#work-with-a-standalone-collection) — documents from one or more existing Columnar collections can be organized into standalone collections.
 
 ## [](#further-reading)Further Reading
 

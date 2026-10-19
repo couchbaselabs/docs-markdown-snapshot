@@ -2,14 +2,14 @@
 title: Install the Couchbase Tableau Connector on Tableau Desktop
 description: You can install the Couchbase Tableau Connector for Tableau Desktop
   on both macOS and Windows.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Tableau Connector
-    version: "2.0"
+    version: "3.0"
   topic_type: guide
 antora:
-  editUrl: https://github.com/couchbase/docs-tableau/edit/release/2.0/modules/ROOT/pages/setup-tableau-desktop.adoc
+  editUrl: https://github.com/couchbase/docs-tableau/edit/release/3.0/modules/ROOT/pages/setup-tableau-desktop.adoc
   xref: xref:tableau-connector::setup-tableau-desktop.adoc[]
 ---
 
@@ -19,6 +19,8 @@ antora:
 # Install the Couchbase Tableau Connector on Tableau Desktop
 
 > You can install the Couchbase Tableau Connector for Tableau Desktop on both macOS and Windows. 
+
+For steps to install the connector on Tableau Server, see [Install the Couchbase Tableau Connector on Tableau Server](setup-tableau-server.md).
 
 After you [download the Couchbase Tableau Connector](setup-tableau-connector.md), extract the ZIP archive to a local directory. The archive contains a `.taco` file and a `.jar` file.
 
@@ -35,7 +37,7 @@ To install the Couchbase Tableau Connector on Windows:
 To install the Couchbase Tableau Connector on macOS:
 
 1. Copy the `.taco` file into `/Users/<user>/Documents/My Tableau Repository/Connectors`
-2. Copy the `.jar` file into `/Users/<user>/Library/Tableau/Drivers directory`
+2. Copy the `.jar` file into `/Users/<user>/Library/Tableau/Drivers` directory
 3. Restart Tableau Desktop.
 
 ## [](#verify-the-connector-installation)Verify the Connector Installation
@@ -48,24 +50,35 @@ To verify if the connector is installed correctly:
 
 If the connector appears in the search results, it's installed correctly.
 
-## [](#ssl)Set Up SSL Support for Tableau Desktop
+## [](#ssl)Configure SSL Certificates for Tableau Desktop
 
-Typically, you do not need to perform these steps. There is no need to provide a certificate if you are using a certificate from a public certificate authority. Certificates of well-known public certification authorities are trusted by default.
+If you use a certificate from a trusted public certificate authority (CA), no manual SSL configuration is required.
 
-To configure SSL support for Tableau Connector:
+If you use a certificate from a private CA or require client certificate authentication, you must configure a properties file as follows.
 
-1. Make sure you know the absolute paths to the certificate or keystore. You should only supply one of the certificate path or the keystore path, not both.
-2. Create a file called `couchbase-analytics.properties` and save it in the following directory, depending on whether you are running macOS or Windows:  
+1. Create a file named `couchbase-operational-insights.properties` and save it in the following directory:  
 Windows  
 Save the file to `C:\Users\<Windows User>\Documents\My Tableau Repository\Datasources`  
-MacOS  
-Save the file to `/Users/<user>/Documents/My Tableau Repository/Data sources`
-3. To provide the Certificate file path, add the following line in the properties file.  
+macOS  
+Save the file to `/Users/<user>/Documents/My Tableau Repository/Datasources`
+2. To trust a certificate from a private CA, specify the path to the certificate using `sslCertPath`.  
+The certificate must be a PEM-encoded file. `sslCertPath` replaces the default trust store instead of adding to it.  
 ```text  
-sslCertPath=<path to your certificate file>  
-```
-4. To provide the keystore path, add the following lines in the properties file.  
+sslCertPath=<path to your PEM-encoded CA certificate>  
+```  
+> [!NOTE]  
+> The connector does not support the `sslKeystorePath` and `sslKeystorePassword` properties and ignores them if specified.
+3. To authenticate using a client certificate, configure either PEM files or a keystore.  
+PEM Files  
 ```text  
-sslKeystorePath=<path to your keystore>  
-sslKeystorePassword=<your keystore password>  
-```
+clientCertPath=<path to client certificate pem>  
+clientKeyPath=<path to client key pem>  
+# Optional; required only if the private key is encrypted  
+clientKeyPassword=<private key password>  
+```  
+Keystore  
+```text  
+clientCertKeystorePath=<path to keystore file>  
+clientCertKeystorePassword=<keystore password>  
+```  
+The keystore must contain exactly one entry.

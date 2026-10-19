@@ -2,7 +2,7 @@
 title: About These Docs
 description: Meta documentation -- what you might need to know to get the best
   from these docs, from their intent to their Information Architecture.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Java Columnar SDK
@@ -23,7 +23,7 @@ Welcome to the [Java Columnar SDK 1.0](compatibility.md#api-version) docs — th
 
 ## [](#assumptions-presumptions)Assumptions & Presumptions
 
-Couchbase is a complex and powerful product, with many components. The Columnar SDKs simply interact with Capella Columnar, not Couchbase Server and its various services — but some of that complexity spills across into the Columnar SDKs and their documentation.
+Couchbase is a complex and powerful product, with many components. The Columnar SDKs simply interact with Operational Insights (Capella), not Couchbase Server and its various services — but some of that complexity spills across into the Columnar SDKs and their documentation.
 
 Some concepts, such as Role-Based Access Control, do need to be understood in greater depth — but this is documented [in the appropriate place in the Server docs](../../../server/7.6/learn/security/roles.md), and the [Capella docs](../../../cloud/projects/project-roles.md), and linked from the [Getting Started Guide](../hello-world/start-using-sdk.md). Additionally, things which are essential in production can be a barrier to getting up and running quickly in order to try something out — so the _Full Admin_ RBAC role is used in the _Hello World_ code example, contrary to best practice (but this is, of course, called out).
 
@@ -49,7 +49,7 @@ It also contains information on connecting to the database, and a section of tro
 
 * [Querying Your Data](../concept-docs/querying-your-data.md)
 
-The heart of the Columnar Service — real-time OLAP querying, with Couchbase's familiar SQL++ query language.
+The heart of the Operational Insights (Capella) Service — real-time OLAP querying, with Couchbase's familiar SQL++ query language.
 
 ## [](#sdk-deployment)SDK Deployment
 

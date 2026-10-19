@@ -2,7 +2,7 @@
 title: Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase Tableau Connector.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Tableau Connector
@@ -27,16 +27,27 @@ Scroll to the version you want and click the download link to get the full conne
 > [!IMPORTANT]
 > By downloading the Couchbase Tableau Connector, you agree to the terms of the [Couchbase Tableau Connector License Agreement](https://www.couchbase.com/toollicenses/tableau/).
 
-## [](#v.1.2.0)Version 1.2.0 (2026-06-30)
+## [](#v1.2.1)Version 1.2.1 (2026-10-19)
 
 ### [](#downloads)Downloads
+
+[Tableau Connector 1.2.1 Download](https://packages.couchbase.com/releases/couchbase-tableau-connector/1.2.1/couchbase-analytics-tableau-connector-1.2.1.zip)
+
+### [](#enhancements)Enhancements
+
+* [JDBCC-62](https://issues.couchbase.com/browse/JDBCC-62): Upgraded the underlying Java SDK from version 3.12.0 to 3.12.3\. This upgrade includes Netty 4.2.18 and Jackson 2.21.6 in core-io.  
+In addition, upgraded Jackson to version 2.21.7 and Bouncy Castle to version 1.86 in the driver to address security vulnerabilities.
+
+## [](#v.1.2.0)Version 1.2.0 (2026-06-30)
+
+### [](#downloads-2)Downloads
 
 [Tableau Connector 1.2.0 Download](https://packages.couchbase.com/releases/couchbase-tableau-connector/1.2.0/couchbase-analytics-tableau-connector-1.2.0.zip)
 
 > [!NOTE]
 > Tableau Connector 1.2.0 is compatible with both Couchbase Analytics Service and Capella Analytics.
 
-### [](#enhancements)Enhancements
+### [](#enhancements-2)Enhancements
 
 * [TACO-25](https://issues.couchbase.com/browse/TACO-25), [JDBCC-55](https://issues.couchbase.com/browse/JDBCC-55): Added support for LDAP authentication.
 * [TACO-25](https://issues.couchbase.com/browse/TACO-25), [JDBCC-54](https://issues.couchbase.com/browse/JDBCC-54): Added support for client certificate authentication.
@@ -45,43 +56,43 @@ Scroll to the version you want and click the download link to get the full conne
 
 ## [](#v1.1.3)Version 1.1.3 (2024-08-05)
 
-### [](#downloads-2)Downloads
+### [](#downloads-3)Downloads
 
 [Tableau Connector 1.1.3 Download](https://packages.couchbase.com/releases/couchbase-tableau-connector/1.1.3/couchbase-tableau-connector-1.1.3.zip)
 
-### [](#enhancements-2)Enhancements
+### [](#enhancements-3)Enhancements
 
 * [TACO-24](https://issues.couchbase.com/browse/TACO-24): Added Columnar support.
 
 ## [](#v1.1.2)Version 1.1.2 (2024-05-03)
 
-### [](#downloads-3)Downloads
+### [](#downloads-4)Downloads
 
 [Tableau Connector 1.1.2 Download](https://packages.couchbase.com/releases/couchbase-tableau-connector/1.1.2/couchbase-tableau-connector-1.1.2.zip)
 
-### [](#enhancements-3)Enhancements
+### [](#enhancements-4)Enhancements
 
 * [TACO-16](https://issues.couchbase.com/browse/TACO-16): Added support for the median function.
 
 ## [](#v1.1.1)Version 1.1.1 (2023-12-05)
 
-### [](#downloads-4)Downloads
+### [](#downloads-5)Downloads
 
 [Tableau Connector 1.1.1 Download](https://packages.couchbase.com/releases/couchbase-tableau-connector/1.1.1/couchbase-tableau-connector-1.1.1.zip)
 
-### [](#enhancements-4)Enhancements
+### [](#enhancements-5)Enhancements
 
 * [JDBCC-51](https://issues.couchbase.com/browse/JDBCC-51): Added support for Database metadata entity.
 
 ## [](#v1.1.0)Version 1.1.0 (2023-07-31)
 
-### [](#downloads-5)Downloads
+### [](#downloads-6)Downloads
 
 [Tableau Connector 1.1.0 Download](https://packages.couchbase.com/releases/couchbase-tableau-connector/1.1.0/couchbase-tableau-connector-1.1.0.zip)
 
 The connector is now compatible with Tableau Cloud.
 
-### [](#enhancements-5)Enhancements
+### [](#enhancements-6)Enhancements
 
 * [JDBCC-43](https://issues.couchbase.com/browse/JDBCC-43): Tableau queries now time out gracefully if connection to Couchbase Analytics is lost.
 * [JDBCC-44](https://issues.couchbase.com/browse/JDBCC-44): Tableau SSL parameters may be changed without requiring restart.
@@ -89,7 +100,7 @@ The connector is now compatible with Tableau Cloud.
 
 ## [](#v1.0.0)Version 1.0.0 (2022-04-27)
 
-### [](#downloads-6)Downloads
+### [](#downloads-7)Downloads
 
 [Tableau Connector 1.0.0 Download](https://packages.couchbase.com/releases/couchbase-tableau-connector/1.0.0/couchbase-tableau-connector-1.0.0.zip)
 

@@ -1,7 +1,7 @@
 ---
 title: Manage Billing Information
 description: Manage and audit billing information for your organization and clusters.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Capella Operational
@@ -30,7 +30,7 @@ To change the Support Plan for your operational cluster, see [Change a Cluster's
 
 ## [](#prerequisites)Prerequisites
 
-To manage billing information in your organization, you must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) role.
+* To manage billing information in your organization, you must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) or [Organization Billing Administrator](../organizations/organization-user-roles.md#organization-billing-administrator) role.
 
 ## [](#billing-contact)Update Your Billing Contact Information
 
@@ -103,5 +103,5 @@ If you're deleting your default credit card, you must select a new default credi
 * [About Billing Alerts](about-billing-alerts.md)
 * [Manage Billing Alerts](manage-billing-alerts.md)
 * [Manage Your Billing](billing.md)
-* [View Capella Usage and Invoices](usage-invoices.md)
+* [View Capella Usage](usage-invoices.md)
 * [Upgrade Your Account](upgrade-account.md)

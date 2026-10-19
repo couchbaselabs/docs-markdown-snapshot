@@ -3,7 +3,7 @@ title: Manage Deployments with the Couchbase AI Data Plane APIs
 description: The Couchbase Capella Management API and the Model Serving API are
   secure REST APIs that enable you to provision, deploy, and configure the
   Couchbase AI Data Plane.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase AI Data Plane
@@ -39,7 +39,7 @@ To get started with the APIs, [create an API key](api-start.md) and [make an API
 
 The Capella Management API is a secure, versioned REST API provided by Couchbase Capella that allows users to manage tasks for Couchbase operational clusters, App Services, and the AI Data Plane. This includes management tasks such as scaling clusters, configuring access controls, and deploying embedding models and Large Language Models (LLMs) for the AI Data Plane.
 
-For a full Management API reference guide, see [Capella Operational Management API Reference](../../cloud/management-api-reference/index.md).
+For a full Management API reference guide, see [Couchbase Capella Management API Reference](../../cloud/management-api-reference/index.md).
 
 ### [](#management-api-version)Versioning
 
@@ -268,7 +268,7 @@ Retry Configuration
 
 * To create an API key, see [Get Started with the Couchbase AI Data Plane APIs](api-start.md).
 * To make an API call, see [Make an API Call with the Couchbase AI Data Plane APIs](api-use.md).
-* For a full Management API reference guide, see [Capella Operational Management API Reference](../../cloud/management-api-reference/index.md).
+* For a full Management API reference guide, see [Couchbase Capella Management API Reference](../../cloud/management-api-reference/index.md).
 * For a full Model Service API reference guide, see [Inference API Reference](../model-service-api-reference/rest-api.md).
 * For a reference of the Management API errors, see [Management API Error Messages ](api-errors.md#management-api-errors).
 * For a reference of the AI Data Plane Model Service API errors, see [Model Service API Error Messages ](api-errors.md#model-api-errors).

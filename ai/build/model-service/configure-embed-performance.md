@@ -2,7 +2,7 @@
 title: Configure Embedding Model Performance
 description: The AI Data Plane Model Service offers options to tweak the
   performance of your embedding model.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase AI Data Plane
@@ -53,7 +53,7 @@ You can toggle Async Processing on or off during or after deployment of an embed
 
 ## [](#see-also)See Also
 
-* [Deploy an Embedding Model](deploy-embed-model.md)
+* [Deploy a Provisioned Embedding Model](deploy-embed-model.md)
 * [Process and Vectorize Unstructured Data](../vectorization-service/vectorize-unstructured-data.md)
 * [Vectorize Structured Data from Capella](../vectorization-service/vectorize-structured-data-capella.md)
 * [Vectorize Structured Data from Amazon S3](../vectorization-service/vectorize-structured-data-s3.md)

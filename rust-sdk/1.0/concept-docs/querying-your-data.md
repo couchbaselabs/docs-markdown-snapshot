@@ -1,7 +1,7 @@
 ---
 title: Querying Your Data
 description: Choosing the right service to query your data.
-pubDate: 2026-10-16T07:26:40.932Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Rust SDK
@@ -31,7 +31,7 @@ Couchbase also has a powerful Search Service, supporting similarity and hybrid s
 
 ## [](#your-use-case)Your Use Case
 
-How you combine the Data Service and SQL++ should depend on your use case, but you should also examine the other options of longer running (or real time) [analytical queries](../../../enterprise-analytics/current/intro/intro.md), fuzzy searches (such as full-text search and Geo search), and vector search.
+How you combine the Data Service and SQL++ should depend on your use case, but you should also examine the other options of longer running (or real time) [analytical queries](../../../operational-insights/current/intro/intro.md), fuzzy searches (such as full-text search and Geo search), and vector search.
 
 ### [](#search)Search
 

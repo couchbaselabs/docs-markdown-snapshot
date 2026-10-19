@@ -2,7 +2,7 @@
 title: Capella UI Authentication
 description: Couchbase Capella supports federated authentication with Single
   Sign-On (SSO) and Multi-Factor Authentication (MFA) for the Capella UI.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Capella Operational
@@ -28,7 +28,7 @@ This page covers authentication options for the Capella UI:
   * [Important considerations](#Considerations) when implementing SSO.
 * [Multi-Factor Authentication (MFA)](#multi-factor-authentication-mfa) \- Enhance security using Capella's built-in MFA option for non-SSO users.
 
-These authentication methods apply only to the Capella UI. They do not affect programmatic access to Capella, which requires [Cluster Access Credentials](../../clusters/manage-database-users.md), [Access Control Accounts](../../../analytics/admin/auth/auth-data.md), or [Management API Keys](../../management-api-guide/management-api-start.md) depending on your use case.
+These authentication methods apply only to the Capella UI. They do not affect programmatic access to Capella, which requires [Cluster Access Credentials](../../clusters/manage-database-users.md), [Access Control Accounts](../../../operational-insights-cloud/admin/auth/auth-data.md), or [Management API Keys](../../management-api-guide/management-api-start.md) depending on your use case.
 
 ## [](#single-sign-on-sso-authentication)Single Sign-On (SSO) Authentication
 

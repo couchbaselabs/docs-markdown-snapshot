@@ -2,7 +2,7 @@
 title: Configure LLM Value Adds
 description: Use Value Adds features to help you enhance the capabilities of
   your large language models (LLMs).
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase AI Data Plane
@@ -162,6 +162,6 @@ Balance content moderation with user experience when selecting keywords. Overly 
 
 ## [](#see-also)See Also
 
-* [Deploy a Large Language Model (LLM)](deploy-llm-model.md)
+* [Deploy a Provisioned Large Language Model (LLM)](deploy-llm-model.md)
 * [Configure LLM Performance](configure-llm-performance.md)
 * [Configure Guardrails and Security](configure-guardrails-security.md)

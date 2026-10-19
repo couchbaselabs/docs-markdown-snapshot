@@ -1,7 +1,7 @@
 ---
 title: Logging
-description: Configuring logging with the Columnar Go SDK.
-pubDate: 2026-10-03T04:27:21.374Z
+description: Configuring logging with the Operational Insights (Capella) Go SDK.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Go Columnar SDK
@@ -16,9 +16,9 @@ antora:
 
 # Logging
 
-> Configuring logging with the Columnar Go SDK. 
+> Configuring logging with the Operational Insights (Capella) Go SDK. 
 
-The Columnar Go SDK offers simple logging of library internals to help debug issues. Logging may be configured on a global library-level basis. **Note that the logging API is subject to change**.
+The Columnar Go SDK for Operational Insights (Capella) offers simple logging of library internals to help debug issues. Logging may be configured on a global library-level basis. **Note that the logging API is subject to change**.
 
 You can configure logging using the `cbcolumnar.SetLogger`, which accepts an implementation of `cbcolumnar.Logger`. The SDK comes with two built-in `Logger` implementations, which can be instantiated using the following _methods_:
 
@@ -62,7 +62,7 @@ cbcolumnar.SetLogRedactionLevel(cbcolumnar.RedactFull)
 
 Different redaction levels are supported — please see the `RedactionLevel` enum description for more information.
 
-Note that you need to run this command before any of the SDK code is initialized so all of the logs are captured properly. Once the SDK writes the logs with the tags to a file, you can then use the xref:7.1@server:cli:cbcli/cblogredac
+Note that you need to run this command before any of the SDK code is initialized so all of the logs are captured properly. Once the SDK writes the logs with the tags to a file, you can then use the xref:server:cli:cbcli/cblogredac
 
 * You may wish to read more on Log Redaction [in the Server docs](#7.1@server:manage:manage-logging/manage-logging.adoc#understanding%5Fredaction).
 

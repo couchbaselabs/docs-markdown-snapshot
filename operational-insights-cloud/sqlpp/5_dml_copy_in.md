@@ -1,0 +1,85 @@
+---
+title: COPY INTO Statements
+description: This topic describes how you use the  <code>COPY INTO</code> DML
+  statement to upsert&mdash;both insert and update&mdash;objects from an
+  external collection to a standalone collection.
+pubDate: 2026-10-19T14:21:08.937Z
+meta:
+  component:
+    title: Operational Insights Capella
+    version: ""
+  topic_type: reference
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_dml_copy_in.adoc
+  xref: xref:analytics:sqlpp:5_dml_copy_in.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/operational-insights-cloud/sqlpp/5_dml_copy_in.html)
+
+# COPY INTO Statements
+
+> This topic describes how you use the `COPY INTO` DML statement to upsert—both insert and update—objects from an external collection to a standalone collection. 
+
+> [!TIP]
+> You can also populate a standalone collection by importing a file in a supported format from your local network. See [Import Data to a Standalone Collection](../sources/import-data-standalone.md).
+
+> [!NOTE]
+> To be able to read or write data to or from external cloud storage, exclusive permissions are required. For more information, see [AWS](../sources/required-permissions-aws.md), [GCS](../sources/required-permissions-gcs.md), and [Azure](../sources/required-permissions-azure.md).
+
+## [](#syntax)Syntax
+
+**CopyInto EBNF** 
+
+```EBNF
+CopyInto ::= "COPY" "INTO"? QualifiedName
+             ("AS" CollectionTypeDef)?
+             "FROM" Identifier
+             "AT" QualifiedName
+             ("PATH" StringLiteral) ?
+             ("WITH" ObjectConstructor) ?
+```
+
+**CopyInto Diagram** 
+
+!["COPY" "INTO"? QualifiedName FROM Identifier "AT" QualifiedName PATH StringLiteral "WITH" ObjectConstructor ?](_images/CopyInto.png) 
+
+## [](#example)Example
+
+This example refreshes the data in the `my-ad-hoc-collection` with documents located in an external file store named TravelShop. The referenced link, myS3Link, stores further details about the location of the external file store.
+
+```SQL++
+  COPY INTO database_name.scope_name.`my-ad-hoc-collection`
+  FROM TravelShop AT myS3Link
+  PATH "json-data/customers"
+  WITH {
+    "format": "json",
+    "include": ["*2018*.json", "*2019*.json"]
+  };
+```
+
+After you use `COPY INTO`, you can run `ANALYZE COLLECTION` on the collection to update the data sample used by cost-based optimization (CBO). See [Cost-Based Optimizer for Operational Insights Services](5b%5Fcbo.md).
+
+## [](#arguments)Arguments
+
+FROM
+
+The **`FROM`** clause identifies the bucket or container name on the external data source, such as an Amazon S3 bucket, a Google Cloud Storage (GCS) bucket, or an Azure Blob Storage container.
+
+AT
+
+The **`AT`** clause specifies the name of the link that contains credentials for the external data source. The link type must match the external cloud storage provider (S3, GCS, or Azure).
+
+PATH
+
+The **`PATH`** clause is a string that specifies the location path to the location of the data, relative to the external data source.
+
+WITH
+
+In the **`WITH`** clause, you define the same `ObjectConstructor` parameters for format and file parsing, and what to include or exclude, as you would provide when you create an external collection. See [CREATE an External Collection](5%5Fddl%5Fexternal.md).
+
+## [](#see-also)See Also
+
+* [CREATE a Standalone Collection](5%5Fddl%5Fstandalone.md)
+* [Entities in Operational Insights Services](1a%5Fentities.md)
+* [Cost-Based Optimizer for Operational Insights Services](5b%5Fcbo.md)

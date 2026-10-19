@@ -1,0 +1,36 @@
+---
+title: Node Addition and Removal
+description: Nodes can be added to and removed from a cluster, by means of the REST API.
+pubDate: 2026-10-19T14:21:08.937Z
+meta:
+  component:
+    title: Operational Insights Enterprise
+    version: "3.0"
+  topic_type: reference
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/3.0/modules/reference/pages/rest-adding-and-removing-nodes.adoc
+  xref: xref:enterprise-analytics:reference:rest-adding-and-removing-nodes.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/operational-insights/current/reference/rest-adding-and-removing-nodes.html)
+
+# Node Addition and Removal
+
+> Nodes can be added to and removed from a cluster, by means of the REST API. 
+
+## [](#apis-in-this-section)APIs in this Section
+
+An Operational Insights cluster consists of one or more nodes, each of which is a system running an instance of Operational Insights. Nodes can be added to and removed from the cluster, by means of the REST API.
+
+The routine for _adding_ a new node to the existing cluster is executed on the existing cluster. The routine for _joining_ an existing cluster is executed on the new node. These procedures are described in detail in [Add a Node and Rebalance](../manage/manage-nodes/add-node-and-rebalance.md) and [Join a Cluster and Rebalance](../manage/manage-nodes/join-cluster-and-rebalance.md).
+
+_Removal_ provides the most highly controlled means of taking a node out of a cluster. Any node can be removed. However, removal should be used only when all nodes in the cluster are responsive, and those intended to remain in the cluster after removal have the capacity to support the results. This is described in detail in [Remove a Node and Rebalance](../manage/manage-nodes/remove-node-and-rebalance.md).
+
+The REST API described in this section is summarized below.
+
+| HTTP Method | URI                            | Documented at                                              |
+| ----------- | ------------------------------ | ---------------------------------------------------------- |
+| POST        | /controller/addNode            | [Adding Nodes to Clusters](rest-cluster-addnodes.md)       |
+| POST        | /node/controller/doJoinCluster | [Joining Nodes to Clusters](rest-cluster-joinnode.md)      |
+| POST        | /controller/ejectNode          | [Removing Nodes from Clusters](rest-cluster-removenode.md) |

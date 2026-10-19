@@ -3,7 +3,7 @@ title: Querying with SQL++
 description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Go Columnar SDK
@@ -26,9 +26,9 @@ Here we show queries against the Travel Sample collection, at cluster and scope 
 
 ## [](#before-you-start)Before You Start
 
-This page assumes that you have [installed the Go Columnar SDK](../hello-world/start-using-sdk.md), added your IP address to the allowlist, and [created a Columnar cluster](../../../analytics/admin/prepare-project.md#cluster).
+This page assumes that you have [installed the Go Columnar SDK](../hello-world/start-using-sdk.md), added your IP address to the allowlist, and [created an Operational Insights (Capella) cluster](#columnar:admin:prepare-project.adoc#cluster).
 
-Create a collection to work upon by [importing the travel-sample dataset](../../../analytics/intro/examples.md#travel-sample) into your cluster.
+Create a collection to work upon by [importing the travel-sample dataset](#columnar:intro:examples.adoc#travel-sample) into your cluster.
 
 ## [](#querying-your-dataset)Querying Your Dataset
 

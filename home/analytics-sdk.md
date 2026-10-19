@@ -1,10 +1,9 @@
 ---
-title: Develop with Enterprise Analytics
-description: Enterprise Analytics is a self-managed, JSON-native NoSQL
-  analytical database. It serves to unify data from diverse sources, allowing
-  for the execution of complex analytical queries and the extraction of timely
-  insights.
-pubDate: 2026-10-03T04:27:21.374Z
+title: Develop with Operational Insights
+description: Operational Insights is a JSON-native NoSQL analytical database. It
+  serves to unify data from diverse sources, allowing for the execution of
+  complex analytical queries and the extraction of timely insights.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase Documentation
@@ -17,16 +16,23 @@ antora:
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/home/analytics-sdk.html)
 
-# Develop with Enterprise Analytics
+# Develop with Operational Insights
 
-# Develop with Enterprise Analytics
+# Develop with Operational Insights
 
-[Enterprise Analytics](../enterprise-analytics/current/intro/intro.md) is a self-managed, JSON-native NoSQL analytical database. It serves to unify data from diverse sources, allowing for the execution of complex analytical queries and the extraction of timely insights.
+[Operational Insights](../operational-insights/current/intro/intro.md) is a JSON-native NoSQL analytical database. It serves to unify data from diverse sources, allowing for the execution of complex analytical queries and the extraction of timely insights.
 
   
-## SDK APIs to work with Enterprise Analytics
+* [Operational Insights Enterprise](../operational-insights/current/intro/intro.md) is a self-managed version of Couchbase's real-time analytical database (RT-OLAP), for running in your own datacenter or private cloud. These pages cover the older Analytic SDKs, which are compatible with Operational Insights Enterprise 3.x. Unless you are in the process of migrating from an earlier Analytics project using these SDKs, you should instead look at our [Operational Insights SDKs](operational-insights-sdk.md) — which will be developed to cover new functionality in future releases of Operational Insights.
+* [Operational Insights Capella](../operational-insights-cloud/intro/intro.md) is a Couchbase-managed version of our real-time analytical database (RT-OLAP), accessed through the Capella control plane, and running in your choice of CSP (AWS, Azure, or GCP). Currently, [Columnar SDKs](columnar-sdk.md) must be used to connect to the Operational Insights Capella Service, as it presents a different connection interface, without Operational Insights Enterprise's load balancer.
 
-Analytics SDKs are developed from the ground-up and while they maintain some syntactic similarities with the [operational SDKs](sdk.md), they are purpose built for Enterprise Analytics' real-time analytical use cases. They support streaming APIs to handle large datasets, as well as the common features expected to be present in any modern database SDK — such as connection management and robust error handling.
+  
+## SDK APIs to work with Operational Insights
+
+> [!TIP]
+> This section covers Couchbase's older Analytics SDKs. These have been superseded by the new [Operational Insights SDKs](operational-insights-sdk.md), and these Analytics SDKs will be deprecated in due course.
+
+Analytics SDKs are developed from the ground-up and while they maintain some syntactic similarities with the [operational SDKs](sdk.md), they are purpose built for Operational Insights' real-time analytical use cases. They support streaming APIs to handle large datasets, as well as the common features expected to be present in any modern database SDK — such as connection management and robust error handling.
 
 * .NET
 * Go
@@ -47,30 +53,30 @@ Analytics SDKs are developed from the ground-up and while they maintain some syn
   
 ### Big Data Connectors
 
-The available options for Enterprise Analytics `DataFrame` and `Dataset` operations with the [Couchbase Spark Connector](../spark-connector/current/index.md)can be found on the Spark [DataFrames, Datasets, and SQL](../spark-connector/current/spark-sql.md#enterprise-analytics-options) page.
+The available options for Operational Insights `DataFrame` and `Dataset` operations with the [Couchbase Spark Connector](../spark-connector/current/index.md)can be found on the Spark [DataFrames, Datasets, and SQL](../spark-connector/current/spark-sql.md#enterprise-analytics-options) page.
 
-See the [Enterprise Analytics](../enterprise-analytics/current/sources/manage-remote.md) docs for information on streaming from Confluent for Kafka.
+See the [Operational Insights](../operational-insights/current/sources/manage-remote.md) docs for information on streaming from Confluent for Kafka.
 
   
-## Other Analytics Services
+## Analytics Offerings in Couchbase
 
-__Table 1\. SDK Compatibility with Analytics Service__
-| Analytics solution                                                                                               | Development option                                   |
-| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| [Enterprise Analytics](../enterprise-analytics/current/intro/intro.md)                                           | [Analytics SDKs](#)                                  |
-| [Capella Analytics](../analytics/intro/intro.md)                                                                 | [Columnar (Capella Analytics) SDKs](columnar-sdk.md) |
-| [CBAS (Couchbase Analytics Service)](../server/current/learn/services-and-indexes/services/analytics-service.md) | [Operational SDKs](sdk.md)                           |
+__SDKs by analytics offering__
+| Analytics offering                                                                                     | Development option                                               |
+| ------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
+| [Operational Insights Enterprise](../operational-insights/current/intro/intro.md)                      | [Insights SDKs](operational-insights-sdk.md) [Analytics SDKs](#) |
+| [Operational Insights Capella](../operational-insights-cloud/intro/intro.md)                           | [Columnar SDKs](columnar-sdk.md)                                 |
+| [Analytics Service (CBAS)](../server/current/learn/services-and-indexes/services/analytics-service.md) | [Operational SDKs](sdk.md)                                       |
 
-In addition to the Enterprise Analytics, older Couchbase Analytics services are available — Enterprise Analytics' forerunner, Columnar, remains available as Capella Analytics for the present time.
+In addition to Operational Insights Enterprise Clusters, Operational Insights is also available as a managed service — Operational Insights Capella, formerly Columnar.
 
 Traditional, row-based analytics is also available in Couchbase operational clusters — self-managed, or Capella Operational.
 
   
-### SDK APIs to work with Capella Analytics:
+### SDK APIs to work with Operational Insights Capella:
 
-[Capella Analytics](../analytics/intro/intro.md) is a standalone, managed cloud offering from Couchbase under the Capella family of products.
+[Operational Insights Capella](../operational-insights-cloud/intro/intro.md) is a standalone, managed cloud offering from Couchbase under the Capella family of products.
 
-Capella Analytics SDKs, formerly known as Columnar SDKs, are similar to the Enterprise Analytics SDKs. They must be used to connect to the current Capella Analytics Service, as it presents a different connection interface, without Enterprise Analytics' load balancer.
+Operational Insights Capella SDKs, formerly known as Columnar SDKs, are similar to the Operational Insights SDKs. They must be used to connect to the current Operational Insights Capella Service, as it presents a different connection interface, without Operational Insights Enterprise's load balancer.
 
 * Go
 * Java

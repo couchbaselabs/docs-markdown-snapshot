@@ -1,7 +1,7 @@
 ---
 title: Querying Your Data
-description: Querying Enterprise Analytics from the Node.js SDK, with SQL++.
-pubDate: 2026-10-03T04:27:21.374Z
+description: Querying Operational Insights from the Node.js SDK, with SQL++.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Node.js Analytics SDK
@@ -16,19 +16,19 @@ antora:
 
 # Querying Your Data
 
-> Querying Enterprise Analytics from the Node.js SDK, with SQL++. 
+> Querying Operational Insights from the Node.js SDK, with SQL++. 
 
 SQL++ is a declarative query language for JSON data.
 
 ## [](#real-time-data-analysis)Real-Time Data Analysis
 
-Traditionally, analyzing JSON data in NoSQL databases requires complex transformations (like flattening) to prepare it for analytics, causing delays and hindering real-time insights. Enterprise Analytics eliminates these ETL complexities by unifying operational and analytical data stores into a single platform. This enables Zero ETL, reducing costs and complexity, and improving time to insight.
+Traditionally, analyzing JSON data in NoSQL databases requires complex transformations (like flattening) to prepare it for analytics, causing delays and hindering real-time insights. Operational Insights eliminates these ETL complexities by unifying operational and analytical data stores into a single platform. This enables Zero ETL, reducing costs and complexity, and improving time to insight.
 
 ## [](#long-running-queries)Long Running Queries
 
-All versions of Enterprise Analytics support long running client-side requests. This process keeps a connection live between client and server for long running queries. For such long running queries, a better mechanism is for the client to trigger an asynchronous query without holding a connection to the server open for the duration of the query execution. This Server Asynchronous Request API is introduced in Enterprise Analytics Server 2.2\. For more information, see [Enterprise Analytics REST API](../../../enterprise-analytics/current/reference/rest-analytics.md).
+All versions of Enterprise Analytics support long running client-side requests. This process keeps a connection live between client and server for long running queries. For such long running queries, a better mechanism is for the client to trigger an asynchronous query without holding a connection to the server open for the duration of the query execution. This Server Asynchronous Request API is introduced in Operational Insights Server 2.2\. For more information, see [Enterprise Analytics REST API](../../../operational-insights/2.2/reference/rest-analytics.md).
 
-After the query request is submitted, clients can monitor the status of the request and on successful execution of query, opt to stream the results of the query. This way the connection between SDK client and Analytics Server does not stay open for the long duration of query processing, and is only needed for result set streaming.
+After the query request is submitted, clients can monitor the status of the request and on successful execution of query, opt to stream the results of the query. This way the connection between SDK client and Insights Server does not stay open for the long duration of query processing, and is only needed for result set streaming.
 
 `cluster.startQuery()` → `QueryHandle` → `QueryStatus` → `QueryResultHandle`
 

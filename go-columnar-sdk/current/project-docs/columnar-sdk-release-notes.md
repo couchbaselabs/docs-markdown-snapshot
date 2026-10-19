@@ -2,7 +2,7 @@
 title: Columnar SDK Release Notes
 description: Release notes, brief installation instructions, and download
   archive for the Capella Columnar Go Client.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Go Columnar SDK
@@ -19,7 +19,7 @@ antora:
 
 > Release notes, brief installation instructions, and download archive for the Capella Columnar Go Client. 
 
-Version 1.0 of the Go Columnar SDK implements the 1.0 [SDK API](compatibility.md#api-version). See the [compatibility pages](#compatibility.html#couchbase-feature-availability-matrix) for more information on feature compatibility with different versions of Capella columnar.
+Version 1.0 of the Go Columnar SDK implements the 1.0 [SDK API](compatibility.md#api-version). See the [compatibility pages](#compatibility.html#couchbase-feature-availability-matrix) for more information on feature compatibility with different versions of Operational Insights (Capella).
 
 ## [](#installation)Installation
 

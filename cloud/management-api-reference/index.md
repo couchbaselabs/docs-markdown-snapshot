@@ -1,6 +1,6 @@
 ---
-title: Capella Operational Management API Reference
-pubDate: 2026-10-03T04:27:21.374Z
+title: Couchbase Capella Management API Reference
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Capella Operational
@@ -13,9 +13,10 @@ antora:
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/management-api-reference/index.html)
 
-# Capella Operational Management API Reference
+# Couchbase Capella Management API Reference
 
-* Capella Operational
+* Administration
+  * Administration Management API Overview
   * Alert Integration
     * postCreate Alert Integration
     * getList Alert Integrations
@@ -24,92 +25,42 @@ antora:
     * putUpdate Alert Integration
     * delDelete Alert Integration
     * postTest Alert Integration
-  * Allowed CIDRs (App Services)
-    * delDelete App Service Allowed CIDR
-    * getList Allowed CIDRs for an App Service
-    * postCreate Allowed CIDR
-  * Allowed CIDRs (Cluster)
-    * postCreate Allowed CIDR
-    * getList Allowed CIDRs
-    * getget allowed CIDR
-    * delDelete Allowed CIDR
   * Api Keys
     * postCreate API Key
     * getList API keys
     * getGet API Key
     * delDelete API Key
     * postRotate API Key
-  * App Endpoints
-    * getList App Endpoints
-    * postCreate App Endpoint
-    * getGet App Endpoint
-    * putUpdate App Endpoint
-    * delDelete App Endpoint
-    * getList App Endpoint Collections
-    * postResume or Bring an App Endpoint online
-    * delPause or Take an App Endpoint offline
-    * getGet the App Endpoint Cross-Origin Resource Sharing (CORS) Configuration.
-    * putUpsert the App Endpoint Cross-Origin Resource Sharing (CORS) Configuration.
-    * getGet Access Control and Validation function
-    * putUpsert custom Access Control and Validation function
-    * delDelete Access Control and Validation function
-    * getGet Import Filter
-    * putUpsert Import Filter
-    * delDelete Import Filter
-    * postCreate App Endpoint OpenID Connect (OIDC) Provider
-    * getList App Endpoint OpenID Connect (OIDC) Providers
-    * getGet App Endpoint OpenID Connect (OIDC) Provider
-    * putUpdate App Endpoint OpenID Connect (OIDC) Provider
-    * delDelete App Endpoint OpenID Connect (OIDC) Provider
-    * putUpdate App Endpoint Default OIDC Provider
-    * getGet Resync Status
-    * postStart Resync
-    * delStop Resync
-  * App Services
-    * postCreate App Service
-    * getList AppServices
-    * getGet App Service
-    * putUpdate App Service
-    * delDelete App Service
-    * postTurn On App Service
-    * delTurn Off App Service
-    * postCreate App Service Admin User
-    * getList App Service Admin Users
-    * putUpdate App Service Admin User
-    * delDelete App Service Admin User
-    * getGet App Service Admin User
-    * putOpt App Service Back In to Metadata Isolation
-    * getGet App Service Metadata Isolation State
-    * getGet Public Certificate for App Service
-    * getList App Endpoint Admin Users
-  * App Services Audit Logging
-    * putEnable or Disable App Service Audit Logging
-    * getGet App Service Audit Log State
-    * getList App Endpoint Audit Log Event IDs
-    * putUpdate App Endpoint Audit Logging Config
-    * getGet App Endpoint Audit Logging Config
-    * putConfigure App Service Audit Log Streaming
-    * patchStart or Resume Audit Log Streaming
-    * getGet App Service Audit Log Streaming State
-    * postInitiate Audit Log Export
-    * getList Audit Log Export Jobs
-    * getGet Audit Log Export Job
-  * App Services Log Streaming
-    * postResume App Service Log Streaming
-    * delPause App Service Log Streaming
-    * postConfigure App Service Log Streaming
-    * getGet App Service Log Streaming Configuration and State
-    * delDisable App Service Log Streaming
-    * putUpdate App Endpoint Log Streaming Config
-    * getGet App Endpoint Log Streaming Config
-  * App Services Private Endpoints
-    * postEnable App Service Private Endpoints
-    * getGet App Service Private Endpoints State
-    * delDisable App Service Private Endpoints
-    * postGet App Service Private Endpoints Command
-    * getList App Service Private Endpoints
-    * postAccept Private Endpoint Request
-    * delDelete Private Endpoint Request
+  * Billing
+    * postGet Categorized Billing
+    * postGet Itemized Billing Per Cluster
+    * getGet Prepaid Credits Billing
+    * getGet Pay As You Go Billing
+    * postDownload Categorized Billing
+    * postDownload Itemized Billing
+  * Organizations
+    * getGet Organization
+    * putUpdate Organization Configuration
+    * getList Organizations
+  * Projects
+    * postCreate Project
+    * getList Project
+    * getGet Project
+    * putUpdate Project
+    * delDelete Project
+  * Users
+    * postCreate User
+    * getList Users
+    * getGet User
+    * patchUpdate User
+    * delDelete User
+* Capella Operational
+  * Capella Operational Management API Overview
+  * Allowed CIDRs (Cluster)
+    * postCreate Allowed CIDR
+    * getList Allowed CIDRs
+    * getget allowed CIDR
+    * delDelete Allowed CIDR
   * Audit Logs
     * putUpdate Cluster Audit Log Configuration
     * getGet Cluster Audit Log Configuration
@@ -126,17 +77,12 @@ antora:
     * getList Backups
   * Backups & Restore (Bucket)
     * postCreate Backup
+    * postCreate Backup Export
+    * getGet Backup Export
     * getList Cluster Backups
     * getGet Backup
     * delDelete Backup Cycle
     * postRestore Backup
-  * Billing
-    * postGet Categorized Billing
-    * postGet Itemized Billing Per Cluster
-    * getGet Prepaid Credits Billing
-    * getGet Pay As You Go Billing
-    * postDownload Categorized Billing
-    * postDownload Itemized Billing
   * Buckets, Scopes, & Collections
     * postCreate Bucket
     * getList Buckets
@@ -169,6 +115,7 @@ antora:
     * putUpsert Backup Schedule
     * getGet Backup Schedule
     * delDelete Backup Schedule
+    * getGet Backup Schedule Options
   * Clusters
     * postCreate Cluster
     * getList Clusters
@@ -263,10 +210,6 @@ antora:
     * delDelete Cluster On/Off schedule
     * delPause Cluster On/Off Schedule
     * postUnpause Cluster On/Off Schedule
-  * Organizations
-    * getGet Organization
-    * putUpdate Organization Configuration
-    * getList Organizations
   * Private Endpoint Service
     * getGet Private Endpoint Service Status
     * postEnable Private Endpoint Service
@@ -276,12 +219,6 @@ antora:
     * postGet Private Endpoint CLI Command required to setup private endpoint for specific CSP
     * postAccept Private Endpoint Request
     * postReject or disassociate Private Endpoint
-  * Projects
-    * postCreate Project
-    * getList Project
-    * getGet Project
-    * putUpdate Project
-    * delDelete Project
   * Query Indexes
     * postManage Query Indexes
     * getGet List Of Index Definitions
@@ -302,13 +239,145 @@ antora:
     * getList Sample Data Import Buckets
     * getGet Sample Import Bucket
     * delDelete Sample Import Bucket
-  * Users
-    * postCreate User
-    * getList Users
-    * getGet User
-    * patchUpdate User
-    * delDelete User
+* Capella App Services
+  * Capella App Services Management API Overview
+  * Allowed CIDRs (App Services)
+    * delDelete App Service Allowed CIDR
+    * getList Allowed CIDRs for an App Service
+    * postCreate Allowed CIDR
+  * App Endpoints
+    * getList App Endpoints
+    * postCreate App Endpoint
+    * getGet App Endpoint
+    * putUpdate App Endpoint
+    * delDelete App Endpoint
+    * getList App Endpoint Collections
+    * postResume or Bring an App Endpoint online
+    * delPause or Take an App Endpoint offline
+    * getGet the App Endpoint Cross-Origin Resource Sharing (CORS) Configuration.
+    * putUpsert the App Endpoint Cross-Origin Resource Sharing (CORS) Configuration.
+    * getGet Access Control and Validation function
+    * putUpsert custom Access Control and Validation function
+    * delDelete Access Control and Validation function
+    * getGet Import Filter
+    * putUpsert Import Filter
+    * delDelete Import Filter
+    * postCreate App Endpoint OpenID Connect (OIDC) Provider
+    * getList App Endpoint OpenID Connect (OIDC) Providers
+    * getGet App Endpoint OpenID Connect (OIDC) Provider
+    * putUpdate App Endpoint OpenID Connect (OIDC) Provider
+    * delDelete App Endpoint OpenID Connect (OIDC) Provider
+    * putUpdate App Endpoint Default OIDC Provider
+    * getGet Resync Status
+    * postStart Resync
+    * delStop Resync
+  * App Services
+    * postCreate App Service
+    * getList AppServices
+    * getGet App Service
+    * putUpdate App Service
+    * delDelete App Service
+    * postTurn On App Service
+    * delTurn Off App Service
+    * postCreate App Service Admin User
+    * getList App Service Admin Users
+    * putUpdate App Service Admin User
+    * delDelete App Service Admin User
+    * getGet App Service Admin User
+    * putOpt App Service Back In to Metadata Isolation
+    * getGet App Service Metadata Isolation State
+    * getGet Public Certificate for App Service
+    * getList App Endpoint Admin Users
+  * App Services Audit Logging
+    * putEnable or Disable App Service Audit Logging
+    * getGet App Service Audit Log State
+    * getList App Endpoint Audit Log Event IDs
+    * putUpdate App Endpoint Audit Logging Config
+    * getGet App Endpoint Audit Logging Config
+    * putConfigure App Service Audit Log Streaming
+    * patchStart or Resume Audit Log Streaming
+    * getGet App Service Audit Log Streaming State
+    * postInitiate Audit Log Export
+    * getList Audit Log Export Jobs
+    * getGet Audit Log Export Job
+  * App Services Log Streaming
+    * postResume App Service Log Streaming
+    * delPause App Service Log Streaming
+    * postConfigure App Service Log Streaming
+    * getGet App Service Log Streaming Configuration and State
+    * delDisable App Service Log Streaming
+    * putUpdate App Endpoint Log Streaming Config
+    * getGet App Endpoint Log Streaming Config
+  * App Services Private Endpoints
+    * postEnable App Service Private Endpoints
+    * getGet App Service Private Endpoints State
+    * delDisable App Service Private Endpoints
+    * postGet App Service Private Endpoints Command
+    * getList App Service Private Endpoints
+    * postAccept Private Endpoint Request
+    * delDelete Private Endpoint Request
+* Operational Insights
+  * Operational Insights Management API Overview
+  * Allowed CIDRs (Operational Insights Cluster)
+    * postCreate Allowed CIDR
+    * getList Allowed CIDRs
+    * getGet Allowed CIDR
+    * delDelete Allowed CIDR
+  * Operational Insights Cloud Snapshot Backups & Restore
+    * postCreate Cloud Snapshot Backup
+    * getList Cloud Snapshot Backups
+    * putUpdate Backup Retention
+    * delDelete Backup
+    * postRestore Backup
+    * getList Cloud Snapshot Restores
+  * Operational Insights Cloud Snapshot Backups Schedule
+    * putUpsert Backup Schedule
+    * getGet Backup Schedule
+    * delDelete Backup Schedule
+  * Operational Insights Clusters
+    * postCreate New Operational Insights Cluster
+    * getList Project Level Operational Insights Clusters
+    * getList Organization Level Operational Insights Clusters
+    * getGet Operational Insights Cluster Details
+    * putUpdate an Operational Insights Cluster
+    * delDelete Operational Insights Cluster
+    * postTurn On Operational Insights Cluster
+    * delTurn Off Operational Insights Cluster
+  * Operational Insights On/Off Schedule
+    * postCreate Operational Insights Cluster On/Off Schedule
+    * getGet Operational Insights Cluster On/Off Schedule
+    * putUpdate Operational Insights Cluster On/Off Schedule
+    * delDelete Operational Insights Cluster On/Off Schedule
+  * Operational Insights Private Endpoint Service
+    * getGet Operational Insights Private Endpoint Service Status
+    * postEnable Operational Insights Private Endpoint Service
+    * delDisable Operational Insights Private Endpoint Service.
+    * postGet Operational Insights Private Endpoint CLI Command Required to Setup Private Endpoint for Specific CSP
+    * getList Operational Insights Private Endpoint Connections
+    * postAccept or Associate Operational Insights Private Endpoint Request
+    * postReject or Disassociate Operational Insights Private Endpoint Connection.
 * AI Data Plane
+  * AI Agent Memory Allowed CIDRs
+    * getList Agent Memory Server Allowed CIDRs
+    * postCreate Agent Memory Server Allowed CIDR
+    * delDelete Agent Memory Server Allowed CIDR
+    * getList Organization Agent Memory Allowed CIDRs
+  * AI Data Plane Management API Overview
+  * AI Agent Memory API Keys
+    * getList Agent Memory API Keys
+    * postCreate Agent Memory API Key
+    * getGet Agent Memory API Key
+    * delDelete Agent Memory API Key
+    * getList Organization Agent Memory API Keys
+  * AI Agent Memory Servers
+    * getList Agent Memory Servers
+    * postCreate Agent Memory Server
+    * getGet Agent Memory Server
+    * delDelete Agent Memory Server
+    * postCopy Agent Memory Server
+    * getGet Agent Memory Server Deployment Options
+    * getList Organization Agent Memory Servers
+    * getList Agent Memory Server Eligible Clusters
   * AI Data Plane Providers
     * getList providers
     * postCreate provider
@@ -326,6 +395,14 @@ antora:
     * getGet AI Workflow Run
     * getGet AI Workflow Run Processed Files
     * getGet Supported External Embedding Models
+  * MCP Servers
+    * getList MCP Servers
+    * postCreate MCP Server
+    * getGet MCP Server
+    * delDelete MCP Server
+    * getGet MCP Server Client Config
+  * MCP Tools
+    * getList MCP Tools
   * Model Services API Keys (AI Data Plane)
     * postCreate API Key
     * getList API keys
@@ -347,17 +424,24 @@ antora:
 
 Download OpenAPI specification:
 
-The Couchbase Capella Management API provides a set of REST APIs for creating and managing Capella instances. It enables users to perform operations such as creating new Capella instances, managing their configurations, and interacting with the Capella services. This API documentation specifies the endpoints, request and response formats, and authentication requirements for seamless integration with Couchbase Capella.
+The Couchbase Capella Management API provides a set of REST APIs for creating and managing Capella instances, App Services, Operational Insights, and the AI Data Plane. It enables users to perform operations such as creating new Capella instances, managing their configurations, and interacting with the Capella services. This API documentation specifies the endpoints, request and response formats, and authentication requirements for seamless integration with Couchbase Capella.
 
-To access the Management API, you need an API key. To create an initial bootstrap API key you must use the Capella UI. Once you have created an initial bootstrap API key, you can use the Management API itself to create further API keys. To learn more, see [Get Started with the Management API v4.0](https://docs.couchbase.com/cloud/management-api-guide/management-api-start.html).
+To access the Management API, you need an API key. To create an initial bootstrap API key you must use the Capella UI. Once you have created an initial bootstrap API key, you can use the Management API itself to create further API keys. To learn more, see Get Started with the Management API v4.0 for:  
+[Capella Operational](https://docs.couchbase.com/cloud/management-api-guide/management-api-start.html) | [Capella App Services](https://docs.couchbase.com/app-services/management-api-guide/management-api-start.html) | [Operational Insights](https://docs.couchbase.com/operational-insights-cloud/management-api-guide/management-api-start.html) | [AI Data Plane](https://docs.couchbase.com/ai/api-guide/api-start.html)
 
-For a history of updates to the Management API, see [Management API v4.0 Change Log](https://docs.couchbase.com/cloud/management-api-guide/management-api-log.html).
+For a history of updates to the Management API, see Management API v4.0 Change Log for:  
+[Capella Operational](https://docs.couchbase.com/cloud/management-api-guide/management-api-log.html) | [Capella App Services](https://docs.couchbase.com/app-services/management-api-guide/management-api-log.html) | [Operational Insights](https://docs.couchbase.com/operational-insights-cloud/management-api-guide/management-api-log.html) | [AI Data Plane](https://docs.couchbase.com/ai/api-guide/api-log.html)
 
 **API Base URL:**
 
 `https://cloudapi.cloud.couchbase.com`
 
-[Back to Management API v4.0 Documentation](https://docs.couchbase.com/cloud/management-api-guide/management-api-intro.html)
+Back to Management API v4.0 Documentation for:  
+[Capella Operational](https://docs.couchbase.com/cloud/management-api-guide/management-api-intro.html) | [Capella App Services](https://docs.couchbase.com/app-services/management-api-guide/management-api-intro.html) | [Operational Insights](https://docs.couchbase.com/operational-insights-cloud/management-api-guide/management-api-intro.html) | [AI Data Plane](https://docs.couchbase.com/ai/api-guide/api-intro.html)
+
+## [](#tag/Administration-Management-API-Overview)Administration Management API Overview
+
+Manage general Couchbase Capella configurations with REST APIs that apply across services and clusters. Use them to manage account-level settings and organization-wide configurations.
 
 ## [](#tag/Alert-Integration)Alert Integration
 
@@ -1557,680 +1641,6 @@ Copy
 * "hint": "The request was malformed or invalid."
 }`
 
-## [](#tag/Allowed-CIDRs-%28App-Services%29)Allowed CIDRs (App Services)
-
-App Services only allow trusted IP addresses to connect and use its REST APIs. Each App Service has a configurable Allowed IP list that can include up to 75 entries. Each entry can be a single IP address or an IP address space. Any IP address you add to this list can have a user-specified expiration time for temporary access, or be permanent. Capella automatically denies any connection attempts to and from an IP not in the allowed IP list.
-
-## [](#tag/Allowed-CIDRs-%28App-Services%29/operation/deleteAppServiceAllowedCidr)Delete App Service Allowed CIDR 
-
-Deletes an Allowed CIDR by ID on the specified App Service.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-| allowedCidrIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the allowed CIDR. |
-
-### Responses
-
-**204** 
-
-Successfully deleted the Allowed CIDR by its ID.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**409** 
-
-Returned when there is a conflict with the current state of a resource.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/allowedcidrs/{allowedCidrId}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/allowedcidrs/{allowedCidrId}
-
-### Response samples 
-
-* 403
-* 404
-* 409
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
-}`
-
-## [](#tag/Allowed-CIDRs-%28App-Services%29/operation/listAppServiceAllowedCidrs)List Allowed CIDRs for an App Service 
-
-Lists the Allowed CIDRs for the specified App Service.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-
-##### query Parameters
-
-| page          | integer Sets the page you would like to view.                                                                                                                                                            |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                  |
-| sortBy        | Array of strings Example: sortBy=id Sets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **id**, **type**, **status**. |
-| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                         |
-
-### Responses
-
-**200** 
-
-Successfully retrieved the allowed CIDRs for the App Service.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/allowedcidrs
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/allowedcidrs
-
-### Response samples 
-
-* 200
-* 403
-* 404
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "data": [
-  * {
-    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
-    * "cidr": "1.23.45.67/32",
-    * "comment": "Allows access from my local developer machine",
-    * "expiresAt": "2023-05-14T21:49:58.465Z",
-    * "status": "active",
-    * "type": "temporary",
-    * "audit": {
-      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
-      * "createdAt": "2021-09-01T12:34:56Z",
-      * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
-      * "modifiedAt": "2021-09-01T12:34:56Z",
-      * "version": 1  
-      }  
-  }  
-],
-* "cursor": {
-  * "pages": {
-    * "page": 2,
-    * "next": 3,
-    * "previous": 1,
-    * "last": 10,
-    * "perPage": 10,
-    * "totalItems": 10  
-  },
-  * "hrefs": {
-    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
-  }  
-}
-}`
-
-## [](#tag/Allowed-CIDRs-%28App-Services%29/operation/postAppServiceAllowedCidr)Create Allowed CIDR 
-
-Adds a trusted CIDR to the specified App Service's list of allowed CIDRs.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-
-##### Request Body schema: application/json
-
-| cidrrequired | string The trusted CIDR to allow network connections from. The example represents a single IP address (i.e. a subnet mask of 32).                                                                |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| comment      | string A short description of the allowed CIDR.                                                                                                                                                  |
-| expiresAt    | string <date-time\> An RFC3339 timestamp determining when the allowed CIDR should expire. If this field is empty/omitted then the allowed CIDR is permanent and will never automatically expire. |
-
-### Responses
-
-**201** 
-
-Successfully added an Allowed CIDR for the App Service.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**409** 
-
-Returned when there is a conflict with the current state of a resource.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/allowedcidrs
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/allowedcidrs
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "cidr": "6.60.28.100/32",
-* "comment": "Allows access from my local developer machine",
-* "expiresAt": "2023-05-14T21:49:58.465Z"
-}`
-
-### Response samples 
-
-* 201
-* 400
-* 403
-* 404
-* 409
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "id": "ffffffff-aaaa-1414-eeee-000000000000"
-}`
-
-## [](#tag/Allowed-CIDRs-%28Cluster%29)Allowed CIDRs (Cluster)
-
-Couchbase Capella only allows trusted IP addresses to connect to databases. Each database has a configurable Allowed IP list that can include up to 75 entries. Each entry can be a single IP address or an IP address space. Any IP address you add to this list can have a user-specified expiration time for temporary access, or be permanent. Capella automatically denies any connection attempts to and from an IP not in the allowed IP list.
-
-## [](#tag/Allowed-CIDRs-%28Cluster%29/operation/postAllowedCidrs)Create Allowed CIDR 
-
-Adds a trusted CIDR to a cluster's list of allowed CIDRs.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-Note that updating this resource is not supported; you must delete and recreate allowed CIDRs instead. As a result, ETags are also not supported for this resource.
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-
-##### Request Body schema: application/json
-
-| cidrrequired | string The trusted CIDR to allow the database connections from. The example represents a single IP address (i.e. a subnet mask of 32).                                                           |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| comment      | string A short description of the allowed CIDR.                                                                                                                                                  |
-| expiresAt    | string <date-time\> An RFC3339 timestamp determining when the allowed CIDR should expire. If this field is empty/omitted then the allowed CIDR is permanent and will never automatically expire. |
-
-### Responses
-
-**201** 
-
-Successfully added an allowed CIDR for the cluster.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/allowedcidrs
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/allowedcidrs
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "cidr": "6.60.28.100/32",
-* "comment": "Allows access from my local developer machine",
-* "expiresAt": "2023-05-14T21:49:58.465Z"
-}`
-
-### Response samples 
-
-* 201
-* 400
-* 403
-* 404
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "id": "ffffffff-aaaa-1414-eeee-000000000000"
-}`
-
-## [](#tag/Allowed-CIDRs-%28Cluster%29/operation/listAllowedCidrs)List Allowed CIDRs 
-
-Lists all of the allowed CIDRs for a given cluster.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-* Database Data Reader/Writer
-* Database Data Reader
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-
-##### query Parameters
-
-| page          | integer Sets the page you would like to view.                                                                                                                                                            |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                  |
-| sortBy        | Array of strings Example: sortBy=id Sets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **id**, **type**, **status**. |
-| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                         |
-
-### Responses
-
-**200** 
-
-Successfully listed all allowed CIDRs for the cluster.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/allowedcidrs
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/allowedcidrs
-
-### Response samples 
-
-* 200
-* 400
-* 403
-* 404
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "data": [
-  * {
-    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
-    * "cidr": "1.23.45.67/32",
-    * "comment": "Allows access from my local developer machine",
-    * "expiresAt": "2023-05-14T21:49:58.465Z",
-    * "status": "active",
-    * "type": "temporary",
-    * "audit": {
-      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
-      * "createdAt": "2021-09-01T12:34:56Z",
-      * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
-      * "modifiedAt": "2021-09-01T12:34:56Z",
-      * "version": 1  
-      }  
-  }  
-],
-* "cursor": {
-  * "pages": {
-    * "page": 2,
-    * "next": 3,
-    * "previous": 1,
-    * "last": 10,
-    * "perPage": 10,
-    * "totalItems": 10  
-  },
-  * "hrefs": {
-    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
-  }  
-}
-}`
-
-## [](#tag/Allowed-CIDRs-%28Cluster%29/operation/getAllowedCidrByID)get allowed CIDR 
-
-Fetches the details for the specified allowed CIDR.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-* Database Data Reader/Writer
-* Database Data Reader
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| allowedCidrIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the allowed CIDR. |
-
-### Responses
-
-**200** 
-
-Successfully fetched the allowed CIDR details.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/allowedcidrs/{allowedCidrId}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/allowedcidrs/{allowedCidrId}
-
-### Response samples 
-
-* 200
-* 403
-* 404
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "id": "ffffffff-aaaa-1414-eeee-000000000000",
-* "cidr": "1.23.45.67/32",
-* "comment": "Allows access from my local developer machine",
-* "expiresAt": "2023-05-14T21:49:58.465Z",
-* "status": "active",
-* "type": "temporary",
-* "audit": {
-  * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
-  * "createdAt": "2021-09-01T12:34:56Z",
-  * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
-  * "modifiedAt": "2021-09-01T12:34:56Z",
-  * "version": 1  
-}
-}`
-
-## [](#tag/Allowed-CIDRs-%28Cluster%29/operation/deleteAllowedCidrByID)Delete Allowed CIDR 
-
-Deletes the existing allowed CIDR.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| allowedCidrIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the allowed CIDR. |
-
-### Responses
-
-**204** 
-
-Successfully deleted the allowed CIDR by its ID.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/allowedcidrs/{allowedCidrId}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/allowedcidrs/{allowedCidrId}
-
-### Response samples 
-
-* 403
-* 404
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
-}`
-
 ## [](#tag/Api-Keys)Api Keys
 
 Couchbase Capella Management API uses a Bearer token mechanism for authentication; each call to the Management API has to be authenticated by API key.
@@ -2261,7 +1671,7 @@ _token_
 | description               | string (APIKeyDescription) Default: "" Description for the API key.                                                                                                                                                                                                       |
 | expiry                    | number <float\>  (APIKeyExpiry) Default: 180 Expiry of the API key in number of days. Must be at least 0.01 days. If set to -1, the token will not expire.                                                                                                                |
 | allowedCIDRs              | Array of strings (APIKeyAllowedCIDRs) Default: \["0.0.0.0/0"\] List of inbound CIDRs for the API key. The system making a request must come from one of the allowed CIDRs.                                                                                                |
-| organizationRolesrequired | Array of strings (APIKeyOrganizationRoles) Items Enum: "organizationOwner" "organizationMember" "projectCreator"                                                                                                                                                          |
+| organizationRolesrequired | Array of strings (APIKeyOrganizationRoles) Items Enum: "organizationOwner" "organizationMember" "projectCreator" "organizationBillingAdmin" "organizationBillingViewer" "organizationReadOnly"                                                                            |
 | resources                 | Array of objects (APIKeyResources) Default: \[\] Resources are the resource level permissions associated with the API key. To learn more about Organization Roles, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html). |
 
 ### Responses
@@ -2308,7 +1718,7 @@ application/json
 
 Example
 
-createOrganizationOwnerAPIKeycreateProjectOwnerAPIKeycreateOrganizationOwnerAPIKey
+createOrganizationOwnerAPIKeycreateProjectOwnerAPIKeycreateBillingAdminAPIKeycreateBillingViewerAPIKeycreateOrganizationReadOnlyAPIKeycreateOrganizationOwnerAPIKey
 
 Copy
 
@@ -2709,22 +2119,19 @@ Copy
 * "token": "<YOUR_TOKEN_HERE>"
 }`
 
-## [](#tag/App-Endpoints)App Endpoints
+## [](#tag/Billing)Billing
 
-App Endpoints represent instances of mobile applications on App Services. Each App Endpoint is linked to one bucket and synchronizes data to a set of linked collections. Users can configure App Endpoints, including setting the Access Control function, Import Filter and OpenID Connect (OIDC) authentication configuration.
+The Billing endpoints allow you to retrieve billing information for your organization. You can view usage data organized by time period and filter by categories, projects, or instances.
 
-## [](#tag/App-Endpoints/operation/listAppEndpoints)List App Endpoints 
+## [](#tag/Billing/operation/categorizedBilling)Get Categorized Billing 
 
-Lists all the App Endpoints under a specific App Service along with their associated configurations such as Access Control function, Import Filter or user defined xattr key.
+Retrieves billing information for the organization within the specified date range and filters.
 
 In order to access this endpoint, the provided API key must have at least one of the following roles:
 
 * Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-* Database Data Reader/Writer
-* Database Data Reader
+* Billing Admin
+* Billing Viewer
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -2736,23 +2143,19 @@ _token_
 
 | organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
 | ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
 
-##### query Parameters
+##### Request Body schema: application/json
 
-| page          | integer Sets the page you would like to view.                                                                                                                                                                   |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                         |
-| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                                |
-| sortBy        | Array of strings Example: sortBy=name Sets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **name**, **offline**, **bucket**. |
+| startDaterequired | string <date\> The start date of the billing period in YYYY-MM-DD format. |
+| ----------------- | ------------------------------------------------------------------------- |
+| endDaterequired   | string <date\> The end date of the billing period in YYYY-MM-DD format.   |
+| filters           | object (BillingFilters) Filters to narrow down the billing information.   |
 
 ### Responses
 
 **200** 
 
-Successfully listed all the App Endpoints under a specific App Service.
+Successfully retrieved the categorized billing information.
 
 **400** 
 
@@ -2778,13 +2181,42 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
-**503** 
+post/v4/organizations/{organizationId}/billing
 
-The server is currently unable to handle the request
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/billing
 
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints
+### Request samples 
 
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "value": {
+  * "startDate": "2025-04-01",
+  * "endDate": "2025-04-30",
+  * "filters": {
+    * "categories": [
+      * "analyticsCompute",
+      * "analyticsStorage"  
+      ],
+    * "projectIds": [
+      * "ffffffff-aaaa-1414-eeee-000000000000",
+      * "ffffffff-aaaa-1414-eeee-000000000001"  
+      ],
+    * "instanceIds": [
+      * "ffffffff-aaaa-1414-eeee-000000000000",
+      * "ffffffff-aaaa-1414-eeee-000000000001"  
+      ]  
+  }  
+}
+}`
 
 ### Response samples 
 
@@ -2795,7 +2227,6 @@ https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/
 * 422
 * 429
 * 500
-* 503
 
 Content type
 
@@ -2803,7 +2234,7 @@ application/json
 
 Example
 
-ListAppEndpointsDefaultCollListAppEndpointNamedCollListAppEndpointsDefaultColl
+Monthly usage in amount (currency)Monthly usage in creditsDaily usage (for date ranges within a month)Monthly usage in amount (currency)
 
 Copy
 
@@ -2811,90 +2242,61 @@ Copy
 
 `{
 * "data": {
-  * "bucket": "bucket1",
-  * "name": "defaultAppEndpoint",
-  * "userXattrKey": "key",
-  * "disablePublicAllDocs": false,
-  * "deltaSyncEnabled": true,
-  * "oidc": [
+  * "periods": [
     * {
-      * "issuer": "<https://example.auth.com>",
-      * "register": true,
-      * "clientId": "foo_client",
-      * "userPrefix": "fooOIDC",
-      * "discoveryUrl": "<https://foo.com/.well-known/openid-configuration>",
-      * "usernameClaim": "fooAlt",
-      * "rolesClaim": "roles",
-      * "providerId": "ffffffff-aaaa-1414-eeee-000000000000",
-      * "isDefault": true  
-      },
-    * {
-      * "issuer": "<https://example.auth.com>",
-      * "register": true,
-      * "clientId": "bar_client",
-      * "userPrefix": "barOIDC",
-      * "discoveryUrl": "<https://bar.com/.well-known/openid-configuration>",
-      * "usernameClaim": "barAlt",
-      * "providerId": "ffffffff-aaaa-1414-eeee-000000000000",
-      * "isDefault": false  
+      * "startDate": "2025-04-01",
+      * "endDate": "2025-04-30",
+      * "categories": [
+        * {
+          * "category": "analyticsCompute",
+          * "creditSpend": null,
+          * "currencySpend": 90.1,
+          * "contributionPercent": 74  
+                    },
+        * {
+          * "category": "analyticsStorage",
+          * "creditSpend": null,
+          * "currencySpend": 31.65,
+          * "contributionPercent": 26  
+                    }  
+            ],
+      * "totalCreditSpend": null,
+      * "totalCurrencySpend": 3302.11  
       }  
   ],
-  * "cors": {
-    * "origin": [
-      * "<http://example.com>",
-      * "<http://staging.example.com>"  
-      ],
-    * "loginOrigin": [
-      * "<http://example.com>"  
-      ],
-    * "headers": [
-      * "Content-Type",
-      * "X-Forwarded-Host"  
-      ],
-    * "disabled": false,
-    * "maxAge": 120  
-  },
-  * "scopes": {
-    * "_default": {
-      * "collections": {
-        * "_default": {
-          * "accessControlFunction": "function(doc){channel(doc.channels);}",
-          * "importFilter": "function(doc) { if (doc.type != 'mobile') { return false; } return true; }"  
-                    }  
+  * "total": {
+    * "startDate": "2025-04-01",
+    * "endDate": "2025-04-30",
+    * "categories": [
+      * {
+        * "category": "analyticsCompute",
+        * "creditSpend": null,
+        * "currencySpend": 2914.46,
+        * "contributionPercent": 11.15  
+            },
+      * {
+        * "category": "analyticsStorage",
+        * "creditSpend": null,
+        * "currencySpend": 1250.25,
+        * "contributionPercent": 4.78  
             }  
-      }  
+      ],
+    * "totalCreditSpend": null,
+    * "totalCurrencySpend": 26120.18  
   },
-  * "requireResync": {
-    * "_default": {
-      * "items": [ ]  
-      }  
-  },
-  * "adminURL": "<https://wdltntbkyuqpaaco.apps.sandbox.project1.com:4985>",
-  * "metricsURL": "<https://wdltntbkyuqpaaco.apps.sandbox.project1.com:4986>",
-  * "publicURL": "<https://wdltntbkyuqpaaco.apps.sandbox.project1.com:4984>"  
-},
-* "cursor": {
-  * "hrefs": { },
-  * "pages": {
-    * "last": 1,
-    * "page": 1,
-    * "perPage": 5,
-    * "totalItems": 5  
-  }  
+  * "billingCurrency": "USD"  
 }
 }`
 
-## [](#tag/App-Endpoints/operation/postAppEndpoint)Create App Endpoint 
+## [](#tag/Billing/operation/itemizedBillingPerCluster)Get Itemized Billing Per Cluster 
 
-Creates an App Endpoint within an App Service with specific configurations such as collection level Access Control function and Import Filter. If the scopes property is not included in the request body, the default scope and collection will be used. The first OpenID Connect provider given will be set as the default provider for the App Endpoint. To change the default, please use the Change App Endpoint OIDC Default Provider endpoint.
+Retrieves itemized billing information for a specific cluster within the specified date range and filters. Note: This endpoint supports operational clusters only.
 
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+In order to access this endpoint, the provided API key must have at least one of the following roles:
 
 * Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+* Billing Admin
+* Billing Viewer To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
 ##### Authorizations:
 
@@ -2906,25 +2308,19 @@ _token_
 | ---------------------- | --------------------------------------------------------------------------------------------- |
 | projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
 | clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
 
 ##### Request Body schema: application/json
 
-| bucketrequired       | string The Capella Cluster backing bucket for the App Endpoint.                                                                                                                                                                           |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| oidc                 | Array of objects (OIDCProvider) OpenID Connect provider configuration.                                                                                                                                                                    |
-| cors                 | object (CORSConfig)                                                                                                                                                                                                                       |
-| scopes               | object (ScopesConfig) Default: {"\_default":{"collections":{"\_default":{"accessControlFunction":"function(doc){channel(doc.channels);}","importFilter":" function(doc) { if (doc.type != 'mobile') { return false; } return true; }"}}}} |
-| namerequired         | string App Endpoint name. Must be less than 228 characters. It can only contain lowercase letters, numbers, or the following characters \-\_$+()                                                                                          |
-| deltaSyncEnabled     | boolean Default: false Enable/disable delta sync                                                                                                                                                                                          |
-| userXattrKey         | string The key of the user-extended attributes (xattr) that will be accessible from the Access control and validation function. If left empty, the feature will be disabled.                                                              |
-| disablePublicAllDocs | boolean Default: false Disable the \_all\_docs endpoint for this App Endpoint on the App Services Public API.                                                                                                                             |
+| startDaterequired | string <date\> The start date of the billing period in YYYY-MM-DD format.                |
+| ----------------- | ---------------------------------------------------------------------------------------- |
+| endDaterequired   | string <date\> The end date of the billing period in YYYY-MM-DD format.                  |
+| filters           | object (ItemizedBillingFilters) Filters to narrow down the itemized billing information. |
 
 ### Responses
 
-**201** 
+**200** 
 
-Successfully created an App Endpoint.
+Successfully retrieved the itemized billing information for the cluster.
 
 **400** 
 
@@ -2932,19 +2328,11 @@ Returned when we are unable to decode the recevied payload.
 
 **403** 
 
-The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+The client does not have the necessary permissions to access this resource.
 
 **404** 
 
 The requested resource was not found.
-
-**409** 
-
-Returned when there is a conflict with the current state of a resource.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
 
 **422** 
 
@@ -2958,13 +2346,9 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
-**503** 
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/billing
 
-The server is currently unable to handle the request
-
-post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/billing
 
 ### Request samples 
 
@@ -2974,163 +2358,22 @@ Content type
 
 application/json
 
-Example
-
-CreateAppEndpointRequestDefaultCollectionCreateAppEndpointRequestNamedCollectionsCreateAppEndpointRequestDefaultCollection
-
 Copy
 
  Expand all  Collapse all 
 
 `{
-* "bucket": "bucket1",
-* "name": "defaultAppEndpoint",
-* "userXattrKey": "key",
-* "disablePublicAllDocs": false,
-* "deltaSyncEnabled": true,
-* "scopes": {
-  * "_default": {
-    * "collections": {
-      * "_default": {
-        * "accessControlFunction": "function(doc){channel(doc.channels);}",
-        * "importFilter": "function(doc) { if (doc.type != 'mobile') { return false; } return true; }"  
-            }  
-      }  
-  }  
-},
-* "cors": {
-  * "origin": [
-    * "<http://example.com>",
-    * "<http://staging.example.com>"  
-  ],
-  * "loginOrigin": [
-    * "<http://example.com>"  
-  ],
-  * "headers": [
-    * "Content-Type"  
-  ],
-  * "disabled": true  
-},
-* "oidc": [
-  * {
-    * "issuer": "<https://example.auth.com>",
-    * "register": true,
-    * "clientId": "foo_client",
-    * "userPrefix": "fooOIDC",
-    * "discoveryUrl": "<https://foo.com/.well-known/openid-configuration>",
-    * "usernameClaim": "fooAlt",
-    * "rolesClaim": "roles",
-    * "scope": [
-      * "openid",
-      * "profile",
-      * "email"  
+* "value": {
+  * "startDate": "2025-04-01",
+  * "endDate": "2025-04-30",
+  * "filters": {
+    * "categories": [
+      * "operationalComputeAndStorage",
+      * "operationalBucketBackup"  
       ]  
-  },
-  * {
-    * "issuer": "<https://example.auth.com>",
-    * "register": true,
-    * "clientId": "bar_client",
-    * "userPrefix": "barOIDC",
-    * "discoveryUrl": "<https://bar.com/.well-known/openid-configuration>",
-    * "usernameClaim": "barAlt"  
   }  
-]
+}
 }`
-
-### Response samples 
-
-* 400
-* 403
-* 404
-* 409
-* 412
-* 422
-* 429
-* 500
-* 503
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
-}`
-
-## [](#tag/App-Endpoints/operation/getAppEndpoint)Get App Endpoint 
-
-Fetches the details of the given App Endpoint, including operational and resync states and various configurations such as Access Control function and Import Filter.
-
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-* Database Data Reader/Writer
-* Database Data Reader
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ----------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
-
-### Responses
-
-**200** 
-
-Successfully fetched the App Endpoint based on the App Endpoint name.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
-
-**404** 
-
-The requested resource was not found.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}
 
 ### Response samples 
 
@@ -3138,340 +2381,77 @@ https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/
 * 400
 * 403
 * 404
-* 412
 * 422
 * 429
 * 500
-* 503
 
 Content type
 
 application/json
-
-Example
-
-GetAppEndpointDefaultCollectionGetAppEndpointNamedCollectionGetAppEndpointDefaultCollection
 
 Copy
 
  Expand all  Collapse all 
 
 `{
-* "bucket": "bucket1",
-* "name": "defaultAppEndpoint",
-* "userXattrKey": "key",
-* "disablePublicAllDocs": false,
-* "deltaSyncEnabled": true,
-* "oidc": [
-  * {
-    * "issuer": "<https://example.auth.com>",
-    * "register": true,
-    * "clientId": "foo_client",
-    * "userPrefix": "fooOIDC",
-    * "discoveryUrl": "<https://foo.com/.well-known/openid-configuration>",
-    * "usernameClaim": "fooAlt",
-    * "rolesClaim": "roles",
-    * "providerId": "ffffffff-aaaa-1414-eeee-000000000000",
-    * "isDefault": true  
-  }  
-],
-* "cors": {
-  * "origin": [
-    * "<http://example.com>",
-    * "<http://staging.example.com>"  
-  ],
-  * "loginOrigin": [
-    * "<http://example.com>"  
-  ],
-  * "headers": [
-    * "Content-Type"  
-  ],
-  * "maxAge": 600,
-  * "disabled": false  
-},
-* "scopes": {
-  * "_default": {
-    * "collections": {
-      * "_default": {
-        * "accessControlFunction": "function(doc){channel(doc.channels);}",
-        * "importFilter": "function(doc) { if (doc.type != 'mobile') { return false; } return true; }"  
-            }  
+* "data": {
+  * "clusterName": "test-123",
+  * "supportPlan": "DeveloperPro",
+  * "periods": [
+    * {
+      * "startDate": "2025-04-01",
+      * "endDate": "2025-04-30",
+      * "categories": [
+        * {
+          * "category": "operationalComputeAndStorage",
+          * "creditSpend": null,
+          * "currencySpend": 90.1,
+          * "contributionPercent": 74  
+                    },
+        * {
+          * "category": "operationalBucketBackup",
+          * "creditSpend": null,
+          * "currencySpend": 31.65,
+          * "contributionPercent": 26  
+                    }  
+            ],
+      * "totalCreditSpend": null,
+      * "totalCurrencySpend": 3302.11  
       }  
-  }  
-},
-* "requireResync": {
-  * "_default": {
-    * "items": [ ]  
-  }  
-},
-* "adminURL": "<https://wdltntbkyuqpaaco.apps.sandbox.project1.com:4985>",
-* "metricsURL": "<https://wdltntbkyuqpaaco.apps.sandbox.project1.com:4986>",
-* "publicURL": "<https://wdltntbkyuqpaaco.apps.sandbox.project1.com:4984>"
-}`
-
-## [](#tag/App-Endpoints/operation/putAppEndpoint)Update App Endpoint 
-
-Replaces a specified App Endpoint's configurations such as Access Control function, Import Filter, Delta Sync, or user defined xattr key. The first OpenID Connect provider given will be set as the default provider for the App Endpoint. To change the default, please use the Change App Endpoint OIDC Default Provider endpoint. All fields are required, the App Endpoint and bucket names cannot be changed.
-
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ----------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
-
-##### Request Body schema: application/json
-
-| namerequired                 | string App Endpoint name. Cannot be changed.                                                                                                                                                                                              |
-| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| bucketrequired               | string The Capella Cluster backing bucket for the App Endpoint. Cannot be changed.                                                                                                                                                        |
-| scopesrequired               | object (ScopesConfig) Default: {"\_default":{"collections":{"\_default":{"accessControlFunction":"function(doc){channel(doc.channels);}","importFilter":" function(doc) { if (doc.type != 'mobile') { return false; } return true; }"}}}} |
-| deltaSyncEnabledrequired     | boolean Enable or disable delta sync                                                                                                                                                                                                      |
-| userXattrKeyrequired         | string Key of user xattr that will be accessible from the Access control and validation function. If empty, the feature will be disabled.                                                                                                 |
-| disablePublicAllDocsrequired | boolean Default: false Disable the \_all\_docs endpoint for this App Endpoint on the App Services Public API.                                                                                                                             |
-| oidcrequired                 | Array of objects (OIDCProvider) OpenID Connect provider configuration.                                                                                                                                                                    |
-| corsrequired                 | object (CORSConfig)                                                                                                                                                                                                                       |
-
-### Responses
-
-**204** 
-
-Successfully updated the App Endpoint metadata.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
-
-**404** 
-
-The requested resource was not found.
-
-**409** 
-
-Returned when there is a conflict with the current state of a resource.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "name": "appEndpoint1",
-* "bucket": "store_locations",
-* "scopes": {
-  * "scope_1": {
-    * "collections": {
-      * "collection_1": {
-        * "accessControlFunction": "function(doc){channel(doc.channels);}",
-        * "importFilter": "function(doc) { if (doc.type != 'mobile') { return false; } return true; }"  
+  ],
+  * "total": {
+    * "startDate": "2025-04-01",
+    * "endDate": "2025-04-30",
+    * "categories": [
+      * {
+        * "category": "operationalComputeAndStorage",
+        * "creditSpend": null,
+        * "currencySpend": 2914.46,
+        * "contributionPercent": 11.15  
             },
-      * "collection_2": {
-        * "accessControlFunction": "function(doc){channel(doc.channels);}",
-        * "importFilter": "function(doc) { if (doc.type != 'mobile') { return false; } return true; }"  
+      * {
+        * "category": "operationalBucketBackup",
+        * "creditSpend": null,
+        * "currencySpend": 1250.25,
+        * "contributionPercent": 4.78  
             }  
-      }  
-  }  
-},
-* "deltaSyncEnabled": true,
-* "userXattrKey": "syncFnXattr",
-* "disablePublicAllDocs": false,
-* "oidc": [
-  * {
-    * "issuer": "<https://foo.com>",
-    * "register": true,
-    * "clientId": "foo_client",
-    * "userPrefix": "fooOIDC",
-    * "discoveryUrl": "<https://foo.com/.well-known/openid-configuration>",
-    * "usernameClaim": "fooAlt",
-    * "scope": [
-      * "openid",
-      * "foo"  
-      ]  
-  }  
-],
-* "cors": {
-  * "origin": [
-    * "<http://example.com>",
-    * "<http://staging.example.com>"  
-  ],
-  * "loginOrigin": [
-    * "<http://example.com>"  
-  ],
-  * "headers": [
-    * "Content-Type"  
-  ],
-  * "maxAge": 600,
-  * "disabled": false  
+      ],
+    * "totalCreditSpend": null,
+    * "totalCurrencySpend": 26120.18  
+  },
+  * "billingCurrency": "USD"  
 }
 }`
 
-### Response samples 
+## [](#tag/Billing/operation/prepaidCreditsBilling)Get Prepaid Credits Billing 
 
-* 400
-* 403
-* 404
-* 409
-* 422
-* 429
-* 500
-* 503
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
-}`
-
-## [](#tag/App-Endpoints/operation/deleteAppEndpoint)Delete App Endpoint 
-
-Deletes an existing App Endpoint given its name.
-
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ----------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
-
-### Responses
-
-**202** 
-
-Successfully deleted the App Endpoint by its App Endpoint name.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}
-
-### Response samples 
-
-* 400
-* 403
-* 404
-* 422
-* 429
-* 500
-* 503
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
-}`
-
-## [](#tag/App-Endpoints/operation/listAppEndpointCollections)List App Endpoint Collections 
-
-Lists all the collections under a specific App Endpoint along with their associated configurations such as Access Control function, Import Filter or user defined xattr key.
+Retrieves prepaid credits information for the organization, including credit details, usage, and remaining amounts.
 
 In order to access this endpoint, the provided API key must have at least one of the following roles:
 
 * Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-* Database Data Reader/Writer
-* Database Data Reader
+* Billing Admin
+* Billing Viewer
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -3481,29 +2461,20 @@ _token_
 
 ##### path Parameters
 
-| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ----------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
 
 ##### query Parameters
 
-| page          | integer Sets the page you would like to view.                                                    |
-| ------------- | ------------------------------------------------------------------------------------------------ |
-| perPage       | integer Sets the number of results you would like to have on each page.                          |
-| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted. |
+| page    | integer Sets the page you would like to view.                           |
+| ------- | ----------------------------------------------------------------------- |
+| perPage | integer Sets the number of results you would like to have on each page. |
 
 ### Responses
 
 **200** 
 
-Successfully listed all the collections under a specific App Endpoint.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
+Successfully retrieved the prepaid credits billing information.
 
 **403** 
 
@@ -3513,10 +2484,6 @@ The client does not have the necessary permissions to access this resource.
 
 The requested resource was not found.
 
-**422** 
-
-Request validation error.
-
 **429** 
 
 Returned when the client exceeds the rate limit for the given APIKey.
@@ -3525,283 +2492,9 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
-**503** 
+get/v4/organizations/{organizationId}/billing/prePaidCredits
 
-The server is currently unable to handle the request
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/collections
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/collections
-
-### Response samples 
-
-* 200
-* 400
-* 403
-* 404
-* 422
-* 429
-* 500
-* 503
-
-Content type
-
-application/json
-
-Example
-
-ListAppEndpointCollectionsDefaultCollListAppEndpointCollectionsNamedCollListAppEndpointCollectionsDefaultNamedCollListAppEndpointCollectionsDefaultColl
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "scopes": {
-  * "_default": {
-    * "collections": {
-      * "_default": {
-        * "accessControlFunction": "function(doc){channel(doc.channels);}",
-        * "importFilter": "function(doc) { if (doc.type != 'mobile') { return false; } return true; }"  
-            }  
-      }  
-  }  
-}
-}`
-
-## [](#tag/App-Endpoints/operation/postAppEndpointActivationStatus)Resume or Bring an App Endpoint online 
-
-Brings an App Endpoint online to close and reopen the connection to the backing Cluster bucket, re-establish access from the Public REST API and accept all incoming Admin API requests.
-
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ----------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
-
-### Responses
-
-**202** 
-
-Accepted request to resume App Endpoint.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
-
-**404** 
-
-The requested resource was not found.
-
-**409** 
-
-Returned when there is a conflict with the current state of a resource.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/activationStatus
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/activationStatus
-
-### Response samples 
-
-* 403
-* 404
-* 409
-* 412
-* 429
-* 500
-* 503
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
-}`
-
-## [](#tag/App-Endpoints/operation/deleteAppEndpointActivationStatus)Pause or Take an App Endpoint offline 
-
-Take the database offline to run resync or to make changes without disrupting current App Endpoint operations. Clients currently connected to the App Endpoint will not be able to sync data with the Cluster while the App Endpoint is paused. This will not take the backing Cluster bucket offline. Pausing an App Endpoint that is in the progress of coming online will pause the App Endpoint after it comes online.
-
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ----------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
-
-### Responses
-
-**202** 
-
-Accepted request to pause App Endpoint.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
-
-**404** 
-
-The requested resource was not found.
-
-**409** 
-
-Returned when there is a conflict with the current state of a resource.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/activationStatus
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/activationStatus
-
-### Response samples 
-
-* 403
-* 404
-* 409
-* 412
-* 429
-* 500
-* 503
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
-}`
-
-## [](#tag/App-Endpoints/operation/getAppEndpointCORS)Get the App Endpoint Cross-Origin Resource Sharing (CORS) Configuration. 
-
-Fetch the App Endpoint Cross-Origin Resource Sharing (CORS) Configuration. CORS is disabled by default. For more information See [Cross-Origin Resource Sharing (CORS) on App Endpoints.](https://docs.couchbase.com/cloud/app-services/deployment/cors-configuration-for-app-services.html)
-
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-* Database Data Reader/Writer
-* Database Data Reader
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ----------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
-
-### Responses
-
-**200** 
-
-Successfully fetched the App Endpoint CORS config.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
-
-**404** 
-
-The requested resource was not found.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-**504** 
-
-The server did not get a response in time from the upstream server in order to complete the request.
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/cors
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/cors
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/billing/prePaidCredits
 
 ### Response samples 
 
@@ -3810,941 +2503,6 @@ https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/
 * 404
 * 429
 * 500
-* 503
-* 504
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "origin": [
-  * "<http://example.com>",
-  * "<http://staging.example.com>"  
-],
-* "loginOrigin": [
-  * "<http://example.com>"  
-],
-* "headers": [
-  * "Content-Type"  
-],
-* "maxAge": 600,
-* "disabled": false
-}`
-
-## [](#tag/App-Endpoints/operation/putAppEndpointCORS)Upsert the App Endpoint Cross-Origin Resource Sharing (CORS) Configuration. 
-
-Upsert the App Endpoint Cross-Origin Resource Sharing (CORS) Configuration. CORS is disabled by default. For more information See [Cross-Origin Resource Sharing (CORS) on App Endpoints.](https://docs.couchbase.com/cloud/app-services/deployment/cors-configuration-for-app-services.html)
-
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-* Database Data Reader/Writer
-* Database Data Reader
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ----------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
-
-##### Request Body schema: application/json
-
-| originrequired | Array of strings List of allowed origins, use \['\*'\] to allow access from everywhere. This is required when CORS is enabled (i.e. disabled is false). |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| loginOrigin    | Array of strings List of allowed login origins                                                                                                          |
-| headers        | Array of strings List of allowed headers                                                                                                                |
-| maxAge         | integer Default: 5 Specifies the duration (in seconds) for which the results of a preflight request can be cached.                                      |
-| disabled       | boolean Disable CORS headers in all App Endpoint responses. When true, no other CORS configuration properties should be provided.                       |
-
-### Responses
-
-**204** 
-
-Succesfully upserted App Endpoint CORS config.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-**504** 
-
-The server did not get a response in time from the upstream server in order to complete the request.
-
-put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/cors
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/cors
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "origin": [
-  * "<http://example.com>",
-  * "<http://staging.example.com>"  
-],
-* "loginOrigin": [
-  * "<http://example.com>"  
-],
-* "headers": [
-  * "Content-Type"  
-],
-* "maxAge": 600,
-* "disabled": false
-}`
-
-### Response samples 
-
-* 400
-* 403
-* 404
-* 422
-* 429
-* 500
-* 503
-* 504
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
-}`
-
-## [](#tag/App-Endpoints/operation/getAccessFunction)Get Access Control and Validation function 
-
-Retrieves the Access Control and Validation function for the given keyspace.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-* Database Data Reader/Writer
-* Database Data Reader
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| projectIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| clusterIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| appServiceIdrequired        | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| appEndpointKeyspacerequired | string Example: endpoint1.scope1.collection1A specific collection denoted by the App Endpoint name, the scope name and collection name separated by a period, for example "endpoint1.scope1.collection1". If only an App Endpoint name is provided this will be interpreted as "endpoint1.\_default.\_default". If only an App Endpoint name and collection name are provided these will interpreted as a named collection within the default scope, for example "endpoint1.collection1" will be interpreted as "endpoint1.\_default.collection1". |
-
-### Responses
-
-**200** 
-
-Successfully retrieved the Access control and validation function.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointKeyspace}/accessControlFunction
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointKeyspace}/accessControlFunction
-
-### Response samples 
-
-* 400
-* 403
-* 404
-* 412
-* 422
-* 429
-* 500
-* 503
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
-}`
-
-## [](#tag/App-Endpoints/operation/putAccessFunction)Upsert custom Access Control and Validation function 
-
-Used to upsert a custom Access Control and Validation function for the given keyspace. This is a Javascript function specified at a keyspace, where a user's read/write access is defined for documents in that particular keyspace. Every document mutation is processed by this function. If an Access Control function is not explicitly defined, a default is applied. [Read more.](https://docs.couchbase.com/cloud/app-services/deployment/access-control-data-validation.html?)
-
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| projectIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| clusterIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| appServiceIdrequired        | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| appEndpointKeyspacerequired | string Example: endpoint1.scope1.collection1A specific collection denoted by the App Endpoint name, the scope name and collection name separated by a period, for example "endpoint1.scope1.collection1". If only an App Endpoint name is provided this will be interpreted as "endpoint1.\_default.\_default". If only an App Endpoint name and collection name are provided these will interpreted as a named collection within the default scope, for example "endpoint1.collection1" will be interpreted as "endpoint1.\_default.collection1". |
-
-##### Request Body schema: application/javascript
-
-string (AccessFunction) 
-
-All mutations in this collection are processed by this Javascript function
-
-### Responses
-
-**204** 
-
-Successfully upserted the Access control and validation function .
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**409** 
-
-Returned when there is a conflict with the current state of a resource.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointKeyspace}/accessControlFunction
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointKeyspace}/accessControlFunction
-
-### Response samples 
-
-* 400
-* 403
-* 404
-* 409
-* 412
-* 422
-* 429
-* 500
-* 503
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
-}`
-
-## [](#tag/App-Endpoints/operation/deleteAccessFunction)Delete Access Control and Validation function 
-
-Deletes the Access Control and Validation function for the given keyspace.
-
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| projectIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| clusterIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| appServiceIdrequired        | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| appEndpointKeyspacerequired | string Example: endpoint1.scope1.collection1A specific collection denoted by the App Endpoint name, the scope name and collection name separated by a period, for example "endpoint1.scope1.collection1". If only an App Endpoint name is provided this will be interpreted as "endpoint1.\_default.\_default". If only an App Endpoint name and collection name are provided these will interpreted as a named collection within the default scope, for example "endpoint1.collection1" will be interpreted as "endpoint1.\_default.collection1". |
-
-### Responses
-
-**202** 
-
-Successfully deleted the Access control and validation function.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**409** 
-
-Returned when there is a conflict with the current state of a resource.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointKeyspace}/accessControlFunction
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointKeyspace}/accessControlFunction
-
-### Response samples 
-
-* 400
-* 403
-* 404
-* 409
-* 412
-* 422
-* 429
-* 500
-* 503
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
-}`
-
-## [](#tag/App-Endpoints/operation/getImportFilter)Get Import Filter 
-
-Retrieves the Import Filter for the given keyspace.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-* Database Data Reader/Writer
-* Database Data Reader
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| projectIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| clusterIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| appServiceIdrequired        | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| appEndpointKeyspacerequired | string Example: endpoint1.scope1.collection1A specific collection denoted by the App Endpoint name, the scope name and collection name separated by a period, for example "endpoint1.scope1.collection1". If only an App Endpoint name is provided this will be interpreted as "endpoint1.\_default.\_default". If only an App Endpoint name and collection name are provided these will interpreted as a named collection within the default scope, for example "endpoint1.collection1" will be interpreted as "endpoint1.\_default.collection1". |
-
-### Responses
-
-**200** 
-
-Successfully retrieved the Import Filter.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointKeyspace}/importFilter
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointKeyspace}/importFilter
-
-### Response samples 
-
-* 403
-* 404
-* 412
-* 422
-* 429
-* 500
-* 503
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
-}`
-
-## [](#tag/App-Endpoints/operation/putImportFilter)Upsert Import Filter 
-
-Upserts the Import Filter for the given keyspace. By default, there is no import filter and all documents are imported. Import Filters identify the subset of documents eligible to be replicated by App services based on user-defined requirements. This subset is applied to all future mutations. Once the document has been imported and processed by the App Endpoint, changing the Import Filter will not remove it, even if the updated import filters would prevent newer mutations or iterations of the document from getting imported. [Read more.](https://docs.couchbase.com/cloud/app-services/deployment/import-filters.html)
-
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| projectIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| clusterIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| appServiceIdrequired        | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| appEndpointKeyspacerequired | string Example: endpoint1.scope1.collection1A specific collection denoted by the App Endpoint name, the scope name and collection name separated by a period, for example "endpoint1.scope1.collection1". If only an App Endpoint name is provided this will be interpreted as "endpoint1.\_default.\_default". If only an App Endpoint name and collection name are provided these will interpreted as a named collection within the default scope, for example "endpoint1.collection1" will be interpreted as "endpoint1.\_default.collection1". |
-
-##### Request Body schema: application/javascript
-
-string (ImportFilter) 
-
-The Javascript function used to specify the documents in this collection that are to be imported by the App Endpoint. By default, all documents in corresponding collection are imported.
-
-### Responses
-
-**204** 
-
-Successfully upserted the Import Filter .
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**409** 
-
-Returned when there is a conflict with the current state of a resource.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointKeyspace}/importFilter
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointKeyspace}/importFilter
-
-### Response samples 
-
-* 400
-* 403
-* 404
-* 409
-* 412
-* 422
-* 429
-* 500
-* 503
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
-}`
-
-## [](#tag/App-Endpoints/operation/deleteImportFilter)Delete Import Filter 
-
-Deletes the Import Filter for the given keyspace.
-
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| projectIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| clusterIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| appServiceIdrequired        | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| appEndpointKeyspacerequired | string Example: endpoint1.scope1.collection1A specific collection denoted by the App Endpoint name, the scope name and collection name separated by a period, for example "endpoint1.scope1.collection1". If only an App Endpoint name is provided this will be interpreted as "endpoint1.\_default.\_default". If only an App Endpoint name and collection name are provided these will interpreted as a named collection within the default scope, for example "endpoint1.collection1" will be interpreted as "endpoint1.\_default.collection1". |
-
-### Responses
-
-**202** 
-
-Successfully deleted the Import Filter.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**409** 
-
-Returned when there is a conflict with the current state of a resource.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointKeyspace}/importFilter
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointKeyspace}/importFilter
-
-### Response samples 
-
-* 403
-* 404
-* 409
-* 412
-* 422
-* 429
-* 500
-* 503
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
-}`
-
-## [](#tag/App-Endpoints/operation/createAppEndpointOIDCProvider)Create App Endpoint OpenID Connect (OIDC) Provider 
-
-Creates an OIDC provider for the specified App Endpoint. The first OIDC provider will automatically be set as the default OIDC provider. All client requests will use the default OIDC provider, unless the OIDC provider for the request is explicitly specified on authentication. See more [here](https://docs.couchbase.com/cloud/app-services/user-management/set-up-authentication-provider.html#oidc-authorization-step-by-step).
-
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ----------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
-
-##### Request Body schema: application/json
-
-| issuerrequired   | string The URL for the OpenID Connect issuer.                                                                                                                                                                                                           |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| register         | boolean Indicates whether to register a new App Service user account when a user logs in using OpenID Connect.                                                                                                                                          |
-| clientIdrequired | string The OpenID Connect provider client ID.                                                                                                                                                                                                           |
-| userPrefix       | string Username prefix for all users created for this provider                                                                                                                                                                                          |
-| discoveryUrl     | string The URL for the non-standard discovery endpoint.                                                                                                                                                                                                 |
-| usernameClaim    | string Allows a different OpenID Connect field to be specified instead of the Subject (sub).                                                                                                                                                            |
-| rolesClaim       | string If set, the value(s) of the given OpenID Connect authentication token claim will be added to the user's roles. The value of this claim in the OIDC token must be either a string or an array of strings, any other type will result in an error. |
-| scope            | Array of strings Default: \["openid","email"\] The scope sent for the OpenID Connect request.                                                                                                                                                           |
-
-### Responses
-
-**201** 
-
-Successfully created OIDC Provider.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
-
-**404** 
-
-The requested resource was not found.
-
-**409** 
-
-Returned when there is a conflict with the current state of a resource.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-**504** 
-
-The server did not get a response in time from the upstream server in order to complete the request.
-
-post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/oidcProviders
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/oidcProviders
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "issuer": "<https://foo.com>",
-* "register": true,
-* "clientId": "foo_client",
-* "userPrefix": "fooOIDC",
-* "discoveryUrl": "<https://foo.com/.well-known/openid-configuration>",
-* "usernameClaim": "fooAlt"
-}`
-
-### Response samples 
-
-* 201
-* 400
-* 403
-* 404
-* 409
-* 422
-* 429
-* 500
-* 503
-* 504
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "providerId": "ffffffff-aaaa-1414-eeee-000000000000"
-}`
-
-## [](#tag/App-Endpoints/operation/listAppEndpointOIDCProviders)List App Endpoint OpenID Connect (OIDC) Providers 
-
-List OpenID Connect (OIDC) Providers configured on an App Endpoint.
-
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ----------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
-
-##### query Parameters
-
-| page          | integer Sets the page you would like to view.                                                    |
-| ------------- | ------------------------------------------------------------------------------------------------ |
-| perPage       | integer Sets the number of results you would like to have on each page.                          |
-| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted. |
-
-### Responses
-
-**200** 
-
-Successfully fetched OIDC Providers.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-**504** 
-
-The server did not get a response in time from the upstream server in order to complete the request.
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/oidcProviders
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/oidcProviders
-
-### Response samples 
-
-* 200
-* 403
-* 404
-* 422
-* 429
-* 500
-* 503
-* 504
 
 Content type
 
@@ -4757,41 +2515,44 @@ Copy
 `{
 * "data": [
   * {
-    * "issuer": "<https://example.auth.com>",
-    * "register": true,
-    * "clientId": "foo_client",
-    * "userPrefix": "fooOIDC",
-    * "discoveryUrl": "<https://foo.com/.well-known/openid-configuration>",
-    * "usernameClaim": "fooAlt",
-    * "rolesClaim": "roles",
-    * "providerId": "ffffffff-aaaa-1414-eeee-000000000000",
-    * "isDefault": true  
-  },
-  * {
-    * "issuer": "<https://example.auth.com>",
-    * "register": true,
-    * "clientId": "bar_client",
-    * "userPrefix": "barOIDC",
-    * "discoveryUrl": "<https://bar.com/.well-known/openid-configuration>",
-    * "usernameClaim": "barAlt",
-    * "providerId": "ffffffff-aaaa-1414-eeee-000000000000",
-    * "isDefault": false  
+    * "id": "sfdc-credit-id-12345",
+    * "creditName": "CN-12345",
+    * "supportPlan": "Plan: Developer Pro",
+    * "startDate": "2024-01-01T00:00:00Z",
+    * "expirationDate": "2024-12-31T23:59:59Z",
+    * "total": 1000,
+    * "used": 350.5,
+    * "remaining": 649.5,
+    * "remainingPercent": 64.95  
   }  
-]
+],
+* "cursor": {
+  * "pages": {
+    * "page": 2,
+    * "next": 3,
+    * "previous": 1,
+    * "last": 10,
+    * "perPage": 10,
+    * "totalItems": 10  
+  },
+  * "hrefs": {
+    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
+  }  
+}
 }`
 
-## [](#tag/App-Endpoints/operation/getAppEndpointOIDCProvider)Get App Endpoint OpenID Connect (OIDC) Provider 
+## [](#tag/Billing/operation/payAsYouGoBilling)Get Pay As You Go Billing 
 
-Fetches an OIDC provider by ID for the specified App Endpoint.
+Retrieves pay-as-you-go billing information for the organization within the specified date range, broken down by support plan type.
 
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+In order to access this endpoint, the provided API key must have at least one of the following roles:
 
 * Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-* Database Data Reader/Writer
-* Database Data Reader
+* Billing Admin
+* Billing Viewer
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -4801,27 +2562,36 @@ _token_
 
 ##### path Parameters
 
-| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.            |
-| ----------------------- | -------------------------------------------------------------------------------------------------------- |
-| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                 |
-| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                 |
-| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.              |
-| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                                   |
-| OIDCProviderIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the OpenID Connect Provider. |
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+
+##### query Parameters
+
+| startDate | string <date\> Example: startDate=2025-04-01The start date of the billing period in YYYY-MM-DD format. |
+| --------- | ------------------------------------------------------------------------------------------------------ |
+| endDate   | string <date\> Example: endDate=2025-05-31The end date of the billing period in YYYY-MM-DD format.     |
 
 ### Responses
 
 **200** 
 
-Successfully fetched the OIDC Provider.
+Successfully retrieved the pay-as-you-go billing information.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
 
 **403** 
 
-The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+The client does not have the necessary permissions to access this resource.
 
 **404** 
 
 The requested resource was not found.
+
+**422** 
+
+Request validation error.
 
 **429** 
 
@@ -4831,460 +2601,19 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
-**503** 
+get/v4/organizations/{organizationId}/billing/payAsYouGo
 
-The server is currently unable to handle the request
-
-**504** 
-
-The server did not get a response in time from the upstream server in order to complete the request.
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/oidcProviders/{OIDCProviderId}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/oidcProviders/{OIDCProviderId}
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/billing/payAsYouGo
 
 ### Response samples 
 
 * 200
-* 403
-* 404
-* 429
-* 500
-* 503
-* 504
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "issuer": "foo",
-* "register": true,
-* "clientId": "foo_client",
-* "userPrefix": "fooOIDC",
-* "discoveryUrl": "<https://foo.com/.well-known/openid-configuration>",
-* "usernameClaim": "fooAlt",
-* "isDefault": true
-}`
-
-## [](#tag/App-Endpoints/operation/updateAppEndpointOIDCProvider)Update App Endpoint OpenID Connect (OIDC) Provider 
-
-Updates an OIDC provider for the specified App Endpoint.
-
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.            |
-| ----------------------- | -------------------------------------------------------------------------------------------------------- |
-| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                 |
-| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                 |
-| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.              |
-| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                                   |
-| OIDCProviderIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the OpenID Connect Provider. |
-
-##### Request Body schema: application/json
-
-| issuerrequired   | string The URL for the OpenID Connect issuer.                                                                                                                                                                                                           |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| register         | boolean Indicates whether to register a new App Service user account when a user logs in using OpenID Connect.                                                                                                                                          |
-| clientIdrequired | string The OpenID Connect provider client ID.                                                                                                                                                                                                           |
-| userPrefix       | string Username prefix for all users created for this provider                                                                                                                                                                                          |
-| discoveryUrl     | string The URL for the non-standard discovery endpoint.                                                                                                                                                                                                 |
-| usernameClaim    | string Allows a different OpenID Connect field to be specified instead of the Subject (sub).                                                                                                                                                            |
-| rolesClaim       | string If set, the value(s) of the given OpenID Connect authentication token claim will be added to the user's roles. The value of this claim in the OIDC token must be either a string or an array of strings, any other type will result in an error. |
-| scope            | Array of strings Default: \["openid","email"\] The scope sent for the OpenID Connect request.                                                                                                                                                           |
-
-### Responses
-
-**204** 
-
-Successfully updated the App Endpoint OIDC provider based on the OIDCProviderId.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
-
-**404** 
-
-The requested resource was not found.
-
-**409** 
-
-Returned when there is a conflict with the current state of a resource.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-**504** 
-
-The server did not get a response in time from the upstream server in order to complete the request.
-
-put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/oidcProviders/{OIDCProviderId}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/oidcProviders/{OIDCProviderId}
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "issuer": "<https://foo.com>",
-* "register": true,
-* "clientId": "foo_client",
-* "userPrefix": "fooOIDC",
-* "discoveryUrl": "<https://foo.com/.well-known/openid-configuration>",
-* "usernameClaim": "fooAlt"
-}`
-
-### Response samples 
-
 * 400
 * 403
 * 404
-* 409
 * 422
 * 429
 * 500
-* 503
-* 504
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
-}`
-
-## [](#tag/App-Endpoints/operation/deleteAppEndpointOIDCProvider)Delete App Endpoint OpenID Connect (OIDC) Provider 
-
-Deletes an OIDC provider for the specified App Endpoint. Deleting the default provider will error unless it is the only provider. Before deleting the default provider, you must set a new provider as default or have no other providers.
-
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.            |
-| ----------------------- | -------------------------------------------------------------------------------------------------------- |
-| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                 |
-| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                 |
-| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.              |
-| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                                   |
-| OIDCProviderIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the OpenID Connect Provider. |
-
-### Responses
-
-**202** 
-
-Successfully deleted the OIDC Provider.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
-
-**404** 
-
-The requested resource was not found.
-
-**409** 
-
-Returned when there is a conflict with the current state of a resource.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-**504** 
-
-The server did not get a response in time from the upstream server in order to complete the request.
-
-delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/oidcProviders/{OIDCProviderId}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/oidcProviders/{OIDCProviderId}
-
-### Response samples 
-
-* 400
-* 403
-* 404
-* 409
-* 429
-* 500
-* 503
-* 504
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
-}`
-
-## [](#tag/App-Endpoints/operation/updateAppEndpointOIDCDefaultProvider)Update App Endpoint Default OIDC Provider 
-
-Updates the default OIDC provider for the specified App Endpoint. All client requests will use the default OIDC provider, unless the OIDC provider for the request is explicitly specified. See more [here](https://docs.couchbase.com/cloud/app-services/user-management/set-up-authentication-provider.html#oidc-authorization-step-by-step).
-
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ----------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
-
-##### Request Body schema: application/json
-
-| providerIdrequired | string |
-| ------------------ | ------ |
-
-### Responses
-
-**204** 
-
-Successfully updated the default OIDC provider.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
-
-**404** 
-
-The requested resource was not found.
-
-**409** 
-
-Returned when there is a conflict with the current state of a resource.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-**504** 
-
-The server did not get a response in time from the upstream server in order to complete the request.
-
-put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/oidcProviders/defaultProvider
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/oidcProviders/defaultProvider
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "providerId": "ffffffff-aaaa-1414-eeee-000000000000"
-}`
-
-### Response samples 
-
-* 400
-* 403
-* 404
-* 409
-* 422
-* 429
-* 500
-* 503
-* 504
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
-}`
-
-## [](#tag/App-Endpoints/operation/getAppEndpointResync)Get Resync Status 
-
-Fetches the Resync status of the given App Endpoint. If no resync operation was triggered, the response will say the status is completed with 0 values for other properties.
-
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-* Database Data Reader/Writer
-* Database Data Reader
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ----------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
-
-### Responses
-
-**200** 
-
-Successfully fetched the App Endpoint Resync status based on the App Endpoint name.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
-
-**404** 
-
-The requested resource was not found.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-**504** 
-
-The server did not get a response in time from the upstream server in order to complete the request.
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/resync
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/resync
-
-### Response samples 
-
-* 200
-* 403
-* 404
-* 412
-* 422
-* 429
-* 500
-* 503
-* 504
 
 Content type
 
@@ -5295,35 +2624,62 @@ Copy
  Expand all  Collapse all 
 
 `{
-* "state": "running",
-* "startTime": "2023-10-12T07:20:50.52Z",
-* "lastError": "string",
-* "docsChanged": 100,
-* "docsProcessed": 500,
-* "docsTargeted": 1000,
-* "docsErrored": 10,
-* "collections_processing": {
-  * "scope1": [
-    * "collection_1",
-    * "collection_2"  
-  ]  
+* "data": {
+  * "periods": [
+    * {
+      * "startDate": "2025-04-01",
+      * "endDate": "2025-04-30",
+      * "cost": {
+        * "basic": 0,
+        * "devPro": 316.62,
+        * "enterprise": 150  
+            },
+      * "total": 466.62  
+      },
+    * {
+      * "startDate": "2025-05-01",
+      * "endDate": "2025-05-31",
+      * "cost": {
+        * "basic": 100,
+        * "devPro": 450.25,
+        * "enterprise": 200  
+            },
+      * "total": 750.25  
+      }  
+  ],
+  * "total": {
+    * "startDate": "2025-04-01",
+    * "endDate": "2025-05-31",
+    * "cost": {
+      * "basic": 100,
+      * "devPro": 766.87,
+      * "enterprise": 350  
+      },
+    * "total": 1216.87  
+  },
+  * "billingCurrency": "USD"  
 }
 }`
 
-## [](#tag/App-Endpoints/operation/postAppEndpointResync)Start Resync 
+## [](#tag/Billing/operation/downloadCategorizedBilling)Download Categorized Billing 
 
-Initialises the Resync operation for the given collections. By default, all collections that require resync will be resynced unless they are specified in the scopes property, in which case only the specified collections that require resync will be resynced.
+Downloads a csv file with categorized billing information for the organization within the specified date range and filters. Downloaded CSV file named `capella-categorized-billing-{organizationId}-{startDate}_to_{endDate}.csv` with the following columns:
 
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+* `startDate` : The start date
+* `endDate` : The end date
+* `category`: The category name
+* `creditSpend`: Usage in Capella credits for this category
+* `currencySpend`: Usage in dollar or any billingCurrency amount for this category
+* `contributionPercent`: contributionPercent of total consumption
+* `billingCurrency`: currency
+
+`Total` \- The final row of the CSV will contain totals across all categories over the full time period
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
 
 * Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-* Database Data Reader/Writer
-* Database Data Reader
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+* Billing Admin
+* Billing Viewer To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
 ##### Authorizations:
 
@@ -5331,23 +2687,21 @@ _token_
 
 ##### path Parameters
 
-| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ----------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
 
 ##### Request Body schema: application/json
 
-| scopes | object |
-| ------ | ------ |
+| startDaterequired | string <date\> The start date of the billing period in YYYY-MM-DD format. |
+| ----------------- | ------------------------------------------------------------------------- |
+| endDaterequired   | string <date\> The end date of the billing period in YYYY-MM-DD format.   |
+| filters           | object (BillingFilters) Filters to narrow down the billing information.   |
 
 ### Responses
 
-**202** 
+**200** 
 
-The request to start the resync operation has been accepted.
+Successfully downloaded the categorized billing information as a CSV file.
 
 **400** 
 
@@ -5355,15 +2709,11 @@ Returned when we are unable to decode the recevied payload.
 
 **403** 
 
-The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+The client does not have the necessary permissions to access this resource.
 
 **404** 
 
 The requested resource was not found.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
 
 **422** 
 
@@ -5377,17 +2727,9 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
-**503** 
+post/v4/organizations/{organizationId}/billing/download
 
-The server is currently unable to handle the request
-
-**504** 
-
-The server did not get a response in time from the upstream server in order to complete the request.
-
-post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/resync
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/resync
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/billing/download
 
 ### Request samples 
 
@@ -5402,10 +2744,20 @@ Copy
  Expand all  Collapse all 
 
 `{
-* "scopes": {
-  * "scope1": [
-    * "collection1",
-    * "collection2"  
+* "startDate": "2025-04-01",
+* "endDate": "2025-04-30",
+* "filters": {
+  * "categories": [
+    * "analyticsCompute",
+    * "analyticsStorage"  
+  ],
+  * "projectIds": [
+    * "ffffffff-aaaa-1414-eeee-000000000000",
+    * "ffffffff-aaaa-1414-eeee-000000000001"  
+  ],
+  * "instanceIds": [
+    * "ffffffff-aaaa-1414-eeee-000000000000",
+    * "ffffffff-aaaa-1414-eeee-000000000001"  
   ]  
 }
 }`
@@ -5415,12 +2767,9 @@ Copy
 * 400
 * 403
 * 404
-* 412
 * 422
 * 429
 * 500
-* 503
-* 504
 
 Content type
 
@@ -5435,118 +2784,29 @@ Copy
 * "hint": "The request was malformed or invalid."
 }`
 
-## [](#tag/App-Endpoints/operation/deleteAppEndpointResync)Stop Resync 
+## [](#tag/Billing/operation/downloadItemizedBilling)Download Itemized Billing 
 
-Stops the Resync operation. When stopping resync, it will be stopped for all collections being processed. In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+Downloads a CSV file with itemized billing information for a specific cluster within the specified date range and filters. Note: This endpoint supports operational clusters only. Downloaded CSV file named `capella-itemized-billing-{clusterId}-{startDate}_to_{endDate}.csv` with the following columns:
 
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-* Database Data Reader/Writer
-* Database Data Reader
+* `startDate` : The start date
+* `endDate` : The end date
+* `category`: The category name
+* `projectId`: The UUID of the project containing the cluster
+* `clusterId`: The UUID of the cluster
+* `clusterName`: The name of the cluster
+* `supportPlan`: The support plan of the cluster (e.g., DeveloperPro, Enterprise).
+* `creditSpend`: Usage in Capella credits for this category
+* `currencySpend`: Usage in dollar or any billingCurrency amount for this category
+* `contributionPercent`: contributionPercent of total consumption
+* `billingCurrency`: currency
 
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+`Total` \- The final row of the CSV will contain totals across all categories over the full time period
 
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ----------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
-
-### Responses
-
-**202** 
-
-The request to stop the resync operation has been accepted.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
-
-**404** 
-
-The requested resource was not found.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-**504** 
-
-The server did not get a response in time from the upstream server in order to complete the request.
-
-delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/resync
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/resync
-
-### Response samples 
-
-* 400
-* 403
-* 404
-* 412
-* 422
-* 429
-* 500
-* 503
-* 504
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
-}`
-
-## [](#tag/App-Services)App Services
-
-App Services is a fully managed application backend designed to provide data synchronization between mobile or IoT applications running Couchbase Lite and your Couchbase Capella database.
-
-## [](#tag/App-Services/operation/postAppService)Create App Service 
-
-Creates a new App Service.
-
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+In order to access this endpoint, the provided API key must have at least one of the following roles:
 
 * Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+* Billing Admin
+* Billing Viewer To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
 ##### Authorizations:
 
@@ -5561,19 +2821,216 @@ _token_
 
 ##### Request Body schema: application/json
 
-| namerequired     | string <= 256 characters Name of the cluster (up to 256 characters).                                                                                                                                                                                                  |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| description      | string A short description of the App Service.                                                                                                                                                                                                                        |
-| nodes            | integer Number of nodes configured for the App Service. Number of nodes configured for the App Service. The number of nodes can range from 2 to 12.                                                                                                                   |
-| compute          | object (AppServiceCompute) The CPU and RAM configuration of the App Service. The supported combinations are: CPU (cores) RAM (GB) 2 4 4 8 8 16 16 32 36 72                                                                                                            |
-| version          | string The version of the App Service server. If left empty, it will be defaulted to the latest available version.                                                                                                                                                    |
-| loadBalancerCidr | string^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\/\\d{1,2}$... Optional. Pins the CIDR block used for the App Service load balancer subnet. Supported for Azure App Services only and rejected for other providers. When omitted, the CIDR is allocated dynamically. |
+| startDaterequired | string <date\> The start date of the billing period in YYYY-MM-DD format.                |
+| ----------------- | ---------------------------------------------------------------------------------------- |
+| endDaterequired   | string <date\> The end date of the billing period in YYYY-MM-DD format.                  |
+| filters           | object (ItemizedBillingFilters) Filters to narrow down the itemized billing information. |
 
 ### Responses
 
-**201** 
+**200** 
 
-Successfully created an App Service.
+Successfully downloaded the itemized billing information as a CSV file.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/billing/download
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/billing/download
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "startDate": "2025-04-01",
+* "endDate": "2025-04-30",
+* "filters": {
+  * "categories": [
+    * "operationalComputeAndStorage",
+    * "operationalBucketBackup"  
+  ]  
+}
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/Organizations)Organizations
+
+Couchbase Capella uses an ordered hierarchy to help you keep all of your data organized and securely accessible. The entity at the top of the hierarchy is called an organization. Everything you do in Capella, whether it's creating a cluster or managing billing, happens within the scope of an organization.
+
+## [](#tag/Organizations/operation/getOrganizationByID)Get Organization 
+
+Fetches the details of an organization by ID.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Creator
+* Organization Member
+
+To learn more, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+
+### Responses
+
+**200** 
+
+Successfully returned the organization details.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "id": "ffffffff-aaaa-1414-eeee-000000000000",
+* "name": "My-Organization",
+* "subdomain": "abc",
+* "description": "The description of the organization.",
+* "preferences": {
+  * "sessionDuration": 3600  
+},
+* "audit": {
+  * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "createdAt": "2021-09-01T12:34:56Z",
+  * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "modifiedAt": "2021-09-01T12:34:56Z",
+  * "version": 1  
+}
+}`
+
+## [](#tag/Organizations/operation/putOrganizationConfiguration)Update Organization Configuration 
+
+Updates an existing organization configuration. Use this endpoint to add, update, and delete network subdomains.
+
+Subdomains are not automatically available. You must contact Couchbase support to enable this feature. To open a Support ticket, see [Create a Support Ticket](https://docs.couchbase.com/cloud/support/manage-support.html#create-support-ticket).
+
+Subdomains:
+
+* Can have a maximum of 30 alphanumeric characters.
+* Must be a unique string and not already in use in another tenant or organization. Empty strings are allowed.
+* Only affect new clusters. You cannot update existing clusters to include a new subdomain.
+
+In order to access this endpoint, the provided API key must have the following role:
+
+* Organization Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+
+##### header Parameters
+
+| If-Match | string Example: 12A precondition header that specifies the entity tag of a resource. |
+| -------- | ------------------------------------------------------------------------------------ |
+
+##### Request Body schema: application/json
+
+| subdomainrequired | string <= 30 characters The new name of the subdomain for the organization. |
+| ----------------- | --------------------------------------------------------------------------- |
+
+### Responses
+
+**204** 
+
+Successfully updated the organization configuration.
 
 **403** 
 
@@ -5599,9 +3056,9 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
-post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices
+put/v4/organizations/{organizationId}/configuration
 
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/configuration
 
 ### Request samples 
 
@@ -5611,25 +3068,18 @@ Content type
 
 application/json
 
+Example
+
+UpdateSubdomainDeleteSubdomainUpdateSubdomain
+
 Copy
 
- Expand all  Collapse all 
-
 `{
-* "name": "MyAppSyncService",
-* "description": "My app sync service.",
-* "nodes": 2,
-* "compute": {
-  * "cpu": 2,
-  * "ram": 4  
-},
-* "version": "3.0",
-* "loadBalancerCidr": "10.1.0.0/24"
+* "subdomain": "abc"
 }`
 
 ### Response samples 
 
-* 201
 * 403
 * 404
 * 412
@@ -5644,47 +3094,33 @@ application/json
 Copy
 
 `{
-* "id": "ffffffff-aaaa-1414-eeee-000000000000"
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
 }`
 
-## [](#tag/App-Services/operation/listAppServices)List AppServices 
+## [](#tag/Organizations/operation/listOrganizations)List Organizations 
 
-Lists all the clusters under the organization.
+Returns a list of all organizations the user has access to.
 
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+In order to access this endpoint, the provided API key must have at least one of the following roles:
 
 * Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-* Database Data Reader/Writer
-* Database Data Reader
+* Project Creator
+* Organization Member
 
-Returned set of clusters is reduced to what the caller has access to view. To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+To learn more, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html).
 
 ##### Authorizations:
 
 _token_
 
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-
-##### query Parameters
-
-| page          | integer Sets the page you would like to view.                                                                                                                                                                   |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                         |
-| sortBy        | Array of strings Example: sortBy=name Sets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **name**, **id**, **description**. |
-| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                                |
-| projectId     | string <uuid\> Example: projectId=ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                                                                              |
-
 ### Responses
 
 **200** 
 
-Successfully listed appservices matching query.
+Successfully listed all the organizations.
 
 **403** 
 
@@ -5702,9 +3138,9 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
-get/v4/organizations/{organizationId}/appservices
+get/v4/organizations
 
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/appservices
+https://cloudapi.cloud.couchbase.com/v4/organizations
 
 ### Response samples 
 
@@ -5726,26 +3162,209 @@ Copy
 * "data": [
   * {
     * "id": "ffffffff-aaaa-1414-eeee-000000000000",
-    * "name": "My App Service",
-    * "description": "Description of the App Service.",
-    * "cloudProvider": "aws",
-    * "nodes": 2,
-    * "compute": {
-      * "cpu": 2,
-      * "ram": 4  
+    * "name": "My-Organization",
+    * "subdomain": "abc",
+    * "description": "The description of the organization.",
+    * "preferences": {
+      * "sessionDuration": 3600  
       },
-    * "clusterId": "ffffffff-aaaa-1414-eeee-000000000000",
-    * "currentState": "deploying",
-    * "version": "3.141.5",
-    * "plan": "basic",
     * "audit": {
       * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
       * "createdAt": "2021-09-01T12:34:56Z",
       * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
       * "modifiedAt": "2021-09-01T12:34:56Z",
       * "version": 1  
-      },
-    * "loadBalancerCidr": "10.1.0.0/24"  
+      }  
+  }  
+]
+}`
+
+## [](#tag/Projects)Projects
+
+Projects contain and allow access to Couchbase databases. Projects are used to organize and manage groups of Couchbase databases within organizations. An organization can contain any number of projects, and a project can contain any number of databases.
+
+## [](#tag/Projects/operation/postProject)Create Project 
+
+Creates a new project under the organization.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Creator
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+
+##### Request Body schema: application/json
+
+| namerequired | string <= 128 characters The name of the project (up to 128 characters).            |
+| ------------ | ----------------------------------------------------------------------------------- |
+| description  | string <= 256 characters A short description of the project (up to 256 characters). |
+
+### Responses
+
+**201** 
+
+Successfully created a project under the organization.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "name": "My Project",
+* "description": "My awesome project"
+}`
+
+### Response samples 
+
+* 201
+* 400
+* 403
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "id": "ffffffff-aaaa-1414-eeee-000000000000"
+}`
+
+## [](#tag/Projects/operation/listProjects)List Project 
+
+Lists all the projects under the organization.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+
+##### query Parameters
+
+| page          | integer Sets the page you would like to view.                                                                                                                                                 |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                       |
+| sortBy        | Array of strings Example: sortBy=nameSets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **id**, **name**. |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                              |
+
+### Responses
+
+**200** 
+
+Successfully listed all the projects under the organization.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "description": "The description of my awesome project",
+    * "name": "My-Awesome-Project",
+    * "audit": {
+      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "createdAt": "2021-09-01T12:34:56Z",
+      * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "modifiedAt": "2021-09-01T12:34:56Z",
+      * "version": 1  
+      }  
   }  
 ],
 * "cursor": {
@@ -5766,11 +3385,11 @@ Copy
 }
 }`
 
-## [](#tag/App-Services/operation/getAppService)Get App Service 
+## [](#tag/Projects/operation/getProjectByID)Get Project 
 
-Fetches the details of the given App Service.
+Fetches the details of the given project.
 
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+In order to access this endpoint, the provided API key must have at least one of the following roles:
 
 * Organization Owner
 * Project Owner
@@ -5790,14 +3409,12 @@ _token_
 | organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
 | ---------------------- | --------------------------------------------------------------------------------------------- |
 | projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
 
 ### Responses
 
 **200** 
 
-Successfully fetched the App Service based on the appServiceId.
+Successfully fetched the project based on the projectId.
 
 **403** 
 
@@ -5807,6 +3424,10 @@ The client does not have the necessary permissions to access this resource.
 
 The requested resource was not found.
 
+**422** 
+
+Request validation error.
+
 **429** 
 
 Returned when the client exceeds the rate limit for the given APIKey.
@@ -5815,15 +3436,16 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}
+get/v4/organizations/{organizationId}/projects/{projectId}
 
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}
 
 ### Response samples 
 
 * 200
 * 403
 * 404
+* 422
 * 429
 * 500
 
@@ -5837,37 +3459,25 @@ Copy
 
 `{
 * "id": "ffffffff-aaaa-1414-eeee-000000000000",
-* "name": "My App Service",
-* "description": "Description of the App Service.",
-* "cloudProvider": "aws",
-* "nodes": 2,
-* "compute": {
-  * "cpu": 2,
-  * "ram": 4  
-},
-* "clusterId": "ffffffff-aaaa-1414-eeee-000000000000",
-* "currentState": "deploying",
-* "version": "3.141.5",
-* "plan": "basic",
+* "description": "The description of my awesome project",
+* "name": "My-Awesome-Project",
 * "audit": {
   * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
   * "createdAt": "2021-09-01T12:34:56Z",
   * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
   * "modifiedAt": "2021-09-01T12:34:56Z",
   * "version": 1  
-},
-* "loadBalancerCidr": "10.1.0.0/24"
+}
 }`
 
-## [](#tag/App-Services/operation/putAppService)Update App Service 
+## [](#tag/Projects/operation/putProject)Update Project 
 
-Updates an existing App Service.
+Update project name and or project description.
 
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+In order to access this endpoint, the provided API key must have at least one of the following roles:
 
 * Organization Owner
 * Project Owner
-* Project Manager
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -5880,8 +3490,6 @@ _token_
 | organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
 | ---------------------- | --------------------------------------------------------------------------------------------- |
 | projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
 
 ##### header Parameters
 
@@ -5890,16 +3498,19 @@ _token_
 
 ##### Request Body schema: application/json
 
-| nodesrequired    | integer Number of nodes configured for the App Service. The number of nodes can range from 2 to 12.                                                                                                                                                                                |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| computerequired  | object (AppServiceCompute) The CPU and RAM configuration of the App Service. The supported combinations are: CPU (cores) RAM (GB) 2 4 4 8 8 16 16 32 36 72                                                                                                                         |
-| loadBalancerCidr | string^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\/\\d{1,2}$... Optional and immutable. The CIDR block pinned for the App Service load balancer subnet at creation time (Azure only). It cannot be changed after creation; supplying a different value returns a validation error. |
+| namerequired | string <= 128 characters The new project name (up to 128 characters).        |
+| ------------ | ---------------------------------------------------------------------------- |
+| description  | string <= 256 characters The new project description (up to 256 characters). |
 
 ### Responses
 
 **204** 
 
-Successfully updated the App Service metadata.
+Successfully updated the project metadata.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
 
 **403** 
 
@@ -5913,10 +3524,6 @@ The requested resource was not found.
 
 Returned when there is a mismatch with the Etag version.
 
-**422** 
-
-Request validation error.
-
 **429** 
 
 Returned when the client exceeds the rate limit for the given APIKey.
@@ -5925,9 +3532,9 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
-put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}
+put/v4/organizations/{organizationId}/projects/{projectId}
 
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}
 
 ### Request samples 
 
@@ -5939,95 +3546,14 @@ application/json
 
 Copy
 
- Expand all  Collapse all 
-
 `{
-* "nodes": 2,
-* "compute": {
-  * "cpu": 2,
-  * "ram": 4  
-},
-* "loadBalancerCidr": "10.1.0.0/24"
+* "name": "My-New-Project",
+* "description": "The extended description of my awesome project."
 }`
 
 ### Response samples 
 
-* 403
-* 404
-* 412
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
-}`
-
-## [](#tag/App-Services/operation/deleteAppService)Delete App Service 
-
-Deletes an existing App Service.
-
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-
-### Responses
-
-**202** 
-
-Successfully deleted the App Service by its appServiceId.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}
-
-### Response samples 
-
+* 400
 * 403
 * 404
 * 412
@@ -6041,189 +3567,20 @@ application/json
 Copy
 
 `{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
 }`
 
-## [](#tag/App-Services/operation/appServiceOn)Turn On App Service 
+## [](#tag/Projects/operation/deleteProjectByID)Delete Project 
 
-Turn App Service on. App Services can only be turned on when the linked cluster is turned on and healthy.
-
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-
-### Responses
-
-**202** 
-
-Successfully switched the App Service to on state.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**409** 
-
-Returned when there is a conflict with the current state of a resource.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/activationState
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/activationState
-
-### Response samples 
-
-* 403
-* 404
-* 409
-* 412
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
-}`
-
-## [](#tag/App-Services/operation/appServiceOff)Turn Off App Service 
-
-Turn App Service off.
-
-Turn off an App Service to temporarily deactivate it and reduce its consumption of compute resources. The App Service itself and its related infrastructure will be removed once turned off.
-
-Any private endpoints configured on App Services will remain and will be available when App Service is turned back on. You will continue to incur costs for any private endpoints configured on App Services. If you don't wish to incur these costs, you must explicitly disable private endpoint service and reinstate private endpoints when App Service is turned back on again.
-
-Free tier App Service can only be turned off when the linked free tier cluster is turned off.
-
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-
-### Responses
-
-**202** 
-
-Successfully switched the App Service to off state.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**409** 
-
-Returned when there is a conflict with the current state of a resource.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/activationState
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/activationState
-
-### Response samples 
-
-* 403
-* 404
-* 409
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
-}`
-
-## [](#tag/App-Services/operation/AddAppServiceAdminUser)Create App Service Admin User 
-
-Creates an Admin User on the specified App Service. The user can either be granted access to all App Endpoints or to specific App Endpoints by listing them in the `endpoints` field.
-
-Currently, the user will be granted admin access to all App Endpoints in a bucket (that is currently associated with the App Endpoint(s) specified in the endpoints field), including ones that are created in future. An option to grant access to specific App Endpoints in a bucket will be available in the future.
+Deletes an existing project.
 
 In order to access this endpoint, the provided API key must have at least one of the following roles:
 
 * Organization Owner
 * Project Owner
-* Project Manager
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -6236,22 +3593,102 @@ _token_
 | organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
 | ---------------------- | --------------------------------------------------------------------------------------------- |
 | projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+### Responses
+
+**204** 
+
+Successfully deleted the project by its projectId.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}
+
+### Response samples 
+
+* 403
+* 404
+* 409
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/Users)Users
+
+To access an organization, your Couchbase Capella user account must be added to it. Accounts are added to an organization using email invitations sent from Capella by a user with the Organization Owner organization role. All organization users are given one or more organization roles that define what they can view and manage in their organization.
+
+## [](#tag/Users/operation/postUser)Create User 
+
+Invites a new user under the organization.
+
+After making a REST API request, an invitation email is triggered and sent to the user. Upon receiving the invitation email, the user is required to click on a provided URL, which will redirect them to a page with a user interface (UI) where they can set their username and password.
+
+The modification of any personal information related to a user can only be performed by the user through the UI. Similarly, the user can solely conduct password updates through the UI.
+
+The "caller" possessing Organization Owner access rights retains the exclusive user creation capability. They hold the authority to assign roles at the organization and project levels.
+
+At present, our support is limited to the resourceType of "project" exclusively.
+
+In order to access this endpoint, the provided API key must have the following role:
+
+* Organization Owner
+
+To learn more, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
 
 ##### Request Body schema: application/json
 
-| namerequired            | string The name of the user.                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| passwordrequired        | string The password of the user.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| enableBucketLevelAccess | boolean Default: true When set to true, the user will automatically be granted admin access to all App Endpoints in a bucket (that is currently associated with the App Endpoint(s) specified in the endpoints field), including ones that are created in future. The flag defaults to true. Currently, the only supported value is true, which means that the user will have admin access to all App Endpoints in this bucket. In the future, there will be the option to set this to false. |
-| accessrequired          | UpdateAppServiceAdminUserAllEndpointsRequest (object) or UpdateAppServiceAdminUserEndpointList (object)                                                                                                                                                                                                                                                                                                                                                                                       |
+| name                      | string <= 128 characters The name of the user.                                                                                                                                           |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| emailrequired             | string (Email) Email of the user.                                                                                                                                                        |
+| organizationRolesrequired | Array of strings (OrganizationRoles) Items Enum: "organizationOwner" "organizationMember" "projectCreator" "organizationBillingAdmin" "organizationBillingViewer" "organizationReadOnly" |
+| resources                 | Array of objects (Resource) Default: \[\]                                                                                                                                                |
 
 ### Responses
 
 **201** 
 
-Successfully created an App Service Admin User.
+Successfully sent invite to the user.
 
 **400** 
 
@@ -6277,9 +3714,9 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
-post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/adminUsers
+post/v4/organizations/{organizationId}/users
 
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/adminUsers
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/users
 
 ### Request samples 
 
@@ -6291,22 +3728,36 @@ application/json
 
 Example
 
-CreateAdminUserSpecificEndpointsCreateAdminUserAllEndpointsCreateAdminUserSpecificEndpoints
+CreateOrganizationMemberCreateOrganizationOwnerCreateOrganizationMember
+
+At present, our support is limited to the resourceType of "project" exclusively. Furthermore, the role designation is solely related to roles at the project level.
 
 Copy
 
  Expand all  Collapse all 
 
 `{
-* "name": "user1",
-* "password": "password",
-* "enableBucketLevelAccess": false,
-* "access": {
-  * "endpoints": [
-    * "endpoint1",
-    * "endpoint2"  
-  ]  
-}
+* "name": "John",
+* "email": "john.doe@example.com",
+* "organizationRoles": [
+  * "organizationMember"  
+],
+* "resources": [
+  * {
+    * "id": "550e8400-e29b-41d4-a716-446655440000",
+    * "type": "project",
+    * "roles": [
+      * "projectViewer"  
+      ]  
+  },
+  * {
+    * "id": "550e8400-e29b-41d4-a716-446655440000",
+    * "type": "project",
+    * "roles": [
+      * "projectDataReaderWriter"  
+      ]  
+  }  
+]
 }`
 
 ### Response samples 
@@ -6326,23 +3777,24 @@ application/json
 Copy
 
 `{
-* "id": "eeeeeeee-aaaa-1414-eeee-999999999999"
+* "id": "ffffffff-aaaa-1414-eeee-000000000000"
 }`
 
-## [](#tag/App-Services/operation/ListAppServiceAdminUsers)List App Service Admin Users 
+## [](#tag/Users/operation/listUsers)List Users 
 
-List the admin users for the specified App Service.
+Lists all the users in the organization and filter on the basis of projectId.
 
 In order to access this endpoint, the provided API key must have at least one of the following roles:
 
 * Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-* Database Data Reader/Writer
-* Database Data Reader
+* Organization Member
+* Project Creator
 
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+The results are always limited by the role and scope of the caller's privileges.
+
+When retrieving a list of users through a GET request, if a user holds the organization owner role, the response will exclude project-level permissions for those users. This is because organization owners have full access to all resources within the organization, making project-level permissions irrelevant for them.
+
+To learn more about the roles, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html) and [Project Roles](https://docs.couchbase.com/cloud/projects/project-roles.html).
 
 ##### Authorizations:
 
@@ -6352,22 +3804,25 @@ _token_
 
 | organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
 | ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
 
 ##### query Parameters
 
-| page          | integer Sets the page you would like to view.                                                    |
-| ------------- | ------------------------------------------------------------------------------------------------ |
-| perPage       | integer Sets the number of results you would like to have on each page.                          |
-| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted. |
+| page          | integer Sets the page you would like to view.                                                                                                                                                                                      |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                                            |
+| sortBy        | Array of strings Example: sortBy=nameSets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **id**, **name**, **email**, **status**, **inactive**. |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                                                   |
+| projectId     | string <uuid\> Example: projectId=ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                                                                                                 |
 
 ### Responses
 
 **200** 
 
-Successfully listed the Admin Users for the specified App Service.
+Successfully listed all the user in the organization.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
 
 **403** 
 
@@ -6385,26 +3840,28 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
-**503** 
+get/v4/organizations/{organizationId}/users
 
-The server is currently unable to handle the request
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/adminUsers
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/adminUsers
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/users
 
 ### Response samples 
 
 * 200
+* 400
 * 403
 * 404
 * 429
 * 500
-* 503
 
 Content type
 
 application/json
+
+Example
+
+ApiKeyIsOrgOwnerApiKeyIsProjectOwnerReturnedUserIsOrganizationOwnerApiKeyIsOrgOwner
+
+In the event that the API key holds "organizationOwner" access, information related to all projects within the organization will be returned.
 
 Copy
 
@@ -6413,40 +3870,55 @@ Copy
 `{
 * "data": [
   * {
-    * "id": "eeeeeeee-aaaa-1414-eeee-999999999999",
-    * "tenantId": "ffffffff-aaaa-1414-eeee-000000000000",
-    * "projectId": "dddddddd-cccc-1414-eeee-77777777777",
-    * "clusterId": "gggggggg-zzzz-1414-eeee-55555555555",
-    * "name": "admin",
-    * "endpoints": [
-      * "appEndpoint1",
-      * "appEndpoint2"  
+    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "name": "John",
+    * "email": "john.doe@example.com",
+    * "status": "verified",
+    * "inactive": false,
+    * "organizationId": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "organizationRoles": [
+      * "organizationMember"  
       ],
-    * "accessAllEndpoints": "false,",
+    * "lastLogin": "2023-07-17T07:05:39.116Z",
+    * "region": "North America",
+    * "timeZone": "(UTC +5:30) India Standard Time",
+    * "enableNotifications": false,
+    * "expiresAt": "2023-07-17T07:05:39.116Z",
+    * "resources": [
+      * {
+        * "id": "f98e6c87-41e3-4faa-9df4-906e8d4f1aaf",
+        * "type": "project",
+        * "roles": [
+          * "projectViewer"  
+                    ]  
+            },
+      * {
+        * "id": "b7c745ac-9fb8-4b63-a0e4-51230097a169",
+        * "type": "project",
+        * "roles": [
+          * "projectDataReaderWriter"  
+                    ]  
+            },
+      * {
+        * "id": "28b67422-63d5-46b1-9234-8ad4a1d2f7be",
+        * "type": "project",
+        * "roles": [
+          * "projectDataReaderWriter"  
+                    ]  
+            },
+      * {
+        * "id": "e3942eaa-0f52-43da-963d-87a5b6cb3805",
+        * "type": "project",
+        * "roles": [
+          * "projectDataReaderWriter"  
+                    ]  
+            }  
+      ],
     * "audit": {
       * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
-      * "createdAt": "2024-09-01T12:34:56Z",
-      * "modifiedBy": "",
-      * "modifiedAt": "2024-09-01T12:34:56Z",
-      * "version": 1  
-      }  
-  },
-  * {
-    * "id": "eeeeeeee-gggg-1456-tttt-999999999999",
-    * "tenantId": "ffffffff-aaaa-1414-eeee-000000000000",
-    * "projectId": "dddddddd-cccc-1414-eeee-77777777777",
-    * "clusterId": "gggggggg-zzzz-1414-eeee-55555555555",
-    * "name": "admin",
-    * "endpoints": [
-      * "appEndpoint1",
-      * "appEndpoint2"  
-      ],
-    * "accessAllEndpoints": false,
-    * "audit": {
-      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
-      * "createdAt": "2024-09-01T12:34:56Z",
-      * "modifiedBy": "",
-      * "modifiedAt": "2024-09-01T12:34:56Z",
+      * "createdAt": "2021-09-01T12:34:56.000Z",
+      * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "modifiedAt": "2021-09-01T12:34:56.000Z",
       * "version": 1  
       }  
   }  
@@ -6469,17 +3941,21 @@ Copy
 }
 }`
 
-## [](#tag/App-Services/operation/UpdateAppServiceAdminUser)Update App Service Admin User 
+## [](#tag/Users/operation/getUser)Get User 
 
-Updates the Admin User's access to App Endpoints on the specified App Service. The update operation can either grant access to all App Endpoints or to specific App Endpoints by listing them in the `endpoints` field.
+Fetches the details of the given user.
 
 In order to access this endpoint, the provided API key must have at least one of the following roles:
 
 * Organization Owner
-* Project Owner
-* Project Manager
+* Organization Member
+* Project Creator
 
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+The results are always limited by the role and scope of the caller's privileges.
+
+When performing a GET request for a user with an organization owner role, the response will exclude project-level permissions for that user. This is because organization owners have access to all resources at the organization level, rendering project-level permissions unnecessary for them.
+
+To learn more about the roles, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html) and [Project Roles](https://docs.couchbase.com/cloud/projects/project-roles.html).
 
 ##### Authorizations:
 
@@ -6487,221 +3963,15 @@ _token_
 
 ##### path Parameters
 
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.        |
-| ---------------------- | ---------------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.             |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.             |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.          |
-| userIdrequired         | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the database credential. |
-
-##### Request Body schema: application/json
-
-One of 
-
-UpdateAppServiceAdminUserEndpointListUpdateAppServiceAdminUserAllEndpointsRequest
-
-| endpointsrequired | Array of strings The list of App Endpoints that the user has access to. |
-| ----------------- | ----------------------------------------------------------------------- |
-
-### Responses
-
-**204** 
-
-Successfully updated the App Service Admin User.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/adminUsers/{userId}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/adminUsers/{userId}
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Example
-
-UpdateAdminUserSpecificEndpointsUpdateAdminUserAllEndpointsUpdateAdminUserSpecificEndpoints
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "endpoints": [
-  * "endpoint1",
-  * "endpoint2"  
-]
-}`
-
-### Response samples 
-
-* 400
-* 403
-* 404
-* 422
-* 429
-* 500
-* 503
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
-}`
-
-## [](#tag/App-Services/operation/DeleteAppServiceAdminUser)Delete App Service Admin User 
-
-Deletes the Admin User.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.        |
-| ---------------------- | ---------------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.             |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.             |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.          |
-| userIdrequired         | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the database credential. |
-
-### Responses
-
-**202** 
-
-Successfully deleted the App Service Admin User.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/adminUsers/{userId}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/adminUsers/{userId}
-
-### Response samples 
-
-* 400
-* 403
-* 404
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
-}`
-
-## [](#tag/App-Services/operation/getAppServiceAdminUser)Get App Service Admin User 
-
-Fetches the Admin User.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.        |
-| ---------------------- | ---------------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.             |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.             |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.          |
-| userIdrequired         | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the database credential. |
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.       |
+| ---------------------- | --------------------------------------------------------------------------------------------------- |
+| userIdrequired         | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the control plane user. |
 
 ### Responses
 
 **200** 
 
-Successfully fetched the App Service Admin User.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
+Successfully fetched the user based on the userId.
 
 **403** 
 
@@ -6723,24 +3993,18 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
-**503** 
+get/v4/organizations/{organizationId}/users/{userId}
 
-The server is currently unable to handle the request
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/adminUsers/{userId}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/adminUsers/{userId}
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/users/{userId}
 
 ### Response samples 
 
 * 200
-* 400
 * 403
 * 404
 * 422
 * 429
 * 500
-* 503
 
 Content type
 
@@ -6752,15 +4016,28 @@ Copy
 
 `{
 * "id": "ffffffff-aaaa-1414-eeee-000000000000",
-* "tenantId": "ffffffff-aaaa-1414-eeee-000000000000",
-* "projectId": "ffffffff-aaaa-1414-eeee-000000000000",
-* "clusterId": "ffffffff-aaaa-1414-eeee-000000000000",
-* "name": "user1",
-* "endpoints": [
-  * "appEndpoint1",
-  * "appEndpoint2"  
+* "name": "alex",
+* "email": "john.doe@example.com",
+* "status": "not-verified",
+* "inactive": false,
+* "organizationId": "ffffffff-aaaa-1414-eeee-000000000000",
+* "organizationRoles": [
+  * "projectCreator"  
 ],
-* "accessAllEndpoints": false,
+* "lastLogin": "2023-07-17T07:05:39.116124897Z",
+* "region": "North America",
+* "timeZone": "(UTC -9:00) Alaska Standard Time",
+* "enableNotifications": true,
+* "expiresAt": "2023-07-17T07:05:39.116124897Z",
+* "resources": [
+  * {
+    * "type": "project",
+    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "roles": [
+      * "projectManager"  
+      ]  
+  }  
+],
 * "audit": {
   * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
   * "createdAt": "2021-09-01T12:34:56Z",
@@ -6770,19 +4047,22 @@ Copy
 }
 }`
 
-## [](#tag/App-Services/operation/putAppServiceMetadataIsolation)Opt App Service Back In to Metadata Isolation 
+## [](#tag/Users/operation/patchUser)Update User 
 
-Opt an App Service back in to system metadata collection (metadata isolation) after a support-initiated opt-out. Only the value `true` is accepted, and opting back in is permanent: once enabled the App Service cannot be opted out again. Requires App Services version 4.1 or later.
-
-New App Services are opted in automatically and existing App Services are opted in on upgrade to 4.1, so this endpoint is only useful after a previous opt-out via Couchbase support.
+Updates organizationRole and resources of the user.
 
 In order to access this endpoint, the provided API key must have at least one of the following roles:
 
 * Organization Owner
 * Project Owner
-* Project Manager
 
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+An Organization Owner API key can be utilized to update organizational-level roles and project-level roles for all projects within the organization.
+
+The Project Owner API key allows for updating project-level roles, solely within the projects where the API key holds the Project Owner role.
+
+The modification of any personal information related to a user, such as password updates, can only be performed by the respective user through the user interface (UI).
+
+The results are always limited by the role and scope of the caller's privileges. To learn more about the roles, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html) and [Project Roles](https://docs.couchbase.com/cloud/projects/project-roles.html).
 
 ##### Authorizations:
 
@@ -6790,26 +4070,24 @@ _token_
 
 ##### path Parameters
 
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.       |
+| ---------------------- | --------------------------------------------------------------------------------------------------- |
+| userIdrequired         | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the control plane user. |
 
 ##### Request Body schema: application/json
 
-| enabledrequired | boolean Value: true Whether metadata isolation is enabled on the App Service. Only true is accepted via this API to opt back in after support has previously opted the App Service out. Opting back in is permanent: the App Service cannot be opted out again once enabled. |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+ Array 
+
+| oprequired   | string Enum: "add" "remove" Type of operation.                                                                                                                            |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| pathrequired | string Path of resource that needs to be updated. Organization Roles: /organizationRoles Resources: /resources/{resourceId} Resource Roles: /resources/{resourceId}/roles |
+| value        | Array of OrganizationRoles (strings) or Array of ProjectRoles (strings) or Resource (object)                                                                              |
 
 ### Responses
 
-**204** 
+**200** 
 
-App Service successfully opted back in to metadata isolation.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
+Successfully updated the user metadata.
 
 **403** 
 
@@ -6831,9 +4109,9 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
-put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/metadataIsolation
+patch/v4/organizations/{organizationId}/users/{userId}
 
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/metadataIsolation
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/users/{userId}
 
 ### Request samples 
 
@@ -6843,88 +4121,23 @@ Content type
 
 application/json
 
-Copy
+Example
 
-`{
-* "enabled": true
-}`
-
-### Response samples 
-
-* 400
-* 403
-* 404
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
+addOrganizationRoleremoveOrganizationRoleaddResourceremoveResourceRoleaddResourceRoleremoveResourceperformMultipleOperationsaddOrganizationRole
 
 Copy
 
-`{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
-}`
+ Expand all  Collapse all 
 
-## [](#tag/App-Services/operation/getAppServiceMetadataIsolation)Get App Service Metadata Isolation State 
-
-Retrieve the current metadata isolation state for the App Service.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-
-### Responses
-
-**200** 
-
-Current metadata isolation state.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/metadataIsolation
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/metadataIsolation
+`[
+* {
+  * "op": "add",
+  * "path": "/organizationRoles",
+  * "value": [
+    * "projectCreator"  
+  ]  
+}
+]`
 
 ### Response samples 
 
@@ -6939,1406 +4152,64 @@ Content type
 
 application/json
 
-Copy
+Example
 
-`{
-* "enabled": true
-}`
-
-## [](#tag/App-Services/operation/getAppServiceCertificate)Get Public Certificate for App Service 
-
-The public certificate is a trusted Certificate Authority (CA) signed certificate. You can copy or download the endpoint's SSL public certificate to bundle into your mobile application. Pinning your certificate to your App is not recommended as it can increase maintenance overhead and downtime risks. For more information, see [here](https://docs.couchbase.com/cloud/app-services/connect/connect-apps-to-endpoint.html#setting-up-the-connection).
-
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-* Database Data Reader/Writer
-* Database Data Reader
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-
-### Responses
-
-**200** 
-
-Successfully fetched the App Service based on the appServiceId.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/certificates
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/certificates
-
-### Response samples 
-
-* 200
-* 403
-* 404
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "certificate": "-----BEGIN CERTIFICATE-----\nMIIDFTCCAf2gAwIBAgI[...]CSYBWaK0ofivA==\n-----END CERTIFICATE-----\n"
-}`
-
-## [](#tag/App-Services/operation/ListAppEndpointAdminUsers)List App Endpoint Admin Users 
-
-Lists the Admin Users that have access to the specified App Endpoint.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-* Database Data Reader/Writer
-* Database Data Reader
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ----------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
-
-##### query Parameters
-
-| page          | integer Sets the page you would like to view.                                                    |
-| ------------- | ------------------------------------------------------------------------------------------------ |
-| perPage       | integer Sets the number of results you would like to have on each page.                          |
-| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted. |
-
-### Responses
-
-**200** 
-
-Successfully listed the Admin Users for the specified App Endpoint.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/adminUsers
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/adminUsers
-
-### Response samples 
-
-* 200
-* 403
-* 404
-* 429
-* 500
-* 503
-
-Content type
-
-application/json
+addOrganizationRoleremoveOrganizationRoleaddResourceremoveResourceRoleaddResourceRoleremoveResourceperformMultipleOperationaddOrganizationRole
 
 Copy
 
  Expand all  Collapse all 
 
 `{
-* "data": [
+* "id": "ffffffff-aaaa-1414-eeee-000000000000",
+* "name": "Jane",
+* "email": "jane.doe@example.com",
+* "status": "verified",
+* "inactive": false,
+* "organizationId": "ffffffff-aaaa-1414-eeee-000000000000",
+* "organizationRoles": [
+  * "organizationMember",
+  * "projectCreator"  
+],
+* "lastLogin": "2023-07-17T07:05:39.116Z",
+* "region": "North America",
+* "timeZone": "(UTC +5:30) India Standard Time",
+* "enableNotifications": false,
+* "expiresAt": "2023-07-17T07:05:39.116Z",
+* "resources": [
   * {
-    * "id": "eeeeeeee-aaaa-1414-eeee-999999999999",
-    * "tenantId": "ffffffff-aaaa-1414-eeee-000000000000",
-    * "projectId": "dddddddd-cccc-1414-eeee-77777777777",
-    * "clusterId": "gggggggg-zzzz-1414-eeee-55555555555",
-    * "name": "admin",
-    * "endpoints": [
-      * "appEndpoint1",
-      * "appEndpoint2"  
-      ],
-    * "accessAllEndpoints": "false,",
-    * "audit": {
-      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
-      * "createdAt": "2024-09-01T12:34:56Z",
-      * "modifiedBy": "",
-      * "modifiedAt": "2024-09-01T12:34:56Z",
-      * "version": 1  
-      }  
+    * "id": "b7c745ac-9fb8-4b63-a0e4-51230097a169",
+    * "type": "project",
+    * "roles": [
+      * "projectViewer"  
+      ]  
   },
   * {
-    * "id": "eeeeeeee-gggg-1456-tttt-999999999999",
-    * "tenantId": "ffffffff-aaaa-1414-eeee-000000000000",
-    * "projectId": "dddddddd-cccc-1414-eeee-77777777777",
-    * "clusterId": "gggggggg-zzzz-1414-eeee-55555555555",
-    * "name": "admin",
-    * "endpoints": [
-      * "appEndpoint1",
-      * "appEndpoint2"  
-      ],
-    * "accessAllEndpoints": false,
-    * "audit": {
-      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
-      * "createdAt": "2024-09-01T12:34:56Z",
-      * "modifiedBy": "",
-      * "modifiedAt": "2024-09-01T12:34:56Z",
-      * "version": 1  
-      }  
+    * "id": "28b67422-63d5-46b1-9234-8ad4a1d2f7be",
+    * "type": "project",
+    * "roles": [
+      * "projectDataReaderWriter"  
+      ]  
   }  
 ],
-* "cursor": {
-  * "pages": {
-    * "page": 2,
-    * "next": 3,
-    * "previous": 1,
-    * "last": 10,
-    * "perPage": 10,
-    * "totalItems": 10  
-  },
-  * "hrefs": {
-    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
-  }  
-}
-}`
-
-## [](#tag/App-Services-Audit-Logging)App Services Audit Logging
-
-Users can configure audit log support on Capella App Services and can export audit logs from cloud blob storage to an AWS S3 bucket. Users can retrieve audit logs from a pre-signed download URL. Logs are retained for 30 days.
-
-## [](#tag/App-Services-Audit-Logging/operation/putAppServiceAuditLogState)Enable or Disable App Service Audit Logging 
-
-Enable or disable Audit Logging for an App Service.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
- To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-
-##### Request Body schema: application/json
-
-| auditEnabledrequired | boolean Determines whether audit logging is enabled or not on the App Service. |
-| -------------------- | ------------------------------------------------------------------------------ |
-
-### Responses
-
-**204** 
-
-App service audit logging enabled/disabled successfully.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLog
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLog
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "auditEnabled": true
-}`
-
-### Response samples 
-
-* 403
-* 404
-* 412
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
-}`
-
-## [](#tag/App-Services-Audit-Logging/operation/getAppServiceAuditLogState)Get App Service Audit Log State 
-
-Retrieves the audit logging state for a specific App Service.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-
-### Responses
-
-**200** 
-
-Successful retrieval of audit log settings
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLog
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLog
-
-### Response samples 
-
-* 200
-* 403
-* 404
-* 412
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "auditEnabled": true
-}`
-
-## [](#tag/App-Services-Audit-Logging/operation/getAppServiceAuditLogEvents)List App Endpoint Audit Log Event IDs 
-
-Retrieves all audit log event ids, their descriptions and enabled status for an App Endpoint. The list of filterable event IDs can be specified while configuring audit logging for the App Service.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ----------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
-
-### Responses
-
-**200** 
-
-Successful retrieval of audit log events
-
-**403** 
-
-The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
-
-**404** 
-
-The requested resource was not found.
-
-**409** 
-
-Returned when there is a conflict with the current state of a resource.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/auditLogEvents
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/auditLogEvents
-
-### Response samples 
-
-* 200
-* 403
-* 404
-* 409
-* 412
-* 422
-* 429
-* 500
-* 503
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "events": {
-  * "53290": {
-    * "description": "Admin API user successfully authenticated",
-    * "enabled": true,
-    * "filterable": true,
-    * "name": "Admin API user authenticated"  
-  },
-  * "53292": {
-    * "description": "Admin API user failed to authorize",
-    * "enabled": true,
-    * "filterable": true,
-    * "name": "Admin API user authorization failed"  
-  }  
-}
-}`
-
-## [](#tag/App-Services-Audit-Logging/operation/putAppEndpointAuditLogConfig)Update App Endpoint Audit Logging Config 
-
-Updates the audit logging configuration for a specific App Endpoint. Operations performed by disabled users and roles are excluded from audit logs. See a list of event IDs by calling /auditLogEvents, add event IDs to the enabledEventIds field to enable audit logging for those events.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
- To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ----------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
-
-##### Request Body schema: application/json
-
-| auditEnabled    | boolean Determines whether audit logging is enabled |
-| --------------- | --------------------------------------------------- |
-| enabledEventIds | Array of objects                                    |
-| disabledUsers   | Array of objects (DisabledUserRoles)                |
-| disabledRoles   | Array of objects (DisabledUserRoles)                |
-
-### Responses
-
-**204** 
-
-Successful update of audit logging configuration
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
-
-**404** 
-
-The requested resource was not found.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/auditLog
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/auditLog
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "auditEnabled": true,
-* "enabledEventIds": [
-  * {
-    * "id": 0  
-  }  
-],
-* "disabledUsers": [
-  * {
-    * "domain": "string",
-    * "name": "string"  
-  }  
-],
-* "disabledRoles": [
-  * {
-    * "domain": "string",
-    * "name": "string"  
-  }  
-]
-}`
-
-### Response samples 
-
-* 400
-* 403
-* 404
-* 412
-* 422
-* 429
-* 500
-* 503
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
-}`
-
-## [](#tag/App-Services-Audit-Logging/operation/getAppEndpointAuditLogConfig)Get App Endpoint Audit Logging Config 
-
-Retrieves the audit logging configuration for a specific App Endpoint.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ----------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
-
-### Responses
-
-**200** 
-
-Successful retrieval of audit logging configuration
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
-
-**404** 
-
-The requested resource was not found.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/auditLog
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/auditLog
-
-### Response samples 
-
-* 200
-* 400
-* 403
-* 404
-* 412
-* 422
-* 429
-* 500
-* 503
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "auditEnabled": true,
-* "enabledEventIds": [
-  * {
-    * "id": 0  
-  }  
-],
-* "disabledUsers": [
-  * {
-    * "domain": "string",
-    * "name": "string"  
-  }  
-],
-* "disabledRoles": [
-  * {
-    * "domain": "string",
-    * "name": "string"  
-  }  
-]
-}`
-
-## [](#tag/App-Services-Audit-Logging/operation/putAppServiceAuditLogStreaming)Configure App Service Audit Log Streaming 
-
-Sets up audit log streaming for a specific App Service with filters. If streamingEnabled is true log streaming will begin.
-
-Ensure you have provided collector credentials if you wish to begin streaming; log streaming cannot be enabled without credentials. Refer to schema below to see required fields for your log collection provider. Providers include Datadog, Sumo Logic, Grafana Loki, Elasticsearch (versions 8 and newer only) and generic HTTP. To start or resume streaming, set streamingEnabled to true while providing the rest of the log collector config.
-
-To disable log streaming and remove the log streaming config including credentials, set streamingEnabled to false and leave the rest of the payload empty.
-
-To pause log streaming, set streamingEnabled to false while providing the rest of the log collector config.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
- To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-
-##### Request Body schema: application/json
-
-| streamingEnabledrequired | boolean Determines whether audit log streaming is enabled or not. To start or resume streaming, set this to true. To disable or pause log streaming, set this to false.                                                                                  |
-| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| disabledAppEndpoints     | Array of strings List of App Endpoints to be excluded from audit log streaming.                                                                                                                                                                          |
-| outputType               | string Enum: "datadog" "generic\_http" "sumologic" "loki" "elastic" "splunk" "dynatrace" The type of output for the audit log streaming. Required when starting, resuming or pausing log streaming.                                                      |
-| credentials              | datadog (object) or sumologic (object) or generic\_http (object) or elastic (object) or loki (object) or splunk (object) or dynatrace (object) Secrets for audit log streaming configuration. Required when starting, resuming or pausing log streaming. |
-
-### Responses
-
-**202** 
-
-Successful Setup of Audit Log Streaming
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLogStreaming
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLogStreaming
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "streamingEnabled": true,
-* "disabledAppEndpoints": [
-  * "string"  
-],
-* "outputType": "datadog",
-* "credentials": {
-  * "apiKey": "apiKey",
-  * "url": "<https://http-intake.logs.datadoghq.eu>"  
-}
-}`
-
-### Response samples 
-
-* 400
-* 403
-* 404
-* 412
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
-}`
-
-## [](#tag/App-Services-Audit-Logging/operation/patchAppServiceAuditLogStreaming)Start or Resume Audit Log Streaming 
-
-To start or resume streaming, set streamingEnabled to true. To pause log streaming, set streamingEnabled to false.
-
-If log streaming is paused we will retain the collector credentials. To clear these use the PUT request.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
- To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-
-##### Request Body schema: application/json
-
-| oprequired    | string Value: "update" Type of operation.                         |
-| ------------- | ----------------------------------------------------------------- |
-| pathrequired  | string Path of resource that needs to be updated.                 |
-| valuerequired | boolean Determines whether audit log streaming is enabled or not. |
-
-### Responses
-
-**202** 
-
-Successfully patched Audit Log Streaming config.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-patch/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLogStreaming
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLogStreaming
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "op": "update",
-* "path": "/streamingEnabled",
-* "value": true
-}`
-
-### Response samples 
-
-* 403
-* 404
-* 412
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
-}`
-
-## [](#tag/App-Services-Audit-Logging/operation/getAppServiceAuditLogStreaming)Get App Service Audit Log Streaming State 
-
-Retrieves the current state of audit log streaming for a specific App Service, as well as the output type and enabled App endpoints.
-
-The audit log streaming states are:
-
-* disabled
-* disabling
-* enabled
-* enabling
-* paused
-* pausing
-* errored
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-
- To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-
-### Responses
-
-**200** 
-
-Successful retrieval of audit log streaming state
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLogStreaming
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLogStreaming
-
-### Response samples 
-
-* 200
-* 403
-* 404
-* 412
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "streamingEnabled": true,
-* "logStreamingState": "enabling",
-* "disabledAppEndpoints": [
-  * "string"  
-],
-* "outputType": "datadog"
-}`
-
-## [](#tag/App-Services-Audit-Logging/operation/postAppServiceAuditLogExport)Initiate Audit Log Export 
-
-Initiates an audit log export for a specific App Service.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
- To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-
-##### Request Body schema: application/json
-
-| startrequired | string <date-time\> Specifies the audit log's start date and time. |
-| ------------- | ------------------------------------------------------------------ |
-| endrequired   | string <date-time\> Specifies the audit log's end date and time.   |
-
-### Responses
-
-**202** 
-
-Successfully created audit export job for the cluster.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLogExports
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLogExports
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "start": "2022-09-04T00:56:07.000Z",
-* "end": "2022-09-05T04:56:07.000Z"
-}`
-
-### Response samples 
-
-* 202
-* 403
-* 404
-* 412
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "exportId": "ffffffff-aaaa-1414-eeee-000000000000"
-}`
-
-## [](#tag/App-Services-Audit-Logging/operation/listAppServiceAuditLogExports)List Audit Log Export Jobs 
-
-Retrieves a list of all audit log export jobs for an App Service.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-
-##### query Parameters
-
-| page          | integer Sets the page you would like to view.                                                    |
-| ------------- | ------------------------------------------------------------------------------------------------ |
-| perPage       | integer Sets the number of results you would like to have on each page.                          |
-| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted. |
-
-### Responses
-
-**200** 
-
-Successfully retrieved list of audit export documents
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLogExports
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLogExports
-
-### Response samples 
-
-* 200
-* 403
-* 404
-* 412
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "data": [
-  * {
-    * "id": "920e7b93-28c7-421b-993b-9fffecfd3598",
-    * "download_id": "<https://cb-audit-logs-333d2ad2-1408-405e-9995-XXXX.s3.us-east-1.amazonaws.com/export/app-service-audit-logs-XXXX-from-2024-07-06-to-2024-08-05.tar.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X>",
-    * "download_expires": "2024-08-08T13:43:48.420487299Z",
-    * "status": "Ready",
-    * "appServiceId": "01071798-23e5-4ec6-b814-13bebef70572",
-    * "tenantId": "333d2ad2-1408-405e-9995-68338d20ab5c",
-    * "clusterId": "71dd1cb2-34ac-43ae-a503-b2a9202f02d4",
-    * "audit": {
-      * "createdBy": "d4fa667c-206a-4916-9a24-3a03c2ec5771",
-      * "createdAt": "2024-08-05T13:43:45.998790923Z",
-      * "modifiedBy": "d4fa667c-206a-4916-9a24-3a03c2ec5771",
-      * "modifiedAt": "2024-08-05T13:43:48.420521466Z",
-      * "version": 3  
-      }  
-  }  
-],
-* "cursor": {
-  * "pages": {
-    * "page": 2,
-    * "next": 3,
-    * "previous": 1,
-    * "last": 10,
-    * "perPage": 10,
-    * "totalItems": 10  
-  },
-  * "hrefs": {
-    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
-  }  
-}
-}`
-
-## [](#tag/App-Services-Audit-Logging/operation/getAppServiceAuditLogExportById)Get Audit Log Export Job 
-
-Retrieves details of a specific audit log export job for a given App Service.
-
- In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-
- To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.  |
-| ------------------------ | ---------------------------------------------------------------------------------------------- |
-| projectIdrequired        | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.       |
-| clusterIdrequired        | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.       |
-| appServiceIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.    |
-| auditLogExportIdrequired | string Example: ffffffff-aaaa-1414-eeee-000000000000The export ID of the audit log export job. |
-
-### Responses
-
-**200** 
-
-Successfully retrieved details of audit export job
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLogExports/{auditLogExportId}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLogExports/{auditLogExportId}
-
-### Response samples 
-
-* 200
-* 403
-* 404
-* 412
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "id": "920e7b93-28c7-421b-993b-9fffecfd3598",
-* "download_id": "<https://cb-audit-logs-333d2ad2-1408-405e-9995-XXXX.s3.us-east-1.amazonaws.com/export/app-service-audit-logs-XXXX-from-2024-07-06-to-2024-08-05.tar.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X>",
-* "download_expires": "2024-08-08T13:43:48.420487299Z",
-* "status": "Ready",
-* "appServiceId": "01071798-23e5-4ec6-b814-13bebef70572",
-* "tenantId": "333d2ad2-1408-405e-9995-68338d20ab5c",
-* "clusterId": "71dd1cb2-34ac-43ae-a503-b2a9202f02d4",
 * "audit": {
-  * "createdBy": "d4fa667c-206a-4916-9a24-3a03c2ec5771",
-  * "createdAt": "2024-08-05T13:43:45.998790923Z",
-  * "modifiedBy": "d4fa667c-206a-4916-9a24-3a03c2ec5771",
-  * "modifiedAt": "2024-08-05T13:43:48.420521466Z",
-  * "version": 3  
+  * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "createdAt": "2021-09-01T12:34:56.000Z",
+  * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "modifiedAt": "2021-09-01T12:34:56.000Z",
+  * "version": 2  
 }
 }`
 
-## [](#tag/App-Services-Log-Streaming)App Services Log Streaming
+## [](#tag/Users/operation/deleteUser)Delete User 
 
-Log Streaming provides a mechanism for real-time streaming of App Services operational logs to third-party observability platforms or self-hosted HTTP logs collectors. This is a crucial tool to gain instant insights into application behavior, enabling rapid issue detection and resolution to enhance application reliability, performance, and security.
+Removes user from the organization.
 
-## [](#tag/App-Services-Log-Streaming/operation/resumeAppServiceLogStreaming)Resume App Service Log Streaming 
-
-Re-enables Log Streaming for an App Service that was previously paused. Log Streaming needs to be previously configured for the App Service before it can be paused or resumed.
-
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+In order to access this endpoint, the provided API key must have the following role:
 
 * Organization Owner
-* Project Owner
-* Project Manager
 
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+To learn more about the roles, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html).
 
 ##### Authorizations:
 
@@ -8346,463 +4217,101 @@ _token_
 
 ##### path Parameters
 
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-
-### Responses
-
-**202** 
-
-Successfully resumed log streaming for the app service.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming/activationState
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming/activationState
-
-### Response samples 
-
-* 403
-* 404
-* 422
-* 429
-* 500
-* 503
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
-}`
-
-## [](#tag/App-Services-Log-Streaming/operation/pauseAppServiceLogStreaming)Pause App Service Log Streaming 
-
-Temporarily disables Log Streaming for an App Service. Log Streaming needs to be previously configured for the App Service before it can be paused or resumed.
-
-In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-
-### Responses
-
-**202** 
-
-Successfully paused log streaming for the app service.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming/activationState
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming/activationState
-
-### Response samples 
-
-* 403
-* 404
-* 422
-* 429
-* 500
-* 503
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
-}`
-
-## [](#tag/App-Services-Log-Streaming/operation/postAppServiceLogStreaming)Configure App Service Log Streaming 
-
-Sets up log streaming for a specific App Service.
-
-Ensure you have provided collector credentials if you wish to begin streaming; log streaming cannot be enabled without credentials. Refer to schema below to see required fields for your log collection provider. Supported providers include Datadog, Sumo Logic, Grafana Loki, Elasticsearch (versions 8 and newer only), generic HTTP, Splunk, and Dynatrace.
-
-Log streaming can only be configured while the config state is either enabled, paused, or disabled.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
- To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-
-##### Request Body schema: application/json
-
-| outputTyperequired  | string Enum: "datadog" "generic\_http" "sumologic" "loki" "elastic" "splunk" "dynatrace" The log collector to have logs streamed to.                                                                              |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| credentialsrequired | datadog (object) or sumologic (object) or generic\_http (object) or elastic (object) or loki (object) or splunk (object) or dynatrace (object) The credentials to be used to authenticate with the log collector. |
-
-### Responses
-
-**202** 
-
-Successful configuration of log streaming
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "outputType": "datadog",
-* "credentials": {
-  * "apiKey": "apiKey",
-  * "url": "<https://http-intake.logs.datadoghq.eu>"  
-}
-}`
-
-### Response samples 
-
-* 400
-* 403
-* 404
-* 422
-* 429
-* 500
-* 503
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
-}`
-
-## [](#tag/App-Services-Log-Streaming/operation/getAppServiceLogStreaming)Get App Service Log Streaming Configuration and State 
-
-Retrieves the configured output type, current config state, current streaming state of log streaming for a specific App Service.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-
- To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-
-### Responses
-
-**200** 
-
-Successful retrieval of log streaming configuration and state
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming
-
-### Response samples 
-
-* 200
-* 403
-* 404
-* 429
-* 500
-* 503
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "outputType": "datadog",
-* "configState": "enabled",
-* "streamingState": "healthy"
-}`
-
-## [](#tag/App-Services-Log-Streaming/operation/deleteAppServiceLogStreaming)Disable App Service Log Streaming 
-
-Disables log streaming for a specific App Service.
-
-This will remove the log streaming configuration for the App Service. To enable log streaming again, you will need to provide the configuration details once more using the "Configure App Service Log Streaming" endpoint.
-
-Log streaming can only be disabled while the config state is either enabled or paused.
-
-It may take a few minutes for the log streaming to be fully disabled.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
- To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-
-### Responses
-
-**202** 
-
-Log streaming disabled
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming
-
-### Response samples 
-
-* 403
-* 404
-* 422
-* 429
-* 500
-* 503
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
-}`
-
-## [](#tag/App-Services-Log-Streaming/operation/putAppEndpointLogStreamingConfig)Update App Endpoint Log Streaming Config 
-
-Updates the log streaming config for an app endpoint, which configures log levels and keys used to filter log messages.
-
-This app endpoint log streaming config can only be updated while the log streaming config state is either "paused" or "enabled".
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
- To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ----------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
-
-##### Request Body schema: application/json
-
-| logLevelrequired | string Enum: "info" "warn" "error" Controls the verbosity of logs based on the specified log level                                                                          |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| logKeysrequired  | Array of stringsItems Enum: "Admin" "Access" "Auth" "Cache" "Changes" "CRUD" "HTTP" "HTTP+" "Import" "Javascript" "Query" "Sync" "SyncMsg" Filter logs to specific log keys |
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.       |
+| ---------------------- | --------------------------------------------------------------------------------------------------- |
+| userIdrequired         | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the control plane user. |
 
 ### Responses
 
 **204** 
 
-Successful update of the app endpoint log streaming configuration
+Successfully removed the user from the organization.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/users/{userId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/users/{userId}
+
+### Response samples 
+
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/Capella-Operational-Management-API-Overview)Capella Operational Management API Overview
+
+Manage Capella operational clusters with REST APIs. Use these APIs to manage cluster provisioning, buckets, scopes, collections, backups, network configuration, credentials, and related cluster-level resources.
+
+## [](#tag/Allowed-CIDRs-%28Cluster%29)Allowed CIDRs (Cluster)
+
+Couchbase Capella only allows trusted IP addresses to connect to databases. Each database has a configurable Allowed IP list that can include up to 75 entries. Each entry can be a single IP address or an IP address space. Any IP address you add to this list can have a user-specified expiration time for temporary access, or be permanent. Capella automatically denies any connection attempts to and from an IP not in the allowed IP list.
+
+## [](#tag/Allowed-CIDRs-%28Cluster%29/operation/postAllowedCidrs)Create Allowed CIDR 
+
+Adds a trusted CIDR to a cluster's list of allowed CIDRs.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+Note that updating this resource is not supported; you must delete and recreate allowed CIDRs instead. As a result, ETags are also not supported for this resource.
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+
+##### Request Body schema: application/json
+
+| cidrrequired | string The trusted CIDR to allow the database connections from. The example represents a single IP address (i.e. a subnet mask of 32).                                                           |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| comment      | string A short description of the allowed CIDR.                                                                                                                                                  |
+| expiresAt    | string <date-time\> An RFC3339 timestamp determining when the allowed CIDR should expire. If this field is empty/omitted then the allowed CIDR is permanent and will never automatically expire. |
+
+### Responses
+
+**201** 
+
+Successfully added an allowed CIDR for the cluster.
 
 **400** 
 
@@ -8810,7 +4319,7 @@ Returned when we are unable to decode the recevied payload.
 
 **403** 
 
-The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+The client does not have the necessary permissions to access this resource.
 
 **404** 
 
@@ -8828,17 +4337,9 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
-**503** 
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/allowedcidrs
 
-The server is currently unable to handle the request
-
-**504** 
-
-The server did not get a response in time from the upstream server in order to complete the request.
-
-put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/logStreaming
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/logStreaming
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/allowedcidrs
 
 ### Request samples 
 
@@ -8850,27 +4351,21 @@ application/json
 
 Copy
 
- Expand all  Collapse all 
-
 `{
-* "logLevel": "warn",
-* "logKeys": [
-  * "HTTP",
-  * "Import",
-  * "Sync"  
-]
+* "cidr": "6.60.28.100/32",
+* "comment": "Allows access from my local developer machine",
+* "expiresAt": "2023-05-14T21:49:58.465Z"
 }`
 
 ### Response samples 
 
+* 201
 * 400
 * 403
 * 404
 * 422
 * 429
 * 500
-* 503
-* 504
 
 Content type
 
@@ -8879,17 +4374,12 @@ application/json
 Copy
 
 `{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
+* "id": "ffffffff-aaaa-1414-eeee-000000000000"
 }`
 
-## [](#tag/App-Services-Log-Streaming/operation/getAppEndpointLogStreamingConfig)Get App Endpoint Log Streaming Config 
+## [](#tag/Allowed-CIDRs-%28Cluster%29/operation/listAllowedCidrs)List Allowed CIDRs 
 
-Retrieves log streaming config for an app endpoint, which shows log levels and keys used to filter log messages.
-
-This app endpoint log streaming config can only be retrieved while the log streaming config state is either "paused" or "enabled".
+Lists all of the allowed CIDRs for a given cluster.
 
 In order to access this endpoint, the provided API key must have at least one of the following roles:
 
@@ -8897,6 +4387,8 @@ In order to access this endpoint, the provided API key must have at least one of
 * Project Owner
 * Project Manager
 * Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -8906,373 +4398,24 @@ _token_
 
 ##### path Parameters
 
-| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ----------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+
+##### query Parameters
+
+| page          | integer Sets the page you would like to view.                                                                                                                                                            |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                  |
+| sortBy        | Array of strings Example: sortBy=id Sets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **id**, **type**, **status**. |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                         |
 
 ### Responses
 
 **200** 
 
-Successful retrieval of the app endpoint log streaming configuration
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-**503** 
-
-The server is currently unable to handle the request
-
-**504** 
-
-The server did not get a response in time from the upstream server in order to complete the request.
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/logStreaming
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/logStreaming
-
-### Response samples 
-
-* 200
-* 400
-* 403
-* 404
-* 422
-* 429
-* 500
-* 503
-* 504
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "logLevel": "warn",
-* "logKeys": [
-  * "HTTP",
-  * "Import",
-  * "Sync"  
-]
-}`
-
-## [](#tag/App-Services-Private-Endpoints)App Services Private Endpoints
-
-App Services Private Endpoints enables you to configure a secure private network connection between the Virtual Private Cloud (VPC) hosting your applications and the VPC of your Couchbase Capella App Services. Note: This is currently only available for AWS.
-
-## [](#tag/App-Services-Private-Endpoints/operation/postAppServicePrivateEndpoints)Enable App Service Private Endpoints 
-
-Enable Private Endpoints for an App Service.
-
-Supporting infrastructure is deployed and it may take a few minutes for Private Endpoints to be available. Once enabled, you can create Private Endpoints in your network. You can do this using the cloud provider's CLI. To obtain the command use the /privateEndpointService/privateEndpointCommand endpoint.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
- To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-
-### Responses
-
-**202** 
-
-App Service Private Endpoints enabled successfully.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService
-
-### Response samples 
-
-* 403
-* 404
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
-}`
-
-## [](#tag/App-Services-Private-Endpoints/operation/getAppServicePrivateEndpoints)Get App Service Private Endpoints State 
-
-The App Service Private Endpoint service allows you to access your Capella cluster from your private network, using Private Endpoints.
-
-This endpoint determines if the endpoint service is enabled or disabled for your App Service.
-
-It returns both a state and targetState. The state indicates the current status of the service, while the targetState indicates the desired end state of the service.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-
- To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-
-### Responses
-
-**200** 
-
-Successful retrieval of Private Endpoints state
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService
-
-### Response samples 
-
-* 200
-* 403
-* 404
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "state": "enabled",
-* "targetState": "enabled"
-}`
-
-## [](#tag/App-Services-Private-Endpoints/operation/deleteAppServicePrivateEndpoints)Disable App Service Private Endpoints 
-
-Disable Private Endpoints for an App Service.
-
-Supporting infrastructure is removed and it may take a few minutes before the Private Endpoint service is disabled.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-
- To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-
-### Responses
-
-**202** 
-
-App Service Private Endpoints disabled successfully.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService
-
-### Response samples 
-
-* 403
-* 404
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
-}`
-
-## [](#tag/App-Services-Private-Endpoints/operation/getAppServicePrivateEndpointsCommand)Get App Service Private Endpoints Command 
-
-Retrieves the Private Endpoints command in order to create Private Endpoints and initiate the connection between the specified VPC and the App Service.
-
-An example for AWS:
-
-```
-aws ec2 create-vpc-endpoint \
-  --vpc-id vpc-1234 \
-  --region us-east-1 \
-  --service-name com.amazonaws.vpce.us-east-1.vpce-svc-1234 \
-  --vpc-endpoint-type Interface \
-  --subnet-ids subnet-1234
-
-```
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-
- To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-
-##### Request Body schema: application/json
-
-One of 
-
-CreateVPCEndpointCommandRequest
-
-| vpcIDrequired     | string \[ 12 .. 21 \] characters The ID of your virtual network |
-| ----------------- | --------------------------------------------------------------- |
-| subnetIDsrequired | Array of strings                                                |
-
-### Responses
-
-**200** 
-
-Successfully returned commands to establish a private connection to the App Service.
+Successfully listed all allowed CIDRs for the cluster.
 
 **400** 
 
@@ -9286,10 +4429,6 @@ The client does not have the necessary permissions to access this resource.
 
 The requested resource was not found.
 
-**422** 
-
-Request validation error.
-
 **429** 
 
 Returned when the client exceeds the rate limit for the given APIKey.
@@ -9298,28 +4437,9 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
-post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService/privateEndpointCommand
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/allowedcidrs
 
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService/privateEndpointCommand
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "vpcID": "vpc-1234",
-* "subnetIDs": [
-  * "subnet-1234"  
-]
-}`
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/allowedcidrs
 
 ### Response samples 
 
@@ -9327,85 +4447,6 @@ Copy
 * 400
 * 403
 * 404
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "command": "aws ec2 create-vpc-endpoint --vpc-id vpc-1234 --region us-east-1 --service-name com.amazonaws.vpce.us-east-1.vpce-svc-1234 --vpc-endpoint-type Interface --subnet-ids subnet-1234"
-}`
-
-## [](#tag/App-Services-Private-Endpoints/operation/listAppServicePrivateEndpoints)List App Service Private Endpoints 
-
-Returns a list of the Private Endpoints associated with your Capella App Service with its current state. Each of these Private Endpoints is either attempting to connect or is connected to the App Service network.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Creator
-* Project Viewer To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-
-### Responses
-
-**200** 
-
-Successfully retrieved list of App Service Private Endpoints.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService/endpoints
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService/endpoints
-
-### Response samples 
-
-* 200
-* 400
-* 403
-* 404
-* 422
 * 429
 * 500
 
@@ -9418,19 +4459,44 @@ Copy
  Expand all  Collapse all 
 
 `{
-* "privateEndpointDNS": "abcdef123456.pl.cloud.couchbase.com",
-* "endpoints": [
+* "data": [
   * {
-    * "id": "vpce-000000000000aaaaa",
-    * "serviceName": "com.amazonaws.vpce.us-east-1.vpce-svc-000000000000aaaaa",
-    * "status": "linked"  
+    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "cidr": "1.23.45.67/32",
+    * "comment": "Allows access from my local developer machine",
+    * "expiresAt": "2023-05-14T21:49:58.465Z",
+    * "status": "active",
+    * "type": "temporary",
+    * "audit": {
+      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "createdAt": "2021-09-01T12:34:56Z",
+      * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "modifiedAt": "2021-09-01T12:34:56Z",
+      * "version": 1  
+      }  
   }  
-]
+],
+* "cursor": {
+  * "pages": {
+    * "page": 2,
+    * "next": 3,
+    * "previous": 1,
+    * "last": 10,
+    * "perPage": 10,
+    * "totalItems": 10  
+  },
+  * "hrefs": {
+    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
+  }  
+}
 }`
 
-## [](#tag/App-Services-Private-Endpoints/operation/acceptPrivateEndpointRequest)Accept Private Endpoint Request 
+## [](#tag/Allowed-CIDRs-%28Cluster%29/operation/getAllowedCidrByID)get allowed CIDR 
 
-Accepts a Private Endpoint connection request for an App Service. This completes the connection and means the Private Endpoint is now associated with the App Service and available for use.
+Fetches the details for the specified allowed CIDR.
 
 In order to access this endpoint, the provided API key must have at least one of the following roles:
 
@@ -9438,8 +4504,10 @@ In order to access this endpoint, the provided API key must have at least one of
 * Project Owner
 * Project Manager
 * Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
 
- To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
 ##### Authorizations:
 
@@ -9451,18 +4519,13 @@ _token_
 | ---------------------- | --------------------------------------------------------------------------------------------- |
 | projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
 | clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-| endpointIdrequired     | string Example: vpce-1234The VPC endpoint ID.                                                 |
+| allowedCidrIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the allowed CIDR. |
 
 ### Responses
 
-**204** 
+**200** 
 
-Successfully accepted Private Endpoint connection request.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
+Successfully fetched the allowed CIDR details.
 
 **403** 
 
@@ -9472,10 +4535,6 @@ The client does not have the necessary permissions to access this resource.
 
 The requested resource was not found.
 
-**422** 
-
-Request validation error.
-
 **429** 
 
 Returned when the client exceeds the rate limit for the given APIKey.
@@ -9484,16 +4543,15 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
-post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService/endpoints/{endpointId}
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/allowedcidrs/{allowedCidrId}
 
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService/endpoints/{endpointId}
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/allowedcidrs/{allowedCidrId}
 
 ### Response samples 
 
-* 400
+* 200
 * 403
 * 404
-* 422
 * 429
 * 500
 
@@ -9503,24 +4561,35 @@ application/json
 
 Copy
 
+ Expand all  Collapse all 
+
 `{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
+* "id": "ffffffff-aaaa-1414-eeee-000000000000",
+* "cidr": "1.23.45.67/32",
+* "comment": "Allows access from my local developer machine",
+* "expiresAt": "2023-05-14T21:49:58.465Z",
+* "status": "active",
+* "type": "temporary",
+* "audit": {
+  * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "createdAt": "2021-09-01T12:34:56Z",
+  * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "modifiedAt": "2021-09-01T12:34:56Z",
+  * "version": 1  
+}
 }`
 
-## [](#tag/App-Services-Private-Endpoints/operation/deletePrivateEndpointRequest)Delete Private Endpoint Request 
+## [](#tag/Allowed-CIDRs-%28Cluster%29/operation/deleteAllowedCidrByID)Delete Allowed CIDR 
 
-If the Private Endpoint is already connected and accepted this will unassociate the Private Endpoint from the App Service. If the Private Endpoint is not already connected this will reject the Private Endpoint connection request.
-
-Both cases will remove the Private Endpoint from the App Service and it will no longer be available for use and any connection will be terminated.
+Deletes the existing allowed CIDR.
 
 In order to access this endpoint, the provided API key must have at least one of the following roles:
 
 * Organization Owner
 * Project Owner
-* Project Manager To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
 ##### Authorizations:
 
@@ -9532,18 +4601,13 @@ _token_
 | ---------------------- | --------------------------------------------------------------------------------------------- |
 | projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
 | clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
-| endpointIdrequired     | string Example: vpce-1234The VPC endpoint ID.                                                 |
+| allowedCidrIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the allowed CIDR. |
 
 ### Responses
 
 **204** 
 
-Successfully deleted private endpoint.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
+Successfully deleted the allowed CIDR by its ID.
 
 **403** 
 
@@ -9553,10 +4617,6 @@ The client does not have the necessary permissions to access this resource.
 
 The requested resource was not found.
 
-**422** 
-
-Request validation error.
-
 **429** 
 
 Returned when the client exceeds the rate limit for the given APIKey.
@@ -9565,16 +4625,14 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
-delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService/endpoints/{endpointId}
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/allowedcidrs/{allowedCidrId}
 
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService/endpoints/{endpointId}
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/allowedcidrs/{allowedCidrId}
 
 ### Response samples 
 
-* 400
 * 403
 * 404
-* 422
 * 429
 * 500
 
@@ -9585,10 +4643,10 @@ application/json
 Copy
 
 `{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
 }`
 
 ## [](#tag/Audit-Logs)Audit Logs
@@ -10085,7 +5143,7 @@ Copy
 
 Fetches the status of a single audit log export job.
 
-It will show the pre-signed URL if the export was successful, a failure error if it was unsuccessful or a message saying no audit logs available if there were no audit logs found during the given timeframe.
+It will show the pre-signed URL if the export was successful, a failure error if it was unsuccessful or a message saying no audit logs available if there were no audit logs found during the given timeframe, or an error if the audit logs in the given timeframe are too large to export.
 
 In order to access this endpoint, the provided API key must have at least one of the following roles:
 
@@ -10124,6 +5182,10 @@ The client does not have the necessary permissions to access this resource.
 
 The requested resource was not found.
 
+**422** 
+
+Request validation error.
+
 **429** 
 
 Returned when the client exceeds the rate limit for the given APIKey.
@@ -10141,6 +5203,7 @@ https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/
 * 200
 * 403
 * 404
+* 422
 * 429
 * 500
 
@@ -10216,6 +5279,10 @@ The client does not have the necessary permissions to access this resource.
 
 The requested resource was not found.
 
+**422** 
+
+Request validation error.
+
 **500** 
 
 An unexpected error occurred in the server while processing this request.
@@ -10252,6 +5319,7 @@ Copy
 * 400
 * 403
 * 404
+* 422
 * 500
 
 Content type
@@ -10398,6 +5466,10 @@ The client does not have the necessary permissions to access this resource.
 
 The requested resource was not found.
 
+**422** 
+
+Request validation error.
+
 **500** 
 
 An unexpected error occurred in the server while processing this request.
@@ -10434,6 +5506,7 @@ Copy
 * 400
 * 403
 * 404
+* 422
 * 500
 
 Content type
@@ -10781,6 +5854,213 @@ Copy
 * "code": 1002,
 * "message": "Access Denied.",
 * "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/Backups-and-Restore-%28Bucket%29/operation/postBucketBackupExport)Create Backup Export 
+
+Queues an export job that packages an existing backup into a downloadable zip archive.
+
+The job runs asynchronously. Poll the Get Backup Export endpoint with the returned exportId until the status is complete, then download the archive using the backupDownloadURL in that response.
+
+An export belongs to a backup cycle, and the following preconditions apply:
+
+* The backup must be in a `ready` state, otherwise this endpoint returns 422.
+* The backup must be at most 5 TB, otherwise this endpoint returns 422.
+* A backup created by a scheduled cycle can only be exported once its cycle has completed, otherwise this endpoint returns 422.
+* Only one active export can exist per backup cycle. If the cycle already has an export that is pending, processing, or complete, this endpoint returns 409.
+
+To learn more about backup and restore, see [Backup and Restore Data](https://docs.couchbase.com/cloud/clusters/backup-restore.html).
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.            |
+| ---------------------- | -------------------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                 |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                 |
+| bucketIdrequired       | string Example: dGVzdAThe ID of the bucket. It is the URL-compatible base64 encoding of the bucket name. |
+| backupIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the backup.                  |
+
+### Responses
+
+**202** 
+
+Successfully queued the backup export job.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/buckets/{bucketId}/backups/{backupId}/export
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/buckets/{bucketId}/backups/{backupId}/export
+
+### Response samples 
+
+* 202
+* 400
+* 401
+* 403
+* 404
+* 409
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "exportId": "9d78f321-3ef7-4e0b-ad22-13014c0d7703",
+* "createdAt": "2026-09-16T10:50:57.793147089Z"
+}`
+
+## [](#tag/Backups-and-Restore-%28Bucket%29/operation/getBucketBackupExport)Get Backup Export 
+
+Fetches the status of a backup export job.
+
+While the export is `pending` or `processing`, the response contains the job status and metadata only. Once the export is `complete`, the response also contains `backupDownloadURL`, a pre-signed URL to download the exported archive. A fresh URL is generated on every request and each URL is valid for 1 hour.
+
+`expiration` is the time after which Capella stops offering the archive for download, about 12 hours after the export completes. Past it the status is reported as `expired`, the URL is omitted, and the backup must be exported again to be downloaded. The archive itself is removed from cloud storage separately, shortly afterwards.
+
+Every status other than `complete` returns 200 without a URL, so this endpoint is safe to poll. The export record itself is removed about 7 days after the export was created; after that this endpoint returns 404.
+
+An export belongs to a backup cycle. Any backup in the exported cycle resolves the export, not only the backup that initiated it. If the export does not belong to the given cluster, bucket, or backup cycle, this endpoint returns 404.
+
+Use `sha256Checksum` to verify the integrity of the downloaded archive.
+
+To learn more about backup and restore, see [Backup and Restore Data](https://docs.couchbase.com/cloud/clusters/backup-restore.html).
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.                                            |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                 |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                                                 |
+| bucketIdrequired       | string Example: dGVzdAThe ID of the bucket. It is the URL-compatible base64 encoding of the bucket name.                                 |
+| backupIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the backup.                                                  |
+| exportIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the backup export job, returned when the export was created. |
+
+### Responses
+
+**200** 
+
+Successfully fetched the backup export job.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/buckets/{bucketId}/backups/{backupId}/exports/{exportId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/buckets/{bucketId}/backups/{backupId}/exports/{exportId}
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Example
+
+PollingCompleteExpiredPolling
+
+Copy
+
+`{
+* "id": "9d78f321-3ef7-4e0b-ad22-13014c0d7703",
+* "tenantId": "adb4fb4c-1d98-4287-ac33-230742d2cc76",
+* "projectId": "c09035e8-3971-4b79-a6ec-bccd9056041f",
+* "clusterId": "50dfaea5-5bea-442c-88e6-0c396a9fc3ce",
+* "cycleId": "a98ea1bf-2574-4b4a-b929-c14deab49283",
+* "bucketName": "beer-sample",
+* "status": "processing",
+* "createdAt": "2026-09-16T10:50:57.793147089Z"
 }`
 
 ## [](#tag/Backups-and-Restore-%28Bucket%29/operation/listClusterBackups)List Cluster Backups 
@@ -11187,780 +6467,6 @@ Copy
 * "code": 1002,
 * "message": "Access Denied.",
 * "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
-}`
-
-## [](#tag/Billing)Billing
-
-The Billing endpoints allow you to retrieve billing information for your organization. You can view usage data organized by time period and filter by categories, projects, or instances.
-
-## [](#tag/Billing/operation/categorizedBilling)Get Categorized Billing 
-
-Retrieves billing information for the organization within the specified date range and filters.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-
-##### Request Body schema: application/json
-
-| startDaterequired | string <date\> The start date of the billing period in YYYY-MM-DD format. |
-| ----------------- | ------------------------------------------------------------------------- |
-| endDaterequired   | string <date\> The end date of the billing period in YYYY-MM-DD format.   |
-| filters           | object (BillingFilters) Filters to narrow down the billing information.   |
-
-### Responses
-
-**200** 
-
-Successfully retrieved the categorized billing information.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-post/v4/organizations/{organizationId}/billing
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/billing
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "value": {
-  * "startDate": "2025-04-01",
-  * "endDate": "2025-04-30",
-  * "filters": {
-    * "categories": [
-      * "analyticsCompute",
-      * "analyticsStorage"  
-      ],
-    * "projectIds": [
-      * "ffffffff-aaaa-1414-eeee-000000000000",
-      * "ffffffff-aaaa-1414-eeee-000000000001"  
-      ],
-    * "instanceIds": [
-      * "ffffffff-aaaa-1414-eeee-000000000000",
-      * "ffffffff-aaaa-1414-eeee-000000000001"  
-      ]  
-  }  
-}
-}`
-
-### Response samples 
-
-* 200
-* 400
-* 403
-* 404
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Example
-
-Monthly usage in amount (currency)Monthly usage in creditsDaily usage (for date ranges within a month)Monthly usage in amount (currency)
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "data": {
-  * "periods": [
-    * {
-      * "startDate": "2025-04-01",
-      * "endDate": "2025-04-30",
-      * "categories": [
-        * {
-          * "category": "analyticsCompute",
-          * "creditSpend": null,
-          * "currencySpend": 90.1,
-          * "contributionPercent": 74  
-                    },
-        * {
-          * "category": "analyticsStorage",
-          * "creditSpend": null,
-          * "currencySpend": 31.65,
-          * "contributionPercent": 26  
-                    }  
-            ],
-      * "totalCreditSpend": null,
-      * "totalCurrencySpend": 3302.11  
-      }  
-  ],
-  * "total": {
-    * "startDate": "2025-04-01",
-    * "endDate": "2025-04-30",
-    * "categories": [
-      * {
-        * "category": "analyticsCompute",
-        * "creditSpend": null,
-        * "currencySpend": 2914.46,
-        * "contributionPercent": 11.15  
-            },
-      * {
-        * "category": "analyticsStorage",
-        * "creditSpend": null,
-        * "currencySpend": 1250.25,
-        * "contributionPercent": 4.78  
-            }  
-      ],
-    * "totalCreditSpend": null,
-    * "totalCurrencySpend": 26120.18  
-  },
-  * "billingCurrency": "USD"  
-}
-}`
-
-## [](#tag/Billing/operation/itemizedBillingPerCluster)Get Itemized Billing Per Cluster 
-
-Retrieves itemized billing information for a specific cluster within the specified date range and filters. Note: This endpoint supports operational clusters only.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-
-##### Request Body schema: application/json
-
-| startDaterequired | string <date\> The start date of the billing period in YYYY-MM-DD format.                |
-| ----------------- | ---------------------------------------------------------------------------------------- |
-| endDaterequired   | string <date\> The end date of the billing period in YYYY-MM-DD format.                  |
-| filters           | object (ItemizedBillingFilters) Filters to narrow down the itemized billing information. |
-
-### Responses
-
-**200** 
-
-Successfully retrieved the itemized billing information for the cluster.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/billing
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/billing
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "value": {
-  * "startDate": "2025-04-01",
-  * "endDate": "2025-04-30",
-  * "filters": {
-    * "categories": [
-      * "operationalComputeAndStorage",
-      * "operationalBucketBackup"  
-      ]  
-  }  
-}
-}`
-
-### Response samples 
-
-* 200
-* 400
-* 403
-* 404
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "data": {
-  * "clusterName": "test-123",
-  * "supportPlan": "DeveloperPro",
-  * "periods": [
-    * {
-      * "startDate": "2025-04-01",
-      * "endDate": "2025-04-30",
-      * "categories": [
-        * {
-          * "category": "operationalComputeAndStorage",
-          * "creditSpend": null,
-          * "currencySpend": 90.1,
-          * "contributionPercent": 74  
-                    },
-        * {
-          * "category": "operationalBucketBackup",
-          * "creditSpend": null,
-          * "currencySpend": 31.65,
-          * "contributionPercent": 26  
-                    }  
-            ],
-      * "totalCreditSpend": null,
-      * "totalCurrencySpend": 3302.11  
-      }  
-  ],
-  * "total": {
-    * "startDate": "2025-04-01",
-    * "endDate": "2025-04-30",
-    * "categories": [
-      * {
-        * "category": "operationalComputeAndStorage",
-        * "creditSpend": null,
-        * "currencySpend": 2914.46,
-        * "contributionPercent": 11.15  
-            },
-      * {
-        * "category": "operationalBucketBackup",
-        * "creditSpend": null,
-        * "currencySpend": 1250.25,
-        * "contributionPercent": 4.78  
-            }  
-      ],
-    * "totalCreditSpend": null,
-    * "totalCurrencySpend": 26120.18  
-  },
-  * "billingCurrency": "USD"  
-}
-}`
-
-## [](#tag/Billing/operation/prepaidCreditsBilling)Get Prepaid Credits Billing 
-
-Retrieves prepaid credits information for the organization, including credit details, usage, and remaining amounts.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-
-##### query Parameters
-
-| page    | integer Sets the page you would like to view.                           |
-| ------- | ----------------------------------------------------------------------- |
-| perPage | integer Sets the number of results you would like to have on each page. |
-
-### Responses
-
-**200** 
-
-Successfully retrieved the prepaid credits billing information.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}/billing/prePaidCredits
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/billing/prePaidCredits
-
-### Response samples 
-
-* 200
-* 403
-* 404
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "data": [
-  * {
-    * "id": "sfdc-credit-id-12345",
-    * "creditName": "CN-12345",
-    * "supportPlan": "Plan: Developer Pro",
-    * "startDate": "2024-01-01T00:00:00Z",
-    * "expirationDate": "2024-12-31T23:59:59Z",
-    * "total": 1000,
-    * "used": 350.5,
-    * "remaining": 649.5,
-    * "remainingPercent": 64.95  
-  }  
-],
-* "cursor": {
-  * "pages": {
-    * "page": 2,
-    * "next": 3,
-    * "previous": 1,
-    * "last": 10,
-    * "perPage": 10,
-    * "totalItems": 10  
-  },
-  * "hrefs": {
-    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
-  }  
-}
-}`
-
-## [](#tag/Billing/operation/payAsYouGoBilling)Get Pay As You Go Billing 
-
-Retrieves pay-as-you-go billing information for the organization within the specified date range, broken down by support plan type.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-
-##### query Parameters
-
-| startDate | string <date\> Example: startDate=2025-04-01The start date of the billing period in YYYY-MM-DD format. |
-| --------- | ------------------------------------------------------------------------------------------------------ |
-| endDate   | string <date\> Example: endDate=2025-05-31The end date of the billing period in YYYY-MM-DD format.     |
-
-### Responses
-
-**200** 
-
-Successfully retrieved the pay-as-you-go billing information.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}/billing/payAsYouGo
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/billing/payAsYouGo
-
-### Response samples 
-
-* 200
-* 400
-* 403
-* 404
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "data": {
-  * "periods": [
-    * {
-      * "startDate": "2025-04-01",
-      * "endDate": "2025-04-30",
-      * "cost": {
-        * "basic": 0,
-        * "devPro": 316.62,
-        * "enterprise": 150  
-            },
-      * "total": 466.62  
-      },
-    * {
-      * "startDate": "2025-05-01",
-      * "endDate": "2025-05-31",
-      * "cost": {
-        * "basic": 100,
-        * "devPro": 450.25,
-        * "enterprise": 200  
-            },
-      * "total": 750.25  
-      }  
-  ],
-  * "total": {
-    * "startDate": "2025-04-01",
-    * "endDate": "2025-05-31",
-    * "cost": {
-      * "basic": 100,
-      * "devPro": 766.87,
-      * "enterprise": 350  
-      },
-    * "total": 1216.87  
-  },
-  * "billingCurrency": "USD"  
-}
-}`
-
-## [](#tag/Billing/operation/downloadCategorizedBilling)Download Categorized Billing 
-
-Downloads a csv file with categorized billing information for the organization within the specified date range and filters. Downloaded CSV file named `capella-categorized-billing-{organizationId}-{startDate}_to_{endDate}.csv` with the following columns:
-
-* `startDate` : The start date
-* `endDate` : The end date
-* `category`: The category name
-* `creditSpend`: Usage in Capella credits for this category
-* `currencySpend`: Usage in dollar or any billingCurrency amount for this category
-* `contributionPercent`: contributionPercent of total consumption
-* `billingCurrency`: currency
-
-`Total` \- The final row of the CSV will contain totals across all categories over the full time period
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-
-##### Request Body schema: application/json
-
-| startDaterequired | string <date\> The start date of the billing period in YYYY-MM-DD format. |
-| ----------------- | ------------------------------------------------------------------------- |
-| endDaterequired   | string <date\> The end date of the billing period in YYYY-MM-DD format.   |
-| filters           | object (BillingFilters) Filters to narrow down the billing information.   |
-
-### Responses
-
-**200** 
-
-Successfully downloaded the categorized billing information as a CSV file.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-post/v4/organizations/{organizationId}/billing/download
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/billing/download
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "startDate": "2025-04-01",
-* "endDate": "2025-04-30",
-* "filters": {
-  * "categories": [
-    * "analyticsCompute",
-    * "analyticsStorage"  
-  ],
-  * "projectIds": [
-    * "ffffffff-aaaa-1414-eeee-000000000000",
-    * "ffffffff-aaaa-1414-eeee-000000000001"  
-  ],
-  * "instanceIds": [
-    * "ffffffff-aaaa-1414-eeee-000000000000",
-    * "ffffffff-aaaa-1414-eeee-000000000001"  
-  ]  
-}
-}`
-
-### Response samples 
-
-* 400
-* 403
-* 404
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
-}`
-
-## [](#tag/Billing/operation/downloadItemizedBilling)Download Itemized Billing 
-
-Downloads a CSV file with itemized billing information for a specific cluster within the specified date range and filters. Note: This endpoint supports operational clusters only. Downloaded CSV file named `capella-itemized-billing-{clusterId}-{startDate}_to_{endDate}.csv` with the following columns:
-
-* `startDate` : The start date
-* `endDate` : The end date
-* `category`: The category name
-* `projectId`: The UUID of the project containing the cluster
-* `clusterId`: The UUID of the cluster
-* `clusterName`: The name of the cluster
-* `supportPlan`: The support plan of the cluster (e.g., DeveloperPro, Enterprise).
-* `creditSpend`: Usage in Capella credits for this category
-* `currencySpend`: Usage in dollar or any billingCurrency amount for this category
-* `contributionPercent`: contributionPercent of total consumption
-* `billingCurrency`: currency
-
-`Total` \- The final row of the CSV will contain totals across all categories over the full time period
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
-
-##### Request Body schema: application/json
-
-| startDaterequired | string <date\> The start date of the billing period in YYYY-MM-DD format.                |
-| ----------------- | ---------------------------------------------------------------------------------------- |
-| endDaterequired   | string <date\> The end date of the billing period in YYYY-MM-DD format.                  |
-| filters           | object (ItemizedBillingFilters) Filters to narrow down the itemized billing information. |
-
-### Responses
-
-**200** 
-
-Successfully downloaded the itemized billing information as a CSV file.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/billing/download
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/billing/download
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "startDate": "2025-04-01",
-* "endDate": "2025-04-30",
-* "filters": {
-  * "categories": [
-    * "operationalComputeAndStorage",
-    * "operationalBucketBackup"  
-  ]  
-}
-}`
-
-### Response samples 
-
-* 400
-* 403
-* 404
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
 }`
 
 ## [](#tag/Buckets-Scopes-and-Collections)Buckets, Scopes, & Collections
@@ -14692,6 +9198,10 @@ The requested resource was not found.
 
 Returned when there is a conflict with the current state of a resource.
 
+**422** 
+
+Request validation error.
+
 **429** 
 
 Returned when the client exceeds the rate limit for the given APIKey.
@@ -14736,6 +9246,7 @@ Copy
 * 403
 * 404
 * 409
+* 422
 * 429
 * 500
 * 501
@@ -14901,6 +9412,89 @@ Copy
 * "code": 1002,
 * "message": "Access Denied.",
 * "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/Cloud-Snapshot-Backups-Schedule/operation/getCloudSnapshotBackupScheduleOptions)Get Backup Schedule Options 
+
+Retrieves the cloud snapshot backup schedule options that the cluster's service plan permits.
+
+The permitted backup intervals and retention periods change with the service plan, so read this endpoint before creating or updating a backup schedule.
+
+To learn more about backup and restore, see [Backup and Restore Data](https://docs.couchbase.com/cloud/clusters/cloud-snapshots.html).
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+
+### Responses
+
+**200** 
+
+Successfully retrieved the backup schedule options.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/cloudsnapshotbackupschedule/options
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/cloudsnapshotbackupschedule/options
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "intervals": [
+  * 1,
+  * 2,
+  * 4,
+  * 6,
+  * 8,
+  * 12,
+  * 24  
+],
+* "minimumRetention": 24,
+* "maximumRetention": 720
 }`
 
 ## [](#tag/Clusters)Clusters
@@ -20676,7 +15270,7 @@ _token_
 | userIds        | Array of strings <uuid\> \[ items <uuid \> \] Example: userIds=ffffffff-aaaa-1414-eeee-000000000000Filter by user UUID. Default is to return events corresponding to all users.                                                                                                                                                                                                          |
 | clusterIds     | Array of strings <uuid\> \[ items <uuid \> \] Example: clusterIds=ffffffff-aaaa-1414-eeee-000000000000List of clusterIds to filter on. By default events corresponding to all clusters are returned.                                                                                                                                                                                     |
 | projectIds     | Array of strings <uuid\> \[ items <uuid \> \] Example: projectIds=ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of projects to filter on. By default, events corresponding to all projects are returned                                                                                                                                                                               |
-| severityLevels | Array of stringsItems Enum: "info" "warning" "critical" Filter by severity levels. Default is to return events corresponding to all supported severity levels.                                                                                                                                                                                                                           |
+| severityLevels | Array of stringsItems Enum: "debug" "info" "warning" "critical" Filter by severity levels. Default is to return events corresponding to all supported severity levels.                                                                                                                                                                                                                   |
 | tags           | Array of stringsItems Enum: "availability" "billing" "maintenance" "performance" "security" "alert" Example: tags=availability&tags=billing&tags=maintenance&tags=performance&tags=security&tags=alertFilter by tags. Default is to return events corresponding to all supported tag. Tags are **availability**, **billing**, **maintenance**, **performance**, **security**, **alert**. |
 | from           | string <date-time\> Example: from=2024-04-24T12:53:59.000ZStart date in RFC3339 format. If not provided, events starting from last 24 hours are returned.                                                                                                                                                                                                                                |
 | to             | string <date-time\> Example: to=2024-04-25T12:53:59.000ZEnd datetime in the last 24 hours, RFC3339 format. Defaults to Now.                                                                                                                                                                                                                                                              |
@@ -20895,7 +15489,7 @@ _token_
 | sortDirection  | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                                                                                                                                                                                                         |
 | userIds        | Array of strings <uuid\> \[ items <uuid \> \] Example: userIds=ffffffff-aaaa-1414-eeee-000000000000Filter by user UUID. Default is to return events corresponding to all users.                                                                                                                                                                                                          |
 | clusterIds     | Array of strings <uuid\> \[ items <uuid \> \] Example: clusterIds=ffffffff-aaaa-1414-eeee-000000000000List of clusterIds to filter on. By default events corresponding to all clusters are returned.                                                                                                                                                                                     |
-| severityLevels | Array of stringsItems Enum: "info" "warning" "critical" Filter by severity levels. Default is to return events corresponding to all supported severity levels.                                                                                                                                                                                                                           |
+| severityLevels | Array of stringsItems Enum: "debug" "info" "warning" "critical" Filter by severity levels. Default is to return events corresponding to all supported severity levels.                                                                                                                                                                                                                   |
 | tags           | Array of stringsItems Enum: "availability" "billing" "maintenance" "performance" "security" "alert" Example: tags=availability&tags=billing&tags=maintenance&tags=performance&tags=security&tags=alertFilter by tags. Default is to return events corresponding to all supported tag. Tags are **availability**, **billing**, **maintenance**, **performance**, **security**, **alert**. |
 | from           | string <date-time\> Example: from=2024-04-24T12:53:59.000ZStart date in RFC3339 format. If not provided, events starting from last 24 hours are returned.                                                                                                                                                                                                                                |
 | to             | string <date-time\> Example: to=2024-04-25T12:53:59.000ZEnd datetime in the last 24 hours, RFC3339 format. Defaults to Now.                                                                                                                                                                                                                                                              |
@@ -21098,7 +15692,7 @@ The following features are not available for free tier clusters:
 
 Only cluster name, description, CSP, region and CIDR are configurable.
 
-There are limited regions available based on CSP: a. for AWS they are us-east-2, eu-west-1, ap-southeast-1 b. for GCP they are us-central1, europe-west1, asia-east1 c. for Azure they are eastus, swedencentral, koreacentral
+There are limited regions available based on CSP: a. for AWS they are us-east-2, eu-west-1, ap-southeast-1 b. for GCP they are us-west1, europe-west1, asia-east1 c. for Azure they are eastus, swedencentral, koreacentral
 
 In order to access this endpoint, the provided API key must have at least one of the following roles:
 
@@ -23770,280 +18364,6 @@ Copy
 * "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
 }`
 
-## [](#tag/Organizations)Organizations
-
-Couchbase Capella uses an ordered hierarchy to help you keep all of your data organized and securely accessible. The entity at the top of the hierarchy is called an organization. Everything you do in Capella, whether it's creating a cluster or managing billing, happens within the scope of an organization.
-
-## [](#tag/Organizations/operation/getOrganizationByID)Get Organization 
-
-Fetches the details of an organization by ID.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Creator
-* Organization Member
-
-To learn more, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-
-### Responses
-
-**200** 
-
-Successfully returned the organization details.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}
-
-### Response samples 
-
-* 200
-* 403
-* 404
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "id": "ffffffff-aaaa-1414-eeee-000000000000",
-* "name": "My-Organization",
-* "subdomain": "abc",
-* "description": "The description of the organization.",
-* "preferences": {
-  * "sessionDuration": 3600  
-},
-* "audit": {
-  * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
-  * "createdAt": "2021-09-01T12:34:56Z",
-  * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
-  * "modifiedAt": "2021-09-01T12:34:56Z",
-  * "version": 1  
-}
-}`
-
-## [](#tag/Organizations/operation/putOrganizationConfiguration)Update Organization Configuration 
-
-Updates an existing organization configuration. Use this endpoint to add, update, and delete network subdomains.
-
-Subdomains are not automatically available. You must contact Couchbase support to enable this feature. To open a Support ticket, see [Create a Support Ticket](https://docs.couchbase.com/cloud/support/manage-support.html#create-support-ticket).
-
-Subdomains:
-
-* Can have a maximum of 30 alphanumeric characters.
-* Must be a unique string and not already in use in another tenant or organization. Empty strings are allowed.
-* Only affect new clusters. You cannot update existing clusters to include a new subdomain.
-
-In order to access this endpoint, the provided API key must have the following role:
-
-* Organization Owner
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-
-##### header Parameters
-
-| If-Match | string Example: 12A precondition header that specifies the entity tag of a resource. |
-| -------- | ------------------------------------------------------------------------------------ |
-
-##### Request Body schema: application/json
-
-| subdomainrequired | string <= 30 characters The new name of the subdomain for the organization. |
-| ----------------- | --------------------------------------------------------------------------- |
-
-### Responses
-
-**204** 
-
-Successfully updated the organization configuration.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-put/v4/organizations/{organizationId}/configuration
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/configuration
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Example
-
-UpdateSubdomainDeleteSubdomainUpdateSubdomain
-
-Copy
-
-`{
-* "subdomain": "abc"
-}`
-
-### Response samples 
-
-* 403
-* 404
-* 412
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
-}`
-
-## [](#tag/Organizations/operation/listOrganizations)List Organizations 
-
-Returns a list of all organizations the user has access to.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Creator
-* Organization Member
-
-To learn more, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html).
-
-##### Authorizations:
-
-_token_
-
-### Responses
-
-**200** 
-
-Successfully listed all the organizations.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations
-
-https://cloudapi.cloud.couchbase.com/v4/organizations
-
-### Response samples 
-
-* 200
-* 403
-* 404
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "data": [
-  * {
-    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
-    * "name": "My-Organization",
-    * "subdomain": "abc",
-    * "description": "The description of the organization.",
-    * "preferences": {
-      * "sessionDuration": 3600  
-      },
-    * "audit": {
-      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
-      * "createdAt": "2021-09-01T12:34:56Z",
-      * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
-      * "modifiedAt": "2021-09-01T12:34:56Z",
-      * "version": 1  
-      }  
-  }  
-]
-}`
-
 ## [](#tag/Private-Endpoint-Service)Private Endpoint Service
 
 Access your Capella cluster from your cloud provider's private network.
@@ -24850,472 +19170,6 @@ Copy
 * "code": 1000,
 * "message": "The request was malformed or invalid.",
 * "hint": "The request was malformed or invalid."
-}`
-
-## [](#tag/Projects)Projects
-
-Projects contain and allow access to Couchbase databases. Projects are used to organize and manage groups of Couchbase databases within organizations. An organization can contain any number of projects, and a project can contain any number of databases.
-
-## [](#tag/Projects/operation/postProject)Create Project 
-
-Creates a new project under the organization.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Creator
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-
-##### Request Body schema: application/json
-
-| namerequired | string <= 128 characters The name of the project (up to 128 characters).            |
-| ------------ | ----------------------------------------------------------------------------------- |
-| description  | string <= 256 characters A short description of the project (up to 256 characters). |
-
-### Responses
-
-**201** 
-
-Successfully created a project under the organization.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-post/v4/organizations/{organizationId}/projects
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "name": "My Project",
-* "description": "My awesome project"
-}`
-
-### Response samples 
-
-* 201
-* 400
-* 403
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "id": "ffffffff-aaaa-1414-eeee-000000000000"
-}`
-
-## [](#tag/Projects/operation/listProjects)List Project 
-
-Lists all the projects under the organization.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-* Database Data Reader/Writer
-* Database Data Reader
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-
-##### query Parameters
-
-| page          | integer Sets the page you would like to view.                                                                                                                                                 |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                       |
-| sortBy        | Array of strings Example: sortBy=nameSets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **id**, **name**. |
-| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                              |
-
-### Responses
-
-**200** 
-
-Successfully listed all the projects under the organization.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}/projects
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects
-
-### Response samples 
-
-* 200
-* 400
-* 403
-* 404
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "data": [
-  * {
-    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
-    * "description": "The description of my awesome project",
-    * "name": "My-Awesome-Project",
-    * "audit": {
-      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
-      * "createdAt": "2021-09-01T12:34:56Z",
-      * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
-      * "modifiedAt": "2021-09-01T12:34:56Z",
-      * "version": 1  
-      }  
-  }  
-],
-* "cursor": {
-  * "pages": {
-    * "page": 2,
-    * "next": 3,
-    * "previous": 1,
-    * "last": 10,
-    * "perPage": 10,
-    * "totalItems": 10  
-  },
-  * "hrefs": {
-    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
-    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
-  }  
-}
-}`
-
-## [](#tag/Projects/operation/getProjectByID)Get Project 
-
-Fetches the details of the given project.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-* Project Manager
-* Project Viewer
-* Database Data Reader/Writer
-* Database Data Reader
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-
-### Responses
-
-**200** 
-
-Successfully fetched the project based on the projectId.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**422** 
-
-Request validation error.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-get/v4/organizations/{organizationId}/projects/{projectId}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}
-
-### Response samples 
-
-* 200
-* 403
-* 404
-* 422
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "id": "ffffffff-aaaa-1414-eeee-000000000000",
-* "description": "The description of my awesome project",
-* "name": "My-Awesome-Project",
-* "audit": {
-  * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
-  * "createdAt": "2021-09-01T12:34:56Z",
-  * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
-  * "modifiedAt": "2021-09-01T12:34:56Z",
-  * "version": 1  
-}
-}`
-
-## [](#tag/Projects/operation/putProject)Update Project 
-
-Update project name and or project description.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-
-##### header Parameters
-
-| If-Match | string Example: 12A precondition header that specifies the entity tag of a resource. |
-| -------- | ------------------------------------------------------------------------------------ |
-
-##### Request Body schema: application/json
-
-| namerequired | string <= 128 characters The new project name (up to 128 characters).        |
-| ------------ | ---------------------------------------------------------------------------- |
-| description  | string <= 256 characters The new project description (up to 256 characters). |
-
-### Responses
-
-**204** 
-
-Successfully updated the project metadata.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**412** 
-
-Returned when there is a mismatch with the Etag version.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-put/v4/organizations/{organizationId}/projects/{projectId}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}
-
-### Request samples 
-
-* Payload
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "name": "My-New-Project",
-* "description": "The extended description of my awesome project."
-}`
-
-### Response samples 
-
-* 400
-* 403
-* 404
-* 412
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 400,
-* "code": 1000,
-* "message": "The request was malformed or invalid.",
-* "hint": "The request was malformed or invalid."
-}`
-
-## [](#tag/Projects/operation/deleteProjectByID)Delete Project 
-
-Deletes an existing project.
-
-In order to access this endpoint, the provided API key must have at least one of the following roles:
-
-* Organization Owner
-* Project Owner
-
-To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
-
-##### Authorizations:
-
-_token_
-
-##### path Parameters
-
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
-
-### Responses
-
-**204** 
-
-Successfully deleted the project by its projectId.
-
-**403** 
-
-The client does not have the necessary permissions to access this resource.
-
-**404** 
-
-The requested resource was not found.
-
-**409** 
-
-Returned when there is a conflict with the current state of a resource.
-
-**429** 
-
-Returned when the client exceeds the rate limit for the given APIKey.
-
-**500** 
-
-An unexpected error occurred in the server while processing this request.
-
-delete/v4/organizations/{organizationId}/projects/{projectId}
-
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}
-
-### Response samples 
-
-* 403
-* 404
-* 409
-* 429
-* 500
-
-Content type
-
-application/json
-
-Copy
-
-`{
-* "httpStatusCode": 403,
-* "code": 1002,
-* "message": "Access Denied.",
-* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
 }`
 
 ## [](#tag/Query-Indexes)Query Indexes
@@ -26754,11 +20608,12 @@ The sampleBucket endpoint lets users easily create a bucket filled with sample d
 
 ## [](#tag/Sample-Bucket/operation/postSampleBucket)Load Sample Data 
 
-Loads predefined sample data into a cluster by selecting from three available options:
+Loads predefined sample data into a cluster by selecting from the available options:
 
 * travel-sample
 * gamesim-sample
 * beer-sample
+* inventory-sample
 
 Upon a successful request, a new bucket is created within the cluster, and populated with the chosen sample data.
 
@@ -26783,8 +20638,8 @@ _token_
 
 ##### Request Body schema: application/json
 
-| namerequired | string Enum: "travel-sample" "gamesim-sample" "beer-sample" The name of the sample dataset to be loaded. The name has to be one of the following sample datasets. travel-sample gamesim-sample beer-sample |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| namerequired | string Enum: "travel-sample" "gamesim-sample" "beer-sample" "inventory-sample" The name of the sample dataset to be loaded. The name has to be one of the following sample datasets. travel-sample gamesim-sample beer-sample inventory-sample |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ### Responses
 
@@ -27124,27 +20979,25 @@ Copy
 * "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
 }`
 
-## [](#tag/Users)Users
+## [](#tag/Capella-App-Services-Management-API-Overview)Capella App Services Management API Overview
 
-To access an organization, your Couchbase Capella user account must be added to it. Accounts are added to an organization using email invitations sent from Capella by a user with the Organization Owner organization role. All organization users are given one or more organization roles that define what they can view and manage in their organization.
+Manage Capella App Services with REST APIs. Use these APIs to manage App Services instances, app endpoints, allowed CIDRs, audit logging, log streaming, and private endpoint configuration.
 
-## [](#tag/Users/operation/postUser)Create User 
+## [](#tag/Allowed-CIDRs-%28App-Services%29)Allowed CIDRs (App Services)
 
-Invites a new user under the organization.
+App Services only allow trusted IP addresses to connect and use its REST APIs. Each App Service has a configurable Allowed IP list that can include up to 75 entries. Each entry can be a single IP address or an IP address space. Any IP address you add to this list can have a user-specified expiration time for temporary access, or be permanent. Capella automatically denies any connection attempts to and from an IP not in the allowed IP list.
 
-After making a REST API request, an invitation email is triggered and sent to the user. Upon receiving the invitation email, the user is required to click on a provided URL, which will redirect them to a page with a user interface (UI) where they can set their username and password.
+## [](#tag/Allowed-CIDRs-%28App-Services%29/operation/deleteAppServiceAllowedCidr)Delete App Service Allowed CIDR 
 
-The modification of any personal information related to a user can only be performed by the user through the UI. Similarly, the user can solely conduct password updates through the UI.
+Deletes an Allowed CIDR by ID on the specified App Service.
 
-The "caller" possessing Organization Owner access rights retains the exclusive user creation capability. They hold the authority to assign roles at the organization and project levels.
-
-At present, our support is limited to the resourceType of "project" exclusively.
-
-In order to access this endpoint, the provided API key must have the following role:
+In order to access this endpoint, the provided API key must have at least one of the following roles:
 
 * Organization Owner
+* Project Owner
+* Project Manager
 
-To learn more, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html).
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
 ##### Authorizations:
 
@@ -27154,24 +21007,16 @@ _token_
 
 | organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
 | ---------------------- | --------------------------------------------------------------------------------------------- |
-
-##### Request Body schema: application/json
-
-| name                      | string <= 128 characters The name of the user.                                                             |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| emailrequired             | string (Email) Email of the user.                                                                          |
-| organizationRolesrequired | Array of strings (OrganizationRoles) Items Enum: "organizationOwner" "organizationMember" "projectCreator" |
-| resources                 | Array of objects (Resource) Default: \[\]                                                                  |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| allowedCidrIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the allowed CIDR. |
 
 ### Responses
 
-**201** 
+**204** 
 
-Successfully sent invite to the user.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
+Successfully deleted the Allowed CIDR by its ID.
 
 **403** 
 
@@ -27181,9 +21026,9 @@ The client does not have the necessary permissions to access this resource.
 
 The requested resource was not found.
 
-**422** 
+**409** 
 
-Request validation error.
+Returned when there is a conflict with the current state of a resource.
 
 **429** 
 
@@ -27193,61 +21038,22 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
-post/v4/organizations/{organizationId}/users
+**504** 
 
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/users
+The server did not get a response in time from the upstream server in order to complete the request.
 
-### Request samples 
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/allowedcidrs/{allowedCidrId}
 
-* Payload
-
-Content type
-
-application/json
-
-Example
-
-CreateOrganizationMemberCreateOrganizationOwnerCreateOrganizationMember
-
-At present, our support is limited to the resourceType of "project" exclusively. Furthermore, the role designation is solely related to roles at the project level.
-
-Copy
-
- Expand all  Collapse all 
-
-`{
-* "name": "John",
-* "email": "john.doe@example.com",
-* "organizationRoles": [
-  * "organizationMember"  
-],
-* "resources": [
-  * {
-    * "id": "550e8400-e29b-41d4-a716-446655440000",
-    * "type": "project",
-    * "roles": [
-      * "projectViewer"  
-      ]  
-  },
-  * {
-    * "id": "550e8400-e29b-41d4-a716-446655440000",
-    * "type": "project",
-    * "roles": [
-      * "projectDataReaderWriter"  
-      ]  
-  }  
-]
-}`
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/allowedcidrs/{allowedCidrId}
 
 ### Response samples 
 
-* 201
-* 400
 * 403
 * 404
-* 422
+* 409
 * 429
 * 500
+* 504
 
 Content type
 
@@ -27256,24 +21062,23 @@ application/json
 Copy
 
 `{
-* "id": "ffffffff-aaaa-1414-eeee-000000000000"
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
 }`
 
-## [](#tag/Users/operation/listUsers)List Users 
+## [](#tag/Allowed-CIDRs-%28App-Services%29/operation/listAppServiceAllowedCidrs)List Allowed CIDRs for an App Service 
 
-Lists all the users in the organization and filter on the basis of projectId.
+Lists the Allowed CIDRs for the specified App Service.
 
 In order to access this endpoint, the provided API key must have at least one of the following roles:
 
 * Organization Owner
-* Organization Member
-* Project Creator
+* Project Owner
+* Project Manager
 
-The results are always limited by the role and scope of the caller's privileges.
-
-When retrieving a list of users through a GET request, if a user holds the organization owner role, the response will exclude project-level permissions for those users. This is because organization owners have full access to all resources within the organization, making project-level permissions irrelevant for them.
-
-To learn more about the roles, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html) and [Project Roles](https://docs.couchbase.com/cloud/projects/project-roles.html).
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
 ##### Authorizations:
 
@@ -27283,25 +21088,23 @@ _token_
 
 | organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
 | ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
 
 ##### query Parameters
 
-| page          | integer Sets the page you would like to view.                                                                                                                                                                                      |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                                            |
-| sortBy        | Array of strings Example: sortBy=nameSets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **id**, **name**, **email**, **status**, **inactive**. |
-| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                                                   |
-| projectId     | string <uuid\> Example: projectId=ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                                                                                                 |
+| page          | integer Sets the page you would like to view.                                                                                                                                                            |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                  |
+| sortBy        | Array of strings Example: sortBy=id Sets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **id**, **type**, **status**. |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                         |
 
 ### Responses
 
 **200** 
 
-Successfully listed all the user in the organization.
-
-**400** 
-
-Returned when we are unable to decode the recevied payload.
+Successfully retrieved the allowed CIDRs for the App Service.
 
 **403** 
 
@@ -27319,14 +21122,13 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
-get/v4/organizations/{organizationId}/users
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/allowedcidrs
 
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/users
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/allowedcidrs
 
 ### Response samples 
 
 * 200
-* 400
 * 403
 * 404
 * 429
@@ -27335,12 +21137,6 @@ https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/users
 Content type
 
 application/json
-
-Example
-
-ApiKeyIsOrgOwnerApiKeyIsProjectOwnerReturnedUserIsOrganizationOwnerApiKeyIsOrgOwner
-
-In the event that the API key holds "organizationOwner" access, information related to all projects within the organization will be returned.
 
 Copy
 
@@ -27350,54 +21146,16 @@ Copy
 * "data": [
   * {
     * "id": "ffffffff-aaaa-1414-eeee-000000000000",
-    * "name": "John",
-    * "email": "john.doe@example.com",
-    * "status": "verified",
-    * "inactive": false,
-    * "organizationId": "ffffffff-aaaa-1414-eeee-000000000000",
-    * "organizationRoles": [
-      * "organizationMember"  
-      ],
-    * "lastLogin": "2023-07-17T07:05:39.116Z",
-    * "region": "North America",
-    * "timeZone": "(UTC +5:30) India Standard Time",
-    * "enableNotifications": false,
-    * "expiresAt": "2023-07-17T07:05:39.116Z",
-    * "resources": [
-      * {
-        * "id": "f98e6c87-41e3-4faa-9df4-906e8d4f1aaf",
-        * "type": "project",
-        * "roles": [
-          * "projectViewer"  
-                    ]  
-            },
-      * {
-        * "id": "b7c745ac-9fb8-4b63-a0e4-51230097a169",
-        * "type": "project",
-        * "roles": [
-          * "projectDataReaderWriter"  
-                    ]  
-            },
-      * {
-        * "id": "28b67422-63d5-46b1-9234-8ad4a1d2f7be",
-        * "type": "project",
-        * "roles": [
-          * "projectDataReaderWriter"  
-                    ]  
-            },
-      * {
-        * "id": "e3942eaa-0f52-43da-963d-87a5b6cb3805",
-        * "type": "project",
-        * "roles": [
-          * "projectDataReaderWriter"  
-                    ]  
-            }  
-      ],
+    * "cidr": "1.23.45.67/32",
+    * "comment": "Allows access from my local developer machine",
+    * "expiresAt": "2023-05-14T21:49:58.465Z",
+    * "status": "active",
+    * "type": "temporary",
     * "audit": {
       * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
-      * "createdAt": "2021-09-01T12:34:56.000Z",
+      * "createdAt": "2021-09-01T12:34:56Z",
       * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
-      * "modifiedAt": "2021-09-01T12:34:56.000Z",
+      * "modifiedAt": "2021-09-01T12:34:56Z",
       * "version": 1  
       }  
   }  
@@ -27420,21 +21178,17 @@ Copy
 }
 }`
 
-## [](#tag/Users/operation/getUser)Get User 
+## [](#tag/Allowed-CIDRs-%28App-Services%29/operation/postAppServiceAllowedCidr)Create Allowed CIDR 
 
-Fetches the details of the given user.
+Adds a trusted CIDR to the specified App Service's list of allowed CIDRs.
 
 In order to access this endpoint, the provided API key must have at least one of the following roles:
 
 * Organization Owner
-* Organization Member
-* Project Creator
+* Project Owner
+* Project Manager
 
-The results are always limited by the role and scope of the caller's privileges.
-
-When performing a GET request for a user with an organization owner role, the response will exclude project-level permissions for that user. This is because organization owners have access to all resources at the organization level, rendering project-level permissions unnecessary for them.
-
-To learn more about the roles, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html) and [Project Roles](https://docs.couchbase.com/cloud/projects/project-roles.html).
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
 ##### Authorizations:
 
@@ -27442,15 +21196,28 @@ _token_
 
 ##### path Parameters
 
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.       |
-| ---------------------- | --------------------------------------------------------------------------------------------------- |
-| userIdrequired         | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the control plane user. |
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+##### Request Body schema: application/json
+
+| cidrrequired | string The trusted CIDR to allow network connections from. The example represents a single IP address (i.e. a subnet mask of 32).                                                                |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| comment      | string A short description of the allowed CIDR.                                                                                                                                                  |
+| expiresAt    | string <date-time\> An RFC3339 timestamp determining when the allowed CIDR should expire. If this field is empty/omitted then the allowed CIDR is permanent and will never automatically expire. |
 
 ### Responses
 
-**200** 
+**201** 
 
-Successfully fetched the user based on the userId.
+Successfully added an Allowed CIDR for the App Service.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
 
 **403** 
 
@@ -27459,6 +21226,10 @@ The client does not have the necessary permissions to access this resource.
 **404** 
 
 The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
 
 **422** 
 
@@ -27472,18 +21243,17 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
-get/v4/organizations/{organizationId}/users/{userId}
+**504** 
 
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/users/{userId}
+The server did not get a response in time from the upstream server in order to complete the request.
 
-### Response samples 
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/allowedcidrs
 
-* 200
-* 403
-* 404
-* 422
-* 429
-* 500
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/allowedcidrs
+
+### Request samples 
+
+* Payload
 
 Content type
 
@@ -27491,57 +21261,52 @@ application/json
 
 Copy
 
- Expand all  Collapse all 
-
 `{
-* "id": "ffffffff-aaaa-1414-eeee-000000000000",
-* "name": "alex",
-* "email": "john.doe@example.com",
-* "status": "not-verified",
-* "inactive": false,
-* "organizationId": "ffffffff-aaaa-1414-eeee-000000000000",
-* "organizationRoles": [
-  * "projectCreator"  
-],
-* "lastLogin": "2023-07-17T07:05:39.116124897Z",
-* "region": "North America",
-* "timeZone": "(UTC -9:00) Alaska Standard Time",
-* "enableNotifications": true,
-* "expiresAt": "2023-07-17T07:05:39.116124897Z",
-* "resources": [
-  * {
-    * "type": "project",
-    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
-    * "roles": [
-      * "projectManager"  
-      ]  
-  }  
-],
-* "audit": {
-  * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
-  * "createdAt": "2021-09-01T12:34:56Z",
-  * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
-  * "modifiedAt": "2021-09-01T12:34:56Z",
-  * "version": 1  
-}
+* "cidr": "6.60.28.100/32",
+* "comment": "Allows access from my local developer machine",
+* "expiresAt": "2023-05-14T21:49:58.465Z"
 }`
 
-## [](#tag/Users/operation/patchUser)Update User 
+### Response samples 
 
-Updates organizationRole and resources of the user.
+* 201
+* 400
+* 403
+* 404
+* 409
+* 422
+* 429
+* 500
+* 504
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "id": "ffffffff-aaaa-1414-eeee-000000000000"
+}`
+
+## [](#tag/App-Endpoints)App Endpoints
+
+App Endpoints represent instances of mobile applications on App Services. Each App Endpoint is linked to one bucket and synchronizes data to a set of linked collections. Users can configure App Endpoints, including setting the Access Control function, Import Filter and OpenID Connect (OIDC) authentication configuration.
+
+## [](#tag/App-Endpoints/operation/listAppEndpoints)List App Endpoints 
+
+Lists all the App Endpoints under a specific App Service along with their associated configurations such as Access Control function, Import Filter or user defined xattr key.
 
 In order to access this endpoint, the provided API key must have at least one of the following roles:
 
 * Organization Owner
 * Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
 
-An Organization Owner API key can be utilized to update organizational-level roles and project-level roles for all projects within the organization.
-
-The Project Owner API key allows for updating project-level roles, solely within the projects where the API key holds the Project Owner role.
-
-The modification of any personal information related to a user, such as password updates, can only be performed by the respective user through the user interface (UI).
-
-The results are always limited by the role and scope of the caller's privileges. To learn more about the roles, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html) and [Project Roles](https://docs.couchbase.com/cloud/projects/project-roles.html).
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
 ##### Authorizations:
 
@@ -27549,24 +21314,29 @@ _token_
 
 ##### path Parameters
 
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.       |
-| ---------------------- | --------------------------------------------------------------------------------------------------- |
-| userIdrequired         | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the control plane user. |
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
 
-##### Request Body schema: application/json
+##### query Parameters
 
- Array 
-
-| oprequired   | string Enum: "add" "remove" Type of operation.                                                                                                                            |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| pathrequired | string Path of resource that needs to be updated. Organization Roles: /organizationRoles Resources: /resources/{resourceId} Resource Roles: /resources/{resourceId}/roles |
-| value        | Array of OrganizationRoles (strings) or Array of ProjectRoles (strings) or Resource (object)                                                                              |
+| page          | integer Sets the page you would like to view.                                                                                                                                                                   |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                         |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                                |
+| sortBy        | Array of strings Example: sortBy=name Sets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **name**, **offline**, **bucket**. |
 
 ### Responses
 
 **200** 
 
-Successfully updated the user metadata.
+Successfully listed all the App Endpoints under a specific App Service.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
 
 **403** 
 
@@ -27588,9 +21358,193 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
-patch/v4/organizations/{organizationId}/users/{userId}
+**503** 
 
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/users/{userId}
+The server is currently unable to handle the request
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Example
+
+ListAppEndpointsDefaultCollListAppEndpointNamedCollListAppEndpointsDefaultColl
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": {
+  * "bucket": "bucket1",
+  * "name": "defaultAppEndpoint",
+  * "userXattrKey": "key",
+  * "disablePublicAllDocs": false,
+  * "deltaSyncEnabled": true,
+  * "oidc": [
+    * {
+      * "issuer": "<https://example.auth.com>",
+      * "register": true,
+      * "clientId": "foo_client",
+      * "userPrefix": "fooOIDC",
+      * "discoveryUrl": "<https://foo.com/.well-known/openid-configuration>",
+      * "usernameClaim": "fooAlt",
+      * "rolesClaim": "roles",
+      * "providerId": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "isDefault": true  
+      },
+    * {
+      * "issuer": "<https://example.auth.com>",
+      * "register": true,
+      * "clientId": "bar_client",
+      * "userPrefix": "barOIDC",
+      * "discoveryUrl": "<https://bar.com/.well-known/openid-configuration>",
+      * "usernameClaim": "barAlt",
+      * "providerId": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "isDefault": false  
+      }  
+  ],
+  * "cors": {
+    * "origin": [
+      * "<http://example.com>",
+      * "<http://staging.example.com>"  
+      ],
+    * "loginOrigin": [
+      * "<http://example.com>"  
+      ],
+    * "headers": [
+      * "Content-Type",
+      * "X-Forwarded-Host"  
+      ],
+    * "disabled": false,
+    * "maxAge": 120  
+  },
+  * "scopes": {
+    * "_default": {
+      * "collections": {
+        * "_default": {
+          * "accessControlFunction": "function(doc){channel(doc.channels);}",
+          * "importFilter": "function(doc) { if (doc.type != 'mobile') { return false; } return true; }"  
+                    }  
+            }  
+      }  
+  },
+  * "requireResync": {
+    * "_default": {
+      * "items": [ ]  
+      }  
+  },
+  * "adminURL": "<https://wdltntbkyuqpaaco.apps.sandbox.project1.com:4985>",
+  * "metricsURL": "<https://wdltntbkyuqpaaco.apps.sandbox.project1.com:4986>",
+  * "publicURL": "<https://wdltntbkyuqpaaco.apps.sandbox.project1.com:4984>"  
+},
+* "cursor": {
+  * "hrefs": { },
+  * "pages": {
+    * "last": 1,
+    * "page": 1,
+    * "perPage": 5,
+    * "totalItems": 5  
+  }  
+}
+}`
+
+## [](#tag/App-Endpoints/operation/postAppEndpoint)Create App Endpoint 
+
+Creates an App Endpoint within an App Service with specific configurations such as collection level Access Control function and Import Filter. If the scopes property is not included in the request body, the default scope and collection will be used. The first OpenID Connect provider given will be set as the default provider for the App Endpoint. To change the default, please use the Change App Endpoint OIDC Default Provider endpoint.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+##### Request Body schema: application/json
+
+| bucketrequired       | string The Capella Cluster backing bucket for the App Endpoint.                                                                                                                                                                           |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| oidc                 | Array of objects (OIDCProvider) OpenID Connect provider configuration.                                                                                                                                                                    |
+| cors                 | object (CORSConfig)                                                                                                                                                                                                                       |
+| scopes               | object (ScopesConfig) Default: {"\_default":{"collections":{"\_default":{"accessControlFunction":"function(doc){channel(doc.channels);}","importFilter":" function(doc) { if (doc.type != 'mobile') { return false; } return true; }"}}}} |
+| namerequired         | string App Endpoint name. Must be less than 228 characters. It can only contain lowercase letters, numbers, or the following characters \-\_$+()                                                                                          |
+| deltaSyncEnabled     | boolean Default: false Enable/disable delta sync                                                                                                                                                                                          |
+| userXattrKey         | string The key of the user-extended attributes (xattr) that will be accessible from the Access control and validation function. If left empty, the feature will be disabled.                                                              |
+| disablePublicAllDocs | boolean Default: false Disable the \_all\_docs endpoint for this App Endpoint on the App Services Public API.                                                                                                                             |
+
+### Responses
+
+**201** 
+
+Successfully created an App Endpoint.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints
 
 ### Request samples 
 
@@ -27602,21 +21556,1764 @@ application/json
 
 Example
 
-addOrganizationRoleremoveOrganizationRoleaddResourceremoveResourceRoleaddResourceRoleremoveResourceperformMultipleOperationsaddOrganizationRole
+CreateAppEndpointRequestDefaultCollectionCreateAppEndpointRequestNamedCollectionsCreateAppEndpointRequestDefaultCollection
 
 Copy
 
  Expand all  Collapse all 
 
-`[
-* {
-  * "op": "add",
-  * "path": "/organizationRoles",
-  * "value": [
-    * "projectCreator"  
-  ]  
+`{
+* "bucket": "bucket1",
+* "name": "defaultAppEndpoint",
+* "userXattrKey": "key",
+* "disablePublicAllDocs": false,
+* "deltaSyncEnabled": true,
+* "scopes": {
+  * "_default": {
+    * "collections": {
+      * "_default": {
+        * "accessControlFunction": "function(doc){channel(doc.channels);}",
+        * "importFilter": "function(doc) { if (doc.type != 'mobile') { return false; } return true; }"  
+            }  
+      }  
+  }  
+},
+* "cors": {
+  * "origin": [
+    * "<http://example.com>",
+    * "<http://staging.example.com>"  
+  ],
+  * "loginOrigin": [
+    * "<http://example.com>"  
+  ],
+  * "headers": [
+    * "Content-Type"  
+  ],
+  * "disabled": true  
+},
+* "oidc": [
+  * {
+    * "issuer": "<https://example.auth.com>",
+    * "register": true,
+    * "clientId": "foo_client",
+    * "userPrefix": "fooOIDC",
+    * "discoveryUrl": "<https://foo.com/.well-known/openid-configuration>",
+    * "usernameClaim": "fooAlt",
+    * "rolesClaim": "roles",
+    * "scope": [
+      * "openid",
+      * "profile",
+      * "email"  
+      ]  
+  },
+  * {
+    * "issuer": "<https://example.auth.com>",
+    * "register": true,
+    * "clientId": "bar_client",
+    * "userPrefix": "barOIDC",
+    * "discoveryUrl": "<https://bar.com/.well-known/openid-configuration>",
+    * "usernameClaim": "barAlt"  
+  }  
+]
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 409
+* 412
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/App-Endpoints/operation/getAppEndpoint)Get App Endpoint 
+
+Fetches the details of the given App Endpoint, including operational and resync states and various configurations such as Access Control function and Import Filter.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+
+### Responses
+
+**200** 
+
+Successfully fetched the App Endpoint based on the App Endpoint name.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 412
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Example
+
+GetAppEndpointDefaultCollectionGetAppEndpointNamedCollectionGetAppEndpointDefaultCollection
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "bucket": "bucket1",
+* "name": "defaultAppEndpoint",
+* "userXattrKey": "key",
+* "disablePublicAllDocs": false,
+* "deltaSyncEnabled": true,
+* "oidc": [
+  * {
+    * "issuer": "<https://example.auth.com>",
+    * "register": true,
+    * "clientId": "foo_client",
+    * "userPrefix": "fooOIDC",
+    * "discoveryUrl": "<https://foo.com/.well-known/openid-configuration>",
+    * "usernameClaim": "fooAlt",
+    * "rolesClaim": "roles",
+    * "providerId": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "isDefault": true  
+  }  
+],
+* "cors": {
+  * "origin": [
+    * "<http://example.com>",
+    * "<http://staging.example.com>"  
+  ],
+  * "loginOrigin": [
+    * "<http://example.com>"  
+  ],
+  * "headers": [
+    * "Content-Type"  
+  ],
+  * "maxAge": 600,
+  * "disabled": false  
+},
+* "scopes": {
+  * "_default": {
+    * "collections": {
+      * "_default": {
+        * "accessControlFunction": "function(doc){channel(doc.channels);}",
+        * "importFilter": "function(doc) { if (doc.type != 'mobile') { return false; } return true; }"  
+            }  
+      }  
+  }  
+},
+* "requireResync": {
+  * "_default": {
+    * "items": [ ]  
+  }  
+},
+* "adminURL": "<https://wdltntbkyuqpaaco.apps.sandbox.project1.com:4985>",
+* "metricsURL": "<https://wdltntbkyuqpaaco.apps.sandbox.project1.com:4986>",
+* "publicURL": "<https://wdltntbkyuqpaaco.apps.sandbox.project1.com:4984>"
+}`
+
+## [](#tag/App-Endpoints/operation/putAppEndpoint)Update App Endpoint 
+
+Replaces a specified App Endpoint's configurations such as Access Control function, Import Filter, Delta Sync, or user defined xattr key. The first OpenID Connect provider given will be set as the default provider for the App Endpoint. To change the default, please use the Change App Endpoint OIDC Default Provider endpoint. All fields are required, the App Endpoint and bucket names cannot be changed.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+
+##### Request Body schema: application/json
+
+| namerequired                 | string App Endpoint name. Cannot be changed.                                                                                                                                                                                              |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| bucketrequired               | string The Capella Cluster backing bucket for the App Endpoint. Cannot be changed.                                                                                                                                                        |
+| scopesrequired               | object (ScopesConfig) Default: {"\_default":{"collections":{"\_default":{"accessControlFunction":"function(doc){channel(doc.channels);}","importFilter":" function(doc) { if (doc.type != 'mobile') { return false; } return true; }"}}}} |
+| deltaSyncEnabledrequired     | boolean Enable or disable delta sync                                                                                                                                                                                                      |
+| userXattrKeyrequired         | string Key of user xattr that will be accessible from the Access control and validation function. If empty, the feature will be disabled.                                                                                                 |
+| disablePublicAllDocsrequired | boolean Default: false Disable the \_all\_docs endpoint for this App Endpoint on the App Services Public API.                                                                                                                             |
+| oidcrequired                 | Array of objects (OIDCProvider) OpenID Connect provider configuration.                                                                                                                                                                    |
+| corsrequired                 | object (CORSConfig)                                                                                                                                                                                                                       |
+
+### Responses
+
+**204** 
+
+Successfully updated the App Endpoint metadata.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "name": "appEndpoint1",
+* "bucket": "store_locations",
+* "scopes": {
+  * "scope_1": {
+    * "collections": {
+      * "collection_1": {
+        * "accessControlFunction": "function(doc){channel(doc.channels);}",
+        * "importFilter": "function(doc) { if (doc.type != 'mobile') { return false; } return true; }"  
+            },
+      * "collection_2": {
+        * "accessControlFunction": "function(doc){channel(doc.channels);}",
+        * "importFilter": "function(doc) { if (doc.type != 'mobile') { return false; } return true; }"  
+            }  
+      }  
+  }  
+},
+* "deltaSyncEnabled": true,
+* "userXattrKey": "syncFnXattr",
+* "disablePublicAllDocs": false,
+* "oidc": [
+  * {
+    * "issuer": "<https://foo.com>",
+    * "register": true,
+    * "clientId": "foo_client",
+    * "userPrefix": "fooOIDC",
+    * "discoveryUrl": "<https://foo.com/.well-known/openid-configuration>",
+    * "usernameClaim": "fooAlt",
+    * "scope": [
+      * "openid",
+      * "foo"  
+      ]  
+  }  
+],
+* "cors": {
+  * "origin": [
+    * "<http://example.com>",
+    * "<http://staging.example.com>"  
+  ],
+  * "loginOrigin": [
+    * "<http://example.com>"  
+  ],
+  * "headers": [
+    * "Content-Type"  
+  ],
+  * "maxAge": 600,
+  * "disabled": false  
 }
-]`
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 409
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/App-Endpoints/operation/deleteAppEndpoint)Delete App Endpoint 
+
+Deletes an existing App Endpoint given its name.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+
+### Responses
+
+**202** 
+
+Successfully deleted the App Endpoint by its App Endpoint name.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/App-Endpoints/operation/listAppEndpointCollections)List App Endpoint Collections 
+
+Lists all the collections under a specific App Endpoint along with their associated configurations such as Access Control function, Import Filter or user defined xattr key.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+
+##### query Parameters
+
+| page          | integer Sets the page you would like to view.                                                    |
+| ------------- | ------------------------------------------------------------------------------------------------ |
+| perPage       | integer Sets the number of results you would like to have on each page.                          |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted. |
+
+### Responses
+
+**200** 
+
+Successfully listed all the collections under a specific App Endpoint.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/collections
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/collections
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Example
+
+ListAppEndpointCollectionsDefaultCollListAppEndpointCollectionsNamedCollListAppEndpointCollectionsDefaultNamedCollListAppEndpointCollectionsDefaultColl
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "scopes": {
+  * "_default": {
+    * "collections": {
+      * "_default": {
+        * "accessControlFunction": "function(doc){channel(doc.channels);}",
+        * "importFilter": "function(doc) { if (doc.type != 'mobile') { return false; } return true; }"  
+            }  
+      }  
+  }  
+}
+}`
+
+## [](#tag/App-Endpoints/operation/postAppEndpointActivationStatus)Resume or Bring an App Endpoint online 
+
+Brings an App Endpoint online to close and reopen the connection to the backing Cluster bucket, re-establish access from the Public REST API and accept all incoming Admin API requests.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+
+### Responses
+
+**202** 
+
+Accepted request to resume App Endpoint.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/activationStatus
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/activationStatus
+
+### Response samples 
+
+* 403
+* 404
+* 409
+* 412
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/App-Endpoints/operation/deleteAppEndpointActivationStatus)Pause or Take an App Endpoint offline 
+
+Take the database offline to run resync or to make changes without disrupting current App Endpoint operations. Clients currently connected to the App Endpoint will not be able to sync data with the Cluster while the App Endpoint is paused. This will not take the backing Cluster bucket offline. Pausing an App Endpoint that is in the progress of coming online will pause the App Endpoint after it comes online.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+
+### Responses
+
+**202** 
+
+Accepted request to pause App Endpoint.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/activationStatus
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/activationStatus
+
+### Response samples 
+
+* 403
+* 404
+* 409
+* 412
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/App-Endpoints/operation/getAppEndpointCORS)Get the App Endpoint Cross-Origin Resource Sharing (CORS) Configuration. 
+
+Fetch the App Endpoint Cross-Origin Resource Sharing (CORS) Configuration. CORS is disabled by default. For more information See [Cross-Origin Resource Sharing (CORS) on App Endpoints.](https://docs.couchbase.com/cloud/app-services/deployment/cors-configuration-for-app-services.html)
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+
+### Responses
+
+**200** 
+
+Successfully fetched the App Endpoint CORS config.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+**504** 
+
+The server did not get a response in time from the upstream server in order to complete the request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/cors
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/cors
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 429
+* 500
+* 503
+* 504
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "origin": [
+  * "<http://example.com>",
+  * "<http://staging.example.com>"  
+],
+* "loginOrigin": [
+  * "<http://example.com>"  
+],
+* "headers": [
+  * "Content-Type"  
+],
+* "maxAge": 600,
+* "disabled": false
+}`
+
+## [](#tag/App-Endpoints/operation/putAppEndpointCORS)Upsert the App Endpoint Cross-Origin Resource Sharing (CORS) Configuration. 
+
+Upsert the App Endpoint Cross-Origin Resource Sharing (CORS) Configuration. CORS is disabled by default. For more information See [Cross-Origin Resource Sharing (CORS) on App Endpoints.](https://docs.couchbase.com/cloud/app-services/deployment/cors-configuration-for-app-services.html)
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+
+##### Request Body schema: application/json
+
+| originrequired | Array of strings List of allowed origins, use \['\*'\] to allow access from everywhere. This is required when CORS is enabled (i.e. disabled is false). |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| loginOrigin    | Array of strings List of allowed login origins                                                                                                          |
+| headers        | Array of strings List of allowed headers                                                                                                                |
+| maxAge         | integer Default: 5 Specifies the duration (in seconds) for which the results of a preflight request can be cached.                                      |
+| disabled       | boolean Disable CORS headers in all App Endpoint responses. When true, no other CORS configuration properties should be provided.                       |
+
+### Responses
+
+**204** 
+
+Succesfully upserted App Endpoint CORS config.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+**504** 
+
+The server did not get a response in time from the upstream server in order to complete the request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/cors
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/cors
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "origin": [
+  * "<http://example.com>",
+  * "<http://staging.example.com>"  
+],
+* "loginOrigin": [
+  * "<http://example.com>"  
+],
+* "headers": [
+  * "Content-Type"  
+],
+* "maxAge": 600,
+* "disabled": false
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+* 503
+* 504
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/App-Endpoints/operation/getAccessFunction)Get Access Control and Validation function 
+
+Retrieves the Access Control and Validation function for the given keyspace.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| projectIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| clusterIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| appServiceIdrequired        | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| appEndpointKeyspacerequired | string Example: endpoint1.scope1.collection1A specific collection denoted by the App Endpoint name, the scope name and collection name separated by a period, for example "endpoint1.scope1.collection1". If only an App Endpoint name is provided this will be interpreted as "endpoint1.\_default.\_default". If only an App Endpoint name and collection name are provided these will interpreted as a named collection within the default scope, for example "endpoint1.collection1" will be interpreted as "endpoint1.\_default.collection1". |
+
+### Responses
+
+**200** 
+
+Successfully retrieved the Access control and validation function.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointKeyspace}/accessControlFunction
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointKeyspace}/accessControlFunction
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 412
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/App-Endpoints/operation/putAccessFunction)Upsert custom Access Control and Validation function 
+
+Used to upsert a custom Access Control and Validation function for the given keyspace. This is a Javascript function specified at a keyspace, where a user's read/write access is defined for documents in that particular keyspace. Every document mutation is processed by this function. If an Access Control function is not explicitly defined, a default is applied. [Read more.](https://docs.couchbase.com/cloud/app-services/deployment/access-control-data-validation.html?)
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| projectIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| clusterIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| appServiceIdrequired        | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| appEndpointKeyspacerequired | string Example: endpoint1.scope1.collection1A specific collection denoted by the App Endpoint name, the scope name and collection name separated by a period, for example "endpoint1.scope1.collection1". If only an App Endpoint name is provided this will be interpreted as "endpoint1.\_default.\_default". If only an App Endpoint name and collection name are provided these will interpreted as a named collection within the default scope, for example "endpoint1.collection1" will be interpreted as "endpoint1.\_default.collection1". |
+
+##### Request Body schema: application/javascript
+
+string (AccessFunction) 
+
+All mutations in this collection are processed by this Javascript function
+
+### Responses
+
+**204** 
+
+Successfully upserted the Access control and validation function .
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointKeyspace}/accessControlFunction
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointKeyspace}/accessControlFunction
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 409
+* 412
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/App-Endpoints/operation/deleteAccessFunction)Delete Access Control and Validation function 
+
+Deletes the Access Control and Validation function for the given keyspace.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| projectIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| clusterIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| appServiceIdrequired        | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| appEndpointKeyspacerequired | string Example: endpoint1.scope1.collection1A specific collection denoted by the App Endpoint name, the scope name and collection name separated by a period, for example "endpoint1.scope1.collection1". If only an App Endpoint name is provided this will be interpreted as "endpoint1.\_default.\_default". If only an App Endpoint name and collection name are provided these will interpreted as a named collection within the default scope, for example "endpoint1.collection1" will be interpreted as "endpoint1.\_default.collection1". |
+
+### Responses
+
+**202** 
+
+Successfully deleted the Access control and validation function.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointKeyspace}/accessControlFunction
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointKeyspace}/accessControlFunction
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 409
+* 412
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/App-Endpoints/operation/getImportFilter)Get Import Filter 
+
+Retrieves the Import Filter for the given keyspace.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| projectIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| clusterIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| appServiceIdrequired        | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| appEndpointKeyspacerequired | string Example: endpoint1.scope1.collection1A specific collection denoted by the App Endpoint name, the scope name and collection name separated by a period, for example "endpoint1.scope1.collection1". If only an App Endpoint name is provided this will be interpreted as "endpoint1.\_default.\_default". If only an App Endpoint name and collection name are provided these will interpreted as a named collection within the default scope, for example "endpoint1.collection1" will be interpreted as "endpoint1.\_default.collection1". |
+
+### Responses
+
+**200** 
+
+Successfully retrieved the Import Filter.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointKeyspace}/importFilter
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointKeyspace}/importFilter
+
+### Response samples 
+
+* 403
+* 404
+* 412
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/App-Endpoints/operation/putImportFilter)Upsert Import Filter 
+
+Upserts the Import Filter for the given keyspace. By default, there is no import filter and all documents are imported. Import Filters identify the subset of documents eligible to be replicated by App services based on user-defined requirements. This subset is applied to all future mutations. Once the document has been imported and processed by the App Endpoint, changing the Import Filter will not remove it, even if the updated import filters would prevent newer mutations or iterations of the document from getting imported. [Read more.](https://docs.couchbase.com/cloud/app-services/deployment/import-filters.html)
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| projectIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| clusterIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| appServiceIdrequired        | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| appEndpointKeyspacerequired | string Example: endpoint1.scope1.collection1A specific collection denoted by the App Endpoint name, the scope name and collection name separated by a period, for example "endpoint1.scope1.collection1". If only an App Endpoint name is provided this will be interpreted as "endpoint1.\_default.\_default". If only an App Endpoint name and collection name are provided these will interpreted as a named collection within the default scope, for example "endpoint1.collection1" will be interpreted as "endpoint1.\_default.collection1". |
+
+##### Request Body schema: application/javascript
+
+string (ImportFilter) 
+
+The Javascript function used to specify the documents in this collection that are to be imported by the App Endpoint. By default, all documents in corresponding collection are imported.
+
+### Responses
+
+**204** 
+
+Successfully upserted the Import Filter .
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointKeyspace}/importFilter
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointKeyspace}/importFilter
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 409
+* 412
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/App-Endpoints/operation/deleteImportFilter)Delete Import Filter 
+
+Deletes the Import Filter for the given keyspace.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| projectIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| clusterIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| appServiceIdrequired        | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| appEndpointKeyspacerequired | string Example: endpoint1.scope1.collection1A specific collection denoted by the App Endpoint name, the scope name and collection name separated by a period, for example "endpoint1.scope1.collection1". If only an App Endpoint name is provided this will be interpreted as "endpoint1.\_default.\_default". If only an App Endpoint name and collection name are provided these will interpreted as a named collection within the default scope, for example "endpoint1.collection1" will be interpreted as "endpoint1.\_default.collection1". |
+
+### Responses
+
+**202** 
+
+Successfully deleted the Import Filter.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointKeyspace}/importFilter
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointKeyspace}/importFilter
+
+### Response samples 
+
+* 403
+* 404
+* 409
+* 412
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/App-Endpoints/operation/createAppEndpointOIDCProvider)Create App Endpoint OpenID Connect (OIDC) Provider 
+
+Creates an OIDC provider for the specified App Endpoint. The first OIDC provider will automatically be set as the default OIDC provider. All client requests will use the default OIDC provider, unless the OIDC provider for the request is explicitly specified on authentication. See more [here](https://docs.couchbase.com/cloud/app-services/user-management/set-up-authentication-provider.html#oidc-authorization-step-by-step).
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+
+##### Request Body schema: application/json
+
+| issuerrequired   | string The URL for the OpenID Connect issuer.                                                                                                                                                                                                           |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| register         | boolean Indicates whether to register a new App Service user account when a user logs in using OpenID Connect.                                                                                                                                          |
+| clientIdrequired | string The OpenID Connect provider client ID.                                                                                                                                                                                                           |
+| userPrefix       | string Username prefix for all users created for this provider                                                                                                                                                                                          |
+| discoveryUrl     | string The URL for the non-standard discovery endpoint.                                                                                                                                                                                                 |
+| usernameClaim    | string Allows a different OpenID Connect field to be specified instead of the Subject (sub).                                                                                                                                                            |
+| rolesClaim       | string If set, the value(s) of the given OpenID Connect authentication token claim will be added to the user's roles. The value of this claim in the OIDC token must be either a string or an array of strings, any other type will result in an error. |
+| scope            | Array of strings Default: \["openid","email"\] The scope sent for the OpenID Connect request.                                                                                                                                                           |
+
+### Responses
+
+**201** 
+
+Successfully created OIDC Provider.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+**504** 
+
+The server did not get a response in time from the upstream server in order to complete the request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/oidcProviders
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/oidcProviders
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "issuer": "<https://foo.com>",
+* "register": true,
+* "clientId": "foo_client",
+* "userPrefix": "fooOIDC",
+* "discoveryUrl": "<https://foo.com/.well-known/openid-configuration>",
+* "usernameClaim": "fooAlt"
+}`
+
+### Response samples 
+
+* 201
+* 400
+* 403
+* 404
+* 409
+* 422
+* 429
+* 500
+* 503
+* 504
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "providerId": "ffffffff-aaaa-1414-eeee-000000000000"
+}`
+
+## [](#tag/App-Endpoints/operation/listAppEndpointOIDCProviders)List App Endpoint OpenID Connect (OIDC) Providers 
+
+List OpenID Connect (OIDC) Providers configured on an App Endpoint.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+
+##### query Parameters
+
+| page          | integer Sets the page you would like to view.                                                    |
+| ------------- | ------------------------------------------------------------------------------------------------ |
+| perPage       | integer Sets the number of results you would like to have on each page.                          |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted. |
+
+### Responses
+
+**200** 
+
+Successfully fetched OIDC Providers.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+**504** 
+
+The server did not get a response in time from the upstream server in order to complete the request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/oidcProviders
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/oidcProviders
 
 ### Response samples 
 
@@ -27626,69 +23323,57 @@ Copy
 * 422
 * 429
 * 500
+* 503
+* 504
 
 Content type
 
 application/json
-
-Example
-
-addOrganizationRoleremoveOrganizationRoleaddResourceremoveResourceRoleaddResourceRoleremoveResourceperformMultipleOperationaddOrganizationRole
 
 Copy
 
  Expand all  Collapse all 
 
 `{
-* "id": "ffffffff-aaaa-1414-eeee-000000000000",
-* "name": "Jane",
-* "email": "jane.doe@example.com",
-* "status": "verified",
-* "inactive": false,
-* "organizationId": "ffffffff-aaaa-1414-eeee-000000000000",
-* "organizationRoles": [
-  * "organizationMember",
-  * "projectCreator"  
-],
-* "lastLogin": "2023-07-17T07:05:39.116Z",
-* "region": "North America",
-* "timeZone": "(UTC +5:30) India Standard Time",
-* "enableNotifications": false,
-* "expiresAt": "2023-07-17T07:05:39.116Z",
-* "resources": [
+* "data": [
   * {
-    * "id": "b7c745ac-9fb8-4b63-a0e4-51230097a169",
-    * "type": "project",
-    * "roles": [
-      * "projectViewer"  
-      ]  
+    * "issuer": "<https://example.auth.com>",
+    * "register": true,
+    * "clientId": "foo_client",
+    * "userPrefix": "fooOIDC",
+    * "discoveryUrl": "<https://foo.com/.well-known/openid-configuration>",
+    * "usernameClaim": "fooAlt",
+    * "rolesClaim": "roles",
+    * "providerId": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "isDefault": true  
   },
   * {
-    * "id": "28b67422-63d5-46b1-9234-8ad4a1d2f7be",
-    * "type": "project",
-    * "roles": [
-      * "projectDataReaderWriter"  
-      ]  
+    * "issuer": "<https://example.auth.com>",
+    * "register": true,
+    * "clientId": "bar_client",
+    * "userPrefix": "barOIDC",
+    * "discoveryUrl": "<https://bar.com/.well-known/openid-configuration>",
+    * "usernameClaim": "barAlt",
+    * "providerId": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "isDefault": false  
   }  
-],
-* "audit": {
-  * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
-  * "createdAt": "2021-09-01T12:34:56.000Z",
-  * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
-  * "modifiedAt": "2021-09-01T12:34:56.000Z",
-  * "version": 2  
-}
+]
 }`
 
-## [](#tag/Users/operation/deleteUser)Delete User 
+## [](#tag/App-Endpoints/operation/getAppEndpointOIDCProvider)Get App Endpoint OpenID Connect (OIDC) Provider 
 
-Removes user from the organization.
+Fetches an OIDC provider by ID for the specified App Endpoint.
 
-In order to access this endpoint, the provided API key must have the following role:
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
 
 * Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
 
-To learn more about the roles, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html).
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
 ##### Authorizations:
 
@@ -27696,15 +23381,890 @@ _token_
 
 ##### path Parameters
 
-| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.       |
-| ---------------------- | --------------------------------------------------------------------------------------------------- |
-| userIdrequired         | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the control plane user. |
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.            |
+| ----------------------- | -------------------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                 |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                 |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.              |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                                   |
+| OIDCProviderIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the OpenID Connect Provider. |
+
+### Responses
+
+**200** 
+
+Successfully fetched the OIDC Provider.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+**504** 
+
+The server did not get a response in time from the upstream server in order to complete the request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/oidcProviders/{OIDCProviderId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/oidcProviders/{OIDCProviderId}
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 429
+* 500
+* 503
+* 504
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "issuer": "foo",
+* "register": true,
+* "clientId": "foo_client",
+* "userPrefix": "fooOIDC",
+* "discoveryUrl": "<https://foo.com/.well-known/openid-configuration>",
+* "usernameClaim": "fooAlt",
+* "isDefault": true
+}`
+
+## [](#tag/App-Endpoints/operation/updateAppEndpointOIDCProvider)Update App Endpoint OpenID Connect (OIDC) Provider 
+
+Updates an OIDC provider for the specified App Endpoint.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.            |
+| ----------------------- | -------------------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                 |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                 |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.              |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                                   |
+| OIDCProviderIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the OpenID Connect Provider. |
+
+##### Request Body schema: application/json
+
+| issuerrequired   | string The URL for the OpenID Connect issuer.                                                                                                                                                                                                           |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| register         | boolean Indicates whether to register a new App Service user account when a user logs in using OpenID Connect.                                                                                                                                          |
+| clientIdrequired | string The OpenID Connect provider client ID.                                                                                                                                                                                                           |
+| userPrefix       | string Username prefix for all users created for this provider                                                                                                                                                                                          |
+| discoveryUrl     | string The URL for the non-standard discovery endpoint.                                                                                                                                                                                                 |
+| usernameClaim    | string Allows a different OpenID Connect field to be specified instead of the Subject (sub).                                                                                                                                                            |
+| rolesClaim       | string If set, the value(s) of the given OpenID Connect authentication token claim will be added to the user's roles. The value of this claim in the OIDC token must be either a string or an array of strings, any other type will result in an error. |
+| scope            | Array of strings Default: \["openid","email"\] The scope sent for the OpenID Connect request.                                                                                                                                                           |
 
 ### Responses
 
 **204** 
 
-Successfully removed the user from the organization.
+Successfully updated the App Endpoint OIDC provider based on the OIDCProviderId.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+**504** 
+
+The server did not get a response in time from the upstream server in order to complete the request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/oidcProviders/{OIDCProviderId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/oidcProviders/{OIDCProviderId}
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "issuer": "<https://foo.com>",
+* "register": true,
+* "clientId": "foo_client",
+* "userPrefix": "fooOIDC",
+* "discoveryUrl": "<https://foo.com/.well-known/openid-configuration>",
+* "usernameClaim": "fooAlt"
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 409
+* 422
+* 429
+* 500
+* 503
+* 504
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/App-Endpoints/operation/deleteAppEndpointOIDCProvider)Delete App Endpoint OpenID Connect (OIDC) Provider 
+
+Deletes an OIDC provider for the specified App Endpoint. Deleting the default provider will error unless it is the only provider. Before deleting the default provider, you must set a new provider as default or have no other providers.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.            |
+| ----------------------- | -------------------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                 |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.                 |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.              |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                                   |
+| OIDCProviderIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the OpenID Connect Provider. |
+
+### Responses
+
+**202** 
+
+Successfully deleted the OIDC Provider.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+**504** 
+
+The server did not get a response in time from the upstream server in order to complete the request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/oidcProviders/{OIDCProviderId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/oidcProviders/{OIDCProviderId}
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 409
+* 429
+* 500
+* 503
+* 504
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/App-Endpoints/operation/updateAppEndpointOIDCDefaultProvider)Update App Endpoint Default OIDC Provider 
+
+Updates the default OIDC provider for the specified App Endpoint. All client requests will use the default OIDC provider, unless the OIDC provider for the request is explicitly specified. See more [here](https://docs.couchbase.com/cloud/app-services/user-management/set-up-authentication-provider.html#oidc-authorization-step-by-step).
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+
+##### Request Body schema: application/json
+
+| providerIdrequired | string |
+| ------------------ | ------ |
+
+### Responses
+
+**204** 
+
+Successfully updated the default OIDC provider.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+**504** 
+
+The server did not get a response in time from the upstream server in order to complete the request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/oidcProviders/defaultProvider
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/oidcProviders/defaultProvider
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "providerId": "ffffffff-aaaa-1414-eeee-000000000000"
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 409
+* 422
+* 429
+* 500
+* 503
+* 504
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/App-Endpoints/operation/getAppEndpointResync)Get Resync Status 
+
+Fetches the Resync status of the given App Endpoint. If no resync operation was triggered, the response will say the status is completed with 0 values for other properties.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+
+### Responses
+
+**200** 
+
+Successfully fetched the App Endpoint Resync status based on the App Endpoint name.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+**504** 
+
+The server did not get a response in time from the upstream server in order to complete the request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/resync
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/resync
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 412
+* 422
+* 429
+* 500
+* 503
+* 504
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "state": "running",
+* "startTime": "2023-10-12T07:20:50.52Z",
+* "lastError": "string",
+* "docsChanged": 100,
+* "docsProcessed": 500,
+* "docsTargeted": 1000,
+* "docsErrored": 10,
+* "collections_processing": {
+  * "scope1": [
+    * "collection_1",
+    * "collection_2"  
+  ]  
+}
+}`
+
+## [](#tag/App-Endpoints/operation/postAppEndpointResync)Start Resync 
+
+Initialises the Resync operation for the given collections. By default, all collections that require resync will be resynced unless they are specified in the scopes property, in which case only the specified collections that require resync will be resynced.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+
+##### Request Body schema: application/json
+
+| scopes | object |
+| ------ | ------ |
+
+### Responses
+
+**202** 
+
+The request to start the resync operation has been accepted.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+**504** 
+
+The server did not get a response in time from the upstream server in order to complete the request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/resync
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/resync
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "scopes": {
+  * "scope1": [
+    * "collection1",
+    * "collection2"  
+  ]  
+}
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 412
+* 422
+* 429
+* 500
+* 503
+* 504
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/App-Endpoints/operation/deleteAppEndpointResync)Stop Resync 
+
+Stops the Resync operation. When stopping resync, it will be stopped for all collections being processed. In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+
+### Responses
+
+**202** 
+
+The request to stop the resync operation has been accepted.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+**504** 
+
+The server did not get a response in time from the upstream server in order to complete the request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/resync
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/resync
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 412
+* 422
+* 429
+* 500
+* 503
+* 504
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/App-Services)App Services
+
+App Services is a fully managed application backend designed to provide data synchronization between mobile or IoT applications running Couchbase Lite and your Couchbase Capella database.
+
+## [](#tag/App-Services/operation/postAppService)Create App Service 
+
+Creates a new App Service.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+
+##### Request Body schema: application/json
+
+| namerequired     | string <= 256 characters Name of the cluster (up to 256 characters).                                                                                                                                                                                                  |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| description      | string A short description of the App Service.                                                                                                                                                                                                                        |
+| nodes            | integer Number of nodes configured for the App Service. Number of nodes configured for the App Service. The number of nodes can range from 2 to 12.                                                                                                                   |
+| compute          | object (AppServiceCompute) The CPU and RAM configuration of the App Service. The supported combinations are: CPU (cores) RAM (GB) 2 4 4 8 8 16 16 32 36 72                                                                                                            |
+| version          | string The version of the App Service server. If left empty, it will be defaulted to the latest available version.                                                                                                                                                    |
+| loadBalancerCidr | string^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\/\\d{1,2}$... Optional. Pins the CIDR block used for the App Service load balancer subnet. Supported for Azure App Services only and rejected for other providers. When omitted, the CIDR is allocated dynamically. |
+
+### Responses
+
+**201** 
+
+Successfully created an App Service.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "name": "MyAppSyncService",
+* "description": "My app sync service.",
+* "nodes": 2,
+* "compute": {
+  * "cpu": 2,
+  * "ram": 4  
+},
+* "version": "3.0",
+* "loadBalancerCidr": "10.1.0.0/24"
+}`
+
+### Response samples 
+
+* 201
+* 403
+* 404
+* 412
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "id": "ffffffff-aaaa-1414-eeee-000000000000"
+}`
+
+## [](#tag/App-Services/operation/listAppServices)List AppServices 
+
+Lists all the clusters under the organization.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+Returned set of clusters is reduced to what the caller has access to view. To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+
+##### query Parameters
+
+| page          | integer Sets the page you would like to view.                                                                                                                                                                   |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                         |
+| sortBy        | Array of strings Example: sortBy=name Sets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **name**, **id**, **description**. |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                                |
+| projectId     | string <uuid\> Example: projectId=ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                                                                              |
+
+### Responses
+
+**200** 
+
+Successfully listed appservices matching query.
 
 **403** 
 
@@ -27722,9 +24282,5128 @@ Returned when the client exceeds the rate limit for the given APIKey.
 
 An unexpected error occurred in the server while processing this request.
 
-delete/v4/organizations/{organizationId}/users/{userId}
+get/v4/organizations/{organizationId}/appservices
 
-https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/users/{userId}
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/appservices
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "name": "My App Service",
+    * "description": "Description of the App Service.",
+    * "cloudProvider": "aws",
+    * "nodes": 2,
+    * "compute": {
+      * "cpu": 2,
+      * "ram": 4  
+      },
+    * "clusterId": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "currentState": "deploying",
+    * "version": "3.141.5",
+    * "plan": "basic",
+    * "audit": {
+      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "createdAt": "2021-09-01T12:34:56Z",
+      * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "modifiedAt": "2021-09-01T12:34:56Z",
+      * "version": 1  
+      },
+    * "loadBalancerCidr": "10.1.0.0/24"  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 2,
+    * "next": 3,
+    * "previous": 1,
+    * "last": 10,
+    * "perPage": 10,
+    * "totalItems": 10  
+  },
+  * "hrefs": {
+    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
+  }  
+}
+}`
+
+## [](#tag/App-Services/operation/getAppService)Get App Service 
+
+Fetches the details of the given App Service.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+### Responses
+
+**200** 
+
+Successfully fetched the App Service based on the appServiceId.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "id": "ffffffff-aaaa-1414-eeee-000000000000",
+* "name": "My App Service",
+* "description": "Description of the App Service.",
+* "cloudProvider": "aws",
+* "nodes": 2,
+* "compute": {
+  * "cpu": 2,
+  * "ram": 4  
+},
+* "clusterId": "ffffffff-aaaa-1414-eeee-000000000000",
+* "currentState": "deploying",
+* "version": "3.141.5",
+* "plan": "basic",
+* "audit": {
+  * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "createdAt": "2021-09-01T12:34:56Z",
+  * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "modifiedAt": "2021-09-01T12:34:56Z",
+  * "version": 1  
+},
+* "loadBalancerCidr": "10.1.0.0/24"
+}`
+
+## [](#tag/App-Services/operation/putAppService)Update App Service 
+
+Updates an existing App Service.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+##### header Parameters
+
+| If-Match | string Example: 12A precondition header that specifies the entity tag of a resource. |
+| -------- | ------------------------------------------------------------------------------------ |
+
+##### Request Body schema: application/json
+
+| nodesrequired    | integer Number of nodes configured for the App Service. The number of nodes can range from 2 to 12.                                                                                                                                                                                |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| computerequired  | object (AppServiceCompute) The CPU and RAM configuration of the App Service. The supported combinations are: CPU (cores) RAM (GB) 2 4 4 8 8 16 16 32 36 72                                                                                                                         |
+| loadBalancerCidr | string^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\/\\d{1,2}$... Optional and immutable. The CIDR block pinned for the App Service load balancer subnet at creation time (Azure only). It cannot be changed after creation; supplying a different value returns a validation error. |
+
+### Responses
+
+**204** 
+
+Successfully updated the App Service metadata.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "nodes": 2,
+* "compute": {
+  * "cpu": 2,
+  * "ram": 4  
+},
+* "loadBalancerCidr": "10.1.0.0/24"
+}`
+
+### Response samples 
+
+* 403
+* 404
+* 412
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/App-Services/operation/deleteAppService)Delete App Service 
+
+Deletes an existing App Service.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+### Responses
+
+**202** 
+
+Successfully deleted the App Service by its appServiceId.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}
+
+### Response samples 
+
+* 403
+* 404
+* 412
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/App-Services/operation/appServiceOn)Turn On App Service 
+
+Turn App Service on. App Services can only be turned on when the linked cluster is turned on and healthy.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+### Responses
+
+**202** 
+
+Successfully switched the App Service to on state.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/activationState
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/activationState
+
+### Response samples 
+
+* 403
+* 404
+* 409
+* 412
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/App-Services/operation/appServiceOff)Turn Off App Service 
+
+Turn App Service off.
+
+Turn off an App Service to temporarily deactivate it and reduce its consumption of compute resources. The App Service itself and its related infrastructure will be removed once turned off.
+
+Any private endpoints configured on App Services will remain and will be available when App Service is turned back on. You will continue to incur costs for any private endpoints configured on App Services. If you don't wish to incur these costs, you must explicitly disable private endpoint service and reinstate private endpoints when App Service is turned back on again.
+
+Free tier App Service can only be turned off when the linked free tier cluster is turned off.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+### Responses
+
+**202** 
+
+Successfully switched the App Service to off state.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/activationState
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/activationState
+
+### Response samples 
+
+* 403
+* 404
+* 409
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/App-Services/operation/AddAppServiceAdminUser)Create App Service Admin User 
+
+Creates an Admin User on the specified App Service. The user can either be granted access to all App Endpoints or to specific App Endpoints by listing them in the `endpoints` field.
+
+Currently, the user will be granted admin access to all App Endpoints in a bucket (that is currently associated with the App Endpoint(s) specified in the endpoints field), including ones that are created in future. An option to grant access to specific App Endpoints in a bucket will be available in the future.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+##### Request Body schema: application/json
+
+| namerequired            | string The name of the user.                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| passwordrequired        | string The password of the user.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| enableBucketLevelAccess | boolean Default: true When set to true, the user will automatically be granted admin access to all App Endpoints in a bucket (that is currently associated with the App Endpoint(s) specified in the endpoints field), including ones that are created in future. The flag defaults to true. Currently, the only supported value is true, which means that the user will have admin access to all App Endpoints in this bucket. In the future, there will be the option to set this to false. |
+| accessrequired          | UpdateAppServiceAdminUserAllEndpointsRequest (object) or UpdateAppServiceAdminUserEndpointList (object)                                                                                                                                                                                                                                                                                                                                                                                       |
+
+### Responses
+
+**201** 
+
+Successfully created an App Service Admin User.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/adminUsers
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/adminUsers
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Example
+
+CreateAdminUserSpecificEndpointsCreateAdminUserAllEndpointsCreateAdminUserSpecificEndpoints
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "name": "user1",
+* "password": "password",
+* "enableBucketLevelAccess": false,
+* "access": {
+  * "endpoints": [
+    * "endpoint1",
+    * "endpoint2"  
+  ]  
+}
+}`
+
+### Response samples 
+
+* 201
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "id": "eeeeeeee-aaaa-1414-eeee-999999999999"
+}`
+
+## [](#tag/App-Services/operation/ListAppServiceAdminUsers)List App Service Admin Users 
+
+List the admin users for the specified App Service.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+##### query Parameters
+
+| page          | integer Sets the page you would like to view.                                                    |
+| ------------- | ------------------------------------------------------------------------------------------------ |
+| perPage       | integer Sets the number of results you would like to have on each page.                          |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted. |
+
+### Responses
+
+**200** 
+
+Successfully listed the Admin Users for the specified App Service.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/adminUsers
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/adminUsers
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "id": "eeeeeeee-aaaa-1414-eeee-999999999999",
+    * "tenantId": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "projectId": "dddddddd-cccc-1414-eeee-77777777777",
+    * "clusterId": "gggggggg-zzzz-1414-eeee-55555555555",
+    * "name": "admin",
+    * "endpoints": [
+      * "appEndpoint1",
+      * "appEndpoint2"  
+      ],
+    * "accessAllEndpoints": "false,",
+    * "audit": {
+      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "createdAt": "2024-09-01T12:34:56Z",
+      * "modifiedBy": "",
+      * "modifiedAt": "2024-09-01T12:34:56Z",
+      * "version": 1  
+      }  
+  },
+  * {
+    * "id": "eeeeeeee-gggg-1456-tttt-999999999999",
+    * "tenantId": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "projectId": "dddddddd-cccc-1414-eeee-77777777777",
+    * "clusterId": "gggggggg-zzzz-1414-eeee-55555555555",
+    * "name": "admin",
+    * "endpoints": [
+      * "appEndpoint1",
+      * "appEndpoint2"  
+      ],
+    * "accessAllEndpoints": false,
+    * "audit": {
+      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "createdAt": "2024-09-01T12:34:56Z",
+      * "modifiedBy": "",
+      * "modifiedAt": "2024-09-01T12:34:56Z",
+      * "version": 1  
+      }  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 2,
+    * "next": 3,
+    * "previous": 1,
+    * "last": 10,
+    * "perPage": 10,
+    * "totalItems": 10  
+  },
+  * "hrefs": {
+    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
+  }  
+}
+}`
+
+## [](#tag/App-Services/operation/UpdateAppServiceAdminUser)Update App Service Admin User 
+
+Updates the Admin User's access to App Endpoints on the specified App Service. The update operation can either grant access to all App Endpoints or to specific App Endpoints by listing them in the `endpoints` field.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.        |
+| ---------------------- | ---------------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.             |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.             |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.          |
+| userIdrequired         | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the database credential. |
+
+##### Request Body schema: application/json
+
+One of 
+
+UpdateAppServiceAdminUserEndpointListUpdateAppServiceAdminUserAllEndpointsRequest
+
+| endpointsrequired | Array of strings The list of App Endpoints that the user has access to. |
+| ----------------- | ----------------------------------------------------------------------- |
+
+### Responses
+
+**204** 
+
+Successfully updated the App Service Admin User.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/adminUsers/{userId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/adminUsers/{userId}
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Example
+
+UpdateAdminUserSpecificEndpointsUpdateAdminUserAllEndpointsUpdateAdminUserSpecificEndpoints
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "endpoints": [
+  * "endpoint1",
+  * "endpoint2"  
+]
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/App-Services/operation/DeleteAppServiceAdminUser)Delete App Service Admin User 
+
+Deletes the Admin User.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.        |
+| ---------------------- | ---------------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.             |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.             |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.          |
+| userIdrequired         | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the database credential. |
+
+### Responses
+
+**202** 
+
+Successfully deleted the App Service Admin User.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/adminUsers/{userId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/adminUsers/{userId}
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/App-Services/operation/getAppServiceAdminUser)Get App Service Admin User 
+
+Fetches the Admin User.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.        |
+| ---------------------- | ---------------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.             |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.             |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.          |
+| userIdrequired         | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the database credential. |
+
+### Responses
+
+**200** 
+
+Successfully fetched the App Service Admin User.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/adminUsers/{userId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/adminUsers/{userId}
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "id": "ffffffff-aaaa-1414-eeee-000000000000",
+* "tenantId": "ffffffff-aaaa-1414-eeee-000000000000",
+* "projectId": "ffffffff-aaaa-1414-eeee-000000000000",
+* "clusterId": "ffffffff-aaaa-1414-eeee-000000000000",
+* "name": "user1",
+* "endpoints": [
+  * "appEndpoint1",
+  * "appEndpoint2"  
+],
+* "accessAllEndpoints": false,
+* "audit": {
+  * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "createdAt": "2021-09-01T12:34:56Z",
+  * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "modifiedAt": "2021-09-01T12:34:56Z",
+  * "version": 1  
+}
+}`
+
+## [](#tag/App-Services/operation/putAppServiceMetadataIsolation)Opt App Service Back In to Metadata Isolation 
+
+Opt an App Service back in to system metadata collection (metadata isolation) after a support-initiated opt-out. Only the value `true` is accepted, and opting back in is permanent: once enabled the App Service cannot be opted out again. Requires App Services version 4.1 or later.
+
+New App Services are opted in automatically and existing App Services are opted in on upgrade to 4.1, so this endpoint is only useful after a previous opt-out via Couchbase support.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+##### Request Body schema: application/json
+
+| enabledrequired | boolean Value: true Whether metadata isolation is enabled on the App Service. Only true is accepted via this API to opt back in after support has previously opted the App Service out. Opting back in is permanent: the App Service cannot be opted out again once enabled. |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### Responses
+
+**204** 
+
+App Service successfully opted back in to metadata isolation.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/metadataIsolation
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/metadataIsolation
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "enabled": true
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/App-Services/operation/getAppServiceMetadataIsolation)Get App Service Metadata Isolation State 
+
+Retrieve the current metadata isolation state for the App Service.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+### Responses
+
+**200** 
+
+Current metadata isolation state.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/metadataIsolation
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/metadataIsolation
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "enabled": true
+}`
+
+## [](#tag/App-Services/operation/getAppServiceCertificate)Get Public Certificate for App Service  Deprecated 
+
+**Deprecated**: This endpoint will be removed in December 2026, at the next App Services certificate rotation.
+
+The App Services certificate is signed by a publicly trusted Certificate Authority, so standard CA validation is enough. Apps do not need to bundle or pin it. Remove any bundled or pinned copy and rely on the platform's default trust store. App Services rotates certificates regularly, so a pinned certificate causes TLS connections to fail after each rotation until the app ships an update. For more information, see [here](https://docs.couchbase.com/cloud/app-services/connect/connect-apps-to-endpoint.html#setting-up-the-connection).
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+### Responses
+
+**200** 
+
+Successfully fetched the App Service based on the appServiceId.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/certificates
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/certificates
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "certificate": "-----BEGIN CERTIFICATE-----\nMIIDFTCCAf2gAwIBAgI[...]CSYBWaK0ofivA==\n-----END CERTIFICATE-----\n"
+}`
+
+## [](#tag/App-Services/operation/ListAppEndpointAdminUsers)List App Endpoint Admin Users 
+
+Lists the Admin Users that have access to the specified App Endpoint.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+
+##### query Parameters
+
+| page          | integer Sets the page you would like to view.                                                    |
+| ------------- | ------------------------------------------------------------------------------------------------ |
+| perPage       | integer Sets the number of results you would like to have on each page.                          |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted. |
+
+### Responses
+
+**200** 
+
+Successfully listed the Admin Users for the specified App Endpoint.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/adminUsers
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/adminUsers
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "id": "eeeeeeee-aaaa-1414-eeee-999999999999",
+    * "tenantId": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "projectId": "dddddddd-cccc-1414-eeee-77777777777",
+    * "clusterId": "gggggggg-zzzz-1414-eeee-55555555555",
+    * "name": "admin",
+    * "endpoints": [
+      * "appEndpoint1",
+      * "appEndpoint2"  
+      ],
+    * "accessAllEndpoints": "false,",
+    * "audit": {
+      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "createdAt": "2024-09-01T12:34:56Z",
+      * "modifiedBy": "",
+      * "modifiedAt": "2024-09-01T12:34:56Z",
+      * "version": 1  
+      }  
+  },
+  * {
+    * "id": "eeeeeeee-gggg-1456-tttt-999999999999",
+    * "tenantId": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "projectId": "dddddddd-cccc-1414-eeee-77777777777",
+    * "clusterId": "gggggggg-zzzz-1414-eeee-55555555555",
+    * "name": "admin",
+    * "endpoints": [
+      * "appEndpoint1",
+      * "appEndpoint2"  
+      ],
+    * "accessAllEndpoints": false,
+    * "audit": {
+      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "createdAt": "2024-09-01T12:34:56Z",
+      * "modifiedBy": "",
+      * "modifiedAt": "2024-09-01T12:34:56Z",
+      * "version": 1  
+      }  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 2,
+    * "next": 3,
+    * "previous": 1,
+    * "last": 10,
+    * "perPage": 10,
+    * "totalItems": 10  
+  },
+  * "hrefs": {
+    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
+  }  
+}
+}`
+
+## [](#tag/App-Services-Audit-Logging)App Services Audit Logging
+
+Users can configure audit log support on Capella App Services and can export audit logs from cloud blob storage to an AWS S3 bucket. Users can retrieve audit logs from a pre-signed download URL. Logs are retained for 30 days.
+
+## [](#tag/App-Services-Audit-Logging/operation/putAppServiceAuditLogState)Enable or Disable App Service Audit Logging 
+
+Enable or disable Audit Logging for an App Service.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+##### Request Body schema: application/json
+
+| auditEnabledrequired | boolean Determines whether audit logging is enabled or not on the App Service. |
+| -------------------- | ------------------------------------------------------------------------------ |
+
+### Responses
+
+**204** 
+
+App service audit logging enabled/disabled successfully.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLog
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLog
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "auditEnabled": true
+}`
+
+### Response samples 
+
+* 403
+* 404
+* 412
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/App-Services-Audit-Logging/operation/getAppServiceAuditLogState)Get App Service Audit Log State 
+
+Retrieves the audit logging state for a specific App Service.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+### Responses
+
+**200** 
+
+Successful retrieval of audit log settings
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLog
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLog
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 412
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "auditEnabled": true
+}`
+
+## [](#tag/App-Services-Audit-Logging/operation/getAppServiceAuditLogEvents)List App Endpoint Audit Log Event IDs 
+
+Retrieves all audit log event ids, their descriptions and enabled status for an App Endpoint. The list of filterable event IDs can be specified while configuring audit logging for the App Service.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+
+### Responses
+
+**200** 
+
+Successful retrieval of audit log events
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/auditLogEvents
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/auditLogEvents
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 409
+* 412
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "events": {
+  * "53290": {
+    * "description": "Admin API user successfully authenticated",
+    * "enabled": true,
+    * "filterable": true,
+    * "name": "Admin API user authenticated"  
+  },
+  * "53292": {
+    * "description": "Admin API user failed to authorize",
+    * "enabled": true,
+    * "filterable": true,
+    * "name": "Admin API user authorization failed"  
+  }  
+}
+}`
+
+## [](#tag/App-Services-Audit-Logging/operation/putAppEndpointAuditLogConfig)Update App Endpoint Audit Logging Config 
+
+Updates the audit logging configuration for a specific App Endpoint. Operations performed by disabled users and roles are excluded from audit logs. See a list of event IDs by calling /auditLogEvents, add event IDs to the enabledEventIds field to enable audit logging for those events.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+
+##### Request Body schema: application/json
+
+| auditEnabled    | boolean Determines whether audit logging is enabled |
+| --------------- | --------------------------------------------------- |
+| enabledEventIds | Array of objects                                    |
+| disabledUsers   | Array of objects (DisabledUserRoles)                |
+| disabledRoles   | Array of objects (DisabledUserRoles)                |
+
+### Responses
+
+**204** 
+
+Successful update of audit logging configuration
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/auditLog
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/auditLog
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "auditEnabled": true,
+* "enabledEventIds": [
+  * {
+    * "id": 0  
+  }  
+],
+* "disabledUsers": [
+  * {
+    * "domain": "string",
+    * "name": "string"  
+  }  
+],
+* "disabledRoles": [
+  * {
+    * "domain": "string",
+    * "name": "string"  
+  }  
+]
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 412
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/App-Services-Audit-Logging/operation/getAppEndpointAuditLogConfig)Get App Endpoint Audit Logging Config 
+
+Retrieves the audit logging configuration for a specific App Endpoint.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+
+### Responses
+
+**200** 
+
+Successful retrieval of audit logging configuration
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/auditLog
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/auditLog
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 412
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "auditEnabled": true,
+* "enabledEventIds": [
+  * {
+    * "id": 0  
+  }  
+],
+* "disabledUsers": [
+  * {
+    * "domain": "string",
+    * "name": "string"  
+  }  
+],
+* "disabledRoles": [
+  * {
+    * "domain": "string",
+    * "name": "string"  
+  }  
+]
+}`
+
+## [](#tag/App-Services-Audit-Logging/operation/putAppServiceAuditLogStreaming)Configure App Service Audit Log Streaming 
+
+Sets up audit log streaming for a specific App Service with filters. If streamingEnabled is true log streaming will begin.
+
+Ensure you have provided collector credentials if you wish to begin streaming; log streaming cannot be enabled without credentials. Refer to schema below to see required fields for your log collection provider. Providers include Datadog, Sumo Logic, Grafana Loki, Elasticsearch (versions 8 and newer only) and generic HTTP. To start or resume streaming, set streamingEnabled to true while providing the rest of the log collector config.
+
+To disable log streaming and remove the log streaming config including credentials, set streamingEnabled to false and leave the rest of the payload empty.
+
+To pause log streaming, set streamingEnabled to false while providing the rest of the log collector config.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+##### Request Body schema: application/json
+
+| streamingEnabledrequired | boolean Determines whether audit log streaming is enabled or not. To start or resume streaming, set this to true. To disable or pause log streaming, set this to false.                                                                                  |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| disabledAppEndpoints     | Array of strings List of App Endpoints to be excluded from audit log streaming.                                                                                                                                                                          |
+| outputType               | string Enum: "datadog" "generic\_http" "sumologic" "loki" "elastic" "splunk" "dynatrace" The type of output for the audit log streaming. Required when starting, resuming or pausing log streaming.                                                      |
+| credentials              | datadog (object) or sumologic (object) or generic\_http (object) or elastic (object) or loki (object) or splunk (object) or dynatrace (object) Secrets for audit log streaming configuration. Required when starting, resuming or pausing log streaming. |
+
+### Responses
+
+**202** 
+
+Successful Setup of Audit Log Streaming
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLogStreaming
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLogStreaming
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "streamingEnabled": true,
+* "disabledAppEndpoints": [
+  * "string"  
+],
+* "outputType": "datadog",
+* "credentials": {
+  * "apiKey": "apiKey",
+  * "url": "<https://http-intake.logs.datadoghq.eu>"  
+}
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 412
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/App-Services-Audit-Logging/operation/patchAppServiceAuditLogStreaming)Start or Resume Audit Log Streaming 
+
+To start or resume streaming, set streamingEnabled to true. To pause log streaming, set streamingEnabled to false.
+
+If log streaming is paused we will retain the collector credentials. To clear these use the PUT request.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+##### Request Body schema: application/json
+
+| oprequired    | string Value: "update" Type of operation.                         |
+| ------------- | ----------------------------------------------------------------- |
+| pathrequired  | string Path of resource that needs to be updated.                 |
+| valuerequired | boolean Determines whether audit log streaming is enabled or not. |
+
+### Responses
+
+**202** 
+
+Successfully patched Audit Log Streaming config.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+patch/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLogStreaming
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLogStreaming
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "op": "update",
+* "path": "/streamingEnabled",
+* "value": true
+}`
+
+### Response samples 
+
+* 403
+* 404
+* 412
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/App-Services-Audit-Logging/operation/getAppServiceAuditLogStreaming)Get App Service Audit Log Streaming State 
+
+Retrieves the current state of audit log streaming for a specific App Service, as well as the output type and enabled App endpoints.
+
+The audit log streaming states are:
+
+* disabled
+* disabling
+* enabled
+* enabling
+* paused
+* pausing
+* errored
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+### Responses
+
+**200** 
+
+Successful retrieval of audit log streaming state
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLogStreaming
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLogStreaming
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 412
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "streamingEnabled": true,
+* "logStreamingState": "enabling",
+* "disabledAppEndpoints": [
+  * "string"  
+],
+* "outputType": "datadog"
+}`
+
+## [](#tag/App-Services-Audit-Logging/operation/postAppServiceAuditLogExport)Initiate Audit Log Export 
+
+Initiates an audit log export for a specific App Service.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+##### Request Body schema: application/json
+
+| startrequired | string <date-time\> Specifies the audit log's start date and time. |
+| ------------- | ------------------------------------------------------------------ |
+| endrequired   | string <date-time\> Specifies the audit log's end date and time.   |
+
+### Responses
+
+**202** 
+
+Successfully created audit export job for the cluster.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLogExports
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLogExports
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "start": "2022-09-04T00:56:07.000Z",
+* "end": "2022-09-05T04:56:07.000Z"
+}`
+
+### Response samples 
+
+* 202
+* 403
+* 404
+* 412
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "exportId": "ffffffff-aaaa-1414-eeee-000000000000"
+}`
+
+## [](#tag/App-Services-Audit-Logging/operation/listAppServiceAuditLogExports)List Audit Log Export Jobs 
+
+Retrieves a list of all audit log export jobs for an App Service.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+##### query Parameters
+
+| page          | integer Sets the page you would like to view.                                                    |
+| ------------- | ------------------------------------------------------------------------------------------------ |
+| perPage       | integer Sets the number of results you would like to have on each page.                          |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted. |
+
+### Responses
+
+**200** 
+
+Successfully retrieved list of audit export documents
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLogExports
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLogExports
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 412
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "id": "920e7b93-28c7-421b-993b-9fffecfd3598",
+    * "download_id": "<https://cb-audit-logs-333d2ad2-1408-405e-9995-XXXX.s3.us-east-1.amazonaws.com/export/app-service-audit-logs-XXXX-from-2024-07-06-to-2024-08-05.tar.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X>",
+    * "download_expires": "2024-08-08T13:43:48.420487299Z",
+    * "status": "Ready",
+    * "appServiceId": "01071798-23e5-4ec6-b814-13bebef70572",
+    * "tenantId": "333d2ad2-1408-405e-9995-68338d20ab5c",
+    * "clusterId": "71dd1cb2-34ac-43ae-a503-b2a9202f02d4",
+    * "audit": {
+      * "createdBy": "d4fa667c-206a-4916-9a24-3a03c2ec5771",
+      * "createdAt": "2024-08-05T13:43:45.998790923Z",
+      * "modifiedBy": "d4fa667c-206a-4916-9a24-3a03c2ec5771",
+      * "modifiedAt": "2024-08-05T13:43:48.420521466Z",
+      * "version": 3  
+      }  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 2,
+    * "next": 3,
+    * "previous": 1,
+    * "last": 10,
+    * "perPage": 10,
+    * "totalItems": 10  
+  },
+  * "hrefs": {
+    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
+  }  
+}
+}`
+
+## [](#tag/App-Services-Audit-Logging/operation/getAppServiceAuditLogExportById)Get Audit Log Export Job 
+
+Retrieves details of a specific audit log export job for a given App Service.
+
+ In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.  |
+| ------------------------ | ---------------------------------------------------------------------------------------------- |
+| projectIdrequired        | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.       |
+| clusterIdrequired        | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.       |
+| appServiceIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.    |
+| auditLogExportIdrequired | string Example: ffffffff-aaaa-1414-eeee-000000000000The export ID of the audit log export job. |
+
+### Responses
+
+**200** 
+
+Successfully retrieved details of audit export job
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLogExports/{auditLogExportId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/auditLogExports/{auditLogExportId}
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 412
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "id": "920e7b93-28c7-421b-993b-9fffecfd3598",
+* "download_id": "<https://cb-audit-logs-333d2ad2-1408-405e-9995-XXXX.s3.us-east-1.amazonaws.com/export/app-service-audit-logs-XXXX-from-2024-07-06-to-2024-08-05.tar.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X>",
+* "download_expires": "2024-08-08T13:43:48.420487299Z",
+* "status": "Ready",
+* "appServiceId": "01071798-23e5-4ec6-b814-13bebef70572",
+* "tenantId": "333d2ad2-1408-405e-9995-68338d20ab5c",
+* "clusterId": "71dd1cb2-34ac-43ae-a503-b2a9202f02d4",
+* "audit": {
+  * "createdBy": "d4fa667c-206a-4916-9a24-3a03c2ec5771",
+  * "createdAt": "2024-08-05T13:43:45.998790923Z",
+  * "modifiedBy": "d4fa667c-206a-4916-9a24-3a03c2ec5771",
+  * "modifiedAt": "2024-08-05T13:43:48.420521466Z",
+  * "version": 3  
+}
+}`
+
+## [](#tag/App-Services-Log-Streaming)App Services Log Streaming
+
+Log Streaming provides a mechanism for real-time streaming of App Services operational logs to third-party observability platforms or self-hosted HTTP logs collectors. This is a crucial tool to gain instant insights into application behavior, enabling rapid issue detection and resolution to enhance application reliability, performance, and security.
+
+## [](#tag/App-Services-Log-Streaming/operation/resumeAppServiceLogStreaming)Resume App Service Log Streaming 
+
+Re-enables Log Streaming for an App Service that was previously paused. Log Streaming needs to be previously configured for the App Service before it can be paused or resumed.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+### Responses
+
+**202** 
+
+Successfully resumed log streaming for the app service.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming/activationState
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming/activationState
+
+### Response samples 
+
+* 403
+* 404
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/App-Services-Log-Streaming/operation/pauseAppServiceLogStreaming)Pause App Service Log Streaming 
+
+Temporarily disables Log Streaming for an App Service. Log Streaming needs to be previously configured for the App Service before it can be paused or resumed.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+### Responses
+
+**202** 
+
+Successfully paused log streaming for the app service.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming/activationState
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming/activationState
+
+### Response samples 
+
+* 403
+* 404
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/App-Services-Log-Streaming/operation/postAppServiceLogStreaming)Configure App Service Log Streaming 
+
+Sets up log streaming for a specific App Service.
+
+Ensure you have provided collector credentials if you wish to begin streaming; log streaming cannot be enabled without credentials. Refer to schema below to see required fields for your log collection provider. Supported providers include Datadog, Sumo Logic, Grafana Loki, Elasticsearch (versions 8 and newer only), generic HTTP, Splunk, and Dynatrace.
+
+Log streaming can only be configured while the config state is either enabled, paused, or disabled.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+##### Request Body schema: application/json
+
+| outputTyperequired  | string Enum: "datadog" "generic\_http" "sumologic" "loki" "elastic" "splunk" "dynatrace" The log collector to have logs streamed to.                                                                              |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| credentialsrequired | datadog (object) or sumologic (object) or generic\_http (object) or elastic (object) or loki (object) or splunk (object) or dynatrace (object) The credentials to be used to authenticate with the log collector. |
+
+### Responses
+
+**202** 
+
+Successful configuration of log streaming
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "outputType": "datadog",
+* "credentials": {
+  * "apiKey": "apiKey",
+  * "url": "<https://http-intake.logs.datadoghq.eu>"  
+}
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/App-Services-Log-Streaming/operation/getAppServiceLogStreaming)Get App Service Log Streaming Configuration and State 
+
+Retrieves the configured output type, current config state, current streaming state of log streaming for a specific App Service.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+### Responses
+
+**200** 
+
+Successful retrieval of log streaming configuration and state
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "outputType": "datadog",
+* "configState": "enabled",
+* "streamingState": "healthy"
+}`
+
+## [](#tag/App-Services-Log-Streaming/operation/deleteAppServiceLogStreaming)Disable App Service Log Streaming 
+
+Disables log streaming for a specific App Service.
+
+This will remove the log streaming configuration for the App Service. To enable log streaming again, you will need to provide the configuration details once more using the "Configure App Service Log Streaming" endpoint.
+
+Log streaming can only be disabled while the config state is either enabled or paused.
+
+It may take a few minutes for the log streaming to be fully disabled.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+### Responses
+
+**202** 
+
+Log streaming disabled
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming
+
+### Response samples 
+
+* 403
+* 404
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/App-Services-Log-Streaming/operation/putAppEndpointLogStreamingConfig)Update App Endpoint Log Streaming Config 
+
+Updates the log streaming config for an app endpoint, which configures log levels and keys used to filter log messages.
+
+This app endpoint log streaming config can only be updated while the log streaming config state is either "paused" or "enabled".
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+
+##### Request Body schema: application/json
+
+| logLevelrequired | string Enum: "info" "warn" "error" Controls the verbosity of logs based on the specified log level                                                                          |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| logKeysrequired  | Array of stringsItems Enum: "Admin" "Access" "Auth" "Cache" "Changes" "CRUD" "HTTP" "HTTP+" "Import" "Javascript" "Query" "Sync" "SyncMsg" Filter logs to specific log keys |
+
+### Responses
+
+**204** 
+
+Successful update of the app endpoint log streaming configuration
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+**504** 
+
+The server did not get a response in time from the upstream server in order to complete the request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/logStreaming
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/logStreaming
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "logLevel": "warn",
+* "logKeys": [
+  * "HTTP",
+  * "Import",
+  * "Sync"  
+]
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+* 503
+* 504
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/App-Services-Log-Streaming/operation/getAppEndpointLogStreamingConfig)Get App Endpoint Log Streaming Config 
+
+Retrieves log streaming config for an app endpoint, which shows log levels and keys used to filter log messages.
+
+This app endpoint log streaming config can only be retrieved while the log streaming config state is either "paused" or "enabled".
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+
+### Responses
+
+**200** 
+
+Successful retrieval of the app endpoint log streaming configuration
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+**504** 
+
+The server did not get a response in time from the upstream server in order to complete the request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/logStreaming
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/logStreaming
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+* 503
+* 504
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "logLevel": "warn",
+* "logKeys": [
+  * "HTTP",
+  * "Import",
+  * "Sync"  
+]
+}`
+
+## [](#tag/App-Services-Private-Endpoints)App Services Private Endpoints
+
+App Services Private Endpoints enables you to configure a secure private network connection between the Virtual Private Cloud (VPC) hosting your applications and the VPC of your Couchbase Capella App Services. Note: This is currently only available for AWS.
+
+## [](#tag/App-Services-Private-Endpoints/operation/postAppServicePrivateEndpoints)Enable App Service Private Endpoints 
+
+Enable Private Endpoints for an App Service.
+
+Supporting infrastructure is deployed and it may take a few minutes for Private Endpoints to be available. Once enabled, you can create Private Endpoints in your network. You can do this using the cloud provider's CLI. To obtain the command use the /privateEndpointService/privateEndpointCommand endpoint.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+### Responses
+
+**202** 
+
+App Service Private Endpoints enabled successfully.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService
+
+### Response samples 
+
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/App-Services-Private-Endpoints/operation/getAppServicePrivateEndpoints)Get App Service Private Endpoints State 
+
+The App Service Private Endpoint service allows you to access your Capella cluster from your private network, using Private Endpoints.
+
+This endpoint determines if the endpoint service is enabled or disabled for your App Service.
+
+It returns both a state and targetState. The state indicates the current status of the service, while the targetState indicates the desired end state of the service.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+### Responses
+
+**200** 
+
+Successful retrieval of Private Endpoints state
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "state": "enabled",
+* "targetState": "enabled"
+}`
+
+## [](#tag/App-Services-Private-Endpoints/operation/deleteAppServicePrivateEndpoints)Disable App Service Private Endpoints 
+
+Disable Private Endpoints for an App Service.
+
+Supporting infrastructure is removed and it may take a few minutes before the Private Endpoint service is disabled.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+### Responses
+
+**202** 
+
+App Service Private Endpoints disabled successfully.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService
+
+### Response samples 
+
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/App-Services-Private-Endpoints/operation/getAppServicePrivateEndpointsCommand)Get App Service Private Endpoints Command 
+
+Retrieves the Private Endpoints command in order to create Private Endpoints and initiate the connection between the specified VPC and the App Service.
+
+An example for AWS:
+
+```
+aws ec2 create-vpc-endpoint \
+  --vpc-id vpc-1234 \
+  --region us-east-1 \
+  --service-name com.amazonaws.vpce.us-east-1.vpce-svc-1234 \
+  --vpc-endpoint-type Interface \
+  --subnet-ids subnet-1234
+
+```
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+##### Request Body schema: application/json
+
+One of 
+
+CreateVPCEndpointCommandRequest
+
+| vpcIDrequired     | string \[ 12 .. 21 \] characters The ID of your virtual network |
+| ----------------- | --------------------------------------------------------------- |
+| subnetIDsrequired | Array of strings                                                |
+
+### Responses
+
+**200** 
+
+Successfully returned commands to establish a private connection to the App Service.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService/privateEndpointCommand
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService/privateEndpointCommand
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "vpcID": "vpc-1234",
+* "subnetIDs": [
+  * "subnet-1234"  
+]
+}`
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "command": "aws ec2 create-vpc-endpoint --vpc-id vpc-1234 --region us-east-1 --service-name com.amazonaws.vpce.us-east-1.vpce-svc-1234 --vpc-endpoint-type Interface --subnet-ids subnet-1234"
+}`
+
+## [](#tag/App-Services-Private-Endpoints/operation/listAppServicePrivateEndpoints)List App Service Private Endpoints 
+
+Returns a list of the Private Endpoints associated with your Capella App Service with its current state. Each of these Private Endpoints is either attempting to connect or is connected to the App Service network.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Creator
+* Project Viewer To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+### Responses
+
+**200** 
+
+Successfully retrieved list of App Service Private Endpoints.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService/endpoints
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService/endpoints
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "privateEndpointDNS": "abcdef123456.pl.cloud.couchbase.com",
+* "endpoints": [
+  * {
+    * "id": "vpce-000000000000aaaaa",
+    * "serviceName": "com.amazonaws.vpce.us-east-1.vpce-svc-000000000000aaaaa",
+    * "status": "linked"  
+  }  
+]
+}`
+
+## [](#tag/App-Services-Private-Endpoints/operation/acceptPrivateEndpointRequest)Accept Private Endpoint Request 
+
+Accepts a Private Endpoint connection request for an App Service. This completes the connection and means the Private Endpoint is now associated with the App Service and available for use.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| endpointIdrequired     | string Example: vpce-1234The VPC endpoint ID.                                                 |
+
+### Responses
+
+**204** 
+
+Successfully accepted Private Endpoint connection request.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService/endpoints/{endpointId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService/endpoints/{endpointId}
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/App-Services-Private-Endpoints/operation/deletePrivateEndpointRequest)Delete Private Endpoint Request 
+
+If the Private Endpoint is already connected and accepted this will unassociate the Private Endpoint from the App Service. If the Private Endpoint is not already connected this will reject the Private Endpoint connection request.
+
+Both cases will remove the Private Endpoint from the App Service and it will no longer be available for use and any connection will be terminated.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| endpointIdrequired     | string Example: vpce-1234The VPC endpoint ID.                                                 |
+
+### Responses
+
+**204** 
+
+Successfully deleted private endpoint.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService/endpoints/{endpointId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/privateEndpointService/endpoints/{endpointId}
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/Operational-Insights-Management-API-Overview)Operational Insights Management API Overview
+
+Manage Operational Insights clusters with REST APIs. Use these APIs to manage cluster lifecycle, on/off scheduling, cloud snapshot backups, allowed CIDRs, and private endpoint configuration for Operational Insights workloads.
+
+## [](#tag/Allowed-CIDRs-%28Operational-Insights-Cluster%29)Allowed CIDRs (Operational Insights Cluster)
+
+Operational Insights clusters only allow connections from trusted IP addresses. Each Operational Insights cluster has a configurable Allowed IP list that can include up to 75 entries. Each entry can be a single IP address or an IP address space. Any IP address you add to this list can have a user-specified expiration time for temporary access, or be permanent. Capella automatically denies any connection attempts to and from an IP not in the allowed IP list.
+
+## [](#tag/Allowed-CIDRs-%28Operational-Insights-Cluster%29/operation/postOperationalInsightsAllowedCidr)Create Allowed CIDR 
+
+Adds a trusted CIDR to an clusters's list of allowed CIDRs.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+Note that updating this resource is not supported; you must delete and recreate allowed CIDRs instead. As a result, ETags are also not supported for this resource.
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+##### Request Body schema: application/json
+
+| cidrrequired | string The trusted CIDR to allow the database connections from. The example represents a single IP address (i.e. a subnet mask of 32).                                                           |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| comment      | string A short description of the allowed CIDR.                                                                                                                                                  |
+| expiresAt    | string <date-time\> An RFC3339 timestamp determining when the allowed CIDR should expire. If this field is empty/omitted then the allowed CIDR is permanent and will never automatically expire. |
+
+### Responses
+
+**201** 
+
+Successfully added an allowed CIDR for the Operational Insights cluster.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/allowedcidrs
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/allowedcidrs
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "cidr": "6.60.28.100/32",
+* "comment": "Allows access from my local developer machine",
+* "expiresAt": "2023-05-14T21:49:58.465Z"
+}`
+
+### Response samples 
+
+* 201
+* 400
+* 401
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "id": "ffffffff-aaaa-1414-eeee-000000000000"
+}`
+
+## [](#tag/Allowed-CIDRs-%28Operational-Insights-Cluster%29/operation/listOperationalInsightsAllowedCidrs)List Allowed CIDRs 
+
+Lists all of the allowed CIDRs for a given cluster.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+##### query Parameters
+
+| page          | integer Sets the page you would like to view.                                                                                                                                                            |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                  |
+| sortBy        | Array of strings Example: sortBy=id Sets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **id**, **type**, **status**. |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                         |
+
+### Responses
+
+**200** 
+
+Successfully listed all allowed CIDRs for the Operational Insights cluster.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/allowedcidrs
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/allowedcidrs
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "cidr": "1.23.45.67/32",
+    * "comment": "Allows access from my local developer machine",
+    * "expiresAt": "2023-05-14T21:49:58.465Z",
+    * "status": "active",
+    * "type": "temporary",
+    * "audit": {
+      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "createdAt": "2021-09-01T12:34:56Z",
+      * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "modifiedAt": "2021-09-01T12:34:56Z",
+      * "version": 1  
+      }  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 2,
+    * "next": 3,
+    * "previous": 1,
+    * "last": 10,
+    * "perPage": 10,
+    * "totalItems": 10  
+  },
+  * "hrefs": {
+    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
+  }  
+}
+}`
+
+## [](#tag/Allowed-CIDRs-%28Operational-Insights-Cluster%29/operation/getColumnarOperationalInsightsAllowedCidrByID)Get Allowed CIDR 
+
+Fetches the details for the specified allowed CIDR.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+| allowedCidrIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the allowed CIDR.      |
+
+### Responses
+
+**200** 
+
+Successfully fetched the allowed CIDR details.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/allowedcidrs/{allowedCidrId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/allowedcidrs/{allowedCidrId}
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "id": "ffffffff-aaaa-1414-eeee-000000000000",
+* "cidr": "1.23.45.67/32",
+* "comment": "Allows access from my local developer machine",
+* "expiresAt": "2023-05-14T21:49:58.465Z",
+* "status": "active",
+* "type": "temporary",
+* "audit": {
+  * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "createdAt": "2021-09-01T12:34:56Z",
+  * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "modifiedAt": "2021-09-01T12:34:56Z",
+  * "version": 1  
+}
+}`
+
+## [](#tag/Allowed-CIDRs-%28Operational-Insights-Cluster%29/operation/deleteColumnarOperationalInsightsAllowedCidrByID)Delete Allowed CIDR 
+
+Deletes the existing allowed CIDR.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+| allowedCidrIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the allowed CIDR.      |
+
+### Responses
+
+**204** 
+
+Successfully deleted the allowed CIDR by its ID.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/allowedcidrs/{allowedCidrId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/allowedcidrs/{allowedCidrId}
+
+### Response samples 
+
+* 400
+* 401
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/Operational-Insights-Cloud-Snapshot-Backups-and-Restore)Operational Insights Cloud Snapshot Backups & Restore
+
+Couchbase provides a comprehensive backup solution, supporting both scheduled and on-demand backups to ensure robust disaster recovery for production data. In Couchbase Capella, you can perform scheduled and on-demand backups of Operational Insights cloud snapshot data. On-demand backups are always full backups and start immediately upon request, ensuring you can capture the current state of your data whenever needed.
+
+## [](#tag/Operational-Insights-Cloud-Snapshot-Backups-and-Restore/operation/createColumnarOperationalInsightsBackup)Create Cloud Snapshot Backup 
+
+Creates a new backup for the specified Operational Insights cluster.
+
+This operation captures the current state of the cluster, which can later be used for restore purposes.
+
+For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
+
+To access this endpoint, the provided API key must include one of the following roles.
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+For more information, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+##### Request Body schema: application/json
+
+| retention | integer Represents interval in hours to retain the backup. |
+| --------- | ---------------------------------------------------------- |
+
+### Responses
+
+**202** 
+
+Successfully initiated the creation of a backup for the Operational Insights cluster. The response contains the ID of the backup process.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/cloudSnapshotBackups
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/cloudSnapshotBackups
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "retention": 168
+}`
+
+### Response samples 
+
+* 202
+* 403
+* 404
+* 409
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "backupId": "ffffffff-aaaa-1414-eeee-000000000000"
+}`
+
+## [](#tag/Operational-Insights-Cloud-Snapshot-Backups-and-Restore/operation/listColumnarOperationalInsightsBackups)List Cloud Snapshot Backups 
+
+Retrieves a list of backups for the specified Operational Insights cluster.
+
+This list includes only the backups that are in progress, completed, or failed. It does not show backups that are queued but not yet initiated.
+
+For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
+
+To access this endpoint, the provided API key must include one of the following roles.
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+For more information, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+##### query Parameters
+
+| page          | integer Sets the page you would like to view.                                                                                                                                                                                                               |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                                                                     |
+| sortBy        | Array of strings Example: sortBy=createdAtSets the order in which you would like to sort the results and the key you would like to sort by. Valid fields to sort the results are: **id**, **createdAt**, **expiration**, **retention**, **size**, **type**. |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                                                                            |
+
+### Responses
+
+**200** 
+
+Successfully retrieved the list of backups for the Operational Insights cluster. The response contains a paginated list of backup details in JSON format.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/cloudSnapshotBackups
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/cloudSnapshotBackups
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "createdAt": "2019-08-24T14:15:22Z",
+    * "databaseSize": 0,
+    * "type": "string",
+    * "retention": 0,
+    * "expiration": "2019-08-24T14:15:22Z",
+    * "progress": {
+      * "status": "string",
+      * "time": "2019-08-24T14:15:22Z"  
+      },
+    * "region": "string",
+    * "id": "string"  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 2,
+    * "next": 3,
+    * "previous": 1,
+    * "last": 10,
+    * "perPage": 10,
+    * "totalItems": 10  
+  },
+  * "hrefs": {
+    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
+  }  
+}
+}`
+
+## [](#tag/Operational-Insights-Cloud-Snapshot-Backups-and-Restore/operation/updateColumnarOperationalInsightsBackupRetention)Update Backup Retention 
+
+Updates the retention period for a specific backup in your Operational Insights cluster.
+
+The retention period determines how long a backup is stored before it is automatically deleted. Adjust this setting to extend or shorten the duration based on your retention policy.
+
+For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
+
+To access this endpoint, the provided API key must include one of the following roles.
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+For more information, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+| backupIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the backup.            |
+
+##### Request Body schema: application/json
+
+| retentionrequired | integer Represents interval in hours to retain the backup. |
+| ----------------- | ---------------------------------------------------------- |
+
+### Responses
+
+**204** 
+
+The backup retention time was successfully updated. No content is returned in the response.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/cloudSnapshotBackups/{backupId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/cloudSnapshotBackups/{backupId}
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "retention": 720
+}`
+
+### Response samples 
+
+* 403
+* 404
+* 409
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/Operational-Insights-Cloud-Snapshot-Backups-and-Restore/operation/deleteColumnarOperationalInsightsBackup)Delete Backup 
+
+Permanently deletes a specific backup from the Operational Insights cluster.
+
+This action cannot be undone. Ensure that the backup is no longer needed before deletion, as it will remove all data associated with it.
+
+For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
+
+To access this endpoint, the provided API key must include one of the following roles.
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+For more information, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+| backupIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the backup.            |
+
+### Responses
+
+**202** 
+
+The backup deletion request was successfully received and is being processed.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/cloudSnapshotBackups/{backupId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/cloudSnapshotBackups/{backupId}
+
+### Response samples 
+
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/Operational-Insights-Cloud-Snapshot-Backups-and-Restore/operation/restoreColumnarOperationalInsightsCluster)Restore Backup 
+
+Initiates an immediate restore job from a specified backup for the Operational Insights cluster.
+
+This operation allows you to restore data from an existing backup to the current state of the cluster.
+
+For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
+
+To access this endpoint, the provided API key must include one of the following roles.
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+For more information, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+| backupIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the backup.            |
+
+### Responses
+
+**202** 
+
+Successfully initiated a restore job for the Operational Insights cluster. The response includes the ID of the restore operation.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/cloudSnapshotBackups/{backupId}/restore
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/cloudSnapshotBackups/{backupId}/restore
+
+### Response samples 
+
+* 202
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "restoreId": "ffffffff-aaaa-1414-eeee-000000000000"
+}`
+
+## [](#tag/Operational-Insights-Cloud-Snapshot-Backups-and-Restore/operation/listColumnarOperationalInsightsRestores)List Cloud Snapshot Restores 
+
+Retrieves a list of restore operations that have been performed for the specified Operational Insights cluster.
+
+This allows you to track completed, ongoing, or failed restore jobs for your cluster.
+
+For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
+
+To access this endpoint, the provided API key must include one of the following roles.
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+For more information, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+##### query Parameters
+
+| page          | integer Sets the page you would like to view.                                                                                                                                                           |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                 |
+| sortBy        | Array of strings Example: sortBy=createdAtSets the order in which you would like to sort the results and the key you would like to sort by. Valid fields to sort the results are: **id**, **createdAt** |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                        |
+
+### Responses
+
+**200** 
+
+Successfully retrieved the list of restore operations for the Operational Insights cluster. The response contains a paginated list of restore job details in JSON format.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/cloudSnapshotBackups/restores
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/cloudSnapshotBackups/restores
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "id": "string",
+    * "createdAt": "2019-08-24T14:15:22Z",
+    * "status": "string",
+    * "restoreEnd": "2019-08-24T14:15:22Z",
+    * "restoreTo": "string",
+    * "snapshot": "2019-08-24T14:15:22Z"  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 2,
+    * "next": 3,
+    * "previous": 1,
+    * "last": 10,
+    * "perPage": 10,
+    * "totalItems": 10  
+  },
+  * "hrefs": {
+    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
+  }  
+}
+}`
+
+## [](#tag/Operational-Insights-Cloud-Snapshot-Backups-Schedule)Operational Insights Cloud Snapshot Backups Schedule
+
+Couchbase provides automatic backup scheduling as part of its disaster recovery strategy at the cluster level. In Couchbase Capella, once a backup schedule is set, the system automatically backs up the entire cluster based on the defined schedule, ensuring that all data within the cluster is protected according to your retention policies.
+
+## [](#tag/Operational-Insights-Cloud-Snapshot-Backups-Schedule/operation/upsertColumnarOperationalInsightsBackupSchedule)Upsert Backup Schedule 
+
+Creates or updates the backup schedule for the specified Operational Insights cluster.
+
+This operation allows you to configure or modify the timing and frequency of backups. It ensures that the cluster's backup process follows the defined schedule.
+
+For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
+
+To access this endpoint, the provided API key must include one of the following roles.
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+For more information on access roles, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+##### Request Body schema: application/json
+
+| intervalrequired  | integer Represents the time interval in hours.                    |
+| ----------------- | ----------------------------------------------------------------- |
+| retentionrequired | integer Represents the retention time of the backup in hours.     |
+| startTimerequired | string <date-time\> Represents the start time in ISO 8601 format. |
+
+### Responses
+
+**204** 
+
+The backup schedule was successfully created or updated. No content will be returned in the response.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/cloudSnapshotBackupSchedule
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/cloudSnapshotBackupSchedule
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "interval": 4,
+* "retention": 24,
+* "startTime": "2024-07-08T17:00:00+00:00"
+}`
+
+### Response samples 
+
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/Operational-Insights-Cloud-Snapshot-Backups-Schedule/operation/getColumnarOperationalInsightsBackupSchedule)Get Backup Schedule 
+
+Retrieves the current backup schedule for the specified Operational Insights cluster.
+
+This operation provides the details of the backup schedule, including timing and frequency, so you can view and verify when backups are set to occur.
+
+For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
+
+To access this endpoint, the provided API key must include one of the following roles.
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+For more information on access roles, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+### Responses
+
+**200** 
+
+The backup schedule was successfully retrieved, and the response contains the details of the schedule in JSON format.
+
+**204** 
+
+The backup schedule was not found for the specified Operational Insights cluster. No content will be returned in the response.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/cloudSnapshotBackupSchedule
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/cloudSnapshotBackupSchedule
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "interval": 4,
+* "retention": 24,
+* "startTime": "2024-07-08T17:00:00+00:00"
+}`
+
+## [](#tag/Operational-Insights-Cloud-Snapshot-Backups-Schedule/operation/deleteColumnarOperationalInsightsBackupSchedule)Delete Backup Schedule 
+
+Deletes the existing backup schedule for the specified Operational Insights cluster.
+
+This action permanently removes the scheduled backups, so no future backups will be initiated unless a new schedule is created.
+
+For further details on managing backups, refer to [Backup and Restore Data](https://docs.couchbase.com/columnar/admin/backup-restore.html).
+
+To access this endpoint, the provided API key must include one of the following roles.
+
+* Organization Owner
+* Project Owner
+* Project Manager  
+For more information on access roles, visit [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+### Responses
+
+**204** 
+
+The backup schedule was successfully deleted. No content will be returned in the response.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/cloudSnapshotBackupSchedule
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/cloudSnapshotBackupSchedule
 
 ### Response samples 
 
@@ -27744,6 +29423,4166 @@ Copy
 * "code": 1002,
 * "message": "Access Denied.",
 * "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/Operational-Insights-Clusters)Operational Insights Clusters
+
+The Operational Insights Clusters endpoint allows users to manage their Capella Operational Insights clusters. Capella Operational Insights is an analytical database (RT-OLAP) for bringing data together for real time apps and operational intelligence. Using this endpoint, users can create new clusters, get details of a specific cluster or a listing of clusters, scale up or down existing clusters, and delete clusters.
+
+## [](#tag/Operational-Insights-Clusters/operation/createOperationalInsightsCluster)Create New Operational Insights Cluster 
+
+Creates a new Operational Insights cluster.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager  
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+
+##### Request Body schema: application/json
+
+| namerequired          | string <= 256 characters Name of the analytics cluster                                                                                                                                                          |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| description           | string <= 1024 characters The description of the analytics cluster.                                                                                                                                             |
+| cloudProviderrequired | string Enum: "aws" "gcp" Cloud provider selection aws: Amazon Web Services gcp: Google Cloud Platform                                                                                                           |
+| regionrequired        | string Which region should the analytics cluster be deployed in.                                                                                                                                                |
+| nodesrequired         | integer \[ 1 .. 32 \] The number of nodes.                                                                                                                                                                      |
+| supportrequired       | object (ColumnarSupport)                                                                                                                                                                                        |
+| computerequired       | object (Compute) Following are the supported compute combinations for CPU and RAM for different cloud providers. To learn more, see [Amazon Web Services](https://docs.couchbase.com/cloud/reference/aws.html). |
+| availabilityrequired  | object (Availability)                                                                                                                                                                                           |
+
+### Responses
+
+**202** 
+
+Successfully created an Operational Insights cluster.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**402** 
+
+The request is unavailable unavailable for trial accounts.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "name": "My-first-analytics-cluster",
+* "description": "I won him in a game of hook a duck at a carnival",
+* "cloudProvider": "aws",
+* "region": "us-east-2",
+* "nodes": 2,
+* "support": {
+  * "plan": "enterprise",
+  * "timezone": "ET"  
+},
+* "compute": {
+  * "cpu": 4,
+  * "ram": 16  
+},
+* "availability": {
+  * "type": "single"  
+}
+}`
+
+### Response samples 
+
+* 202
+* 401
+* 402
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "id": "ffffffff-aaaa-1414-eeee-000000000000"
+}`
+
+## [](#tag/Operational-Insights-Clusters/operation/listProjectLevelOperationalInsightsClusters)List Project Level Operational Insights Clusters 
+
+Lists all the Operational Insights clusters for a project.
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+
+##### query Parameters
+
+| page          | integer Sets the page you would like to view.                                                                                                                                                                    |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                          |
+| sortBy        | Array of strings Example: sortBy=nameSets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **id**, **cloudProvider**, **name**. |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                                 |
+
+### Responses
+
+**200** 
+
+Successfully listed all the Operational Insights clusters for the project.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters
+
+### Response samples 
+
+* 200
+* 401
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "name": "My-first-analytics-cluster",
+    * "description": "I won him in a game of hook a duck at a carnival",
+    * "cloudProvider": "aws",
+    * "region": "us-east-2",
+    * "nodes": 3,
+    * "currentState": "deploying",
+    * "support": {
+      * "plan": "enterprise",
+      * "timezone": "ET"  
+      },
+    * "compute": {
+      * "cpu": 4,
+      * "ram": 16  
+      },
+    * "availability": {
+      * "type": "single"  
+      }  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 2,
+    * "next": 3,
+    * "previous": 1,
+    * "last": 10,
+    * "perPage": 10,
+    * "totalItems": 10  
+  },
+  * "hrefs": {
+    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
+  }  
+}
+}`
+
+## [](#tag/Operational-Insights-Clusters/operation/listOrganizationLevelOperationalInsightsClusters)List Organization Level Operational Insights Clusters 
+
+Lists all the Operational Insights clusters for an organization.
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+
+##### query Parameters
+
+| page          | integer Sets the page you would like to view.                                                                                                                                                                    |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                          |
+| sortBy        | Array of strings Example: sortBy=nameSets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **id**, **cloudProvider**, **name**. |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                                 |
+
+### Responses
+
+**200** 
+
+Successfully listed all the Operational Insights clusters for the organization.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/operationalInsightsClusters
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/operationalInsightsClusters
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "name": "My-first-analytics-cluster",
+    * "description": "I won him in a game of hook a duck at a carnival",
+    * "cloudProvider": "aws",
+    * "region": "us-east-2",
+    * "nodes": 3,
+    * "currentState": "deploying",
+    * "support": {
+      * "plan": "enterprise",
+      * "timezone": "ET"  
+      },
+    * "compute": {
+      * "cpu": 4,
+      * "ram": 16  
+      },
+    * "availability": {
+      * "type": "single"  
+      }  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 2,
+    * "next": 3,
+    * "previous": 1,
+    * "last": 10,
+    * "perPage": 10,
+    * "totalItems": 10  
+  },
+  * "hrefs": {
+    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
+  }  
+}
+}`
+
+## [](#tag/Operational-Insights-Clusters/operation/getOperationalInsightsCluster)Get Operational Insights Cluster Details 
+
+Gets the details of a single Operational Insights cluster.
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+### Responses
+
+**200** 
+
+Successfully retrieved details of the Operational Insights cluster.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "id": "ffffffff-aaaa-1414-eeee-000000000000",
+* "name": "My-first-analytics-cluster",
+* "description": "I won him in a game of hook a duck at a carnival",
+* "cloudProvider": "aws",
+* "region": "us-east-2",
+* "nodes": 3,
+* "currentState": "deploying",
+* "support": {
+  * "plan": "enterprise",
+  * "timezone": "ET"  
+},
+* "compute": {
+  * "cpu": 4,
+  * "ram": 16  
+},
+* "availability": {
+  * "type": "single"  
+}
+}`
+
+## [](#tag/Operational-Insights-Clusters/operation/putOperationalInsightsCluster)Update an Operational Insights Cluster 
+
+Updates an Operational Insights cluster. This could be the name, description, nodes(scaling up/down), or plan and timezone for support.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager  
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+##### header Parameters
+
+| If-Match | string Example: 12A precondition header that specifies the entity tag of a resource. |
+| -------- | ------------------------------------------------------------------------------------ |
+
+##### Request Body schema: application/json
+
+| namerequired        | string <= 256 characters Name of the analytics cluster.                        |
+| ------------------- | ------------------------------------------------------------------------------ |
+| descriptionrequired | string <= 1024 characters The new cluster description (up to 1024 characters). |
+| nodesrequired       | integer \[ 1 .. 32 \] The number of nodes you want for the cluster             |
+| supportrequired     | object (ColumnarSupport)                                                       |
+
+### Responses
+
+**204** 
+
+Successfully updated the Operational Insights cluster.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "name": "My first analytics cluster",
+* "description": "The extended description of my new cluster.",
+* "nodes": 2,
+* "support": {
+  * "plan": "enterprise",
+  * "timezone": "ET"  
+}
+}`
+
+### Response samples 
+
+* 400
+* 401
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/Operational-Insights-Clusters/operation/deleteOperationalInsightsCluster)Delete Operational Insights Cluster 
+
+Deletes the Operational Insights cluster.
+
+ In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+### Responses
+
+**202** 
+
+Successfully deleted the Operational Insights cluster.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}
+
+### Response samples 
+
+* 400
+* 401
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/Operational-Insights-Clusters/operation/operationalInsightsClusterOn)Turn On Operational Insights Cluster 
+
+Turn Operational Insights cluster on.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+### Responses
+
+**202** 
+
+Successfully switched the cluster to on state.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/activationState
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/activationState
+
+### Response samples 
+
+* 403
+* 404
+* 409
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/Operational-Insights-Clusters/operation/operationalInsightsClusterOff)Turn Off Operational Insights Cluster 
+
+Turn Operational Insights cluster off.
+
+Turning off your Operational Insights cluster turns off the compute for your Operational Insights cluster but the storage remains. All of the data, indexes and Operational Insights cluster configuration remain, including users and allow lists.
+
+ In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+### Responses
+
+**202** 
+
+Successfully switched the Operational Insights cluster to off state.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/activationState
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/activationState
+
+### Response samples 
+
+* 403
+* 404
+* 409
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/Operational-Insights-OnOff-Schedule)Operational Insights On/Off Schedule
+
+The Operational Insights On/Off Schedule endpoint enables you to schedule when your Operational Insights cluster should turn on or off to save costs. Turning off the cluster only turns off the compute; all of your data, indexes, and cluster configuration remain, including users and allow lists. When you turn your Operational Insights cluster off, you will be charged the OFF amount for the cluster.
+
+## [](#tag/Operational-Insights-OnOff-Schedule/operation/postOperationalInsightsOnOffSchedule)Create Operational Insights Cluster On/Off Schedule 
+
+This provides the means to add an on/off schedule for an Operational Insights cluster.
+
+ In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+##### Request Body schema: application/json
+
+| timezonerequired | string Enum: "Pacific/Midway" "US/Hawaii" "US/Alaska" "US/Pacific" "US/Mountain" "US/Central" "US/Eastern" "America/Puerto\_Rico" "Canada/Newfoundland" "America/Argentina/Buenos\_Aires" "Atlantic/Cape\_Verde" "Europe/London" "Europe/Amsterdam" "Europe/Athens" "Africa/Nairobi" "Asia/Tehran" "Indian/Mauritius" "Asia/Karachi" "Asia/Calcutta" "Asia/Dhaka" "Asia/Bangkok" "Asia/Hong\_Kong" "Asia/Tokyo" "Australia/North" "Australia/Sydney" "Pacific/Ponape" "Antarctica/South\_Pole" Timezone for the schedule |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| daysrequired     | Array of objects (Days)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+
+### Responses
+
+**204** 
+
+Successfully created an on/off schedule based on the Operational Insights clusterId.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/onOffSchedule
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/onOffSchedule
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Example
+
+PostAnalyticsOnOffSchedulePostAnalyticsOnOffScheduleDefaultBoundaryWithoutToBodyPostAnalyticsOnOffScheduleDefaultsBoundaryWithoutHourMinutePostAnalyticsOnOffScheduleDefaultsBoundaryPostAnalyticsOnOffScheduleDefaultsBoundaryWithoutHourMinuteBodyPostAnalyticsOnOffSchedule
+
+Copy
+
+`null`
+
+### Response samples 
+
+* 403
+* 404
+* 409
+* 412
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/Operational-Insights-OnOff-Schedule/operation/getOperationalInsightsOnOffSchedule)Get Operational Insights Cluster On/Off Schedule 
+
+Fetches the details of the on/off schedule for the given Operational Insights cluster.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+### Responses
+
+**200** 
+
+Successfully fetched the on/off schedule based on the Operational Insights clusterId.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/onOffSchedule
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/onOffSchedule
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "timezone": "US/Pacific",
+* "days": [
+  * {
+    * "day": "monday",
+    * "state": "custom",
+    * "from": {
+      * "hour": 12,
+      * "minute": 30  
+      },
+    * "to": {
+      * "hour": 14,
+      * "minute": 30  
+      }  
+  },
+  * {
+    * "day": "tuesday",
+    * "state": "custom",
+    * "from": {
+      * "hour": 12,
+      * "minute": 30  
+      },
+    * "to": {
+      * "hour": 14,
+      * "minute": 30  
+      }  
+  },
+  * {
+    * "day": "wednesday",
+    * "state": "on"  
+  },
+  * {
+    * "day": "thursday",
+    * "state": "on"  
+  },
+  * {
+    * "day": "friday",
+    * "state": "custom",
+    * "from": {
+      * "hour": 12,
+      * "minute": 30  
+      },
+    * "to": {
+      * "hour": 14,
+      * "minute": 30  
+      }  
+  },
+  * {
+    * "day": "saturday",
+    * "state": "off"  
+  },
+  * {
+    * "day": "sunday",
+    * "state": "off"  
+  }  
+]
+}`
+
+## [](#tag/Operational-Insights-OnOff-Schedule/operation/putOperationalInsightsOnOffSchedule)Update Operational Insights Cluster On/Off Schedule 
+
+This provides the means to update an existing Operational Insights cluster on/off schedule.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+##### Request Body schema: application/json
+
+| timezonerequired | string Enum: "Pacific/Midway" "US/Hawaii" "US/Alaska" "US/Pacific" "US/Mountain" "US/Central" "US/Eastern" "America/Puerto\_Rico" "Canada/Newfoundland" "America/Argentina/Buenos\_Aires" "Atlantic/Cape\_Verde" "Europe/London" "Europe/Amsterdam" "Europe/Athens" "Africa/Nairobi" "Asia/Tehran" "Indian/Mauritius" "Asia/Karachi" "Asia/Calcutta" "Asia/Dhaka" "Asia/Bangkok" "Asia/Hong\_Kong" "Asia/Tokyo" "Australia/North" "Australia/Sydney" "Pacific/Ponape" "Antarctica/South\_Pole" Timezone for the schedule |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| daysrequired     | Array of objects (Days)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+
+### Responses
+
+**204** 
+
+Successfully updated the on/off schedule based on the Operational Insights clusterId.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/onOffSchedule
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/onOffSchedule
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "timezone": "US/Pacific",
+* "days": [
+  * {
+    * "day": "monday",
+    * "state": "custom",
+    * "from": {
+      * "hour": 12,
+      * "minute": 30  
+      },
+    * "to": {
+      * "hour": 14,
+      * "minute": 30  
+      }  
+  },
+  * {
+    * "day": "tuesday",
+    * "state": "custom",
+    * "from": {
+      * "hour": 12,
+      * "minute": 30  
+      },
+    * "to": {
+      * "hour": 14,
+      * "minute": 30  
+      }  
+  },
+  * {
+    * "day": "wednesday",
+    * "state": "on"  
+  },
+  * {
+    * "day": "thursday",
+    * "state": "on"  
+  },
+  * {
+    * "day": "friday",
+    * "state": "custom",
+    * "from": {
+      * "hour": 12,
+      * "minute": 30  
+      },
+    * "to": {
+      * "hour": 14,
+      * "minute": 30  
+      }  
+  },
+  * {
+    * "day": "saturday",
+    * "state": "off"  
+  },
+  * {
+    * "day": "sunday",
+    * "state": "off"  
+  }  
+]
+}`
+
+### Response samples 
+
+* 403
+* 404
+* 409
+* 412
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/Operational-Insights-OnOff-Schedule/operation/deleteOperationalInsightsOnOffSchedule)Delete Operational Insights Cluster On/Off Schedule 
+
+Deletes the on/off schedule for the given Operational Insights cluster.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+### Responses
+
+**204** 
+
+Successfully deleted the on/off schedule by its Operational Insights clusterId.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/onOffSchedule
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/onOffSchedule
+
+### Response samples 
+
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/Operational-Insights-Private-Endpoint-Service)Operational Insights Private Endpoint Service
+
+Access your Operational Insights cluster from your cloud provider's private network. Supporting infrastructure is deployed and it may take a few minutes for private endpoints to be available. After it's enabled, you can create private endpoint in your network. You can do this using the cloud provider's CLI. For an example, use the POST privateEndpointService/endpointCommand endpoint to get the command.
+
+## [](#tag/Operational-Insights-Private-Endpoint-Service/operation/getColumnarOperationalInsightsPrivateEndpointServiceStatus)Get Operational Insights Private Endpoint Service Status 
+
+Private endpoint service allows you to access your Operational Insights cluster from your private network, using private endpoints. Currently limited to AWS.
+
+This endpoint allows you to get the status of private endpoint to see whether the job to enable private endpoint was successful or not.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+### Responses
+
+**200** 
+
+Successfully retrieved private endpoint status of the Operational Insights cluster.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/privateEndpointService
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/privateEndpointService
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "enabled": true,
+* "status": "idle",
+* "serviceName": "com.amazonaws.vpce.us-east-1.vpce-svc-0399b9a3337de6847",
+* "privateDns": "ghfv2g8fyedebnae.pl.cloud.couchbase.com/"
+}`
+
+## [](#tag/Operational-Insights-Private-Endpoint-Service/operation/enableColumnarOperationalInsightsPrivateEndpointService)Enable Operational Insights Private Endpoint Service 
+
+Enable private endpoint service on your Operational Insights cluster. Currently limited to AWS.
+
+Supporting infrastructure is deployed and it may take a few minutes for private endpoints to be available. After it's enabled, you can create private endpoint in your network. You can do this using the cloud provider's CLI, UI and SDK.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+### Responses
+
+**202** 
+
+Successfully submitted request to enable private endpoint service.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/privateEndpointService
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/privateEndpointService
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/Operational-Insights-Private-Endpoint-Service/operation/disableColumnarOperationalInsightsPrivateEndpointService)Disable Operational Insights Private Endpoint Service. 
+
+Disable private endpoint service on your Operational Insights cluster. Currently limited to AWS.
+
+Supporting infrastructure is removed and it may take a few minutes before private endpoints is disabled.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+### Responses
+
+**202** 
+
+Successfully submitted request to disable private endpoint service.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/privateEndpointService
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/privateEndpointService
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 412
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/Operational-Insights-Private-Endpoint-Service/operation/getColumnarOperationalInsightsPrivateEndpointServiceCommand)Get Operational Insights Private Endpoint CLI Command Required to Setup Private Endpoint for Specific CSP 
+
+Retrieve the command or script to be executed in order to create the private endpoint which will provides a private connection between the specified VPC and the specified Capella private endpoint service.  
+Currently only available for AWS. An example for AWS:
+
+```
+aws ec2 create-vpc-endpoint \
+  --vpc-id vpc-1234 \
+  --region us-east-1 \
+  --service-name com.amazonaws.vpce.us-east-1.vpce-svc-1234 \
+  --vpc-endpoint-type Interface \
+  --subnet-ids subnet-1234
+
+```
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+##### Request Body schema: application/json
+
+| vpcIDrequired     | string \[ 12 .. 21 \] characters The ID of your virtual network |
+| ----------------- | --------------------------------------------------------------- |
+| subnetIDsrequired | Array of strings                                                |
+
+### Responses
+
+**200** 
+
+Successfully provided command to create a private endpoint.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/privateEndpointService/endpointCommand
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/privateEndpointService/endpointCommand
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`null`
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "command": "aws ec2 create-vpc-endpoint --vpc-id vpc-1234 --region us-east-1 --service-name com.amazonaws.vpce.us-east-1.vpce-svc-1234 --vpc-endpoint-type Interface --subnet-ids subnet-1234"
+}`
+
+## [](#tag/Operational-Insights-Private-Endpoint-Service/operation/listColumnarOperationalInsightsPrivateEndpointServiceConnection)List Operational Insights Private Endpoint Connections 
+
+Returns a list of private endpoints, along with the endpoint state, associated with the endpoint service for the Operational Insights cluster. Currently limited to AWS.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Creator
+* Project Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+
+### Responses
+
+**200** 
+
+Successfully retrieved private endpoint status for the Operational Insights cluster.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/privateEndpointService/endpoints
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/privateEndpointService/endpoints
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "endpoints": [
+  * {
+    * "endpointId": "vpce-000000000000aaaaa",
+    * "status": "linked"  
+  }  
+]
+}`
+
+## [](#tag/Operational-Insights-Private-Endpoint-Service/operation/acceptColumnarOperationalInsightsPrivateEndpointServiceConnection)Accept or Associate Operational Insights Private Endpoint Request 
+
+Accept a new private endpoint connection request so that it is associated with the endpoint service. This means the private endpoint is available for use. Currently limted to AWS.
+
+ In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+| endpointIdrequired         | string Example: vpce-1234The VPC endpoint ID.                                                      |
+
+### Responses
+
+**204** 
+
+Successfully accepted private endpoint connection for the Operational Insights cluster.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/privateEndpointService/endpoints/{endpointId}/associate
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/privateEndpointService/endpoints/{endpointId}/associate
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/Operational-Insights-Private-Endpoint-Service/operation/rejectColumnarOperationalInsightsPrivateEndpointServiceConnection)Reject or Disassociate Operational Insights Private Endpoint Connection. 
+
+Removes the private endpoint associated with the endpoint service. This means the private endpoint is no longer able to connect to the private endpoint service. Currently limited to AWS.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired     | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.      |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
+| projectIdrequired          | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.           |
+| analyticsClusterIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the analytics cluster. |
+| endpointIdrequired         | string Example: vpce-1234The VPC endpoint ID.                                                      |
+
+### Responses
+
+**204** 
+
+Successfully rejected private endpoint connection.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/privateEndpointService/endpoints/{endpointId}/unassociate
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/operationalInsightsClusters/{analyticsClusterId}/privateEndpointService/endpoints/{endpointId}/unassociate
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/AI-Agent-Memory-Allowed-CIDRs)AI Agent Memory Allowed CIDRs
+
+Agent memory server IP allowlists control which IPv4 addresses can reach the agent memory server data plane. The allowlist is deny-by-default: a freshly deployed server has no allowed CIDRs and is unreachable until at least one CIDR is added.
+
+Each server supports up to 50 entries. Changes are applied synchronously to the cloud WAF before being persisted.
+
+## [](#tag/AI-Agent-Memory-Allowed-CIDRs/operation/listAgentMemoryServerAllowedCidrs)List Agent Memory Server Allowed CIDRs 
+
+Lists the allowed CIDRs for a specific agent memory server.
+
+The agent memory server uses a deny-by-default IP allowlist: a freshly deployed server has no allowed CIDRs and is unreachable until at least one CIDR is added. Adding `0.0.0.0/0` makes the server open to all IPv4 addresses.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Creator
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+* Cluster Owner
+* Cluster Data Writer
+* Cluster Data Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.        |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| projectIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.             |
+| clusterIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.             |
+| agentMemoryServerIdrequired | string <uuid\> Example: 3fa1b2c3-a925-4e57-a1f9-90bc2dcfa091The GUID4 ID of the agent memory server. |
+
+### Responses
+
+**200** 
+
+Successfully listed the allowed CIDRs of the agent memory server.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers/{agentMemoryServerId}/allowedCidrs
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers/{agentMemoryServerId}/allowedCidrs
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "cidr": "10.1.2.3/32",
+    * "createdAt": "2024-03-14T09:30:00Z",
+    * "createdByUserId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    * "createdByUserName": "Jane Doe"  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 2,
+    * "next": 3,
+    * "previous": 1,
+    * "last": 10,
+    * "perPage": 10,
+    * "totalItems": 10  
+  },
+  * "hrefs": {
+    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
+  }  
+}
+}`
+
+## [](#tag/AI-Agent-Memory-Allowed-CIDRs/operation/createAgentMemoryServerAllowedCidr)Create Agent Memory Server Allowed CIDR 
+
+Adds a single IPv4 CIDR to the allowlist of a specific agent memory server.
+
+The CIDR must be a valid IPv4 network address with no host bits set (e.g. `10.0.0.0/8`, not `10.0.0.1/8`). Only IPv4 is supported. Adding `0.0.0.0/0` opens the server to all IPv4 addresses. A maximum of 50 entries are permitted per server.
+
+Changes take effect immediately.
+
+Expiry is not supported; all entries are permanent. Entries must be explicitly deleted to be removed.
+
+Returns `409 Conflict` if the CIDR already exists on this server. Returns `422 Unprocessable Entity` if the maximum of 50 entries has been reached or the CIDR is not a valid IPv4 network address.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Creator
+* Project Owner
+* Cluster Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.        |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| projectIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.             |
+| clusterIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.             |
+| agentMemoryServerIdrequired | string <uuid\> Example: 3fa1b2c3-a925-4e57-a1f9-90bc2dcfa091The GUID4 ID of the agent memory server. |
+
+##### Request Body schema: application/json
+
+| cidrrequired | string The IPv4 CIDR range to allow access to the agent memory server. Must be a valid IPv4 CIDR network address (no host bits set). Examples: 10.0.0.0/8, 192.168.1.0/24, 10.1.2.3/32. |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### Responses
+
+**201** 
+
+Successfully added the allowed CIDR.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers/{agentMemoryServerId}/allowedCidrs
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers/{agentMemoryServerId}/allowedCidrs
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "cidr": "10.1.2.3/32"
+}`
+
+### Response samples 
+
+* 400
+* 401
+* 403
+* 404
+* 409
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/AI-Agent-Memory-Allowed-CIDRs/operation/deleteAgentMemoryServerAllowedCidr)Delete Agent Memory Server Allowed CIDR 
+
+Removes a single CIDR from the allowlist of a specific agent memory server. The CIDR to remove is specified as a `cidr` query parameter (it contains a `/`, so it cannot be carried in the path).
+
+Removing the last entry returns the server to blocked (deny-by-default).
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Creator
+* Project Owner
+* Cluster Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.        |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| projectIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.             |
+| clusterIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.             |
+| agentMemoryServerIdrequired | string <uuid\> Example: 3fa1b2c3-a925-4e57-a1f9-90bc2dcfa091The GUID4 ID of the agent memory server. |
+
+##### query Parameters
+
+| cidrrequired | string Example: cidr=10.1.2.0/24The CIDR to remove from the allowlist. |
+| ------------ | ---------------------------------------------------------------------- |
+
+### Responses
+
+**204** 
+
+Successfully removed the allowed CIDR.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers/{agentMemoryServerId}/allowedCidrs
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers/{agentMemoryServerId}/allowedCidrs
+
+### Response samples 
+
+* 400
+* 401
+* 403
+* 404
+* 409
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/AI-Agent-Memory-Allowed-CIDRs/operation/listOrganizationAgentMemoryAllowedCidrs)List Organization Agent Memory Allowed CIDRs 
+
+Lists every allowed CIDR across the organization's agent memory servers that the caller has access to.
+
+Use the `projectId`, `clusterId`, and `agentMemoryServerId` query parameters to narrow the results. Each entry carries the project, cluster, and agent memory server the CIDR belongs to.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Creator
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+* Cluster Owner
+* Cluster Data Writer
+* Cluster Data Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+
+##### query Parameters
+
+| projectId           | string <uuid\> Example: projectId=ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                                                                                               |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| clusterId           | string <uuid\> Filters by clusterId.                                                                                                                                                                                             |
+| agentMemoryServerId | string <uuid\> Filters results to CIDRs belonging to this agent memory server.                                                                                                                                                   |
+| page                | integer Sets the page you would like to view.                                                                                                                                                                                    |
+| perPage             | integer Sets the number of results you would like to have on each page.                                                                                                                                                          |
+| sortBy              | Array of strings Example: sortBy=cidr Sets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **cidr**, **agentMemoryServerName**, **createdAt**. |
+| sortDirection       | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                                                 |
+
+### Responses
+
+**200** 
+
+Successfully listed the allowed CIDRs for the organization.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/aiServices/agentMemoryAllowedCidrs
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/aiServices/agentMemoryAllowedCidrs
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "cidr": "10.1.2.3/32",
+    * "agentMemoryServerId": "a1b2c3d4-0000-4e57-b1f9-90bc2dcfa001",
+    * "agentMemoryServerName": "support-bot-memory",
+    * "clusterId": "13d745eb-9861-4e1d-88f5-eaacfef416a2",
+    * "clusterName": "my-cluster",
+    * "projectId": "a3b2c1d0-0000-4e57-b1f9-90bc2dcfa001",
+    * "projectName": "my-project",
+    * "createdAt": "2019-08-24T14:15:22Z",
+    * "createdByUserId": "string",
+    * "createdByUserName": "string"  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 2,
+    * "next": 3,
+    * "previous": 1,
+    * "last": 10,
+    * "perPage": 10,
+    * "totalItems": 10  
+  },
+  * "hrefs": {
+    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
+  }  
+}
+}`
+
+## [](#tag/AI-Data-Plane-Management-API-Overview)AI Data Plane Management API Overview
+
+Manage Couchbase AI Data Plane instances with REST APIs. Use these APIs to manage AI workflows, model services and agent memory servers with their API keys, MCP servers and tools, and external AI provider configurations.
+
+## [](#tag/AI-Agent-Memory-API-Keys)AI Agent Memory API Keys
+
+Agent memory API keys authenticate agent applications against the agent memory server data plane. Each key is scoped to a single agent memory server, and the agent memory server rejects any key minted for another deployment.
+
+The API key secret is returned exactly once, at creation, and cannot be retrieved afterwards. Replace a lost secret by creating a new API key.
+
+## [](#tag/AI-Agent-Memory-API-Keys/operation/listAgentMemoryApiKeys)List Agent Memory API Keys 
+
+Lists the API keys of a specific agent memory server.
+
+The API key secret is never returned by this endpoint.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Creator
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+* Cluster Owner
+* Cluster Data Writer
+* Cluster Data Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.        |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| projectIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.             |
+| clusterIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.             |
+| agentMemoryServerIdrequired | string <uuid\> Example: 3fa1b2c3-a925-4e57-a1f9-90bc2dcfa091The GUID4 ID of the agent memory server. |
+
+##### query Parameters
+
+| page          | integer Sets the page you would like to view.                                                                                                                                                                                     |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                                           |
+| sortBy        | Array of strings Example: sortBy=name Sets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **name**, **expiry**, **createdAt**, **lastUsedAt**. |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                                                  |
+
+### Responses
+
+**200** 
+
+Successfully listed the API keys of the agent memory server.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers/{agentMemoryServerId}/apiKeys
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers/{agentMemoryServerId}/apiKeys
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "id": "c56a4180-65aa-42ec-a945-5fd21dec0538",
+    * "name": "support-bot-prod-key",
+    * "description": "Production key for the support bot agent",
+    * "agentMemoryServerId": "3fa1b2c3-a925-4e57-a1f9-90bc2dcfa091",
+    * "agentMemoryServerName": "support-bot-memory",
+    * "expiry": 180,
+    * "accessPolicy": {
+      * "roles": [
+        * "ams_rw"  
+            ]  
+      },
+    * "lastUsedAt": "2026-08-06T10:30:00Z",
+    * "audit": {
+      * "createdBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+      * "createdAt": "2026-08-06T01:04:25Z",
+      * "modifiedBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+      * "modifiedAt": "2026-08-06T01:04:25Z",
+      * "version": 1  
+      }  
+  },
+  * {
+    * "id": "d67b5291-76bb-43fd-ba56-6ae32efd1649",
+    * "name": "support-bot-readonly-key",
+    * "description": "Read-only key used by the support bot analytics job",
+    * "agentMemoryServerId": "3fa1b2c3-a925-4e57-a1f9-90bc2dcfa091",
+    * "agentMemoryServerName": "support-bot-memory",
+    * "expiry": 90,
+    * "accessPolicy": {
+      * "roles": [
+        * "ams_ro"  
+            ]  
+      },
+    * "lastUsedAt": "2026-08-12T14:02:11Z",
+    * "audit": {
+      * "createdBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+      * "createdAt": "2026-08-07T11:20:00Z",
+      * "modifiedBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+      * "modifiedAt": "2026-08-07T11:20:00Z",
+      * "version": 1  
+      }  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 1,
+    * "last": 1,
+    * "perPage": 10,
+    * "totalItems": 2  
+  },
+  * "hrefs": {
+    * "first": "<https://cloudapi.cloud.couchbase.com/v4/organizations/f59e8a62-0000-4e57-b1f9-90bc2dcfa000/projects/a3b2c1d0-0000-4e57-b1f9-90bc2dcfa001/clusters/13d745eb-9861-4e1d-88f5-eaacfef416a2/aiServices/agentMemoryServers/3fa1b2c3-a925-4e57-a1f9-90bc2dcfa091/apiKeys?page=1&perPage=10>",
+    * "last": "<https://cloudapi.cloud.couchbase.com/v4/organizations/f59e8a62-0000-4e57-b1f9-90bc2dcfa000/projects/a3b2c1d0-0000-4e57-b1f9-90bc2dcfa001/clusters/13d745eb-9861-4e1d-88f5-eaacfef416a2/aiServices/agentMemoryServers/3fa1b2c3-a925-4e57-a1f9-90bc2dcfa091/apiKeys?page=1&perPage=10>",
+    * "previous": "<https://cloudapi.cloud.couchbase.com/v4/organizations/f59e8a62-0000-4e57-b1f9-90bc2dcfa000/projects/a3b2c1d0-0000-4e57-b1f9-90bc2dcfa001/clusters/13d745eb-9861-4e1d-88f5-eaacfef416a2/aiServices/agentMemoryServers/3fa1b2c3-a925-4e57-a1f9-90bc2dcfa091/apiKeys?page=1&perPage=10>",
+    * "next": "<https://cloudapi.cloud.couchbase.com/v4/organizations/f59e8a62-0000-4e57-b1f9-90bc2dcfa000/projects/a3b2c1d0-0000-4e57-b1f9-90bc2dcfa001/clusters/13d745eb-9861-4e1d-88f5-eaacfef416a2/aiServices/agentMemoryServers/3fa1b2c3-a925-4e57-a1f9-90bc2dcfa091/apiKeys?page=1&perPage=10>"  
+  }  
+}
+}`
+
+## [](#tag/AI-Agent-Memory-API-Keys/operation/createAgentMemoryApiKey)Create Agent Memory API Key 
+
+Creates a new API key for a specific agent memory server.
+
+The API key secret is returned exactly once, in the response to this request, and cannot be retrieved afterwards. Replace a lost secret by creating a new API key. The key is scoped to a single agent memory server, and the agent memory server rejects any key minted for another deployment.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Creator
+* Project Owner
+* Cluster Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.        |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| projectIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.             |
+| clusterIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.             |
+| agentMemoryServerIdrequired | string <uuid\> Example: 3fa1b2c3-a925-4e57-a1f9-90bc2dcfa091The GUID4 ID of the agent memory server. |
+
+##### Request Body schema: application/json
+
+| namerequired   | string <= 128 characters The name of the agent memory API key.                                                                     |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| description    | string <= 250 characters Default: "" A short description of the agent memory API key.                                              |
+| expiryrequired | number <double\> Expiry of the API key in number of days. Must be between 0.01 and 36500 days, or -1 for a key that never expires. |
+| accessPolicy   | object (AgentMemoryApiKeyAccessPolicy) The access policy sealed into the API key at creation time.                                 |
+
+### Responses
+
+**201** 
+
+Successfully created the API key.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers/{agentMemoryServerId}/apiKeys
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers/{agentMemoryServerId}/apiKeys
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "name": "support-bot-prod-key",
+* "description": "Production key for the support bot agent",
+* "expiry": 180,
+* "accessPolicy": {
+  * "roles": [
+    * "ams_rw"  
+  ]  
+}
+}`
+
+### Response samples 
+
+* 201
+* 400
+* 401
+* 403
+* 404
+* 409
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "id": "c56a4180-65aa-42ec-a945-5fd21dec0538",
+* "name": "support-bot-prod-key",
+* "description": "Production key for the support bot agent",
+* "apiKeySecret": "Y2ItYWdlbnQtbWVtb3J5LXNlY3JldC1leGFtcGxl",
+* "expiry": 180,
+* "accessPolicy": {
+  * "roles": [
+    * "ams_rw"  
+  ]  
+}
+}`
+
+## [](#tag/AI-Agent-Memory-API-Keys/operation/getAgentMemoryApiKey)Get Agent Memory API Key 
+
+Fetches the details of a specific agent memory API key, including its access policy and its last used timestamp.
+
+The API key secret is never returned by this endpoint.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Creator
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+* Cluster Owner
+* Cluster Data Writer
+* Cluster Data Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.         |
+| --------------------------- | ----------------------------------------------------------------------------------------------------- |
+| projectIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.              |
+| clusterIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.              |
+| agentMemoryServerIdrequired | string <uuid\> Example: 3fa1b2c3-a925-4e57-a1f9-90bc2dcfa091The GUID4 ID of the agent memory server.  |
+| apiKeyIdrequired            | string <uuid\> Example: c56a4180-65aa-42ec-a945-5fd21dec0538The GUID4 ID of the agent memory API key. |
+
+### Responses
+
+**200** 
+
+Successfully fetched the API key.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers/{agentMemoryServerId}/apiKeys/{apiKeyId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers/{agentMemoryServerId}/apiKeys/{apiKeyId}
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "id": "c56a4180-65aa-42ec-a945-5fd21dec0538",
+* "name": "support-bot-prod-key",
+* "description": "Production key for the support bot agent",
+* "agentMemoryServerId": "3fa1b2c3-a925-4e57-a1f9-90bc2dcfa091",
+* "agentMemoryServerName": "support-bot-memory",
+* "expiry": 180,
+* "accessPolicy": {
+  * "roles": [
+    * "ams_rw"  
+  ]  
+},
+* "lastUsedAt": "2026-08-06T10:30:00Z",
+* "audit": {
+  * "createdBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+  * "createdAt": "2026-08-06T01:04:25Z",
+  * "modifiedBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+  * "modifiedAt": "2026-08-06T01:04:25Z",
+  * "version": 1  
+}
+}`
+
+## [](#tag/AI-Agent-Memory-API-Keys/operation/deleteAgentMemoryApiKey)Delete Agent Memory API Key 
+
+Deletes a specific agent memory API key.
+
+This action cannot be undone.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Creator
+* Project Owner
+* Cluster Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.         |
+| --------------------------- | ----------------------------------------------------------------------------------------------------- |
+| projectIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.              |
+| clusterIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.              |
+| agentMemoryServerIdrequired | string <uuid\> Example: 3fa1b2c3-a925-4e57-a1f9-90bc2dcfa091The GUID4 ID of the agent memory server.  |
+| apiKeyIdrequired            | string <uuid\> Example: c56a4180-65aa-42ec-a945-5fd21dec0538The GUID4 ID of the agent memory API key. |
+
+### Responses
+
+**204** 
+
+Successfully deleted the API key.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers/{agentMemoryServerId}/apiKeys/{apiKeyId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers/{agentMemoryServerId}/apiKeys/{apiKeyId}
+
+### Response samples 
+
+* 401
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 401,
+* "code": 1001,
+* "message": "The request is unauthorized. Please ensure you have proper authentication credentials and try again.",
+* "hint": "The request is unauthorized. Please ensure you have proper authentication credentials and try again."
+}`
+
+## [](#tag/AI-Agent-Memory-API-Keys/operation/listOrganizationAgentMemoryApiKeys)List Organization Agent Memory API Keys 
+
+Lists every agent memory API key in the organization that the caller has access to.
+
+Use the `projectId` and `clusterId` query parameters to narrow the results to a single project or to the agent memory server of a single cluster. Each entry carries the project and cluster the agent memory server belongs to. The API key secret is never returned by this endpoint.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Creator
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+* Cluster Owner
+* Cluster Data Writer
+* Cluster Data Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+
+##### query Parameters
+
+| projectId     | string <uuid\> Example: projectId=ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                                                                                                |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| clusterId     | string <uuid\> Filters by clusterId.                                                                                                                                                                                              |
+| page          | integer Sets the page you would like to view.                                                                                                                                                                                     |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                                           |
+| sortBy        | Array of strings Example: sortBy=name Sets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **name**, **expiry**, **createdAt**, **lastUsedAt**. |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                                                  |
+
+### Responses
+
+**200** 
+
+Successfully listed the agent memory API keys for the organization.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/aiServices/agentMemoryApiKeys
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/aiServices/agentMemoryApiKeys
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "id": "c56a4180-65aa-42ec-a945-5fd21dec0538",
+    * "name": "support-bot-prod-key",
+    * "description": "Production key for the support bot agent",
+    * "agentMemoryServerId": "3fa1b2c3-a925-4e57-a1f9-90bc2dcfa091",
+    * "agentMemoryServerName": "support-bot-memory",
+    * "expiry": 180,
+    * "accessPolicy": {
+      * "roles": [
+        * "ams_rw"  
+            ]  
+      },
+    * "lastUsedAt": "2026-08-06T10:30:00Z",
+    * "audit": {
+      * "createdBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+      * "createdAt": "2026-08-06T01:04:25Z",
+      * "modifiedBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+      * "modifiedAt": "2026-08-06T01:04:25Z",
+      * "version": 1  
+      },
+    * "projectId": "a3b2c1d0-0000-4e57-b1f9-90bc2dcfa001",
+    * "clusterId": "13d745eb-9861-4e1d-88f5-eaacfef416a2",
+    * "clusterName": "my-cluster"  
+  },
+  * {
+    * "id": "e78c63a2-87cc-44ae-cb67-7bf43fae2750",
+    * "name": "analytics-assistant-key",
+    * "description": "Key for the analytics assistant agent",
+    * "agentMemoryServerId": "7c9e6679-7425-40de-944b-e07fc1f90ae7",
+    * "agentMemoryServerName": "analytics-agent-memory",
+    * "expiry": 365,
+    * "accessPolicy": {
+      * "roles": [
+        * "ams_ro"  
+            ]  
+      },
+    * "lastUsedAt": "2026-08-13T07:45:33Z",
+    * "audit": {
+      * "createdBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+      * "createdAt": "2026-08-11T16:00:00Z",
+      * "modifiedBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+      * "modifiedAt": "2026-08-11T16:00:00Z",
+      * "version": 1  
+      },
+    * "projectId": "b4c3d2e1-0000-4e57-b1f9-90bc2dcfa002",
+    * "clusterId": "24e856fc-a972-4f2e-99a6-fbbdeff527b3",
+    * "clusterName": "analytics-cluster"  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 1,
+    * "last": 1,
+    * "perPage": 10,
+    * "totalItems": 2  
+  },
+  * "hrefs": {
+    * "first": "<https://cloudapi.cloud.couchbase.com/v4/organizations/f59e8a62-0000-4e57-b1f9-90bc2dcfa000/aiServices/agentMemoryApiKeys?page=1&perPage=10>",
+    * "last": "<https://cloudapi.cloud.couchbase.com/v4/organizations/f59e8a62-0000-4e57-b1f9-90bc2dcfa000/aiServices/agentMemoryApiKeys?page=1&perPage=10>",
+    * "previous": "<https://cloudapi.cloud.couchbase.com/v4/organizations/f59e8a62-0000-4e57-b1f9-90bc2dcfa000/aiServices/agentMemoryApiKeys?page=1&perPage=10>",
+    * "next": "<https://cloudapi.cloud.couchbase.com/v4/organizations/f59e8a62-0000-4e57-b1f9-90bc2dcfa000/aiServices/agentMemoryApiKeys?page=1&perPage=10>"  
+  }  
+}
+}`
+
+## [](#tag/AI-Agent-Memory-Servers)AI Agent Memory Servers
+
+Agent memory servers give AI agents a persistent, searchable memory backed by a Capella operational cluster. Each agent memory server stores memory blocks in a bucket on its cluster, embeds them with a configured embedding model, and summarizes them with a configured language model.
+
+A cluster can host at most one agent memory server. A cluster is eligible only when it runs all of the data, index, query, and search services, and runs Couchbase Server 8.0.0 or later.
+
+## [](#tag/AI-Agent-Memory-Servers/operation/listAgentMemoryServers)List Agent Memory Servers 
+
+Lists the agent memory servers deployed against a specific cluster.
+
+A cluster can have at most one agent memory server, so this endpoint answers whether the cluster has an agent memory server and what it looks like at a glance.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Creator
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+* Cluster Owner
+* Cluster Data Writer
+* Cluster Data Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+
+##### query Parameters
+
+| page          | integer Sets the page you would like to view.                                                                                                                                                                                                                         |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                                                                               |
+| sortBy        | Array of strings Example: sortBy=name Sets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **name**, **status**, **createdAt**, **modifiedAt**.                                     |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                                                                                      |
+| status        | string Enum: "pending" "deploying" "healthy" "unhealthy" "deploymentFailed" "destroying" "destroyFailed" Example: status=healthyFilters the results by the deployment status of the agent memory server. By default, agent memory servers in all states are returned. |
+| search        | string Example: search=support-botFilters the results to agent memory servers whose name or description contains the given substring. By default, no search filter is applied.                                                                                        |
+
+### Responses
+
+**200** 
+
+Successfully listed the agent memory servers for the cluster.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "id": "3fa1b2c3-a925-4e57-a1f9-90bc2dcfa091",
+    * "name": "support-bot-memory",
+    * "description": "Agent memory store for the support bot",
+    * "tenantId": "f59e8a62-0000-4e57-b1f9-90bc2dcfa000",
+    * "projectId": "a3b2c1d0-0000-4e57-b1f9-90bc2dcfa001",
+    * "clusterId": "13d745eb-9861-4e1d-88f5-eaacfef416a2",
+    * "config": {
+      * "nodeConfig": {
+        * "instanceType": "small",
+        * "nodeCount": 3,
+        * "provider": "aws",
+        * "region": "us-east-1"  
+            },
+      * "bucket": "agent-memory",
+      * "memoryBlockTTL": 604800,
+      * "embedding": {
+        * "integrationId": "provider1-ffffffff-aaaa-1414-eeee-000000000000",
+        * "model": "text-embedding-3-small"  
+            },
+      * "llm": {
+        * "integrationId": "provider1-ffffffff-aaaa-1414-eeee-000000000000",
+        * "model": "gpt-4o-mini"  
+            },
+      * "semanticExtraction": {
+        * "enabled": true  
+            },
+      * "advancedConfig": {
+        * "summaryTokenLimit": 700,
+        * "processingBatchSize": 5,
+        * "maxRequestsPerMinute": 1500,
+        * "maxTokensPerMinute": 125000,
+        * "maxConcurrentTasks": 100,
+        * "perRequestTokenLimit": 4096,
+        * "idleSleepSeconds": 0.5,
+        * "queueMaxSize": 10000,
+        * "maxFailCount": 3,
+        * "taskTimeoutSeconds": 90  
+            }  
+      },
+    * "network": {
+      * "endpoint": "<https://ams-3fa1b2c3.example.com>"  
+      },
+    * "status": "healthy",
+    * "audit": {
+      * "createdBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+      * "createdAt": "2026-07-15T10:30:00Z",
+      * "modifiedBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+      * "modifiedAt": "2026-07-16T08:00:00Z",
+      * "version": 2  
+      }  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 1,
+    * "last": 1,
+    * "perPage": 10,
+    * "totalItems": 1  
+  },
+  * "hrefs": {
+    * "first": "<https://cloudapi.cloud.couchbase.com/v4/organizations/f59e8a62-0000-4e57-b1f9-90bc2dcfa000/projects/a3b2c1d0-0000-4e57-b1f9-90bc2dcfa001/clusters/13d745eb-9861-4e1d-88f5-eaacfef416a2/aiServices/agentMemoryServers?page=1&perPage=10>",
+    * "last": "<https://cloudapi.cloud.couchbase.com/v4/organizations/f59e8a62-0000-4e57-b1f9-90bc2dcfa000/projects/a3b2c1d0-0000-4e57-b1f9-90bc2dcfa001/clusters/13d745eb-9861-4e1d-88f5-eaacfef416a2/aiServices/agentMemoryServers?page=1&perPage=10>",
+    * "previous": "",
+    * "next": ""  
+  }  
+}
+}`
+
+## [](#tag/AI-Agent-Memory-Servers/operation/createAgentMemoryServer)Create Agent Memory Server 
+
+Creates and deploys a new agent memory server for a specific cluster.
+
+The mapping between a cluster and an agent memory server is one to one, so a cluster that already has an agent memory server cannot have another one. A cluster is eligible only when it runs all of the data, index, query, and search services, and runs Couchbase Server 8.0.0 or later.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Creator
+* Project Owner
+* Cluster Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+
+##### Request Body schema: application/json
+
+| namerequired   | string <= 128 characters The name of the agent memory server.                                                                                                                                                                                                                                                                   |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| description    | string <= 250 characters Default: "" A short description of the agent memory server.                                                                                                                                                                                                                                            |
+| configrequired | object (CreateAgentMemoryServerConfig) The deployment and processing configuration of the agent memory server. All configuration fields are immutable after creation. There is no update endpoint, so changing the configuration currently means deleting the agent memory server and recreating it with the new configuration. |
+
+### Responses
+
+**202** 
+
+Successfully queued the agent memory server for creation.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "name": "support-bot-memory",
+* "description": "Agent memory store for the support bot",
+* "config": {
+  * "nodeConfig": {
+    * "instanceType": "small",
+    * "nodeCount": 3  
+  },
+  * "bucket": "agent-memory",
+  * "memoryBlockTTL": null,
+  * "embedding": {
+    * "integrationId": "provider1-ffffffff-aaaa-1414-eeee-000000000000",
+    * "model": "text-embedding-3-small"  
+  },
+  * "llm": {
+    * "integrationId": "provider1-ffffffff-aaaa-1414-eeee-000000000000",
+    * "model": "gpt-4o-mini"  
+  },
+  * "semanticExtraction": {
+    * "enabled": true  
+  },
+  * "advancedConfig": {
+    * "summaryTokenLimit": 700,
+    * "processingBatchSize": 5,
+    * "maxRequestsPerMinute": 1500,
+    * "maxTokensPerMinute": 125000,
+    * "maxConcurrentTasks": 100,
+    * "perRequestTokenLimit": 4096,
+    * "idleSleepSeconds": 0.5,
+    * "queueMaxSize": 10000,
+    * "maxFailCount": 3,
+    * "taskTimeoutSeconds": 90  
+  }  
+}
+}`
+
+### Response samples 
+
+* 202
+* 400
+* 401
+* 403
+* 404
+* 409
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "id": "3fa1b2c3-a925-4e57-a1f9-90bc2dcfa091"
+}`
+
+## [](#tag/AI-Agent-Memory-Servers/operation/getAgentMemoryServer)Get Agent Memory Server 
+
+Fetches the details of a specific agent memory server, including its full configuration and network details.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Creator
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+* Cluster Owner
+* Cluster Data Writer
+* Cluster Data Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.        |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| projectIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.             |
+| clusterIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.             |
+| agentMemoryServerIdrequired | string <uuid\> Example: 3fa1b2c3-a925-4e57-a1f9-90bc2dcfa091The GUID4 ID of the agent memory server. |
+
+### Responses
+
+**200** 
+
+Successfully fetched the agent memory server.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers/{agentMemoryServerId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers/{agentMemoryServerId}
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "id": "3fa1b2c3-a925-4e57-a1f9-90bc2dcfa091",
+* "name": "support-bot-memory",
+* "description": "Agent memory store for the support bot",
+* "tenantId": "f59e8a62-0000-4e57-b1f9-90bc2dcfa000",
+* "projectId": "a3b2c1d0-0000-4e57-b1f9-90bc2dcfa001",
+* "clusterId": "13d745eb-9861-4e1d-88f5-eaacfef416a2",
+* "config": {
+  * "nodeConfig": {
+    * "instanceType": "small",
+    * "nodeCount": 3,
+    * "provider": "aws",
+    * "region": "us-east-1"  
+  },
+  * "bucket": "agent-memory",
+  * "memoryBlockTTL": 604800,
+  * "embedding": {
+    * "integrationId": "provider1-ffffffff-aaaa-1414-eeee-000000000000",
+    * "model": "text-embedding-3-small"  
+  },
+  * "llm": {
+    * "integrationId": "provider1-ffffffff-aaaa-1414-eeee-000000000000",
+    * "model": "gpt-4o-mini"  
+  },
+  * "semanticExtraction": {
+    * "enabled": true  
+  },
+  * "advancedConfig": {
+    * "summaryTokenLimit": 700,
+    * "processingBatchSize": 5,
+    * "maxRequestsPerMinute": 1500,
+    * "maxTokensPerMinute": 125000,
+    * "maxConcurrentTasks": 100,
+    * "perRequestTokenLimit": 4096,
+    * "idleSleepSeconds": 0.5,
+    * "queueMaxSize": 10000,
+    * "maxFailCount": 3,
+    * "taskTimeoutSeconds": 90  
+  }  
+},
+* "network": {
+  * "endpoint": "<https://ams-3fa1b2c3.example.com>"  
+},
+* "status": "healthy",
+* "audit": {
+  * "createdBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+  * "createdAt": "2026-07-15T10:30:00Z",
+  * "modifiedBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+  * "modifiedAt": "2026-07-16T08:00:00Z",
+  * "version": 2  
+}
+}`
+
+## [](#tag/AI-Agent-Memory-Servers/operation/deleteAgentMemoryServer)Delete Agent Memory Server 
+
+Queues the agent memory server for destruction.
+
+This action cannot be undone. The resources owned by the agent memory server, such as its nodes, endpoint, and API keys, are deleted. The bucket that the agent memory server used and the documents in it are left untouched.
+
+Track the progress of the deletion with the Get Agent Memory Server endpoint. Its `status` is `destroying` while the deletion is in flight and `destroyFailed` if the deletion fails. The endpoint returns a 404 once the agent memory server is gone.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Creator
+* Project Owner
+* Cluster Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.        |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| projectIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.             |
+| clusterIdrequired           | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.             |
+| agentMemoryServerIdrequired | string <uuid\> Example: 3fa1b2c3-a925-4e57-a1f9-90bc2dcfa091The GUID4 ID of the agent memory server. |
+
+### Responses
+
+**202** 
+
+Successfully queued the agent memory server for destruction.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers/{agentMemoryServerId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers/{agentMemoryServerId}
+
+### Response samples 
+
+* 401
+* 403
+* 404
+* 409
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 401,
+* "code": 1001,
+* "message": "The request is unauthorized. Please ensure you have proper authentication credentials and try again.",
+* "hint": "The request is unauthorized. Please ensure you have proper authentication credentials and try again."
+}`
+
+## [](#tag/AI-Agent-Memory-Servers/operation/copyAgentMemoryServer)Copy Agent Memory Server 
+
+Creates a new agent memory server using the configuration of an existing one as its starting point.
+
+An agent memory server has a lot to tune, `advancedConfig` alone has eleven fields, so redoing a whole configuration by hand is slow and error-prone. Copy avoids that by inheriting the source agent memory server's configuration, and anything supplied in the request body overrides what is inherited.
+
+Copy copies configuration only. No memory data and no bucket contents are copied, and the source agent memory server and its bucket are left completely untouched.
+
+The `clusterId` in the path is the cluster that the new agent memory server is created on. The source agent memory server is named by `sourceAgentMemoryServerId` in the request body, and can live on any cluster in the organization that the caller can read.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Creator
+* Project Owner
+* Cluster Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+
+##### Request Body schema: application/json
+
+| sourceAgentMemoryServerIdrequired | string <uuid\> The ID of the agent memory server whose configuration is being copied. The source agent memory server can live on any cluster in the organization that the caller can read, and it is left completely untouched by the copy.                            |
+| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| namerequired                      | string <= 128 characters The name of the new agent memory server.                                                                                                                                                                                                      |
+| description                       | string <= 250 characters Default: "" A short description of the new agent memory server.                                                                                                                                                                               |
+| config                            | object (CopyAgentMemoryServerConfig) A partial configuration applied on top of the source agent memory server's configuration. Every field is optional. Any field that is omitted is inherited from the source deployment rather than reset to its documented default. |
+
+### Responses
+
+**202** 
+
+Successfully queued the agent memory server for creation.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers/copy
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers/copy
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "sourceAgentMemoryServerId": "3fa1b2c3-a925-4e57-a1f9-90bc2dcfa091",
+* "name": "support-bot-memory-v2",
+* "description": "Copy of support-bot-memory with a larger token budget",
+* "config": {
+  * "advancedConfig": {
+    * "summaryTokenLimit": 1024  
+  }  
+}
+}`
+
+### Response samples 
+
+* 202
+* 400
+* 401
+* 403
+* 404
+* 409
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "id": "7c9e6679-7425-40de-944b-e07fc1f90ae7"
+}`
+
+## [](#tag/AI-Agent-Memory-Servers/operation/getAgentMemoryServerDeploymentOptions)Get Agent Memory Server Deployment Options 
+
+Fetches the deployment options available for an agent memory server on a specific cluster.
+
+The response lists the instance types on offer, the permitted node count bounds, and the eligibility details of the cluster itself.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Creator
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+* Cluster Owner
+* Cluster Data Writer
+* Cluster Data Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+
+### Responses
+
+**200** 
+
+Successfully fetched the agent memory server deployment options.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers/deploymentOptions
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/aiServices/agentMemoryServers/deploymentOptions
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "cluster": {
+  * "id": "13d745eb-9861-4e1d-88f5-eaacfef416a2",
+  * "name": "my-cluster",
+  * "provider": "aws",
+  * "region": {
+    * "value": "us-east-1",
+    * "displayName": "US East (N. Virginia)"  
+  },
+  * "couchbaseVersion": "8.0.1",
+  * "services": [
+    * "data",
+    * "index",
+    * "query",
+    * "search"  
+  ],
+  * "eligible": true,
+  * "ineligibilityReasons": [ ]  
+},
+* "instanceTypes": [
+  * {
+    * "instanceType": "small",
+    * "cloudInstanceType": "c5.large",
+    * "displayName": "Small",
+    * "description": "Suitable for development and low-traffic workloads.",
+    * "specs": {
+      * "vcpu": 2,
+      * "memoryGB": 4  
+      }  
+  }  
+],
+* "nodeLimits": {
+  * "min": 1,
+  * "max": 10,
+  * "default": 3  
+}
+}`
+
+## [](#tag/AI-Agent-Memory-Servers/operation/listOrganizationAgentMemoryServers)List Organization Agent Memory Servers 
+
+Lists every agent memory server in the organization that the caller has access to.
+
+Use the `projectId` query parameter to narrow the results to a single project, and the `search` query parameter to match against the name and description.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Creator
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+* Cluster Owner
+* Cluster Data Writer
+* Cluster Data Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+
+##### query Parameters
+
+| projectId     | string <uuid\> Example: projectId=ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                                                                                                                                    |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| search        | string Example: search=support-botFilters the results to agent memory servers whose name or description contains the given substring. By default, no search filter is applied.                                                                                        |
+| page          | integer Sets the page you would like to view.                                                                                                                                                                                                                         |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                                                                               |
+| sortBy        | Array of strings Example: sortBy=name Sets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **name**, **status**, **createdAt**, **modifiedAt**.                                     |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                                                                                      |
+| status        | string Enum: "pending" "deploying" "healthy" "unhealthy" "deploymentFailed" "destroying" "destroyFailed" Example: status=healthyFilters the results by the deployment status of the agent memory server. By default, agent memory servers in all states are returned. |
+
+### Responses
+
+**200** 
+
+Successfully listed the agent memory servers for the organization.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/aiServices/agentMemoryServers
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/aiServices/agentMemoryServers
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "id": "3fa1b2c3-a925-4e57-a1f9-90bc2dcfa091",
+    * "name": "support-bot-memory",
+    * "description": "Agent memory store for the support bot",
+    * "tenantId": "f59e8a62-0000-4e57-b1f9-90bc2dcfa000",
+    * "projectId": "a3b2c1d0-0000-4e57-b1f9-90bc2dcfa001",
+    * "clusterId": "13d745eb-9861-4e1d-88f5-eaacfef416a2",
+    * "config": {
+      * "nodeConfig": {
+        * "instanceType": "small",
+        * "nodeCount": 3,
+        * "provider": "aws",
+        * "region": "us-east-1"  
+            },
+      * "bucket": "agent-memory",
+      * "memoryBlockTTL": 604800,
+      * "embedding": {
+        * "integrationId": "8f14e45f-ceea-467e-adde-3f4602b3c9f5",
+        * "model": "text-embedding-3-small"  
+            },
+      * "llm": {
+        * "integrationId": "8f14e45f-ceea-467e-adde-3f4602b3c9f5",
+        * "model": "gpt-4o-mini"  
+            },
+      * "semanticExtraction": {
+        * "enabled": true  
+            },
+      * "advancedConfig": {
+        * "summaryTokenLimit": 700,
+        * "processingBatchSize": 5,
+        * "maxRequestsPerMinute": 1500,
+        * "maxTokensPerMinute": 125000,
+        * "maxConcurrentTasks": 100,
+        * "perRequestTokenLimit": 4096,
+        * "idleSleepSeconds": 0.5,
+        * "queueMaxSize": 10000,
+        * "maxFailCount": 3,
+        * "taskTimeoutSeconds": 90  
+            }  
+      },
+    * "network": {
+      * "endpoint": "<https://ams-3fa1b2c3.example.com>"  
+      },
+    * "status": "healthy",
+    * "audit": {
+      * "createdBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+      * "createdAt": "2026-07-15T10:30:00Z",
+      * "modifiedBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+      * "modifiedAt": "2026-07-16T08:00:00Z",
+      * "version": 2  
+      }  
+  },
+  * {
+    * "id": "7c9e6679-7425-40de-944b-e07fc1f90ae7",
+    * "name": "analytics-agent-memory",
+    * "description": "Agent memory store for the analytics assistant",
+    * "tenantId": "f59e8a62-0000-4e57-b1f9-90bc2dcfa000",
+    * "projectId": "b4c3d2e1-0000-4e57-b1f9-90bc2dcfa002",
+    * "clusterId": "24e856fc-a972-4f2e-99a6-fbbdeff527b3",
+    * "config": {
+      * "nodeConfig": {
+        * "instanceType": "small",
+        * "nodeCount": 3,
+        * "provider": "aws",
+        * "region": "us-west-2"  
+            },
+      * "bucket": "agent-memory",
+      * "memoryBlockTTL": 2592000,
+      * "embedding": {
+        * "integrationId": "8f14e45f-ceea-467e-adde-3f4602b3c9f5",
+        * "model": "text-embedding-3-large"  
+            },
+      * "llm": {
+        * "integrationId": "8f14e45f-ceea-467e-adde-3f4602b3c9f5",
+        * "model": "gpt-4o"  
+            },
+      * "semanticExtraction": {
+        * "enabled": false  
+            },
+      * "advancedConfig": {
+        * "summaryTokenLimit": 700,
+        * "processingBatchSize": 5,
+        * "maxRequestsPerMinute": 1500,
+        * "maxTokensPerMinute": 125000,
+        * "maxConcurrentTasks": 100,
+        * "perRequestTokenLimit": 4096,
+        * "idleSleepSeconds": 0.5,
+        * "queueMaxSize": 10000,
+        * "maxFailCount": 3,
+        * "taskTimeoutSeconds": 90  
+            }  
+      },
+    * "network": {
+      * "endpoint": "<https://ams-7c9e6679.example.com>"  
+      },
+    * "status": "deploying",
+    * "audit": {
+      * "createdBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+      * "createdAt": "2026-08-10T09:15:00Z",
+      * "modifiedBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+      * "modifiedAt": "2026-08-10T09:15:00Z",
+      * "version": 1  
+      }  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 1,
+    * "last": 1,
+    * "perPage": 10,
+    * "totalItems": 2  
+  },
+  * "hrefs": {
+    * "first": "<https://cloudapi.cloud.couchbase.com/v4/organizations/f59e8a62-0000-4e57-b1f9-90bc2dcfa000/aiServices/agentMemoryServers?page=1&perPage=10>",
+    * "last": "<https://cloudapi.cloud.couchbase.com/v4/organizations/f59e8a62-0000-4e57-b1f9-90bc2dcfa000/aiServices/agentMemoryServers?page=1&perPage=10>",
+    * "previous": "<https://cloudapi.cloud.couchbase.com/v4/organizations/f59e8a62-0000-4e57-b1f9-90bc2dcfa000/aiServices/agentMemoryServers?page=1&perPage=10>",
+    * "next": "<https://cloudapi.cloud.couchbase.com/v4/organizations/f59e8a62-0000-4e57-b1f9-90bc2dcfa000/aiServices/agentMemoryServers?page=1&perPage=10>"  
+  }  
+}
+}`
+
+## [](#tag/AI-Agent-Memory-Servers/operation/listAgentMemoryServerEligibleClusters)List Agent Memory Server Eligible Clusters 
+
+Lists the clusters that are eligible for an agent memory server deployment.
+
+A cluster is eligible only when all of the following hold:
+
+* It runs all of the data, index, query, and search services.
+* It runs Couchbase Server 8.0.0 or later.
+* It does not already have an agent memory server deployed, because the mapping between a cluster and an agent memory server is one to one.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Creator
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+* Cluster Owner
+* Cluster Data Writer
+* Cluster Data Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+
+##### query Parameters
+
+| projectId     | string <uuid\> Example: projectId=ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.                                                                                                           |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| page          | integer Sets the page you would like to view.                                                                                                                                                                |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                      |
+| sortBy        | Array of strings Example: sortBy=name Sets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **name**, **couchbaseVersion**. |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                             |
+
+### Responses
+
+**200** 
+
+Successfully listed the eligible clusters.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/aiServices/agentMemoryServers/eligibleClusters
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/aiServices/agentMemoryServers/eligibleClusters
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "id": "13d745eb-9861-4e1d-88f5-eaacfef416a2",
+    * "name": "my-cluster",
+    * "projectId": "a3b2c1d0-0000-4e57-b1f9-90bc2dcfa001",
+    * "projectName": "my-project",
+    * "couchbaseVersion": "8.0.1",
+    * "services": [
+      * "data",
+      * "index",
+      * "query",
+      * "search"  
+      ]  
+  },
+  * {
+    * "id": "24e856fc-a972-4f2e-99a6-fbbdeff527b3",
+    * "name": "analytics-cluster",
+    * "projectId": "b4c3d2e1-0000-4e57-b1f9-90bc2dcfa002",
+    * "projectName": "analytics-project",
+    * "couchbaseVersion": "8.1.0",
+    * "services": [
+      * "data",
+      * "index",
+      * "query",
+      * "search"  
+      ]  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 1,
+    * "last": 1,
+    * "perPage": 10,
+    * "totalItems": 2  
+  },
+  * "hrefs": {
+    * "first": "<https://cloudapi.cloud.couchbase.com/v4/organizations/f59e8a62-0000-4e57-b1f9-90bc2dcfa000/aiServices/agentMemoryServers/eligibleClusters?page=1&perPage=10>",
+    * "last": "<https://cloudapi.cloud.couchbase.com/v4/organizations/f59e8a62-0000-4e57-b1f9-90bc2dcfa000/aiServices/agentMemoryServers/eligibleClusters?page=1&perPage=10>",
+    * "previous": "<https://cloudapi.cloud.couchbase.com/v4/organizations/f59e8a62-0000-4e57-b1f9-90bc2dcfa000/aiServices/agentMemoryServers/eligibleClusters?page=1&perPage=10>",
+    * "next": "<https://cloudapi.cloud.couchbase.com/v4/organizations/f59e8a62-0000-4e57-b1f9-90bc2dcfa000/aiServices/agentMemoryServers/eligibleClusters?page=1&perPage=10>"  
+  }  
+}
 }`
 
 ## [](#tag/AI-Data-Plane-Providers)AI Data Plane Providers
@@ -29339,6 +35178,908 @@ Copy
 }
 }`
 
+## [](#tag/MCP-Servers)MCP Servers
+
+MCP servers expose a Capella operational cluster to AI agents over the Model Context Protocol (MCP). Each MCP server connects to exactly one cluster and serves the tools listed by the List MCP Tools endpoint, which agents call to inspect the cluster and work with its data.
+
+A cluster can host at most one MCP server. A cluster is eligible only when it is healthy, runs on AWS in a region where MCP servers are offered, and runs Couchbase Server 8.0.0 or later.
+
+The configuration of an MCP server is immutable after creation. There is no update endpoint, so changing the configuration currently means deleting the MCP server and creating a new one.
+
+## [](#tag/MCP-Servers/operation/listMcpServers)List MCP Servers 
+
+Lists the MCP servers deployed for a specific cluster.
+
+A cluster can have at most one MCP server, so the list holds at most one entry.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Cluster Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+
+##### query Parameters
+
+| page          | integer Sets the page you would like to view.                                                                                                                                                                    |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                          |
+| sortBy        | Array of strings Example: sortBy=nameSets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **name**, **status**, **createdAt**. |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                                 |
+
+### Responses
+
+**200** 
+
+Successfully listed the MCP servers for the cluster.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/mcpServers
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/mcpServers
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "id": "09a08787-a925-4e57-a1f9-90bc2dcfa091",
+    * "name": "my-test-mcp",
+    * "description": "Production MCP server for AI agents",
+    * "tenantId": "f59e8a62-0000-4e57-b1f9-90bc2dcfa000",
+    * "projectId": "a3b2c1d0-0000-4e57-b1f9-90bc2dcfa001",
+    * "clusterId": "13d745eb-9861-4e1d-88f5-eaacfef416a2",
+    * "config": {
+      * "instanceType": "medium",
+      * "nodeCount": 3,
+      * "readOnly": false,
+      * "provider": "aws",
+      * "region": "us-east-1",
+      * "specs": {
+        * "vcpu": 4,
+        * "memoryGB": 8  
+            },
+      * "availability": {
+        * "type": "multi"  
+            }  
+      },
+    * "network": {
+      * "endpoint": "<https://mcp-09a08787.example.com>"  
+      },
+    * "clientConfig": {
+      * "mcpServers": {
+        * "couchbase-capella": {
+          * "type": "http",
+          * "url": "<https://mcp-09a08787.example.com>",
+          * "headers": {
+            * "Authorization": "Bearer <YOUR_API_KEY_SECRET>"  
+                              }  
+                    }  
+            }  
+      },
+    * "status": "healthy",
+    * "audit": {
+      * "createdBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+      * "createdAt": "2026-07-15T10:30:00Z",
+      * "modifiedBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+      * "modifiedAt": "2026-07-15T10:31:12Z",
+      * "version": 3  
+      }  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 1,
+    * "last": 1,
+    * "perPage": 10,
+    * "totalItems": 1  
+  },
+  * "hrefs": {
+    * "first": "<https://cloudapi.cloud.couchbase.com/v4/organizations/f59e8a62-0000-4e57-b1f9-90bc2dcfa000/projects/a3b2c1d0-0000-4e57-b1f9-90bc2dcfa001/clusters/13d745eb-9861-4e1d-88f5-eaacfef416a2/mcpServers?page=1&perPage=10>",
+    * "last": "<https://cloudapi.cloud.couchbase.com/v4/organizations/f59e8a62-0000-4e57-b1f9-90bc2dcfa000/projects/a3b2c1d0-0000-4e57-b1f9-90bc2dcfa001/clusters/13d745eb-9861-4e1d-88f5-eaacfef416a2/mcpServers?page=1&perPage=10>",
+    * "previous": "",
+    * "next": ""  
+  }  
+}
+}`
+
+## [](#tag/MCP-Servers/operation/createMcpServer)Create MCP Server 
+
+Creates and deploys a new MCP server for a specific cluster.
+
+The mapping between a cluster and an MCP server is one to one, so a cluster that already has an MCP server cannot have another one. A second create request for the same cluster is rejected with `409 Conflict`. The cluster must be healthy, run on AWS in a region where MCP servers are offered, and run Couchbase Server 8.0.0 or later. A request for a cluster that does not meet these rules is rejected with `422 Unprocessable Entity`, naming the unmet rule.
+
+Deployment is asynchronous: this endpoint returns `202 Accepted` and provisions the MCP server in the background. It usually completes within about a minute. Track the progress with the Get MCP Server endpoint. Its `status` transitions from `pending` to `deploying` to `healthy`. A `deploymentFailed` status means that provisioning failed, and `initError` carries the reason.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Cluster Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+
+##### Request Body schema: application/json
+
+required
+
+| namerequired   | string \[ 1 .. 100 \] characters The name of the MCP server.                                                                                                                                                                                       |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| description    | string <= 500 characters An optional short description of the MCP server.                                                                                                                                                                          |
+| configrequired | object (McpServerConfig) The deployment configuration of the MCP server. The configuration is immutable after creation. There is no update endpoint, so changing the configuration currently means deleting the MCP server and creating a new one. |
+
+### Responses
+
+**202** 
+
+Successfully queued the MCP server for creation.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/mcpServers
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/mcpServers
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "name": "my-test-mcp",
+* "description": "Production MCP server for AI agents",
+* "config": {
+  * "instanceType": "medium",
+  * "nodeCount": 3,
+  * "readOnly": false  
+}
+}`
+
+### Response samples 
+
+* 202
+* 400
+* 401
+* 403
+* 404
+* 409
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "id": "09a08787-a925-4e57-a1f9-90bc2dcfa091"
+}`
+
+## [](#tag/MCP-Servers/operation/getMcpServer)Get MCP Server 
+
+Fetches the details of a specific MCP server, including its configuration, network endpoint, client configuration, and status.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Cluster Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| mcpServerIdrequired    | string <uuid\> Example: 09a08787-a925-4e57-a1f9-90bc2dcfa091The GUID4 ID of the MCP server.   |
+
+### Responses
+
+**200** 
+
+Successfully fetched the MCP server.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/mcpServers/{mcpServerId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/mcpServers/{mcpServerId}
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "id": "09a08787-a925-4e57-a1f9-90bc2dcfa091",
+* "name": "my-test-mcp",
+* "description": "Production MCP server for AI agents",
+* "tenantId": "f59e8a62-0000-4e57-b1f9-90bc2dcfa000",
+* "projectId": "a3b2c1d0-0000-4e57-b1f9-90bc2dcfa001",
+* "clusterId": "13d745eb-9861-4e1d-88f5-eaacfef416a2",
+* "config": {
+  * "instanceType": "medium",
+  * "nodeCount": 3,
+  * "readOnly": false,
+  * "provider": "aws",
+  * "region": "us-east-1",
+  * "specs": {
+    * "vcpu": 4,
+    * "memoryGB": 8  
+  },
+  * "availability": {
+    * "type": "multi"  
+  }  
+},
+* "network": {
+  * "endpoint": "<https://mcp-09a08787.example.com>"  
+},
+* "clientConfig": {
+  * "mcpServers": {
+    * "couchbase-capella": {
+      * "type": "http",
+      * "url": "<https://mcp-09a08787.example.com>",
+      * "headers": {
+        * "Authorization": "Bearer <YOUR_API_KEY_SECRET>"  
+            }  
+      }  
+  }  
+},
+* "status": "healthy",
+* "audit": {
+  * "createdBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+  * "createdAt": "2026-07-15T10:30:00Z",
+  * "modifiedBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+  * "modifiedAt": "2026-07-15T10:31:12Z",
+  * "version": 3  
+}
+}`
+
+## [](#tag/MCP-Servers/operation/deleteMcpServer)Delete MCP Server 
+
+Queues the MCP server for destruction.
+
+This action cannot be undone. All the resources associated with the MCP server are deleted.
+
+Destruction is asynchronous: this endpoint returns `202 Accepted` and tears down the MCP server in the background. Track the progress with the Get MCP Server endpoint. Its `status` is `destroying` while the teardown is in flight, and `destroyFailed` if the teardown fails, with `initError` carrying the reason. Once the teardown completes, the MCP server no longer exists and the endpoint returns `404 Not Found`.
+
+A request to delete an MCP server whose status does not allow it, such as an MCP server that is already being destroyed, is rejected with `409 Conflict`.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Cluster Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| mcpServerIdrequired    | string <uuid\> Example: 09a08787-a925-4e57-a1f9-90bc2dcfa091The GUID4 ID of the MCP server.   |
+
+### Responses
+
+**202** 
+
+Successfully queued the MCP server for destruction.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/mcpServers/{mcpServerId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/mcpServers/{mcpServerId}
+
+### Response samples 
+
+* 400
+* 401
+* 403
+* 404
+* 409
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/MCP-Servers/operation/getMcpServerClientConfig)Get MCP Server Client Config 
+
+Fetches an MCP client configuration template for a specific MCP server. Add it to an MCP client, such as Claude Desktop or Cursor, to connect the client to the MCP server.
+
+The template carries the placeholder `Bearer <YOUR_API_KEY_SECRET>` in its `Authorization` header. Replace `<YOUR_API_KEY_SECRET>` with the secret of an API key for this MCP server.
+
+Until the deployment assigns the MCP server an endpoint, this endpoint returns `200 OK` with an empty `mcpServers` object.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Cluster Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| mcpServerIdrequired    | string <uuid\> Example: 09a08787-a925-4e57-a1f9-90bc2dcfa091The GUID4 ID of the MCP server.   |
+
+### Responses
+
+**200** 
+
+Successfully fetched the MCP client configuration template.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/mcpServers/{mcpServerId}/clientConfig
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/mcpServers/{mcpServerId}/clientConfig
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Example
+
+MCP server with an endpointMCP server without an endpoint yetMCP server with an endpoint
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "mcpServers": {
+  * "couchbase-capella": {
+    * "type": "http",
+    * "url": "<https://mcp-09a08787.example.com>",
+    * "headers": {
+      * "Authorization": "Bearer <YOUR_API_KEY_SECRET>"  
+      }  
+  }  
+}
+}`
+
+## [](#tag/MCP-Tools)MCP Tools
+
+The MCP tools catalog lists the tools an MCP server can serve, grouped by tool group. The catalog is global: it is the same for every organization and cluster.
+
+## [](#tag/MCP-Tools/operation/listMcpTools)List MCP Tools 
+
+Lists the tools an MCP server can serve, grouped by tool group.
+
+The catalog is global: it is the same for every organization and cluster. A tool that needs a service the cluster does not run returns an error when it is called. A read-only MCP server loads the tools whose `access` is `read` or `readWrite`, and a `readWrite` tool there rejects statements that modify data.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Creator
+* Organization Member
+* Cluster Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+
+### Responses
+
+**200** 
+
+Successfully listed the MCP tools.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/mcpTools
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/mcpTools
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "id": "cluster_setup_and_health",
+    * "name": "Cluster Setup & Health",
+    * "tools": [
+      * {
+        * "id": "get_server_configuration_status",
+        * "name": "Get Server Configuration Status",
+        * "description": "Retrieve the current configuration status of the Couchbase server.",
+        * "access": "read"  
+            },
+      * {
+        * "id": "test_cluster_connection",
+        * "name": "Test Cluster Connection",
+        * "description": "Verify connectivity to the cluster.",
+        * "access": "read"  
+            },
+      * {
+        * "id": "get_cluster_health_and_services",
+        * "name": "Get Cluster Health and Services",
+        * "description": "Report the cluster's health and the services enabled on it.",
+        * "access": "read"  
+            }  
+      ]  
+  },
+  * {
+    * "id": "data_model_and_schema_discovery",
+    * "name": "Data Model & Schema Discovery",
+    * "tools": [
+      * {
+        * "id": "get_buckets_in_cluster",
+        * "name": "Get Buckets in Cluster",
+        * "description": "List all buckets in the cluster.",
+        * "access": "read"  
+            },
+      * {
+        * "id": "get_scopes_in_bucket",
+        * "name": "Get Scopes in Bucket",
+        * "description": "List all scopes within a bucket.",
+        * "access": "read"  
+            },
+      * {
+        * "id": "get_collections_in_scope",
+        * "name": "Get Collections in Scope",
+        * "description": "List all collections within a scope.",
+        * "access": "read"  
+            },
+      * {
+        * "id": "get_scopes_and_collections_in_bucket",
+        * "name": "Get Scopes and Collections in Bucket",
+        * "description": "List all scopes and their collections within a bucket.",
+        * "access": "read"  
+            },
+      * {
+        * "id": "get_schema_for_collection",
+        * "name": "Get Schema for Collection",
+        * "description": "Infer and return the document schema of a collection.",
+        * "access": "read"  
+            },
+      * {
+        * "id": "create_scope",
+        * "name": "Create Scope",
+        * "description": "Create a new scope in a bucket.",
+        * "access": "write"  
+            },
+      * {
+        * "id": "create_collection",
+        * "name": "Create Collection",
+        * "description": "Create a new collection in an existing scope.",
+        * "access": "write"  
+            },
+      * {
+        * "id": "delete_scope",
+        * "name": "Delete Scope",
+        * "description": "Delete an existing scope from a bucket.",
+        * "access": "write"  
+            },
+      * {
+        * "id": "delete_collection",
+        * "name": "Delete Collection",
+        * "description": "Delete an existing collection from a scope.",
+        * "access": "write"  
+            }  
+      ]  
+  },
+  * {
+    * "id": "document_kv_operations",
+    * "name": "Document KV Operations",
+    * "tools": [
+      * {
+        * "id": "get_document_by_id",
+        * "name": "Get Document by ID",
+        * "description": "Fetch a document by its key.",
+        * "access": "read"  
+            },
+      * {
+        * "id": "upsert_document_by_id",
+        * "name": "Upsert Document by ID",
+        * "description": "Insert or replace a document by its key.",
+        * "access": "write"  
+            },
+      * {
+        * "id": "insert_document_by_id",
+        * "name": "Insert Document by ID",
+        * "description": "Insert a new document by its key.",
+        * "access": "write"  
+            },
+      * {
+        * "id": "replace_document_by_id",
+        * "name": "Replace Document by ID",
+        * "description": "Replace an existing document by its key.",
+        * "access": "write"  
+            },
+      * {
+        * "id": "delete_document_by_id",
+        * "name": "Delete Document by ID",
+        * "description": "Delete a document by its key.",
+        * "access": "write"  
+            },
+      * {
+        * "id": "lookup_subdocument",
+        * "name": "Lookup Subdocument",
+        * "description": "Look up parts of a document without fetching the whole thing, using Couchbase sub-document operations.",
+        * "access": "read"  
+            },
+      * {
+        * "id": "mutate_subdocument",
+        * "name": "Mutate Subdocument",
+        * "description": "Modify parts of an existing document without rewriting the whole thing, using Couchbase sub-document mutation operations.",
+        * "access": "write"  
+            }  
+      ]  
+  },
+  * {
+    * "id": "query_and_indexing",
+    * "name": "Query & Indexing",
+    * "tools": [
+      * {
+        * "id": "run_sql_plus_plus_query",
+        * "name": "Run SQL++ Query",
+        * "description": "Execute a SQL++ (N1QL) query.",
+        * "access": "readWrite"  
+            },
+      * {
+        * "id": "explain_sql_plus_plus_query",
+        * "name": "Explain SQL++ Query",
+        * "description": "Return the execution plan for a SQL++ statement.",
+        * "access": "read"  
+            },
+      * {
+        * "id": "list_indexes",
+        * "name": "List Indexes",
+        * "description": "List the indexes defined in the cluster.",
+        * "access": "read"  
+            },
+      * {
+        * "id": "get_index_advisor_recommendations",
+        * "name": "Get Index Advisor Recommendations",
+        * "description": "Recommend indexes for a given query.",
+        * "access": "read"  
+            },
+      * {
+        * "id": "create_index",
+        * "name": "Create Index",
+        * "description": "Create a non-vector (scalar) GSI secondary index on a collection.",
+        * "access": "write"  
+            },
+      * {
+        * "id": "build_index",
+        * "name": "Build Index",
+        * "description": "Trigger the build of all deferred indexes on a collection.",
+        * "access": "write"  
+            },
+      * {
+        * "id": "drop_index",
+        * "name": "Drop Index",
+        * "description": "Drop an existing GSI index (scalar or vector) from a collection.",
+        * "access": "write"  
+            }  
+      ]  
+  },
+  * {
+    * "id": "query_performance_analysis",
+    * "name": "Query Performance Analysis",
+    * "tools": [
+      * {
+        * "id": "get_longest_running_queries",
+        * "name": "Get Longest Running Queries",
+        * "description": "List the queries with the longest execution times.",
+        * "access": "read"  
+            },
+      * {
+        * "id": "get_most_frequent_queries",
+        * "name": "Get Most Frequent Queries",
+        * "description": "List the most frequently executed queries.",
+        * "access": "read"  
+            },
+      * {
+        * "id": "get_queries_not_selective",
+        * "name": "Get Queries Not Selective",
+        * "description": "List queries that are not selective.",
+        * "access": "read"  
+            },
+      * {
+        * "id": "get_queries_not_using_covering_index",
+        * "name": "Get Queries Not Using Covering Index",
+        * "description": "List queries that do not use a covering index.",
+        * "access": "read"  
+            },
+      * {
+        * "id": "get_queries_using_primary_index",
+        * "name": "Get Queries Using Primary Index",
+        * "description": "List queries that fall back to the primary index.",
+        * "access": "read"  
+            },
+      * {
+        * "id": "get_queries_with_largest_response_sizes",
+        * "name": "Get Queries With Largest Response Sizes",
+        * "description": "List queries returning the largest responses.",
+        * "access": "read"  
+            },
+      * {
+        * "id": "get_queries_with_large_result_count",
+        * "name": "Get Queries With Large Result Count",
+        * "description": "List queries returning the most rows.",
+        * "access": "read"  
+            }  
+      ]  
+  }  
+]
+}`
+
 ## [](#tag/Model-Services-API-Keys-%28AI-Data-Plane%29)Model Services API Keys (AI Data Plane)
 
 Couchbase AI Data Plane Model Services uses Bearer token authentication for secure access to the AI models. Each inference request to access the models must include a valid API key in the Authorization header. The Model API Keys endpoints enable users to manage (create, retrieve, update, and delete) API keys for the models of a specific region, ensuring secure and controlled access to the models during inferencing. The API keys created for a specific region can be used to access all the models available in that region.
@@ -29787,7 +36528,7 @@ _token_
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | perPage     | integer Sets the number of results you would like to have on each page.                                                                                                                            |
 | modelStatus | string Enum: "pending" "deploying" "deployFailed" "healthy" "unhealthy" "pausing" "paused" "resuming" "pauseFailed" "resumeFailed" Filter by model status. All models are returned when set empty. |
-| modelKind   | string Enum: "embedding-generation" "text-generation" Filter by model kind. All models are returned when this is set empty.                                                                        |
+| modelKind   | string Enum: "embedding-generation" "sparse-embedding-generation" "text-generation" Filter by model kind. All models are returned when this is set empty.                                          |
 
 ### Responses
 

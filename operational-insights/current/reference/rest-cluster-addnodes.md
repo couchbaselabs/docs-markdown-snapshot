@@ -1,0 +1,84 @@
+---
+title: Adding Nodes to Clusters
+description: Nodes are added to clusters with the <code>POST
+  /controller/addNode</code> HTTP method and URI.
+pubDate: 2026-10-19T14:21:08.937Z
+meta:
+  component:
+    title: Operational Insights Enterprise
+    version: "3.0"
+  topic_type: reference
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/3.0/modules/reference/pages/rest-cluster-addnodes.adoc
+  xref: xref:enterprise-analytics:reference:rest-cluster-addnodes.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/operational-insights/current/reference/rest-cluster-addnodes.html)
+
+# Adding Nodes to Clusters
+
+> Nodes are added to clusters with the `POST /controller/addNode` HTTP method and URI. 
+
+## [](#http-method-and-uri)HTTP method and URI
+
+POST /controller/addNode
+
+## [](#description)Description
+
+This adds a server node to the cluster. Every Operational Insights node runs exactly the Data Service (`kv`) and the Analytics Service (`cbas`), and the added node is given both. The `services` parameter can therefore be omitted; if it is specified, its value must be `kv,cbas`.
+
+Operational Insights provides heightened security for adding nodes to clusters: a node that is to be added must itself be provisioned with conformant certificates before addition can be successfully performed. The new node is now always added over an encrypted connection. See [Adding and Joining New Nodes](../manage/manage-security/configure-server-certificates.md#adding-new-nodes).
+
+In consequence, a server to be added can be prefixed with the scheme `https://`, and/or can be suffixed with the port `18091`): if no scheme or port is specified, `https://` and `18091` are used as defaults. The scheme `http://` cannot be used; nor can the port `8091`, since addition takes place only over a secure connection.
+
+To further increase cluster security, restrictions can be placed on node-addition, based on the establishment of _node-naming conventions_. Only nodes whose names correspond to at least one of the stipulated conventions can be added. For information, see [Restrict Node-Addition](rest-specify-node-addition-conventions.md).
+
+### [](#node-certificate-validation)Validating Node Certificates
+
+The node-name _must_ be correctly identified in the node certificate as a Subject Alternative Name. If such identification is not correctly configured, failure may occur when attempting to add or join the node to a cluster. For information, see [Certificates](../manage/manage-security/manage-certificates.md).
+
+## [](#curl-syntax)Curl Syntax
+
+curl -u [admin]:[password]
+  http://[localhost]:8091/controller/addNode
+  -d hostname=[IPaddress]
+  -d user=[username]
+  -d password=[password]
+  -d services=kv,cbas
+
+Note that the administrative username and password must be specified. If the new node has not yet been provisioned, placeholder names must be provided.
+
+## [](#responses)Responses
+
+Success gives `200 OK`, and returns an object of the form `{"otpNode":"ns_1@ip-address-of-added-node"}`, to confirm that the node has been added. Specifying an unknown service gives `400 Bad Request`, and an object of the form `["Unknown services: [\"unknown-service-name\"]"]`. Specifying any list of services other than `kv,cbas` gives `400 Bad Request`, and an error of the form `Invalid services list. Expected [kv,cbas], got […​]`. If the node to be added has already been provisioned, and its administrative credentials are not properly specified, `400 Bad Request` is given, and an object is returned of the form `["Prepare join failed. Authentication failed. Verify username and password."]`
+
+If the IP address of the new node cannot be reached, `400 Bad Request` is given, and an object is returned of the form `["Failed to reach erlang port mapper at node \"ip-address-of-new-node\". Error: ehostunreach"]`. If the IP address of the host cluster is not accurately specified, or otherwise cannot be reached, the request times out, giving `Empty reply from server`. Failure to authenticate with the cluster gives `401 Unauthorized`.
+
+If an attempt is made to specify a node to be added with the scheme `http://` and/or the suffix `8091`, the request fails with `400 Bad Request`, and the error-message `http is prohibited due to security reasons, please use https`.
+
+When failure results from certificate checking (see [Certificates](../manage/manage-security/manage-certificates.md)), a message of the following form is provided: `Attention: Prepare join failed. Unable to validate certificate on host: 127.0.0.1. Please make sure the certificate on this host contains host name '127.0.0.1' in Subject Alternative Name. Refer to Couchbase docs for more info on how to create node certificates.`
+
+## [](#example)Example
+
+The following example adds a server node, `10.143.190.103`, to the cluster at `10.143.190.101:8091`, establishing the Data and Analytics Services on the new node. The IP address for the new server and its administrative credentials are provided.
+
+curl -v -X POST -u Administrator:password \
+http://10.143.190.101:8091/controller/addNode \
+-d 'hostname=https://10.143.190.103' \
+-d 'user=Administrator' \
+-d 'password=password' \
+-d 'services=kv,cbas'
+
+If successful, Operational Insights responds as follows, identifying the node that has been added:
+
+{"otpNode":"ns_1@10.143.190.103"}
+
+Subsequent to addition, the node must be rebalanced into the cluster. See [Rebalancing the Cluster](rest-cluster-rebalance.md).
+
+## [](#see-also)See Also
+
+* For an overview of nodes, including options for adding nodes to clusters, see [Nodes and Clusters](../manage/manage-nodes/node-management-overview.md).
+* For more information about rebalancing using the REST API, see [Rebalancing the Cluster](rest-cluster-rebalance.md).
+* For more information about adding nodes and rebalancing with the Operational Insights Web Console and the CLI, see [Add a Node and Rebalance](../manage/manage-nodes/add-node-and-rebalance.md).
+* For more information about correctly specifying the node-name on its certificate, see [Validating Node Certificates](../manage/manage-nodes/add-node-and-rebalance.md#node-certificate-validation).

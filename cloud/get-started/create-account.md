@@ -1,7 +1,7 @@
 ---
 title: Create an Account and Deploy Your Free Tier Operational Cluster
 description: Create an account and start managing your data with Couchbase Capella.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Capella Operational
@@ -26,7 +26,7 @@ With a perpetual offering, you have the freedom to work with your active free ti
 With an active and working free tier operational cluster, there is no pressure of expiration dates or incurring additional costs.
 
 > [!NOTE]
-> You cannot deploy a free tier cluster in Capella Analytics. This free tier offering is only available in Capella Operational.
+> You cannot deploy a free tier cluster in Operational Insights. This free tier offering is only available in Capella Operational.
 
 ## [](#sign-up-free-tier)Create an Account
 

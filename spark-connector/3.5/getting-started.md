@@ -1,6 +1,6 @@
 ---
 title: Getting Started (Scala)
-pubDate: 2026-10-14T04:27:20.555Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Spark Connector
@@ -26,7 +26,7 @@ The following examples use Scala and its sbt dependency manager, but it is possi
 
 Create a new sbt project and add the following content to the `build.sbt` file. This code includes all the Spark dependencies, as well as the Couchbase Spark connector. Just enough to get you started!
 
-Here is a reference to the [Scala docs](https://docs.couchbase.com/sdk-api/couchbase-spark-connector-3.5.6/api/com/couchbase/index.html).
+Here is a reference to the [Scala docs](https://docs.couchbase.com/sdk-api/couchbase-spark-connector-3.5.7/api/com/couchbase/index.html).
 
 ```scala
 name := "my-first-couchbase-spark-project"
@@ -40,7 +40,7 @@ scalaVersion := "2.13.18"
 libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % "3.5.9",
   "org.apache.spark" %% "spark-sql" % "3.5.9",
-  "com.couchbase.client" %% "spark-connector" % "3.5.6"
+  "com.couchbase.client" %% "spark-connector" % "3.5.7"
 )
 ```
 

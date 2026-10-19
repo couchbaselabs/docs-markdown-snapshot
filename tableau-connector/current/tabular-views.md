@@ -2,14 +2,14 @@
 title: Couchbase Analytics Tabular Views
 description: Create Tabular Analytics Views (TAVs) from Couchbase datasets for
   use with Tableau.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Tableau Connector
-    version: "2.0"
+    version: "3.0"
   topic_type: guide
 antora:
-  editUrl: https://github.com/couchbase/docs-tableau/edit/release/2.0/modules/ROOT/pages/tabular-views.adoc
+  editUrl: https://github.com/couchbase/docs-tableau/edit/release/3.0/modules/ROOT/pages/tabular-views.adoc
   xref: xref:tableau-connector::tabular-views.adoc[]
 ---
 
@@ -24,7 +24,7 @@ Tableau requires data sources to be in tabular form and accessible through SQL. 
 
 A TAV is a type of analytics view that enables Couchbase to interact with software tools designed for relational databases. TAVs present data as a table with uniform rows and columns and a well-defined schema.
 
-To prepare tabular analytics views for Enterprise Analytics, see [Tabular Analytics Views](../../enterprise-analytics/current/sqlpp/5a%5Fviews.md#TAV).
+To prepare tabular analytics views for Operational Insights Enterprise, see [Tabular Analytics Views](../../operational-insights/current/sqlpp/5a%5Fviews.md#TAV).
 
 The following example shows how to create a TAV.
 
@@ -34,7 +34,7 @@ This example uses the `travel-sample` bucket, which comes with predefined Analyt
 
 To load the bucket:
 
-1. Open the Enterprise Analytics Web Console.
+1. Open the Operational Insights Web Console.
 2. Go to **Workbench** **Samples**.
 3. Select `travel-sample`.
 4. Click **Load Sample Data**.
@@ -45,7 +45,7 @@ While the `travel-sample` dataset includes default Tabular Analytics Views (TAVs
 
 To create a TAV:
 
-1. Open Enterprise Analytics Web Console and go to **Workbench**.
+1. Open the Operational Insights Web Console and go to **Workbench**.
 2. In the **Query Editor**, set the scope to `travel-sample.inventory`.
 3. Run the following statement in the **Query Editor**.  
 ```sqlpp  
@@ -72,5 +72,5 @@ This statement creates a TAV named `airline_custom_view` in the `travel-sample.i
 
 Before connecting to Tableau, verify that your Analytics collections and tabular views are available.
 
-1. Open Enterprise Analytics Web Console and go to **Workbench**.
+1. Open the Operational Insights Web Console and go to **Workbench**.
 2. In the right-hand pane, confirm that the default and custom views appear in the **Databases** list.

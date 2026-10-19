@@ -3,7 +3,7 @@ title: Querying with SQL++
 description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Python Analytics SDK
@@ -24,7 +24,7 @@ On this page we dive straight into using the Query Service API from the Python A
 
 ## [](#before-you-start)Before You Start
 
-This page assumes that you have [installed the Python Analytics SDK](../hello-world/start-using-sdk.md), added your IP address to the allowlist, and [created an Enterprise Analytics cluster](#analytics:manage:manage-nodes/create-cluster.adoc#cluster).
+This page assumes that you have [installed the Python Analytics SDK](../hello-world/start-using-sdk.md), added your IP address to the allowlist, and [created an Operational Insights cluster](#analytics:manage:manage-nodes/create-cluster.adoc#cluster).
 
 Create a collection to work upon by [importing the travel-sample dataset](#analytics:intro:connecting-to-data-sources.adoc#import-the-travel-sample-collections) into your cluster.
 
@@ -33,9 +33,9 @@ Create a collection to work upon by [importing the travel-sample dataset](#analy
 > [!TIP]
 > API Enhancements & Async
 > 
-> The 1.1 Python Analytics SDK adds support for JWT and client certificate authentication, as well as a new poll-based Server Asynchronous Request API that uses request handles to fetch results. Introduced in self-managed Enterprise Analytics Server 2.2, this API eliminates the need for long-running server connections.
+> The 1.1 Python Analytics SDK adds support for JWT and client certificate authentication, as well as a new poll-based Server Asynchronous Request API that uses request handles to fetch results. Introduced in self-managed Operational Insights Server 2.2, this API eliminates the need for long-running server connections.
 > 
-> The examples in this first section of the page are for the standard API, working with all 2.x releases of Enterprise Analytics (with Server Asynchronous Request API examples following in the [Server Async section](#server-asynchronous-api)). Note, you will still be able to use this API with 2.2+ releases of Enterprise Analytics, in addition to the new API.
+> The examples in this first section of the page are for the standard API, working with all 2.x releases of Operational Insights (with Server Asynchronous Request API examples following in the [Server Async section](#server-asynchronous-api)). Note, you will still be able to use this API with 2.2+ releases of Operational Insights, in addition to the new API.
 
 Most queries return more than one result, and you want to iterate over the results:
 
@@ -235,7 +235,7 @@ print(table.to_string())
 
 ## [](#server-asynchronous-api)Server Asynchronous Request API (with Python Blocking API)
 
-Enterprise Analytics Server 2.2 adds aServer Asynchronous Request API. The SDK will send a request, poll for results, and then fetch once the result is available.
+Operational Insights Server 2.2 adds aServer Asynchronous Request API. The SDK will send a request, poll for results, and then fetch once the result is available.
 
 Server Asynchronous API Example
 
@@ -308,4 +308,4 @@ if __name__ == '__main__':
 
 ## [](#further-information)Further Information
 
-The [SQL++ for Analytics Reference](../../../analytics/sqlpp/1%5Fintro.md)offers a complete guide to the SQL++ language for both of our analytics services, including all of the latest additions.
+The [SQL++ for Analytics Reference](../../../operational-insights-cloud/sqlpp/1%5Fintro.md)offers a complete guide to the SQL++ language for both of our analytics services, including all of the latest additions.

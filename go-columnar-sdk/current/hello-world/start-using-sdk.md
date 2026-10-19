@@ -1,8 +1,9 @@
 ---
-title: Hello Columnar&#8201;&#8212;&#8201;Go SDK Quickstart Guide
+title: Hello Operational Insights (Capella)&#8201;&#8212;&#8201;Go SDK
+  Quickstart Guide
 description: Install, connect, try. A quick start guide to get you up and
-  running with Columnar and the Go Columnar SDK.
-pubDate: 2026-10-03T04:27:21.374Z
+  running with Operational Insights (Capella) and the Go Columnar SDK.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Go Columnar SDK
@@ -15,15 +16,15 @@ antora:
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/go-columnar-sdk/current/hello-world/start-using-sdk.html)
 
-# Hello Columnar&#8201;&#8212;&#8201;Go SDK Quickstart Guide
+# Hello Operational Insights (Capella)&#8201;&#8212;&#8201;Go SDK Quickstart Guide
 
-> Install, connect, try. A quick start guide to get you up and running with Columnar and the Go Columnar SDK. 
+> Install, connect, try. A quick start guide to get you up and running with Operational Insights (Capella) and the Go Columnar SDK. 
 
-[Capella Columnar](../../../analytics/intro/intro.md) is a real-time analytical database (RT-OLAP) for real time apps and operational intelligence. Although maintaining some syntactic similarities with [the operational SDKs](#home:sdk.adoc), the Go Columnar SDK is developed from the ground-up for Columnar's analytical use cases, and supports streaming APIs to handle large datasets.
+[Operational Insights (Capella)](#columnar:intro:intro.adoc) is a real-time analytical database (RT-OLAP) for real time apps and operational intelligence. Although maintaining some syntactic similarities with [the operational SDKs](#home:sdk.adoc), the Go Columnar SDK is developed from the ground-up for Operational Insights (Capella)'s analytical use cases, and supports streaming APIs to handle large datasets.
 
 ## [](#before-you-start)Before You Start
 
-Sign up for a [Capella account](../../../cloud/get-started/create-account.md), and choose a [Columnar](../../../analytics/intro/intro.md) cluster.
+Sign up for a [Capella account](../../../cloud/get-started/create-account.md), and choose an [Operational Insights (Capella)](#columnar:intro:intro.adoc) cluster.
 
 After creating the cluster, add your IP address to the list of allowed IP addresses.
 

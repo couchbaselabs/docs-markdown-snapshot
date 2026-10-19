@@ -1,8 +1,8 @@
 ---
 title: Managing Connections
-description: This section describes how to connect the Node.js Columnar SDK to a
-  Columnar cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+description: This section describes how to connect the Node.js Columnar SDK to
+  an Operational Insights (Capella) Cluster.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Node.js Columnar SDK
@@ -17,20 +17,20 @@ antora:
 
 # Managing Connections
 
-> This section describes how to connect the Node.js Columnar SDK to a Columnar cluster. It contains best practices as well as information on TLS/SSL and advanced connection options. 
+> This section describes how to connect the Node.js Columnar SDK to an Operational Insights (Capella) Cluster. It contains best practices as well as information on TLS/SSL and advanced connection options. 
 
-Our [Getting Started pages](../hello-world/start-using-sdk.md) cover the basics of making a connection to a Capella Columnar cluster. This page is a wider look at the topic.
+Our [Getting Started pages](../hello-world/start-using-sdk.md) cover the basics of making a connection to a Operational Insights (Capella) cluster. This page is a wider look at the topic.
 
 > [!WARNING]
 > Don't Mix Columnar & Operational SDKs.
 > 
 > Do not combine the Node.js Columnar SDK with the Node.js Operational SDK on the same app server (or development machine). This combination is not tested and not supported. There may be problems with different versions of shared dependencies if you try this. This only applies to the Node.js and Python Columnar SDKs.
 > 
-> Note, this does not apply to combining our Enterprise Analytics SDKs with our Operational SDKs. See the [Analytics SDK page](../../../home/analytics-sdk.md) for a reminder of which Analytics SDK to use with which Analytics service.
+> Note, this does not apply to combining our Operational Insights SDKs with our Operational SDKs. See the [Operational Insights SDK page](../../../home/operational-insights-sdk.md) for a reminder of which Insights SDK to use with which Insights or Analytics service.
 
 ## [](#connecting-to-a-cluster)Connecting to a Cluster
 
-A connection to a Columnar cluster is represented by a `columnar` object. Connect to Columnar by calling `columnar.createInstance` with the connection string, credentials, and any required optional parameters.
+A connection to an Operational Insights (Capella) cluster is represented by a `columnar` object. Connect to Operational Insights (Capella) by calling `columnar.createInstance` with the connection string, credentials, and any required optional parameters.
 
 ```javascript
 const columnar = require('couchbase-columnar')

@@ -1,6 +1,6 @@
 ---
 title: Couchbase AI Data Plane Release Notes
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase AI Data Plane
@@ -16,6 +16,15 @@ antora:
 
 # Couchbase AI Data Plane Release Notes
 
+## [](#october-2026-changelog)October 2026 Changelog
+
+* Serverless Models in the Model Service  
+The AI Data Plane Model Service now offers serverless models, served from Amazon Bedrock in North American AWS regions. Deploy models such as Anthropic Claude, Meta Llama, Mistral AI, and Amazon Nova, and call them through an OpenAI-compatible endpoint. You pay only for the tokens you use, with no GPU infrastructure to provision or manage. You can enable caching for serverless LLMs to reduce latency and cost on repeated prompts.  
+For more information, see [Deploy Serverless LLMs and Embedding Models](../build/model-service/deploy-serverless-model.md).
+* Private Networking for Amazon Bedrock Embedding Models in Workflows  
+You can now enable private networking for a Workflow that uses an Amazon Bedrock embedding model. Enable it when you create the Workflow, in the Capella UI or through the Management API.  
+For more information, see [Process Your Data For the Couchbase AI Data Plane](../build/vectorization-service/data-processing.md).
+
 ## [](#june-2026-changelog)June 2026 Changelog
 
 * We're excited to reintroduce Couchbase AI Services, now known as the **Couchbase AI Data Plane**.  
@@ -23,7 +32,7 @@ The Couchbase AI Data Plane is a unified data infrastructure layer for your prod
 As a part of this release, the AI Data Plane is introducing new features to help solve the problem of scattered agent data through:
 
   * **Agent Memory**: Use Couchbase Agent Memory to get a unified, persistent memory layer for your agentic applications. Store your users' conversation history, extracted facts, and vector embeddings to improve the personalization and user experience of your agents.  
-  For more information, see [Agent Memory for Persistent Memory Storage](../build/agent-memory/about-agent-mem.md).
+  For more information, see [Agent Memory for Persistent Memory Storage](../../agent-mem/current/about-agent-mem.md).
   * **MCP Server**: Use the Couchbase Model Context Protocol (MCP) Server to let LLMs interact directly with data stored in your Couchbase clusters. Use natural language querying to explore your cluster's setup and health, data models and schemas, directly query documents, or analyze query performance.  
   For more information, see [mcp-server::intro.adoc](#mcp-server::intro.adoc).  
 The Couchbase AI Data Plane also includes:

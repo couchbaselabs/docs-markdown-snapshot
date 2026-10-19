@@ -1,7 +1,7 @@
 ---
 title: Manage Billing Alerts
 description: Create billing alerts to monitor usage.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Capella Operational
@@ -23,7 +23,7 @@ Capella sends alerts to users in your organization when a usage condition is met
 
 ## [](#prerequisites)Prerequisites
 
-To manage billing alerts, you must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) role.
+* To manage billing alerts, you must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) or [Organization Billing Administrator](../organizations/organization-user-roles.md#organization-billing-administrator) role.
 
 ## [](#create-a-billing-alert)Create a Billing Alert
 

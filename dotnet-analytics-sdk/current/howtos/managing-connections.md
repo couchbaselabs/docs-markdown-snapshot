@@ -1,8 +1,8 @@
 ---
 title: Managing Connections
 description: This section describes how to connect the .NET Analytics SDK to an
-  Analytics cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+  Operational Insights cluster.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: .NET Analytics SDK
@@ -17,9 +17,9 @@ antora:
 
 # Managing Connections
 
-> This section describes how to connect the .NET Analytics SDK to an Analytics cluster. It contains best practices as well as information on TLS/SSL and advanced connection options, and a sub-page on troubleshooting remote connections during devlopment. 
+> This section describes how to connect the .NET Analytics SDK to an Operational Insights cluster. It contains best practices as well as information on TLS/SSL and advanced connection options, and a sub-page on troubleshooting remote connections during devlopment. 
 
-Our [Getting Started pages](../hello-world/start-using-sdk.md) cover the basics of making a connection to an Enterprise Analytics cluster. This page is a wider look at the topic.
+Our [Getting Started pages](../hello-world/start-using-sdk.md) cover the basics of making a connection to an Operational Insights cluster. This page is a wider look at the topic.
 
 ## [](#connecting-to-a-cluster)Connecting to a Cluster
 
@@ -70,7 +70,7 @@ Basic Access Authentication is shown in the example [above](#connecting-to-a-clu
 
 ### [](#json-web-tokens-jwt)JSON Web Tokens (JWT)
 
-From the 1.1 SDK (with Enterprise Analytics Server 2.2+) JWT is supported.
+JWT is supported with Operational Insights Server `2.2+`.
 
 ```csharp
 var credential = JwtCredential.Create(token);
@@ -79,7 +79,7 @@ public static Cluster Create(string connectionString, ICredential credential);
 
 ### [](#certificate-authentication)Certificate Authentication
 
-From the 1.1 Analytics SDK (with Enterprise Analytics Server 2.2+) certificate authentication is supported. A conceptual and architectural overview of Enterprise Analytics's support of X.509 certificates is provided in the [Server certificates docs](../../../server/current/learn/security/certificates.md). Practical information on handling certificates can be found in the [Enterprise Analytics certificates docs](../../../enterprise-analytics/current/manage/manage-security/manage-certificates.md).
+Certificate authentication is supported with Operational Insights Server `2.2+`. A conceptual and architectural overview of Operational Insights's support of X.509 certificates is provided in the [Server certificates docs](../../../server/current/learn/security/certificates.md). Practical information on handling certificates can be found in the [Operational Insights certificates docs](../../../operational-insights/2.2/manage/manage-security/manage-certificates.md).
 
 The Analytics SDK authenticates the client during the TLS handshake. The SDK reads the certificate and private key from a `PKCS#12` file:
 
@@ -92,7 +92,7 @@ Typically, JWTs have a short validity period. Renew JWTs with `Cluster.UpdateCre
 
 ## [](#certificate-authority)Certificate Authority
 
-To make a TLS connection to an Enterprise Analytics cluster with a root certificate issued by a trusted CA (Certificate Authority), you do not need to add this to your configuration — the platform's defaults are automatically trusted.
+To make a TLS connection to an Operational Insights cluster with a root certificate issued by a trusted CA (Certificate Authority), you do not need to add this to your configuration — the platform's defaults are automatically trusted.
 
 The cluster's root certificate just needs to be issued by a CA whose certificate is in your system trust store. This includes well known CAs (including GoDaddy and Verisign), plus any other CA certificates that you wish to add.
 

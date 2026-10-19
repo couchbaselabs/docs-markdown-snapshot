@@ -1,0 +1,26 @@
+---
+title: Reference Pages
+description: Essential reference infomation for developing with Operational Insights.
+pubDate: 2026-10-19T14:21:08.937Z
+meta:
+  component:
+    title: Node.js Operational Insights SDK
+    version: "1.0"
+antora:
+  editUrl: https://github.com/couchbase/docs-operational-insights-sdk-nodejs/edit/release/1.0/modules/ref/pages/index.adoc
+  xref: xref:nodejs-operational-insights-sdk:ref:index.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/nodejs-operational-insights-sdk/current/ref/index.html)
+
+# Reference Pages
+
+> Essential reference infomation for developing with Operational Insights. 
+
+This section contains the following reference docs:
+
+* [API Reference](https://docs.couchbase.com/sdk-api/operational-insights-nodejs-client)
+* [Client Settings](client-settings.md)
+* [Error Code Reference](error-codes.md)
+* [Glossary](glossary.md)

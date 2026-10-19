@@ -3,7 +3,7 @@ title: Manage Deployments with the Capella Operational Management API
 description: The Couchbase Capella Operational Management API is a secure REST
   API that enables you to provision, deploy, and configure Capella deployments
   across all supported cloud service providers.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Capella Operational
@@ -21,7 +21,7 @@ antora:
 
 > The Couchbase Capella Operational Management API is a secure REST API that enables you to provision, deploy, and configure Capella deployments across all supported cloud service providers. 
 
-This page is for Capella operational. For the Couchbase AI Data Plane, see [Manage Deployments with the Couchbase AI Data Plane APIs](../../ai/api-guide/api-intro.md). For Capella Analytics, see [Manage Deployments with the Capella Analytics Management API](../../analytics/management-api-guide/management-api-intro.md).
+This page is for Capella operational. For the Couchbase AI Data Plane, see [Manage Deployments with the Couchbase AI Data Plane APIs](../../ai/api-guide/api-intro.md). For Operational Insights, see [Manage Deployments with the Operational Insights Management API](../../operational-insights-cloud/management-api-guide/management-api-intro.md).
 
 Clients do not need any special tools, SDKs, or libraries to access the Management API. The Management API supports off-the-shelf HTTP clients, such as [Insomnia](https://insomnia.rest) or [Postman](https://www.postman.com).
 
@@ -88,6 +88,6 @@ Requests and response payloads are restricted to 18 MB.
 
 * To create an API key, see [Get Started with the Capella Operational Management API](management-api-start.md).
 * To make an API call, see [Make an API Call with the Capella Operational Management API](management-api-use.md).
-* For a full reference guide, see [Capella Operational Management API Reference](../management-api-reference/index.md).
+* For a full reference guide, see [Couchbase Capella Management API Reference](../management-api-reference/index.md).
 * For an error reference, see [Capella Operational Management API Errors](management-api-errors.md).
 * For the change log, see [Capella Operational Management API Change Log](management-api-log.md).

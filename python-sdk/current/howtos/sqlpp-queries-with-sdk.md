@@ -3,7 +3,7 @@ title: Query
 description: You can query for documents in Couchbase using the
   https://www.couchbase.com/products/n1ql[SQL++] query language, a language
   based on SQL, but designed for structured and flexible JSON documents.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Python SDK
@@ -338,4 +338,4 @@ reactor.run()
 * Read more on when to choose the Analytics service:
 
   * Couchbase's [traditional row-based Analytics Service](../concept-docs/querying-your-data.md#long-running-queries-big-data).
-  * [Real-time analytics](../../../enterprise-analytics/current/intro/intro.md).
+  * [Real-time analytics](../../../operational-insights/current/intro/intro.md).

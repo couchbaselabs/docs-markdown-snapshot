@@ -3,7 +3,7 @@ title: Get Started with Capella iQ
 description: Capella iQ is your partner in getting started with Couchbase
   Capella. Use it to generate SQL++ queries, sample data, build indexes, and
   more.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Capella Operational
@@ -25,7 +25,7 @@ antora:
 Capella iQ is your partner in Capella, allowing you to work faster and assist you directly in the Capella UI. It uses a large language model (LLM) and Couchbase-specific knowledge to generate SQL++ queries and more based on natural language prompts. For example, you can ask Capella iQ to generate a SQL++ query in a cluster with the travel-sample dataset using the `Count the number of airlines per country` prompt. Capella iQ also produces responses based on the context of a chat session. You can iterate on this query with another prompt, such as `Only count those in the United States.`
 
 > [!NOTE]
-> Only questions that relate to your cluster and Couchbase generate a response. The examples on this page relate to operational clusters only. For more information about using iQ with Capella Analytics, see [Get Assistance from Capella iQ](../../../analytics/query/iq.md).
+> Only questions that relate to your cluster and Couchbase generate a response. The examples on this page relate to operational clusters only. For more information about using iQ with Operational Insights, see [Get Assistance from Capella iQ](../../../operational-insights-cloud/query/iq.md).
 
 ## [](#prerequisites)Prerequisites
 
@@ -163,4 +163,4 @@ You can remove any favorite queries by clearing **Favorite**. Similarly, you can
 * [Work Faster with Capella iQ](work-with-capellaiq.md)
 * [Configure Capella iQ](configure-capellaiq.md)
 * [Explore iQ Insights](explore-iq-insights.md)
-* [Get Assistance from Capella iQ in Analytics](../../../analytics/query/iq.md)
+* [Get Assistance from Capella iQ in Analytics](../../../operational-insights-cloud/query/iq.md)

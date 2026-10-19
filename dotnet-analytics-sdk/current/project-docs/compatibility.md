@@ -1,9 +1,9 @@
 ---
 title: Compatibility
 description: Platform compatibility, and features available in different SDK
-  versions, and compatibility between Server and SDK. Plus notes on Cloud,
-  networks, and AWS Lambda.
-pubDate: 2026-10-03T04:27:21.374Z
+  versions, and compatibility between Operational Insights and the SDK. Plus
+  notes on Cloud, networks, and AWS Lambda.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: .NET Analytics SDK
@@ -18,7 +18,7 @@ antora:
 
 # Compatibility
 
-> Platform compatibility, and features available in different SDK versions, and compatibility between Server and SDK. Plus notes on Cloud, networks, and AWS Lambda. 
+> Platform compatibility, and features available in different SDK versions, and compatibility between Operational Insights and the SDK. Plus notes on Cloud, networks, and AWS Lambda. 
 
 ## [](#platform-compatibility)Platform Compatibility
 
@@ -60,9 +60,18 @@ Couchbase Analytics SDKs are developed to be run in an environment with local ar
 
 Couchbase does document, for purposes of convenience when developing and performing basic operational work, what may need to be tuned when network throughputs and latencies are higher. If you encounter issues, even with these tunables, you should attempt the same workload from a supported, LAN-like environment.
 
-## [](#enterprise-analytics-compatibility)Enterprise Analytics Compatibility
+## [](#operational-insights-cluster-compatibility)Operational Insights Cluster Compatibility
 
-The 1.1 releases of the Analytics SDK are fully compatible with all currently supported releases of Enterprise Analytics. The 1.1 .NET SDK also supports the poll-based Server Asynchronous Request API introduced in self-managed Enterprise Analytics Server 2.2.
+__Operational Insights Cluster compatibility with Insights SDKs and Analytics SDKs__
+|                              | Operational Insights 2.0, 2.1 | Operational Insights 2.2 | Operational Insights 3.0 |
+| ---------------------------- | ----------------------------- | ------------------------ | ------------------------ |
+| Operational Insights SDK 1.0 | **✔**                         | **✔**                    | **✔**                    |
+| Analytics SDK 1.1            | **✔**                         | **✔**                    | **✔** ①                  |
+| Analytics SDK 1.0            | **✔**                         | **✔** ②                  | **✔** ① ②                |
+
+① Analytics SDKs have been superseded by Operational Insights SDKs, and will not receive new features for future releases of Operational Insights.
+
+② Analytics SDK 1.0 does not have support for the streaming API introduced in Operational Insights 2.2\. It also does not support the JWT and client certificate authentication introduced in that release.
 
 ### [](#api-version)API Version
 

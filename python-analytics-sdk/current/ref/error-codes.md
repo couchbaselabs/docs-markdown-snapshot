@@ -1,8 +1,8 @@
 ---
 title: Error Messages
 description: The standardized error codes returned by the Analytics Python SDK,
-  from Capella connection to SQL++ query.
-pubDate: 2026-10-03T04:27:21.374Z
+  from Operational Insights connection to SQL++ query.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Python Analytics SDK
@@ -17,8 +17,8 @@ antora:
 
 # Error Messages
 
-> The standardized error codes returned by the Analytics Python SDK, from Capella connection to SQL++ query. 
+> The standardized error codes returned by the Analytics Python SDK, from Operational Insights connection to SQL++ query. 
 
-The Python Analytics SDK passes through the Analytics error codes from Enterprise Analytics.
+The Python Analytics SDK passes through the Analytics error codes from Operational Insights.
 
 For a full list of error codes, see [Analytics Error Codes](../../../server/current/analytics/error-codes.md).

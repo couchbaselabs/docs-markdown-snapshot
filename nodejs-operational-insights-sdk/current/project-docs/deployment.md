@@ -1,0 +1,37 @@
+---
+title: Deployment
+description: Transition from dev environment to prod, and keep up with the latest fixes.
+pubDate: 2026-10-19T14:21:08.937Z
+meta:
+  component:
+    title: Node.js Operational Insights SDK
+    version: "1.0"
+antora:
+  editUrl: https://github.com/couchbase/docs-operational-insights-sdk-nodejs/edit/release/1.0/modules/project-docs/pages/deployment.adoc
+  xref: xref:nodejs-operational-insights-sdk:project-docs:deployment.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/nodejs-operational-insights-sdk/current/project-docs/deployment.html)
+
+# Deployment
+
+> Transition from dev environment to prod, and keep up with the latest fixes. 
+
+One of Couchbase's strengths is speedy response, so deployment of apps should be in the same region as your Operational Insights cluster.
+
+We always recommend the [latest version](operational-insights-sdk-release-notes.md#latest-release) of the SDK. This not only contains the latest security updates and bug fixes, but will be compatible with the latest Operational Insights release.
+
+Before deploying, take note of any [compatibility](compatibility.md) issues for the language platform and underlying OS. The [full installation guide](sdk-full-installation.md) should cover any special cases for all supported environments.
+
+## [](#development-testing-environments)Development & Testing Environments
+
+During development, some shortcuts are taken to get up and running which would not be acceptable during deployment. These include use of administrator permissions, connecting from your laptop instead of a secure app server, and even disabling certificate verification for TLS. Testing environments may also differ from deployment.
+
+The Node.js Operational Insights SDK docs note whenever a shortcut is being taken, but here is a non-exhaustive list of those development practices which should not be carried over to production deployments:
+
+* Over-privileged access
+* Geographical separation of app server and database
+* Skipping certificate verification
+
+The best way to accommodate developing an application that is to be deployed to production is to use the platform's default approach for configuration files.

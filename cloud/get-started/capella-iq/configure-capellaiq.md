@@ -3,7 +3,7 @@ title: Configure Capella iQ
 description: Capella iQ harnesses the power of a third-party large language
   model (LLM) to improve your queries. You can turn this tool on or off for your
   organization.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Capella Operational
@@ -49,7 +49,7 @@ To accept the Capella iQ supplemental terms:
 Capella iQ is now available to all your organization's users, who can use it with all of your organization's clusters.
 
 > [!NOTE]
-> Accepting the terms for Capella iQ enables iQ for both operational clusters and [Capella Analytics clusters](../../../analytics/intro/intro.md). While iQ helps you write SQL++ queries in an operational cluster, iQ for Capella Analytics helps you write [SQL++ for Capella Analytics queries and statements](../../../analytics/sqlpp/1%5Fintro.md).
+> Accepting the terms for Capella iQ enables iQ for both operational clusters and [Operational Insights clusters](../../../operational-insights-cloud/intro/intro.md). While iQ helps you write SQL++ queries in an operational cluster, iQ for Operational Insights helps you write [SQL++ for Operational Insights Cloud queries and statements](../../../operational-insights-cloud/sqlpp/1%5Fintro.md).
 
 ## [](#select-model-provider)Select Your Capella iQ Model Provider
 

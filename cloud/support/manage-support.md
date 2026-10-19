@@ -1,6 +1,6 @@
 ---
 title: Request Support
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Capella Operational
@@ -17,11 +17,15 @@ antora:
 
 > You can request support through the Couchbase Capella UI. 
 
+## [](#prerequisites)Prerequisites
+
+* To view support tickets, you must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner), [Project Creator](../organizations/organization-user-roles.md#organization-role-project-creator), [Organization Member](../organizations/organization-user-roles.md#organization-role-member), or [Organization Read-Only Member](../organizations/organization-user-roles.md#organization-read-only) role.
+* To create support tickets, you must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner), [Project Creator](../organizations/organization-user-roles.md#organization-role-project-creator), or [Organization Member](../organizations/organization-user-roles.md#organization-role-member) role.
+* If you have the [Organization Billing Administrator](../organizations/organization-user-roles.md#organization-billing-administrator) or [Organization Billing Viewer](../organizations/organization-user-roles.md#organization-billing-viewer) role, you can view and create support tickets in the Billing category only.
+
 ## [](#requesting-support-through-the-couchbase-capella-ui)Requesting Support Through the Couchbase Capella UI
 
 Support tickets are created and managed on the **Support** tab. A summary of the organization's support tickets is displayed here.
-
-Support tickets can be viewed and created by any user with the [Organization Member](../organizations/organization-user-roles.md#organization-role-view) role.
 
 > [!NOTE]
 > If you're a free tier plan user, you're unable to create a support ticket. You're community-supported. Use the Couchbase [forums](https://www.couchbase.com/forums/tag/couchbase-capella), [discord channel](https://discord.com/invite/K7NPMPGrPk?utm%5Fsource=forums&utm%5Fmedium=pinnedpost&utm%5Fcampaign=discord) and [documentation](../get-started/intro.md) for community support and feedback.

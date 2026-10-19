@@ -2,7 +2,7 @@
 title: Configure Guardrails and Security
 description: The AI Data Plane Model Service provides guardrails and security
   features to help you manage and secure your Large Language Models (LLMs).
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase AI Data Plane
@@ -71,6 +71,6 @@ If your application prioritizes user experience and requires fewer interruptions
 
 ## [](#see-also)See Also
 
-* [Deploy a Large Language Model (LLM)](deploy-llm-model.md)
+* [Deploy a Provisioned Large Language Model (LLM)](deploy-llm-model.md)
 * [Configure LLM Performance](configure-llm-performance.md)
 * [Configure LLM Value Adds](configure-value-adds.md)

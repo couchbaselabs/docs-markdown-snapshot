@@ -1,6 +1,6 @@
 ---
 title: Node.js Analytics SDK 1.1
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Node.js Analytics SDK
@@ -17,20 +17,20 @@ antora:
 
 # Node.js Analytics SDK 1.1
 
-The Analytics Node.js SDK allows you to connect to an [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) cluster from Node.js. For connecting to a Couchbase Server Cluster — self-managed, or Capella Operational — see our [Node.js Server SDK](../../../nodejs-sdk/current/hello-world/overview.md).
+The Analytics Node.js SDK allows you to connect to an [Operational Insights](../../../operational-insights/current/intro/intro.md) cluster from Node.js. For connecting to a Couchbase Server Cluster — self-managed, or Capella Operational — see our [Node.js Server SDK](../../../nodejs-sdk/current/hello-world/overview.md).
 
 > [!TIP]
-> Connecting to a [_Capella_ Analytics](../../../analytics/intro/intro.md) cluster from Node.js currently requires a [Node.js Columnar SDK](../../../nodejs-columnar-sdk/current/hello-world/overview.md).
+> Connecting to a [_Capella_ Analytics](#columnar:intro:intro.adoc) cluster from Node.js currently requires a [Node.js Columnar SDK](../../../nodejs-columnar-sdk/current/hello-world/overview.md).
 
   
-##  Using Your Analytics Cluster
+##  Using Your Operational Insights Cluster
 
-How-to guides and tutorials to help you start your development journey with Enterprise Analytics and the Node.js SDK.
+How-to guides and tutorials to help you start your development journey with Operational Insights and the Node.js SDK.
 
 Getting Started
 
 * [Node.js Analytics SDK Quickstart Guide](start-using-sdk.md)
-* [Connecting to Enterprise Analytics](../howtos/managing-connections.md)
+* [Connecting to Operational Insights](../howtos/managing-connections.md)
 * [Querying with SQL++](../howtos/sqlpp-queries-with-sdk.md)
 
 Reference

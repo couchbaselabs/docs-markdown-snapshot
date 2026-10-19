@@ -2,7 +2,7 @@
 title: Use Couchbase AI Data Plane AI Functions
 description: Use AI Functions to summarize text, classify content, detect
   sentiment, explain patterns, and more — all within your SQL++ queries.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase AI Data Plane
@@ -72,7 +72,7 @@ The following AI Data Plane AI Functions are available:
 * (Recommended) If you have a production workload, [enable private networking](../security/add-aws-privatelink.md) to use AI Functions.  
 > [!NOTE]  
 > If you want to enable private networking for your AI Functions, your AI Data Plane model and Capella operational cluster need to be deployed within the same AWS region.
-* (Recommended) You have guardrails selected for your chosen model. This includes keyword filtering and jailbreak detection. Guardrails are important to have when you use the completion function. For more information, see [Deploy a Large Language Model (LLM)](model-service/deploy-llm-model.md).
+* (Recommended) You have guardrails selected for your chosen model. This includes keyword filtering and jailbreak detection. Guardrails are important to have when you use the completion function. For more information, see [Deploy a Provisioned Large Language Model (LLM)](model-service/deploy-llm-model.md).
 
 ## [](#enable-ai-functions)Enable AI Functions
 
@@ -100,6 +100,10 @@ To enable AI Data Plane AI Functions:
   2. Choose your AI Data Plane model.
   3. Enter your **API Key ID** and **API Key Token**, or upload your `.txt` credentials file. For more information about API keys for AI Data Plane models, see [Get Started with the Couchbase AI Data Plane APIs](../api-guide/api-start.md).
   4. Click **Next**.
+  5. Choose a Capella operational cluster for your functions.
+  6. (Optional) If your AI Data Plane model and your Capella operational cluster have the same AWS region, choose whether you want to enable private networking for your functions. This enables private networking between your LLM's AWS region and your Capella operational cluster.  
+  > [!NOTE]  
+  > You cannot disable private networking later.
 
   1. Select **OpenAI Model**.
   2. Choose your OpenAI model.
@@ -111,6 +115,7 @@ To enable AI Data Plane AI Functions:
     4. Click **Add Key**.
   4. Choose your OpenAI API Key.
   5. Click **Next**.
+  6. Choose a Capella operational cluster for your functions.
 
   1. Select **AWS Bedrock Model**.
   2. Enter your **Model ID** and choose your AWS **Region**.
@@ -122,11 +127,8 @@ To enable AI Data Plane AI Functions:
     4. Click **Add Credentials**.
   4. Choose your Bedrock credentials.
   5. Click **Next**.
-5. Choose a Capella operational cluster for your functions.
-6. (Optional) If your AI Data Plane model and your Capella operational cluster have the same AWS region, choose whether you want to enable private networking for your functions. This enables private networking between your LLM's AWS region and your Capella operational cluster.  
-> [!NOTE]  
-> You cannot disable private networking later.
-7. Click **Complete Setup**.
+  6. Choose a Capella operational cluster for your functions.
+5. Click **Complete Setup**.
 
 ## [](#run-an-ai-function)Run an AI Function
 
@@ -775,5 +777,5 @@ For information about how Couchbase bills you according to your AI Functions usa
 
 ## [](#next-steps)Next Steps
 
-* [Deploy an Embedding Model](model-service/deploy-embed-model.md)
-* [Deploy a Large Language Model (LLM)](model-service/deploy-llm-model.md)
+* [Deploy a Provisioned Embedding Model](model-service/deploy-embed-model.md)
+* [Deploy a Provisioned Large Language Model (LLM)](model-service/deploy-llm-model.md)

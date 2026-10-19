@@ -1,8 +1,8 @@
 ---
 title: Managing Connections
-description: This section describes how to connect the Go Columnar SDK to a
-  Couchbase cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+description: This section describes how to connect the Go Columnar SDK to an
+  Operational Insights (Capella) cluster.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Go Columnar SDK
@@ -17,13 +17,13 @@ antora:
 
 # Managing Connections
 
-> This section describes how to connect the Go Columnar SDK to a Couchbase cluster. It contains best practices as well as information on TLS/SSL, advanced connection options, and troubleshooting Cloud connections. 
+> This section describes how to connect the Go Columnar SDK to an Operational Insights (Capella) cluster. It contains best practices as well as information on TLS/SSL, advanced connection options, and troubleshooting Cloud connections. 
 
-Our [Getting Started pages](../hello-world/start-using-sdk.md) cover the basics of making a connection to a Capella Columnar cluster. This page is a wider look at the topic.
+Our [Getting Started pages](../hello-world/start-using-sdk.md) cover the basics of making a connection to a Operational Insights (Capella) cluster. This page is a wider look at the topic.
 
 ## [](#connecting-to-a-cluster)Connecting to a Cluster
 
-A connection to a Couchbase Server cluster is represented by a `Cluster` object. A `Cluster` provides access to Buckets, Scopes, and Collections, as well as various Couchbase services and management interfaces. The simplest way to create a `Cluster` object is to call `cbcolumnar.NewCluster()` with a [connection string](#connection-strings), username, and password:
+A connection to an Operational Insights (Capella) cluster is represented by a `Cluster` object. A `Cluster` provides access to Buckets, Scopes, and Collections, as well as various Couchbase services and management interfaces. The simplest way to create a `Cluster` object is to call `cbcolumnar.NewCluster()` with a [connection string](#connection-strings), username, and password:
 
 ```golang
 	cluster, err := cbcolumnar.NewCluster(
@@ -62,7 +62,7 @@ The full list of recognized parameters is documented in the [client settings ref
 
 ## [](#local-development)Local Development
 
-We strongly recommend that the client and server [are in the same LAN-like environment](../project-docs/compatibility.md#network-requirements) (e.g. AWS Region). As this may not always be possible during development, read the guidance on working with [constrained network environments](../ref/client-settings.md#commonly-used-options). More details on connecting your client code to Couchbase Capella can be found [in the Capella Operational docs](../../../cloud/get-started/connect.md#connecting-your-sdk-to-capella).
+We strongly recommend that the client and server [are in the same LAN-like environment](../project-docs/compatibility.md#network-requirements) (e.g. AWS Region). As this may not always be possible during development, read the guidance on working with [constrained network environments](../ref/client-settings.md#commonly-used-options). More details on connecting your client code to Operational Insights (Capella) can be found [in the Capella Operational docs](../../../cloud/get-started/connect.md#connecting-your-sdk-to-capella).
 
 ### [](#troubleshooting-connections-to-cloud)Troubleshooting Connections to Cloud
 

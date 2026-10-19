@@ -3,7 +3,7 @@ title: Querying with SQL++
 description: You can query for documents in Couchbase using the SQL++ query
   language -- a language based on SQL, but designed for structured and flexible
   JSON documents.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: .NET Analytics SDK
@@ -33,9 +33,9 @@ Create a collection to work upon by [importing the travel-sample dataset](#analy
 > [!TIP]
 > API Enhancements & Async
 > 
-> The 1.1 .NET Analytics SDK adds support for JWT and client certificate authentication, as well as a new poll-based Server Asynchronous Request API that uses request handles to fetch results, introduced in self-managed Enterprise Analytics Server 2.2, and eliminating the need for long-running server connections.
+> The 1.1 .NET Analytics SDK adds support for JWT and client certificate authentication, as well as a new poll-based Server Asynchronous Request API that uses request handles to fetch results, introduced in self-managed Operational Insights Server 2.2, and eliminating the need for long-running server connections.
 > 
-> The examples in this section are for the standard API, working with all 2.x releases of Enterprise Analytics (with Server Asynchronous Request API examples following in the [Server Async section](#server-asynchronous-api)). Note, you will still be able to use this API with 2.2+ releases of Enterprise Analytics, in addition to the new API.
+> The examples in this section are for the standard API, working with all 2.x releases of Enterprise Analytics (with Server Asynchronous Request API examples following in the [Server Async section](#server-asynchronous-api)). Note, you will still be able to use this API with 2.2+ releases of Operational Insights, in addition to the new API.
 
 Execute a query and buffer all result rows in client memory:
 
@@ -92,7 +92,7 @@ await foreach (var row in result.ConfigureAwait(false))
 
 ## [](#server-asynchronous-api)Server Asynchronous Request API
 
-Enterprise Analytics Server 2.2 adds a Server Asynchronous Request API. The SDK will send a request, poll for results, and then fetch once the result is available. The SDK supports each stage of this information flow:
+Operational Insights Server 2.2 added a Server Asynchronous Request API. The SDK will send a request, poll for results, and then fetch once the result is available. The SDK supports each stage of this information flow:
 
 `cluster.StartQueryAsync()` → `QueryHandle` → `QueryStatus` → `QueryResultsHandle`
 
@@ -212,4 +212,4 @@ __Table 1\. Available Query Options__
 
 ## [](#further-information)Further Information
 
-The [SQL++ for Analytics Reference](../../../analytics/sqlpp/1%5Fintro.md)offers a complete guide to the SQL++ language for both of our analytics services, including all of the latest additions.
+The [SQL++ for Analytics Reference](../../../operational-insights-cloud/sqlpp/1%5Fintro.md)offers a complete guide to the SQL++ language for both of our analytics services, including all of the latest additions.

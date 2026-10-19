@@ -1,8 +1,8 @@
 ---
 title: Error Messages
 description: The standardized error codes returned by the Columnar Go SDK, from
-  Capella connection to SQL++ query.
-pubDate: 2026-10-03T04:27:21.374Z
+  Operational Insights (Capella) connection to SQL++ query.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Go Columnar SDK
@@ -17,8 +17,8 @@ antora:
 
 # Error Messages
 
-> The standardized error codes returned by the Columnar Go SDK, from Capella connection to SQL++ query. 
+> The standardized error codes returned by the Columnar Go SDK, from Operational Insights (Capella) connection to SQL++ query. 
 
-The Go Columnar SDK passes through the Analytics error codes from Columnar.
+The Go Columnar SDK passes through the Analytics error codes from Operational Insights (Capella).
 
 For a full list of error codes, see [Analytics Error Codes](../../../server/7.6/analytics/error-codes.md).

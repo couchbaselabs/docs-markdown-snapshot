@@ -2,7 +2,7 @@
 title: Using the Couchbase Tableau Connector
 description: Set up a connection between Tableau and your Couchbase data source
   using the Couchbase Tableau Connector.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Tableau Connector
@@ -29,15 +29,13 @@ To set up a connection between Tableau and your Couchbase data source:
 3. Select a Couchbase Tableau Connector. If there are multiple connectors installed, select the one that is compatible with your Couchbase data source.
 4. In the connection dialog, enter the following details:
 
-| **Server**         | The host and port details. The default HTTP port is 8095, while the default HTTPS/TLS port is 18095.                                                                                                                                                                                                                                                                                                                                                       |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Scope**          | (Optional) The scope to extract data from. You can leave this field blank or use Default if your data is in the default scope.                                                                                                                                                                                                                                                                                                                             |
-| **Authentication** | The authentication method to use for the connection. Based on the authentication method you select, the required fields differ. Authentication Method Required Fields Description Username and Password Username, Password Enter user credentials. LDAP Username, Password Enter LDAP credentials. Client Certificate Client Certificate Select the client certificate mode. You can select either PEM Files (Certificate + Key) or Keystore (JKS/PKCS12). |
-5. (Optional) Select the **Require SSL** option, if required.  
-To set up SSL support, see:
-
-  * [SSL Support for Tableau Desktop](setup-tableau-desktop.md#ssl)
-  * [SSL Support for Tableau Server](setup-tableau-server.md#ssl)
+| **Server**         | The hostname of the node. You do not need to enter the port details. The driver automatically retrieves the required Analytics ports.                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Scope**          | (Optional) The scope to extract data from. You can leave this field blank or use Default if your data is in the default scope.                                                                                                                                                                                                                                                                                                                                                                                                           |
+| **Authentication** | The authentication method to use for the connection. Based on the authentication method you select, the required fields differ. Authentication Method Required Fields Description Username and Password Username, Password Enter user credentials. LDAP Username, Password Enter LDAP credentials. Client Certificate No fields appear in the dialog. You must configure client certificate properties in the couchbase-analytics.properties file. For more information, see [Configure SSL Certificates](setup-tableau-desktop.md#ssl). |
+5. (Optional) Select the **Require SSL** option, if required. For more information about configuring certificates, see [Configure SSL Certificates](setup-tableau-desktop.md#ssl).  
+> [!NOTE]  
+> Tableau Connector 1.2.x automatically enables TLS for client certificate authentication, so you do not need to select **Require SSL** in this case.
 6. For advanced settings, click the **Advanced** tab. You can set the connection timeout and scan consistency mode. If you set the scan consistency to `Request plus`, a dropdown appears to select the scan wait time.
 7. Click **Sign In**.
 

@@ -3,7 +3,7 @@ title: Querying with SQL++
 description: You can query for documents in Couchbase using the SQL++ query
   language -- a language based on SQL, but designed for structured and flexible
   JSON documents.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Java Analytics SDK
@@ -24,18 +24,18 @@ On this page we dive straight into using the Query Service API from the Java Ana
 
 ## [](#before-you-start)Before You Start
 
-This page assumes that you have [installed the Java Analytics SDK](../hello-world/start-using-sdk.md), added your IP address to the allowlist, and [created an Enterprise Analytics cluster](#analytics:manage:manage-nodes/create-cluster.adoc#cluster).
+This page assumes that you have [installed the Java Analytics SDK](../hello-world/start-using-sdk.md), added your IP address to the allowlist, and [created an Operational Insights cluster](#analytics:manage:manage-nodes/create-cluster.adoc#cluster).
 
-Create a collection to work upon by [importing the travel-sample dataset](#analytics:intro:connecting-to-data-sources.adoc#import-the-travel-sample-collections) into your cluster.
+Create a collection to work upon by [importing the travel-sample dataset](../../../operational-insights/current/intro/connecting-to-data-sources.md#import-the-travel-sample-collections) into your cluster.
 
 ## [](#querying-your-dataset)Querying Your Dataset
 
 > [!TIP]
 > API Enhancements & Async
 > 
-> The 1.1 Java Analytics SDK adds support for JWT and client certificate authentication, as well as a new poll-based Server Asynchronous Request API that uses request handles to fetch results. Introduced in self-managed Enterprise Analytics Server 2.2, this API eliminates the need for long-running server connections.
+> The 1.1 Java Analytics SDK adds support for JWT and client certificate authentication, as well as a new poll-based Server Asynchronous Request API that uses request handles to fetch results. Introduced in self-managed Operational Insights Enterprise Server 2.2, this API eliminates the need for long-running server connections.
 > 
-> The examples in this first section of the page are for the standard API, working with all 2.x releases of Enterprise Analytics (with Server Asynchronous Request API examples following in the [Server Async section](#server-asynchronous-api)). Note, you will still be able to use this API with 2.2+ releases of Enterprise Analytics, in addition to the new API.
+> The examples in this first section of the page are for the standard API, working with all 2.x releases of Operational Insights (with Server Asynchronous Request API examples following in the [Server Async section](#server-asynchronous-api)). Note, you will still be able to use this API with 2.2+ releases of Operational Insights, in addition to the new API.
 
 Execute a query and buffer all result rows in client memory:
 
@@ -57,7 +57,7 @@ result.rows().forEach(row -> System.out.println("Got row: " + row));
 
 If you can buffer all of the results in memory, then `executeQuery()` is the simplest method to use, but frequently the data size will be too large for this — or you need to plan for that possibility. Use `executeStreamingQuery()` to execute a query statement and pass the resultant rows to the given `rowAction` callback, one by one, as they arrive from the server.
 
-The callback action is guaranteed to execute in the same thread (or virtual thread) that called this method. If the callback throws an exception, the query is cancelled and the exception is re-thrown by this method. See the [API reference](https://docs.couchbase.com/sdk-api/couchbase-analytics-java-client/com/couchbase/analytics/client/java/Scope.html#executeStreamingQuery%28java.lang.String,java.util.function.Consumer,java.util.function.Consumer%29) for more details.
+The callback action is guaranteed to execute in the same thread (or virtual thread) that called this method. If the callback throws an exception, the query is cancelled and the exception is re-thrown by this method. See the [API reference](https://docs.couchbase.com/sdk-api/couchbase-insights-java-client/com/couchbase/insights/client/java/Scope.html#executeStreamingQuery%28java.lang.String,java.util.function.Consumer,java.util.function.Consumer%29) for more details.
 
 ### [](#positional-and-named-parameters)Positional and Named Parameters
 
@@ -91,7 +91,7 @@ cluster.executeStreamingQuery(
 
 ## [](#server-asynchronous-api)Server Asynchronous Request API
 
-Enterprise Analytics Server 2.2 adds a Server Asynchronous Request API. The SDK will send a request, poll for results, and then fetch once the result is available.
+Operational Insights Server 2.2 added a Server Asynchronous Request API. The SDK will send a request, poll for results, and then fetch once the result is available.
 
 Server Asynchronous API Example
 
@@ -167,4 +167,4 @@ __Table 1\. Available Query Options__
 
 ## [](#further-information)Further Information
 
-The [SQL++ for Analytics Reference](../../../analytics/sqlpp/1%5Fintro.md)offers a complete guide to the SQL++ language for both of our analytics services, including all of the latest additions.
+The [SQL++ for Analytics Reference](../../../operational-insights-cloud/sqlpp/1%5Fintro.md)offers a complete guide to the SQL++ language for both of our analytics services, including all of the latest additions.

@@ -1,7 +1,7 @@
 ---
 title: About Agentic Apps
 description: An overview of the key concepts involved in agentic apps.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase AI Data Plane
@@ -93,7 +93,7 @@ It's responsible for:
 * Deciding which tools to use and in what order.
 * Integrating results into a coherent response.
 
-For more information about how to deploy an LLM on the AI Data Plane, see [Deploy a Large Language Model (LLM)](../build/model-service/deploy-llm-model.md).
+For more information about how to deploy an LLM on the AI Data Plane, see [Deploy a Provisioned Large Language Model (LLM)](../build/model-service/deploy-llm-model.md).
 
 ### [](#the-orchestration-layer)The Orchestration Layer
 

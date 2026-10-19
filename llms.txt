@@ -31,11 +31,25 @@ Get enterprise support by registering for a trial here: https://www.couchbase.co
 
 ## Docs
 
-- [Server](https://docs.couchbase.com/llms-server.txt)
-- [Mobile / Edge](https://docs.couchbase.com/llms-mobile-edge.txt)
-- [Capella](https://docs.couchbase.com/llms-capella.txt)
-- [AI Data Plane](https://docs.couchbase.com/llms-ai-data-plane.txt)
-- Develop
+- Server
+    - [Self-Managed Server](https://docs.couchbase.com/llms-self-managed-server.txt)
+    - [Kubernetes Operator](https://docs.couchbase.com/llms-kubernetes-operator.txt)
+    - [Cloud Native Gateway](https://docs.couchbase.com/llms-cloud-native-gateway.txt)
+    - [Fleet Manager](https://docs.couchbase.com/llms-fleet-manager.txt)
     - [Operational SDKs](https://docs.couchbase.com/llms-operational-sdks.txt)
+- Capella
+    - [Capella Operational](https://docs.couchbase.com/llms-capella-operational.txt)
+    - [Operational SDKs](https://docs.couchbase.com/llms-operational-sdks.txt)
+- Mobile / Edge
+    - [Couchbase Lite](https://docs.couchbase.com/llms-couchbase-lite.txt)
+    - [Sync Gateway](https://docs.couchbase.com/llms-sync-gateway.txt)
+    - [App Services](https://docs.couchbase.com/llms-app-services.txt)
+- Operational Insights
+    - [Operational Insights Enterprise](https://docs.couchbase.com/llms-operational-insights-enterprise.txt)
+    - [Operational Insights Capella](https://docs.couchbase.com/llms-operational-insights-capella.txt)
+    - [Operational Insights SDKs](https://docs.couchbase.com/llms-operational-insights-sdks.txt)
     - [Analytics SDKs](https://docs.couchbase.com/llms-analytics-sdks.txt)
+    - [Operational Insights Connectors](https://docs.couchbase.com/llms-operational-insights-connectors.txt)
+- [AI Data Plane](https://docs.couchbase.com/llms-ai-data-plane.txt)
 - [Contribute](https://docs.couchbase.com/llms-contribute.txt)
+- [Other](https://docs.couchbase.com/llms-other.txt)

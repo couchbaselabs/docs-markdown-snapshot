@@ -5,7 +5,7 @@ description: The Couchbase AI Data Plane provides you with the tools to create,
   environment. Choose between self-managed deployments for use with Couchbase
   Server Enterprise Edition or fully managed solutions integrated with Couchbase
   Capella.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase AI Data Plane
@@ -25,7 +25,7 @@ antora:
 
 The Couchbase AI Data Plane provides you with the tools to create, organize, and manage your agentic applications and data in a unified environment. Choose between self-managed deployments for use with [Couchbase Server Enterprise Edition](#server:get-started:why-couchbase.adoc) or fully managed solutions integrated with [Couchbase Capella](#cloud:get-started:intro.adc).
 
-Get enterprise support by [licensing Couchbase AI Data Plane](https://www.couchbase.com/downloads/?family=ai-data-plane), and get access and support for [Couchbase Agent Memory](../build/agent-memory/about-agent-mem.md), [Couchbase Agent Catalog](../build/integrate-agent-with-catalog.md) and [Couchbase MCP Server](#mcp-server::intro.adoc).
+Get enterprise support by [licensing Couchbase AI Data Plane](https://www.couchbase.com/downloads/?family=ai-data-plane), and get access and support for [Couchbase Agent Memory](../../agent-mem/current/about-agent-mem.md), [Couchbase Agent Catalog](../build/integrate-agent-with-catalog.md) and [Couchbase MCP Server](#mcp-server::intro.adoc).
 
 ## Core Features
 
@@ -47,9 +47,9 @@ Govern your agentic app development with the Couchbase Agent Catalog to help man
 
 Enterprise Support Only
 
-Couchbase Agent Memory provides a unified, persistent memory layer for agentic applications. It allows secure storage and retrieval of information specific to each user, helping to maintain context across user sessions.
+Couchbase Agent Memory provides a unified, persistent memory layer for agentic applications. Use it with any agent framework to recall context across user sessions, and deploy it in Capella or on your own server.
 
-[Learn more](../build/agent-memory/about-agent-mem.md)
+[Learn more](../../agent-mem/current/about-agent-mem.md)
 
 ###  AI Functions
 

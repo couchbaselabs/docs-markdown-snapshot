@@ -1,8 +1,8 @@
 ---
 title: Analytics SDK Release Notes
 description: Release notes, brief installation instructions, and download
-  archive for the Enterprise Analytics .NET Client.
-pubDate: 2026-10-03T04:27:21.374Z
+  archive for the Analytics .NET Client for Operational Insights.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: .NET Analytics SDK
@@ -17,9 +17,9 @@ antora:
 
 # Analytics SDK Release Notes
 
-> Release notes, brief installation instructions, and download archive for the Enterprise Analytics .NET Client. 
+> Release notes, brief installation instructions, and download archive for the Analytics .NET Client for Operational Insights. 
 
-Version 1.1 of the .NET Analytics SDK implements the 1.1 [SDK API](compatibility.md#api-version). See the [compatibility pages](#compatibility.html#couchbase-feature-availability-matrix) for more information on feature compatibility with different versions of Enterprise Analytics.
+Version 1.1 of the .NET Analytics SDK implements the 1.1 [SDK API](compatibility.md#api-version). See the [compatibility pages](#compatibility.html#couchbase-feature-availability-matrix) for more information on feature compatibility with different versions of Operational Insights.
 
 ## [](#installation)Installation
 
@@ -43,4 +43,4 @@ The 1.1 Analytics SDKs add support for JWT and client certificate authentication
 
 [API Reference](https://docs.couchbase.com/sdk-api/analytics-dotnet-client-1.0.1) [NuGet Package](https://www.nuget.org/packages/Couchbase.AnalyticsClient/1.0.1)
 
-This is the first General Availability (GA) release of the new Analytics .NET SDK. It supports executing queries against Enterprise Analytics clusters, with additional features planned for future releases.
+This is the first General Availability (GA) release of the new Analytics .NET SDK. It supports executing queries against Operational Insights (formerly known as Enterprise Analytics) clusters, with additional features planned for future releases.

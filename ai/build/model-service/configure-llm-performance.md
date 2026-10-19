@@ -2,7 +2,7 @@
 title: Configure LLM Performance
 description: The AI Data Plane Model Service offers options to tweak the
   performance of your LLM.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase AI Data Plane
@@ -77,6 +77,6 @@ You cannot customize the optimization profiles on all LLMs available through the
 
 ## [](#see-also)See Also
 
-* [Deploy a Large Language Model (LLM)](deploy-llm-model.md)
+* [Deploy a Provisioned Large Language Model (LLM)](deploy-llm-model.md)
 * [Configure LLM Value Adds](configure-value-adds.md)
 * [Configure Guardrails and Security](configure-guardrails-security.md)

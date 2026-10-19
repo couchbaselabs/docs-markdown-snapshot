@@ -2,7 +2,7 @@
 title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Enterprise Analytics and the SDK.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Go Analytics SDK
@@ -59,9 +59,18 @@ Couchbase Analytics SDKs are developed to be run in an environment with local ar
 
 Couchbase does document, for purposes of convenience when developing and performing basic operational work, what may need to be tuned when network throughputs and latencies are higher. If you encounter issues, even with these tunables, you should attempt the same workload from a supported, LAN-like environment.
 
-## [](#enterprise-analytics-compatibility)Enterprise Analytics Compatibility
+## [](#operational-insights-cluster-compatibility)Operational Insights Cluster Compatibility
 
-This is the initial release of Enterprise Analytics and the Analytics SDKs. As such, the Analytics SDK is fully compatible with Enterprise Analytics.
+__Operational Insights Cluster compatibility with Insights SDKs and Analytics SDKs__
+|                              | Operational Insights 2.0, 2.1 | Operational Insights 2.2 | Operational Insights 3.0 |
+| ---------------------------- | ----------------------------- | ------------------------ | ------------------------ |
+| Operational Insights SDK 1.0 | **✔**                         | **✔**                    | **✔**                    |
+| Analytics SDK 1.1            | **✔**                         | **✔**                    | **✔** ①                  |
+| Analytics SDK 1.0            | **✔**                         | **✔** ②                  | **✔** ① ②                |
+
+① Analytics SDKs have been superseded by Operational Insights SDKs, and will not receive new features for future releases of Operational Insights.
+
+② Analytics SDK 1.0 does not have support for the streaming API introduced in Operational Insights 2.2\. It also does not support the JWT and client certificate authentication introduced in that release.
 
 ## [](#sdk-api-stability)SDK API Stability
 

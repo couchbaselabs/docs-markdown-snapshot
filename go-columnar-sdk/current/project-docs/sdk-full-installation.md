@@ -1,7 +1,7 @@
 ---
 title: Full Installation
 description: Installation instructions for the Couchbase Go Client.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Go Columnar SDK
@@ -18,7 +18,7 @@ antora:
 
 > Installation instructions for the Couchbase Go Client. 
 
-Columnar SDKs are developed from the ground-up and while they maintain some syntactic similarities with the [operational SDKs](../../../home/sdk.md), they are purpose built for Columnar's analytical use cases. They support streaming APIs to handle large datasets, as well as the common features expected to be present in any modern database SDK — such as connection management and robust error handling.
+Columnar SDKs are developed from the ground-up and while they maintain some syntactic similarities with the [operational SDKs](../../../home/sdk.md), they are purpose built for Operational Insights (Capella)'s analytical use cases. They support streaming APIs to handle large datasets, as well as the common features expected to be present in any modern database SDK — such as connection management and robust error handling.
 
 ## [](#installing-the-sdk)Installing the SDK
 

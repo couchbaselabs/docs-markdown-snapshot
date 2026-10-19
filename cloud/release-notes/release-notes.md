@@ -1,6 +1,6 @@
 ---
 title: Couchbase Capella Release Notes
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Capella Operational
@@ -14,6 +14,16 @@ antora:
 [View original HTML](/cloud/release-notes/release-notes.html)
 
 # Couchbase Capella Release Notes
+
+## [](#october-2026-changelog)October 2026 Changelog
+
+* New Organization Roles  
+Capella adds 3 new organization-level roles:
+
+  * [Organization Billing Administrator](../organizations/organization-user-roles.md#organization-billing-administrator): full access to **Billing**. They can view billing and usage, manage payment methods, set up billing alerts, and create and view Billing support tickets. They have no access to clusters, projects, or data.
+  * [Organization Billing Viewer](../organizations/organization-user-roles.md#organization-billing-viewer): read-only access to **Billing** and **Support**. They can view billing, usage reports, billing alerts, and Billing support tickets. They cannot manage payment methods or create alerts.
+  * [Organization Read-Only Member](../organizations/organization-user-roles.md#organization-read-only): read-only access to the organization's settings, users and projects, with no need for project membership. It does not give access to cluster data or billing.  
+These roles let you give users access to billing or organization-wide visibility without making them an [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) or adding them to projects.
 
 ## [](#september-2026-changelog)September 2026 Changelog
 
@@ -338,7 +348,7 @@ To get started and learn more about Health Advisor, see [View Health Advisor](..
 
 * Visualize Query Results with iQ Insights  
 After running a query, you can use iQ Insights to generate a variety of relevant graphs and charts with the help of AI. Use iQ insights to better understand your data and gain more insights from your query results.  
-iQ Insights is available to use with both Capella Operational and Capella Analytics clusters.  
+iQ Insights is available to use with both Capella Operational and Operational Insights clusters.  
 For more information, see [Explore iQ Insights](../get-started/capella-iq/explore-iq-insights.md).
 * Single Node Scaling  
 You can now modify your Single Node operational cluster by scaling out to a Multi-Node cluster, switch to a larger VM, and change services as needed. Certain limitations apply to the available configuration options.  
@@ -389,7 +399,7 @@ For first time users, [create an account](../get-started/create-account.md) to g
 ## [](#august-2024-changelog)August 2024 Changelog
 
 * Terminology changes in Capella  
-With the introduction of a new Capella service, Capella Analytics, Couchbase has introduced the following terminology changes to improve clarity:
+With the introduction of a new Capella service, Operational Insights, Couchbase has introduced the following terminology changes to improve clarity:
 
   * Capella service names  
   The Capella documentation introduces these terms to distinguish between the two available services:

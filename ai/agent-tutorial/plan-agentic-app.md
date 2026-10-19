@@ -2,7 +2,7 @@
 title: Plan Your Agentic App
 description: Before you start building, you should plan the tools, framework,
   and structure of your agent application.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase AI Data Plane
@@ -31,7 +31,7 @@ An AI agent could be a simple application like a chatbot, or a more specialized 
 To effectively plan a new agentic app, you need to consider:
 
 * The Large Language Model (LLM) you want to use to power your application.  
-For more information about how to set up an embedding model or LLM on the AI Data Plane, see [Deploy an Embedding Model](../build/model-service/deploy-embed-model.md) or [Deploy a Large Language Model (LLM)](../build/model-service/deploy-llm-model.md). For more information about how to choose an LLM, see [Large Language Model (LLM)](#llm).
+For more information about how to set up an embedding model or LLM on the AI Data Plane, see [Deploy a Provisioned Embedding Model](../build/model-service/deploy-embed-model.md) or [Deploy a Provisioned Large Language Model (LLM)](../build/model-service/deploy-llm-model.md). For more information about how to choose an LLM, see [Large Language Model (LLM)](#llm).
 * The agent development framework you want to use to write and develop your agent code.  
 For more information about how to choose an agent development framework and an overview of different available frameworks, see [Agent Development Framework](#agent-framework).
 * The underlying storage you want to use for memory and agent data.  

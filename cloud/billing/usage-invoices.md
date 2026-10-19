@@ -1,8 +1,8 @@
 ---
-title: View Capella Usage and Invoices
+title: View Capella Usage
 description: You can view current and past usage for the clusters and services
-  in your organization, and view and download invoices.
-pubDate: 2026-10-03T04:27:21.374Z
+  in your organization.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Capella Operational
@@ -16,9 +16,9 @@ antora:
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/billing/usage-invoices.html)
 
-# View Capella Usage and Invoices
+# View Capella Usage
 
-> You can view current and past usage for the clusters and services in your organization, and view and download invoices. 
+> You can view current and past usage for the clusters and services in your organization. 
 
 From your organization's **Billing** tab, you can:
 
@@ -29,7 +29,7 @@ To retrieve billing information for your organization through the Management RES
 
 ## [](#prerequisites)Prerequisites
 
-* You have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner), [Project Creator](../organizations/organization-user-roles.md#organization-role-project-creator), or [Organization Member](../organizations/organization-user-roles.md#organization-role-organization-member) role.
+* You have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner), [Organization Billing Administrator](../organizations/organization-user-roles.md#organization-billing-administrator), or [Organization Billing Viewer](../organizations/organization-user-roles.md#organization-billing-viewer) role.
 
 ## [](#access-billing)Access Your Usage Overview
 

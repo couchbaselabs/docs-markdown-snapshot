@@ -2,7 +2,7 @@
 title: Glossary
 description: Unpicking the tangled alphabet soup of the Enterprise Analytics
   Platform, from an SDK perspective.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Go Analytics SDK
@@ -20,9 +20,9 @@ antora:
 
 > Unpicking the tangled alphabet soup of the Enterprise Analytics Platform, from an SDK perspective. 
 
-Enterprise Analytics SDK documentation uses terms from Enterprise Analytics which may carry different meanings from those same terms in other parts of Couchbase. Below you will find short definitions of many Enterprise Analytics-related terms, with links to the pages that describe them in more detail, or show practical examples of their use. In particular, we look to define terms that may — of necessity — carry slight variations of meaning from their Couchbase Server cluster use.
+Enterprise Analytics SDK documentation uses terms from Operational Insights which may carry different meanings from those same terms in other parts of Couchbase. Below you will find short definitions of many Operational Insights-related terms, with links to the pages that describe them in more detail, or show practical examples of their use. In particular, we look to define terms that may — of necessity — carry slight variations of meaning from their Couchbase Server cluster use.
 
-* [Standalone Collection](../../../enterprise-analytics/current/sources/manage-standalone-collection.md#work-with-a-standalone-collection) — documents from one or more existing Columnar collections can be organized into standalone collections.
+* [Standalone Collection](../../../operational-insights/current/sources/manage-standalone-collection.md#work-with-a-standalone-collection) — documents from one or more existing Columnar collections can be organized into standalone collections.
 
 ## [](#further-reading)Further Reading
 

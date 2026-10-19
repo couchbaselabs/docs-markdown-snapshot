@@ -1,6 +1,6 @@
 ---
 title: Query Tools
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase Server
@@ -56,4 +56,4 @@ You can configure the temporary working space for the SQL++ engine and its embed
 It is also possible to run a query via the SQL++ REST API, or programmatically via a software development kit (SDK).
 
 * [Query Service REST API](../n1ql/n1ql-rest-api/index.md)
-* [SDKs & Connectors](../../../home/sdk.md)
+* [sdk:overview.adoc](#sdk:overview.adoc)

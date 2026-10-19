@@ -3,7 +3,7 @@ title: Introduction
 description: The Couchbase Tableau Connector provides integration between your
   high performance Couchbase Tabular Views (TAVs) and the Tableau interactive
   data visualization platform.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Tableau Connector
@@ -36,8 +36,8 @@ Before you begin, make sure you have the following:
 | Capella Analytics                       | An existing Couchbase Capella account.                                                           |
 | Couchbase Server (Analytics Service)    | Couchbase Server 7.1.1 or later. The Analytics Service must be running on the target node.       |
 | Capella Operational (Analytics Service) | An existing Couchbase Capella account. The Analytics Service must be running on the target node. |
-| Tableau Desktop                         | 2020.4.x or higher                                                                               |
-| Tableau Server                          | 2021.x or higher                                                                                 |
+| Tableau Desktop                         | 2020.4.x or later                                                                                |
+| Tableau Server                          | 2021.x or later                                                                                  |
 
 ## [](#operating-system-compatibility)Operating System Compatibility
 
@@ -45,7 +45,7 @@ Before you begin, make sure you have the following:
 
 The Couchbase Tableau Connector for Tableau Desktop is available for Windows and macOS. The following table lists the compatible versions:
 
-__Table 1\. Couchbase Tableau connector for Tableau Desktop operating system compatibility__
+__Table 1\. Couchbase Tableau Connector for Tableau Desktop operating system compatibility__
 | Operating System | Version                                 |
 | ---------------- | --------------------------------------- |
 | Windows          | 8/8.110 (x64)                           |
@@ -55,8 +55,8 @@ __Table 1\. Couchbase Tableau connector for Tableau Desktop operating system com
 
 The Couchbase Tableau Connector for Tableau Server is available for Windows and Linux. The following table lists the compatible versions:
 
-__Table 2\. Couchbase Tableau connector for Tableau Server operating system compatibility__
-| Operating System | Version                                                                                                                               |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| Windows          | Windows Server 2016Windows Server 2019                                                                                                |
-| Linux            | You can find the full list of supported OS versions at the link [here](https://help.tableau.com/current/server-linux/en-us/requ.htm). |
+__Table 2\. Couchbase Tableau Connector for Tableau Server operating system compatibility__
+| Operating System | Version                                                                                                                                  |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Windows          | Windows Server 2016Windows Server 2019                                                                                                   |
+| Linux            | For the full list of supported OS versions, see [Tableau Server on Linux](https://help.tableau.com/current/server-linux/en-us/requ.htm). |

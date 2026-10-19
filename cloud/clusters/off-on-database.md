@@ -2,7 +2,7 @@
 title: Turn Clusters Off or On
 description: You can turn your cluster off to save costs. To resume operations,
   turn it back on.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Capella Operational
@@ -37,7 +37,7 @@ You can [create a schedule](off-on-schedule.md) to turn your cluster on or off.
 > [!TIP]
 > Public API
 > 
-> You can also turn your cluster on or off using the [Capella Operational Management API Reference](../management-api-reference/index.md):
+> You can also turn your cluster on or off using the [Couchbase Capella Management API Reference](../management-api-reference/index.md):
 > 
 > * [Turn On Cluster](../management-api-reference/index.md#tag/Clusters/operation/clusterOn)
 > * [Turn Off Cluster](../management-api-reference/index.md#tag/Clusters/operation/clusterOff)

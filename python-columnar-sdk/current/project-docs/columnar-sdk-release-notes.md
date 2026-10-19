@@ -2,7 +2,7 @@
 title: Columnar SDK Release Notes
 description: Release notes, brief installation instructions, and download
   archive for the Capella Columnar Python Client.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Python Columnar SDK
@@ -19,7 +19,7 @@ antora:
 
 > Release notes, brief installation instructions, and download archive for the Capella Columnar Python Client. 
 
-Version 1.0 of the Java columnar SDK implements the 1.0 [SDK API](compatibility.md#api-version). See the [compatibility pages](#compatibility.html#couchbase-feature-availability-matrix) for more information on feature compatibility with different versions of Capella columnar.
+Version 1.0 of the Python columnar SDK implements the 1.0 [SDK API](compatibility.md#api-version). See the [compatibility pages](#compatibility.html#couchbase-feature-availability-matrix) for more information on feature compatibility with different versions of Capella columnar.
 
 ## [](#installation)Installation
 
@@ -54,6 +54,6 @@ $ python3 -m pip install couchbase-columnar==1.0.1
 
 ### [](#version-1-0-0-11-october-2024)Version 1.0.0 (11 October 2024)
 
-This is the first General Availability (GA) release of the new Couchbase Columnar Python SDK. It supports executing queries against Capella Columnar clusters, with additional features planned for future releases.
+This is the first General Availability (GA) release of the new Couchbase Columnar Python SDK. It supports executing queries against Capella Operational Insights (Capella) clusters, with additional features planned for future releases.
 
 [API Reference](https://docs.couchbase.com/sdk-api/columnar-python-client-1.0.0/)

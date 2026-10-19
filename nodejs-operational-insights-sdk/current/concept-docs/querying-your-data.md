@@ -1,0 +1,39 @@
+---
+title: Querying Your Data
+description: Querying Operational Insights from the Node.js SDK, with SQL++.
+pubDate: 2026-10-19T14:21:08.937Z
+meta:
+  component:
+    title: Node.js Operational Insights SDK
+    version: "1.0"
+antora:
+  editUrl: https://github.com/couchbase/docs-operational-insights-sdk-nodejs/edit/release/1.0/modules/concept-docs/pages/querying-your-data.adoc
+  xref: xref:nodejs-operational-insights-sdk:concept-docs:querying-your-data.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/nodejs-operational-insights-sdk/current/concept-docs/querying-your-data.html)
+
+# Querying Your Data
+
+> Querying Operational Insights from the Node.js SDK, with SQL++. 
+
+SQL++ is a declarative query language for JSON data.
+
+## [](#real-time-data-analysis)Real-Time Data Analysis
+
+Traditionally, analyzing JSON data in NoSQL databases requires complex transformations (like flattening) to prepare it for analytics, causing delays and hindering real-time insights. Operational Insights eliminates these ETL complexities by unifying operational and analytical data stores into a single platform. This enables Zero ETL, reducing costs, complexity, and improving time to insight.
+
+## [](#long-running-queries)Long Running Queries
+
+All versions of Operational Insights support long running client-side requests. This process keeps a connection live between client and server for long running queries. For such long running queries, a better mechanism is for the client to trigger an asynchronous query without holding a connection to the server open for the duration of the query execution. This Server Asynchronous API was introduced in Operational Insights Server 2.2\. For more information, see [Service APIs](../../../operational-insights/current/reference/rest-analytics.md).
+
+After the query request is submitted, clients can monitor the status of the request and on successful execution of query, opt to stream the results of the query. This way the connection between SDK client and Operational Insights Server does not stay open for the long duration of query processing, and is only needed for result set streaming.
+
+`cluster.startQuery()` → `QueryHandle` → `QueryStatus` → `QueryResultHandle`
+
+This information flow can be seen in the sample code in the [SQL++ queries section](../howtos/sqlpp-queries-with-sdk.md#server-asynchronous-api).
+
+## [](#next-steps)Next Steps
+
+Dive right in with our [practical examples](../howtos/sqlpp-queries-with-sdk.md).

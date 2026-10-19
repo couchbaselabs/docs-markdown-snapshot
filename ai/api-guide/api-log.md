@@ -1,7 +1,7 @@
 ---
 title: The Couchbase AI Data Plane API Change Log
 description: The change log for Couchbase AI Data Plane APIs.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase AI Data Plane
@@ -17,6 +17,14 @@ antora:
 # The Couchbase AI Data Plane API Change Log
 
 This page is for the Couchbase AI Data Plane. This includes changes to the Management API and the Model Service API.
+
+## [](#october-2026-changes)October 2026 Changes
+
+| Operation                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Details                                                                                                                                                                                                                                                  |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Create AI Workflow](../../cloud/management-api-reference/index.md#tag/AI-Workflows/operation/createAiWorkflow)                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Use this operation to enable private networking for your AWS Bedrock model connected to your Workflow. For more information about Workflows, see [Process Your Data For the Couchbase AI Data Plane](../build/vectorization-service/data-processing.md). |
+| [List MCP Servers](../../cloud/management-api-reference/index.md#tag/MCP-Servers/operation/listMcpServers) [Create MCP Server](../../cloud/management-api-reference/index.md#tag/MCP-Servers/operation/createMcpServer) [Get MCP Server](../../cloud/management-api-reference/index.md#tag/MCP-Servers/operation/getMcpServer) [Delete MCP Server](../../cloud/management-api-reference/index.md#tag/MCP-Servers/operation/deleteMcpServer) [Get MCP Server Client Config](../../cloud/management-api-reference/index.md#tag/MCP-Servers/operation/getMcpServerClientConfig) | Added the MCP Servers API to the Management API. This enables you to create and manage MCP servers that expose a Capella operational cluster to AI agents over the Model Context Protocol (MCP).                                                         |
+| [List MCP Tools](../../cloud/management-api-reference/index.md#tag/MCP-Tools/operation/listMcpTools)                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Added the MCP Tools API to the Management API. This enables you to list the tools an MCP server can serve, grouped by tool group.                                                                                                                        |
 
 ## [](#june-2026-changes)June 2026 Changes
 

@@ -1,6 +1,6 @@
 ---
 title: Java Columnar SDK
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Java Columnar SDK
@@ -17,17 +17,17 @@ antora:
 
 # Java Columnar SDK
 
-The Columnar Java SDK allows you to connect to a Capella Columnar cluster from Java. For connecting to a Couchbase Server Cluster — self-managed, or Capella Operational — see our [Java Server SDK](../../../java-sdk/current/hello-world/overview.md).
+The Columnar Java SDK allows you to connect to an Operational Insights (Capella) cluster from Java. For connecting to a Couchbase Server Cluster — self-managed, or Capella Operational — see our [Java Server SDK](../../../java-sdk/current/hello-world/overview.md).
 
   
-##  Using Your Columnar Cluster
+##  Using Your Operational Insights (Capella) Cluster
 
-How-to guides and tutorials to help you start your development journey with Columnar and the Java SDK.
+How-to guides and tutorials to help you start your development journey with Operational Insights (Capella) and the Java SDK.
 
 Getting Started
 
 * [Hello Columnar — Java SDK Quickstart Guide](start-using-sdk.md)
-* [Connecting to Columnar](../howtos/managing-connections.md)
+* [Connecting to Operational Insights (Capella)](../howtos/managing-connections.md)
 * [Querying with SQL++](../howtos/sqlpp-queries-with-sdk.md)
 
 Reference

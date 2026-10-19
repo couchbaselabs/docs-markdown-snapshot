@@ -2,7 +2,7 @@
 title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Python Columnar SDK
@@ -24,7 +24,7 @@ antora:
 > 
 > Do not combine the Python Columnar SDK with the Python Operational SDK on the same app server (or development machine). This combination is not tested and not supported. There may be problems with different versions of shared dependencies if you try this. This only applies to the Node.js and Python Columnar SDKs.
 > 
-> Note, this does not apply to combining our Enterprise Analytics SDKs with our Operational SDKs. See the [Analytics SDK page](../../../home/analytics-sdk.md) for a reminder of which Analytics SDK to use with which Analytics service.
+> Note, this does not apply to combining our Operational Insights SDKs with our Operational SDKs. See the [Operational Insights SDK page](../../../home/operational-insights-sdk.md) for a reminder of which Insights SDK to use with which Insights or Analytics service.
 
 ## [](#platform-compatibility)Platform Compatibility
 
@@ -68,7 +68,7 @@ Couchbase does document, for purposes of convenience when developing and perform
 
 ## [](#capella-columnar-compatibility)Capella Columnar Compatibility
 
-Capella Columnar is a fully hosted service, continually updated, and offering the latest version — with users having a few weeks to upgrade from the previous version. As such, the latest Couchbase Columnar SDKs are tested against the latest versions. Where older versions of the Python Columnar SDK pre-date significant new features in Columnar, those differences will be noted in this section.
+Operational Insights (Capella) is a fully hosted service, continually updated, and offering the latest version — with users having a few weeks to upgrade from the previous version. As such, the latest Couchbase Columnar SDKs are tested against the latest versions. Where older versions of the Python Columnar SDK pre-date significant new features in Operational Insights (Capella), those differences will be noted in this section.
 
 ## [](#sdk-api-stability)SDK API Stability
 

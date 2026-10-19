@@ -1,6 +1,6 @@
 ---
 title: Couchbase Server
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase Server
@@ -57,7 +57,7 @@ Tutorials
 CRUD Operations
 
 * [Developer's Intro](../develop/intro.md)
-* [SDKs](../../../home/sdk.md)
+* [SDKs](#sdk:overview.adoc)
 * [CRUD Using SDKs](../../../java-sdk/current/howtos/kv-operations.md)
 
 Transactions & Durability

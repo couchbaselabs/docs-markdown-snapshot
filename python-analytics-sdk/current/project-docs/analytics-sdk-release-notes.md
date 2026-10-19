@@ -1,8 +1,8 @@
 ---
 title: Analytics SDK Release Notes
 description: Release notes, brief installation instructions, and download
-  archive for the Enterprise Analytics Python Client.
-pubDate: 2026-10-03T04:27:21.374Z
+  archive for the Analytics Python Client.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Python Analytics SDK
@@ -17,9 +17,9 @@ antora:
 
 # Analytics SDK Release Notes
 
-> Release notes, brief installation instructions, and download archive for the Enterprise Analytics Python Client. 
+> Release notes, brief installation instructions, and download archive for the Analytics Python Client. 
 
-Version 1.1 of the Python Analytics SDK implements the 1.1 [SDK API](compatibility.md#api-version). See the [compatibility pages](#compatibility.html#couchbase-feature-availability-matrix) for more information on feature compatibility with different versions of Enterprise Analytics.
+Version 1.1 of the Python Analytics SDK implements the 1.1 [SDK API](compatibility.md#api-version). See the [compatibility pages](#compatibility.html#couchbase-feature-availability-matrix) for more information on feature compatibility with different versions of Operational Insights.
 
 ## [](#installation)Installation
 
@@ -33,7 +33,7 @@ We always recommend using the latest version of the SDK — it contains all of t
 
 This is the first release of the 1.1 series Analytics Python SDK.
 
-The 1.1 Analytics SDKs add support for JWT and client certificate authentication, as well as a new poll-based Server Asynchronous Request API that uses request handles to fetch results, eliminating the need for long-running server connections (compatible with Couchbase Enterprise Analytics Server 2.2).
+The 1.1 Analytics SDKs add support for JWT and client certificate authentication, as well as a new poll-based Server Asynchronous Request API that uses request handles to fetch results, eliminating the need for long-running server connections (compatible with Couchbase Operational Insights Server 2.2).
 
 [API Reference](https://docs.couchbase.com/sdk-api/analytics-python-client-1.1.0/)
 
@@ -41,6 +41,6 @@ The 1.1 Analytics SDKs add support for JWT and client certificate authentication
 
 ### [](#v1.0.0)Version 1.0.0 (12 August 2025)
 
-This is the first General Availability (GA) release of the new Analytics Python SDK. It supports executing queries against Enterprise Analytics clusters, with additional features planned for future releases.
+This is the first General Availability (GA) release of the new Analytics Python SDK. It supports executing queries against Operational Insights (formerly known as Enterprise Analytics) clusters, with additional features planned for future releases.
 
 [API Reference](https://docs.couchbase.com/sdk-api/analytics-python-client-1.0.0/)

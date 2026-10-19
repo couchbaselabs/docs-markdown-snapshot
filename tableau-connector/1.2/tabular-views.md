@@ -2,7 +2,7 @@
 title: Couchbase Analytics Tabular Views
 description: Create Tabular Analytics Views (TAVs) from Couchbase datasets for
   use with Tableau.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Tableau Connector
@@ -26,7 +26,7 @@ A TAV is a type of Analytics view that enables Couchbase Analytics to interact w
 
 To prepare tabular analytics views, see:
 
-* [Tabular Analytics Views](../../analytics/sqlpp/5a%5Fviews.md#TAV) for Capella Analytics
+* [Tabular Analytics Views](../../operational-insights-cloud/sqlpp/5a%5Fviews.md#TAV) for Capella Analytics
 * [Tabular Analytics Views](../../server/current/analytics/5a%5Fviews.md#tabular-analytics-views) for Couchbase Server or Capella Operational
 
 The following example shows how to create a TAV.
@@ -48,7 +48,7 @@ While the `travel-sample` dataset includes default Tabular Analytics Views (TAVs
 
 To create a TAV:
 
-1. Open Couchbase Server Web Console and go to **Analytics**.
+1. Open the Couchbase Server Web Console and go to **Analytics**.
 2. In the **Analytics Workbench**, set the scope to `travel-sample.inventory`.
 3. Run the following statement in the **Query Editor**.  
 ```sqlpp  
@@ -73,6 +73,6 @@ This statement creates a TAV named `hotel_custom_view` in the `travel-sample.inv
 
 Before connecting to Tableau, verify that your Analytics collections and tabular views are available.
 
-1. Open Couchbase Server Web Console and go to **Analytics**.
+1. Open the Couchbase Server Web Console and go to **Analytics**.
 2. In the **Analytics Scopes** pane, confirm that the default and custom views appear in the list.
 3. Click the drop-down arrow next to a view name to see its schema.

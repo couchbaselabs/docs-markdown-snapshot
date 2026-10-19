@@ -1,8 +1,8 @@
 ---
 title: .NET Analytics SDK Quickstart Guide
 description: Install, connect, try. A quick start guide to get you up and
-  running with Enterprise Analytics and the .NET Analytics SDK.
-pubDate: 2026-10-03T04:27:21.374Z
+  running with Operational Insights and the .NET Analytics SDK.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: .NET Analytics SDK
@@ -17,13 +17,13 @@ antora:
 
 # .NET Analytics SDK Quickstart Guide
 
-> Install, connect, try. A quick start guide to get you up and running with Enterprise Analytics and the .NET Analytics SDK. 
+> Install, connect, try. A quick start guide to get you up and running with Operational Insights and the .NET Analytics SDK. 
 
-[Enterprise Analytics](../../../analytics/intro/intro.md) is a real-time analytical database (RT-OLAP) for real time apps and operational intelligence. Although maintaining some syntactic similarities with [the operational SDKs](../../../home/sdk.md), the .NET Analytics SDK is developed from the ground-up for column-based analytical use cases, and supports streaming APIs to handle large datasets.
+[Operational Insights](../../../operational-insights-cloud/intro/intro.md) is a real-time analytical database (RT-OLAP) for real time apps and operational intelligence. Although maintaining some syntactic similarities with [the operational SDKs](../../../home/sdk.md), the .NET Analytics SDK is developed from the ground-up for column-based analytical use cases, and supports streaming APIs to handle large datasets.
 
 ## [](#before-you-start)Before You Start
 
-Install and configure an [Enterprise Analytics Cluster](../../../enterprise-analytics/current/intro/intro.md).
+Install and configure an [Operational Insights Cluster](../../../operational-insights/current/intro/intro.md).
 
 ### [](#minimum-dotnet-version)Minimum .NET Version
 
@@ -43,9 +43,9 @@ dotnet add package Couchbase.AnalyticsClient
 
 ## [](#connecting-and-executing-a-query)Connecting and Executing a Query
 
-.NET Analytics SDK 1.1 adds support for JWT and client certificate authentication, as well as a new Server Asynchronous Request API that uses request handles to fetch results. Introduced in the self-managed Enterprise Analytics Server 2.2, this API eliminates the need for long-running server connections.
+.NET Analytics SDK 1.1 supports the Server Asynchronous Request API that uses request handles to fetch results. Introduced in the self-managed Operational Insights Server 2.2, this API eliminates the need for long-running server connections.
 
-The examples in this first section of the page are for the standard API — async on the client side — working with Enterprise Analytics 2.0 and later (with Server Asynchronous Request API examples following in the [Server Async section](#server-asynchronous-api)). You can still use this API with Enterprise Analytics 2.2 and later, in addition to the new API.
+The examples in this first section of the page are for the standard API — async on the client side — working with Operational Insights 2.0 and later (with Server Asynchronous Request API examples following in the [Server Async section](#server-asynchronous-api)). You can still use this API with Operational Insights 2.2 and later, in addition to the new API.
 
 ### [](#server-synchronous-request-api)Server Synchronous Request API
 
@@ -71,7 +71,7 @@ await foreach (var row in result.ConfigureAwait(false))
 
 ### [](#server-asynchronous-api)Server Asynchronous Request API
 
-Enterprise Analytics 2.2 introduces an asynchronous request API. The SDK sends a request, polls for results, and then fetches once the result is available.
+Operational Insights 2.2 introduces an asynchronous request API. The SDK sends a request, polls for results, and then fetches once the result is available.
 
 Server Asynchronous API Example
 
@@ -180,6 +180,6 @@ If you are using a different port — for example, connecting to a cluster witho
 
 ## [](#migration-from-row-based-analytics)Migration from Row-Based Analytics
 
-If you are migrating a project from CBAS — our Analytics service on Capella Operational and Couchbase Server, using our operational SDKs — then information on migration can be found in the [Enterprise Analytics docs](../../../enterprise-analytics/current/migration/overview.md).
+If you are migrating a project from CBAS — our Analytics service on Capella Operational and Couchbase Server, using our operational SDKs — then information on migration can be found in the [Enterprise Analytics docs](../../../operational-insights/current/migration/overview.md).
 
-In particular, refer to the [SDK section](../../../enterprise-analytics/current/migration/migration-process.md#sdk-migration) of the Enterprise Analytics migration pages.
+In particular, refer to the [SDK section](../../../operational-insights/current/migration/migration-process.md#sdk-migration) of the Enterprise Analytics migration pages.

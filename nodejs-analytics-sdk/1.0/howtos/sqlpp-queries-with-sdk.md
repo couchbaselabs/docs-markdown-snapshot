@@ -3,7 +3,7 @@ title: Querying with SQL++
 description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Node.js Analytics SDK
@@ -26,9 +26,9 @@ Here we show queries against the Travel Sample collection, at cluster and scope 
 
 ## [](#before-you-start)Before You Start
 
-This page assumes that you have [installed the Node.js Analytics SDK](../hello-world/start-using-sdk.md), and created an [Enterprise Analytics cluster](../../../enterprise-analytics/current/install/introduction-linux-installation.md).
+This page assumes that you have [installed the Node.js Analytics SDK](../hello-world/start-using-sdk.md), and created an [Enterprise Analytics cluster](../../../operational-insights/current/install/introduction-linux-installation.md).
 
-Create a collection to work upon by [importing the travel-sample dataset](../../../enterprise-analytics/current/intro/connecting-to-data-sources.md#import-the-travel-sample-collections) into your cluster.
+Create a collection to work upon by [importing the travel-sample dataset](../../../operational-insights/current/intro/connecting-to-data-sources.md#import-the-travel-sample-collections) into your cluster.
 
 ## [](#querying-your-dataset)Querying Your Dataset
 

@@ -1,7 +1,7 @@
 ---
 title: Manage Audit Logs
 description: How to configure and manage audit logging for App Services and App Endpoints.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Capella App Services
@@ -26,7 +26,7 @@ To work with audit logging for App Services, you must use the Capella Operationa
 * For an overview of the Management API, see [Manage Deployments with the Capella Operational Management API](../../cloud/management-api-guide/management-api-intro.md).
 * To get started with the Management API, see [Get Started with the Capella Operational Management API](../../cloud/management-api-guide/management-api-start.md).
 * To make an API call, see [Make an API Call with the Capella Operational Management API](../../cloud/management-api-guide/management-api-use.md).
-* For a full reference guide, see [Capella Operational Management API Reference](../../cloud/management-api-reference/index.md).
+* For a full reference guide, see [Couchbase Capella Management API Reference](../../cloud/management-api-reference/index.md).
 
 > [!IMPORTANT]
 > Auditing is available only to clusters with an Enterprise Service Plan.

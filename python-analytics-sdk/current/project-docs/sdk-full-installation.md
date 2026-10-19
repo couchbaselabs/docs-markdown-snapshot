@@ -1,7 +1,7 @@
 ---
 title: Full Installation
 description: Installation instructions for the Python Analytics SDK.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Python Analytics SDK
@@ -20,7 +20,7 @@ antora:
 
 ## [](#before-you-start)Before You Start
 
-Set up an [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) cluster.
+Set up an [Enterprise Analytics](../../../operational-insights/current/intro/intro.md) cluster.
 
 ### [](#prerequisites)Prerequisites
 

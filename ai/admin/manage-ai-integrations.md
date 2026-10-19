@@ -3,7 +3,7 @@ title: Manage AI Integration Settings
 description: Use the Capella UI to manage settings for your integrations between
   an operational database, the Couchbase AI Data Plane, and Amazon Bedrock,
   OpenAI, or Amazon S3.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase AI Data Plane
@@ -81,24 +81,30 @@ To edit an API key or credentials in your organization:
 1. From your organization, go to **AI Data Plane** **Integrations**.
 2. Search for what you want to edit:
 
-  * **Amazon Bedrock** API keys
-  * **Amazon S3** credentials
-  * **OpenAI** API keys
+  * **Amazon Bedrock**
+  * **Amazon S3**
+  * **OpenAI**
 3. Click **Manage Credentials**.
 4. Next to the API key or credentials you want to edit, under **Actions**, click **Edit**.
-5. Update the API key or Amazon S3 credentials
-6. Click **Save API Key** or **Save Credentials**.
+5. Update the API key or Amazon S3 credentials.
+6. (Optional) For Amazon Bedrock credentials only, you can edit the **AWS Region**.  
+> [!CAUTION]  
+> You cannot change the **AWS Region** for credentials associated with an active Workflow that has private networking enabled. To use a different region, create a new Amazon Bedrock credential.
+7. Click **Save API Key** or **Save Credentials**.
 
 ## [](#delete-integration)Delete an API Key or Credentials
+
+> [!NOTE]
+> To delete Amazon Bedrock credentials, you must first delete any private-networked [AI Data Plane Workflows](../build/vectorization-service/data-processing.md) associated with them.
 
 To delete an API key or credentials from your organization:
 
 1. From your organization, go to **AI Data Plane** **Integrations**.
 2. Search for what you want to delete:
 
-  * **Amazon Bedrock** API keys
-  * **Amazon S3** credentials
-  * **OpenAI** API keys
+  * **Amazon Bedrock**
+  * **Amazon S3**
+  * **OpenAI**
 3. Click **Manage Credentials**.
 4. to the API key or credentials you want to delete, under **Actions**, click **Delete**.
 5. To confirm the deletion, enter `delete`.
@@ -108,6 +114,6 @@ To delete an API key or credentials from your organization:
 
 * [Vectorize Structured Data from Amazon S3](../build/vectorization-service/vectorize-structured-data-s3.md)
 * [Process and Vectorize Unstructured Data](../build/vectorization-service/vectorize-unstructured-data.md)
-* [Deploy an Embedding Model](../build/model-service/deploy-embed-model.md)
-* [Deploy a Large Language Model (LLM)](../build/model-service/deploy-llm-model.md)
+* [Deploy a Provisioned Embedding Model](../build/model-service/deploy-embed-model.md)
+* [Deploy a Provisioned Large Language Model (LLM)](../build/model-service/deploy-llm-model.md)
 * [Integrate an Agent with the Agent Catalog](../build/integrate-agent-with-catalog.md)

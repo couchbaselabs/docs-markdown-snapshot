@@ -1,8 +1,9 @@
 ---
-title: Hello Columnar&#8201;&#8212;&#8201;Node.js SDK Quickstart Guide
+title: Hello Operational Insights (Capella)&#8201;&#8212;&#8201;Node.js SDK
+  Quickstart Guide
 description: Install, connect, try. A quick start guide to get you up and
-  running with Columnar and the Node.js Columnar SDK.
-pubDate: 2026-10-03T04:27:21.374Z
+  running with Operational Insights (Capella) and the Node.js Columnar SDK.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Node.js Columnar SDK
@@ -15,22 +16,22 @@ antora:
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/nodejs-columnar-sdk/current/hello-world/start-using-sdk.html)
 
-# Hello Columnar&#8201;&#8212;&#8201;Node.js SDK Quickstart Guide
+# Hello Operational Insights (Capella)&#8201;&#8212;&#8201;Node.js SDK Quickstart Guide
 
-> Install, connect, try. A quick start guide to get you up and running with Columnar and the Node.js Columnar SDK. 
+> Install, connect, try. A quick start guide to get you up and running with Operational Insights (Capella) and the Node.js Columnar SDK. 
 
-[Capella Columnar](../../../analytics/intro/intro.md) is a real-time analytical database (RT-OLAP) for real time apps and operational intelligence. Although maintaining some syntactic similarities with [the operational SDKs](#home:sdk.adoc), the Node.js Columnar SDK is developed from the ground-up for Columnar's analytical use cases, and supports streaming APIs to handle large datasets.
+[Operational Insights (Capella)](#columnar:intro:intro.adoc) is a real-time analytical database (RT-OLAP) for real time apps and operational intelligence. Although maintaining some syntactic similarities with [the operational SDKs](#home:sdk.adoc), the Node.js Columnar SDK is developed from the ground-up for Operational Insights (Capella)'s analytical use cases, and supports streaming APIs to handle large datasets.
 
 > [!WARNING]
 > Don't Mix Columnar & Operational SDKs.
 > 
 > Do not combine the Node.js Columnar SDK with the Node.js Operational SDK on the same app server (or development machine). This combination is not tested and not supported. There may be problems with different versions of shared dependencies if you try this. This only applies to the Node.js and Python Columnar SDKs.
 > 
-> Note, this does not apply to combining our Enterprise Analytics SDKs with our Operational SDKs. See the [Analytics SDK page](../../../home/analytics-sdk.md) for a reminder of which Analytics SDK to use with which Analytics service.
+> Note, this does not apply to combining our Operational Insights SDKs with our Operational SDKs. See the [Operational Insights SDK page](../../../home/operational-insights-sdk.md) for a reminder of which Insights SDK to use with which Insights or Analytics service.
 
 ## [](#before-you-start)Before You Start
 
-Sign up for a [Capella account](../../../cloud/get-started/create-account.md), and choose a [Columnar](../../../analytics/intro/intro.md) cluster.
+Sign up for a [Capella account](../../../cloud/get-started/create-account.md), and choose an [Operational Insights (Capella)](#columnar:intro:intro.adoc) cluster.
 
 You'll need to add your IP address to the allowlist, during the sign-up and cluster creation process (this can also be done at any time, via the UI, should the address change, or if you need to add a new one).
 
@@ -52,7 +53,7 @@ For other installation methods, see the [installation page](../project-docs/sdk-
 
 ## [](#connecting-and-executing-a-query)Connecting and Executing a Query
 
-To use there examples, create a collection to work upon by [importing the travel-sample dataset](../../../analytics/intro/examples.md#travel-sample) into your cluster.
+To use there examples, create a collection to work upon by [importing the travel-sample dataset](#columnar:intro:examples.adoc#travel-sample) into your cluster.
 
 ### [](#commonjs)CommonJS
 

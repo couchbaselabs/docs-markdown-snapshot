@@ -1,0 +1,113 @@
+---
+title: Initializing a Cluster
+description: A cluster can be initialized and provisioned, by means of a single
+  call to the REST API.
+pubDate: 2026-10-19T14:21:08.937Z
+meta:
+  component:
+    title: Operational Insights Enterprise
+    version: "3.0"
+  topic_type: reference
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/3.0/modules/reference/pages/rest-initialize-cluster.adoc
+  xref: xref:enterprise-analytics:reference:rest-initialize-cluster.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/operational-insights/current/reference/rest-initialize-cluster.html)
+
+# Initializing a Cluster
+
+> A cluster can be initialized and provisioned, by means of a single call to the REST API. 
+
+## [](#http-method-and-uri)HTTP Method and URI
+
+POST /clusterInit
+
+## [](#description)Description
+
+Initializes and provisions a cluster. The `POST /clusterInit` method and URI thereby achieve as a single call the combined effectiveness of several other calls that each perform only a part of the initialization and provisioning sequence. These other calls are all described elsewhere in this section, as [Initializing a Node](rest-initialize-node.md), [Establishing Credentials](rest-establish-credentials.md), [Naming a Node](rest-name-node.md), [Configuring Memory](rest-configure-memory.md), and [Naming a Cluster](rest-name-cluster.md).
+
+Note that the `POST /clusterInit` method and URI allow the specifying of several parameters in addition to those supported by the other calls. All parameters are listed and described below.
+
+## [](#prerequisites)Prerequisites
+
+Operational Insights stores its data in object storage, which must be configured before the cluster is initialized. Call `POST /settings/operationalInsights` to configure the object storage first: `POST /clusterInit` validates the object-storage settings, and fails if they are missing or invalid. For the settings, see [Service Settings API](rest-cluster-management.md#service-settings-api). For the supported object stores, see [Configure Object Storage](../manage/manage-nodes/object-storage.md).
+
+## [](#curl-syntax)Curl Syntax
+
+curl -X POST http://<ip-address-or-domain-name>:8091/clusterInit
+  -d hostname=<ip-address-or-domain-name>
+  -d username=<username>
+  -d password=<password>
+  -d dataPath=<data-path>
+  -d analyticsPath=<analytics-path>
+  -d javaHome=<jre-path>
+  -d sendStats=true
+  -d clusterName=<cluster-name>
+  -d services=kv,cbas
+  -d memoryQuota=<integer>
+  -d cbasMemoryQuota=<integer>
+  -d afamily=[ 'ipv4' | 'ipv6' ]
+  -d afamilyOnly=[ true | false ]
+  -d nodeEncryption=[ 'on' | 'off' ]
+  -d port='SAME'
+  -d allowedHosts=<list-of-naming-conventions>
+
+The parameters and arguments are listed below:
+
+* `hostname`. The IP address or domain name that will be the name of the node established as a single-node cluster. This parameter is optional: the default value is `127.0.0.1`.
+* `username`. A string that will be the username for the new cluster. This parameter must be specified.
+* `password`. A string that will be the password for the new cluster. This parameter must be specified.
+* `dataPath` and `analyticsPath`. Paths for the storage of data to be used by the Data and Analytics Services. All paths must be writable by user `couchbase`. These parameters are optional. For the default values, see [Initializing a Node](rest-initialize-node.md).
+* `javaHome`. Location of the JRE to be used by the Analytics Service. The specified path must be writable by user `couchbase`. This parameter is optional. There is no default value.
+* `sendStats`. Enables or disables Operational Insights software update notifications and sharing of system performance information with Couchbase. See the [update-notifications](../cli/couchbase-cli-cluster-init.md#update-notifications) option in the [cluster-init](../cli/couchbase-cli-cluster-init.md) command line interface reference for details of what `sendStats` shares. It's always set to `true` for Operational Insights. In Operational Insights, you can set the value to the default `true` or `false`.
+* `clusterName`. A name for the cluster. This name is for convenience of identification, and will not be used for network access. This parameter is optional. There is no default value.
+* `services`. The services to be hosted on the node. Every Operational Insights node runs exactly the Data Service (`kv`) and the Analytics Service (`cbas`). This parameter is optional, and defaults to `kv,cbas`. If it is specified, the value must be `kv,cbas`; any other list is rejected with an error such as `Invalid services list. Expected [kv,cbas], got […​]`.
+* `memoryQuota`. The memory quota for the Data Service, as an integer number of MiB. On Operational Insights the Data Service quota is fixed at 100 MiB, and any other value is rejected. This parameter is optional.
+* `cbasMemoryQuota`. The memory quota for the Analytics Service, as an integer number of MiB. The minimum allowed allocation is 1024 MiB. This parameter is optional. See [Configuring Memory](rest-configure-memory.md) for information about allocating memory per service.
+* `afamily`. The IP address-family principally to be used by the cluster. This parameter is optional. Either `ipv4` (the default) or `ipv6` can be specified.
+* `afamilyOnly`. Whether _only_ the address-family specified by `afamily` should be used. This parameter is optional. The value can be `true` or `false` (the default). For information, see [Manage Address Families](../manage/manage-nodes/manage-address-families.md).
+* `nodeEncryption`. Whether node-to-node encryption should be switched on for the cluster. This parameter is optional. Value can be `on` or `off` (the default). For information, see [Node-to-Node Encryption](../manage/manage-nodes/apply-node-to-node-encryption.md).
+* `port`. The number of the port that the new, single-node cluster will use as its administration port for unencrypted traffic. The value `SAME` specifies the standard port-number, which is `8091`. This parameter must be explicitly specified, even if `SAME` is to be used.
+* `allowedHosts`. A comma-separated list of the naming conventions that determine which hosts are allowed to be added or joined to the new cluster. The default is `"*"`, which determines that any hostname is acceptable. For information, see [Restrict Node-Addition](rest-specify-node-addition-conventions.md). This parameter is optional, and is available only in Operational Insights.
+
+## [](#responses)Responses
+
+Success returns `200 OK`. If a directory is not writable by user `couchbase`, `400 Bad Request` is returned, with a message such as: `["Could not set analytics storage. All directories must be writable by 'couchbase' user."].`An incorrectly specified URL or data parameter returns `404 Object Not Found`.
+
+## [](#example)Example
+
+The following example creates a new, single-node cluster. It assumes that the object storage has already been configured; see [Prerequisites](#prerequisites).
+
+curl -v -X POST http://10.144.231.104:8091/clusterInit \
+-d "hostname=com.test.ubuntu" \
+-d "dataPath=%2Fopt%2Fcouchbase%2Fvar%2Flib%2Fcouchbase%2Fdata" \
+-d "analyticsPath=%2Fopt%2Fcouchbase%2Fvar%2Flib%2Fcouchbase%2Fdata" \
+-d "javaHome=" \
+-d "sendStats=true" \
+-d "services=kv%2Ccbas" \
+-d "clusterName=FourthCluster" \
+-d "memoryQuota=100" \
+-d "cbasMemoryQuota=1024" \
+-d "afamily=ipv4" \
+-d "afamilyOnly=false" \
+-d "nodeEncryption=off" \
+-d "username=Administrator" \
+-d "password=password" \
+-d "port=SAME" \
+-d "allowedHosts=*.test.ubuntu,127.0.0.1"
+
+Success returns a confirmation such as the following:
+
+{"newBaseUri":"http://10.144.231.104:8091/"}
+
+## [](#see-also)See Also
+
+For an overview of nodes, see [Nodes and Clusters](../manage/manage-nodes/node-management-overview.md). For the equivalent procedure in the UI and CLI, see [Create a Cluster](../manage/manage-nodes/create-cluster.md).
+
+For information about object storage, see [Configure Object Storage](../manage/manage-nodes/object-storage.md).
+
+Node-to-node Encryption is described in [Node-to-Node Encryption](../manage/manage-nodes/apply-node-to-node-encryption.md).
+
+Address families are described in [Manage Address Families](../manage/manage-nodes/manage-address-families.md).

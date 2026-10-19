@@ -1,7 +1,7 @@
 ---
 title: Deployment
 description: Transition from dev environment to prod, and keep up with the latest fixes.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Go Analytics SDK
@@ -18,9 +18,12 @@ antora:
 
 > Transition from dev environment to prod, and keep up with the latest fixes. 
 
-One of Couchbase's strengths is speedy response, so deployment of apps should be in the same region as your Analytics cluster.
+One of Couchbase's strengths is speedy response, so deployment of apps should be in the same region as your Operational Insights cluster.
 
-We always recommend the [latest version](analytics-sdk-release-notes.md#latest-release) of the SDK. This not only contains the latest security updates and bug fixes, but will be compatible with the latest Enterprise Analytics release.
+We always recommend the [latest version](analytics-sdk-release-notes.md#latest-release) of the SDK. This not only contains the latest security updates and bug fixes, but will be compatible with the latest Operational Insights release.
+
+> [!TIP]
+> As the Analytics SDKs have been superseded by the [Operational Insights SDKs](../../../home/operational-insights-sdk.md), please look at upgrading as soon as possible.
 
 Before deploying, take note of any [compatibility](compatibility.md) issues for the language platform and underlying OS. The [full installation guide](sdk-full-installation.md) should cover any special cases for all supported environments.
 

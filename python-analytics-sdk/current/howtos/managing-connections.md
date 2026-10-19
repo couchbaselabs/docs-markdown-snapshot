@@ -1,8 +1,8 @@
 ---
 title: Managing Connections
 description: This section describes how to connect the Python Analytics SDK to
-  an Enterprise Analytics cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+  an Operational Insights cluster.
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Python Analytics SDK
@@ -17,9 +17,9 @@ antora:
 
 # Managing Connections
 
-> This section describes how to connect the Python Analytics SDK to an Enterprise Analytics cluster. It contains best practices as well as information on TLS/SSL and advanced connection options. 
+> This section describes how to connect the Python Analytics SDK to an Operational Insights cluster. It contains best practices as well as information on TLS/SSL and advanced connection options. 
 
-Our [Getting Started pages](../hello-world/start-using-sdk.md) cover the basics of making a connection to an Enterprise Analytics cluster. This page is a wider look at the topic.
+Our [Getting Started pages](../hello-world/start-using-sdk.md) cover the basics of making a connection to an Operational Insights cluster. This page is a wider look at the topic.
 
 ## [](#connecting-to-a-cluster)Connecting to a Cluster
 
@@ -32,7 +32,7 @@ from couchbase_analytics.options import (ClusterOptions,
                                         SecurityOptions)
 ```
 
-A connection to an Enterprise Analytics cluster is represented by a `Cluster` object. The simplest way to create a `Cluster` object is to call `Cluster.create_instance()` with a [connection string](#connection-strings), user credentials, and any optional settings:
+A connection to an Operational Insights cluster is represented by a `Cluster` object. The simplest way to create a `Cluster` object is to call `Cluster.create_instance()` with a [connection string](#connection-strings), user credentials, and any optional settings:
 
 ```python
 def main() -> None:
@@ -78,7 +78,7 @@ Basic Access Authentication is shown in the example [above](#connecting-to-a-clu
 
 ### [](#json-web-tokens-jwt)JSON Web Tokens (JWT)
 
-From the 1.1 SDK (with Enterprise Analytics Server 2.2+) JWT is supported.
+From the 1.1 SDK (with Operational Insights Server 2.2+) JWT is supported.
 
 ```python
 def main() -> None:
@@ -90,7 +90,7 @@ def main() -> None:
 
 ### [](#certificate-authentication)Certificate Authentication
 
-From the 1.1 Analytics SDK (with Enterprise Analytics Server 2.2+) certificate authentication is supported. A conceptual and architectural overview of Enterprise Analytics's support of X.509 certificates is provided in the [Server certificates docs](../../../server/current/learn/security/certificates.md). Practical information on handling certificates can be found in the [Enterprise Analytics certificates docs](../../../enterprise-analytics/current/manage/manage-security/manage-certificates.md).
+From the 1.1 Analytics SDK (with Operational Insights Server 2.2+) certificate authentication is supported. A conceptual and architectural overview of Operational Insights's support of X.509 certificates is provided in the [Server certificates docs](../../../server/current/learn/security/certificates.md). Practical information on handling certificates can be found in the [Enterprise Analytics certificates docs](../../../operational-insights/2.2/manage/manage-security/manage-certificates.md).
 
 The Analytics SDK authenticates the client during the TLS handshake. The SDK reads the certificate and private key from a `PKCS#12` file:
 
@@ -104,7 +104,7 @@ cluster = Cluster.create_instance(endpoint, cred)
 
 ## [](#certificate-authority)Certificate Authority
 
-To make a TLS connection to an Enterprise Analytics cluster with a root certificate issued by a trusted CA (Certificate Authority), you do not need to add this to your configuration — the platform's defaults are automatically trusted.
+To make a TLS connection to an Operational Insights cluster with a root certificate issued by a trusted CA (Certificate Authority), you do not need to add this to your configuration — the platform's defaults are automatically trusted.
 
 The cluster's root certificate just needs to be issued by a CA whose certificate is in your system trust store. This includes well known CAs (including GoDaddy and Verisign), plus any other CA certificates that you wish to add.
 

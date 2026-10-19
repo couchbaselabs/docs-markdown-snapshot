@@ -2,7 +2,7 @@
 title: Introduction
 description: The Couchbase Apache Superset Connector lets you visualize data
   from Tabular Analytics Views (TAV) in Apache Superset.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Apache Superset Connector
@@ -40,7 +40,7 @@ Couchbase **strongly** recommends that you secure your Superset connection using
 
 * Capella Columnar
 
-For details on creating a Capella Columnar instance, first see [Creating a Capella Columnar Cluster](../../analytics/admin/prepare-project.md).
+For details on creating a Capella Columnar instance, first see [Creating a Capella Columnar Cluster](#columnar:admin:prepare-project.adoc).
 
 You'll need to access the Capella administration console to get the connection string for your Columnar database.
 

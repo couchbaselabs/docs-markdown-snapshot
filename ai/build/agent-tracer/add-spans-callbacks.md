@@ -2,7 +2,7 @@
 title: Add Spans and Callbacks to Your Agent
 description: Add spans and callbacks to your agentic app code to generate logs
   through the Agent Catalog.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase AI Data Plane
@@ -20,7 +20,7 @@ antora:
 
 > Add spans and callbacks to your agentic app code to generate logs through the Agent Catalog. 
 
-You can then examine these logs through the Agent Tracer or query them with the [Query Service](../../../cloud/n1ql/query.md) or [Capella Analytics](../../../analytics/intro/intro.md).
+You can then examine these logs through the Agent Tracer or query them with the [Query Service](../../../cloud/n1ql/query.md) or [Operational Insights](../../../operational-insights-cloud/intro/intro.md).
 
 ## [](#prerequisites)Prerequisites
 

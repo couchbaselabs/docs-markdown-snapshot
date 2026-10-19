@@ -2,7 +2,7 @@
 title: Best Practices
 description: Speed up your application development, with some best practices for
   using Couchbase SDKs.
-pubDate: 2026-10-16T07:26:40.932Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: .NET SDK
@@ -58,6 +58,8 @@ All aspects of the Couchbase RBAC system are covered in the section [Authorizati
 Couchbase's Data Service uses a fast binary protocol, which will always outperform JSON streamed over HTTP from SQL++ queries. If you know the key (ID) of a document, then use the [Data Service](../howtos/kv-operations.md).
 
 If you need pessimistic locking, in particular if you need to lock documents for multi-document ACID transactions, then anything you can do at the schema level to reduce the number of documents locked simultaneously wil remove a bottleneck to updating the affected documents.
+
+A collection of performance tips — and antipatterns to avoid — can be found on the [performance page](../project-docs/performance.md).
 
 ### [](#dealing-with-timeout-errors)Dealing with Timeout Errors
 

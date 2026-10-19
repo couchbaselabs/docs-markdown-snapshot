@@ -1,6 +1,6 @@
 ---
 title: Connecting to Tableau Cloud using the Tableau Bridge
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Tableau Connector
@@ -40,8 +40,8 @@ cp <download location>/TableauBridge-20243.24.1211.0901.x86_64.rpm .
 1. Download the latest version of the Couchbase Analytics Tableau Connector from [here](release-notes.md).
 2. Unzip the downloaded zip archive and copy the `.taco` and `.jar` files to the working directory you created in the [Download the Tableau Bridge package](#download-the-tableau-bridge) section.  
 ```shell  
-cp <download location>/couchbase-tableau-connector-1/couchbase-analytics-1.1.3.taco .  
-cp <download location>/couchbase-tableau-connector-1/couchbase-jdbc-driver-1.0.5.jar .  
+cp <download location>/couchbase-analytics-1.1.3.taco .  
+cp <download location>/couchbase-jdbc-driver-1.0.5.jar .  
 ```
 
 ## [](#create-the-docker-file)Create the Docker file
@@ -76,7 +76,7 @@ docker images | grep bridge
 ## [](#start-an-instance-of-the-bridge-container)Start an instance of the Bridge Container
 
 1. Start a second instance of the shell.
-2. Use the following command to start the container with the `bride_base` image in the new shell.  
+2. Use the following command to start the container with the `bridge_base` image in the new shell.  
 ```shell  
 docker run -it bridge_base /bin/bash  
 ```  

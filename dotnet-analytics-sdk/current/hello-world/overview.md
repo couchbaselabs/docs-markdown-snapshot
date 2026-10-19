@@ -1,6 +1,6 @@
 ---
 title: .NET Analytics SDK 1.1
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: .NET Analytics SDK
@@ -17,20 +17,20 @@ antora:
 
 # .NET Analytics SDK 1.1
 
-The .NET Analytics SDK allows you to connect to an Enterprise Analytics cluster using C#. For connecting to a Couchbase Server Cluster — self-managed, or Capella Operational — see our [.NET Operational SDK](../../../dotnet-sdk/current/hello-world/overview.md).
+The .NET Analytics SDK allows you to connect to an Operational Insights cluster using C#. For connecting to a Couchbase Server Cluster — self-managed, or Capella Operational — see our [.NET Operational SDK](../../../dotnet-sdk/current/hello-world/overview.md).
 
 > [!TIP]
-> Connecting to a [_Capella_ Analytics](../../../analytics/intro/intro.md) cluster from .NET is not currently possible.
+> Connecting to a [Operational Insights _Capella_](../../../operational-insights-cloud/intro/intro.md) cluster from .NET is not currently possible.
 
   
 ##  Using Your Analytics Cluster
 
-How-to guides and tutorials to help you start your development journey with Enterprise Analytics and the .NET SDK.
+How-to guides and tutorials to help you start your development journey with Operational Insights and the .NET SDK.
 
 Getting Started
 
 * [.NET Analytics SDK Quickstart Guide](start-using-sdk.md)
-* [Connecting to Enterprise Analytics](../howtos/managing-connections.md)
+* [Connecting to Operational Insights](../howtos/managing-connections.md)
 * [Querying with SQL++](../howtos/sqlpp-queries-with-sdk.md)
 
 Reference

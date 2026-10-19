@@ -2,7 +2,7 @@
 title: Manage Your Billing
 description: Couchbase Capella bills you for the size and number of operational
   clusters in your organization.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Capella Operational
@@ -21,7 +21,13 @@ antora:
 
 All billing in Capella takes place at the organization level. Your billing settings apply to all projects and operational clusters in your organization.
 
-To configure billing settings for your organization, you must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) role.
+To view billing for your organization, your user account must have 1 of the following organization roles:
+
+* [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner)
+* [Organization Billing Viewer](../organizations/organization-user-roles.md#organization-billing-viewer)
+* [Organization Billing Administrator](../organizations/organization-user-roles.md#organization-billing-administrator)
+
+To configure billing settings for your organization, you must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) or [Organization Billing Administrator](../organizations/organization-user-roles.md#organization-billing-administrator) role.
 
 ## [](#paid-plan)About Cluster and Service Support Plans
 
@@ -174,12 +180,17 @@ For the AI Data Plane, Couchbase charges you for your usage of the following ser
   * [Vectorizing Structured Data from Capella](#build:vectorize-structured-data-capella.adoc)
 * The Model Service:
 
-  * [Deploying and using an embedding model](../../ai/build/model-service/deploy-embed-model.md)
-  * [Deploying and using an LLM](../../ai/build/model-service/deploy-llm-model.md)
+  * [Deploying and using serverless LLMs and embedding models](../../ai/build/model-service/deploy-serverless-model.md)
+  * [Deploying and using a provisioned embedding model](../../ai/build/model-service/deploy-embed-model.md)
+  * [Deploying and using a provisioned LLM](../../ai/build/model-service/deploy-llm-model.md)
+* [Managed MCP Server](../../mcp-server/managed/about-managed-mcp.md)
 
 For a limited time, your [AI Functions](../../ai/build/ai-functions.md) usage is free of charge.
 
 #### [](#workflows)Workflows
+
+> [!NOTE]
+> Enabling private networking for Amazon Bedrock embedding models incurs additional costs. For more information, see [Private Endpoints](#private-endpoints).
 
 Couchbase charges you depending on the type of data you upload into your AI Data Plane [Workflows](#ai:build:data-processing.adoc):
 
@@ -191,7 +202,32 @@ Couchbase charges you depending on the type of data you upload into your AI Data
 
 #### [](#model-service)Model Service
 
-Couchbase charges by the clock hour for the Model Service. It bases this hourly rate on:
+How Couchbase charges you for the Model Service depends on the [serving mode](../../ai/build/model-service/model-service.md#compare) of your model:
+
+* [Serverless models](#model-service-serverless) are billed per token.
+* [Provisioned models](#model-service-provisioned) are billed by the clock hour.
+
+> [!IMPORTANT]
+> Billing for the Model Service follows the [Enterprise Plan pricing](https://www.couchbase.com/pricing). If your account uses a different plan, Couchbase bills your Model Service usage with Enterprise [On-Demand credits](#pay-as-you-go-credits).
+
+##### [](#model-service-serverless)Serverless Models
+
+Couchbase charges you for the input and output tokens that your serverless models process. Embedding models have input token costs only.
+
+The rate for each token type depends on the model and the region where you deployed it. To see a model's rates before you deploy it, view **Estimated Costs** on the **Deploy Model** page. **Estimated Costs** shows the input and output token rates in Capella credits per 1 million tokens, based on the list prices that Amazon Web Services (AWS) publishes for Amazon Bedrock and the price at which you purchase Capella Enterprise credits. These rates can change when AWS changes its Amazon Bedrock prices. Couchbase charges you only for the tokens you use.
+
+If you purchased Capella credits using non-US currency, the cost of your serverless model usage in that currency can vary with daily exchange rates.
+
+If you do not enable caching, Couchbase does not charge you for a serverless model while it receives no requests. If you enable caching for a serverless LLM, Couchbase also charges the [integrated LLM cache fee](#integrated-llm-cache).
+
+> [!IMPORTANT]
+> Caching is in Free Preview until Nov 18, 2026, after which usage-based fees will apply.
+
+Each day, Capella totals the tokens your serverless models processed and calculates the credits for that usage. To see request and token counts for each serverless model, go to **Models** **Serverless** and view the **Requests & Tokens** column.
+
+##### [](#model-service-provisioned)Provisioned Models
+
+Couchbase charges by the clock hour for provisioned models. It bases this hourly rate on:
 
 * The cloud service provider (CSP) and region where your model is deployed.
 * The model compute size, determined by:
@@ -201,25 +237,30 @@ Couchbase charges by the clock hour for the Model Service. It bases this hourly 
   * Amount of RAM
 * Whether your model is On or Off.
 
-The Model Service only becomes billable once a Capella hosted model deploys and is in a running state.
+A provisioned model only becomes billable once it deploys and is in a running state.
+
+##### [](#integrated-llm-cache)Caching
 
 > [!IMPORTANT]
-> Billing for the Model Service follows the [Enterprise Plan pricing](https://www.couchbase.com/pricing). If your account uses a different plan, Couchbase bills your Model Service usage with Enterprise [On-Demand credits](#pay-as-you-go-credits).
+> Caching is in Free Preview until Nov 18, 2026, after which usage-based fees will apply.
 
-Integrated LLM Cache
+If you enable any of the following **Value Adds** when you deploy a model, Couchbase charges an additional cache fee on top of your regular Model Service costs:
 
-If you enable any of the following **Value Adds** when [deploying your Capella-hosted models](../../ai/build/model-service/deploy-llm-model.md#procedure), Couchbase charges an additional fixed hourly cache fee on top of your regular Model Service costs:
-
-* [Caching](../../ai/build/model-service/configure-value-adds.md#caching)
-* [Async Processing](../../ai/build/model-service/configure-value-adds.md#async-processing)
-
-This integrated cache fee is per tenant per region, and applies for every cloud service provider (CSP) region which has at least 1 model with these **Value Adds** enabled. For example, Couchbase bills 2 models that have caching enabled in AWS regions `us-east-1` and `us-west-2` an additional 1 credit per hour, which is 0.5 credit per hour for each region.
-
-Couchbase bills the integrated cache fee according to the [Enterprise Plan](#enterprise) rates and pricing.
+* [Caching](../../ai/build/model-service/configure-value-adds.md#caching), for LLMs only
+* [Async Processing](../../ai/build/model-service/configure-value-adds.md#async-processing), for provisioned models only
 
 #### [](#ai-functions)AI Functions
 
 As a limited time promotional offer, Couchbase does not charge you for [AI Functions](../../ai/build/ai-functions.md) as a stand-alone service.
+
+#### [](#managed-mcp-server)Managed MCP Server
+
+Couchbase charges by the clock hour for [Couchbase AI Data Plane Managed MCP Servers](../../mcp-server/managed/about-managed-mcp.md). The hourly rate is based on:
+
+* Compute costs, based on your chosen Managed MCP Server configuration.
+* The cloud service provider and region of the linked operational cluster.
+
+For more information about how to deploy a Managed MCP Server, see [Deploy and Connect to Your Managed MCP Server](../../mcp-server/managed/deploy-connect-mcp.md).
 
 ## [](#billing-system)Billing System
 
@@ -340,7 +381,7 @@ If no payment is received by the end of the calendar month after you incurred us
 
 * [Manage Billing Information](manage-billing.md)
 * [Manage Billing Alerts](manage-billing-alerts.md)
-* [View Capella Usage and Invoices](usage-invoices.md)
+* [View Capella Usage](usage-invoices.md)
 * [Upgrade Your Account](upgrade-account.md)
 * [Change a Cluster's Plan and Support Timezone](change-support-plan.md)
 * [Request Prompt Action for Cluster Recovery](support-pre-auth.md)

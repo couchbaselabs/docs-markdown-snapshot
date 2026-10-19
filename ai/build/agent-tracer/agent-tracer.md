@@ -2,7 +2,7 @@
 title: Monitor and Observe with Agent Tracer
 description: Use the Agent Tracer with the Agent Catalog and your agentic app to
   monitor and observe agent activity.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-19T14:21:08.937Z
 meta:
   component:
     title: Couchbase AI Data Plane
@@ -20,7 +20,7 @@ antora:
 
 > Use the Agent Tracer with the Agent Catalog and your agentic app to monitor and observe agent activity. 
 
-If your agentic app [is configured to log activity](add-spans-callbacks.md), the Agent Catalog continuously collects log data in the `.agent-activity` folder in your project. If you have configured a Capella operational cluster in your Agent Catalog environment variables, your logs are automatically forwarded and can be viewed in Agent Tracer, or queried with the [Query Service](../../../cloud/n1ql/query.md) or [Capella Analytics](../../../analytics/intro/intro.md).
+If your agentic app [is configured to log activity](add-spans-callbacks.md), the Agent Catalog continuously collects log data in the `.agent-activity` folder in your project. If you have configured a Capella operational cluster in your Agent Catalog environment variables, your logs are automatically forwarded and can be viewed in Agent Tracer, or queried with the [Query Service](../../../cloud/n1ql/query.md) or [Operational Insights](../../../operational-insights-cloud/intro/intro.md).
 
 Agent Tracer can help you troubleshoot when agent behavior goes wrong, such as:
 

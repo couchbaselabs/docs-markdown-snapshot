@@ -1,0 +1,36 @@
+---
+title: Licenses
+description: Couchbase Operational Insights SDKs' source code and binaries are
+  licensed under the Apache Licence 2.0.
+pubDate: 2026-10-19T14:21:08.937Z
+meta:
+  component:
+    title: Go Operational Insights SDK
+    version: "1.0"
+antora:
+  editUrl: https://github.com/couchbase/docs-operational-insights-sdk-go/edit/release/1.0/modules/project-docs/pages/sdk-licenses.adoc
+  xref: xref:go-operational-insights-sdk:project-docs:sdk-licenses.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/go-operational-insights-sdk/current/project-docs/sdk-licenses.html)
+
+# Licenses
+
+> Couchbase Operational Insights SDKs' source code and binaries are licensed under the Apache Licence 2.0\. Dependencies carry their own licenses. 
+
+Source and any and all binaries for the Couchbase Go Operational Insights SDK are distributed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+
+## [](#support-level)Support Level
+
+Support level will match the terms of your use of your Couchbase Operational Insights Cluster(s), under Couchbase's Enterprise license agreement.
+
+* [Enterprise License Agreement](https://www.couchbase.com/license-agreement/)
+
+## [](#dependencies)Dependencies
+
+Any dependencies may have their [own, separate licenses](https://www.couchbase.com/legal/agreements#ThirdPartyComponents).
+
+## [](#documentation-license)Documentation License
+
+This documentation is copyright Couchbase Inc. The docs' source is licensed under the Creative Commons [CC-by-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en) license, see <https://github.com/couchbase/docs-operational-insights-sdk-go/blob/release/1.0/LICENSE>.
