@@ -2,7 +2,7 @@
 title: Glossary
 description: Unpicking the tangled alphabet soup of the Enterprise Analytics
   Platform, from an SDK perspective.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-20T04:22:02.279Z
 meta:
   component:
     title: Node.js Analytics SDK
@@ -20,7 +20,7 @@ antora:
 
 > Unpicking the tangled alphabet soup of the Enterprise Analytics Platform, from an SDK perspective. 
 
-Enterprise Analytics SDK documentation uses terms from Operational Insights which may carry different meanings from those same terms in other parts of Couchbase. Below you will find short definitions of many Operational Insights-related terms, with links to the pages that describe them in more detail, or show practical examples of their use. In particular, we look to define terms that may — of necessity — carry slight variations of meaning from their Couchbase Server cluster use.
+Operational InsightsSDK documentation uses terms from Operational Insights which may carry different meanings from those same terms in other parts of Couchbase. Below you will find short definitions of many Operational Insights-related terms, with links to the pages that describe them in more detail, or show practical examples of their use. In particular, we look to define terms that may — of necessity — carry slight variations of meaning from their Couchbase Server cluster use.
 
 * [Standalone Collection](../../../operational-insights/current/sources/manage-standalone-collection.md#work-with-a-standalone-collection) — documents from one or more existing Columnar collections can be organized into standalone collections.
 

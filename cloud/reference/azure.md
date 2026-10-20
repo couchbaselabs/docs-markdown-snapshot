@@ -1,7 +1,7 @@
 ---
 title: Microsoft Azure
 description: Couchbase Capella supports deploying clusters onto Microsoft Azure.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-20T04:22:02.279Z
 meta:
   component:
     title: Capella Operational
@@ -56,6 +56,7 @@ Couchbase Capella's fully managed DBaaS supports the following Azure regions.
 | **uaenorth**                           | UAE North (Dubai)                |                    |                                        |
 | **spaincentral** \[[2](#footnote-2)\]  | Spain Central (Madrid)           |                    |                                        |
 | **francecentral** \[[2](#footnote-2)\] | France Central (Paris)           |                    |                                        |
+| **italynorth**                         | Italy North (Milan)              | **✔**              |                                        |
 
 | Azure Region      | Location                         | Ultra Disk Support | Free Tier Support \[[1](#footnote-1)\] |
 | ----------------- | -------------------------------- | ------------------ | -------------------------------------- |

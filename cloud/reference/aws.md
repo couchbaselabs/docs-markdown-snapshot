@@ -1,7 +1,7 @@
 ---
 title: Amazon Web Services (AWS)
 description: Couchbase Capella supports deploying clusters onto Amazon Web Services (AWS).
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-20T04:22:02.279Z
 meta:
   component:
     title: Capella Operational
@@ -62,6 +62,7 @@ Couchbase Capella's fully managed DBaaS supports the following AWS regions.
 | **ap-southeast-1** | Asia Pacific (Singapore) |
 | **ap-northeast-1** | Asia Pacific (Tokyo)     |
 | **ap-northeast-2** | Asia Pacific (Seoul)     |
+| **ap-northeast-3** | Asia Pacific (Osaka)     |
 | **ap-south-1**     | Asia Pacific (Mumbai)    |
 | **ap-east-1**      | Asia Pacific (Hong Kong) |
 | **ap-south-2**     | Asia Pacific (Hyderabad) |

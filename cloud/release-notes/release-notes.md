@@ -1,6 +1,6 @@
 ---
 title: Couchbase Capella Release Notes
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-20T04:22:02.279Z
 meta:
   component:
     title: Capella Operational
@@ -17,6 +17,15 @@ antora:
 
 ## [](#october-2026-changelog)October 2026 Changelog
 
+* Expanded AWS and Azure region availability  
+Couchbase Capella nows supports 2 new regions:
+
+  * AWS
+
+    * Asia Pacific (Osaka) — `ap-northeast-3`
+  * Azure
+
+    * Italy North (Milan) — `italynorth`
 * New Organization Roles  
 Capella adds 3 new organization-level roles:
 

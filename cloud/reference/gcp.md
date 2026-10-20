@@ -1,7 +1,7 @@
 ---
 title: Google Cloud Platform (GCP)
 description: Couchbase Capella supports deploying clusters onto Google Cloud Platform (GCP).
-pubDate: 2026-10-17T04:21:50.088Z
+pubDate: 2026-10-20T04:22:02.279Z
 meta:
   component:
     title: Capella Operational
@@ -24,61 +24,65 @@ Couchbase Capella provides fully managed Couchbase Server clusters that can be d
 
 Couchbase Capella's fully managed DBaaS supports the following GCP regions.
 
-* ✔ [App Services](../../app-services/index.md) are supported in this region.
-
 * Americas
 * Europe
 * Middle East and Africa
 * Asia Pacific
 
-| GCP Region                  | App Services? | Location                 |
-| --------------------------- | ------------- | ------------------------ |
-| **us-east1**                | **✔**         | US East (South Carolina) |
-| **us-east4**                | **✔**         | US East (N. Virginia)    |
-| **us-east5**                |               | US East (Columbus)       |
-| **us-west1**                | **✔**         | US West (Oregon)         |
-| **us-west2**                |               | US West (Los Angeles)    |
-| **us-west3**                | **✔**         | US West (Utah)           |
-| **us-west4**                | **✔**         | US West (Nevada)         |
-| **us-central1**             | **✔**         | US Central (Iowa)        |
-| **us-south1**               |               | US South (Dallas)        |
-| **northamerica-northeast1** | **✔**         | Canada (Montréal)        |
-| **northamerica-northeast2** |               | Canada (Toronto)         |
-| **southamerica-east1**      | **✔**         | Brazil (São Paulo)       |
-| **southamerica-west1**      |               | Chile (Santiago)         |
+| GCP Region                           | Location                 | App Services \[[1](#footnote-1)\] | Free Tier Support \[[2](#footnote-2)\] |
+| ------------------------------------ | ------------------------ | --------------------------------- | -------------------------------------- |
+| **us-east1**                         | US East (South Carolina) | **✔**                             |                                        |
+| **us-east4**                         | US East (N. Virginia)    | **✔**                             |                                        |
+| **us-east5**                         | US East (Columbus)       |                                   |                                        |
+| **us-west1**                         | US West (Oregon)         | **✔**                             | **✔**                                  |
+| **us-west2**                         | US West (Los Angeles)    |                                   |                                        |
+| **us-west3**                         | US West (Utah)           | **✔**                             |                                        |
+| **us-west4**                         | US West (Nevada)         | **✔**                             |                                        |
+| **us-central1** \[[3](#footnote-3)\] | US Central (Iowa)        | **✔**                             |                                        |
+| **us-south1**                        | US South (Dallas)        |                                   |                                        |
+| **northamerica-northeast1**          | Canada (Montréal)        | **✔**                             |                                        |
+| **northamerica-northeast2**          | Canada (Toronto)         |                                   |                                        |
+| **southamerica-east1**               | Brazil (São Paulo)       | **✔**                             |                                        |
+| **southamerica-west1**               | Chile (Santiago)         |                                   |                                        |
 
-| GCP Region            | App Services? | Location    |
-| --------------------- | ------------- | ----------- |
-| **europe-west1**      | **✔**         | Belgium     |
-| **europe-west2**      | **✔**         | London      |
-| **europe-west3**      | **✔**         | Frankfurt   |
-| **europe-west4**      | **✔**         | Netherlands |
-| **europe-west6**      | **✔**         | Zurich      |
-| **europe-west8**      |               | Milan       |
-| **europe-west9**      |               | Paris       |
-| **europe-central2**   |               | Warsaw      |
-| **europe-north1**     | **✔**         | Finland     |
-| **europe-southwest1** |               | Madrid      |
+| GCP Region            | Location    | App Services \[[1](#footnote-1)\] | Free Tier Support \[[2](#footnote-2)\] |
+| --------------------- | ----------- | --------------------------------- | -------------------------------------- |
+| **europe-west1**      | Belgium     | **✔**                             | **✔**                                  |
+| **europe-west2**      | London      | **✔**                             |                                        |
+| **europe-west3**      | Frankfurt   | **✔**                             |                                        |
+| **europe-west4**      | Netherlands | **✔**                             |                                        |
+| **europe-west6**      | Zurich      | **✔**                             |                                        |
+| **europe-west8**      | Milan       |                                   |                                        |
+| **europe-west9**      | Paris       |                                   |                                        |
+| **europe-central2**   | Warsaw      |                                   |                                        |
+| **europe-north1**     | Finland     | **✔**                             |                                        |
+| **europe-southwest1** | Madrid      |                                   |                                        |
 
-| GCP Region        | App Services? | Location     |
-| ----------------- | ------------- | ------------ |
-| **me-west1**      |               | Tel Aviv     |
-| **me-central2**   | **✔**         | Dammam       |
-| **africa-south1** |               | Johannesburg |
+| GCP Region        | Location     | App Services \[[1](#footnote-1)\] | Free Tier Support \[[2](#footnote-2)\] |
+| ----------------- | ------------ | --------------------------------- | -------------------------------------- |
+| **me-west1**      | Tel Aviv     |                                   |                                        |
+| **me-central2**   | Dammam       | **✔**                             |                                        |
+| **africa-south1** | Johannesburg |                                   |                                        |
 
-| GCP Region               | App Services? | Location  |
-| ------------------------ | ------------- | --------- |
-| **asia-east1**           | **✔**         | Taiwan    |
-| **asia-east2**           | **✔**         | Hong Kong |
-| **asia-northeast1**      | **✔**         | Tokyo     |
-| **asia-northeast2**      |               | Osaka     |
-| **asia-northeast3**      | **✔**         | Seoul     |
-| **asia-south1**          | **✔**         | Mumbai    |
-| **asia-south2**          |               | Delhi     |
-| **asia-southeast1**      | **✔**         | Singapore |
-| **asia-southeast2**      | **✔**         | Jakarta   |
-| **australia-southeast1** | **✔**         | Sydney    |
-| **australia-southeast2** |               | Melbourne |
+| GCP Region               | Location  | App Services \[[1](#footnote-1)\] | Free Tier Support \[[2](#footnote-2)\] |
+| ------------------------ | --------- | --------------------------------- | -------------------------------------- |
+| **asia-east1**           | Taiwan    | **✔**                             | **✔**                                  |
+| **asia-east2**           | Hong Kong | **✔**                             |                                        |
+| **asia-northeast1**      | Tokyo     | **✔**                             |                                        |
+| **asia-northeast2**      | Osaka     |                                   |                                        |
+| **asia-northeast3**      | Seoul     | **✔**                             |                                        |
+| **asia-south1**          | Mumbai    | **✔**                             |                                        |
+| **asia-south2**          | Delhi     |                                   |                                        |
+| **asia-southeast1**      | Singapore | **✔**                             |                                        |
+| **asia-southeast2**      | Jakarta   | **✔**                             |                                        |
+| **australia-southeast1** | Sydney    | **✔**                             |                                        |
+| **australia-southeast2** | Melbourne |                                   |                                        |
+
+\[[1](#supported-regions)\] This GCP region supports [App Services](../../app-services/index.md).
+
+\[[2](#supported-regions)\] A [free tier account](https://cloud.couchbase.com/sign-up) can deploy an operational cluster to this GCP region.
+
+\[[3](#supported-regions)\] This GCP region is available only on request. For more information, [contact Couchbase Support](../support/manage-support.md#create-support-ticket).
 
 ## [](#zones)Zones
 
@@ -111,7 +115,7 @@ Capella provides the following compute configurations for clusters deployed onto
 __Table 1\. Google Cloud Compute Engine configurations__
 | vCPU                        | Memory |
 | --------------------------- | ------ |
-| 2 vCPUs\[[1](#footnote-1)\] | 8 GB   |
+| 2 vCPUs\[[4](#footnote-4)\] | 8 GB   |
 | 4 vCPUs                     | 16 GB  |
 | 4 vCPUs                     | 32 GB  |
 | 8 vCPUs                     | 16 GB  |
@@ -130,7 +134,7 @@ __Table 1\. Google Cloud Compute Engine configurations__
 | 64 vCPUs                    | 512 GB |
 | 72 vCPUs                    | 144 GB |
 
-\[[1](#gcp-configurations)\] Available for [free tier](https://cloud.couchbase.com/sign-up) and paid single node operational clusters.
+\[[4](#gcp-configurations)\] Available for [free tier](https://cloud.couchbase.com/sign-up) and paid single node operational clusters.
 
 ### [](#storage-size)Storage Size
 
