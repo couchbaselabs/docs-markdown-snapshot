@@ -1,7 +1,7 @@
 ---
 title: Managing Connections
 description: This section describes how to connect the Java SDK to a Couchbase cluster.
-pubDate: 2026-10-16T07:26:40.932Z
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: Java SDK
@@ -279,7 +279,7 @@ quarkus.couchbase.password=password
 
 ## [](#cloud-native-gateway)Cloud Native Gateway
 
-Couchbase's next generation connection protocol, is compatible with recent versions of [Couchbase Autonomous Operator](../../../cloud-native-gateway/current/intro/about-cng.md) (running on Kubernetes or OpenShift), or [installed alongside self-managed Server](../../../cloud-native-gateway/current/intro/about-cng.md). The protocol implements a gRPC-style interface between the SDK and Couchbase Server.
+Cloud Native Gateway (CNG), Couchbase's next generation connection protocol, can be [installed alongside self-managed Server](../../../cloud-native-gateway/current/intro/about-cng.md). It is also compatible with all supported versions of [Couchbase Autonomous Operator](../../../cloud-native-gateway/current/intro/about-cng.md) (running on Kubernetes or OpenShift). The protocol implements a gRPC-style interface between the SDK and Couchbase Server.
 
 It can be enabled by changing the connection string to `couchbase2://` but there are a few differences to be aware of, described [below](#limitations).
 
@@ -291,7 +291,7 @@ The following are not currently implemented over the `couchbase2://` protocol:
 
 * Authentication by client certificate.
 * Multi-document ACID transactions.
-* Analytics service.
+* Analytics service (CBAS).
 * Health Check.
 
 And the output from these features should be seen as volatile and subject to change:
@@ -303,7 +303,7 @@ There are some different behaviors seen with this protocol:
 * Some config options are unsupported — see the [Settings page](../ref/client-settings.md#cloud-native-gateway).
 * The SDK will poll the gRPC channels until they are in a good state, or return an error, or timeout while waiting — in our standard protocol there is an option of setting `waitUntilReady()` for just certain services to become available.
 * Some error codes are more generic — in cases where the client would not be expected to need to take specific action — but should cause no problem, unless you have written code looking at individual strings within the error messages.
-* Although documents continue to be stored compressed by Couchbase Server, they will not be transmitted in compressed form (to and from the client) over the wire, using `couchbase2://`.
+* Although documents continue to be stored compressed by Couchbase Server, they will not be transmitted in compressed form over the wire (to and from the client), using `couchbase2://`.
 
 ## [](#using-dns-srv-records)Using DNS SRV records
 

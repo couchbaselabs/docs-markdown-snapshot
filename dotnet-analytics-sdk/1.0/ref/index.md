@@ -1,7 +1,7 @@
 ---
 title: Reference Pages
-description: Essential reference infomation for developing with Columnar.
-pubDate: 2026-10-03T04:27:21.374Z
+description: Essential reference infomation for developing with Operational Insights.
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: .NET Analytics SDK
@@ -16,7 +16,7 @@ antora:
 
 # Reference Pages
 
-> Essential reference infomation for developing with Columnar. 
+> Essential reference infomation for developing with Operational Insights. 
 
 This section contains the following reference docs:
 

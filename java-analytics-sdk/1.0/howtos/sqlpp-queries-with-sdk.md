@@ -3,7 +3,7 @@ title: Querying with SQL++
 description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: Java Analytics SDK
@@ -26,7 +26,7 @@ Here we show queries against the Travel Sample collection, at cluster and scope 
 
 ## [](#before-you-start)Before You Start
 
-This page assumes that you have [installed the Java Analytics SDK](../hello-world/start-using-sdk.md), and created an [Enterprise Analytics cluster](../../../operational-insights/current/install/introduction-linux-installation.md).
+This page assumes that you have [installed the Java Analytics SDK](../hello-world/start-using-sdk.md), and created an [Operational Insights Enterprise cluster](../../../operational-insights/current/install/introduction-linux-installation.md).
 
 Create a collection to work upon by [importing the travel-sample dataset](../../../operational-insights/current/intro/connecting-to-data-sources.md#import-the-travel-sample-collections) into your cluster.
 

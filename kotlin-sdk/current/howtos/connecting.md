@@ -1,7 +1,7 @@
 ---
 title: Connecting
 description: Connecting to a Couchbase Server cluster and configuring client settings.
-pubDate: 2026-10-16T07:26:40.932Z
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: Kotlin SDK
@@ -124,7 +124,7 @@ Any ampersands (`&`) or percent signs (`%`) in a parameter value must be [percen
 
 ### [](#connection-string-scheme)Connection string scheme
 
-A connection string may start with a URI scheme. The supported prefixes are `couchbase://` and `couchbases://` (note the final 's', which stands for "secure"). For example:
+A connection string may start with a URI scheme. The supported prefixes are `couchbase://`, `couchbases://` (note the final 's', which stands for "secure"), and `couchbase2://`(see [Cloud Native Gateway](#cloud-native-gateway), below). For example:
 
 Connection string with a URI scheme specifying TLS is required
 
@@ -143,27 +143,31 @@ Omitting the scheme is equivalent to specifying the `couchbase://` prefix.
 
 ### [](#cloud-native-gateway)Cloud Native Gateway
 
-Couchbase's next generation connection protocol, introduced in Kotlin SDK 1.2 and [Couchbase Autonomous Operator 2.6.1](../../../cloud-native-gateway/current/intro/about-cng.md), can be enabled simply by changing the connection string to `couchbase2://` but there are a few differences to be aware of, described [below](#limitations).
+Cloud Native Gateway (CNG), Couchbase's next generation connection protocol, can be [installed alongside self-managed Server](../../../cloud-native-gateway/current/intro/about-cng.md). It is also compatible with all supported versions of [Couchbase Autonomous Operator](../../../cloud-native-gateway/current/intro/about-cng.md) (running on Kubernetes or OpenShift). The protocol implements a gRPC-style interface between the SDK and Couchbase Server.
 
-The protocol implements a gRPC-style interface between the SDK and Couchbase Server (in this case, only available in the Server running on Kubernetes or OpenShift, with a forthcoming release of [Couchbase Autonomous Operator](../../../operator/current/overview.md).
+It can be enabled by changing the connection string to `couchbase2://` but there are a few differences to be aware of, described [below](#limitations).
 
 #### [](#limitations)Limitations
 
-The underlying protocol will not work with certain legacy features: MapReduce Views (a deprecated Service — use [Query](n1ql-queries.md) instead) and Memcached buckets (superseded by the improved [Ephemeral Buckets](#8.0.3@server:learn:buckets-memory-and-storage/buckets.adoc#bucket-types)).
+The underlying protocol will not work with certain legacy features: MapReduce Views (a deprecated Service — use [Query](#howtos:n1ql-queries-with-sdk.adoc) instead) and Memcached buckets (superseded by the improved [Ephemeral Buckets](#8.0.3@server:learn:buckets-memory-and-storage/buckets.adoc#bucket-types)).
 
 The following are not currently implemented over the `couchbase2://` protocol:
 
 * Authentication by client certificate.
 * Multi-document ACID transactions.
-* Analytics service.
+* Analytics service (CBAS).
 * Health Check.
+
+And the output from these features should be seen as volatile and subject to change:
+
+* Metrics and tracing, including the ThresholdLoggingTracer, LoggingMeter, and spans output.
 
 There are some different behaviors seen with this protocol:
 
 * Some config options are unsupported — see the [Settings page](../ref/client-settings.md#cloud-native-gateway).
 * The SDK will poll the gRPC channels until they are in a good state, or return an error, or timeout while waiting — in our standard protocol there is an option of setting `waitUntilReady()` for just certain services to become available.
 * Some error codes are more generic — in cases where the client would not be expected to need to take specific action — but should cause no problem, unless you have written code looking at individual strings within the error messages.
-* Although documents continue to be stored compressed by Couchbase Server, they will not be transmitted in compressed form (to and from the client) over the wire, using `couchbase2://`.
+* Although documents continue to be stored compressed by Couchbase Server, they will not be transmitted in compressed form over the wire (to and from the client), using `couchbase2://`.
 
 ## [](#client-settings)Client Settings
 

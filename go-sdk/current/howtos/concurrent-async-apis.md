@@ -3,7 +3,7 @@ title: Async and Batching APIs
 description: The Go SDK offers a synchronous blocking interface but this does
   not stop you from using it asynchronously, or from performing bulk operations
   concurrently.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: Go SDK
@@ -235,7 +235,7 @@ The above example was for an `Upsert`, but the advice and techniques are the sam
 			ID: id,
 		})
 	}
-[data-source-url=https://github.com/couchbase/docs-sdk-go/blob/f9fd8388fb8baab1784272490ba29ad6d1da8bd7/modules/devguide/examples/go/bulk_get.go#L61-L90]
+[data-source-url=https://github.com/couchbase/docs-sdk-go/blob/ee8543ab159d83b7d6aef6d8ba2555dd07124f3c/modules/devguide/examples/go/bulk_get.go#L61-L90]
 	err = collection.Do(getOps, nil)
 	if err != nil {
 		log.Println(err)

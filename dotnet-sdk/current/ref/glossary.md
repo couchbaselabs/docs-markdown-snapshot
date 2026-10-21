@@ -1,7 +1,7 @@
 ---
 title: Glossary
 description: Couchbase-specific terms you'll need to understand to develop with the SDK.
-pubDate: 2026-10-16T07:26:40.932Z
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: .NET SDK
@@ -43,7 +43,7 @@ The Couchbase Data platform offers several services, and many advanced features,
 * [Observability Metrics](../howtos/observability-metrics.md) — The SDK collects information which is not tied to an individual request but rather to a collection of them (such as requests per second on a specific socket), or concerning the environment the SDK is running in (including garbage collection timings andCPU usage, amongst others).
 * [Orphaned Response Reporting](../howtos/observability-orphan-logger.md) — Special reporting capabilities which explicitly collect information about responses which have been abandoned (timed out) at the time when the SDK tries to complete them.
 * [Ping](../howtos/health-check.md) — Ping provides information about the current state of the connections in the Couchbase cluster, by actively polling for the status of the specified services, giving status and latency information for every node reachable. In addition to its use as a monitoring tool, a regular `ping` can be used in an environment which does not respect keep alive values for a connection.
-* [Query](#howtos:n1ql-queries-with-sdk.adoc) — The Couchbase Query Service uses a SQL-like language for powerful queries across documents.
+* [Query](../howtos/sqlpp-queries-with-sdk.md) — The Couchbase Query Service uses a SQL-like language for powerful queries across documents.
 * [RBAC](#8.0.3@server:learn:security/authorization-overview.adoc#introduction-to-rbac) — Role-Based Access Control allows secure, fine-grained access privileges, assigned to fixed roles. The 3.x API allows some user management programmatically from the SDK.
 * [Request Tracing](../howtos/observability-tracing.md) — The tracing capability allows the SDK to store, aggregate, and potentially forward information about an individual request which can be used for later analysis. Information such as the time it took to encode the request and how much time it spent on the wire.
 * [Scope](../concept-docs/data-durability-acid-transactions.md) — from Server 7.0, _Collections_ allow groupings of documents beneath the Bucket level, and _Scopes_ group together Collections. Collections might be assigned to different scopes according to content-type, or to deployment-phase (e.g., test and production). Applications can be assigned per-scope access rights, allowing each application to access only those collections it requires.

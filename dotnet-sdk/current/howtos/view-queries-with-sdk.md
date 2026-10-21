@@ -2,7 +2,7 @@
 title: MapReduce Views
 description: Our legacy MapReduce Views Service is best replaced by the scalable
   Query Service.
-pubDate: 2026-10-16T07:26:40.932Z
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: .NET SDK
@@ -22,7 +22,7 @@ antora:
 
 [MapReduce Views](../../../server/current/learn/views/views-intro.md) date from the earliest days of Couchbase and although still maintained and supported for legacy use, they are deprecated in Couchbase Server, and will eventually be removed. MapReduce Views are not available in Capella Operational, only in self-managed Couchbase Server.
 
-Views are the only service which does not benefit from [Multi-Dimensional Scaling](../../../server/current/learn/services-and-indexes/services/services.md#services-and-multi-dimensional-scaling), and is rarely the best choice over, say, [our Query service](#howtos:n1ql-queries-with-sdk.adoc) if you are starting a fresh application. See our discussion document on [the best service for you to use](../concept-docs/querying-your-data.md).
+Views are the only service which does not benefit from [Multi-Dimensional Scaling](../../../server/current/learn/services-and-indexes/services/services.md#services-and-multi-dimensional-scaling), and is rarely the best choice over, say, [our Query service](sqlpp-queries-with-sdk.md) if you are starting a fresh application. See our discussion document on [the best service for you to use](../concept-docs/querying-your-data.md).
 
 > [!CAUTION]
 > If you are provisioning Views on Couchbase Server for a legacy application, _they must run on a [couchstore](../../../server/current/learn/buckets-memory-and-storage/storage-engines.md#couchstore) bucket_.

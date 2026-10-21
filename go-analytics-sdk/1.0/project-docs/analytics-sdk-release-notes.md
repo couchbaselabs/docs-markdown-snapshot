@@ -2,7 +2,7 @@
 title: Enterprise Analytics SDK Release Notes
 description: Release notes, brief installation instructions, and download
   archive for the Go Analytics Client.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: Go Analytics SDK
@@ -19,7 +19,7 @@ antora:
 
 > Release notes, brief installation instructions, and download archive for the Go Analytics Client. 
 
-Version 1.0 of the Go Analytics SDK implements the 1.0 [SDK API](compatibility.md#api-version). See the [compatibility pages](#compatibility.html#couchbase-feature-availability-matrix) for more information on feature compatibility with different versions of Enterprise Analytics.
+Version 1.0 of the Go Analytics SDK implements the 1.0 [SDK API](compatibility.md#api-version). See the [compatibility pages](#compatibility.html#couchbase-feature-availability-matrix) for more information on feature compatibility with different versions of Operational Insights Enterprise (formerly known as Enterprise Analytics).
 
 ## [](#installation)Installation
 

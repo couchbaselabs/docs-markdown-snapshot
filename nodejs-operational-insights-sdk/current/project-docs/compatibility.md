@@ -3,7 +3,7 @@ title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: Node.js Operational Insights SDK
@@ -63,6 +63,20 @@ Couchbase does document, for purposes of convenience when developing and perform
 ## [](#operational-insights-compatibility)Operational Insights Compatibility
 
 The 1.0 Operational Insights SDKs are fully compatible with all currently supported releases of Operational Insights. The 1.0 Node.js SDK also supports the poll-based Server Asynchronous Request API introduced in Operational Insights Enterprise Server 2.2.
+
+> [!TIP]
+> Connecting to an [Operational Insights _Capella_](#columnar:intro:intro.adoc) cluster from Node.js currently requires a [Node.js Columnar SDK](../../../nodejs-columnar-sdk/current/hello-world/overview.md).
+
+__Operational Insights Cluster compatibility with Insights SDKs and Analytics SDKs__
+|                                      | Operational Insights 2.0, 2.1 | Operational Insights 2.2 | Operational Insights 3.0 |
+| ------------------------------------ | ----------------------------- | ------------------------ | ------------------------ |
+| Node.js Operational Insights SDK 1.0 | **✔**                         | **✔**                    | **✔**                    |
+| Node.js Analytics SDK 1.1            | **✔**                         | **✔**                    | **✔** ①                  |
+| Node.js Analytics SDK 1.0            | **✔**                         | **✔** ②                  | **✔** ① ②                |
+
+① Analytics SDKs have been superseded by Operational Insights SDKs, and will not receive new features for future releases of Operational Insights.
+
+② Analytics SDK 1.0 does not have support for the streaming API introduced in Operational Insights 2.2\. It also does not support the JWT and client certificate authentication introduced in that release.
 
 ### [](#api-version)API Version
 

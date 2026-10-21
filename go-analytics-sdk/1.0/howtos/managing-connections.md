@@ -1,8 +1,8 @@
 ---
 title: Managing Connections
 description: This section describes how to connect the Go Analytics SDK to an
-  Analytics cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+  Operational Insights cluster.
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: Go Analytics SDK
@@ -17,13 +17,13 @@ antora:
 
 # Managing Connections
 
-> This section describes how to connect the Go Analytics SDK to an Analytics cluster. It contains best practices as well as information on TLS/SSL and advanced connection options. 
+> This section describes how to connect the Go Analytics SDK to an Operational Insights cluster. It contains best practices as well as information on TLS/SSL and advanced connection options. 
 
-Our [Getting Started pages](../hello-world/start-using-sdk.md) cover the basics of making a connection to an Enterprise Analytics cluster. This page is a wider look at the topic.
+Our [Getting Started pages](../hello-world/start-using-sdk.md) cover the basics of making a connection to an Operational Insights cluster. This page is a wider look at the topic.
 
 ## [](#connecting-to-a-cluster)Connecting to a Cluster
 
-A connection to an Enterprise Analytics cluster is represented by a `Cluster` object. A `Cluster` provides access to Buckets and Scopes, as well as various Couchbase services and management interfaces. The simplest way to create a `Cluster` object is to call `cbanalytics.Connect()` with a [connection string](#connection-strings), username, and password:
+A connection to an Operational Insights cluster is represented by a `Cluster` object. A `Cluster` provides access to Buckets and Scopes, as well as various Couchbase services and management interfaces. The simplest way to create a `Cluster` object is to call `cbanalytics.Connect()` with a [connection string](#connection-strings), username, and password:
 
 ```golang
 	cluster, err := cbanalytics.NewCluster(

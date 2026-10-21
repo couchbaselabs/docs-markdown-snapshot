@@ -2,7 +2,7 @@
 title: Error Messages
 description: The standardized error codes returned by the Go Analytics SDK, from
   cluster connection to SQL++ query.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: Go Analytics SDK
@@ -19,6 +19,6 @@ antora:
 
 > The standardized error codes returned by the Go Analytics SDK, from cluster connection to SQL++ query. 
 
-The Go Analytics SDK passes through the Analytics error codes from Enterprise Analytics.
+The Go Analytics SDK passes through the Analytics error codes from Operational Insights.
 
 For a full list of error codes, see [Analytics ServiceError Codes](../../../server/current/analytics/error-codes.md).

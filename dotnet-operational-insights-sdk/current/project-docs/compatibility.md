@@ -2,7 +2,7 @@
 title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: .NET Operational Insights SDK
@@ -62,6 +62,20 @@ Couchbase does document, for purposes of convenience when developing and perform
 ## [](#operational-insights-compatibility)Operational Insights Compatibility
 
 The 1.0 releases of the Operational Insights SDK are fully compatible with all currently supported releases of Operational Insights Enterprise. The 1.0 .NET SDK also supports an asynchronous (streaming) API update in recent (2.2+) releases of Operational Insights Enterprise Server.
+
+> [!TIP]
+> Connecting to a [Operational Insights _Capella_](../../../operational-insights-cloud/intro/intro.md) cluster from .NET is not currently possible.
+
+__Operational Insights Cluster compatibility with Insights SDKs and Analytics SDKs__
+|                                   | Operational Insights 2.0, 2.1 | Operational Insights 2.2 | Operational Insights 3.0 |
+| --------------------------------- | ----------------------------- | ------------------------ | ------------------------ |
+| .NET Operational Insights SDK 1.0 | **✔**                         | **✔**                    | **✔**                    |
+| .NET Analytics SDK 1.1            | **✔**                         | **✔**                    | **✔** ①                  |
+| .NET Analytics SDK 1.0            | **✔**                         | **✔** ②                  | **✔** ① ②                |
+
+① Analytics SDKs have been superseded by Operational Insights SDKs, and will not receive new features for future releases of Operational Insights.
+
+② Analytics SDK 1.0 does not have support for the streaming API introduced in Operational Insights 2.2\. It also does not support the JWT and client certificate authentication introduced in that release.
 
 ### [](#api-version)API Version
 

@@ -1,9 +1,8 @@
 ---
 title: Compatibility
 description: Platform compatibility, and features available in different SDK
-  versions, and compatibility between Server and SDK. Plus notes on Cloud,
-  networks, and AWS Lambda.
-pubDate: 2026-10-19T14:21:08.937Z
+  versions, and compatibility between Operational Insights and the SDK.
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: .NET Analytics SDK
@@ -18,7 +17,7 @@ antora:
 
 # Compatibility
 
-> Platform compatibility, and features available in different SDK versions, and compatibility between Server and SDK. Plus notes on Cloud, networks, and AWS Lambda. 
+> Platform compatibility, and features available in different SDK versions, and compatibility between Operational Insights and the SDK. 
 
 ## [](#platform-compatibility)Platform Compatibility
 

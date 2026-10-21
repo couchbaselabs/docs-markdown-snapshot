@@ -2,7 +2,7 @@
 title: About These Docs
 description: Meta documentation -- what you might need to know to get the best
   from these docs, from their intent to their Information Architecture.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: Java Operational Insights SDK
@@ -61,7 +61,7 @@ A section on those non-programmatic considerations — [compatibility guides](co
 
 * [Reference Pages](../ref/index.md)
 
-The key reference doc is the API guide, which should be an accurate and complete source of truth for programming with the Java SDK's API. Any error here should be filed directly against the individual SDKs bug tracker — via the GitHub issues on <https://github.com/couchbase/couchbase-jvm-clients> — although a ticket against the docs [here](https://issues.couchbase.com/projects/DOC/issues) will always be converted to the correct project.
+The key reference doc is the API guide, which should be an accurate and complete source of truth for programming with the Java SDK's API. Any error here should be filed directly against the individual SDKs bug tracker — via the GitHub issues on <https://github.com/couchbase/couchbase-insights-jvm-clients> — although a ticket against the docs [here](https://issues.couchbase.com/projects/DOC/issues) will always be converted to the correct project.
 
 > [!TIP]
 > You can also file JIRA tickets against these docs by clicking the **Leave Additional Feedback?** link on most pages in the docs.

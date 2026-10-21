@@ -1,8 +1,8 @@
 ---
 title: Compatibility
 description: Platform compatibility, and features available in different SDK
-  versions, and compatibility between Enterprise Analytics and Analytics SDK.
-pubDate: 2026-10-19T14:21:08.937Z
+  versions, and compatibility between Operational Insights and Analytics SDK.
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: Python Analytics SDK
@@ -17,7 +17,7 @@ antora:
 
 # Compatibility
 
-> Platform compatibility, and features available in different SDK versions, and compatibility between Enterprise Analytics and Analytics SDK. 
+> Platform compatibility, and features available in different SDK versions, and compatibility between Operational Insights and Analytics SDK. 
 
 ## [](#platform-compatibility)Platform Compatibility
 

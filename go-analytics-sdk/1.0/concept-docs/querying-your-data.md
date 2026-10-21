@@ -1,7 +1,7 @@
 ---
 title: Querying Your Data
-description: Querying Enterprise Analytics from the Go SDK, with SQL++.
-pubDate: 2026-10-03T04:27:21.374Z
+description: Querying Operational Insights from the Go SDK, with SQL++.
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: Go Analytics SDK
@@ -16,7 +16,7 @@ antora:
 
 # Querying Your Data
 
-> Querying Enterprise Analytics from the Go SDK, with SQL++. 
+> Querying Operational Insights from the Go SDK, with SQL++. 
 
 SQL++ is a declarative query language for JSON data.
 

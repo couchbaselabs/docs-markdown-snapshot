@@ -3,7 +3,7 @@ title: Compression
 description: In response to increasing volumes of data being sent over the wire,
   Couchbase Data Platform now provides data compression between the SDK and
   Couchbase Server.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: Node.js SDK
@@ -31,7 +31,7 @@ Documents may already be stored compressed with Snappy. Now documents may be pas
 The document must be below 20MiB in size in both compressed and uncompressed form. Compression is only available in the Enterprise Edition of Couchbase Data Platform.
 
 > [!TIP]
-> This size limit is enforced by Couchbase Server; in practice it will affect very few users, as most JSON documents are considerably smaller. A compressed doument of just under 20MB, which is greater than 20,971,520 bytes (20 MiB) when uncompressed, will be rejected by the server as follows:
+> This size limit is enforced by Couchbase Server; in practice it will affect very few users, as most JSON documents are considerably smaller. A compressed document of just under 20MB, which is greater than 20,971,520 bytes (20 MiB) when uncompressed, will be rejected by the server as follows:
 > 
 > * Couchbase Server decompresses the document to check that it is valid JSON, and is correctly compressed with _Snappy_, and at this point measures it against `max data size` (20 MiB).
 > * If the decompressed value's size exceeds this limit, the mutation is failed with a "too big" error code (E2BIG code 3).
@@ -61,7 +61,7 @@ The server may change compression settings for the bucket at any time, but it is
 
 While the tiniest of documents will not be reduced in size by compressing, there is another category of slightly larger documents in whose case the time overhead of compressing and decompressing outweighs the slight advantage of marginally reduced transmission time from client to server or back.
 
-To safeguard against the case of several thousand documents stealing CPU time to barely discernable advantage, a threshold for minimum doument size to compress is set in the SDK, with a sensible default value of 32 bytes.
+To safeguard against the case of several thousand documents stealing CPU time to barely discernable advantage, a threshold for minimum document size to compress is set in the SDK, with a sensible default value of 32 bytes.
 
 ## [](#user-settings)User Settings
 

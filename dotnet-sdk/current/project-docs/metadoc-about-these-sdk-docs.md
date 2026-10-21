@@ -1,6 +1,6 @@
 ---
 title: About These Docs
-pubDate: 2026-10-16T07:26:40.932Z
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: .NET SDK
@@ -35,7 +35,7 @@ The next four sections are collections of practical, task-oriented pages, featur
 
 ### [](#working-with-data)Working with Data
 
-This section deals with all of the main Couchbase Services: [The Data Service](../howtos/kv-operations.md) (including [Sub-Document Operations](../howtos/subdocument-operations.md)); the [Query Service](#howtos:n1ql-queries-with-sdk.adoc); the [Analytics Service](../howtos/analytics-using-sdk.md); Full-Text [Search Service](../howtos/full-text-searching-with-sdk.md); and [MapReduce Views](../howtos/view-queries-with-sdk.md).
+This section deals with all of the main Couchbase Services: [The Data Service](../howtos/kv-operations.md) (including [Sub-Document Operations](../howtos/subdocument-operations.md)); the [Query Service](../howtos/sqlpp-queries-with-sdk.md); the [Analytics Service](../howtos/analytics-using-sdk.md); Full-Text [Search Service](../howtos/full-text-searching-with-sdk.md); and [MapReduce Views](../howtos/view-queries-with-sdk.md).
 
 > [!NOTE]
 > Some SDKs feature an additional [fully-worked, complete code example](#3.0@python-sdk:howtos:caching-example.adoc). Others may be added at a later date.

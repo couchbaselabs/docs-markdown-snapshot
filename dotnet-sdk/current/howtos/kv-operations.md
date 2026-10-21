@@ -3,7 +3,7 @@ title: Data Operations
 description: Data service offers the simplest way to retrieve or mutate data
   where the key is known. Here we cover CRUD operations, document expiration,
   and optimistic locking with CAS.
-pubDate: 2026-10-16T07:26:40.932Z
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: .NET SDK
@@ -391,4 +391,4 @@ Another way of increasing network performance is to _pipeline_ operations with [
 
 As well as various [Formats](../concept-docs/data-model.md) of JSON, Couchbase can work directly with [arbitary bytes, or binary format](../concept-docs/nonjson.md).
 
-Our [Query Engine](#n1ql-queries-with-sdk.adoc) enables retrieval of information using the SQL-like syntax of SQL++ (formerly N1QL).
+Our [Query Engine](sqlpp-queries-with-sdk.md) enables retrieval of information using the SQL-like syntax of SQL++ (formerly N1QL).

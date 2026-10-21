@@ -1,8 +1,8 @@
 ---
 title: Compatibility
 description: Platform compatibility, and features available in different SDK
-  versions, and compatibility between Enterprise Analytics and the SDK.
-pubDate: 2026-10-19T14:21:08.937Z
+  versions, and compatibility between Operational Insights and the SDK.
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: Go Analytics SDK
@@ -17,7 +17,7 @@ antora:
 
 # Compatibility
 
-> Platform compatibility, and features available in different SDK versions, and compatibility between Enterprise Analytics and the SDK. 
+> Platform compatibility, and features available in different SDK versions, and compatibility between Operational Insights and the SDK. 
 
 In line with the [Golang project](https://golang.org/doc/devel/release.html#policy), Go Analytics SDK supports both the current, and the previous, versions of Go. Earlier versions may work, but are not supported.
 

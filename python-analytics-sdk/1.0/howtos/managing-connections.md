@@ -1,8 +1,8 @@
 ---
 title: Managing Connections
 description: This section describes how to connect the Python Analytics SDK to
-  an Enterprise Analytics cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+  an Operational Insights cluster.
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: Python Analytics SDK
@@ -17,9 +17,9 @@ antora:
 
 # Managing Connections
 
-> This section describes how to connect the Python Analytics SDK to an Enterprise Analytics cluster. It contains best practices as well as information on TLS/SSL and advanced connection options. 
+> This section describes how to connect the Python Analytics SDK to an Operational Insights cluster. It contains best practices as well as information on TLS/SSL and advanced connection options. 
 
-Our [Getting Started pages](../hello-world/start-using-sdk.md) cover the basics of making a connection to an Enterprise Analytics cluster. This page is a wider look at the topic.
+Our [Getting Started pages](../hello-world/start-using-sdk.md) cover the basics of making a connection to an Operational Insights cluster. This page is a wider look at the topic.
 
 ## [](#connecting-to-a-cluster)Connecting to a Cluster
 
@@ -32,7 +32,7 @@ from couchbase_analytics.options import (ClusterOptions,
                                         SecurityOptions)
 ```
 
-A connection to an Enterprise Analytics cluster is represented by a `Cluster` object. The simplest way to create a `Cluster` object is to call `Cluster.createnstance()` with a [connection string](#connection-strings), user credentials, and any optional settings:
+A connection to an Operational Insights cluster is represented by a `Cluster` object. The simplest way to create a `Cluster` object is to call `Cluster.createnstance()` with a [connection string](#connection-strings), user credentials, and any optional settings:
 
 ```python
 def main() -> None:

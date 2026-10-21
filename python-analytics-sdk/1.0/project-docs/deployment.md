@@ -1,7 +1,7 @@
 ---
 title: Deployment
 description: Transition from dev environment to prod, and keep up with the latest fixes.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: Python Analytics SDK
@@ -20,7 +20,7 @@ antora:
 
 One of Couchbase's strengths is speedy response, so deployment of apps should be in the same region as the Server.
 
-We always recommend the [latest version](analytics-sdk-release-notes.md#latest-release) of the SDK. This not only contains the latest security updates and bug fixes, but will be compatible with the latest Enterprise Analytics release.
+We always recommend the [latest version](analytics-sdk-release-notes.md#latest-release) of the SDK. This not only contains the latest security updates and bug fixes, but will be compatible with the latest Operational Insights release.
 
 Before deploying, take note of any [compatibility](compatibility.md) issues for the language platform and underlying OS. The [full installation guide](sdk-full-installation.md) should cover any special cases for all supported environments.
 

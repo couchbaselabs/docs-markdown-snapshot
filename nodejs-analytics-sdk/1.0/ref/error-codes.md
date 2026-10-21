@@ -1,8 +1,8 @@
 ---
 title: Error Messages
 description: The standardized error codes returned by the Analytics Node.js SDK,
-  from Enterprise Analytics connection to SQL++ query.
-pubDate: 2026-10-03T04:27:21.374Z
+  from Operational Insights connection to SQL++ query.
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: Node.js Analytics SDK
@@ -17,8 +17,8 @@ antora:
 
 # Error Messages
 
-> The standardized error codes returned by the Analytics Node.js SDK, from Enterprise Analytics connection to SQL++ query. 
+> The standardized error codes returned by the Analytics Node.js SDK, from Operational Insights connection to SQL++ query. 
 
-The Node.js Analytics SDK passes through the Analytics error codes from Enterprise Analytics.
+The Node.js Analytics SDK passes through the Analytics error codes from Operational Insights.
 
 For a full list of error codes, see [Analytics Error Codes](../../../server/current/analytics/error-codes.md).

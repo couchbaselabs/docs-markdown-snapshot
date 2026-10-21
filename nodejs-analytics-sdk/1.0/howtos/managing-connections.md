@@ -1,8 +1,8 @@
 ---
 title: Managing Connections
 description: This section describes how to connect the Node.js Analytics SDK to
-  an Enterprise Analytics cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+  an Operational Insights cluster.
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: Node.js Analytics SDK
@@ -17,13 +17,13 @@ antora:
 
 # Managing Connections
 
-> This section describes how to connect the Node.js Analytics SDK to an Enterprise Analytics cluster. It contains best practices as well as information on TLS/SSL and advanced connection options. 
+> This section describes how to connect the Node.js Analytics SDK to an Operational Insights cluster. It contains best practices as well as information on TLS/SSL and advanced connection options. 
 
-Our [Getting Started pages](../hello-world/start-using-sdk.md) cover the basics of making a connection to an Enterprise Analytics cluster. This page is a wider look at the topic.
+Our [Getting Started pages](../hello-world/start-using-sdk.md) cover the basics of making a connection to an Operational Insights cluster. This page is a wider look at the topic.
 
 ## [](#connecting-to-a-cluster)Connecting to a Cluster
 
-A connection to an Analytics cluster is represented by an `analytics` object. Connect to Enterprise Analytics by calling `analytics.createInstance` with the connection string, credentials, and any required optional parameters.
+A connection to an Operational Insights cluster is represented by an `analytics` object. Connect to Operational Insights by calling `analytics.createInstance` with the connection string, credentials, and any required optional parameters.
 
 ```javascript
 const analytics = require('couchbase-analytics')

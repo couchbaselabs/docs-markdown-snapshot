@@ -1,6 +1,6 @@
 ---
 title: Develop with Operational Insights Enterprise
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: Couchbase Documentation
@@ -30,9 +30,9 @@ Operational Insights SDKs are developed from the ground-up and while they mainta
 * Node.js
 * Python
 
-[.NET OI SDK Docs](../dotnet-operational-insights-sdk/current/hello-world/overview.md) | [Quickstart](../dotnet-operational-insights-sdk/current/hello-world/start-using-sdk.md) | [.NET Operational Insights API Reference](https://docs.couchbase.com/sdk-api/insights-dotnet-client)
+[.NET OI SDK Docs](../dotnet-operational-insights-sdk/current/hello-world/overview.md) | [Quickstart](../dotnet-operational-insights-sdk/current/hello-world/start-using-sdk.md) | [.NET Operational Insights API Reference](https://docs.couchbase.com/sdk-api/insights-dotnet-client/introduction.html)
 
-[Go Operational Insights SDK Docs](../go-operational-insights-sdk/current/hello-world/overview.md) | [Quickstart](../go-operational-insights-sdk/current/hello-world/start-using-sdk.md) | [Go API Reference](https://pkg.go.dev/github.com/couchbase/gocboperational-insights)
+[Go Operational Insights SDK Docs](../go-operational-insights-sdk/current/hello-world/overview.md) | [Quickstart](../go-operational-insights-sdk/current/hello-world/start-using-sdk.md) | [Go API Reference](https://pkg.go.dev/github.com/couchbase/gocbinsights)
 
 [Java Operational Insights SDK Docs](../java-operational-insights-sdk/current/hello-world/overview.md) | [Quickstart](../java-operational-insights-sdk/current/hello-world/start-using-sdk.md) | [Java API Reference](https://docs.couchbase.com/sdk-api/couchbase-operational-insights-java-client/)
 

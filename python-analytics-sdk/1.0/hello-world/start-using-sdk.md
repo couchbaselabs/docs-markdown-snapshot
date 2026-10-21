@@ -1,8 +1,8 @@
 ---
 title: Python Analytics SDK Quickstart Guide
 description: Install, connect, try. A quick start guide to get you up and
-  running with Enterprise Analytics and the Python Analytics SDK.
-pubDate: 2026-10-19T14:21:08.937Z
+  running with Operational Insights and the Python Analytics SDK.
+pubDate: 2026-10-21T04:23:09.426Z
 meta:
   component:
     title: Python Analytics SDK
@@ -17,13 +17,13 @@ antora:
 
 # Python Analytics SDK Quickstart Guide
 
-> Install, connect, try. A quick start guide to get you up and running with Enterprise Analytics and the Python Analytics SDK. 
+> Install, connect, try. A quick start guide to get you up and running with Operational Insights and the Python Analytics SDK. 
 
 [Operational Insights](../../../operational-insights-cloud/intro/intro.md) is a real-time analytical database (RT-OLAP) for real time apps and operational intelligence. Although maintaining some syntactic similarities with [the operational SDKs](../../../home/sdk.md), the Python Analytics SDK is developed from the ground-up for column-based analytical use cases, and supports streaming APIs to handle large datasets.
 
 ## [](#before-you-start)Before You Start
 
-Install and configure an [Enterprise Analytics Cluster](../../../operational-insights/current/intro/intro.md).
+Install and configure an [Operational Insights Enterprise Cluster](../../../operational-insights/current/intro/intro.md).
 
 ### [](#prerequisites)Prerequisites
 

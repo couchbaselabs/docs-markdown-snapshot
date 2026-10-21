@@ -1,6 +1,6 @@
 {
   "$id": "https://schemas.antora.org/site-manifest/1-0-0/draft-01",
-  "generated": "2026-10-20T04:27:14.803Z",
+  "generated": "2026-10-21T04:28:26.755Z",
   "url": "https://docs.couchbase.com",
   "components": {
     "agent-mem": {
@@ -33835,6 +33835,16 @@
             },
             {
               "module": "howtos",
+              "path": "n1ql-queries-with-sdk.adoc",
+              "url": "/dotnet-sdk/current/howtos/n1ql-queries-with-sdk.html",
+              "title": "SQL++ Queries from the SDK",
+              "alias": {
+                "ref": "sqlpp-queries-with-sdk.adoc",
+                "url": "/dotnet-sdk/current/howtos/sqlpp-queries-with-sdk.md"
+              }
+            },
+            {
+              "module": "howtos",
               "path": "n1ql-query.adoc",
               "url": "/dotnet-sdk/current/howtos/n1ql-query.html",
               "title": "SQL++ Queries from the SDK",
@@ -51202,7 +51212,7 @@
             {
               "path": "index.adoc",
               "url": "/go-analytics-sdk/1.0/index.html",
-              "title": "Go Analytics SDK",
+              "title": "Go Operational Insights SDK",
               "alias": {
                 "ref": "hello-world:overview.adoc",
                 "url": "/go-analytics-sdk/1.0/hello-world/overview.md"
@@ -51218,7 +51228,7 @@
               "module": "hello-world",
               "path": "overview.adoc",
               "url": "/go-analytics-sdk/1.0/hello-world/overview.md",
-              "title": "Go Analytics SDK"
+              "title": "Go Operational Insights SDK"
             },
             {
               "module": "hello-world",
