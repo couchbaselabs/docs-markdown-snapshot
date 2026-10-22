@@ -1,6 +1,6 @@
 ---
 title: Configuration
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-22T04:25:56.080Z
 meta:
   component:
     title: Elasticsearch Connector
@@ -15,7 +15,7 @@ antora:
 
 # Configuration
 
-> A description of the sections and properties defined in the sample connector config file `$CBES_HOME/config/example-connector.toml` ([view on GitHub](https://github.com/couchbase/couchbase-elasticsearch-connector/blob/4.4.16/src/dist/config/example-connector.toml)), followed by a description of the Consul configuration options specific to Autonomous Operations mode. 
+> A description of the sections and properties defined in the sample connector config file `$CBES_HOME/config/example-connector.toml` ([view on GitHub](https://github.com/couchbase/couchbase-elasticsearch-connector/blob/4.4.17/src/dist/config/example-connector.toml)), followed by a description of the Consul configuration options specific to Autonomous Operations mode. 
 
 > [!TIP]
 > If this is your first time working with the TOML config file format, check out Nate Finch's excellent [Intro to TOML](https://npf.io/2014/08/intro-to-toml/), or the [official specification](https://github.com/toml-lang/toml).

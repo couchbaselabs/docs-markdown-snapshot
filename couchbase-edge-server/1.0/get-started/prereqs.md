@@ -1,7 +1,7 @@
 ---
 title: Prerequisites
 description: View the minimum platform specifications needed to run Couchbase Edge Server.
-pubDate: 2026-10-21T04:23:09.426Z
+pubDate: 2026-10-22T04:25:56.080Z
 meta:
   component:
     title: Couchbase Edge Server
@@ -19,6 +19,16 @@ antora:
 > View the minimum platform specifications needed to run Couchbase Edge Server. 
 
 ## [](#supported-versions)Supported Versions
+
+Refer to the following tables to confirm you're working with a supported operating system before you install Couchbase Lite Edge Server.
+
+__Table 1\. Supported Operating Systems for Development, Testing, and Production__
+| Operating System             | Supported Versions |
+| ---------------------------- | ------------------ |
+| Fedora Linux (Intel x86\_64) | F40+               |
+| Debian Linux (Intel x86\_64) | 11+                |
+| Ubuntu (Intel x86\_64)       | 22.04+             |
+| MacOS (Intel/Arm64)          | 13+                |
 
 ## [](#see-also)See Also
 

@@ -1,6 +1,6 @@
 ---
 title: Couchbase Go SDK 2.12
-pubDate: 2026-10-21T04:23:09.426Z
+pubDate: 2026-10-22T04:25:56.080Z
 meta:
   component:
     title: Go SDK
@@ -132,6 +132,26 @@ Deployment
   
   
 ##  Couchbase Operational Cluster Feature Compatibility
+
+All of the SDKs have API compatibility with most of the features in Couchbase Operational Clusters — whether self-managed, or Capella. The following table covers possible exceptions, and gives the version of the Go SDK and Couchbase Server with which some features were introduced.
+
+__Table 1\. Couchbase Server and SDK Supported Version Matrix__
+|                                                                                              | Server 7.2  | Server 7.6.x      | Server 8.0 |
+| -------------------------------------------------------------------------------------------- | ----------- | ----------------- | ---------- |
+| KV Range Scan                                                                                | N/A         | From 2.7.0        |            |
+| Zone aware replica reads                                                                     | N/A         | From 2.9.2        |            |
+| Vector Search with Search Vector Index                                                       | N/A         | From 2.8.0        |            |
+| Vector Query using Hyperscale Vector Index                                                   | N/A         | From SDK 2.11.0 ① |            |
+| Vector Query using Composite (GSI & vector) index                                            | N/A         | From SDK 2.11.0 ① |            |
+| Distributed ACID Transactions                                                                | From 2.4.0  |                   |            |
+| DNS SRV refresh for serverless environments (AWS Lambda, Azure Functions, and GCP Functions) | From 2.6.0  |                   |            |
+| Circuit Breakers                                                                             | From 2.0.0  |                   |            |
+| OTel                                                                                         | From 2.12.0 |                   |            |
+| Field Level Encryption                                                                       | From 1.5.0  |                   |            |
+| Cloud Native Gateway                                                                         | From 2.7.0  |                   |            |
+
+| **1** | As part of the standard SDK SQL++ API, it should be compatible with all earlier versions of the SDK — but it has not been tested. |
+| ----- | --------------------------------------------------------------------------------------------------------------------------------- |
 
   
 > [!TIP]

@@ -2,7 +2,7 @@
 title: Operational Insights SDK Release Notes
 description: Release notes, brief installation instructions, and download
   archive for the Go Operational Insights Client.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-22T04:25:56.080Z
 meta:
   component:
     title: Go Operational Insights SDK
@@ -19,7 +19,7 @@ antora:
 
 > Release notes, brief installation instructions, and download archive for the Go Operational Insights Client. 
 
-Version 1.0 of the Go Operational Insights SDK implements the 1.0 [SDK API](compatibility.md#api-version). See the [compatibility pages](#compatibility.html#couchbase-feature-availability-matrix) for more information on feature compatibility with different versions of Operational Insights.
+Version 1.0 of the Go Operational Insights SDK implements the 1.0 [SDK API](compatibility.md#api-version). See the [compatibility pages](compatibility.md) for more information on feature compatibility with different versions of Operational Insights.
 
 ## [](#installation)Installation
 
