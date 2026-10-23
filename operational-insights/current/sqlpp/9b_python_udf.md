@@ -1,8 +1,8 @@
 ---
 title: Python User-Defined Functions
-description: Python User-Defined Functions (UDFs) let you extend {sqlpp} with
-  code written in Python, running inside an isolated sandbox.
-pubDate: 2026-10-19T14:21:08.937Z
+description: Python User-Defined Functions (UDFs) let you extend SQL++ with code
+  written in Python, running inside an isolated sandbox.
+pubDate: 2026-10-23T04:31:18.652Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -18,7 +18,7 @@ antora:
 
 # Python User-Defined Functions
 
-> Python User-Defined Functions (UDFs) let you extend {sqlpp} with code written in Python, running inside an isolated sandbox. Use a Python UDF to bring a trained ML model into a query, or to implement logic that's difficult or impossible to express in SQL++. 
+> Python User-Defined Functions (UDFs) let you extend SQL++ with code written in Python, running inside an isolated sandbox. Use a Python UDF to bring a trained ML model into a query, or to implement logic that's difficult or impossible to express in SQL++. 
 
 For the `CREATE FUNCTION` syntax that binds a Python function, see [Creating an External Function](9%5Fudf.md#create-external-function).
 
@@ -27,6 +27,8 @@ For the `CREATE FUNCTION` syntax that binds a Python function, see [Creating an 
 Python UDFs require the separate `operational-insights-udf` add-on package, installed on every node. Without it, no node binds a socket for library uploads, so no node can evaluate a Python UDF.
 
 Installing this package requires Docker on the host. Docker is not a declared dependency of the package, so the install fails if Docker is missing. The package installs the gVisor `runsc` runtime, and pulls and runs the `couchbase/operational-insights-udf` container image.
+
+For installation, upgrade, and removal steps, see [Install the Python UDF Add-on](../install/install-udf-addon.md).
 
 ## [](#security)Security
 

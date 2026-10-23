@@ -2,7 +2,7 @@
 title: Install on Red Hat Enterprise
 description: Operational Insights can be installed on Red Hat Enterprise Linux
   for production and development use-cases.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-23T04:31:18.652Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -93,6 +93,10 @@ TTo set the process limits, create a `.conf` file in the `/etc/security/limits.d
 couchbase soft nproc 4096
 couchbase hard nproc 16384
 ```
+
+## [](#install-the-python-udf-add-on)Install the Python UDF Add-on
+
+To run [Python user-defined functions](../sqlpp/9b%5Fpython%5Fudf.md), install the optional `operational-insights-udf` add-on on every node, after you install Operational Insights. The add-on requires Docker. See [Install the Python UDF Add-on](install-udf-addon.md).
 
 ## [](#next-steps)Next Steps
 

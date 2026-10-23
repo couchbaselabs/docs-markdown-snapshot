@@ -2,7 +2,7 @@
 title: Migrate Existing Self-Managed Couchbase Mobile Clusters to App Services
 description: Migrate your data, users, and roles from a self-managed Couchbase
   Server and Sync Gateway deployment to Capella App Services.
-pubDate: 2026-10-17T04:21:50.088Z
+pubDate: 2026-10-23T04:31:18.652Z
 meta:
   component:
     title: Capella App Services
@@ -66,15 +66,20 @@ Complete the following steps to migrate from your self-managed cluster to App Se
 > Use a one-way replication that copies the whole bucket. Do not use the Active-Active XDCR with Sync Gateway setup for this migration.
 
 > [!WARNING]
-> If you're replicating from a 3.x version of Sync Gateway deployment using persistent configuration mode, you must configure the following XDCR filter:
+> If your Sync Gateway deployment uses persistent configuration mode, you must configure the following XDCR filter:
 > 
 > ```sqlpp
 > NOT REGEXP_CONTAINS(META().id, "^_sync:(dbconfig|registry|dcp_ck|cfg|.*:cfg)")
 > ```
 
-#### [](#xdcr-private-link)Replicating over a Private Link
+#### [](#xdcr-private-link)Replicate Over a Private Endpoint
 
-To replicate over a Capella private link, ask Capella Support to [enable XDCR over private endpoints](../../cloud/clusters/xdcr/manage-xdcr-security.md#enable-pe-xdcr) for your organization first. Then [create the XDCR remote reference](../../cloud/clusters/xdcr/manage-xdcr-replications.md#xdcr-remote-ref) on your self-managed cluster with the Capella private link hostname. In the remote reference, set the network type to **Force using alternate address**.
+XDCR over a private endpoint is available only on request from Capella Support, and only when your self-managed cluster and your Capella cluster use the same cloud service provider and region. For the full requirements, see [Replicate Data Over a Private Endpoint Connection](../../cloud/clusters/xdcr/manage-xdcr-security.md#private-endpoints).
+
+Once Capella Support has made the feature available, [enable XDCR over the private endpoint](../../cloud/clusters/xdcr/manage-xdcr-security.md#enable-pe-xdcr) for your Capella cluster with the Management API. Then create the XDCR remote reference on your self-managed cluster, using the cluster's [Private Endpoint DNS](../../cloud/clusters/xdcr/manage-xdcr-replications.md#get-hostname) as the hostname:
+
+* Couchbase Server 8.x: in the Web Console, set the network type to **Force using alternate address**.
+* Couchbase Server 7.x: create the remote reference with the [REST API](../../server/current/rest-api/rest-xdcr-create-ref.md) and set `network_type=external`.
 
 ### [](#step-3-wait-for-replication-to-complete)Step 3\. Wait for replication to complete
 
@@ -104,7 +109,7 @@ Here are key aspects of the App Endpoint creation that you'll have to handle:
 * [Import Filter](../app-endpoints/import-filters.md): If your existing setup uses a custom Import Filter function, you can write the filter function using the inline editor on Capella or import an existing Import Filter function file.
 * [Access Control](../app-endpoints/access-control-data-validation.md): You can write the sync function using the inline editor on Capella or import existing sync filter function file.
 * [Authentication Provider](../security/set-up-authentication-provider.md): If your existing application uses basic authentication, then there are no changes required. If your existing setup uses OpenID Connect (OIDC), reconfigure the OIDC provider on Capella.
-* Users and roles: Your Sync Gateway users and roles carry over through XDCR when your configuration meets the conditions in [Before You Migrate](#before-you-migrate). If they do not carry over, recreate them with the [App Services Admin API](../references/rest%5Fapi%5Fadmin.md). If you scripted user creation with `POST` requests against Sync Gateway, switch to `PUT /{db}/_user/{name}`, because the App Services Admin API creates users only through `PUT`.
+* Users and roles: Your Sync Gateway users and roles carry over through XDCR when your configuration meets the conditions in [Before You Migrate](#before-you-migrate). If they do not carry over, recreate them with the [App Services Admin API](../references/rest%5Fapi%5Fadmin.md).
 * Configuration settings: Apply the on-prem database settings that have an App Endpoint equivalent, such as delta sync. For settings with no Capella equivalent, see [Before You Migrate](#before-you-migrate).
 
 [Bring the App Endpoint online](../app-endpoints/configuring-app-endpoints.md#resume-endpoint).

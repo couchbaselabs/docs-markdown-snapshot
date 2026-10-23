@@ -2,7 +2,7 @@
 title: Using Couchbase Transactions
 description: A practical guide on using Couchbase Distributed ACID transactions,
   via the Scala SDK.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-23T04:31:18.652Z
 meta:
   component:
     title: Scala SDK
@@ -40,15 +40,16 @@ Refer to the [Transaction Concepts](../concept-docs/transactions.md) page for a 
 * NTP should be configured so nodes of the Couchbase cluster are in sync with time.
 
 > [!CAUTION]
-> Single Node Cluster
+> Single Node Cluster in Self-Managed Environments
 > 
 > When using a single node cluster (for example, during development), the default number of replicas for a newly created bucket is **1**. If left at this default, all key-value writes performed with durability will fail with a `DurabilityImpossibleException`. In turn, this will cause all transactions (which perform all key-value writes durably) to fail. This setting can be changed via:
 > 
-> * [Capella UI](../../../cloud/clusters/data-service/manage-buckets.md#add-bucket)
 > * [Couchbase Server UI](../../../server/7.6/manage/manage-buckets/create-bucket.md#couchbase-bucket-settings)
 > * [Command Line](../../../server/7.6/cli/cbcli/couchbase-cli-bucket-create.md#options)
 > 
 > If the bucket already exists, then the server needs to be rebalanced for the setting to take effect.
+> 
+> This only applies to self-managed clusters: a Capella single node cluster has replica set to `0`, and transactions will work fine in the single node cluster.
 
 ## [](#creating-a-transaction)Creating a Transaction
 

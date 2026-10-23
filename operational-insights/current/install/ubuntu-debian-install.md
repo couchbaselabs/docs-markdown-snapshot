@@ -3,7 +3,7 @@ title: Install on Ubuntu and Debian
 description: Operational Insights can be installed on Ubuntu Linux and Debian
   Linux for production and development use-cases. Root installation is
   supported.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-23T04:31:18.652Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -90,6 +90,10 @@ sudo apt-get -f install
 ```  
 Once installation is complete, Operational Insights starts automatically. It continues to start automatically at run levels 2, 3, 4, and 5, and explicitly shut down at run levels 0, 1, and 6\. You can use the `systemctl` command to start and stop Operational Insights, and check the current status. On earlier operating systems, use `service`. For more information, see [Start and Stop Operational Insights](start-stop-cb-operational-insights.md).
 4. Open a web browser and open the Operational Insights Web Console to [verify](verify-installation.md) that the installation was successful and that the node is available.
+
+## [](#install-the-python-udf-add-on)Install the Python UDF Add-on
+
+To run [Python user-defined functions](../sqlpp/9b%5Fpython%5Fudf.md), install the optional `operational-insights-udf` add-on on every node, after you install Operational Insights. The add-on requires Docker. See [Install the Python UDF Add-on](install-udf-addon.md).
 
 ## [](#next-steps)Next Steps
 

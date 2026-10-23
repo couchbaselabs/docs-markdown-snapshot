@@ -1,7 +1,7 @@
 ---
 title: Full Installation
 description: Installation instructions for the Couchbase Go Client.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-23T04:31:18.652Z
 meta:
   component:
     title: Go Analytics SDK
@@ -25,7 +25,7 @@ Analytics SDKs are developed from the ground-up and while they maintain some syn
 You can use `go get` to download the SDK:
 
 ```console
-$ go get github.com/couchbase/gocbanalytics@v1.1.0
+$ go get github.com/couchbase/gocbanalytics@v1.1.1
 ```
 
 > [!NOTE]

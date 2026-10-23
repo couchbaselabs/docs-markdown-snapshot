@@ -3,7 +3,7 @@ title: Offline Upgrade from Enterprise Analytics to Operational Insights
 description: Learn more about the per-node procedure for an offline cluster
   upgrade across the Enterprise Analytics to Operational Insights rename, for
   both .rpm and .deb package formats.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-23T04:31:18.652Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -92,10 +92,25 @@ chown -R couchbase:couchbase /opt/enterprise-analytics/var
 rm -rf /opt/couchbase/var  
 ln -s /opt/enterprise-analytics/var /opt/couchbase/var  
 ```
-7. Start the node with the new command for Operational Insights:  
+7. If you customized the Enterprise Analytics service with systemd drop-in files, carry them across to the new service name. Removing the package leaves the files under `/etc/systemd/system/enterprise-analytics.service.d/` in place, but the `operational-insights` service does not read them. Without this step, the node starts with the default settings and gives no warning. If you have no drop-in files, the command does nothing but reload systemd.  
+```console  
+if [ -d /etc/systemd/system/enterprise-analytics.service.d ]; then  
+  mkdir -p /etc/systemd/system/operational-insights.service.d  
+  cp -a /etc/systemd/system/enterprise-analytics.service.d/. /etc/systemd/system/operational-insights.service.d/  
+fi  
+systemctl daemon-reload  
+```  
+If you replaced the whole unit file with `systemctl edit --full`, you have a file at `/etc/systemd/system/enterprise-analytics.service`. Do not copy it to the new name, because it starts the Enterprise Analytics binary that the removal deleted. Left in place, the old unit stays enabled and fails at every boot. Instead, run `systemctl edit operational-insights` and enter only the settings you changed, which systemd saves as a drop-in file. Then disable and remove the old unit file:  
+```console  
+systemctl disable enterprise-analytics  
+rm /etc/systemd/system/enterprise-analytics.service  
+systemctl daemon-reload  
+```
+8. Start the node with the new command for Operational Insights:  
 ```console  
 systemctl start operational-insights  
 ```
+9. If you use Python UDFs, install the [Python UDF add-on](install-udf-addon.md). Enterprise Analytics has no add-on, so this is a new installation rather than an upgrade.
 
 ### [](#rhel-recovery-no-backup)If You Skipped the State Backup
 
@@ -114,10 +129,22 @@ curl -s -u <admin>:<password> http://127.0.0.1:8091/nodes/self \
   | python3 -c 'import json,sys; d=json.load(sys.stdin); print(d["nodeUUID"], d["storage"]["hdd"][0]["path"])'
 ```
 
-Both values must match the ones you noted at the start, and the data path must still exist:
+The UUID must match the one you noted at the start. The data path must match too, unless you moved the data in the [conditional data move](#rhel-data-move-step). In that case, the node reports the path with the `/opt/couchbase/var` symbolic link resolved, so it begins with `/opt/enterprise-analytics/var/` rather than the `/opt/couchbase/var/` path you noted. Both name the same directory. To confirm, resolve the path you noted, and check that the result matches the reported path:
+
+```console
+realpath "<data_path>"
+```
+
+In every case, the data path must still exist:
 
 ```console
 test -d "<data_path>" && echo data present
+```
+
+If you carried drop-in files across in the [drop-in step](#rhel-dropin-step), confirm that the new service lists them:
+
+```console
+systemctl cat operational-insights
 ```
 
 > [!WARNING]
@@ -189,10 +216,25 @@ chown -R couchbase:couchbase /opt/enterprise-analytics/var
 rm -rf /opt/couchbase/var  
 ln -s /opt/enterprise-analytics/var /opt/couchbase/var  
 ```
-7. Start the node with the new command for Operational Insights:  
+7. If you customized the Enterprise Analytics service with systemd drop-in files, carry them across to the new service name. Removing the package leaves the files under `/etc/systemd/system/enterprise-analytics.service.d/` in place, but the `operational-insights` service does not read them. Without this step, the node starts with the default settings and gives no warning. If you have no drop-in files, the command does nothing but reload systemd.  
+```console  
+if [ -d /etc/systemd/system/enterprise-analytics.service.d ]; then  
+  mkdir -p /etc/systemd/system/operational-insights.service.d  
+  cp -a /etc/systemd/system/enterprise-analytics.service.d/. /etc/systemd/system/operational-insights.service.d/  
+fi  
+systemctl daemon-reload  
+```  
+If you replaced the whole unit file with `systemctl edit --full`, you have a file at `/etc/systemd/system/enterprise-analytics.service`. Do not copy it to the new name, because it starts the Enterprise Analytics binary that the removal deleted. Left in place, the old unit stays enabled and fails at every boot. Instead, run `systemctl edit operational-insights` and enter only the settings you changed, which systemd saves as a drop-in file. Then disable and remove the old unit file:  
+```console  
+systemctl disable enterprise-analytics  
+rm /etc/systemd/system/enterprise-analytics.service  
+systemctl daemon-reload  
+```
+8. Start the node with the new command for Operational Insights:  
 ```console  
 systemctl start operational-insights  
 ```
+9. If you use Python UDFs, install the [Python UDF add-on](install-udf-addon.md). Enterprise Analytics has no add-on, so this is a new installation rather than an upgrade.
 
 ### [](#deb-recovery-no-backup)If You Skipped the State Backup
 
@@ -211,10 +253,22 @@ curl -s -u <admin>:<password> http://127.0.0.1:8091/nodes/self \
   | python3 -c 'import json,sys; d=json.load(sys.stdin); print(d["nodeUUID"], d["storage"]["hdd"][0]["path"])'
 ```
 
-Both values must match the ones you noted at the start, and the data path must still exist:
+The UUID must match the one you noted at the start. The data path must match too, unless you moved the data in the [conditional data move](#deb-data-move-step). In that case, the node reports the path with the `/opt/couchbase/var` symbolic link resolved, so it begins with `/opt/enterprise-analytics/var/` rather than the `/opt/couchbase/var/` path you noted. Both name the same directory. To confirm, resolve the path you noted, and check that the result matches the reported path:
+
+```console
+realpath "<data_path>"
+```
+
+In every case, the data path must still exist:
 
 ```console
 test -d "<data_path>" && echo data present
+```
+
+If you carried drop-in files across in the [drop-in step](#deb-dropin-step), confirm that the new service lists them:
+
+```console
+systemctl cat operational-insights
 ```
 
 > [!WARNING]

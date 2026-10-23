@@ -1,7 +1,8 @@
 ---
 title: Vector Functions
-description: Learn more about the vector search functions available in {sqlppea}.
-pubDate: 2026-10-19T14:21:08.937Z
+description: Learn more about the vector search functions available in SQL++ for
+  Operational Insights.
+pubDate: 2026-10-23T04:31:18.652Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -17,7 +18,7 @@ antora:
 
 # Vector Functions
 
-> Learn more about the vector search functions available in {sqlppea}. 
+> Learn more about the vector search functions available in SQL++ for Operational Insights. 
 
 Operational Insights vector functions compute a distance, or similarity, value between a stored vector field and a query vector. SQL++ for Operational Insights provides 2 kinds of vector functions:
 

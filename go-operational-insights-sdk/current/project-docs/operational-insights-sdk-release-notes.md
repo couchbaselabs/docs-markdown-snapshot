@@ -2,7 +2,7 @@
 title: Operational Insights SDK Release Notes
 description: Release notes, brief installation instructions, and download
   archive for the Go Operational Insights Client.
-pubDate: 2026-10-22T04:25:56.080Z
+pubDate: 2026-10-23T04:31:18.652Z
 meta:
   component:
     title: Go Operational Insights SDK
@@ -29,11 +29,21 @@ See the [Full Installation](sdk-full-installation.md) guide for details.
 
 We always recommend using the latest version of the SDK — it contains all of the latest security patches and support for new and upcoming features. All patch releases for each dot minor release should be API compatible, and safe to upgrade; any changes to expected behavior are noted in the release notes that follow.
 
-## [](#go-analytics-sdk-1-0-releases)Go Analytics SDK 1.0 Releases
+### [](#v1.0.1)Version 1.0.1 (20 October 2026)
+
+#### [](#new-features-and-behavioral-changes)New Features and Behavioral Changes
+
+* [GOCO-58](https://jira.issues.couchbase.com/browse/GOCO-58): The SDK's HTTP client now rejects all redirects and fast-fails instead.
+
+#### [](#fixed-issues)Fixed Issues
+
+* [GOCO-59](https://jira.issues.couchbase.com/browse/GOCO-59): Fixed an issue where request URLs for IPv6 hosts were built without surrounding the address in square brackets (e.g. `::1:55908` instead of `[::1]:55908`). This caused connections to fail when the application's `go.mod` declared Go 1.26 or newer, since `urlstrictcolons=1` is the default from Go 1.26 (see [Go 1.26 GODEBUG settings](https://go.dev/doc/godebug#go-126)).
 
 ### [](#v1.0.0)Version 1.0.0 (15 October 2026)
 
 [API Reference](https://pkg.go.dev/github.com/couchbase/gocbinsights)
+
+This is the first General Availability (GA) release of the new Operational Insights Go SDK.
 
 ## [](#previous-sdks)Previous SDKs
 

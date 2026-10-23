@@ -1,6 +1,6 @@
 {
   "$id": "https://schemas.antora.org/site-manifest/1-0-0/draft-01",
-  "generated": "2026-10-22T04:32:31.525Z",
+  "generated": "2026-10-23T04:39:01.479Z",
   "url": "https://docs.couchbase.com",
   "components": {
     "agent-mem": {
@@ -40470,6 +40470,12 @@
                 "ref": "supported-platform.adoc",
                 "url": "/operational-insights/current/install/supported-platform.md"
               }
+            },
+            {
+              "module": "install",
+              "path": "install-udf-addon.adoc",
+              "url": "/operational-insights/current/install/install-udf-addon.md",
+              "title": "Install the Python UDF Add-on"
             },
             {
               "module": "install",

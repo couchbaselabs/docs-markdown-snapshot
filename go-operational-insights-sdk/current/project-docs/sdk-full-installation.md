@@ -1,7 +1,7 @@
 ---
 title: Full Installation
 description: Installation instructions for the Couchbase Go Client.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-23T04:31:18.652Z
 meta:
   component:
     title: Go Operational Insights SDK
@@ -25,7 +25,7 @@ Operational Insights SDKs are developed from the ground-up and while they mainta
 You can use `go get` to download the SDK:
 
 ```console
-$ go get github.com/couchbase/gocboperationalinsights@v1.0.0
+$ go get github.com/couchbase/gocboperationalinsights@v1.0.1
 ```
 
 > [!NOTE]

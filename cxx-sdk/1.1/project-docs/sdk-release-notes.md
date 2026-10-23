@@ -2,7 +2,7 @@
 title: SDK Release Notes
 description: Release notes, brief installation instructions, and download
   archive for the Couchbase C&#43;&#43; Client.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-23T04:31:18.652Z
 meta:
   component:
     title: C++ SDK
@@ -19,7 +19,7 @@ antora:
 
 > Release notes, brief installation instructions, and download archive for the Couchbase C++ Client. 
 
-Version 1.1 of the C++ SDK implements the 3.7 [SDK API](compatibility.md#api-version). See the [compatibility pages](#compatibility.html#couchbase-feature-availability-matrix) for more information on feature compatibility with different versions of Couchbase Server.
+Version 1.1 of the C++ SDK implements the 3.7 [SDK API](compatibility.md#api-version). See the [compatibility pages](compatibility.md#couchbase-feature-availability-matrix) for more information on feature compatibility with different versions of Couchbase Server.
 
 ## [](#installation)Installation
 

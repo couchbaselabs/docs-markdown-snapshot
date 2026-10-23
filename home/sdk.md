@@ -1,6 +1,6 @@
 ---
 title: SDKs for Couchbase Operational Database
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-23T04:31:18.652Z
 meta:
   component:
     title: Couchbase Documentation
@@ -405,15 +405,12 @@ Lightning Fast Data Service
 
 * [Data Operations](../ruby-sdk/current/howtos/kv-operations.md)
 * [Sub-Document Operations](../ruby-sdk/current/howtos/subdocument-operations.md)
-* [Encrypting Your Data](../ruby-sdk/current/howtos/encrypting-using-sdk.md)
-* [Multi-Document Distributed ACID Transactions](../ruby-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md)
 
 Observability & Error Handling
 
 * [Handling Errors](../ruby-sdk/current/howtos/error-handling.md)
 * [Logging](../ruby-sdk/current/howtos/collecting-information-and-logging.md)
 * [Slow Operations Logging](../ruby-sdk/current/howtos/slow-operations-logging.md)
-* [Diagnosing and preventing Network Problems with Health Check](../ruby-sdk/current/howtos/health-check.md)
 
   
 ## Resources 
@@ -433,7 +430,6 @@ Deployment
 * [SDK Release Notes](../ruby-sdk/current/project-docs/sdk-release-notes.md)
 * [Compatibility](../ruby-sdk/current/project-docs/compatibility.md)
 * [Older Versions Archive](https://docs-archive.couchbase.com/home/index.html)
-* [Migrating from SDK2 to SDK3 API](../ruby-sdk/current/project-docs/migrating-sdk-code-to-3.n.md)
 * [3rd Party Integrations](../ruby-sdk/current/project-docs/third-party-integrations.md)
 * [ruby-sdk:project-docs:sdk-full-installation.adoc](#ruby-sdk:project-docs:sdk-full-installation.adoc)
 

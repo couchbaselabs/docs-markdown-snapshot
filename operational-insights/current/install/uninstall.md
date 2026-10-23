@@ -2,7 +2,7 @@
 title: Uninstall
 description: The Operational Insights application and its associated data can be
   removed from supported systems.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-23T04:31:18.652Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -38,16 +38,18 @@ If the system is a part of an active Operational Insights cluster, you must [rem
 sudo systemctl stop operational-insights  
 ```  
 For more information, see [Start and Stop Operational Insights](start-stop-cb-operational-insights.md).
-2. Remove the application and packages.
+2. Remove the application and packages.  
+If the node has the [Python UDF add-on](install-udf-addon.md), remove it in the same command, as shown below. The add-on depends on Operational Insights, so the package manager refuses to remove Operational Insights on its own while the add-on is installed. If the node does not have the add-on, omit `operational-insights-udf` from the command.
 
   * RHEL
   * Ubuntu and Debian  
 ```console  
-sudo rpm -e operational-insights  
+sudo rpm -e operational-insights-udf operational-insights  
 ```  
 ```console  
-sudo dpkg -r operational-insights  
-```
+sudo dpkg -r operational-insights-udf operational-insights  
+```  
+Removing the add-on also removes its sandbox container and image, and the Docker configuration that it installed, including `/etc/docker/daemon.json`. Docker itself remains installed.
 3. Remove the data and log directories.  
 ```console  
 sudo rm -rf /opt/couchbase  

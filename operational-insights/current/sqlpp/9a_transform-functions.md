@@ -1,9 +1,9 @@
 ---
 title: Transform Functions
 description: Operational Insights supports lightweight transformations on
-  incoming data destined for remote collections, using {sqlpp}
+  incoming data destined for remote collections, using SQL++
   <code>TRANSFORM</code> User-Defined Functions (UDFs).
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-23T04:31:18.652Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -19,7 +19,7 @@ antora:
 
 # Transform Functions
 
-> Operational Insights supports lightweight transformations on incoming data destined for remote collections, using {sqlpp} `TRANSFORM` User-Defined Functions (UDFs). You can use `TRANSFORM` UDFs to declaratively transform data objects before they're stored in remote collections. The supported common transformations through UDFs include: 
+> Operational Insights supports lightweight transformations on incoming data destined for remote collections, using SQL++ `TRANSFORM` User-Defined Functions (UDFs). You can use `TRANSFORM` UDFs to declaratively transform data objects before they're stored in remote collections. The supported common transformations through UDFs include: 
 
 * Field operations and record filtering, such as:
 

@@ -1,7 +1,7 @@
 ---
 title: Release Notes
 description: Couchbase Sync Gateway
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-23T04:31:18.652Z
 meta:
   component:
     title: Sync Gateway
@@ -138,6 +138,43 @@ None for this release.
 ### [](#deprecations-2)Deprecations
 
 None for this release.
+
+## [](#maint-4-1-0)4.1.0 — June 2026
+
+> [!WARNING]
+> This version has a known issue, [CBG-5554 — activeOnly replication can miss documents for channels over the pagination limit](https://jira.issues.couchbase.com/browse/CBG-5554). Please upgrade to Sync Gateway 4.1.1 or later.
+
+Version 4.1.0 of Sync Gateway delivers the following features and enhancements.
+
+### [](#non-disruptive-rolling-upgrades-2)Non-Disruptive Rolling Upgrades
+
+Sync Gateway 4.1 introduces cluster compatibility version, enabling node-by-node upgrades without downtime, with a safe rollback path throughout the upgrade window.
+
+For more information, see [Cluster Compatibility Version](../cluster-compatibility-version.md).
+
+### [](#distributed-resync-2)Distributed Resync
+
+Sync Gateway 4.1 redesigns resync to distribute work in parallel across all cluster nodes, replacing the previous single-node sequential approach.
+
+For more information, see [Resync](../manage/resync.md).
+
+### [](#channel-history-management-2)Channel History Management
+
+Sync Gateway 4.1 introduces Admin REST API endpoints for retrieving and pruning channel history on both user records and documents, reducing metadata bloat and unnecessary revocation messages during zero-checkpoint replications.
+
+For more information, see [Channel History Management](../manage/channel-history.md).
+
+### [](#metadata-isolation-migrate-to-system-collection-2)Metadata Isolation: Migrate to System Collection
+
+Sync Gateway 4.1 introduces an opt-in migration that moves Sync Gateway internal metadata from `_default._default` to `_system._mobile`, isolating it from user application data. The migration is never applied automatically at upgrade and cannot be reversed.
+
+For more information, see [Migrate Metadata to System Collection](../migrate-metadata-system-collection.md).
+
+For a full overview of new features in this release, see [New in 4.1](../whatsnew.md).
+
+### [](#known-issues-3)Known Issues
+
+* [CBG-5554 — activeOnly replication can miss documents for channels over the pagination limit](https://jira.issues.couchbase.com/browse/CBG-5554)
 
 ## [](#upgrading)Upgrading
 

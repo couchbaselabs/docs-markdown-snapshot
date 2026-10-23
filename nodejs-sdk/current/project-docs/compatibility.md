@@ -3,7 +3,7 @@ title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-23T04:31:18.652Z
 meta:
   component:
     title: Node.js SDK
@@ -114,17 +114,22 @@ Note, Capella is offered as a fully provisioned service, so the underlying versi
 ### [](#couchbase-new-feature-availability-matrix)Couchbase New Feature Availability Matrix
 
 __Couchbase Server and SDK Supported Version Matrix__
-|                                                                      | Server 7.2        | Server 7.6     | Server 8.0 |
-| -------------------------------------------------------------------- | ----------------- | -------------- | ---------- |
-| Enhanced Durability                                                  | All SDK versions  |                |            |
-| Durable Writes                                                       | Since 3.0         |                |            |
-| Analytics                                                            | Since 2.6         |                |            |
-| Collections                                                          | Since 3.0.7       |                |            |
-| Scope-Level SQL++ (formerly N1QL) Queries & all Collections features | Since SDK 3.2.0   |                |            |
-| Request Tracing                                                      | Since SDK 3.2.0   |                |            |
-| Distributed ACID Transactions                                        | Since SDK 4.0     |                |            |
-| Cloud Native Gateway                                                 | Not Yet Supported |                |            |
-| Vector Search                                                        | N/A               | From SDK 4.3.0 |            |
+|                                                                      | Server 7.2        | Server 7.6       | Server 8.0 |
+| -------------------------------------------------------------------- | ----------------- | ---------------- | ---------- |
+| KV Range Scan                                                        | N/A               | From SDK 4.3.0   |            |
+| Enhanced Durability                                                  | All SDK versions  |                  |            |
+| Durable Writes                                                       | Since 3.0         |                  |            |
+| Analytics                                                            | Since 2.6         |                  |            |
+| Collections                                                          | Since 3.0.7       |                  |            |
+| Scope-Level SQL++ (formerly N1QL) Queries & all Collections features | Since SDK 3.2.0   |                  |            |
+| Request Tracing                                                      | Since SDK 3.2.0   |                  |            |
+| Distributed ACID Transactions                                        | Since SDK 4.0     |                  |            |
+| Cloud Native Gateway                                                 | Not Yet Supported |                  |            |
+| Vector Search                                                        | N/A               | From SDK 4.3.0   |            |
+| Zone aware replica reads                                             | N/A               | From SDK 4.4.0   |            |
+| Vector Query using GSI                                               | N/A               | From SDK 4.5.0 ① |            |
+
+① As part of the standard SDK SQL++ API, it should be compatible with all earlier versions of the SDK — but it has not been tested.
 
 ### [](#ottoman-odm-compatiblity)Ottoman ODM Compatiblity
 

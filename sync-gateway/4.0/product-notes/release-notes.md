@@ -1,7 +1,7 @@
 ---
 title: Release Notes
 description: Couchbase Sync Gateway
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-23T04:31:18.652Z
 meta:
   component:
     title: Sync Gateway
@@ -84,6 +84,53 @@ None for this release.
 
 None for this release.
 
+## [](#4-0-6june-2026)4.0.6 — June 2026
+
+> [!WARNING]
+> This version has a known issue, [CBG-5554 — activeOnly replication can miss documents for channels over the pagination limit](https://jira.issues.couchbase.com/browse/CBG-5554). Please upgrade to Sync Gateway 4.1.1 or later 4.0.7 or later to receive critical fixes.
+
+### [](#maint-4-0-6)Fixed Issues
+
+* [CBG-5453 — Subdoc operation failure on multiple channel removal](https://jira.issues.couchbase.com/browse/CBG-5453)
+
+### [](#enhancements-3)Enhancements
+
+* [CBG-5394 — REST endpoint for pruning document channel history](https://jira.issues.couchbase.com/browse/CBG-5394)
+* [CBG-5396 — REST endpoint for pruning user channel history](https://jira.issues.couchbase.com/browse/CBG-5396)
+
+### [](#known-issues-3)Known Issues
+
+* [CBG-5554 — activeOnly replication can miss documents for channels over the pagination limit](https://jira.issues.couchbase.com/browse/CBG-5554)
+
+### [](#deprecations-3)Deprecations
+
+None for this release.
+
+## [](#4-0-5june-2026)4.0.5 — June 2026
+
+> [!WARNING]
+> This version has a known issue, [CBG-5554 — activeOnly replication can miss documents for channels over the pagination limit](https://jira.issues.couchbase.com/browse/CBG-5554). Please upgrade to Sync Gateway 4.1.1 or later 4.0.7 or later to receive critical fixes.
+
+### [](#maint-4-0-5)Fixed Issues
+
+* [CBG-5255 — Upgrading from non persistent config to persistent config will trigger database requiring resync](https://jira.issues.couchbase.com/browse/CBG-5255)
+* [CBG-5287 — \_changes feeds with active\_only=true and limit parameters can miss expected changes with revocations](https://jira.issues.couchbase.com/browse/CBG-5287)
+* [CBG-5361 — Panic in revoked feed handling](https://jira.issues.couchbase.com/browse/CBG-5361)
+* [CBG-5368 — Problem with channel removal macro expansion when channel names have . in them](https://jira.issues.couchbase.com/browse/CBG-5368)
+* [CBG-5383 — Resync regenerate sequences will not set \_default metadata id when finished](https://jira.issues.couchbase.com/browse/CBG-5383)
+
+### [](#enhancements-4)Enhancements
+
+None for this release
+
+### [](#known-issues-4)Known Issues
+
+* [CBG-5554 — activeOnly replication can miss documents for channels over the pagination limit](https://jira.issues.couchbase.com/browse/CBG-5554)
+
+### [](#deprecations-4)Deprecations
+
+None for this release.
+
 ## [](#4-0-4april-2026)4.0.4 — April 2026
 
 ### [](#maint-4-0-4)Fixed Issues
@@ -91,16 +138,16 @@ None for this release.
 * [CBG-5173 — /db/\_index\_init panics if db started offline](https://jira.issues.couchbase.com/browse/CBG-5173)
 * [CBG-5202 — Remote wins conflict resoultion results in new revID](https://jira.issues.couchbase.com/browse/CBG-5202)
 
-### [](#enhancements-3)Enhancements
+### [](#enhancements-5)Enhancements
 
 * [CBG-5157 — Support EdDSA tokens for OIDC/JWTs](https://jira.issues.couchbase.com/browse/CBG-5157)
 * [CBG-5214 — silently handle cbl-js ping blip requests](https://jira.issues.couchbase.com/browse/CBG-5214)
 
-### [](#known-issues-3)Known Issues
+### [](#known-issues-5)Known Issues
 
 None for this release.
 
-### [](#deprecations-3)Deprecations
+### [](#deprecations-5)Deprecations
 
 None for this release.
 
@@ -121,16 +168,16 @@ None for this release.
 * [CBG-5136 — Backup revs loaded from bucket in CV pathway incorrectly assigning deleted status to document revision](https://jira.issues.couchbase.com/browse/CBG-5136)
 * [CBG-5146 — replacement revs never utilized for unfiltered replications](https://jira.issues.couchbase.com/browse/CBG-5146)
 
-### [](#enhancements-4)Enhancements
+### [](#enhancements-6)Enhancements
 
 * [CBG-4765 — Caching performance improvements](https://jira.issues.couchbase.com/browse/CBG-4765)
 * [CBG-5092 — Increase websocket control frame timeouts](https://jira.issues.couchbase.com/browse/CBG-5092)
 
-### [](#known-issues-4)Known Issues
+### [](#known-issues-6)Known Issues
 
 None for this release.
 
-### [](#deprecations-4)Deprecations
+### [](#deprecations-6)Deprecations
 
 None for this release.
 
@@ -143,15 +190,15 @@ None for this release.
 * [CBG-5027 — Have rev cache lock and rev cache value unlocks use defer where possible](https://jira.issues.couchbase.com/browse/CBG-5027)
 * [CBG-5029 — Panic during memory based cache eviction can deadlock revision cache shard](https://jira.issues.couchbase.com/browse/CBG-5029)
 
-### [](#enhancements-5)Enhancements
+### [](#enhancements-7)Enhancements
 
 * [CBG-5034 — Synchronize Computation of Deltas](https://jira.issues.couchbase.com/browse/CBG-5034)
 
-### [](#known-issues-5)Known Issues
+### [](#known-issues-7)Known Issues
 
 None for this release.
 
-### [](#deprecations-5)Deprecations
+### [](#deprecations-7)Deprecations
 
 None for this release.
 
@@ -161,15 +208,15 @@ None for this release.
 
 * [CBG-4972 — Don't set SameSite=None when no TLS is used](https://jira.issues.couchbase.com/browse/CBG-4972)
 
-### [](#enhancements-6)Enhancements
+### [](#enhancements-8)Enhancements
 
 * [CBG-4969 — Allow cookieless auth from cbl-js](https://jira.issues.couchbase.com/browse/CBG-4969)
 
-### [](#known-issues-6)Known Issues
+### [](#known-issues-8)Known Issues
 
 None for this release.
 
-### [](#deprecations-6)Deprecations
+### [](#deprecations-8)Deprecations
 
 None for this release.
 
@@ -180,7 +227,7 @@ None for this release.
 * [CBG-4767 - Make raw doc endpoint return persisted state of document](https://jira.issues.couchbase.com/browse/CBG-4767)
 * [CBG-4768 - Silence logging for Admin API expvar requests](https://jira.issues.couchbase.com/browse/CBG-4768)
 
-### [](#enhancements-7)Enhancements
+### [](#enhancements-9)Enhancements
 
 * [CBG-3203 - Shrink revision tree storage by removing channel information](https://jira.issues.couchbase.com/browse/CBG-3203)
 * [CBG-4206 - Store attachment metadata in \_globalSync xattr](https://jira.issues.couchbase.com/browse/CBG-4206)
@@ -189,14 +236,14 @@ None for this release.
 * [CBG-4754 - Silence debug logging for ping and metrics endpoints](https://jira.issues.couchbase.com/browse/CBG-4754)
 * [CBG-4757 - Improve ISGR reconnect logging](https://jira.issues.couchbase.com/browse/CBG-4757)
 
-### [](#known-issues-7)Known Issues
+### [](#known-issues-9)Known Issues
 
 * [CBG-4772 - User xattr only update results in new HLV entry](https://jira.issues.couchbase.com/browse/CBG-4772)
 * [CBG-4844 - Attachment audit events do not show CV, only RevTree ID](https://jira.issues.couchbase.com/browse/CBG-4844)
 * [CBG-4887 - Orphaned attachments can be left in bucket after removal](https://jira.issues.couchbase.com/browse/CBG-4887)
 * [CBG-4939 - Couchbase Lite 4.0 with Sync Gateway versions before 4.0 is unsupported](https://jira.issues.couchbase.com/browse/CBG-4939)
 
-### [](#deprecations-7)Deprecations
+### [](#deprecations-9)Deprecations
 
 * [CBG-3796 - Disallow enable\_star\_channel=false](https://jira.issues.couchbase.com/browse/CBG-3796)
 * [CBG-4316 - Disallow allow\_conflicts=true](https://jira.issues.couchbase.com/browse/CBG-4316)

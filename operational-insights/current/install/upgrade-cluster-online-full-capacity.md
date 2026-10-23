@@ -3,7 +3,7 @@ title: Upgrade a Full-Capacity, Online Cluster
 description: You can upgrade a cluster from Enterprise Analytics to Operational
   Insights while it stays online and at full capacity, by using one spare
   machine.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-23T04:31:18.652Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -39,6 +39,8 @@ The procedure has six stages.
 Install Operational Insights 3.0 on the spare machine. Follow [Install on Red Hat Enterprise](red-hat-installation.md) or [Install on Ubuntu and Debian](ubuntu-debian-install.md), as appropriate for the platform.
 
 Do not initialize the new node, or create a cluster on it. The node is configured when you add it to the cluster.
+
+If you use Python UDFs, also install the [Python UDF add-on](install-udf-addon.md) on the spare machine.
 
 ## [](#prepare-the-cluster)Stage Two: Prepare the Cluster
 
@@ -111,7 +113,8 @@ rm -rf /opt/couchbase
 ```
 5. Install Operational Insights 3.0 on the machine. Follow [Install on Red Hat Enterprise](red-hat-installation.md) or [Install on Ubuntu and Debian](ubuntu-debian-install.md), as appropriate for the platform.  
 Do not initialize the new node, or create a cluster on it. The node is configured when you add it to the cluster in the next stage.
-6. Optionally, _hold_ the package, so that no further upgrade occurs on the node until you choose to perform one:
+6. If you use Python UDFs, install the [Python UDF add-on](install-udf-addon.md) on the machine. Python UDFs are not available until the upgrade is complete, but installing the add-on now means that the node is ready when it is.
+7. Optionally, _hold_ the package, so that no further upgrade occurs on the node until you choose to perform one. If you installed the Python UDF add-on, hold `operational-insights-udf` as well, as described in [Upgrade the Add-on](install-udf-addon.md#upgrade):
 
   * Red Hat-based distributions
   * Ubuntu & Debian  
@@ -122,7 +125,7 @@ exclude=operational-insights
 ```console  
 apt-mark hold operational-insights  
 ```
-7. Confirm that Operational Insights is running:  
+8. Confirm that Operational Insights is running:  
 ```console  
 systemctl status operational-insights  
 ```
