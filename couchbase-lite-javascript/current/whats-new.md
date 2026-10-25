@@ -1,7 +1,7 @@
 ---
 title: New In 1.0
 description: Couchbase Lite for JavaScript -- What's new in the latest release
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-25T04:24:28.534Z
 meta:
   component:
     title: Couchbase Lite JavaScript
@@ -15,12 +15,6 @@ antora:
 [View original HTML](/couchbase-lite-javascript/current/whats-new.html)
 
 # New In 1.0
-
-## [](#release-1-0-1-june-2026)Release 1.0.1 (June 2026)
-
-Couchbase Lite JavaScript Release 1.0.1 introduces fixes and enhancements.
-
-For a full breakdown of the individual issues resolved, see the [Release Notes](releasenotes.md).
 
 ## [](#release-1-0-november-2025)Release 1.0 (November 2025)
 
