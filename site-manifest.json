@@ -1,6 +1,6 @@
 {
   "$id": "https://schemas.antora.org/site-manifest/1-0-0/draft-01",
-  "generated": "2026-10-26T04:38:50.125Z",
+  "generated": "2026-10-27T04:43:04.179Z",
   "url": "https://docs.couchbase.com",
   "components": {
     "agent-mem": {
@@ -56930,6 +56930,11 @@
               "path": "developer.adoc",
               "url": "/home/developer.md",
               "title": "Develop with Couchbase"
+            },
+            {
+              "path": "doctor.adoc",
+              "url": "/home/doctor.md",
+              "title": "What&#8217;s Up, Doc? 🐇"
             },
             {
               "path": "integrations.adoc",

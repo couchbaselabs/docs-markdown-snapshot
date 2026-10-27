@@ -1,6 +1,6 @@
 ---
 title: Couchbase Capella Release Notes
-pubDate: 2026-10-20T04:22:02.279Z
+pubDate: 2026-10-27T04:30:23.844Z
 meta:
   component:
     title: Capella Operational
@@ -17,8 +17,12 @@ antora:
 
 ## [](#october-2026-changelog)October 2026 Changelog
 
+* Manage Scopes and Collections from the Buckets Page  
+You can now create scopes and collections directly from the Buckets page in the Capella UI, without switching to Data Tools. After creating a bucket, you can add its first scope and collection right away.  
+The Buckets page also shows all the scopes and collections in a bucket, along with key statistics for each collection, such as item count, memory usage, and disk usage.  
+For more information, see [Manage Buckets](../clusters/data-service/manage-buckets.md) and [Manage Scopes and Collections](../clusters/data-service/scopes-collections.md).
 * Expanded AWS and Azure region availability  
-Couchbase Capella nows supports 2 new regions:
+Couchbase Capella now supports 2 new regions:
 
   * AWS
 

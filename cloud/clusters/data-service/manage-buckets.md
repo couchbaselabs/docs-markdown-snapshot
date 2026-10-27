@@ -2,7 +2,7 @@
 title: Manage Buckets
 description: Create, edit, and delete buckets to manage your data storage in a
   Capella operational cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-27T04:30:23.844Z
 meta:
   component:
     title: Capella Operational
@@ -52,7 +52,10 @@ To create a bucket:
   2. Click your current project name or search for a project and go to **Operational**.
   3. Expand the cluster breadcrumb and search for a cluster.
 2. Select your cluster.
-3. Go to **Data Tools** for a quick setup, or go to **Buckets** to configure advanced settings.
+3. Choose 1 of the following options:
+
+  * To create a bucket with default bucket settings, go to **Data Tools**.
+  * To configure advanced settings, go to **Buckets**.
 
   * Data Tools
   * Buckets
@@ -89,7 +92,8 @@ You can [modify your bucket's settings](#edit-bucket) at any time.
   4. (Optional) Configure advanced settings for your bucket, or accept the default values. For more information about advanced bucket settings, see [Configure Advanced Bucket Settings](#advanced-settings).  
   > [!NOTE]  
   > You cannot configure any advanced settings for a bucket on a free tier operational cluster. [Upgrade your account](../../billing/upgrade-account.md) to access all bucket customization options.
-  5. Click **Create Bucket**.
+  5. Click **Create Bucket**.  
+To create scopes and collections in your new bucket right away, you can add them directly from the **Buckets** page. For more information, see [Manage Scopes and Collections](scopes-collections.md).
 
 ### [](#advanced-settings)Configure Advanced Bucket Settings
 
@@ -223,6 +227,8 @@ You can view the **Buckets Summary** to see all the buckets in your cluster. It 
 * Memory/Quota
 
 To view more details about a bucket's configuration, click your bucket's **Name**. You can view conflict resolution, minimum durability level, replication, flush, and time to live settings. For more information, see [Modify a Bucket](#edit-bucket).
+
+You can also view a bucket's scopes and collections without leaving the **Buckets** page. Expand a bucket to list its scopes, and expand a scope to list its collections. Each collection shows its document count, memory used, disk utilization, operations per second, and document expiry. For more information, see [View Scopes and Collections](scopes-collections.md#view-scopes-collections).
 
 ## [](#edit-bucket)Modify a Bucket
 
