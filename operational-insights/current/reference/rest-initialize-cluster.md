@@ -2,7 +2,7 @@
 title: Initializing a Cluster
 description: A cluster can be initialized and provisioned, by means of a single
   call to the REST API.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -45,8 +45,7 @@ curl -X POST http://<ip-address-or-domain-name>:8091/clusterInit
   -d javaHome=<jre-path>
   -d sendStats=true
   -d clusterName=<cluster-name>
-  -d services=kv,cbas
-  -d memoryQuota=<integer>
+  -d memoryQuota=100
   -d cbasMemoryQuota=<integer>
   -d afamily=[ 'ipv4' | 'ipv6' ]
   -d afamilyOnly=[ true | false ]
@@ -59,12 +58,11 @@ The parameters and arguments are listed below:
 * `hostname`. The IP address or domain name that will be the name of the node established as a single-node cluster. This parameter is optional: the default value is `127.0.0.1`.
 * `username`. A string that will be the username for the new cluster. This parameter must be specified.
 * `password`. A string that will be the password for the new cluster. This parameter must be specified.
-* `dataPath` and `analyticsPath`. Paths for the storage of data to be used by the Data and Analytics Services. All paths must be writable by user `couchbase`. These parameters are optional. For the default values, see [Initializing a Node](rest-initialize-node.md).
+* `dataPath` and `analyticsPath`. Paths for data storage. All paths must be writable by user `couchbase`. These parameters are optional. For the default values, see [Initializing a Node](rest-initialize-node.md).
 * `javaHome`. Location of the JRE to be used by the Analytics Service. The specified path must be writable by user `couchbase`. This parameter is optional. There is no default value.
 * `sendStats`. Enables or disables Operational Insights software update notifications and sharing of system performance information with Couchbase. See the [update-notifications](../cli/couchbase-cli-cluster-init.md#update-notifications) option in the [cluster-init](../cli/couchbase-cli-cluster-init.md) command line interface reference for details of what `sendStats` shares. It's always set to `true` for Operational Insights. In Operational Insights, you can set the value to the default `true` or `false`.
 * `clusterName`. A name for the cluster. This name is for convenience of identification, and will not be used for network access. This parameter is optional. There is no default value.
-* `services`. The services to be hosted on the node. Every Operational Insights node runs exactly the Data Service (`kv`) and the Analytics Service (`cbas`). This parameter is optional, and defaults to `kv,cbas`. If it is specified, the value must be `kv,cbas`; any other list is rejected with an error such as `Invalid services list. Expected [kv,cbas], got […​]`.
-* `memoryQuota`. The memory quota for the Data Service, as an integer number of MiB. On Operational Insights the Data Service quota is fixed at 100 MiB, and any other value is rejected. This parameter is optional.
+* `memoryQuota`. A memory quota, as an integer number of MiB. On Operational Insights this quota is fixed at 100 MiB, and any other value is rejected. Always set it to `100`. If you omit it, the node keeps a quota based on its total memory instead.
 * `cbasMemoryQuota`. The memory quota for the Analytics Service, as an integer number of MiB. The minimum allowed allocation is 1024 MiB. This parameter is optional. See [Configuring Memory](rest-configure-memory.md) for information about allocating memory per service.
 * `afamily`. The IP address-family principally to be used by the cluster. This parameter is optional. Either `ipv4` (the default) or `ipv6` can be specified.
 * `afamilyOnly`. Whether _only_ the address-family specified by `afamily` should be used. This parameter is optional. The value can be `true` or `false` (the default). For information, see [Manage Address Families](../manage/manage-nodes/manage-address-families.md).
@@ -86,7 +84,6 @@ curl -v -X POST http://10.144.231.104:8091/clusterInit \
 -d "analyticsPath=%2Fopt%2Fcouchbase%2Fvar%2Flib%2Fcouchbase%2Fdata" \
 -d "javaHome=" \
 -d "sendStats=true" \
--d "services=kv%2Ccbas" \
 -d "clusterName=FourthCluster" \
 -d "memoryQuota=100" \
 -d "cbasMemoryQuota=1024" \

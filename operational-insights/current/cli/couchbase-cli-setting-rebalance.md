@@ -1,7 +1,7 @@
 ---
 title: setting-rebalance
 description: Modifies rebalance retry settings
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -96,7 +96,7 @@ Specify the number of times a failed rebalance will be retried. The value provid
 
 \--moves-per-node <num>
 
-Specify the number of concurrent vBucket to move per a node during a rebalance. The value provided must be between 1 and 64, the default is 4\. A higher setting may improve rebalance performance, at the cost of higher resource consumption; in terms of CPU, memory, disk, and bandwidth. Conversely, a lower setting may degrade rebalance performance while freeing up such resources. However, that rebalance performance can be affected by many additional factors; and that in consequence, changing this parameter may not always have the expected effects. A higher setting, due to its additional consumption of resources, may degrade the performance of other systems, including the Data Service.
+Specify the number of concurrent vBucket to move per a node during a rebalance. The value provided must be between 1 and 64, the default is 4\. A higher setting may improve rebalance performance, at the cost of higher resource consumption; in terms of CPU, memory, disk, and bandwidth. Conversely, a lower setting may degrade rebalance performance while freeing up such resources. However, that rebalance performance can be affected by many additional factors; and that in consequence, changing this parameter may not always have the expected effects. A higher setting, due to its additional consumption of resources, may degrade the performance of other systems.
 
 \--rebalance-id <id>
 

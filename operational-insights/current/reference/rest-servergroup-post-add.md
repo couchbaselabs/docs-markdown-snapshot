@@ -3,7 +3,7 @@ title: Adding Nodes to Groups
 description: A node can be added to the cluster and simultaneously added to an
   existing server group with the <code>POST
   /pools/default/serverGroups/<:uuid>/addNode</code> HTTP method and URI.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -27,7 +27,7 @@ POST /pools/default/serverGroups/<:uuid>/addNode
 
 ## [](#description)Description
 
-This adds a node to a cluster, and assigns it to the specified group. Every node in an Operational Insights cluster runs both the Data Service (`kv`) and the Analytics Service (`cbas`). The `services` parameter can therefore be omitted, in which case it defaults to `kv,cbas`. If it is specified, its value must be exactly `kv,cbas`; any other value causes the request to fail with `Invalid services list. Expected [kv,cbas], got […​]`.
+This adds a node to a cluster, and assigns it to the specified group.
 
 For an overview of nodes, and of the process of adding nodes to clusters, see [Nodes and Clusters](../manage/manage-nodes/node-management-overview.md).
 
@@ -39,7 +39,6 @@ Following successful addition, rebalance is required. For an overview, see [Add 
 ## [](#curl-syntax)Curl Syntax
 
 curl -X POST -d hostname=<host>:<port>
-  [-d services=kv,cbas]
   -d user=<administrator>
   -d password=<password>
   -u <administrator>:<password>
@@ -48,7 +47,6 @@ curl -X POST -d hostname=<host>:<port>
 The syntax includes the following:
 
 * `hostname`. The hostname and port of the node to be added.
-* `services`. Optional. If specified, must be `kv,cbas`, which is also the default.
 * `user` and `password`. The username and password for the node to be added. If the node has not yet been provisioned, placeholder username and password should be specified.
 * `uuid`. This path-parameter identifies the server group to which the node is to be assigned. To retrieve this prior to node-addition, use the procedure described in [Getting Server Group Information](rest-servergroup-get.md).
 
@@ -58,7 +56,7 @@ Success gives `200 OK`, and returns an object signifying that the nodes specifie
 
 ## [](#example)Example
 
-The following example assumes that the cluster has two groups, `Group 1` and `Group 2`. The `uuid` for `Group 2` has been returned as `246b5de857e100dbfd8b6dee0406420a`. The following request therefore adds a new node, `10.143.190.104` to the cluster, and assigns it to `Group 2`. The new node runs the Data and Analytics Services, which is the default.
+The following example assumes that the cluster has two groups, `Group 1` and `Group 2`. The `uuid` for `Group 2` has been returned as `246b5de857e100dbfd8b6dee0406420a`. The following request therefore adds a new node, `10.143.190.104` to the cluster, and assigns it to `Group 2`.
 
 curl -X POST -d hostname=10.143.190.104:8091 \
 -d user=Administrator -d password=password \

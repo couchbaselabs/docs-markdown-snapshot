@@ -1,7 +1,7 @@
 ---
 title: Join a Cluster and Rebalance
 description: An independent Operational Insights node can be joined to an existing cluster.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -100,7 +100,7 @@ curl -u Administrator:password -v -X POST \
 http://10.142.181.102:8091/node/controller/doJoinCluster \
 -d 'hostname=10.142.181.101&user=Administrator&password=password'
 
-The `hostname` and `user`(-name) and `password` of the Full Administrator for the cluster to be joined are specified. The service specified to be run on the new node is `kv`, signifying the Data Service.
+The `hostname` and `user`(-name) and `password` of the Full Administrator for the cluster to be joined are specified.
 
 At this point, the newly joined node must be rebalanced into the cluster. Use the `/controller/rebalance` URI, as follows:
 

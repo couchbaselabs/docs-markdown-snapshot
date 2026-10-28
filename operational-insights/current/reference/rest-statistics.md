@@ -2,7 +2,7 @@
 title: Statistics
 description: The REST API allows cluster statistics to be retrieved; either
   individually, or in bulk.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -21,7 +21,7 @@ antora:
 
 ## [](#apis-in-this-section)APIs in this Section
 
-Metrics are provided for the Data Service and the Analytics Service, and also for the Cluster Manager. All metrics can be queried by means of the REST API.
+Metrics are provided for the Analytics Service and for the Cluster Manager. All metrics can be queried by means of the REST API.
 
 For a complete list of available metrics that can be queried, see the [Metrics Reference](../metrics-reference/metrics-reference.md).
 

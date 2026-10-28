@@ -1,7 +1,7 @@
 ---
 title: Operational Insights Processes
 description: Operational Insights creates a number of different processes on each node.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -30,7 +30,7 @@ __Table 1\. Operational Insights Processes on Linux__
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------- |
 | goport (2 copies)        | Process that acts as a bridge between ns\_server (Erlang) and the other server components (cbas, prometheus) which are written in Go | /opt/couchbase/bin/                                       |
 | gosecrets                | Service that's used to encrypt the cluster configuration stored on disk                                                              | /opt/couchbase/bin/                                       |
-| memcached                | Data service providing cluster topology updates to legacy SDKs                                                                       | /opt/couchbase/bin/                                       |
+| memcached                | Provides cluster-topology updates to connectors based on legacy SDKs                                                                 | /opt/couchbase/bin/                                       |
 | godu (2 copies)          | Utility in Go to get disk usage stats                                                                                                | /opt/couchbase/bin/priv/                                  |
 | saslauthd-port           | Erlang port process (wrapper) used to talk to the saslauthd daemon for authentication purposes                                       | /opt/couchbase/bin/                                       |
 | beam.smp (3 copies)      | Couchbase Cluster Manager run as Erlang virtual machines - babysitter, ns\_server, and ns\_couchdb                                   | /opt/couchbase/lib/erlang/erts-14.2/bin/                  |

@@ -1,7 +1,7 @@
 ---
 title: cluster-init
 description: Initializes an Operational Insights cluster
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -24,16 +24,13 @@ _couchbase-cli cluster-init_ [--cluster <url>] [--cluster-username <username>] [
     [--client-cert <path>] [--client-cert-password <password>] [--client-key <path>]
     [--client-key-password <password>] [--cluster-port <port>]
     [--cluster-ramsize <mebibytes>] [--cluster-name <name>]
-    [--cluster-index-ramsize <mebibytes>] [--cluster-fts-ramsize <mebibytes>]
-    [--cluster-eventing-ramsize <mebibytes>]
-    [--cluster-analytics-ramsize <mebibytes>] [--cluster-query-ramsize <mebibytes>]
-    [--index-storage-setting <setting>] [--services <services>]
+    [--cluster-analytics-ramsize <mebibytes>]
     [--update-notifications <1|0>]
     [--ip-family <ipv4|ipv6|ipv4-only|ipv6-only>] [--node-to-node-encryption <on|off>]
 
 ## [](#description)DESCRIPTION
 
-Initializes the first node in an Operational Insights cluster. Before initializing a cluster you need to decide which services you will be running on this node as well as the memory quota for each service you are starting. Services started with cluster-init will be running on this server only. Future servers that are added to this cluster may be configured with different services running on them. NOTE: that the data service is always required on the first node. Memory quotas for each service are global settings and will apply to each node added to the cluster. The memory quota for a service only applies if that service is running on a given server. You may also define the index storage mode which will determine how the global secondary indexes (GSI) are stored.
+Initializes the first node in an Operational Insights cluster. Before you initialize the cluster, configure its object storage with the [setting-operational-insights](couchbase-cli-setting-operational-insights.md) command. If you have not configured the object storage, cluster-init fails. Memory quotas are global settings, and apply to each node added to the cluster.
 
 ## [](#options)OPTIONS
 
@@ -53,27 +50,11 @@ When starting a new cluster you need to create the Operational Insights built-in
 
 \--cluster-ramsize
 
-Specifies the data services memory quota (in MiB). This quota will be assigned to all future nodes added to the cluster with the data service.
-
-\--cluster-fts-ramsize
-
-Sets the full-text service memory quota (in MiB). This parameter is required if the full-text service is specified in the --services option. This quota will be assigned to all future nodes added to the cluster with the full-text service.
-
-\--cluster-index-ramsize
-
-Sets the index service memory quota (in MiB). This parameter is required if the index service is specified in the --services option. This quota will be assigned to all future nodes added to the cluster with the index service.
-
-\--cluster-eventing-ramsize
-
-Sets the Eventing service memory quota (in MiB). This parameter is required if the Eventing service is specified in the --services option. This quota will be assigned to all future nodes added to the cluster with the eventing service.
+Sets a memory quota (in MiB). Operational Insights fixes this quota at 100MiB, so always set it to 100.
 
 \--cluster-analytics-ramsize
 
-Sets the Analytics service memory quota (in MiB). This parameter is required if the Analytics service is specified in the --services option. This quota will be assigned to all future nodes added to the cluster with the analytics service.
-
-\--cluster-query-ramsize
-
-Sets the Query service memory quota (in MiB). This parameter is required if the Query service is specified in the --services option. This quota will be assigned to all future nodes added to the cluster with the query service.
+Sets the Analytics memory quota (in MiB). This quota is assigned to all future nodes added to the cluster.
 
 \--cluster-name
 
@@ -82,14 +63,6 @@ Sets the name for this cluster. Naming clusters is useful when you have multiple
 \--cluster-port
 
 Specifies the port for the Couchbase Administration Console. Defaults to port 8091.
-
-\--index-storage-setting
-
-Specifies the index storage mode for the index service. Accepted storage modes are "default" for the standard index backend or `memopt` for memory optimized indexes. If the index service is specified to be started with the --services command then this parameter defaults to "default". If the index service is not specified to be started then the index storage mode will not be set. You will then be required to set the index storage mode when the first index service is started on a server in the cluster. You may also define the index storage mode even if an index service is not started on the first node and it will be remembered when the first index service is added in the future. You may not change this parameter while there are index nodes in the cluster.
-
-\--services
-
-Specifies the services to start on this cluster. You may not change the services running on this node once the cluster has been initialized. This options takes a comma separated list of services. Accepted services are "data", "index", "query", "fts", "eventing", "analytics" and "backup" specified as a comma-separated list. This parameter defaults to "data".
 
 \--update-notifications
 
@@ -145,37 +118,21 @@ Currently, only the following key types are supported: - RSA - DSA
 
 ## [](#examples)EXAMPLES
 
-To create an Operational Insights cluster with only the data service on the first node and a memory quota of 4096MiB run the following command.
+To initialize an Operational Insights cluster with an Analytics memory quota of 4096MiB, run the following command.
 
 $ couchbase-cli cluster-init -c 127.0.0.1 --cluster-username Administrator \
- --cluster-password password --services data --cluster-ramsize 4096
+ --cluster-password password --cluster-ramsize 100 \
+ --cluster-analytics-ramsize 4096
 
-To create an Operational Insights cluster with the data and index service then you also need to set the memory quotas for each service as well as the index storage mode since you are starting the index service.
-
-To create a cluster with an index memory quota of 1024MiB, a data service memory quota of 2048MiB and a memory optimized index storage mode run the following command.
-
-$ couchbase-cli cluster-init -c 127.0.0.1 --cluster-username Administrator \
- --cluster-password password --services data,index --cluster-ramsize 2048 \
- --cluster-index-ramsize 1024 --index-storage-setting memopt
-
-To create an Operational Insights cluster with all services then you need to set the memory quotas for the Data, Index, Full-Text, Eventing and Analytics service. The quotas are set to 2048MiB, 1024MiB, 1024MiB, 1024MiB and 1024MiB respectively. A quota is not set for the query service since it does not have a memory quota. You also need to set the index storage mode for the index service, which will be set to "default" since the service is started on the first node.
+To set the port number, use the --cluster-port option. The following example sets up a cluster on port 5000.
 
 $ couchbase-cli cluster-init -c 127.0.0.1 --cluster-username Administrator \
- --cluster-password password --services data,index,query,fts,analytics \
- --cluster-ramsize 2048 --cluster-index-ramsize 1024 \
- --cluster-eventing-ramsize 1024 --cluster-fts-ramsize 1024 \
- --cluster-analytics-ramsize 1024 --cluster-fts-ramsize 1024 \
- --index-storage-setting default
-
-If you want to set the port number you can do so with the --cluster-port option. In the example below, a cluster is setup on port 5000 and starts only the data service. The memory quota of the data service is set to 2048MiB.
-
-$ couchbase-cli cluster-init -c 127.0.0.1 --cluster-username Administrator \
- --cluster-password password --services data --cluster-ramsize 2048 \
- --cluster-port 5000
+ --cluster-password password --cluster-ramsize 100 \
+ --cluster-analytics-ramsize 4096 --cluster-port 5000
 
 ## [](#discussion)DISCUSSION
 
-The cluster-init subcommand sets up the first node on a Couchbase cluster. To set per node settings such as the data storage directory, index storage directory, or hostname see the [node-init](couchbase-cli-node-init.md) command. To add nodes to a currently initialized cluster use the [server-add](couchbase-cli-server-add.md) command. Some cluster settings may be changed after a cluster is initialized. Use the [setting-cluster](couchbase-cli-setting-cluster.md) command to edit these settings.
+The cluster-init subcommand sets up the first node of an Operational Insights cluster. To set per-node settings such as the data storage directories or the hostname, see the [node-init](couchbase-cli-node-init.md) command. To add nodes to an initialized cluster, use the [server-add](couchbase-cli-server-add.md) command. Some cluster settings can be changed after a cluster is initialized. Use the [setting-cluster](couchbase-cli-setting-cluster.md) command to edit these settings.
 
 ## [](#environment-and-configuration-variables)ENVIRONMENT AND CONFIGURATION VARIABLES
 
@@ -205,7 +162,7 @@ The password for the key provided to the `CB_CLIENT_KEY` variable, when using th
 
 ## [](#see-also)SEE ALSO
 
-[cluster-edit](couchbase-cli-cluster-edit.md), [node-init](couchbase-cli-node-init.md), [server-add](couchbase-cli-server-add.md)
+[cluster-edit](couchbase-cli-cluster-edit.md), [setting-operational-insights](couchbase-cli-setting-operational-insights.md), [node-init](couchbase-cli-node-init.md), [server-add](couchbase-cli-server-add.md)
 
 ## [](#couchbase-cli)COUCHBASE-CLI
 

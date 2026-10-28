@@ -4,7 +4,7 @@ description: Alternate addresses and port-numbers can be established for and
   removed from nodes, by means of the <code>PUT</code> and <code>DELETE</code>
   HTTP methods, using the
   <code>/node/controller/setupAlternateAddresses/external</code> URI.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -46,7 +46,7 @@ The parameters are:
 
 * `localhost`. The address of the cluster-node to which an alternate address is to be assigned.
 * `hostname`. The alternate address to be assigned to the cluster-node. This can be either a _hostname_ or an _IP address_ (either V4 or V6).
-* `service`. Optionally, one or more service-names corresponding to services running on the node, each service-name being specified with an alternate port number. Possible service-names include `mgmt` (Cluster Manager), `kv` (Data Service), and `cbas` (Analytics Service). Each successive use of the `PUT` method entirely deletes all previous alternate settings (hostname and service) on the node. The `DELETE` method deletes all alternate settings (hostname and service).
+* `service`. Optionally, one or more service-names corresponding to services running on the node, each service-name being specified with an alternate port number. Possible service-names include `mgmt` (Cluster Manager), `kv` (the cluster-topology port used by connectors based on legacy SDKs), and `cbas` (Analytics Service). Each successive use of the `PUT` method entirely deletes all previous alternate settings (hostname and service) on the node. The `DELETE` method deletes all alternate settings (hostname and service).
 
 ## [](#responses)Responses
 
@@ -72,7 +72,7 @@ http://10.143.192.101:8091/node/controller/setupAlternateAddresses/external \
 -d kv=9000 \
 -d cbas=9050
 
-This assigns the alternate address `10.10.10.11` to node `10.143.192.101`, and the alternate port-numbers `9000` and `9050` to the Data and Analytics Services, respectively. No object is returned.
+This assigns the alternate address `10.10.10.11` to node `10.143.192.101`, and the alternate port-numbers `9000` and `9050` for `kv` and `cbas`, respectively. No object is returned.
 
 ### [](#list-alternate-addresses-and-port-numbers)List Alternate Addresses and Port Numbers
 
@@ -123,7 +123,7 @@ The output is as follows:
   ]
 }
 
-The output shows, in the internal `alternateAddresses` object, the specified alternate hostname, and the alternate port-numbers for the Data and Analytics Services.
+The output shows, in the internal `alternateAddresses` object, the specified alternate hostname, and the alternate port-numbers for `kv` and `cbas`.
 
 ### [](#remove-alternate-addresses-and-port-numbers)Remove Alternate Addresses and Port Numbers
 

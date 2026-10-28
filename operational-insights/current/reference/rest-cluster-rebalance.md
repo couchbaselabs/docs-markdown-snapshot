@@ -2,7 +2,7 @@
 title: Rebalancing the Cluster
 description: A cluster is rebalanced with the <code>POST
   /controller/rebalance</code> HTTP method and URI.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -113,11 +113,11 @@ Adding a node to a cluster is a two-step process.
 1. The `POST /controller/addNode` HTTP method and URI are used to add the node. A placeholder username and password can be specified, when adding an unprovisioned node.
 2. The `POST /controller/rebalance` HTTP method and URI are used to rebalance the added node into the cluster. Include the new node in the `knownNodes` node-list.
 
-For example, the following command adds node `10.143.190.103` to the cluster from which it was removed; the node is given the Data and Analytics Services:
+For example, the following command adds node `10.143.190.103` to the cluster from which it was removed:
 
 curl -u Administrator:password -X POST \
 http://10.143.190.101:8091/controller/addNode \
--d 'hostname=10.143.190.103&user=someName&password=somePassword&services=kv%2Ccbas'
+-d 'hostname=10.143.190.103&user=someName&password=somePassword'
 
 If successful, this returns the following object, indicating that the node is now recognized as a member of the cluster:
 

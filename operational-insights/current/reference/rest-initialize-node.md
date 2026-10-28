@@ -1,7 +1,7 @@
 ---
 title: Initializing a Node
 description: A node can be initialized, by means of the REST API.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -25,7 +25,7 @@ POST /nodes/self/controller/settings
 
 ## [](#description)Description
 
-Initializes a node, prior to its being provisioned as a one-node cluster. This means to establish local paths for on-disk storage required by the Data and Analytics Services. It establishes a local path for a JRE and is used by the Analytics Service. Once established, these paths continue to be used by the node subsequent to its provisioning with memory-allocations, administrator username and password, and other details. Indeed, these paths will continue to be used by the node even subsequent to the node's addition to another cluster.
+Initializes a node, prior to its being provisioned as a one-node cluster. This means to establish local paths for on-disk storage. It establishes a local path for a JRE and is used by the Analytics Service. Once established, these paths continue to be used by the node subsequent to its provisioning with memory-allocations, administrator username and password, and other details. Indeed, these paths will continue to be used by the node even subsequent to the node's addition to another cluster.
 
 If one or more paths are not specified (or if initialization with this interface is left entirely unperformed), defaults are provided when provisioning occurs.
 
@@ -55,7 +55,7 @@ An attempt to re-initialize after username and password have been established re
 
 ## [](#example)Example
 
-The following example establishes the paths for the Data and Analytics Services.
+The following example establishes the data and analytics paths.
 
 curl -X POST \
   http://10.142.181.103:8091/nodes/self/controller/settings \

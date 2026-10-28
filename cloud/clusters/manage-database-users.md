@@ -2,7 +2,7 @@
 title: Manage Cluster Access Credentials
 description: Cluster access credentials provide programmatic and
   application-level access to data on a cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Capella Operational
@@ -54,7 +54,7 @@ In the UI, the **Access Control** page lists all the cluster access credentials 
 
 To view the **Access Control** page in the UI:
 
-1. Open the **Cluster Access** page for your cluster:
+1. Open the **Access Control** page for your cluster:
 
   1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
 
@@ -62,7 +62,7 @@ To view the **Access Control** page in the UI:
     2. Click your current project name or search for a project and go to **Operational**.
     3. Expand the cluster breadcrumb and search for a cluster.
   2. Select the cluster where you want to make changes to your cluster access credentials.
-  3. Go to **Settings** **Cluster Access**.
+  3. Go to **Settings** **Access Control**.
 
 ## [](#create-database-credentials)Create Cluster Access Credentials
 
@@ -70,7 +70,7 @@ To create cluster access credentials with the Management REST API, see [Create D
 
 To create new cluster access credentials in the UI:
 
-1. Open the **Cluster Access** page for your cluster:
+1. Open the **Access Control** page for your cluster:
 
   1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
 
@@ -78,7 +78,7 @@ To create new cluster access credentials in the UI:
     2. Click your current project name or search for a project and go to **Operational**.
     3. Expand the cluster breadcrumb and search for a cluster.
   2. Select the cluster where you want to make changes to your cluster access credentials.
-  3. Go to **Settings** **Cluster Access**.
+  3. Go to **Settings** **Access Control**.
 2. Click **Create Access**.
 3. Specify the access name and password:  
 Cluster Access Name  
@@ -117,7 +117,7 @@ To edit cluster access credentials with the Management REST API, see [Update Dat
 
 To edit existing cluster access credentials in the UI:
 
-1. Open the **Cluster Access** page for your cluster:
+1. Open the **Access Control** page for your cluster:
 
   1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
 
@@ -125,7 +125,7 @@ To edit existing cluster access credentials in the UI:
     2. Click your current project name or search for a project and go to **Operational**.
     3. Expand the cluster breadcrumb and search for a cluster.
   2. Select the cluster where you want to make changes to your cluster access credentials.
-  3. Go to **Settings** **Cluster Access**.
+  3. Go to **Settings** **Access Control**.
 2. Click the cluster access credentials you're modifying.
 3. Edit the desired settings:
 
@@ -147,7 +147,7 @@ To delete cluster access credentials with the Management REST API, see [Delete D
 
 To delete existing cluster access credentials in the UI:
 
-1. Open the **Cluster Access** page for your cluster:
+1. Open the **Access Control** page for your cluster:
 
   1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
 
@@ -155,7 +155,7 @@ To delete existing cluster access credentials in the UI:
     2. Click your current project name or search for a project and go to **Operational**.
     3. Expand the cluster breadcrumb and search for a cluster.
   2. Select the cluster where you want to make changes to your cluster access credentials.
-  3. Go to **Settings** **Cluster Access**.
+  3. Go to **Settings** **Access Control**.
 2. At the end of the row for the cluster access credentials you want to delete, click the Trash icon .
 3. Confirm that you want to delete your cluster access credentials.
 4. Click **Delete Cluster Access**.
@@ -171,7 +171,7 @@ To create a cluster access role with the Management REST API, see [Create Databa
 
 To create a new access role in the UI:
 
-1. Open the **Cluster Access** page for your cluster:
+1. Open the **Access Control** page for your cluster:
 
   1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
 
@@ -179,7 +179,7 @@ To create a new access role in the UI:
     2. Click your current project name or search for a project and go to **Operational**.
     3. Expand the cluster breadcrumb and search for a cluster.
   2. Select the cluster where you want to make changes to your cluster access credentials.
-  3. Go to **Settings** **Cluster Access**.
+  3. Go to **Settings** **Access Control**.
 2. Click the **Roles** tab.
 3. Click **Create Role**.
 4. Enter a role name and optional description.
@@ -201,7 +201,7 @@ To edit a cluster access role with the Management REST API, see [Update Database
 
 To edit an access role in the UI:
 
-1. Open the **Cluster Access** page for your cluster:
+1. Open the **Access Control** page for your cluster:
 
   1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
 
@@ -209,7 +209,7 @@ To edit an access role in the UI:
     2. Click your current project name or search for a project and go to **Operational**.
     3. Expand the cluster breadcrumb and search for a cluster.
   2. Select the cluster where you want to make changes to your cluster access credentials.
-  3. Go to **Settings** **Cluster Access**.
+  3. Go to **Settings** **Access Control**.
 2. Click the **Roles** tab.
 3. Click the name of the role you want to edit.
 4. Click **\+ Add Privilege**.  
@@ -225,7 +225,7 @@ To delete a cluster access role with the Management REST API, see [Delete Databa
 
 To delete an access role in the UI:
 
-1. Open the **Cluster Access** page for your cluster:
+1. Open the **Access Control** page for your cluster:
 
   1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
 
@@ -233,7 +233,7 @@ To delete an access role in the UI:
     2. Click your current project name or search for a project and go to **Operational**.
     3. Expand the cluster breadcrumb and search for a cluster.
   2. Select the cluster where you want to make changes to your cluster access credentials.
-  3. Go to **Settings** **Cluster Access**.
+  3. Go to **Settings** **Access Control**.
 2. Click the **Roles** tab.
 3. At the end of the row for the access role you want to delete, click the Trash icon .
 4. Confirm that you want to delete the role and click **Delete Role**.

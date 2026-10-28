@@ -1,7 +1,7 @@
 ---
 title: Configuring Memory
 description: Use REST API to configure custom memory allocation per service.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -25,9 +25,9 @@ POST /pools/default
 
 ## [](#description)Description
 
-Allows a custom memory quota to be established for the Data and Analytics Services. If no custom quota was specified during configuration for 1 or more services, those services retain the default allocations.
+Sets custom memory quotas. If you did not specify a custom quota during configuration, the node keeps the default allocation.
 
-* `memoryQuota`: the quota for the Data Service (`kv`), in MiB. On Operational Insights this quota is fixed at 100 MiB: 100 is the only value accepted, and any other value is rejected.
+* `memoryQuota`: a memory quota, in MiB. On Operational Insights this quota is fixed at 100 MiB: 100 is the only value accepted, and any other value is rejected.
 * `cbasMemoryQuota`: the quota for the Analytics Service (`cbas`), in MiB. This is the quota that determines the memory available to Operational Insights. The minimum allowed value is 1024 MiB.
 
 ## [](#curl-syntax)Curl Syntax

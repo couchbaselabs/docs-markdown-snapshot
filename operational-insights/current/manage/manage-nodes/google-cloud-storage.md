@@ -2,7 +2,7 @@
 title: Configuring Google Cloud Storage (GCS)
 description: You can set up Couchbase Operational Insights to use Google Cloud
   Storage as its storage solution.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -46,7 +46,7 @@ To set up Operational Insights to use Google Cloud Storage from the UI:
 
 To configure Operational Insights to use a GCS bucket from the REST API:
 
-1. Set the Analytics blob configuration using the `/settings/operationalInsights` endpoint and the `POST` method:  
+1. Configure the object storage using the `/settings/operationalInsights` endpoint and the `POST` method:  
 ```none  
 curl --request POST \
   --url http://localhost:8091/settings/operationalInsights \
@@ -65,17 +65,15 @@ You must include the following `--data` parameters in your request:
 curl -X POST http://localhost:8091/clusterInit \
 -d 'username=$ADMIN_USERNAME' \
 -d 'password=$ADMIN_PASSWORD' \
--d 'services=kv,cbas' \
--d 'memoryQuota=$MEMORY_QUOTA' \
+-d 'memoryQuota=100' \
 -d 'cbasMemoryQuota=$CBAS_MEMORY_QUOTA' \
 -d 'port=SAME'  
 ```  
 You must include the following parameters as part of your request:
 
   * `username` and `password`: Credentials for the cluster administrator.
-  * `services`: The services to be configured (here, `kv` for Key-Value and `cbas` for Analytics).
-  * `memoryQuota`: Memory allocation for the Key-Value service (in MB). Recommended to set it to 100 MB.
-  * `cbasMemoryQuota`: Memory allocation for the Analytics Service (in MB).
+  * `memoryQuota`: A memory quota, in MiB. Operational Insights fixes this quota at 100 MiB, so always set it to `100`. If you omit it, the node uses a quota based on its total memory instead.
+  * `cbasMemoryQuota`: Memory allocation for the Analytics Service, in MiB.
   * `port`: Specifies the port configuration.
 
 ## [](#next-steps)Next Steps

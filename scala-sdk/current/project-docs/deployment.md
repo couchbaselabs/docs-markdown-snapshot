@@ -1,7 +1,7 @@
 ---
 title: Deployment
 description: Transition from dev environment to prod, and keep up with the latest fixes.
-pubDate: 2026-10-16T07:26:40.932Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Scala SDK
@@ -65,7 +65,7 @@ __Table 1\. Couchbase Server and SDK Supported Version Matrix__
 | **1** | As part of the standard SDK SQL++ API, it should be compatible with all earlier versions of the SDK — but it has not been tested. |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------- |
 
-Note, from 3.9.0 on, all Couchbase JVM SDKs have an aligned version number to make it easier for users to track changes. Thus the Scala SDK jumped from 1.8 to 3.9 as a minor version bump.\*
+Note, from 3.9.0 on, all Couchbase JVM SDKs have an aligned version number to make it easier for users to track changes. Thus the Scala SDK jumped from 1.8 to 3.9 as a minor version bump.
 
 ## [](#further-reading)Further Reading
 

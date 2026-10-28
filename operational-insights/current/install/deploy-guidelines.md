@@ -2,7 +2,7 @@
 title: Deployment Guidelines
 description: Before you install Operational Insights, follow the recommended
   deployment guidelines for setting up your production environment.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -40,5 +40,5 @@ To reduce the risk of disk failure affecting data integrity, use a disk configur
 Linux OS
 
 * When deploying Operational Insights on production Linux, you should use either the XFS or ext4 filesystem.  
-XFS is preferred because it provides more consistent latency, through fairer scheduling, when multiple IO streams are accessing the filesystem. For example, during Data Service compaction or when the working set exceeds the memory quota and the data is read from disk.
+XFS is preferred because it provides more consistent latency, through fairer scheduling, when multiple IO streams are accessing the filesystem.
 * The Operational Insights installer requires the ability to create a normal local Unix user with the name `couchbase`, if such a user does not already exist. This can be important if you're using a directory service for user management, such as LDAP.

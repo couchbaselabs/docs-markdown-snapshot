@@ -3,7 +3,7 @@ title: Create a Cluster
 description: A new Operational Insights node can be <em>provisioned</em>, to
   establish its Full Administrator credentials, its service-assignments, and its
   memory quotas. At this point, it becomes a <em>cluster</em> of one node.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -129,22 +129,22 @@ To continue building your cluster by means of node-addition, proceed to [Add a N
 
 ## [](#provision-a-node-with-the-cli)Provision a Node with the CLI
 
-To provision a node with the CLI, use the `cluster-init` command, as follows:
+To provision a node with the CLI, first configure the object storage with the [setting-operational-insights](../../cli/couchbase-cli-setting-operational-insights.md) command. Then use the `cluster-init` command, as follows:
 
 couchbase-cli cluster-init -c 10.142.181.101 \
 --cluster-username Administrator \
 --cluster-password password \
---data \
-----cluster-analytics-ramsize 1024\
+--cluster-ramsize 100 \
+--cluster-analytics-ramsize 1024
 
-This provisions node `10.142.181.101` with the Full Administrator username and password, and establishes three services. It also specifies the memory quota.
+This provisions node `10.142.181.101` with the Full Administrator username and password. It also specifies the memory quotas.
 
 If the node is successfully provisioned, it's thereby initialized as a cluster. The following output is displayed:
 
 SUCCESS: Cluster initialized
 
 > [!NOTE]
-> The IP-address family and the disk-paths for data, indexes, and analytics are, by this use of `cluster-init`, either left as the defaults, or as the values already specified by prior use of the `node-init` command: see [Initialize a Node with the CLI](initialize-node.md#initialize-a-node-with-the-cli).
+> The IP-address family and the disk-paths for data and analytics are, by this use of `cluster-init`, either left as the defaults, or as the values already specified by prior use of the `node-init` command: see [Initialize a Node with the CLI](initialize-node.md#initialize-a-node-with-the-cli).
 
 For more information about the `cluster-init` command, including additional flags that can be specified, see the command reference for [cluster-init](../../cli/couchbase-cli-cluster-init.md).
 
@@ -155,7 +155,7 @@ The following REST API examples set up a single-node Couchbase-Server cluster, a
 * `/pools/default`: Allows memory quotas to be specified.
 * `/settings/web`: Allows Full Administrator username and password to be specified. Requires the REST API port to be specified also, with `SAME` accepted as the default.
 
-Enter the following, to provision a node to establish quotas for Data Service and Index Service, and to establish Full Administrator credentials.
+Enter the following, to provision a node to establish the Analytics memory quota, and to establish Full Administrator credentials.
 
 curl  -v -X POST http://10.142.181.101:8091/pools/default \
 -d 'cbasMemoryQuota=1024'
@@ -168,7 +168,7 @@ The last command, which establishes credentials, completes provisioning. The fol
 
 {"newBaseUri":"http://10.142.181.101:8091/"}
 
-The provisioned node has thus been initialized as a cluster, and is available at the given IP address and port number. Note that the default disk-paths for data, indexes, and analytics will be used, since no custom paths were specified by means of `/nodes/self/controller/settings` (see [Initialize a Node with the REST API](initialize-node.md#initialize-a-node-with-the-rest-api).)
+The provisioned node has thus been initialized as a cluster, and is available at the given IP address and port number. Note that the default disk-paths for data and analytics will be used, since no custom paths were specified by means of `/nodes/self/controller/settings` (see [Initialize a Node with the REST API](initialize-node.md#initialize-a-node-with-the-rest-api).)
 
 ## [](#next-steps-after-provisioning)Next Steps
 

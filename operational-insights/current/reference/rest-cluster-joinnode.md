@@ -2,7 +2,7 @@
 title: Joining Nodes into Clusters
 description: Nodes can be added to clusters with the <code>POST
   /node/controller/doJoinCluster</code> HTTP method and URI.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -37,14 +37,11 @@ Curl request syntax:
 curl -u [admin]:[password] -d clusterMemberHostIp=[ip-address] \
   -d clusterMemberPort=[port] \
   -d user=[admin] -d password=[password]
-  -d services=kv,cbas
   http://[localhost]:8091/node/controller/doJoinCluster
 
 ## [](#description)Description
 
 This REST request adds an individual server node to a cluster. Two clusters cannot be merged together into a single cluster, however, a single node can be added to an existing cluster. The `clusterMemberHostIp` and `clusterMemberPort` parameters must be specified to add a node to a cluster.
-
-Every Operational Insights node runs exactly the Data Service (`kv`) and the Analytics Service (`cbas`), and the joining node is given both. The `services` parameter can therefore be omitted; if it is specified, its value must be `kv,cbas`, otherwise the request fails with an error of the form `Invalid services list. Expected [kv,cbas], got […​]`.
 
 To ensure cluster-security, in Operational Insights, restrictions can be placed on joining, based on the establishment of _node-naming conventions_. Only nodes whose names correspond to at least one of the stipulated conventions can be joined. For information, see [Restrict Node-Addition](rest-specify-node-addition-conventions.md).
 

@@ -2,7 +2,7 @@
 title: Adding Nodes to Clusters
 description: Nodes are added to clusters with the <code>POST
   /controller/addNode</code> HTTP method and URI.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -26,7 +26,7 @@ POST /controller/addNode
 
 ## [](#description)Description
 
-This adds a server node to the cluster. Every Operational Insights node runs exactly the Data Service (`kv`) and the Analytics Service (`cbas`), and the added node is given both. The `services` parameter can therefore be omitted; if it is specified, its value must be `kv,cbas`.
+This adds a server node to the cluster.
 
 Operational Insights provides heightened security for adding nodes to clusters: a node that is to be added must itself be provisioned with conformant certificates before addition can be successfully performed. The new node is now always added over an encrypted connection. See [Adding and Joining New Nodes](../manage/manage-security/configure-server-certificates.md#adding-new-nodes).
 
@@ -45,13 +45,12 @@ curl -u [admin]:[password]
   -d hostname=[IPaddress]
   -d user=[username]
   -d password=[password]
-  -d services=kv,cbas
 
 Note that the administrative username and password must be specified. If the new node has not yet been provisioned, placeholder names must be provided.
 
 ## [](#responses)Responses
 
-Success gives `200 OK`, and returns an object of the form `{"otpNode":"ns_1@ip-address-of-added-node"}`, to confirm that the node has been added. Specifying an unknown service gives `400 Bad Request`, and an object of the form `["Unknown services: [\"unknown-service-name\"]"]`. Specifying any list of services other than `kv,cbas` gives `400 Bad Request`, and an error of the form `Invalid services list. Expected [kv,cbas], got […​]`. If the node to be added has already been provisioned, and its administrative credentials are not properly specified, `400 Bad Request` is given, and an object is returned of the form `["Prepare join failed. Authentication failed. Verify username and password."]`
+Success gives `200 OK`, and returns an object of the form `{"otpNode":"ns_1@ip-address-of-added-node"}`, to confirm that the node has been added. If the node to be added has already been provisioned, and its administrative credentials are not properly specified, `400 Bad Request` is given, and an object is returned of the form `["Prepare join failed. Authentication failed. Verify username and password."]`
 
 If the IP address of the new node cannot be reached, `400 Bad Request` is given, and an object is returned of the form `["Failed to reach erlang port mapper at node \"ip-address-of-new-node\". Error: ehostunreach"]`. If the IP address of the host cluster is not accurately specified, or otherwise cannot be reached, the request times out, giving `Empty reply from server`. Failure to authenticate with the cluster gives `401 Unauthorized`.
 
@@ -61,14 +60,13 @@ When failure results from certificate checking (see [Certificates](../manage/man
 
 ## [](#example)Example
 
-The following example adds a server node, `10.143.190.103`, to the cluster at `10.143.190.101:8091`, establishing the Data and Analytics Services on the new node. The IP address for the new server and its administrative credentials are provided.
+The following example adds a server node, `10.143.190.103`, to the cluster at `10.143.190.101:8091`. The IP address for the new server and its administrative credentials are provided.
 
 curl -v -X POST -u Administrator:password \
 http://10.143.190.101:8091/controller/addNode \
 -d 'hostname=https://10.143.190.103' \
 -d 'user=Administrator' \
--d 'password=password' \
--d 'services=kv,cbas'
+-d 'password=password'
 
 If successful, Operational Insights responds as follows, identifying the node that has been added:
 

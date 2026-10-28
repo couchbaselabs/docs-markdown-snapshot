@@ -2,7 +2,7 @@
 title: Manage Server Groups
 description: Nodes can be assigned to server <em>groups</em>, in order to
   protect a cluster from large-scale infrastructure failure.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -290,12 +290,11 @@ Success gives `200 OK`, and returns an empty object.
 
 ### [](#assign-a-group-when-adding-a-server-with-the-rest-api)Assign a Group when Adding a Server, with the REST API
 
-A node can be added to the cluster and simultaneously added to an existing server group with the `POST /pools/default/serverGroups/<:uuid>/addNode` HTTP method and URI. Optionally, services can be added to the node. Following addition, rebalance is required. For full details, see [Adding Nodes to Groups](../../reference/rest-servergroup-post-add.md).
+A node can be added to the cluster and simultaneously added to an existing server group with the `POST /pools/default/serverGroups/<:uuid>/addNode` HTTP method and URI. Following addition, rebalance is required. For full details, see [Adding Nodes to Groups](../../reference/rest-servergroup-post-add.md).
 
-The following example assumes that the cluster has two groups, `Group 1` and `Group 2`. The `uuid` for `Group 2` has been returned as `246b5de857e100dbfd8b6dee0406420a`, by the procedure described in [Getting Server Group Information](../../reference/rest-servergroup-get.md). The following request therefore adds a new node, `10.143.190.104` to the cluster, and assigns it to `Group 2`. The Data and Index Services are deployed to the new node.
+The following example assumes that the cluster has two groups, `Group 1` and `Group 2`. The `uuid` for `Group 2` has been returned as `246b5de857e100dbfd8b6dee0406420a`, by the procedure described in [Getting Server Group Information](../../reference/rest-servergroup-get.md). The following request therefore adds a new node, `10.143.190.104` to the cluster, and assigns it to `Group 2`.
 
 curl -X POST -d hostname=10.143.190.104:8091 \
--d services=kv%2Cindex \
 -d user=Administrator -d password=password \
 -u Administrator:password \
 http://10.143.190.101:8091/pools/default/serverGroups/\

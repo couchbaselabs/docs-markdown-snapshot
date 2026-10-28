@@ -1,7 +1,7 @@
 ---
 title: node-init
 description: Initializes a node
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -71,7 +71,7 @@ The password for the key provided to the `--client-key` flag, when using this fl
 
 \--node-init-data-path
 
-The path to store data files create by the Couchbase data service. This path is also where view indexes are written on this server. This flag can only be specified against a node that is not yet part of a cluster.
+The path to store data files. This flag can only be specified against a node that is not yet part of a cluster.
 
 \--node-init-index-path
 

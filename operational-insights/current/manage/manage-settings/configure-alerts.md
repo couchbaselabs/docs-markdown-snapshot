@@ -1,7 +1,7 @@
 ---
 title: Alerts
 description: Email alerts can be dispatched automatically.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -93,7 +93,7 @@ The listed alerts are as follows.
 | Memory usage threshold exceeded                                                                         | System memory use as a percentage of total available memory has exceeded a threshold. NOTE A warning-level alert is issued when system memory, as a percentage of total available memory, exceeds the warning threshold (90% by default). A critical-level alert is issued when system memory exceeds the critical threshold (95% by default).                                                | memory\_threshold                          |
 | History size threshold exceeded                                                                         | The mutation history for a specified bucket is greater than an administrator-specified percentage of the administrator-specified change-history size, for a number of vBuckets. The size of the change history may need to be increased. For information, on establishing change-history size, see [Creating and Editing Buckets](../../../../server/current/rest-api/rest-bucket-create.md). | history\_size\_warning                     |
 | Low Indexer Residence Percentage                                                                        | Warns that the Index Service is, on a given node, occupying a percentage of available memory that is below an established threshold, the default for which is 10.                                                                                                                                                                                                                             | indexer\_low\_resident\_percentage         |
-| Memcached connection threshold exceeded.                                                                | Trigger an alert if the number of system or user connections used by the data service exceeds a configurable percentage of the available connections. For information about setting the memcached alert thresholds, see [Setting alerts](../../reference/rest-cluster-email-notifications.md#setting-memcache-alert-threshold).                                                               | memcached\_connections                     |
+| Memcached connection threshold exceeded.                                                                | Trigger an alert if the number of system or user connections in use exceeds a configurable percentage of the available connections. For information about setting the memcached alert thresholds, see [Setting alerts](../../reference/rest-cluster-email-notifications.md#setting-memcache-alert-threshold).                                                                                 | memcached\_connections                     |
 
 ## [](#configure-email-alerts-with-the-cli)Configure Email Alerts with the CLI
 

@@ -2,7 +2,7 @@
 title: Logging
 description: The <em>Logging</em> facility allows a record to be maintained of
   important events that occur on Operational Insights.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -286,8 +286,6 @@ The current settings are retrieved by using the `mcctl` cli to execute the `get 
 > These settings only apply to the nodes _where the changes are made._
 > 
 > You must implement the changes on each node to ensure they are applied across the cluster.
-> 
-> You must also configure the node to run the `data service`.
 
 Getting threshold details
 

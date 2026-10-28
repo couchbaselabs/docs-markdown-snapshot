@@ -1,7 +1,7 @@
 ---
 title: server-add
 description: Adds a server to the cluster
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -24,11 +24,10 @@ _couchbase-cli server-add_ [--cluster <url>] [--username <username>] [--password
     [--client-cert <path>] [--client-cert-password <password>] [--client-key <path>] [--client-key-password <password>]
     [--server-add <servers>] [--group-name <name>]
     [--server-add-username <username>] [--server-add-password <password>]
-    [--services <services>] [--index-storage-setting <mode>]
 
 ## [](#description)DESCRIPTION
 
-The server-add subcommand is used to add one or more servers to a cluster. Before adding a server it is important to decide which services the server will be running and whether or not the server should be a part of a specific group. Keep in mind that if the index service is being added on one of the servers and the cluster is not currently running the index service that you also need to set the index storage mode. This can be done with the --index-storage-setting option.
+The server-add subcommand adds 1 or more servers to a cluster, optionally as part of a specific group.
 
 > [!NOTE]
 > The server to be added can not be specified using the http scheme, since addition must occur over a secure connection.
@@ -85,14 +84,6 @@ Adding a server to the cluster can only be done by a user with the appropriate c
 
 The name of the group to add the server to. If this option is not specified then the server is added to the default group.
 
-\--services <services>
-
-A comma separated list of services that this server should be running. Accepted services are "data", "index", "query", "fts", "eventing", "analytics", "backup" and "manager-only". No other service can be used alongside the "manager-only" service because the server with this service specified will only act as a cluster manager and will not run any of the other functional services.
-
-\--index-storage-setting <mode>
-
-Specifies the index storage mode. This parameter must be set if the servers being added contain the index service and this is the first time the index service is being added in this cluster. You may specify "default" for disk based indexes or `memopt` for memory optimized indexes.
-
 ## [](#host-formats)HOST FORMATS
 
 When specifying a host for the couchbase-cli command the following formats are expected:
@@ -135,24 +126,21 @@ Currently, only the following key types are supported: - RSA - DSA
 
 ## [](#examples)EXAMPLES
 
-If we want to add a server at 192.168.1.6:8091 with the index, data and query service on it then we would run the command below.
+To add a server at 192.168.1.6, run the following command.
 
 $ couchbase-cli server-add -c 192.168.1.5:8091 --username Administrator \
  --password password --server-add https://192.168.1.6:18091 \
  --server-add-username Administrator --server-add-password password
- --services data,index,query
 
 > [!NOTE]
-> In the example above we set the username and password of the server being added to the same value as the username and password of the servers already in the cluster.
+> In the example above, the server you're adding uses the same username and password as the servers already in the cluster. Use these credentials if the server you're adding is not yet initialized. If it's already initialized, specify that server's own username and password.
 
-This is done if the server being added has not already been initialized. If the server being added has been initialized then you will need to specify an appropriate username and password for the server being added.
-
-Now lets add two server to the East group with data, index,and full-text services. In this example we will also assume that the index is being added for the first time so we need to specify the index storage mode. If we want to index storage mode to be memory optimized then we would run the following command.
+To add 2 servers to the East group, run the following command.
 
 $ couchbase-cli server-add -c 192.168.1.5:8091 --username Administrator \
  --password password --server-add https://192.168.1.6:18091,https://192.168.1.7:18091 \
- --server-username Administrator --server-password password
- --services data,fts --group-name --index-storage-setting memopt
+ --server-add-username Administrator --server-add-password password \
+ --group-name East
 
 ## [](#environment-and-configuration-variables)ENVIRONMENT AND CONFIGURATION VARIABLES
 

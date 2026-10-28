@@ -2,7 +2,7 @@
 title: Configure On-the-Wire Security
 description: Establish and retrieve cluster-wide settings for the use of
   encryption and cipher-suites.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -63,7 +63,7 @@ curl -X POST -u <username>:<password>
 
 The syntax for the `GET` and `POST` methods includes the following:
 
-* `service-name`. If provided, determines the service to which settings are either written with `POST`, or read with `GET`. The value of `service-name` can be any one of the following: `clusterManager` (Cluster Manager), `data` (Data Service), `analytics` (Analytics Service). On Operational Insights, the Data Service ports are used only for cluster-topology connectivity by [connectors based on legacy SDKs](../manage/manage-nodes/cluster-connectivity-topology-management.md#legacy-sdks), such as the Tableau, Power BI, and Apache Superset connectors; the `data` settings apply to the TLS connections on these ports. If no `service-name` is provided, _global_ settings are written or read.  
+* `service-name`. If provided, determines the service to which settings are either written with `POST`, or read with `GET`. The value of `service-name` can be any one of the following: `clusterManager` (Cluster Manager), `data`, `analytics` (Analytics Service). On Operational Insights, the `data` ports are used only for cluster-topology connectivity by [connectors based on legacy SDKs](../manage/manage-nodes/cluster-connectivity-topology-management.md#legacy-sdks), such as the Tableau, Power BI, and Apache Superset connectors; the `data` settings apply to the TLS connections on these ports. If no `service-name` is provided, _global_ settings are written or read.  
 When a `service-name` is provided, only `tlsMinVersion`, `honorCipherOrder`, and `cipherSuites` can be specified. A setting made for a service overrides the corresponding global setting, for that service only.
 * `disableUIOverHttp`. Whether access to Operational Insights Web Console should be disabled over http. Default is `false`, meaning that the console can be accessed over http. This parameter can only be set globally.
 * `disableUIOverHttps`. Whether access to Operational Insights Web Console should be disabled over https. Default is `false`, meaning that the console can be accessed over https. This parameter can only be set globally.
@@ -194,20 +194,20 @@ If the call is successful, and some explicit settings have been made by the admi
 
 The global values of `disableUIOverHttp`, `disableUIOverHttps`, `tlsMinVersion`, and `honorCipherOrder` are thus displayed. Note also that a global value for `cipherSuites` has also been established.
 
-The return object contains, in addition to global settings, a subdocument for each service. The truncated output shown here features values from the subdocument for the Data Service; which is shown to have its own values established for `cipherSuites`, `tlsMinVersion`, and `honorCipherOrder`. The read-only value for `supportedCipherSuites` for the service is also displayed. The response also contains subdocuments for services that do not run on Operational Insights; only the `clusterManager`, `data`, and `analytics` subdocuments apply.
+The return object contains, in addition to global settings, a subdocument for each service. The truncated output shown here features values from the `data` subdocument; which is shown to have its own values established for `cipherSuites`, `tlsMinVersion`, and `honorCipherOrder`. The read-only value for `supportedCipherSuites` for the service is also displayed. The response also contains subdocuments for services that do not run on Operational Insights; only the `clusterManager`, `data`, and `analytics` subdocuments apply.
 
 ### [](#establish-per-service-settings)Establish Per Service On-the-Wire Settings
 
-The following call establishes settings for `tlsMinVersion` and `cipherSuites`, for the Data Service only:
+The following call establishes settings for `tlsMinVersion` and `cipherSuites`, for `data` only:
 
 curl  -u Administrator:password -v -X POST \
 http://10.144.210.101:8091/settings/security/data \
 -d tlsMinVersion=tlsv1.3 \
 -d 'cipherSuites=["TLS_RSA_WITH_AES_128_CBC_SHA","TLS_RSA_WITH_AES_256_CBC_SHA","TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"]'
 
-Note that the `data` path-parameter has been added to the URI, as the value of `service-name`, in order to specify the Data Service. To configure the Analytics Service or the Cluster Manager instead, use `analytics` or `clusterManager`. If the call is successful, an empty array is returned.
+Note that the `data` path-parameter has been added to the URI, as the value of `service-name`, in order to specify the `data` settings. To configure the Analytics Service or the Cluster Manager instead, use `analytics` or `clusterManager`. If the call is successful, an empty array is returned.
 
-To verify the new settings for the Data Service, use the `GET` method, again adding `data` to the URI:
+To verify the new `data` settings, use the `GET` method, again adding `data` to the URI:
 
 curl  -u Administrator:password -v -X GET \
 http://10.144.210.101:8091/settings/security/data | jq '.'

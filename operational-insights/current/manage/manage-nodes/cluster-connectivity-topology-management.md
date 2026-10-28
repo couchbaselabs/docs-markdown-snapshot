@@ -1,7 +1,7 @@
 ---
 title: Cluster Addressing and Topology Management
 description: ""
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -325,7 +325,7 @@ Some connectors compatible with Operational Insights clusters are based on legac
 2. Power BI Connector
 3. Apache Superset Connector
 
-These connectors utilize legacy Couchbase SDKs which require the ability to directly connect to services (e.g., data service for cluster topology bootstrap and monitoring, and Operational Insights service to issue queries) on all cluster nodes. To configure access to an Operational Insights cluster, steps must be followed based on the addressing method selected for Operational Insights SDK access.
+These connectors use legacy Couchbase SDKs, which must connect directly to services on all cluster nodes for cluster-topology bootstrap and monitoring, and to issue queries. To configure access to an Operational Insights cluster, steps must be followed based on the addressing method selected for Operational Insights SDK access.
 
 ### [](#active-load-balancer-8)Active Load Balancer
 
@@ -345,7 +345,7 @@ The Layer-4 load balancer should be configured to forward TCP connections on the
 
 * `8091`/`18091` (Cluster management service, non-SSL/SSL)
 * `8095`/`18095` (Analytics service, non-SSL/SSL)
-* `11210`/`11207` (Data service, non-SSL/SSL)
+* `11210`/`11207` (Cluster topology, non-SSL/SSL)
 
 The legacy SDKs require the ability to contact all nodes in the Operational Insights cluster on the above ports.
 

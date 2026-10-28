@@ -3,7 +3,7 @@ title: Cluster Initialization and Provisioning
 description: The Couchbase REST API can be used to initialize an individual
   node; and to provision it, so that it becomes a single-node cluster, to which
   further nodes can then be added.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -27,16 +27,16 @@ Once a newly installed instance of Operational Insights has been started for the
 
 * _Initialize_. This means optionally to specify, for the current node, the following:
 
-  * Custom disk paths for the Data and Analytics services.
+  * Custom disk paths for data and analytics.
   * A custom location for the Java Runtime Environment to be used by the Analytics Service.
   * A node-name.
 * _Provision_. This means to establish, for the current node:
 
-  * The default disk paths for the Data and Analytics Services, in cases where custom disk paths have not been previously established through initialization.
+  * The default disk paths for data and analytics, in cases where custom disk paths have not been previously established through initialization.
   * The default location for the Java Runtime Environment to be used by the Analytics Service; in cases where no custom location has been previously established through initialization.
   * A node-name, in cases where no such name has been previously established through initialization.
   * A name for the entire cluster.
-  * The memory allocations for the Data and Analytics Services. Every node runs exactly these two services, so there are no services to choose.
+  * The memory allocations.
   * A username and password for the administrator creating the cluster — the administrator will have Full Admin credentials.  
   Once the username and password are established, the node is considered a fully provisioned single-node cluster, and the cluster's instance of Couchbase Web Console can be accessed by means of user login.  
   Following the establishment of username and password, the single-node cluster can no longer be initialized. If no memory allocations have been made prior to the username and password being assigned, the default memory allocations are used. See [Configuring Memory](rest-configure-memory.md).  

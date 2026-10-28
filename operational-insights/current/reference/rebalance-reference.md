@@ -3,7 +3,7 @@ title: Rebalance Reference
 description: Operational Insights creates a <em>report</em> for every rebalance
   that is performed. This section explains how to obtain the report, and how to
   read it.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -31,7 +31,7 @@ For more information about logging, see [Manage Logging](../manage/manage-loggin
 
 ## [](#reading-a-rebalance-report)Reading a Rebalance Report
 
-Each rebalance report consists of a JSON document whose principal object is `stage_info`. This itself contains an object corresponding to each rebalance _stage_: one stage has occurred for each of the services deployed on the cluster. For example, if you deploy both Data and Analytics Services, the rebalance occurs in two stages, and the report provides objects for `data` and `analytics`.
+Each rebalance report consists of a JSON document whose principal object is `stage_info`. This itself contains an object corresponding to each rebalance _stage_.
 
 Among the details provided for each service are the times at which rebalance-processes started and ended, the durations of rebalance-processes, and the numbers of documents already handled and still to be handled. When rebalance concludes successfully, a report is duly generated, with all fields corresponding to the successful completion of the rebalance-processes they represent. In cases where rebalance is interrupted (for example, by the user's left-clicking the **Stop Rebalance** button, in Couchbase Web Console, or due to auto-failover), a generated report will describe a partially unsuccessful rebalance; indicating, in certain fields, an incomplete or unstarted rebalance-process, by means of the value `false`.
 

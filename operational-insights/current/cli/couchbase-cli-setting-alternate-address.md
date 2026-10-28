@@ -1,7 +1,7 @@
 ---
 title: setting-alternate-address
 description: Modify alternate addresses
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -147,18 +147,18 @@ $ couchbase-cli setting-alternate-address -c 192.168.1.5:8091 --username Adminis
 All of the ports that can be configured:
 
 __Table 1\. Alternate Ports__
-| Port Name         | Encrypted Port Name | Service         | Description                                                                      |
-| ----------------- | ------------------- | --------------- | -------------------------------------------------------------------------------- |
-| mgmt              | mgmtSSL             | Cluster Manager | The UI and REST API for managing the Cluster                                     |
-| kv                | kvSSL               | Data            | Used by the SDKs to transfer data to and from the Data Service                   |
-| capi              | capiSSL             | View Engine     | Used by the SDKs                                                                 |
-| n1ql              | n1qlSSL             | Query           | Used by the SDKs to query data                                                   |
-| fts               | ftsSSL              | Search          | Used by the SDKs to do full text searches                                        |
-| cbas              | cbasSSL             | Analytics       | Used by the SDKs to query data managed by the Analytic service                   |
-| eventingAdminPort | eventingSSL         | Eventing        | Used by the SDK to transfer data to and from the Eventing Service                |
-| eventingDebug     | N/A                 | Eventing        | The Eventing debugger port, this should only be set in development environments. |
-| backupAPI         | backupAPIHTTPS      | Backup          | The backup service REST API.                                                     |
-| N/A               | backupGRPC          | Backup          | Used by backup nodes to communicate with each other.                             |
+| Port Name         | Encrypted Port Name | Service          | Description                                                                           |
+| ----------------- | ------------------- | ---------------- | ------------------------------------------------------------------------------------- |
+| mgmt              | mgmtSSL             | Cluster Manager  | The UI and REST API for managing the Cluster                                          |
+| kv                | kvSSL               | Cluster topology | Used by connectors based on legacy SDKs for cluster-topology bootstrap and monitoring |
+| capi              | capiSSL             | View Engine      | Used by the SDKs                                                                      |
+| n1ql              | n1qlSSL             | Query            | Used by the SDKs to query data                                                        |
+| fts               | ftsSSL              | Search           | Used by the SDKs to do full text searches                                             |
+| cbas              | cbasSSL             | Analytics        | Used by the SDKs to query data managed by the Analytic service                        |
+| eventingAdminPort | eventingSSL         | Eventing         | Used by the SDK to transfer data to and from the Eventing Service                     |
+| eventingDebug     | N/A                 | Eventing         | The Eventing debugger port, this should only be set in development environments.      |
+| backupAPI         | backupAPIHTTPS      | Backup           | The backup service REST API.                                                          |
+| N/A               | backupGRPC          | Backup           | Used by backup nodes to communicate with each other.                                  |
 
 ## [](#environment-and-configuration-variables)ENVIRONMENT AND CONFIGURATION VARIABLES
 

@@ -1,7 +1,7 @@
 ---
 title: cluster-edit
 description: Edits cluster settings
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -23,14 +23,13 @@ Edits cluster settings
 _couchbase-cli cluster-edit_ [--cluster <url>] [--cluster-username <username>] [--cluster-password <password>]
     [--client-cert <path>] [--client-cert-password <password>] [--client-key <path>]
     [--client-key-password <password>] [--cluster-port <port>]
-    [--cluster-ramsize <mebibytes>] [--cluster-name <name>]
-    [--cluster-index-ramsize <mebibytes>] [--cluster-fts-ramsize <mebibytes>]
+    [--cluster-name <name>]
 
 ## [](#description)DESCRIPTION
 
 DEPRECATED: Please use the [setting-cluster](couchbase-cli-setting-cluster.md) command which provides the same functionality as this command.
 
-This command is used to modify cluster level settings. It allows users to change the Operational Insights built-in administrator username and password, change the port that the cluster manager listens on, and modify the data, index, and full-text service memory quotas.
+This command is used to modify cluster level settings. It allows users to change the Operational Insights built-in administrator username and password, change the port that the cluster manager listens on, and change the cluster name.
 
 ## [](#options)OPTIONS
 
@@ -43,18 +42,6 @@ Specifies the new username for the Operational Insights administrator user.
 \--cluster-password
 
 Specifies the new password for the Operational Insights administrator user.
-
-\--cluster-ramsize
-
-Sets the data service memory quota (in MiB). This quota will be assigned to all future nodes added to the cluster with the data service.
-
-\--cluster-fts-ramsize
-
-Sets the full-text service memory quota (in MiB). This parameter is required if the full-text service is specified in the --services option. This quota will be assigned to all future nodes added to the cluster with the full-text service.
-
-\--cluster-index-ramsize
-
-Sets the index service memory quota (in MiB). This parameter is required if the index service is specified in the --services option. This quota will be assigned to all future nodes added to the cluster with the index service.
 
 \--cluster-name
 
@@ -117,17 +104,12 @@ To change the port number that the cluster manager listens on and the cluster na
 $ couchbase-cli cluster-edit -c 192.168.1.5:8091 --username Administrator \
  --password password --cluster-port 5000 --cluster-name new_name
 
-To change the memory quota of the data service to 2048MiB and the memory quota of the index service to 4096MiB run the following command.
-
-$ couchbase-cli cluster-edit -c 192.168.1.5:8091 --username Administrator \
- --password password --cluster-ramsize 2048 --cluster-index-ramsize 4096
-
-All of the parameters in this command can be specified at the same time. To change the username and password of the Operational Insights administrator user, change the port number to 5000, change the cluster name to "new\_name", change the memory quota of the data service to 2048MiB and change the memory quota of the index service to 4096MiB run the following command.
+All of the parameters in this command can be specified at the same time. To change the username and password of the Operational Insights administrator user, change the port number to 5000, and change the cluster name to "new\_name", run the following command.
 
 $ couchbase-cli cluster-edit -c 192.168.1.5:8091 --username current_user \
  --password current_password --cluster-username new_username \
  --cluster-password new_password --cluster-port 5000 \
- --cluster-name new_name --cluster-ramsize 2048 --cluster-index-ramsize 4096
+ --cluster-name new_name
 
 ## [](#environment-and-configuration-variables)ENVIRONMENT AND CONFIGURATION VARIABLES
 

@@ -3,7 +3,7 @@ title: Listing Node Services
 description: The services running on a specific node can be listed, with their
   respective port numbers, by means of the <code>GET
   /pools/default/nodeServices</code> method and URI.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -87,7 +87,7 @@ The displayed output is as follows:
 The output may include information about ports used by:
 
 * REST and HTTP-based management, including Couchbase Web Console (`8091` and `18091`).
-* The Data Service (`11210` and `11207`).
+* Cluster-topology connectivity for connectors based on legacy SDKs (`11210` and `11207`).
 * The Analytics Service (`8095` and `18095`).
 
 ## [](#see-also)See Also

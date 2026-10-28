@@ -3,7 +3,7 @@ title: Manage On-the-Wire Security
 description: To support secure communications between nodes, clusters, and
   clients, Operational Insights provides interfaces for the configuration of
   on-the-wire security settings.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-28T04:21:06.350Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -288,9 +288,9 @@ For information about setting an HTTP Secure Transport Header with the REST API,
 
 ### [](#configure-on-the-wire-security-per-service-with-the-rest-api)Configure On-the-Wire Security Per Service, with the REST API
 
-Using the REST API, the `tlsMinVersion`, `honorCipherOrder`, and `cipherSuites` parameters can be configured _per service_. This requires that the appropriate `service-name` be appended to the URI. The value of `service-name` can be any one of the following: `data` (Data Service), `fullTextSearch` (Search Service), `index` (Index Service), `eventing` (Eventing Service), `query` (Query Service), `analytics` (Analytics Service), `backup` (Backup Service), `clusterManager` (Cluster Manager).
+Using the REST API, the `tlsMinVersion`, `honorCipherOrder`, and `cipherSuites` parameters can be configured _per service_. This requires that the appropriate `service-name` be appended to the URI. The value of `service-name` can be any one of the following: `clusterManager` (Cluster Manager), `data`, or `analytics` (Analytics Service). The `data` settings apply to the TLS connections on the cluster-topology ports used by [connectors based on legacy SDKs](../manage-nodes/cluster-connectivity-topology-management.md#legacy-sdks).
 
-For example, the following call sets these parameters for the Data Service alone:
+For example, the following call sets these parameters for `data` alone:
 
 curl -u Administrator:password -v -X POST \
 http://10.144.210.101.:8091/settings/security/data \
@@ -303,7 +303,7 @@ If successful, the call returns an empty array. To check the current settings, u
 curl -u Administrator:password -v -X GET \
 http://10.144.210.101:8091/settings/security/data  | jq
 
-If successful, this call returns `200 OK`, and an object containing the current settings for the Data Service. For example:
+If successful, this call returns `200 OK`, and an object containing the current settings for `data`. For example:
 
 {
   "cipherSuites": [
