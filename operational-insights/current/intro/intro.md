@@ -3,7 +3,7 @@ title: About Operational Insights Enterprise
 description: Operational Insights Enterprise is a self-managed, JSON-native
   NoSQL analytical database that unifies data from diverse sources for complex
   analytical queries and timely insights.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-29T04:27:04.379Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -128,7 +128,7 @@ Operational Insights brings in data from operational databases, streaming platfo
 
 * [BI tools](../query/bi.md): Tableau, Power BI, and Apache Superset, through tabular views.
 
-For setup steps, see [Managing Links](../sources/manage-links.md).
+For setup steps, see [Manage Links](../sources/manage-links.md).
 
 ## [](#getting-started)Getting Started
 

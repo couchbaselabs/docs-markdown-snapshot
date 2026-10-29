@@ -1,7 +1,7 @@
 ---
-title: Managing Collections
+title: Manage Collections
 description: This page describes how to manage collections with the Workbench.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-29T04:27:04.379Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -15,7 +15,7 @@ antora:
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/operational-insights/current/sources/manage-collections.html)
 
-# Managing Collections
+# Manage Collections
 
 This page guides you how to create, delete, and view metadata for collections in Operational Insights, including best practices for managing column limits and data structure optimization.
 

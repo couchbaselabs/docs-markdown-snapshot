@@ -1,7 +1,7 @@
 ---
-title: Monitoring Queries
+title: Monitor Queries
 description: This page explains how to monitor queries in Operational Insights.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-29T04:27:04.379Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -15,7 +15,7 @@ antora:
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/operational-insights/current/sources/monitoring-queries.html)
 
-# Monitoring Queries
+# Monitor Queries
 
 The Monitor screen is a UI that allows you to monitor the current state of the Analytics Service.
 

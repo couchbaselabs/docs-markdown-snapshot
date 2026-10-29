@@ -2,7 +2,7 @@
 title: Query and Explore with the Workbench
 description: The workbench for Operational Insights provides a graphical user
   interface for query development and data exploration.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-29T04:27:04.379Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -37,7 +37,7 @@ Features of the workbench include:
 * Define query-specific settings, including a maximum time limit and positional parameters. See [Set Query Options](options.md).
 * Options for displaying query results in JSON or table format, for copying or downloading query results in JSON format. See [Work with Query Results](results.md).
 * Data visualization options for query results. See [Visualize Results in Charts](charts.md).
-* Monitoring of active, completed, and open requests. See [Monitoring Queries](../sources/monitoring-queries.md).
+* Monitoring of active, completed, and open requests. See [Monitor Queries](../sources/monitoring-queries.md).
 
 ## [](#accessing-the-workbench)Accessing the Workbench
 
@@ -46,7 +46,7 @@ To open the workbench, sign in to the Web Console and click **Workbench** in the
 The workbench has three tabs, across the top of the screen:
 
 * **Workbench**: query development and data exploration, described on this page.
-* **Monitor**: active, completed, and open requests, and service statistics. See [Monitoring Queries](../sources/monitoring-queries.md).
+* **Monitor**: active, completed, and open requests, and service statistics. See [Monitor Queries](../sources/monitoring-queries.md).
 * **Samples**: sample data to load. See [Load Sample Data](#samples).
 
 The **Workbench** tab has the following working panes:

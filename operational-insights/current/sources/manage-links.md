@@ -1,8 +1,8 @@
 ---
-title: Managing Links
+title: Manage Links
 description: This page describes how to manage remote links and external links
   using the Workbench.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-29T04:27:04.379Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -16,7 +16,7 @@ antora:
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/operational-insights/current/sources/manage-links.html)
 
-# Managing Links
+# Manage Links
 
 The Workbench enables you to create or edit remote links and external links:
 

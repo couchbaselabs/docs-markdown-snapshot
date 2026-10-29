@@ -1,6 +1,6 @@
 {
   "$id": "https://schemas.antora.org/site-manifest/1-0-0/draft-01",
-  "generated": "2026-10-28T04:29:32.441Z",
+  "generated": "2026-10-29T04:36:41.089Z",
   "url": "https://docs.couchbase.com",
   "components": {
     "agent-mem": {
@@ -42376,7 +42376,7 @@
               "module": "sources",
               "path": "manage-collections.adoc",
               "url": "/operational-insights/current/sources/manage-collections.md",
-              "title": "Managing Collections"
+              "title": "Manage Collections"
             },
             {
               "module": "sources",
@@ -42394,7 +42394,7 @@
               "module": "sources",
               "path": "manage-links.adoc",
               "url": "/operational-insights/current/sources/manage-links.md",
-              "title": "Managing Links"
+              "title": "Manage Links"
             },
             {
               "module": "sources",
@@ -42418,7 +42418,7 @@
               "module": "sources",
               "path": "monitoring-queries.adoc",
               "url": "/operational-insights/current/sources/monitoring-queries.md",
-              "title": "Monitoring Queries"
+              "title": "Monitor Queries"
             },
             {
               "module": "sources",
