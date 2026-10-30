@@ -3,7 +3,7 @@ title: Couchbase ODBC and JDBC Drivers
 description: The ODBC and JDBC drivers enable any application based on the
   ODBC/JDBC standards. For example, Microsoft Excel, QlikView, SAP Lumira, or
   Tableau, to connect to a Couchbase Server or cluster.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-30T04:21:18.959Z
 meta:
   component:
     title: Couchbase Server
@@ -22,4 +22,4 @@ The ODBC and JDBC drivers enable any application based on the ODBC/JDBC standard
 
 Couchbase ODBC and JDBC drivers are compliant with ODBC 3.8 and JDBC 4.0/4.1 standards, and compatible with ANSI SQL-92\. With the support for SQL++, these drivers empower both ODBC/JDBC and SQL++ applications to connect to Couchbase server. The drivers are available from our preferred and supported connectivity partner, CDATA (<http://www.cdata.com/drivers/>). For more information, refer to [the developer integrations page](https://www.couchbase.com/developers/integrations/?query=jdbc). For more information on downloading the drivers and complete documentation, refer to our [partner integrations page](../third-party/integrations.md#partner-integrations-with-couchbase).
 
-Capella Provisioned, Couchbase Analytics, and Couchbase Columnar offer native BI connectivity for several popular BI tools. For more information on how to use these tools, refer to [Business Intelligence Tools](#columnar:query:bi.adoc)
+Native BI connectivity for several popular BI tools is available in both self-managed and managed versions of Couchbase Server / Capella, and for Operational Insights. For more information on how to use these tools, refer to [Business Intelligence Tools](../../../operational-insights-cloud/query/bi.md).

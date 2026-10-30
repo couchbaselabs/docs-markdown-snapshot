@@ -1,6 +1,6 @@
 ---
 title: Create a Cluster
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-30T04:21:18.959Z
 meta:
   component:
     title: Couchbase Server
@@ -114,10 +114,11 @@ The display thus consists of a **banner** with interactive controls; a **main pa
 
 #### [](#establishing-arbiter-nodes)Establishing Arbiter Nodes
 
-In Couchbase Server 7.6 and later versions, you can deploy one or more arbiter nodes. An arbiter node does not run any services. An arbiter node helps your cluster in two ways:
+In Couchbase Server 7.6 and later versions, you can deploy one or more arbiter nodes. An arbiter node does not run any services. An arbiter node helps your cluster in three ways:
 
 * It provides [fast failover](../../learn/clusters-and-availability/nodes.md#fast-failover) which helps decrease the cluster's latency when reacting to a failover.
 * It provides [quorum arbitration](../../install/deployment-considerations-lt-3nodes.md#quorum-arbitration) that helps avoid contention issues if the nodes in the cluster become partitioned.
+* It lets you roll back an upgrade after you have upgraded all service-bearing nodes, as long as the arbiter node stays on the earlier version. See [Downgrade](../../install/upgrade.md#downgrade) for more information.
 
 However, the initial node in a cluster must always run at least the Data Service. You can add one or more arbiter nodes to the cluster after you create it.
 

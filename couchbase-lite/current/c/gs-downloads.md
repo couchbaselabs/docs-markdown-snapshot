@@ -1,7 +1,7 @@
 ---
 title: Download Links
 description: Download links for Couchbase Lite for C
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-30T04:21:18.959Z
 meta:
   component:
     title: Couchbase Lite
@@ -140,9 +140,9 @@ Please use the [Debian .deb download](#debian-4-1-0) choosing the appropriate ve
 
 ## [](#vs-release-2-0-0)Vector Search Release 2.0.0
 
-_Couchbase Lite Vector Search - C_ is available for all {supported-os—​xref}. You can obtain downloads for _Linux_ and _macOS_ from the links here in the downloads table. Ensure you select the correct package for your application's compiler and architecture.
+_Couchbase Lite Vector Search - C_ is available for all [Supported Platforms](supported-os.md). You can obtain downloads for _Linux_ and _macOS_ from the links here in the downloads table. Ensure you select the correct package for your application's compiler and architecture.
 
-Alternatively, check the [install](gs-install.md)page for instructions on how to get the software using a package manager.
+Alternatively, check the [install](gs-install.md) page for instructions on how to get the software using a package manager.
 
 Available platforms are:
 

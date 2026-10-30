@@ -1,6 +1,6 @@
 {
   "$id": "https://schemas.antora.org/site-manifest/1-0-0/draft-01",
-  "generated": "2026-10-29T04:36:41.089Z",
+  "generated": "2026-10-30T04:28:47.658Z",
   "url": "https://docs.couchbase.com",
   "components": {
     "agent-mem": {

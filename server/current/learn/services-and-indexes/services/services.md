@@ -4,7 +4,7 @@ description: Couchbase Server Services provide data access and maintenance. You
   can deploy services flexibly across available hardware to support
   Multi-Dimensional Scaling, which allows the tuning of the cluster for optimal
   performance as workloads change.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-30T04:21:18.959Z
 meta:
   component:
     title: Couchbase Server
@@ -25,10 +25,11 @@ Services in Couchbase Server are configured and deployed during initialization o
 
 Each service provides a specific type of data access. Couchbase recommends deploying only required services. To handle heavy workloads, you can deploy a service across multiple nodes in the cluster to improve performance and resource availability.
 
-In Couchbase Server 7.6 and later versions, you can add 1 or more arbiter nodes to your cluster. An arbiter node helps your cluster in two ways:
+In Couchbase Server 7.6 and later versions, you can add 1 or more arbiter nodes to your cluster. An arbiter node helps your cluster in three ways:
 
 * It provides [fast failover](../../clusters-and-availability/nodes.md#fast-failover) which helps decrease the cluster's latency when reacting to a failover.
 * It provides [quorum arbitration](../../../install/deployment-considerations-lt-3nodes.md#quorum-arbitration) that helps avoid contention issues if the nodes in the cluster become partitioned.
+* It lets you roll back an upgrade after you have upgraded all service-bearing nodes, as long as the arbiter node stays on the earlier version. See [Downgrade](../../../install/upgrade.md#downgrade) for more information.
 
 ## [](#services-and-multi-dimensional-scaling)Services and Multi-Dimensional Scaling
 

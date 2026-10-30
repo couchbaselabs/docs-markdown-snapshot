@@ -3,7 +3,7 @@ title: Nodes
 description: A Couchbase-Server <em>cluster</em> consists of one or more
   <em>nodes</em>, each of which is a system running an instance of Couchbase
   Server.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-30T04:21:18.959Z
 meta:
   component:
     title: Couchbase Server
@@ -83,10 +83,11 @@ When the routine for _adding_ nodes is used to increment a cluster with multiple
 
 In Couchbase Server 7.6 and later, you can deploy arbiter nodes. These nodes do not run any services. Remember that at least one node in the cluster must run the Data Service.
 
-An arbiter node helps your cluster in two ways:
+An arbiter node helps your cluster in three ways:
 
 * It provides [fast failover](#fast-failover) which helps decrease the cluster's latency when reacting to a failover.
 * It provides [quorum arbitration](../../install/deployment-considerations-lt-3nodes.md#quorum-arbitration) that helps avoid contention issues if the nodes in the cluster become partitioned.
+* It lets you roll back an upgrade after you have upgraded all service-bearing nodes, as long as the arbiter node stays on the earlier version. See [Downgrade](../../install/upgrade.md#downgrade) for more information.
 
 ## [](#rebalance-and-fail-over)Rebalance, Removal, Failover, and Recovery
 
