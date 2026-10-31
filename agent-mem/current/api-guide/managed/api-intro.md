@@ -3,7 +3,7 @@ title: Agent Memory APIs for Managed Deployments
 description: The Couchbase Capella Management API and the Agent Memory API are
   secure REST APIs that enable you to deploy Agent Memory servers and store and
   retrieve memory for your AI agents.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Couchbase Agent Memory
@@ -21,7 +21,7 @@ antora:
 
 > The Couchbase Capella Management API and the Agent Memory API are secure REST APIs that enable you to deploy Agent Memory servers and store and retrieve memory for your AI agents. 
 
-This page is for Agent Memory in Capella. It covers the Agent Memory features in the Management API, and the Agent Memory API. For more information about the Management API for Capella Operational features, see [Manage Deployments with the Capella Operational Management API](../../../../cloud/management-api-guide/management-api-intro.md).
+This page covers all changes for the Agent Memory API and the Couchbase Capella Management API. The Management API includes features for [Capella Operational](../../../../cloud/management-api-guide/management-api-intro.md), [Capella App Services](../../../../app-services/management-api-guide/management-api-intro.md), [Operational Insights Capella](../../../../operational-insights-cloud/management-api-guide/management-api-intro.md), and [AI Data Plane](../../../../ai/api-guide/api-intro.md).
 
 For Agent Memory in Capella, you can use REST APIs to deploy Agent Memory servers and store and retrieve memory. This includes:
 

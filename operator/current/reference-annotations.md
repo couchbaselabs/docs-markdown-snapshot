@@ -1,6 +1,6 @@
 ---
 title: Annotation Documentation
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Kubernetes Operator
@@ -29,13 +29,13 @@ Used to configure the default storage backend for managed CouchbaseBucket. Chang
 
 #### [](#cao-couchbase-combuckets-targetunmanagedbucketstoragebackend)`cao.couchbase.com/buckets.targetUnmanagedBucketStorageBackend`
 
-Used to force a storage backend on all buckets in a Couchbase Cluster. This configuration only takes action if bucket management is disabled When configured the Couchbase Operator will attempt to force all buckets in a cluster to a particular storage backend. This config is only used with Couchbase Server 7.6.0\. Accepts either `couchstore` or `magma`.
+Used to force a storage backend on all buckets in a Couchbase Cluster. This configuration only takes action if bucket management is disabled. When configured the Couchbase Operator will attempt to force all buckets in a cluster to a particular storage backend. The storage backend setting of each bucket is updated on the next reconcile, even if `cao.couchbase.com/buckets.enableBucketMigrationRoutines` is not set to "true". However, the existing data is only rebuilt using the new backend once each node is swap-rebalanced or fully recovered, which the Operator only does when `cao.couchbase.com/buckets.enableBucketMigrationRoutines` is set to "true". This config is only used with Couchbase Server 7.6.0+. Accepts either `couchstore` or `magma`.
 
 ### [](#bucket-migrations)Bucket Migrations
 
 #### [](#cao-couchbase-combuckets-enablebucketmigrationroutines)`cao.couchbase.com/buckets.enableBucketMigrationRoutines`
 
-By default, bucket storage backend migrations are not enabled as they will result in a swap-rebalance of every effected couchbase node. This means changing the bucket storage backend will be prevented unless this annotation is set to "true". Accepts either `true` or `false`.
+By default, bucket migration routines are not enabled as they will result in a swap-rebalance of every affected Couchbase node. This annotation only controls whether the Operator cycles nodes to complete a migration. It does not prevent the bucket storage backend from being changed. When this annotation is not set to "true", a storage backend change is still applied to the bucket and the Dynamic Admission Controller returns a warning. Each node keeps its existing backend for that bucket until it is swap-rebalanced or fully recovered. Accepts either `true` or `false`.
 
 #### [](#cao-couchbase-combuckets-maxconcurrentpodswaps)`cao.couchbase.com/buckets.maxConcurrentPodSwaps`
 

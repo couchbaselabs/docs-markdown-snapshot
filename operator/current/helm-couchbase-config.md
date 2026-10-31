@@ -1,6 +1,6 @@
 ---
 title: Couchbase Helm Chart Specification
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Kubernetes Operator
@@ -684,7 +684,7 @@ syncGateway:
   exposeServiceType: ClusterIP
   image:
     repository: couchbase/sync-gateway
-    tag: 2.8.3-enterprise
+    tag: 4.1.2-enterprise
   imagePullPolicy: IfNotPresent
   configSecret:
 ```
@@ -738,7 +738,7 @@ couchbaseOperator:
   name: "couchbase-operator"
   image:
     repository: couchbase/operator
-    tag: 2.9.0
+    tag: 2.9.4
   imagePullPolicy: IfNotPresent
   imagePullSecrets: []
   commandArgs:
@@ -765,7 +765,7 @@ admissionController:
   name: "couchbase-admission-controller"
   image:
     repository: couchbase/admission-controller
-    tag: 2.8.1
+    tag: 2.9.4
   imagePullPolicy: IfNotPresent
   imagePullSecrets: []
   verboseLogging: true
@@ -786,7 +786,7 @@ This field specifies the name of the admission controller deployment.
 ```yaml
   image:
     repository: couchbase/admission-controller
-    tag: 2.8.1
+    tag: 2.9.4
 ```
 
 The repository and tag to use for pulling the admission controller image.

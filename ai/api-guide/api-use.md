@@ -1,7 +1,7 @@
 ---
 title: Make an API Call with the Couchbase AI Data Plane APIs
 description: How to make an API call with the Couchbase AI Data Plane APIs.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Couchbase AI Data Plane
@@ -19,7 +19,7 @@ antora:
 
 > How to make an API call with the Couchbase AI Data Plane APIs. 
 
-This page is for the Couchbase AI Data Plane. It covers the AI Data Plane features in the Management API, and the Model Service API. For more information about the Management API for Capella Operational features, see [Make an API Call with the Capella Operational Management API](../../cloud/management-api-guide/management-api-use.md).
+This page covers all changes for the Model Service API and the Couchbase Capella Management API. The Management API includes features for [Capella Operational](../../cloud/management-api-guide/management-api-intro.md), [Capella App Services](../../app-services/management-api-guide/management-api-intro.md), [Operational Insights Capella](../../operational-insights-cloud/management-api-guide/management-api-intro.md), and [AI Data Plane](api-intro.md).
 
 the AI Data Plane has different APIs that you can use. You can:
 

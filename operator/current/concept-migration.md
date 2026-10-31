@@ -1,6 +1,6 @@
 ---
 title: Couchbase Cluster Migration
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Kubernetes Operator
@@ -173,8 +173,6 @@ spec:
       services:
         - data
 ```
-
-To migrate an existing cluster a Couchbase Cluster spec describing the state of the existing cluster needs to be created. This spec should contain the configuration of the existing cluster, most importantly the nodes that make up the existing cluster and the services they run. The Operator will then recreate each of these nodes in Kubernetes and swap-rebalance them into the cluster whilst simultaneously removing their counterparts in the source cluster.
 
 ## [](#limitations)Limitations
 

@@ -1,6 +1,6 @@
 ---
 title: Helm Deployment
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Kubernetes Operator
@@ -74,17 +74,17 @@ oc create secret docker-registry rh-catalog \
 couchbaseOperator:  
   image:  
     repository: registry.connect.redhat.com/couchbase/operator  
-    tag: 2.9.0  
+    tag: 2.9.4  
   imagePullSecrets:
   - rh-catalog  
 admissionController:  
   image:  
     repository: registry.connect.redhat.com/couchbase/admission-controller  
-    tag: 2.8.1  
+    tag: 2.9.4  
   imagePullSecrets:
   - rh-catalog  
 cluster:  
-   image: registry.connect.redhat.com/couchbase/server:7.6.6-1  
+   image: registry.connect.redhat.com/couchbase/server:8.0.2-27  
 ```
 3. Install the chart using the custom override values:  
 ```console  

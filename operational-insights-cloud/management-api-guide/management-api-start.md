@@ -3,7 +3,7 @@ title: Get Started with the Operational Insights Management API
 description: To get started with the Operational Insights Management API, you
   must create an API key. An API key authenticates and authorizes you to access
   the Operational Insights Management API.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Operational Insights Capella
@@ -21,7 +21,7 @@ antora:
 
 > To get started with the Operational Insights Management API, you must create an API key. An API key authenticates and authorizes you to access the Operational Insights Management API. 
 
-This page is for Operational Insights. For Capella operational, see [Get Started with the Capella Operational Management API](../../cloud/management-api-guide/management-api-start.md).
+This page covers all changes for the Management API. The Management API includes features for [Capella Operational](../../cloud/management-api-guide/management-api-intro.md), [Capella App Services](../../app-services/management-api-guide/management-api-intro.md), [Operational Insights Capella](management-api-intro.md), and [AI Data Plane](../../ai/api-guide/api-intro.md).
 
 This page describes how to create and manage API keys for the Management API only.
 

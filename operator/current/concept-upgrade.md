@@ -1,6 +1,6 @@
 ---
 title: Couchbase Upgrades
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Kubernetes Operator
@@ -64,7 +64,7 @@ The upgrade example explanation is as follows:
 
 To upgrade a cluster, modify the CouchbaseCluster manifest by setting the `spec.image` field to the Couchbase Server version you want.
 
-For example, if you are upgrading Couchbase Server version from 7.6.7 to 8.0.0, then update the manifest resource as follows:
+For example, if you are upgrading Couchbase Server version from 7.6.7 to 8.0.2, then update the manifest resource as follows:
 
 ```yaml
 ---
@@ -73,7 +73,7 @@ kind: CouchbaseCluster
 metadata:
   name: my-couchbase-cluster
 spec:
-  image: couchbase/server:8.0.0
+  image: couchbase/server:8.0.2
 ---
 ```
 
@@ -90,7 +90,7 @@ The Operator supports rolling back an upgrade that's in progress. You can perfor
 
 #### [](#how-to-rollback-a-cluster)How to Rollback a Cluster
 
-To initiate a rollback, modify the CouchbaseCluster manifest by setting the `spec.image` field to the Couchbase Server version that was running before the upgrade started. For example, you were upgrading Couchbase Server version from 7.6.7 to 8.0.0, and encountered issues. If these issues require rollback, update the `spec.image` field to change the version back to 7.6.7 in the manifest as follows:
+To initiate a rollback, modify the CouchbaseCluster manifest by setting the `spec.image` field to the Couchbase Server version that was running before the upgrade started. For example, you were upgrading Couchbase Server version from 7.6.7 to 8.0.2, and encountered issues. If these issues require rollback, update the `spec.image` field to change the version back to 7.6.7 in the manifest as follows:
 
 ```yaml
 ---

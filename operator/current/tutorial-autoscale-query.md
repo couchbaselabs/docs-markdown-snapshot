@@ -1,6 +1,6 @@
 ---
 title: Auto-scaling the Couchbase Query Service
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Kubernetes Operator
@@ -299,7 +299,7 @@ spec:
     spec:
       containers:
       - name: travel-sample
-        image: couchbase/server:7.2.3
+        image: couchbase/server:8.0.2
         command: ["/opt/couchbase/bin/cbdocloader",
                   "-c", "scale-couchbase-cluster-0000.default.svc",
                   "-u", "developer", "-p", "password",

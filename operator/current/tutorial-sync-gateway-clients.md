@@ -1,6 +1,6 @@
 ---
 title: Exposing Sync Gateway to Couchbase Lite Clients
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Kubernetes Operator
@@ -184,7 +184,8 @@ stringData:
       },
       "databases": {
         "cb-example": {
-          "server": "couchbase://cb-example",
+          "server": "couchbases://cb-example",
+          "cacertpath": "/etc/sync_gateway/ca.pem",
           "bucket": "default",
           "username": "Administrator",
           "password": "password",
@@ -238,7 +239,7 @@ spec:
     spec:
       containers:
       - name: sync-gateway
-        image: couchbase/sync-gateway:2.7.0-enterprise
+        image: couchbase/sync-gateway:4.1.2-enterprise
         volumeMounts:
         - name: config
           mountPath: /etc/sync_gateway

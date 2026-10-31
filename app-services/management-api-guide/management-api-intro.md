@@ -2,7 +2,7 @@
 title: Manage Deployments with the Capella App Services Management API
 description: The Capella App Services Management API is a secure REST API that
   enables you to configure and manage your Capella App Services clusters.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Capella App Services
@@ -20,7 +20,7 @@ antora:
 
 > The Capella App Services Management API is a secure REST API that enables you to configure and manage your Capella App Services clusters. 
 
-This page is for Capella App Services. For Capella operational, see [Manage Deployments with the Capella Operational Management API](../../cloud/management-api-guide/management-api-intro.md).
+This page covers all changes for the Management API. The Management API includes features for [Capella Operational](../../cloud/management-api-guide/management-api-intro.md), [Capella App Services](management-api-intro.md), [Operational Insights Capella](../../operational-insights-cloud/management-api-guide/management-api-intro.md), and [AI Data Plane](../../ai/api-guide/api-intro.md).
 
 Clients do not need any special tools, SDKs, or libraries to access the Management API. The Management API supports off-the-shelf HTTP clients, such as [Insomnia](https://insomnia.rest) or [Postman](https://www.postman.com).
 

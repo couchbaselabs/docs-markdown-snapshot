@@ -1,6 +1,6 @@
 ---
 title: Configure Automated Backup and Restore
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Kubernetes Operator
@@ -38,13 +38,13 @@ kind: CouchbaseCluster
 spec:
   backup:
     managed: true (1)
-    image: couchbase/operator-backup:1.4.2 (2)
+    image: couchbase/operator-backup:1.6.0 (2)
     serviceAccountName: couchbase-backup (3)
 ```
 
 | **1** | The only required field to enable automated backup is [couchbaseclusters.spec.backup.managed](resource/couchbasecluster.md#couchbaseclusters-spec-backup-managed).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **2** | If the [couchbaseclusters.spec.backup.image](resource/couchbasecluster.md#couchbaseclusters-spec-backup-image) field is left unspecified, then it will be automatically populated with the most recent container image that was available when the installed version of the Kubernetes Operator was released. The default image for open source Kubernetes comes from [Docker Hub](https://hub.docker.com/r/couchbase/operator-backup), and the default image for OpenShift comes from the [Red Hat Container Catalog](https://access.redhat.com/containers/#/vendor/couchbase). When running on Red Hat OpenShift, you will want to modify this to use the Red Hat Container Catalog image. The image will be something similar to registry.connect.redhat.com/couchbase/operator-backup:1.4.2 (you can refer to the catalog for the most recent images). If image pull secrets are required to access the image, they can be set explicitly with the [couchbaseclusters.spec.backup.imagePullSecrets](resource/couchbasecluster.md#couchbaseclusters-spec-backup-imagepullsecrets) field or implicitly with a service account specified with the [couchbaseclusters.spec.backup.serviceAccountName](resource/couchbasecluster.md#couchbaseclusters-spec-backup-serviceaccountname) field. |
+| **2** | If the [couchbaseclusters.spec.backup.image](resource/couchbasecluster.md#couchbaseclusters-spec-backup-image) field is left unspecified, then it will be automatically populated with the most recent container image that was available when the installed version of the Kubernetes Operator was released. The default image for open source Kubernetes comes from [Docker Hub](https://hub.docker.com/r/couchbase/operator-backup), and the default image for OpenShift comes from the [Red Hat Container Catalog](https://access.redhat.com/containers/#/vendor/couchbase). When running on Red Hat OpenShift, you will want to modify this to use the Red Hat Container Catalog image. The image will be something similar to registry.connect.redhat.com/couchbase/operator-backup:1.6.0 (you can refer to the catalog for the most recent images). If image pull secrets are required to access the image, they can be set explicitly with the [couchbaseclusters.spec.backup.imagePullSecrets](resource/couchbasecluster.md#couchbaseclusters-spec-backup-imagepullsecrets) field or implicitly with a service account specified with the [couchbaseclusters.spec.backup.serviceAccountName](resource/couchbasecluster.md#couchbaseclusters-spec-backup-serviceaccountname) field. |
 | **3** | If left unspecified, [couchbaseclusters.spec.backup.serviceAccountName](resource/couchbasecluster.md#couchbaseclusters-spec-backup-serviceaccountname) will default to the value of couchbase-backup. These Kubernetes resources **must** exist, otherwise backup jobs will not have the required permissions to complete successfully. This will be covered in the next [section](#grant-backup-permissions).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 
 ### [](#grant-backup-permissions)Grant Backup Permissions
@@ -493,7 +493,7 @@ spec:
     spec:
       containers:
         - name: couchbase-cluster-backup-create
-          image: couchbase/operator-backup:1.4.2
+          image: couchbase/operator-backup:1.6.0
           command: ["sleep"]
           args: ["30000"] (1)
           volumeMounts:
@@ -526,7 +526,7 @@ kind: CouchbaseCluster
 spec:
   backup:
     managed: true
-    image: couchbase/operator-backup:1.4.2
+    image: couchbase/operator-backup:1.6.0
     serviceAccountName: couchbase-backup
     nodeSelector:
       instanceType: large (1)

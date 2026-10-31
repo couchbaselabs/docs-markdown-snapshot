@@ -3,7 +3,7 @@ title: Manage Deployments with the Capella Operational Management API
 description: The Couchbase Capella Operational Management API is a secure REST
   API that enables you to provision, deploy, and configure Capella deployments
   across all supported cloud service providers.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Capella Operational
@@ -21,7 +21,7 @@ antora:
 
 > The Couchbase Capella Operational Management API is a secure REST API that enables you to provision, deploy, and configure Capella deployments across all supported cloud service providers. 
 
-This page is for Capella operational. For the Couchbase AI Data Plane, see [Manage Deployments with the Couchbase AI Data Plane APIs](../../ai/api-guide/api-intro.md). For Operational Insights, see [Manage Deployments with the Operational Insights Management API](../../operational-insights-cloud/management-api-guide/management-api-intro.md).
+This page covers all changes for the Management API. The Management API includes features for [Capella Operational](management-api-intro.md), [Capella App Services](../../app-services/management-api-guide/management-api-intro.md), [Operational Insights Capella](../../operational-insights-cloud/management-api-guide/management-api-intro.md), and [AI Data Plane](../../ai/api-guide/api-intro.md).
 
 Clients do not need any special tools, SDKs, or libraries to access the Management API. The Management API supports off-the-shelf HTTP clients, such as [Insomnia](https://insomnia.rest) or [Postman](https://www.postman.com).
 

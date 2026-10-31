@@ -1,6 +1,6 @@
 ---
 title: Create a Couchbase Deployment
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Kubernetes Operator
@@ -56,7 +56,7 @@ kind: CouchbaseCluster
 metadata:
   name: cb-example  (2)
 spec:
-  image: couchbase/server:7.6.6  (3)
+  image: couchbase/server:8.0.2  (3)
   security:
     adminSecret: cb-example-auth
   networking:
@@ -82,7 +82,7 @@ By taking a quick look at this configuration file, you can see that it defines a
 | **1** | Buckets: 1 bucket named default                     |
 | ----- | --------------------------------------------------- |
 | **2** | Cluster name: cb-example                            |
-| **3** | Couchbase image: couchbase/server:7.6.6             |
+| **3** | Couchbase image: couchbase/server:8.0.2             |
 | **4** | Size: 3-node cluster with all services on each node |
 
 You can use this example `CouchbaseCluster` configuration file "as-is" to test out how the Operator deploys a Couchbase Server cluster. However, to deploy a Couchbase cluster that is more specifically tailored to your development and production needs, you need to create your own custom configuration file that conforms to the `CouchbaseCluster` specification.

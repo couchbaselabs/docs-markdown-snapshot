@@ -1,6 +1,6 @@
 ---
 title: <code>CouchbaseCluster</code> Reference Architecture
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Kubernetes Operator
@@ -216,7 +216,7 @@ kind: CouchbaseCluster
 metadata:
   name: cluster1
 spec:
-  image: couchbase/server:7.6.6
+  image: couchbase/server:8.0.2
   # Always enable anti-affinity to limit the "blast radius", and also ensure that any
   # assumptions about data replication hold i.e. a Kubernetes node going down will only
   # affect at most one pod.

@@ -1,6 +1,6 @@
 ---
 title: Helm Management Guide
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Kubernetes Operator
@@ -108,10 +108,10 @@ To upgrade a Couchbase cluster without upgrading the chart
 helm upgrade --set cluster.image=<image> <release-name> couchbase/couchbase-operator
 ```
 
-Where `<image>` is the name of the container image. For example, to upgrade a cluster to Couchbase Server 7.6.6:
+Where `<image>` is the name of the container image. For example, to upgrade a cluster to Couchbase Server 8.0.2:
 
 ```console
-helm upgrade --set cluster.image=couchbase/server:7.6.6 <release-name> couchbase/couchbase-operator
+helm upgrade --set cluster.image=couchbase/server:8.0.2 <release-name> couchbase/couchbase-operator
 ```
 
 ## [](#delete-deployment)Delete a Deployment

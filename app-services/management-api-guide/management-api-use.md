@@ -1,7 +1,7 @@
 ---
 title: Make an API Call with the Capella App Services Management API
 description: How to make an API call with the Capella App Services Management API.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Capella App Services
@@ -19,7 +19,7 @@ antora:
 
 > How to make an API call with the Capella App Services Management API. 
 
-This page is for Capella App Services. For Capella Operational, see [Make an API Call with the Capella Operational Management API](../../cloud/management-api-guide/management-api-use.md).
+This page covers all changes for the Management API. The Management API includes features for [Capella Operational](../../cloud/management-api-guide/management-api-intro.md), [Capella App Services](management-api-intro.md), [Operational Insights Capella](../../operational-insights-cloud/management-api-guide/management-api-intro.md), and [AI Data Plane](../../ai/api-guide/api-intro.md).
 
 ## [](#prerequisites)Prerequisites
 

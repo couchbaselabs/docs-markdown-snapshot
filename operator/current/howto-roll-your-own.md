@@ -1,6 +1,6 @@
 ---
 title: Create Your Own Operator Images
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Kubernetes Operator
@@ -34,7 +34,7 @@ $ echo 'non-root:x:8453:8453:non-root::' > passwd
 Create the following `Dockerfile`.
 
 ```dockerfile
-FROM couchbase/admission-controller:2.9.0 as official (1)
+FROM couchbase/admission-controller:2.9.4 as official (1)
 FROM scratch (2)
 COPY --from=official /usr/local/bin/couchbase-admission-controller /usr/local/bin/ (3)
 COPY passwd /etc/passwd (4)
@@ -51,7 +51,7 @@ USER 8453 (5)
 To build and tag the image run the following:
 
 ```console
-$ docker build . -t my-company/couchbase-operator-admission:2.9.0
+$ docker build . -t my-company/couchbase-operator-admission:2.9.4
 ```
 
 You may use any combination of tag you wish.
@@ -69,7 +69,7 @@ $ echo 'non-root:x:8453:8453:non-root::' > passwd
 Create he following `Dockerfile`.
 
 ```dockerfile
-FROM couchbase/operator:2.9.0 as official (1)
+FROM couchbase/operator:2.9.4 as official (1)
 FROM scratch (2)
 COPY --from=official /usr/local/bin/couchbase-operator /usr/local/bin/ (3)
 COPY passwd /etc/passwd (4)
@@ -86,7 +86,7 @@ USER 8453 (5)
 To build and tag the image run the following:
 
 ```console
-$ docker build . -t my-company/couchbase-operator:2.9.0
+$ docker build . -t my-company/couchbase-operator:2.9.4
 ```
 
 You may use any combination of tag you wish.
@@ -96,6 +96,6 @@ You may use any combination of tag you wish.
 When installing the Operator with [cao](tools/cao.md) you can specify the images to use. Consider the following command that uses the images we created in the prior steps:
 
 ```console
-$ cao create admission --image my-company/couchbase-operator-admission:2.9.0
-$ cao create operator --image my-company/couchbase-operator:2.9.0
+$ cao create admission --image my-company/couchbase-operator-admission:2.9.4
+$ cao create operator --image my-company/couchbase-operator:2.9.4
 ```

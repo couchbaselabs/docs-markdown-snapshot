@@ -1,6 +1,6 @@
 ---
 title: Bucket Backend Migration Documentation
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Kubernetes Operator
@@ -20,6 +20,9 @@ antora:
 ## [](#migrating-couchbase-bucket-storage-backends)Migrating Couchbase Bucket storage Backends
 
 The migration of a bucket requires each node the bucket is using to be swap-rebalanced out of a cluster. Once each node has been replaced, the bucket will have been rebuilt using the new storage backend. In order for the Couchbase Operator to perform this migration, the `cao.couchbase.com/buckets.enableBucketMigrationRoutines` annotation must be set to `true`. The migration for buckets can be triggered in a number of ways.
+
+> [!IMPORTANT]
+> The `cao.couchbase.com/buckets.enableBucketMigrationRoutines` annotation only controls whether the Couchbase Operator swap-rebalances nodes to complete a migration. It does not prevent the bucket storage backend from being changed. If the storage backend is changed using any of the methods below while this annotation is not `true`, the Couchbase Operator still updates the bucket storage backend setting and the Dynamic Admission Controller returns a warning, but no nodes are swap-rebalanced. Each node continues to store the bucket using its existing backend until it is swap-rebalanced or fully recovered.
 
 ### [](#using-managed-couchbasebuckets)Using managed CouchbaseBuckets
 
@@ -78,6 +81,8 @@ If this annotation is removed from a cluster the buckets will then attempt to be
 
 The Couchbase Operator can also migrate unmanaged buckets. However this will target all bucket in the cluster. It requires the cluster to have bucket management disabled. It also requires that the buckets meet the neccesary requirements to be migrated to magma: \* Bucket memory quota must be 1024MB or more \* Bucket must use the "fullEviction" eviction policy.
 
+To be migrated to couchstore, no collection in the bucket can have history retention enabled.
+
 To use the annotation apply the `targetUnmanagedBucketStorageBackend` annotation to your cluster.
 
 ```yaml
@@ -87,11 +92,12 @@ metadata:
   name: cb-example
   annotations:
     cao.couchbase.com/buckets.targetUnmanagedBucketStorageBackend: magma
-buckets:
-  managed: false
+    cao.couchbase.com/buckets.enableBucketMigrationRoutines: "true"
 spec:
   image: couchbase/server:7.6.0
+  buckets:
+    managed: false
   ...
 ```
 
-Whilst this annotation is on the cluster, the Couchbase Operator will try to migrate all unmanaged buckets to the specified backend. When the annotation is removed then the Operator will stop attempting the migrations. If any buckets fail migration due to not meeting the requirements then the annotation can be removed until the buckets have been modified to meet the requirements, then reapplied at a later time to attempt migration again.
+Whilst this annotation is on the cluster, the Couchbase Operator will try to migrate all unmanaged buckets to the specified backend. The storage backend setting of each unmanaged bucket is updated on the next reconcile, whether or not `cao.couchbase.com/buckets.enableBucketMigrationRoutines` is set. If that annotation is not `true`, the nodes are not swap-rebalanced and the existing data is not rebuilt using the new backend. When the `targetUnmanagedBucketStorageBackend` annotation is removed then the Operator will stop attempting the migrations. If a bucket does not meet the requirements, the Operator logs a warning and skips that bucket. In that case the `targetUnmanagedBucketStorageBackend` annotation can be removed until the buckets have been modified to meet the requirements, then reapplied at a later time to attempt migration again.

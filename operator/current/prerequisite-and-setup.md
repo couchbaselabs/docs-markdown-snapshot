@@ -1,6 +1,6 @@
 ---
 title: Prerequisites and System Requirements
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Kubernetes Operator
@@ -50,7 +50,7 @@ This release supports the following container images for [managed backup and res
 
 | Container Image                                                             | Backup Utility                                                                                                             | Backup From and Restore To |
 | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
-| [operator-backup:1.5.0](https://hub.docker.com/r/couchbase/operator-backup) | [cbbackupmgr 7.6.8](https://docs.couchbase.com/server/7.6/manage/manage-backup-and-restore/manage-backup-and-restore.html) | Couchbase Server 7.2+      |
+| [operator-backup:1.6.0](https://hub.docker.com/r/couchbase/operator-backup) | [cbbackupmgr 8.0.2](https://docs.couchbase.com/server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore.html) | Couchbase Server 7.2+      |
 
 The following diagram depicts Operator Backup image compatibility with all supported Couchbase Server versions, you should consider this when upgrading Couchbase Server:
 

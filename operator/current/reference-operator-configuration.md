@@ -1,6 +1,6 @@
 ---
 title: Operator Deployment Settings
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Kubernetes Operator
@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
       - name: couchbase-operator
-        image: couchbase/operator:2.0.0 (2)
+        image: couchbase/operator:2.9.4 (2)
         command:
         - couchbase-operator
         args: (3)

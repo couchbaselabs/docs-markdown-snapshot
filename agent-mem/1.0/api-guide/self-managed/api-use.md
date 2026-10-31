@@ -2,7 +2,7 @@
 title: Make an API Call with the Agent Memory API
 description: How to make an API call with the Agent Memory API on a self-managed
   Agent Memory server.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Couchbase Agent Memory
@@ -20,7 +20,7 @@ antora:
 
 > How to make an API call with the Agent Memory API on a self-managed Agent Memory server. 
 
-This page is for self-managed Agent Memory.
+This page covers all changes for the Agent Memory API.
 
 Use the Agent Memory API to store and retrieve memory for your AI agents on your Agent Memory server.
 

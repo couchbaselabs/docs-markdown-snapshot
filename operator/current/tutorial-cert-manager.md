@@ -1,6 +1,6 @@
 ---
 title: Using a Certificate Manager
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Kubernetes Operator
@@ -348,7 +348,7 @@ kind: CouchbaseCluster
 metadata:
   name: cb-example
 spec:
-  image: couchbase/server:7.2.3
+  image: couchbase/server:8.0.2
   security:
     adminSecret: cb-example-auth
   networking:

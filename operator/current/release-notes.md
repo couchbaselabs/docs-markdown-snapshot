@@ -1,6 +1,6 @@
 ---
 title: Release Notes for Couchbase Kubernetes Operator 2.9
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Kubernetes Operator
@@ -20,6 +20,32 @@ This page summarizes the fixes and known issues in Couchbase Kubernetes Operator
 ## [](#new-features)New Features
 
 For information about new features and major improvements made in Couchbase Kubernetes Operator 2.9, see [What's New](whats-new.md).
+
+## [](#release-294)Release 2.9.4 (October 2026)
+
+Couchbase Kubernetes Operator 2.9.4 was released in October 2026\. This release contains fixes to issues.
+
+### [](#fixed-issues-v294)Fixed Issues in 2.9.4
+
+**[K8S-4979](https://jira.issues.couchbase.com/browse/K8S-4979)**
+
+Fixed a bug where restarting the Operator could cause it to ignore `previousVersionPodCount` and complete an upgrade.
+
+**[K8S-4976](https://jira.issues.couchbase.com/browse/K8S-4976)**
+
+Fixed an issue where delayed DNS checks could interact with the reschedule annotation in a way that prevented the Operator from adding a pod to the cluster.
+
+**[K8S-4953](https://jira.issues.couchbase.com/browse/K8S-4953)**
+
+Fixed an issue where `ImmediateUpgrade` did not respect `previousVersionPodCount`.
+
+**[K8S-4903](https://jira.issues.couchbase.com/browse/K8S-4903)**
+
+Bucket migrations now respect the configured `upgradeStrategy`, and perform in-place operations where possible.
+
+**[K8S-4902](https://jira.issues.couchbase.com/browse/K8S-4902)**
+
+Fixed an issue where deleting a replication and its remote cluster out of order could result in errors from the Couchbase Server API.
 
 ## [](#release-293)Release 2.9.3 (September 2026)
 

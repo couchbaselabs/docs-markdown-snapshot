@@ -2,7 +2,7 @@
 title: Migrate Existing Self-Managed Couchbase Mobile Clusters to App Services
 description: Migrate your data, users, and roles from a self-managed Couchbase
   Server and Sync Gateway deployment to Capella App Services.
-pubDate: 2026-10-23T04:31:18.652Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Capella App Services
@@ -58,19 +58,25 @@ Complete the following steps to migrate from your self-managed cluster to App Se
 * First [deploy a Couchbase cluster on Capella](../../cloud/clusters/create-database.md).
 * Now [create an appropriately named bucket](../../cloud/clusters/data-service/manage-buckets.md#add-bucket). Give the bucket the same name as the source bucket on your self-managed cluster.
 
-### [](#step-2-set-up-xdcr-replication)Step 2\. Set up XDCR replication
+### [](#set-up-xdcr)Step 2\. Set up XDCR replication
 
 [Set up an XDCR one way data replication](#server:manage:manage-xdcr:create-xdcr-replication.adoc) from the self-managed cluster bucket to the Capella bucket. For the Capella side of the setup, see [Replicate from a self-managed cluster to Capella](../../cloud/clusters/xdcr/manage-xdcr-replications.md#from-on-prem-to-capella).
 
-> [!IMPORTANT]
-> Use a one-way replication that copies the whole bucket. Do not use the Active-Active XDCR with Sync Gateway setup for this migration.
+When you create the replication, add the following filter expression to it:
 
-> [!WARNING]
-> If your Sync Gateway deployment uses persistent configuration mode, you must configure the following XDCR filter:
-> 
-> ```sqlpp
-> NOT REGEXP_CONTAINS(META().id, "^_sync:(dbconfig|registry|dcp_ck|cfg|.*:cfg)")
-> ```
+```sqlpp
+NOT REGEXP_CONTAINS(META().id, "^_sync:(dbconfig|registry|dcp_ck|cfg|.*:cfg)")
+```
+
+Use this filter for every migration, regardless of your Sync Gateway version and configuration mode. The filter stops XDCR from copying the metadata documents that belong to your self-managed Sync Gateway deployment:
+
+* The `_sync:dbconfig` and `_sync:registry` documents, which persistent configuration mode creates.
+* The `_sync:dcp_ck`, `_sync:cfg`, and other `_sync:` documents whose keys contain `:cfg`, which shared bucket access creates.
+
+If your deployment does not create some of these documents, the filter has no effect on them, so the filter is safe to use in all cases.
+
+> [!IMPORTANT]
+> Use a one-way replication of the whole bucket, with the filter above. Do not use the Active-Active XDCR with Sync Gateway setup for this migration.
 
 #### [](#xdcr-private-link)Replicate Over a Private Endpoint
 

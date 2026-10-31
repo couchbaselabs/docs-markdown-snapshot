@@ -1,6 +1,6 @@
 ---
 title: Manage Couchbase Server Logging
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Kubernetes Operator
@@ -176,7 +176,7 @@ When a detached PVC is encountered, [cao](tools/cao.md) will automatically creat
 > The [cao](tools/cao.md) tool uses a default Couchbase Server container image when creating the temporary pod. However, this container image may not match the version of the Couchbase Server container that the PVC was previously attached to. To avoid compatibility issues when collecting logs from detached PVCs, make sure to use the [\--server-image](tools/cao.md#cao-collect-logs) flag to specify a matching Couchbase Server container image when running [cao](tools/cao.md). For a Couchbase Server deployment named `cb-example`, the command would resemble the following:
 > 
 > ```console
-> $ cao collect-logs --collectinfo cb-example --server-image couchbase/server:7.6.6
+> $ cao collect-logs --collectinfo cb-example --server-image couchbase/server:8.0.2
 > ```
 
 It should be noted that detached PVCs can sometimes be caused by more serious issues. Some of these issues may also cause [cao](tools/cao.md) to encounter errors while attempting to collect and download logs from detached PVCs. If you encounter such errors, you can try to work around the issue by [manually collecting the logs](#manually-collect-logs-from-detached-volumes).
@@ -202,7 +202,7 @@ spec:
   restartPolicy: never  
   containers:
   - name: couchbase-server  
-    image: couchbase/server:7.6.6 (1)  
+    image: couchbase/server:8.0.2 (1)  
     command: '/bin/sleep' (2)  
     args:
     - '86400'  

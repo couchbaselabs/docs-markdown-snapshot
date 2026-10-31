@@ -2,7 +2,7 @@
 title: Agent Memory API for Self-Managed Deployments
 description: The Agent Memory API is a REST API that allows your AI agents to
   store and retrieve persistent memory on a self-managed Agent Memory server.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Couchbase Agent Memory
@@ -20,7 +20,7 @@ antora:
 
 > The Agent Memory API is a REST API that allows your AI agents to store and retrieve persistent memory on a self-managed Agent Memory server. 
 
-This page is for self-managed Agent Memory.
+This page covers all changes for the Agent Memory API.
 
 The Agent Memory API is a REST API for the Couchbase Agent Memory server. It allows your AI agents to store and retrieve persistent memory across user sessions.
 

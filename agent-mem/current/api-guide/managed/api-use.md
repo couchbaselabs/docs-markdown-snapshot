@@ -1,7 +1,7 @@
 ---
 title: Make an API Call with the Agent Memory APIs
 description: How to make an API call with the Couchbase Capella APIs for Agent Memory.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Couchbase Agent Memory
@@ -19,7 +19,7 @@ antora:
 
 > How to make an API call with the Couchbase Capella APIs for Agent Memory. 
 
-This page is for Agent Memory in Capella. It covers the Agent Memory features in the Management API, and the Agent Memory API. For more information about the Management API for Capella Operational features, see [Make an API Call with the Capella Operational Management API](../../../../cloud/management-api-guide/management-api-use.md).
+This page covers all changes for the Agent Memory API and the Couchbase Capella Management API. The Management API includes features for [Capella Operational](../../../../cloud/management-api-guide/management-api-intro.md), [Capella App Services](../../../../app-services/management-api-guide/management-api-intro.md), [Operational Insights Capella](../../../../operational-insights-cloud/management-api-guide/management-api-intro.md), and [AI Data Plane](../../../../ai/api-guide/api-intro.md).
 
 Agent Memory in Capella has different APIs that you can use. You can:
 

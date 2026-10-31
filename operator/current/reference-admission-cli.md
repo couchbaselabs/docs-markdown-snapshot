@@ -1,6 +1,6 @@
 ---
 title: Dynamic Admission Controller Deployment Settings
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Kubernetes Operator
@@ -48,7 +48,7 @@ spec:
         - -default-file-system-group=true
         command:
         - couchbase-operator-admission
-        image: couchbase/admission-controller:2.2.0 (2)
+        image: couchbase/admission-controller:2.9.4 (2)
         name: couchbase-operator-admission
         ports:
         - containerPort: 8443 (3)

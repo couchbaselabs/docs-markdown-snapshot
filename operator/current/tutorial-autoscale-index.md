@@ -1,6 +1,6 @@
 ---
 title: Auto-scaling the Couchbase Index Service
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Kubernetes Operator
@@ -302,7 +302,7 @@ spec:
     spec:
       containers:
       - name: doc-loader
-        image: couchbase/server:7.6.6
+        image: couchbase/server:8.0.2
         command: ["/opt/couchbase/bin/cbworkloadgen", "-n","scale-couchbase-cluster-0000.scale-couchbase-cluster.default.svc:8091", "-u", "developer", "-p", "password", "-t", "4", "-r", ".3", "-j", "-s", "16","--prefix=read-write","-i", "150000", "-b", "travel-sample"]
       restartPolicy: Never
       tolerations:

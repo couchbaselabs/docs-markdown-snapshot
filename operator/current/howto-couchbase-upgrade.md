@@ -1,6 +1,6 @@
 ---
 title: Upgrade a Couchbase Deployment
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Kubernetes Operator
@@ -37,19 +37,19 @@ spec:
 apiVersion: couchbase.com/v2  
 kind: CouchbaseCluster  
 spec:  
-  image: couchbase/server:8.0.0  
+  image: couchbase/server:8.0.2  
 ```
 2. The modification triggers the Operator to compare existing pod specifications that use the old image with new pod specifications that use the new image. Because the specifications differ, the Operator starts a `SwapRebalance` upgrade by using the `RollingUpgrade` strategy. The Operator creates new pods, rebalances them into the cluster, and then ejects the old pods.
 
 ### [](#in-place-upgrade)In Place Upgrade
 
-Assuming `spec.image` is equal to a version earlier than `couchbase/server:8.0.0`, update the manifest to:
+Assuming `spec.image` is equal to a version earlier than `couchbase/server:8.0.2`, update the manifest to:
 
 ```yaml
 apiVersion: couchbase.com/v2
 kind: CouchbaseCluster
 spec:
-  image: couchbase/server:8.0.0 (1)
+  image: couchbase/server:8.0.2 (1)
   upgrade:
     upgradeProcess: InPlaceUpgrade (2)
 ```
@@ -60,13 +60,13 @@ spec:
 
 ### [](#rolling-upgrade-controls)Rolling Upgrade Controls
 
-Assuming `spec.image` is equal to a version earlier than `couchbase/server:8.0.0`, update the manifest to:
+Assuming `spec.image` is equal to a version earlier than `couchbase/server:8.0.2`, update the manifest to:
 
 ```yaml
 apiVersion: couchbase.com/v2
 kind: CouchbaseCluster
 spec:
-  image: couchbase/server:8.0.0 (1)
+  image: couchbase/server:8.0.2 (1)
   upgrade:
     upgradeProcess: SwapRebalance
     upgradeStrategy: RollingUpgrade
@@ -83,13 +83,13 @@ spec:
 
 ### [](#granular-controls)Granular Controls
 
-Assuming `spec.image` is equal to a version earlier than `couchbase/server:8.0.0`, update the manifest to:
+Assuming `spec.image` is equal to a version earlier than `couchbase/server:8.0.2`, update the manifest to:
 
 ```yaml
 apiVersion: couchbase.com/v2
 kind: CouchbaseCluster
 spec:
-  image: couchbase/server:8.0.0 (1)
+  image: couchbase/server:8.0.2 (1)
   upgrade:
     upgradeProcess: SwapRebalance
     upgradeStrategy: RollingUpgrade
@@ -114,7 +114,7 @@ spec:
 
 ### [](#order-upgrades-by-server-group)Order Upgrades by Server Group
 
-Assuming `spec.image` is equal to a version earlier than `couchbase/server:8.0.0`, update the manifest to:
+Assuming `spec.image` is equal to a version earlier than `couchbase/server:8.0.2`, update the manifest to:
 
 ```yaml
 apiVersion: couchbase.com/v2
@@ -124,7 +124,7 @@ spec:
     - zone-1
     - zone-2
     - zone-3
-  image: couchbase/server:8.0.0 (1)
+  image: couchbase/server:8.0.2 (1)
   upgrade:
     upgradeOrderType: ServerGroups (2)
     upgradeOrder (3)
@@ -138,7 +138,7 @@ spec:
 
 ### [](#order-upgrades-by-server-class)Order Upgrades by Server Class
 
-Assuming `spec.image` is equal to a version earlier than `couchbase/server:8.0.0`, update the manifest to:
+Assuming `spec.image` is equal to a version earlier than `couchbase/server:8.0.2`, update the manifest to:
 
 ```yaml
 apiVersion: couchbase.com/v2
@@ -154,7 +154,7 @@ spec:
     - index
     - query
     size: 6
-  image: couchbase/server:8.0.0 (1)
+  image: couchbase/server:8.0.2 (1)
   upgrade:
     upgradeOrderType: ServerClasses (2)
     upgradeOrder: (3)
@@ -169,7 +169,7 @@ spec:
 
 ### [](#order-upgrades-by-service)Order Upgrades by Service
 
-Assuming `spec.image` is equal to a version earlier than `couchbase/server:8.0.0`, update the manifest to:
+Assuming `spec.image` is equal to a version earlier than `couchbase/server:8.0.2`, update the manifest to:
 
 ```yaml
 apiVersion: couchbase.com/v2
@@ -189,7 +189,7 @@ spec:
     services:
     - query
     size: 2
-  image: couchbase/server:8.0.0 (1)
+  image: couchbase/server:8.0.2 (1)
   upgrade:
     upgradeOrderType: Services (2)
     upgradeOrder: (3)

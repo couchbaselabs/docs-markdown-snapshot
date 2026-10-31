@@ -2,7 +2,7 @@
 title: Manage Replication with Edge Server
 description: The replicate endpoint enables you to synchronize Edge Server with
   another server, for example Sync Gateway or Couchbase Capella App Services.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Couchbase Edge Server
@@ -155,12 +155,12 @@ curl --cacert $CERT --user $USER:$PASSWORD \
 }'
 ```
 
-| **1** | Replication is bidrectional and continuous.                                          |
-| ----- | ------------------------------------------------------------------------------------ |
-| **2** | Only the airport collection is replicated.                                           |
-| **3** | The user and password match the authentication that was set up for the App Endpoint. |
+| **1** | Replication is bidirectional and continuous.                                              |
+| ----- | ----------------------------------------------------------------------------------------- |
+| **2** | Only documents in the airport channel of the inventory.airport collection are replicated. |
+| **3** | The user and password match the authentication that was set up for the App Endpoint.      |
 
-A successful response has a `202` (Accepted) status and a JSON body containing a `session_id` property, whose value is an integer identifying this replication task. An error status will only be returned if the parameters are invalid.
+A successful response has a `202` (Accepted) status and a JSON body containing a `task_id` property, whose value is an integer identifying this replication task. An error status will only be returned if the parameters are invalid.
 
 ### [](#ex-start-replication-oidc)Start Replication with OIDC Authentication
 
@@ -185,12 +185,15 @@ curl --cacert $CERT --user $USER:$PASSWORD \
 }'
 ```
 
-| **1** | Replication is bidirectional and continuous.                                                                                                                                                                           |
-| ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **2** | The username must match a user configured on the remote App Services or Sync Gateway instance.                                                                                                                         |
-| **3** | Replace <OIDC\_TOKEN> with a valid, unexpired token from your identity provider. OIDC tokens are short-lived; for continuous replication, ensure your token refresh mechanism is in place before starting replication. |
+| **1** | Replication is bidirectional and continuous.                                                                  |
+| ----- | ------------------------------------------------------------------------------------------------------------- |
+| **2** | The username must match a user configured on the remote App Services or Sync Gateway instance.                |
+| **3** | Replace <OIDC\_TOKEN> with a valid, unexpired token from your identity provider. OIDC tokens are short-lived. |
 
-A successful response has a `202` (Accepted) status and a JSON body containing a `session_id` property, whose value is an integer identifying this replication task. An error status will only be returned if the parameters are invalid.
+A successful response has a `202` (Accepted) status and a JSON body containing a `task_id` property, whose value is an integer identifying this replication task. An error status will only be returned if the parameters are invalid.
+
+> [!NOTE]
+> You can not update the token of a running replication. Sending another POST request with a new token starts a new replication task with a new `task_id`, and the original task keeps running. To use a new token, first stop the existing task with a DELETE request (see [Stop Replication](#ex-stop-replication)), then start replication again with a POST request containing the new token.
 
 ### [](#ex-active-tasks)List All Active Tasks
 

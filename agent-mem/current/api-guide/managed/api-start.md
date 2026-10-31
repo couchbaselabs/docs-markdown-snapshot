@@ -3,7 +3,7 @@ title: Get Started with the Agent Memory APIs
 description: To get started with the Couchbase Capella APIs for Agent Memory,
   you must create an API key. An API key authenticates and authorizes you to
   access the APIs.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Couchbase Agent Memory
@@ -21,7 +21,7 @@ antora:
 
 > To get started with the Couchbase Capella APIs for Agent Memory, you must create an API key. An API key authenticates and authorizes you to access the APIs. 
 
-This page is for Agent Memory in Capella. It covers the Agent Memory features in the Management API, and the Agent Memory API. For more information about the Management API for Capella Operational features, see [Get Started with the Capella Operational Management API](../../../../cloud/management-api-guide/management-api-start.md).
+This page covers all changes for the Agent Memory API and the Couchbase Capella Management API. The Management API includes features for [Capella Operational](../../../../cloud/management-api-guide/management-api-intro.md), [Capella App Services](../../../../app-services/management-api-guide/management-api-intro.md), [Operational Insights Capella](../../../../operational-insights-cloud/management-api-guide/management-api-intro.md), and [AI Data Plane](../../../../ai/api-guide/api-intro.md).
 
 This page describes how to manage:
 

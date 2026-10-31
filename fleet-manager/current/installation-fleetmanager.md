@@ -2,7 +2,7 @@
 title: Installing Fleet Manager
 description: A step-by-step guide to installing the Fleet Manager Telemetry
   Collector and the web portal.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Fleet Manager
@@ -24,7 +24,7 @@ antora:
 
 Fleet Manager comprises 2 discrete parts (see the architecture diagram here: [Fleet Manager architecture](introduction.md#fleetmanager-architecture-diagram)):
 
-* telemetry collection
+* Telemetry collection
 * The web portal
 
 ## [](#prerequisites)Prerequisites

@@ -1,6 +1,6 @@
 ---
 title: Forwarding Couchbase Logs with Fluent Bit
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-31T04:25:29.610Z
 meta:
   component:
     title: Kubernetes Operator
@@ -72,7 +72,7 @@ spec:
       enabled: true (2)
       rotation:
         pruneAge: "1h" (3)
-  image: couchbase/server:7.6.6
+  image: couchbase/server:8.0.2
   security:
     podSecurityContext:
       fsGroup: 1000
