@@ -1,6 +1,6 @@
 ---
 title: What&#8217;s Up, Doc? 🐇
-pubDate: 2026-11-01T04:28:01.438Z
+pubDate: 2026-11-02T04:23:22.769Z
 meta:
   component:
     title: Couchbase Documentation
@@ -14,7 +14,7 @@ antora:
 
 # What&#8217;s Up, Doc? 🐇
 
-Generated at Sun Nov 01 2026 04:28:01 GMT+0000 (Coordinated Universal Time)
+Generated at Mon Nov 02 2026 04:23:22 GMT+0000 (Coordinated Universal Time)
 
 ## Featured Pages
 

@@ -3,7 +3,7 @@ title: CLUSTER BY Examples
 description: Worked examples of the <code>CLUSTER BY</code> clause across
   different collection layouts, and combining <code>CLUSTER BY</code> with
   <code>GROUP BY</code>.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-11-02T04:23:22.769Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -61,7 +61,7 @@ Cluster the reviews of movies released before 2020, and return each cluster's id
  CLUSTER AS rvc
  WITH {
      "clustering_algorithm": "K-Means",
-     "dimension": [3],
+     "dimension": 3,
      "num_clusters": 5,
      "similarity": "euclidean"
  }
@@ -121,7 +121,7 @@ Cluster movies released before 2020 by the similarity of their summarized review
  CLUSTER AS movieCluster
  WITH {
      "clustering_algorithm": "K-Means",
-     "dimension": [3],
+     "dimension": 3,
      "num_clusters": 5,
      "similarity": "euclidean"
  }
@@ -185,7 +185,7 @@ Cluster individual reviews of movies released before 2020 by similarity, so that
  CLUSTER AS rvc
  WITH {
      "clustering_algorithm": "K-Means",
-     "dimension": [3],
+     "dimension": 3,
      "num_clusters": 5,
      "similarity": "euclidean"
  }
@@ -230,7 +230,7 @@ The following example, using the [decomposed collections](#Design%5F1) layout, c
      CLUSTER AS rvc
      WITH {
          "clustering_algorithm": "K-Means",
-         "dimension": [3],
+         "dimension": 3,
          "num_clusters": 5,
          "similarity": "euclidean"
      }
@@ -262,7 +262,7 @@ Cluster movie reviews by embedding similarity into 5 groups, and return each clu
  CLUSTER BY r.reviewEmbedding AS sc
  WITH {
      "clustering_algorithm": "K-Means",
-     "dimension": [3],
+     "dimension": 3,
      "num_clusters": 5,
      "similarity": "euclidean"
  }
@@ -291,7 +291,7 @@ Cluster movie reviews by embedding similarity into 5 groups, then keep only the 
  CLUSTER AS rvc
  WITH {
      "clustering_algorithm": "K-Means",
-     "dimension": [3],
+     "dimension": 3,
      "num_clusters": 5,
      "similarity": "euclidean"
  }

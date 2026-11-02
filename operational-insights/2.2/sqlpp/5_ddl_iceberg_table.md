@@ -3,7 +3,7 @@ title: CREATE EXTERNAL COLLECTION on a Catalog
 description: Use <code>CREATE EXTERNAL COLLECTION</code> to register an Iceberg
   table from an external catalog in Enterprise Analytics, enabling SQL++ queries
   against the data in object storage.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-11-02T04:23:22.769Z
 meta:
   component:
     title: Operational Insights Enterprise
@@ -107,4 +107,3 @@ Partition pruning, manifest-level exclusion, and column projection reduce the am
 * [Create a Catalog](5%5Fddl%5Ficeberg%5Fcatalog.md)
 * [Manage Links](../sources/manage-links.md)
 * [Set Up an External Data Source](../sources/manage-external.md)
-* [Cost-Based Optimizer](5b%5Fcbo.md)
