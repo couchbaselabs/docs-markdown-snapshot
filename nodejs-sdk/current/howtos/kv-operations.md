@@ -1,6 +1,6 @@
 ---
 title: Data Operations
-pubDate: 2026-10-23T04:31:18.652Z
+pubDate: 2026-11-03T04:28:31.731Z
 meta:
   component:
     title: Node.js SDK
@@ -359,7 +359,7 @@ const sampleBucket = sampleCluster.bucket("travel-sample");
 const sampleScope = sampleBucket.scope("tenant_agent_00");
 sampleColl = sampleScope.collection("users");
 
-[data-source-url=https://github.com/couchbase/docs-sdk-nodejs/blob/f4f89adcfeffd4c8f185751b1dfb5396ed90c8d3/modules/devguide/examples/nodejs/kv-operations.js#L584-L585]
+[data-source-url=https://github.com/couchbase/docs-sdk-nodejs/blob/6aa50c6a887b950642b6584d3fbae91daa539b55/modules/devguide/examples/nodejs/kv-operations.js#L584-L585]
 let collDocument = { name: 'John Doe', preferred_email: 'johndoe111@test123.test' };
 result = await sampleColl.upsert(user, collDocument);
 ```

@@ -1,7 +1,7 @@
 ---
 title: Error Handling
 description: Handling transaction errors with Couchbase.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-03T04:28:31.731Z
 meta:
   component:
     title: Node.js SDK
@@ -87,24 +87,24 @@ Pulling all of the above together, this is the suggested best practice for error
 try {
   const result = await cluster.transactions().run(async (ctx) => {
     // ... transactional code here ...
-    });
+  })
 
-    // The transaction definitely reached the commit point. Unstaging
-    // the individual documents may or may not have completed
+  // The transaction definitely reached the commit point. Unstaging
+  // the individual documents may or may not have completed
 
-    if (!result.unstagingComplete) {
-        // In rare cases, the application may require the commit to have
-        // completed.  (Recall that the asynchronous cleanup process is
-        // still working to complete the commit.)
-        // The next step is application-dependent.
-    }
-  } catch (error) {
-    if (error instanceof TransactionCommitAmbiguousError) {
-      // The transaction may or may not have reached commit point
-      console.error("Transaction returned TransactionCommitAmbiguous and may have succeeded.", error)
-    } else if (error instanceof TransactionFailedError) {
-      // The transaction definitely did not reach commit point
-      console.error("Transaction failed with TransactionFailed", error)
-    }
+  if (!result.unstagingComplete) {
+    // In rare cases, the application may require the commit to have
+    // completed.  (Recall that the asynchronous cleanup process is
+    // still working to complete the commit.)
+    // The next step is application-dependent.
   }
+} catch (error) {
+  if (error instanceof TransactionCommitAmbiguousError) {
+    // The transaction may or may not have reached commit point
+    console.error('Transaction returned TransactionCommitAmbiguous and may have succeeded.', error)
+  } else if (error instanceof TransactionFailedError) {
+    // The transaction definitely did not reach commit point
+    console.error('Transaction failed with TransactionFailed', error)
+  }
+}
 ```

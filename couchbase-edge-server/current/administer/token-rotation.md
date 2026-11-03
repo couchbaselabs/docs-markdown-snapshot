@@ -2,7 +2,7 @@
 title: Rotate Replication Credentials Without Restart
 description: Configure Couchbase Edge Server to load JWT replication credentials
   from a file path, enabling credential rotation without restarting the server.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-03T04:28:31.731Z
 meta:
   component:
     title: Couchbase Edge Server
@@ -21,7 +21,7 @@ Configure Couchbase Edge Server to read JWT replication credentials from a file 
 
 ## [](#prerequisites)Prerequisites
 
-* Couchbase Edge Server {version} or later.
+* Couchbase Edge Server 1.1 or later.
 * JWT-based authentication configured between Couchbase Edge Server and the upstream Sync Gateway or Capella App Services instance.
 * The JWT token file accessible at a path on the host running Couchbase Edge Server, for example via a Kubernetes secret mounted as a volume.
 

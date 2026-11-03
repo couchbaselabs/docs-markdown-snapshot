@@ -2,7 +2,7 @@
 title: Configure Named Query Access Control
 description: Restrict which named queries edge client users can execute in
   Couchbase Edge Server based on their collection-level access permissions.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-03T04:28:31.731Z
 meta:
   component:
     title: Couchbase Edge Server
@@ -21,8 +21,8 @@ Configure named query access control to restrict which queries each edge client 
 
 ## [](#prerequisites)Prerequisites
 
-* Couchbase Edge Server {version} or later.
-* `enable_user_access_control` set to `true` at the server level. See [configuration:configure-access-control.adoc](#configuration:configure-access-control.adoc).
+* Couchbase Edge Server 1.1 or later.
+* `enable_user_access_control` set to `true` at the server level. See [Configure Access Control](configure-access-control.md).
 * Named queries defined in the database configuration.
 
 > [!NOTE]
@@ -110,5 +110,5 @@ The following users file illustrates which queries each user can run:
 
 ## [](#next-steps)Next Steps
 
-* To review how Couchbase Edge Server enforces access control across REST operations, see [configuration:fine-grained-access-control.adoc](#configuration:fine-grained-access-control.adoc).
-* To configure user access permissions, see [configuration:configure-access-control.adoc](#configuration:configure-access-control.adoc).
+* To review how Couchbase Edge Server enforces access control across REST operations, see [Access Control](access-control-concept.md).
+* To configure user access permissions, see [Configure Access Control](configure-access-control.md).

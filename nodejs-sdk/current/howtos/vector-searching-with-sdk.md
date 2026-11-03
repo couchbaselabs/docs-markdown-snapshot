@@ -2,7 +2,7 @@
 title: Vector Search
 description: Vector Search from the SDK, to enable AI integration, semantic
   search, and use of RAG frameworks.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-03T04:28:31.731Z
 meta:
   component:
     title: Node.js SDK
@@ -114,7 +114,14 @@ It returns the same `SearchResult` detailed earlier.
 From Couchbase Server 7.6.4 — and in Capella Operational clusters — [pre-filtering with similarity search](../../../server/current/vector-search/pre-filtering-vector-search.md#about-pre-filtering) is available. This is a non-vector query that the server executes first to get an intermediate result. Then it executes the vector query on the intermediate result to get the final result.
 
 ```javascript
-Unresolved include directive in modules/howtos/pages/vector-searching-with-sdk.adoc - include::howtos:example$search.js[]
+  let prefilter = couchbase.SearchQuery.match('primary').field('color-wheel-pos')
+  request = couchbase.SearchRequest.create(
+    couchbase.VectorSearch.fromVectorQuery(
+      couchbase.VectorQuery.create('vector-field', queryVector)
+        .prefilter(prefilter)
+    )
+  )
+  result = await scope.search('vector-index', request)
 ```
 
 If no prefilter is specified, the server executes the vector query on all indexed documents.
@@ -124,7 +131,14 @@ The prefilter can be any Search Query — from a simple match, as above, to a st
 String Query
 
 ```javascript
-Unresolved include directive in modules/howtos/pages/vector-searching-with-sdk.adoc - include::howtos:example$search.js[]
+  prefilter = couchbase.SearchQuery.queryString('+description:sea -color_hex:fff5ee')
+  request = couchbase.SearchRequest.create(
+    couchbase.VectorSearch.fromVectorQuery(
+      couchbase.VectorQuery.create('vector-field', queryVector)
+        .prefilter(prefilter)
+    )
+  )
+  result = await scope.search('vector-index', request)
 ```
 
 See the [API reference](https://docs.couchbase.com/sdk-api/couchbase-python-client/couchbase%5Fapi/couchbase%5Fsearch.html#couchbase.vector%5Fsearch.VectorQuery.prefilter).

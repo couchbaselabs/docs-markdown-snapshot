@@ -3,7 +3,7 @@ title: Access Control
 description: An overview of fine-grained access control for downstream edge
   clients in Couchbase Edge Server, including keyspace patterns, permissions,
   and enforcement behavior.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-03T04:28:31.731Z
 meta:
   component:
     title: Couchbase Edge Server
@@ -56,24 +56,24 @@ When `enable_user_access_control` is set to `true` on a database, Couchbase Edge
 The following table describes how enforcement applies to each operation type.
 
 __Table 3\. Access Control Enforcement by Operation__
-| Operation Type       | REST Operations                                                        | Access Requirement                                                                                                                                                                            |
-| -------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| General access       | Any REST call                                                          | The user must have read or write access to the targeted keyspace.                                                                                                                             |
-| Data visibility      | GET /\_all\_dbs, GET /db, GET /{keyspace}/{docId}                      | The user must have read access to the targeted database or collection. Responses are filtered to show only databases and collections the user has explicit access to.                         |
-| Data mutation        | POST /{keyspace}/, PUT /{keyspace}/{docId}, DELETE /{keyspace}/{docId} | The user must have write access to the targeted keyspace.                                                                                                                                     |
-| Query execution      | GET /{keyspace}/\_query/{name}                                         | The user must have access to the named query, as determined by the query's access configuration. See [configuration:configure-query-access.adoc](#configuration:configure-query-access.adoc). |
-| Data synchronization | GET /{keyspace}/\_blipsync                                             | Pull requires read access per collection. Push requires both read and write access per collection.                                                                                            |
-| Administrative tasks | /\_replicate, /\_active\_tasks                                         | Requires the replicate or admin role.                                                                                                                                                         |
+| Operation Type       | REST Operations                                                        | Access Requirement                                                                                                                                                      |
+| -------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| General access       | Any REST call                                                          | The user must have read or write access to the targeted keyspace.                                                                                                       |
+| Data visibility      | GET /\_all\_dbs, GET /db, GET /{keyspace}/{docId}                      | The user must have read access to the targeted database or collection. Responses are filtered to show only databases and collections the user has explicit access to.   |
+| Data mutation        | POST /{keyspace}/, PUT /{keyspace}/{docId}, DELETE /{keyspace}/{docId} | The user must have write access to the targeted keyspace.                                                                                                               |
+| Query execution      | GET /{keyspace}/\_query/{name}                                         | The user must have access to the named query, as determined by the query's access configuration. See [Configure Named Query Access Control](configure-query-access.md). |
+| Data synchronization | GET /{keyspace}/\_blipsync                                             | Pull requires read access per collection. Push requires both read and write access per collection.                                                                      |
+| Administrative tasks | /\_replicate, /\_active\_tasks                                         | Requires the replicate or admin role.                                                                                                                                   |
 
 > [!NOTE]
 > Unauthorized requests and requests targeting keyspaces that do not exist both return `403 Forbidden`. This prevents users from discovering keyspaces they are not authorized to access.
 
 ## [](#backwards-compatibility)Backwards Compatibility
 
-If `enable_user_access_control` is not set, or is set to `false`, Couchbase Edge Server behaves as in previous releases. All configured users have unrestricted read and write access to all collections. Existing deployments are not affected by upgrading to {version}.
+If `enable_user_access_control` is not set, or is set to `false`, Couchbase Edge Server behaves as in previous releases. All configured users have unrestricted read and write access to all collections. Existing deployments are not affected by upgrading to 1.1.
 
 ## [](#see-also)See Also
 
-* [configuration:configure-access-control.adoc](#configuration:configure-access-control.adoc)
-* [configuration:configure-query-access.adoc](#configuration:configure-query-access.adoc)
+* [Configure Access Control](configure-access-control.md)
+* [Configure Named Query Access Control](configure-query-access.md)
 * [Authentication](../configuration/authentication.md)

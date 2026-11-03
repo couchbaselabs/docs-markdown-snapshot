@@ -2,7 +2,7 @@
 title: SDK Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase Python Client.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-03T04:28:31.731Z
 meta:
   component:
     title: Python SDK
@@ -32,6 +32,40 @@ The full installation instructions that were previously on this page can now be 
 
 We always recommend using the latest version of the SDK — it contains all of the latest security patches and support for new and upcoming features. All patch releases for each dot minor release should be API compatible, and safe to upgrade; any changes to expected behavior are noted in the release notes that follow.
 
+### [](#version-4-6-4-27-october-2026)Version 4.6.4 (27 October 2026)
+
+Version 4.6.4 is the next patch release of the fourth generation Python SDK, bringing a number of improvements. Most notably, this release fixes a memory leak in the multi-op APIs on Python 3.12+, a process crash when closing an `acouchbase` cluster, and several defects in the built-in observability implementations.
+
+```bash
+$ python3 -m pip install couchbase==4.6.4
+```
+
+**API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.6.4/>
+
+#### [](#enhancements)Enhancements
+
+* [PYCBC-1905](https://jira.issues.couchbase.com/browse/PYCBC-1905): Scope-level `search_query()` and `search()` no longer emit an unavoidable `CouchbaseDeprecationWarning` for the deprecated `scope_name` option when the caller has not set it.
+* [PYCBC-1909](https://jira.issues.couchbase.com/browse/PYCBC-1909): Corrected "Excepted" to "Expected" in `InvalidArgumentException` argument-validation messages.
+
+#### [](#fixes)Fixes
+
+* [PYCBC-1897](https://jira.issues.couchbase.com/browse/PYCBC-1897): Fixed `TxScope.query()`, `TxScope.analytics_query()`, `TxScope.search()`, and `TxScope.search_query()` in the `txcouchbase` API raising an `AttributeError` before any request was sent.
+* [PYCBC-1916](https://jira.issues.couchbase.com/browse/PYCBC-1916): Fixed a process crash (use-after-free) that could occur when closing an `acouchbase` cluster, where the connection's IO context could be destroyed while a worker thread was still running it.
+* [PYCBC-1923](https://jira.issues.couchbase.com/browse/PYCBC-1923): Fixed three defects in the built-in observability implementations:
+
+  * `LoggingMeter` emitted a single report and then stopped reporting for the life of the process.
+  * Creating a span through the no-op tracer raised a `TypeError`.
+  * Closing a cluster left the logging meter and tracer reporter threads running.
+* [PYCBC-1925](https://jira.issues.couchbase.com/browse/PYCBC-1925): Connection info returned by the `acouchbase` and `txcouchbase` APIs now includes `allowed_sasl_mechanisms` in the credentials, consistent with the `couchbase` API. The `Cluster.set_authenticator()` docstring now documents the `InvalidArgumentException` raised when the new authenticator type differs from the current one.
+* [PYCBC-1926](https://jira.issues.couchbase.com/browse/PYCBC-1926): Fixed `CouchbaseException` discarding a message passed as its first positional argument, which caused the sub-document unknown-status error to lose its diagnostic message and raise an `AttributeError` when rendered.
+* [PYCBC-1929](https://jira.issues.couchbase.com/browse/PYCBC-1929): Fixed the `vector_query_combination` search option getter reading the `highlight_style` option. The encoded request sent to the server was not affected.
+* [PYCBC-1928](https://jira.issues.couchbase.com/browse/PYCBC-1928): Fixed inconsistent connection lifecycle handling between the `couchbase` and `acouchbase` APIs. Closing a bucket, or closing an async cluster that never connected, no longer raises; close is now idempotent, matching the documented behavior of closing a cluster twice. Note that accessing the `Cluster.transactions` property now raises if the cluster is closed or has not connected, matching the behavior of other cluster operations.
+* [PYCBC-1934](https://jira.issues.couchbase.com/browse/PYCBC-1934): Fixed the search `sort` option silently accepting an invalid value (causing an unsorted search) instead of raising an `InvalidArgumentException`, and raising an `AttributeError` when given a list mixing strings and `Sort` objects.
+* [PYCBC-1935](https://jira.issues.couchbase.com/browse/PYCBC-1935): Fixed analytics and view query timeouts being sent to the server 1000 times too long, and fixed duration option getters (for example, `timeout` and scan wait) raising a `TypeError` when read back.
+* [PYCBC-1945](https://jira.issues.couchbase.com/browse/PYCBC-1945): Fixed observability span and meter timestamps on Windows with Python versions below 3.13, where the low-resolution system clock caused most operation durations to be recorded as zero.
+* [PYCBC-1954](https://jira.issues.couchbase.com/browse/PYCBC-1954): Fixed `acouchbase` attempting to close the caller's running event loop when resolving it, which caused the first cluster operation to fail with `RuntimeError: Cannot close a running event loop` on Windows when using `asyncio.run()`.
+* [PYCBC-1967](https://jira.issues.couchbase.com/browse/PYCBC-1967): Fixed a memory leak on Python 3.12+ where result keys from `*_multi` operations (for example, `get_multi` and `upsert_multi`) were interned and never freed, growing memory with every distinct document key.
+
 ### [](#version-4-6-3-25-august-2026)Version 4.6.3 (25 August 2026)
 
 Version 4.6.3 is the next patch release of the fourth generation Python SDK, bringing a number of improvements. Most notably, this release delivers the first phase of a hardening effort across the SDK's C-extension.
@@ -42,7 +76,7 @@ $ python3 -m pip install couchbase==4.6.3
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.6.3/>
 
-#### [](#enhancements)Enhancements
+#### [](#enhancements-2)Enhancements
 
 * [PYCBC-1795](https://jira.issues.couchbase.com/browse/PYCBC-1795): C-Extension Hardening (Phase 1). Following a static analysis review of the SDK's `_core` C-extension, this release delivers the first phase of low-risk memory-safety, leak, and crash fixes. The Phase 1 changes are grouped below.
 
@@ -53,7 +87,7 @@ $ python3 -m pip install couchbase==4.6.3
   * **Code health** — [PYCBC-1797](https://jira.issues.couchbase.com/browse/PYCBC-1797), [PYCBC-1831](https://jira.issues.couchbase.com/browse/PYCBC-1831), [PYCBC-1833](https://jira.issues.couchbase.com/browse/PYCBC-1833): Documented intentional C-API protocol deviations, deleted confirmed-dead code, and fixed a `dns_port` key mismatch and a `get_default_timeout` fallthrough in the connection utilities.
 * [PYCBC-1781](https://jira.issues.couchbase.com/browse/PYCBC-1781): Updated Eventing Function Management tests to handle the new `ERR_APP_NOT_FOUND` error returned by Couchbase Server.
 
-#### [](#fixes)Fixes
+#### [](#fixes-2)Fixes
 
 * [PYCBC-1782](https://jira.issues.couchbase.com/browse/PYCBC-1782): Fixed `MutateInResult.content_as()` raising a `TypeError`. The result is now constructed with a transcoder and flagged as a sub-document result.
 * [PYCBC-1821](https://jira.issues.couchbase.com/browse/PYCBC-1821): Guarded lazy `Transactions` initialization against concurrent first access, and ensured `Transactions` teardown also happens on cluster close.
@@ -69,7 +103,7 @@ $ python3 -m pip install couchbase==4.6.2
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.6.2/>
 
-#### [](#enhancements-2)Enhancements
+#### [](#enhancements-3)Enhancements
 
 [PYCBC-1767](https://jira.issues.couchbase.com/browse/PYCBC-1767): Updated no-op observability path to use `nullcontext`.
 
@@ -79,7 +113,7 @@ $ python3 -m pip install couchbase==4.6.2
 
 [PYCBC-1779](https://jira.issues.couchbase.com/browse/PYCBC-1779): Removed `asyncio.QueueEmpty` unreachable exception blocks.
 
-#### [](#fixes-2)Fixes
+#### [](#fixes-3)Fixes
 
 [PYCBC-1770](https://jira.issues.couchbase.com/browse/PYCBC-1770): Fixed Collection Management `create_collection` and `drop_collection` overload path that did not correctly set options.
 
@@ -111,12 +145,12 @@ $ python3 -m pip install couchbase==4.6.1
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.6.1/>
 
-#### [](#enhancements-3)Enhancements
+#### [](#enhancements-4)Enhancements
 
 * [PYCBC-1752](https://issues.couchbase.com/browse/PYCBC-1752): Added `ClusterOption` to enable lazy connections in C++ core.
 * [PYCBC-1761](https://jira.issues.couchbase.com/browse/PYCBC-1761), [PYCBC-1762](https://jira.issues.couchbase.com/browse/PYCBC-1762), [PYCBC-1763](https://jira.issues.couchbase.com/browse/PYCBC-1763), [PYCBC-1764](https://jira.issues.couchbase.com/browse/PYCBC-1764), [PYCBC-1765](https://jira.issues.couchbase.com/browse/PYCBC-1765): Observability Improvements. The SDK has improved performance for both default observability (`ThresholdLogging` and `MeterLogging`) and non-observability (tracing and metrics disabled) use cases.
 
-#### [](#fixes-3)Fixes
+#### [](#fixes-4)Fixes
 
 * [PYCBC-1753](https://issues.couchbase.com/browse/PYCBC-1753): Updated SDK to pass `scope_name` or `bucket_name` when using scoped search indexes.
 * [PYCBC-1758](https://issues.couchbase.com/browse/PYCBC-1758): Updated SDK to propagate all `ClusterOptions` to the C++ core.
@@ -142,7 +176,7 @@ All APIs (`acouchbase`, `couchbase`, and `txcouchbase`) no longer allow a cluste
 
 The `QueryIndexManagement` `create_index()` API no longer allows `fields` to be used to specify index keys. The `keys` field must be used to indicate the keys to use in the index.
 
-#### [](#enhancements-4)Enhancements
+#### [](#enhancements-5)Enhancements
 
 * [PYCBC-1700](https://jira.issues.couchbase.com/browse/PYCBC-1700), [PYCBC-1724](https://jira.issues.couchbase.com/browse/PYCBC-1724): Added support for Python 3.14.
 * [PYCBC-1701](https://jira.issues.couchbase.com/browse/PYCBC-1701): Dropped support for Python 3.9.
@@ -155,7 +189,7 @@ The `QueryIndexManagement` `create_index()` API no longer allows `fields` to be 
 * [PYCBC-1754](https://jira.issues.couchbase.com/browse/PYCBC-1754): Added Logging Improvements.
 * [PYCBC-1755](https://jira.issues.couchbase.com/browse/PYCBC-1755): Updated `JSONType` type hint to adhere to static typing standards.
 
-#### [](#fixes-4)Fixes
+#### [](#fixes-5)Fixes
 
 * [PYCBC-1725](https://jira.issues.couchbase.com/browse/PYCBC-1725): Fixed decoding to be deferred until result is accessed by `*Result` object.
 * [PYCBC-1744](https://jira.issues.couchbase.com/browse/PYCBC-1744): Fixed cluster instances across all APIs to not allow reconnect after close.
@@ -192,7 +226,7 @@ $ python3 -m pip install couchbase==4.5.1
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.5.1/>
 
-#### [](#fixes-5)Fixes
+#### [](#fixes-6)Fixes
 
 * [PYCBC-1815](https://jira.issues.couchbase.com/browse/PYCBC-1815): Fixed a GIL deadlock where deallocating an orphaned `Transactions` object could block the C++ core's I/O thread, causing `cluster.transactions.run()` to hang indefinitely.
 * [PYCBC-1878](https://jira.issues.couchbase.com/browse/PYCBC-1878): Prevented Windows wheels from including BoringSSL's `bssl.exe`, which was previously installed into `site-packages` alongside the extension module. Linux and macOS wheels were unaffected.
@@ -214,7 +248,7 @@ The Couchbase Python SDK will stop providing Python 3.9 wheels in a future relea
 
 The "auto" network selection heuristic in the underyling C++ core has been changed to fall back to the "external" network if the "external" network is present. Previously, if there was no exact match between an address in the connection string and an address in the cluster topology reported by the server, the SDK would select the "default" network. Now, if there is no match and an "external" network is present, the SDK selects the "external" network.
 
-#### [](#enhancements-5)Enhancements
+#### [](#enhancements-6)Enhancements
 
 * [PYCBC-1641](https://jira.issues.couchbase.com/browse/PYCBC-1641): Updated development dependencies.
 * [PYCBC-1666](https://jira.issues.couchbase.com/browse/PYCBC-1666): Added support "access\_deleted" for replica reads.
@@ -229,7 +263,7 @@ The "auto" network selection heuristic in the underyling C++ core has been chang
 * [PYCBC-1698](https://jira.issues.couchbase.com/browse/PYCBC-1698), [PYCBC-1704](https://jira.issues.couchbase.com/browse/PYCBC-1704): Improved Jenkins Integration Tests.
 * [PYCBC-1711](https://jira.issues.couchbase.com/browse/PYCBC-1711): Updated bucket creation to not set `bucketType`, `replicaIndex`, `flushEnabled` unless set by the user.
 
-#### [](#fixes-6)Fixes
+#### [](#fixes-7)Fixes
 
 * [PYCBC-1694](https://jira.issues.couchbase.com/browse/PYCBC-1694): Fixed boolean search queries to allow `should.min=0`.
 * [PYCBC-1705](https://jira.issues.couchbase.com/browse/PYCBC-1705): Fixed encryption import order and exceptions.
@@ -270,12 +304,12 @@ $ python3 -m pip install couchbase==4.4.1
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.4.1/>
 
-#### [](#enhancements-6)Enhancements
+#### [](#enhancements-7)Enhancements
 
 * [PYCBC-1699](https://jira.issues.couchbase.com/browse/PYCBC-1699): Updated SDK build setup to include C++ core changes.
 * [PYCBC-1703](https://jira.issues.couchbase.com/browse/PYCBC-1703): Added Graviton 3 and 4 executors to test pipeline matrices.
 
-#### [](#fixes-7)Fixes
+#### [](#fixes-8)Fixes
 
 * [PYCBC-1705](https://jira.issues.couchbase.com/browse/PYCBC-1705): Fixed encryption import order and exceptions.
 
@@ -302,7 +336,7 @@ $ python3 -m pip install couchbase==4.4.0
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.4.0/>
 
-#### [](#enhancements-7)Enhancements
+#### [](#enhancements-8)Enhancements
 
 * [PYCBC-1594](https://jira.issues.couchbase.com/browse/PYCBC-1594), [PYCBC-1647](https://jira.issues.couchbase.com/browse/PYCBC-1647): Added support for Zone Aware Read from Replica.
 * [PYCBC-1634](https://jira.issues.couchbase.com/browse/PYCBC-1634): Added support for SDK Telemetry Collection in Server.
@@ -314,7 +348,7 @@ $ python3 -m pip install couchbase==4.4.0
 * [PYCBC-1681](https://jira.issues.couchbase.com/browse/PYCBC-1681): Updated `VectorQuery` validation to raise `InvalidArgumentException` when base64 vector string is empty.
 * [PYCBC-1682](https://jira.issues.couchbase.com/browse/PYCBC-1682): Updated storage backend to be the server default when creating buckets.
 
-#### [](#fixes-8)Fixes
+#### [](#fixes-9)Fixes
 
 * [PYCBC-1674](https://jira.issues.couchbase.com/browse/PYCBC-1674): `get_replica_from_preferred_server_group` was trying to access a \_ctx attribute on AttemptContextLogic that no longer exists. This has been fixed, and it no longer raises an `AttributeError`.
 * [PYCBC-1675](https://jira.issues.couchbase.com/browse/PYCBC-1675): CAS is no longer ignored for append/prepend operations.
@@ -363,13 +397,13 @@ $ python3 -m pip install couchbase==4.3.6
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.3.6/>
 
-#### [](#enhancements-8)Enhancements
+#### [](#enhancements-9)Enhancements
 
 * [PYCBC-1676](https://jira.issues.couchbase.com/browse/PYCBC-1676): Fixed async query examples to use async (`acouchbase`) API instead of blocking API.
 * [PYCBC-1678](https://jira.issues.couchbase.com/browse/PYCBC-1678): Pinned `setup_requires` cmake version.
 * [PYCBC-1681](https://jira.issues.couchbase.com/browse/PYCBC-1681): Updated `VectorQuery` validation to raise `InvalidArgumentException` when base64 vector string is empty.
 
-#### [](#fixes-9)Fixes
+#### [](#fixes-10)Fixes
 
 * [PYCBC-1674](https://jira.issues.couchbase.com/browse/PYCBC-1674): Fixed transactional `get_replica_from_preferred_server_group` from raising `AttributeError`.
 * [PYCBC-1675](https://jira.issues.couchbase.com/browse/PYCBC-1675): CAS is no longer ignored for append/prepend operations.
@@ -379,7 +413,7 @@ $ python3 -m pip install couchbase==4.3.6
 
 #### [](#underlying-c-sdk-core-changes-6)Underlying C++ SDK Core Changes
 
-##### [](#fixes-10)Fixes
+##### [](#fixes-11)Fixes
 
 * [CXXCBC-666](https://jira.issues.couchbase.com/browse/CXXCBC-666): The `pkg-config` file now returns the full path for the lib dir, instead of the relative path ([#736](https://github.com/couchbase/couchbase-cxx-client/pull/736)).
 * [CXXCBC-667](https://jira.issues.couchbase.com/browse/CXXCBC-667): Core implementation of prepend/append now encodes the CAS value ([#738](https://github.com/couchbase/couchbase-cxx-client/pull/738)).
@@ -395,25 +429,25 @@ $ python3 -m pip install couchbase==4.3.5
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.3.5/>
 
-#### [](#enhancements-9)Enhancements
+#### [](#enhancements-10)Enhancements
 
 * [PYCBC-1643](https://jira.issues.couchbase.com/browse/PYCBC-1643): Updated build system logic when finding Python 3 version.
 * [PYCBC-1644](https://jira.issues.couchbase.com/browse/PYCBC-1644): Updateed GoCAVES download URL to use arm64 version when appropriate (CI improvement).
 * [PYCBC-1646](https://jira.issues.couchbase.com/browse/PYCBC-1646): Migrated transactions to use `transaction_context`.
 * [PYCBC-1648](https://jira.issues.couchbase.com/browse/PYCBC-1648): Added `update_collection` & settings classes to Collection Management API reference.
 
-#### [](#fixes-11)Fixes
+#### [](#fixes-12)Fixes
 
 * [PYCBC-1649](https://jira.issues.couchbase.com/browse/PYCBC-1649): Fixed a memory leak when creating `TransactionGetResult`.
 
 #### [](#underlying-c-sdk-core-changes-7)Underlying C++ SDK Core Changes
 
-##### [](#enhancements-10)Enhancements
+##### [](#enhancements-11)Enhancements
 
 * [CXXCBC-638](https://jira.issues.couchbase.com/browse/CXXCBC-638): Switched SDK to use bundled `fmtlib` for `spdlog` ([#705](https://github.com/couchbase/couchbase-cxx-client/pull/705)).
 * [CXXCBC-640](https://jira.issues.couchbase.com/browse/CXXCBC-640): Debug symbols are no longer forced for release builds ([#708](https://github.com/couchbase/couchbase-cxx-client/pull/708)).
 
-##### [](#fixes-12)Fixes
+##### [](#fixes-13)Fixes
 
 * [CXXCBC-633](https://jira.issues.couchbase.com/browse/CXXCBC-633): In a case of timeout, when the total deadline of the DNS-SRV request has been reached, the library will now report a timeout error code, and not the latest abort as it was doing.
 
@@ -431,7 +465,7 @@ $ python3 -m pip install couchbase==4.3.4
 
 The Couchbase Python SDK no longer provides Python 3.8 wheels as Python 3.8 has reached [end-of-life](https://peps.python.org/pep-0569/#lifespann). See [Python Version Compatibility](compatibility.md#python-version-compat) for details on supported Python versions.
 
-#### [](#enhancements-11)Enhancements
+#### [](#enhancements-12)Enhancements
 
 * [PYCBC-1595](https://jira.issues.couchbase.com/browse/PYCBC-1595): Added support for Binary Objects in Transactions.
 * [PYCBC-1613](https://jira.issues.couchbase.com/browse/PYCBC-1613): Added Python 3.13 Support.
@@ -439,14 +473,14 @@ The Couchbase Python SDK no longer provides Python 3.8 wheels as Python 3.8 has 
 * [PYCBC-1639](https://jira.issues.couchbase.com/browse/PYCBC-1639): Updated user agent extra passed to C++ core.
 * [PYCBC-1640](https://jira.issues.couchbase.com/browse/PYCBC-1640): Added acouchbase utility tests.
 
-#### [](#fixes-13)Fixes
+#### [](#fixes-14)Fixes
 
 * [PYCBC-1631](https://jira.issues.couchbase.com/browse/PYCBC-1631): Fixed transaction hangs when logging is set to `DEBUG`.
 * [PYCBC-1636](https://jira.issues.couchbase.com/browse/PYCBC-1636): Fixed acouchbase API to properly handle `BaseException`.
 
 #### [](#underlying-c-sdk-core-changes-8)Underlying C++ SDK Core Changes
 
-##### [](#fixes-14)Fixes
+##### [](#fixes-15)Fixes
 
 * [CXXCBC-611](https://jira.issues.couchbase.com/browse/CXXCBC-611), [CXXCBC-612](https://jira.issues.couchbase.com/browse/CXXCBC-612): The C++ SDK now follows RFC naming for metric operation names ([#695](https://github.com/couchbase/couchbase-cxx-client/pull/695)).
 * [CXXCBC-615](https://jira.issues.couchbase.com/browse/CXXCBC-615): The C++ SDK now exposes `insert_raw` and `replace_raw` in the core transactions attempt context ([#686](https://github.com/couchbase/couchbase-cxx-client/pull/686)).
@@ -468,13 +502,13 @@ $ python3 -m pip install couchbase==4.3.3
 
 The Couchbase Python SDK will stop providing Python 3.8 wheels with the next release (4.3.4) as Python 3.8 has reached [end-of-life](https://peps.python.org/pep-0569/#lifespann). See [Python Version Compatibility](compatibility.md#python-version-compat) for details on supported Python versions.
 
-#### [](#enhancements-12)Enhancements
+#### [](#enhancements-13)Enhancements
 
 * [PYCBC-1456](https://jira.issues.couchbase.com/browse/PYCBC-1456): Ensure SDK encodes URIs.
 * [PYCBC-1619](https://jira.issues.couchbase.com/browse/PYCBC-1619): Added ability to use C++ core file logger.
 * [PYCBC-1625](https://jira.issues.couchbase.com/browse/PYCBC-1625): Updated multi methods to `COMMITTED`.
 
-#### [](#fixes-15)Fixes
+#### [](#fixes-16)Fixes
 
 * [PYCBC-1569](https://jira.issues.couchbase.com/browse/PYCBC-1569): Added mechanism to do binary increment/decrement without initial value.
 * [PYCBC-1628](https://jira.issues.couchbase.com/browse/PYCBC-1628): Fixed typo in `InvalidArgumentException` message when invalid authentication `kwargs` are provided.
@@ -482,11 +516,11 @@ The Couchbase Python SDK will stop providing Python 3.8 wheels with the next rel
 
 #### [](#underlying-c-sdk-core-changes-9)Underlying C++ SDK Core Changes
 
-##### [](#enhancements-13)Enhancements
+##### [](#enhancements-14)Enhancements
 
 * [CXXCBC-552](http://jira.issues.couchbase.com/browse/CXXCBC-582): Cleaned up network selection options ([#677](https://github.com/couchbase/couchbase-cxx-client/pull/677), [#682](https://github.com/couchbase/couchbase-cxx-client/pull/682)). Added cluster labels and system tag to spans. Added cluster labels, keyspace, and outcome to metrics.
 
-##### [](#fixes-16)Fixes
+##### [](#fixes-17)Fixes
 
 * [CXXCBC-311](http://jira.issues.couchbase.com/browse/CXXCBC-311): Ensure SDK encodes URIs ([#674](https://github.com/couchbase/couchbase-cxx-client/pull/674)).
 * [CXXCBC-599](http://jira.issues.couchbase.com/browse/CXXCBC-599): Updated allowed connection string options ([#668](https://github.com/couchbase/couchbase-cxx-client/pull/668)).
@@ -507,13 +541,13 @@ $ python3 -m pip install couchbase==4.3.2
 
 The Couchbase Python SDK will soon stop providing Python 3.8 wheels as Python 3.8 reaches [end-of-life](https://peps.python.org/pep-0569/#lifespann) in October 2024\. See [Python Version Compatibility](compatibility.md#python-version-compat) for details of supported Python versions.
 
-#### [](#enhancements-14)Enhancements
+#### [](#enhancements-15)Enhancements
 
 * [PYCBC-1563](https://jira.issues.couchbase.com/browse/PYCBC-1563): Added Python 3.12 Support.
 
 #### [](#underlying-c-sdk-core-changes-10)Underlying C++ SDK Core Changes
 
-##### [](#fixes-17)Fixes
+##### [](#fixes-18)Fixes
 
 * [CXXCBC-577](http://jira.issues.couchbase.com/browse/CXXCBC-577), [CXXCBC-552](http://jira.issues.couchbase.com/browse/CXXCBC-552), & [CXXCBC-576](http://jira.issues.couchbase.com/browse/CXXCBC-576): See [C++ 1.0.2 release notes](../../../cxx-sdk/current/project-docs/sdk-release-notes.md#version-1-0-2-23-september-2024).
 
@@ -527,18 +561,18 @@ $ python3 -m pip install couchbase==4.3.1
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.3.1/>
 
-#### [](#fixes-18)Fixes
+#### [](#fixes-19)Fixes
 
 * [PYCBC-1612](https://issues.couchbase.com/browse/PYCBC-1612): Fixed multi-mutation operations to honor durability when passed in options.
 
 #### [](#underlying-c-sdk-core-changes-11)Underlying C++ SDK Core Changes
 
-##### [](#enhancements-15)Enhancements
+##### [](#enhancements-16)Enhancements
 
 * Improve logging of DNS client ([#634](https://github.com/couchbase/couchbase-cxx-client/pull/634)).
 * [CXXCBC-568](https://issues.couchbase.com/browse/CXXCBC-568/): Cancel deferred operations when closing HTTP session manager ([#643](https://github.com/couchbase/couchbase-cxx-client/pull/643)).
 
-##### [](#fixes-19)Fixes
+##### [](#fixes-20)Fixes
 
 * [CXXCBC-531](https://issues.couchbase.com/browse/CXXCBC-531/): Fixed memory leak in range scan implementation ([#645](https://github.com/couchbase/couchbase-cxx-client/pull/645), [#610](https://github.com/couchbase/couchbase-cxx-client/pull/610)).
 * [CXXCBC-572](https://issues.couchbase.com/browse/CXXCBC-572/): Always initialize service\_type ([#610](https://github.com/couchbase/couchbase-cxx-client/pull/610)).
@@ -556,23 +590,23 @@ $ python3 -m pip install couchbase==4.3.0
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.3.0/>
 
-#### [](#fixes-20)Fixes
+#### [](#fixes-21)Fixes
 
 * [PYCBC-1596](https://issues.couchbase.com/browse/PYCBC-1596): Fixed `AnalyticsStatus` Enum values.
 * [PYCBC-1603](https://issues.couchbase.com/browse/PYCBC-1603): Fixed `VectorQuery` validation to prevent empty `field_name`.
 
-#### [](#enhancements-16)Enhancements
+#### [](#enhancements-17)Enhancements
 
 * [PYCBC-1597](https://issues.couchbase.com/browse/PYCBC-1597): Added Support for base64 encoded vector types.
 * [PYCBC-1588](https://issues.couchbase.com/browse/PYCBC-1588): Added support for importing FTS index from JSON.
 
 #### [](#underlying-c-sdk-core-changes-12)Underlying C++ SDK Core Changes
 
-##### [](#enhancements-17)Enhancements
+##### [](#enhancements-18)Enhancements
 
 * [CXXCBC-381](https://issues.couchbase.com/browse/CXXCBC-381): Updated `transactions_context` and `attempt_context` to use `std::shared_ptr` ([#590](https://github.com/couchbaselabs/couchbase-cxx-client/pull/590)).
 
-##### [](#fixes-21)Fixes
+##### [](#fixes-22)Fixes
 
 * [CXXCBC-445](https://issues.couchbase.com/browse/CXXCBC-445): Updated HTTP session logic to return `request_canceled` on IO error ([#568](https://github.com/couchbaselabs/couchbase-cxx-client/pull/568)).
 * [CXXCBC-511](https://issues.couchbase.com/browse/CXXCBC-511): Updated HTTP session logic to prevent use of session if idle timer has expired ([#565](https://github.com/couchbaselabs/couchbase-cxx-client/pull/565)).
@@ -594,24 +628,24 @@ $ python3 -m pip install couchbase==4.2.1
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.2.1/>
 
-#### [](#fixes-22)Fixes
+#### [](#fixes-23)Fixes
 
 * [PYCBC-1575](https://issues.couchbase.com/browse/PYCBC-1575): Added missing logic to handle alternate addresses when bootstrapping.
 * [PYCBC-1532](https://issues.couchbase.com/browse/PYCBC-1532), [PYCBC-1566](https://issues.couchbase.com/browse/PYCBC-1566), [PYCBC-1589](https://issues.couchbase.com/browse/PYCBC-1589): Fixed floating point exception if recieved config with empty vBucket map.
 * [PYCBC-1590](https://issues.couchbase.com/browse/PYCBC-1590): Fixed Python logger shutdown process.
 
-#### [](#enhancements-18)Enhancements
+#### [](#enhancements-19)Enhancements
 
 * [PYCBC-1584](https://issues.couchbase.com/browse/PYCBC-1584): Added support for scoped eventing functions.
 
 #### [](#underlying-c-sdk-core-changes-13)Underlying C++ SDK Core Changes
 
-##### [](#enhancements-19)Enhancements
+##### [](#enhancements-20)Enhancements
 
 * [CXXCBC-470](https://issues.couchbase.com/browse/CXXCBC-470): Distinguish between 'unset' and 'off' query\_profile ([#551](https://github.com/couchbaselabs/couchbase-cxx-client/pull/551)).
 * [CXXCBC-489](https://issues.couchbase.com/browse/CXXCBC-489): Added support for scoped eventing functions ([#548](https://github.com/couchbaselabs/couchbase-cxx-client/pull/548), ([#554](https://github.com/couchbaselabs/couchbase-cxx-client/pull/554))).
 
-##### [](#fixes-23)Fixes
+##### [](#fixes-24)Fixes
 
 * [CXXCBC-30](https://issues.couchbase.com/browse/CXXCBC-30): Fixed inconsistent behavior when using subdoc opcodes ([#559](https://github.com/couchbaselabs/couchbase-cxx-client/pull/559)).
 * [CXXCBC-487](https://issues.couchbase.com/browse/CXXCBC-487): Added logic during bootstrap to check if alternate addressing is being used ([#545](https://github.com/couchbaselabs/couchbase-cxx-client/pull/545)).
@@ -637,7 +671,7 @@ $ python3 -m pip install couchbase==4.2.0
 
 It's important to use `Cluster.searchQuery()` / `Cluster.search()` for global indexes, and `Scope.search()` for scoped indexes. Method `Scope.search_query()` is now deprecated and will be removed in a future release. Method `Scope.search_query()` will _not_ work with scoped indexes.
 
-#### [](#enhancements-20)Enhancements
+#### [](#enhancements-21)Enhancements
 
 * [PYCBC-1548](https://issues.couchbase.com/browse/PYCBC-1548): Added support for Vector Search.
 * [PYCBC-1565](https://issues.couchbase.com/browse/PYCBC-1565): Updated C++ core for transactions metadata bucket improvements.
@@ -669,11 +703,11 @@ $ python3 -m pip install couchbase==4.1.12
 
 * [CXXCBC-447](https://issues.couchbase.com/browse/CXXCBC-447): This version of the SDK will not be able to connect to a cluster utilizing alternate addressing. The recommendation is to wait to upgrade to a version of the Python SDK that contains C++ SDK 1.0.0-dp.15 (or later).
 
-#### [](#fixes-24)Fixes
+#### [](#fixes-25)Fixes
 
 * [PYCBC-1555](https://issues.couchbase.com/browse/PYCBC-1555): Fixed bootstrap `select_bucket` logic to handle non-KV node.
 
-#### [](#enhancements-21)Enhancements
+#### [](#enhancements-22)Enhancements
 
 * [PYCBC-1375](https://issues.couchbase.com/browse/PYCBC-1375): Updated Query Index Management Create Index Key Encoding.
 * [PYCBC-1550](https://issues.couchbase.com/browse/PYCBC-1550): Added support for Scoped Search Indexes.
@@ -704,7 +738,7 @@ $ python3 -m pip install couchbase==4.1.11
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.1.11/>
 
-#### [](#enhancements-22)Enhancements
+#### [](#enhancements-23)Enhancements
 
 * [PYCBC-1549](https://issues.couchbase.com/browse/PYCBC-1549): Added support for `maxTTL` value of -1 for collection "no expiry".
 
@@ -726,7 +760,7 @@ $ python3 -m pip install couchbase==4.1.10
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.1.10/>
 
-#### [](#enhancements-23)Enhancements
+#### [](#enhancements-24)Enhancements
 
 * [PYCBC-1499](https://issues.couchbase.com/browse/PYCBC-1499): Added improvements for Faster Failover and Config Push.
 * [PYCBC-1545](https://issues.couchbase.com/browse/PYCBC-1545): Added support for new KV error code to raise `DocumentNotLockedException`.
@@ -755,14 +789,14 @@ $ python3 -m pip install couchbase==4.1.9
 
 The Couchbase Python SDK now publishes wheels that statically link against `BoringSSL`. The change removes the `OpenSSL` requirement from the SDK when using a published wheel. If building the SDK from source, the build will default to dynamically linking with the system provided `OpenSSL`. Build options are available if wanting to build from source and statically link against `BoringSSL`. Also, published wheels dynamically link against `stdlibs` where previously the default was to statically link against `stdlibs`. Build options are available if wanting to build from source and statically link against `stdlibs`.
 
-#### [](#fixes-25)Fixes
+#### [](#fixes-26)Fixes
 
 * [PYCBC-1538](https://issues.couchbase.com/browse/PYCBC-1538): Fixed `get` with projections to not fail with `InvalidArgumentException` when projecting on more than 16 fields.
 * [PYCBC-1534](https://issues.couchbase.com/browse/PYCBC-1534): Fixed `MutateIn` replace operation to not fail if path is empty.
 * [PYCBC-1531](https://issues.couchbase.com/browse/PYCBC-1531): Fixed `CollectionQueryIndexManager` to raise `InvalidArgumentException` when `scope_name` or `collection_name` options are set.
 * [PYCBC-1521](https://issues.couchbase.com/browse/PYCBC-1521): Fixed streaming APIs to use cluster timeout values from `ClusterTimeoutOptions` if provided.
 
-#### [](#enhancements-24)Enhancements
+#### [](#enhancements-25)Enhancements
 
 * [PYCBC-1536](https://issues.couchbase.com/browse/PYCBC-1536): Updated MANIFEST.in to only include necessary files for source install.
 * [PYCBC-1520](https://issues.couchbase.com/browse/PYCBC-1518), [PYCBC-1518](https://issues.couchbase.com/browse/PYCBC-1520): Updated published wheels to statically link against BoringSSL.
@@ -797,11 +831,11 @@ $ python3 -m pip install couchbase==4.1.8
 
 The Couchbase Python SDK no longer provides Python 3.7 wheels as Python 3.7 has reached [end-of-life](https://peps.python.org/pep-0537/#lifespan). See [Python Version Compatibility](https://docs.couchbase.com/python-sdk/current/project-docs/compatibility.html#python-version-compat) for details.
 
-#### [](#fixes-26)Fixes
+#### [](#fixes-27)Fixes
 
 * [PYCBC-1514](https://issues.couchbase.com/browse/PYCBC-1514): Fixed parsing of `LookupIn` options if provided for lookup-in operations.
 
-#### [](#enhancements-25)Enhancements
+#### [](#enhancements-26)Enhancements
 
 * [PYCBC-1497](https://issues.couchbase.com/browse/PYCBC-1497): Added support for Sub-Document Read from Replica.
 
@@ -825,11 +859,11 @@ $ python3 -m pip install couchbase==4.1.7
 
 Since Python 3.7 has reached [end-of-life](https://peps.python.org/pep-0537/#lifespan), the Couchbase Python SDK will no longer provide Python 3.7 wheels in future releases (>4.1.7). See [Python Version Compatibility](https://docs.couchbase.com/python-sdk/current/project-docs/compatibility.html#python-version-compat) for details.
 
-#### [](#fixes-27)Fixes
+#### [](#fixes-28)Fixes
 
 * [PYCBC-1502](https://issues.couchbase.com/browse/PYCBC-1502): Added `PasswordAuthenticator` validation.
 
-#### [](#enhancements-26)Enhancements
+#### [](#enhancements-27)Enhancements
 
 * [PYCBC-1496](https://issues.couchbase.com/browse/PYCBC-1496): Added support for Query with Read from Replica.
 * [PYCBC-1419](https://issues.couchbase.com/browse/PYCBC-1419): Added support for Native KV Range Scans.
@@ -860,11 +894,11 @@ $ python3 -m pip install couchbase==4.1.6
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.1.6/>
 
-#### [](#fixes-28)Fixes
+#### [](#fixes-29)Fixes
 
 * [PYCBC-1500](https://issues.couchbase.com/browse/PYCBC-1500): Added `max_expiry` to `CollectionSpec` for collections returned in `get_all_scopes()` result.
 
-#### [](#enhancements-27)Enhancements
+#### [](#enhancements-28)Enhancements
 
 * [PYCBC-1473](https://issues.couchbase.com/browse/PYCBC-1473): Added Support for Python 3.11.
 * [PYCBC-1459](https://issues.couchbase.com/browse/PYCBC-1459): Reduced size of manylinux wheels.
@@ -885,7 +919,7 @@ $ python3 -m pip install couchbase==4.1.5
 
 Accessing content from an Exist operation with the `` LookupInResult’s `content_as `` method now returns a boolean. This boolean is `True` if the path exists, `False` otherwise. Prior to this change the SDK raised a `DocumentNotFoundException` if the path existed or `PathNotFoundException` if the path didn't exist. The behavioral change aligns the Python SDK with Couchbase's [CRUD RFC](https://github.com/couchbaselabs/sdk-rfcs/blob/master/rfc/0053-sdk3-crud.md).
 
-#### [](#fixes-29)Fixes
+#### [](#fixes-30)Fixes
 
 * [PYCBC-1480](https://issues.couchbase.com/browse/PYCBC-1480): Fixed subdocument read operations to allow for null values.
 * [PYCBC-1486](https://issues.couchbase.com/browse/PYCBC-1486): Fixed broken imports for search `GeoBoundingBoxQuery`, `GeoDistanceQuery`, and `GeoPolygonQuery`.
@@ -893,7 +927,7 @@ Accessing content from an Exist operation with the `` LookupInResult’s `conten
 * [PYCBC-1490](https://issues.couchbase.com/browse/PYCBC-1490): Fixed `InternalServerFailureException` when executing a `Regex` Search query.
 * [PYCBC-1493](https://issues.couchbase.com/browse/PYCBC-1493): Updated search operations to correctly pass MutationState to C++ core.
 
-#### [](#enhancements-28)Enhancements
+#### [](#enhancements-29)Enhancements
 
 * [PYCBC-1488](https://issues.couchbase.com/browse/PYCBC-1488): Added `dump_configuration` to `ClusterOptions`.
 * [PYCBC-1479](https://issues.couchbase.com/browse/PYCBC-1479): Bundled Mozilla certificates with the library. Source: <https://curl.se/docs/caextract.html>. Use the `disable_mozilla_ca_certificates` connection string option to disable the bundled certificates. See [Secure Connections](https://docs.couchbase.com/python-sdk/current/howtos/managing-connections.html#ssl) for more details.
@@ -918,7 +952,7 @@ $ python3 -m pip install couchbase==4.1.4
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.1.4/>
 
-#### [](#fixes-30)Fixes
+#### [](#fixes-31)Fixes
 
 * [PYCBC-1469](https://issues.couchbase.com/browse/PYCBC-1469): Added check to determine if Python interpreter is finalizing prior to logging.
 * [PYCBC-1471](https://issues.couchbase.com/browse/PYCBC-1471): Fixed `acouchbase` streaming API blocking behavior while when executing queries.
@@ -926,7 +960,7 @@ $ python3 -m pip install couchbase==4.1.4
 * [PYCBC-1475](https://issues.couchbase.com/browse/PYCBC-1475): Updated exception classes to allow first positional arg to be a string message.
 * [PYCBC-1477](https://issues.couchbase.com/browse/PYCBC-1477): Fixed potential crash in certain scenarios that use `MutationState`.
 
-#### [](#enhancements-29)Enhancements
+#### [](#enhancements-30)Enhancements
 
 * [PYCBC-1468](https://issues.couchbase.com/browse/PYCBC-1468): Added replica read operations to API docs.
 * [PYCBC-1472](https://issues.couchbase.com/browse/PYCBC-1472): Updated API Docs to indicate expiry option should be a timedelta.
@@ -950,13 +984,13 @@ $ python3 -m pip install couchbase==4.1.3
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.1.3/>
 
-#### [](#fixes-31)Fixes
+#### [](#fixes-32)Fixes
 
 * [PYCBC-1443](https://issues.couchbase.com/browse/PYCBC-1443): Fixed ssl import error.
 * [PYCBC-1446](https://issues.couchbase.com/browse/PYCBC-1446): Updated API Documentation.
 * [PYCBC-1455](https://issues.couchbase.com/browse/PYCBC-1455): Fixed build issue for Fedora 37 (gcc 12).
 
-#### [](#enhancements-30)Enhancements
+#### [](#enhancements-31)Enhancements
 
 * [PYCBC-1431](https://issues.couchbase.com/browse/PYCBC-1431): Updated the SDK to handle new `query_context` changes.
 * [PYCBC-1444](https://issues.couchbase.com/browse/PYCBC-1444): Improved CertificateAuthenticator parameter validation.
@@ -972,13 +1006,13 @@ $ python3 -m pip install couchbase==4.1.2
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.1.2/>
 
-#### [](#fixes-32)Fixes
+#### [](#fixes-33)Fixes
 
 * [PYCBC-1433](https://issues.couchbase.com/browse/PYCBC-1433): Fixed initialization of legacy durability options in C++ bindings.
 * [PYCBC-1434](https://issues.couchbase.com/browse/PYCBC-1434): Added Python SDK and Python version to C++ `user_agent` option.
 * [PYCBC-1441](https://issues.couchbase.com/browse/PYCBC-1441): Fixed inconsistencies when handling of `MutationState` in streaming APIs.
 
-#### [](#enhancements-31)Enhancements
+#### [](#enhancements-32)Enhancements
 
 * [PYCBC-1371](https://issues.couchbase.com/browse/PYCBC-1371): Implemented `ChangePassword` feature in user management API.
 * [PYCBC-1436](https://issues.couchbase.com/browse/PYCBC-1436): Updated pre-commit iSort Revision.
@@ -995,7 +1029,7 @@ $ python3 -m pip install couchbase==4.1.1
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.1.1/>
 
-#### [](#fixes-33)Fixes
+#### [](#fixes-34)Fixes
 
 * [PYCBC-1428](https://issues.couchbase.com/browse/PYCBC-1428): Fixed view query `ViewOrdering` to allow user specified ordering to be applied.
 * [PYCBC-1429](https://issues.couchbase.com/browse/PYCBC-1429): Fixed defaults for boolean options in N1QL query `QueryOptions`.
@@ -1010,11 +1044,11 @@ $ python3 -m pip install couchbase==4.1.0
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.1.0/>
 
-#### [](#fixes-34)Fixes
+#### [](#fixes-35)Fixes
 
 * [PYCBC-1420](https://issues.couchbase.com/browse/PYCBC-1420): Fixed potential `InternalSDKException` for replica read operations.
 
-#### [](#enhancements-32)Enhancements
+#### [](#enhancements-33)Enhancements
 
 * [PYCBC-1402](https://issues.couchbase.com/browse/PYCBC-1402): Added support for using PYCBC\_LOG\_LEVEL to create console logger.
 * [PYCBC-1417](https://issues.couchbase.com/browse/PYCBC-1417): Updated authentication error message for Bucket Hibernation.
@@ -1034,7 +1068,7 @@ $ python3 -m pip install couchbase==4.0.5
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.0.5/>
 
-#### [](#fixes-35)Fixes
+#### [](#fixes-36)Fixes
 
 * [PYCBC-1312](https://issues.couchbase.com/browse/PYCBC-1312); [PYCBC-1407](https://issues.couchbase.com/browse/PYCBC-1407): Fixed crash related to closing a cluster connection.
 * [PYCBC-1409](https://issues.couchbase.com/browse/PYCBC-1409): Updated to version of Couchbase++ client that correctly closes HTTP connections.
@@ -1042,7 +1076,7 @@ $ python3 -m pip install couchbase==4.0.5
 * [PYCBC-1415](https://issues.couchbase.com/browse/PYCBC-1415): Updated async APIs to use correct future chaining method for read KV operations.
 * [PYCBC-1416](https://issues.couchbase.com/browse/PYCBC-1416): Fixed `txcouchbase` search API.
 
-#### [](#enhancements-33)Enhancements
+#### [](#enhancements-34)Enhancements
 
 * [PYCBC-1405](https://issues.couchbase.com/browse/PYCBC-1405): Updated legacy durability to use the internal Couchbase++ client API.
 * [PYCBC-1406](https://issues.couchbase.com/browse/PYCBC-1406): Updated replica reads to use the internal Couchbase++ client API.
@@ -1058,11 +1092,11 @@ $ python3 -m pip install couchbase==4.0.4
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.0.4/>
 
-#### [](#fixes-36)Fixes
+#### [](#fixes-37)Fixes
 
 * [PYCBC-1398](https://issues.couchbase.com/browse/PYCBC-1398): Fixed potential crash when accessing `error_context` from a `base_exception` object.
 
-#### [](#enhancements-34)Enhancements
+#### [](#enhancements-35)Enhancements
 
 * [PYCBC-1261](https://issues.couchbase.com/browse/PYCBC-1261): Added Tracing API, including the ability to use an external tracer such as OpenTelemetry.
 * [PYCBC-1276](https://issues.couchbase.com/browse/PYCBC-1276): Added legacy durability to mutation operations. This allows the use of client durability within operations that allow for a durability option.
@@ -1081,7 +1115,7 @@ $ python3 -m pip install couchbase==4.0.3
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.0.3/>
 
-#### [](#fixes-37)Fixes
+#### [](#fixes-38)Fixes
 
 * [PYCBC-1201](https://issues.couchbase.com/browse/PYCBC-1201); [PYCBC-1282](https://issues.couchbase.com/browse/PYCBC-1282); [PYCBC-1382](https://issues.couchbase.com/browse/PYCBC-1382)Fixed memory leak in key-value Result objects.
 * [PYCBC-1383](https://issues.couchbase.com/browse/PYCBC-1383): Fixed memory leak in key-value Exception objects.
@@ -1089,7 +1123,7 @@ $ python3 -m pip install couchbase==4.0.3
 * [PYCBC-1389](https://issues.couchbase.com/browse/PYCBC-1389): Removed typing-extensions dependency.
 * [PYCBC-1390](https://issues.couchbase.com/browse/PYCBC-1390): Fixed Search query results to forward metrics for user access.
 
-#### [](#enhancements-35)Enhancements
+#### [](#enhancements-36)Enhancements
 
 * [PYCBC-1257](https://issues.couchbase.com/browse/PYCBC-1257): Added replica reads.
 * [PYCBC-1385](https://issues.couchbase.com/browse/PYCBC-1385): Updated Couchbase++ version.
@@ -1112,12 +1146,12 @@ $ python3 -m pip install couchbase==4.0.2
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.0.2/>
 
-#### [](#fixes-38)Fixes
+#### [](#fixes-39)Fixes
 
 * [PYCBC-1370](https://issues.couchbase.com/browse/PYCBC-1370): Added environment variables to direct CMake to use specified Python3 version.
 * [PYCBC-1374](https://issues.couchbase.com/browse/PYCBC-1374): Added option to dynamically link `stdc++` libs.
 
-#### [](#enhancements-36)Enhancements
+#### [](#enhancements-37)Enhancements
 
 * [PYCBC-628](https://issues.couchbase.com/browse/PYCBC-628); [PYCBC-1330](https://issues.couchbase.com/browse/PYCBC-1330); [PYCBC-1367](https://issues.couchbase.com/browse/PYCBC-1367): Added manylinux wheels.
 * [PYCBC-1232](https://issues.couchbase.com/browse/PYCBC-1232); [PYCBC-1368](https://issues.couchbase.com/browse/PYCBC-1368): Created custom spdlog sink for pass-through logging to python logging.
@@ -1142,7 +1176,7 @@ $ python3 -m pip install couchbase==4.0.1
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-python-client-4.0.1/>
 
-#### [](#fixes-39)Fixes
+#### [](#fixes-40)Fixes
 
 * [PYCBC-1324](https://issues.couchbase.com/browse/PYCBC-1324): Fixed N1QL Query options `scan_wait/scan_cap` misspelling.
 * [PYCBC-1335](https://issues.couchbase.com/browse/PYCBC-1335): Fixed issue where positional and named parameters were not used in `TransactionQueryOptions`.
@@ -1150,7 +1184,7 @@ $ python3 -m pip install couchbase==4.0.1
 * [PYCBC-1342](https://issues.couchbase.com/browse/PYCBC-1342): Fixed the txcouchbase API Bucket Management API.
 * [PYCBC-1343](https://issues.couchbase.com/browse/PYCBC-1343): Fixed the txcouchbase Collection Management API.
 
-#### [](#enhancements-37)Enhancements
+#### [](#enhancements-38)Enhancements
 
 * [PYCBC-1328](https://issues.couchbase.com/browse/PYCBC-1328)Implemented txcouchbase test suite.
 * [PYCBC-1320](https://issues.couchbase.com/browse/PYCBC-1320): Added acouchbase core API Docs.
@@ -1187,7 +1221,7 @@ $ python3 -m pip install couchbase==4.0.0
 * Support for Python versions 3.7 - 3.10.
 * Improved API documentation.
 
-#### [](#fixes-40)Fixes
+#### [](#fixes-41)Fixes
 
 * [PYCBC-849](https://issues.couchbase.com/browse/PYCBC-849): Implemented wait until ready.
 * [PYCBC-1146](https://issues.couchbase.com/browse/PYCBC-1146): Aligned multi key-value methods with couchbase API.

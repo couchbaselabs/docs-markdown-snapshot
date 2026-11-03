@@ -1,6 +1,6 @@
 ---
 title: Get Started with Couchbase
-pubDate: 2026-10-21T04:23:09.426Z
+pubDate: 2026-11-03T04:28:31.731Z
 meta:
   component:
     title: Couchbase Documentation
@@ -61,6 +61,6 @@ Build agentic and RAG applications with hosted models, persistent agent memory, 
 
 * [AI Data Plane](../ai/get-started/intro.md), with hosted models, data vectorization, AI Functions, and Agent Catalog
 * [Agent Memory](../agent-mem/current/about-agent-mem.md), a persistent memory layer for agents
-* [MCP Server](../mcp-server/get-started/overview.md), to connect AI agents to your Couchbase data
+* [MCP Server](#mcp-server:get-started:overview.adoc), to connect AI agents to your Couchbase data
 
 Retrieve relevant context for your AI applications with Hyperscale, Composite, and Search vector indexes in [Capella](../cloud/vector-index/vectors-and-indexes-overview.md) or [Couchbase Server](../server/current/vector-index/vectors-and-indexes-overview.md).

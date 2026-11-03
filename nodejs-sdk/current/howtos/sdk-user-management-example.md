@@ -3,7 +3,7 @@ title: User Management
 description: The Node.js SDK lets you create <em>users</em>, assign them
   <em>roles</em> and associated <em>privileges</em>, and remove them from the
   system.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-03T04:28:31.731Z
 meta:
   component:
     title: Node.js SDK
@@ -32,19 +32,65 @@ The most common uses of the `UserManager` API are creating and listing users:
 Creating Users
 
 ```javascript
-Unresolved include directive in modules/howtos/pages/sdk-user-management-example.adoc - include::example$user-manager.js[]
+const userMgr = clusterAdm.users();
+
+await userMgr.upsertUser({
+    username: testUsername,
+    password: testPassword,
+    displayName: "Constance Lambert",
+    roles: [
+        // Roles required for the reading of data from the bucket
+        { name: "data_reader", bucket: "*" },
+        { name: "query_select", bucket: "*" },
+        
+        // Roles required for the writing of data into the bucket. 
+        { name: "data_writer", bucket: bucketName },
+        { name: "query_insert", bucket: bucketName },
+        { name: "query_delete", bucket: bucketName },
+        
+        // Role required for the creation of indexes on the bucket.
+        { name: "query_manage_index", bucket: bucketName }
+    ]
+})
 ```
 
 Listing Users
 
 ```javascript
-Unresolved include directive in modules/howtos/pages/sdk-user-management-example.adoc - include::example$user-manager.js[]
+const listOfUsers = await clusterAdm.users().getAllUsers();
+
+for (const currentUser of listOfUsers) {
+    console.log(`User's display name is: ${ currentUser.displayName }`);
+    const currentRoles = currentUser.effectiveRoles;
+    for (const role of currentRoles) {
+        console.log(`   User has the role: ${ role.name }, applicable to bucket ${ role.bucket }`);
+    }
+}
 ```
 
 Using a user created in the SDK to access data:
 
 ```javascript
-Unresolved include directive in modules/howtos/pages/sdk-user-management-example.adoc - include::example$user-manager.js[]
+const userCluster = await couchbase.connect(
+    "couchbase://localhost", {
+    username: testUsername,
+    password: testPassword,
+})
+const bucket = userCluster.bucket(bucketName)
+const scope = bucket.scope("inventory")
+const collection = scope.collection("airline")
+
+await collection.upsert(
+    "airline_11", {
+        callsign: "MILE-AIR",
+        iata: "Q5",
+        icao: "MLA",
+        id: 11,
+        name: "40-Mile Air",
+        type: "airline"
+    }
+)
+userCluster.close()
 ```
 
 ## [](#further-reading)Further Reading

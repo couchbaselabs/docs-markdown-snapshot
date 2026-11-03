@@ -3,7 +3,7 @@ title: Configure Access Control
 description: Configure fine-grained read and write permissions for downstream
   edge clients in Couchbase Edge Server at the database, scope, and collection
   level.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-03T04:28:31.731Z
 meta:
   component:
     title: Couchbase Edge Server
@@ -22,7 +22,7 @@ Configure fine-grained access control to define which collections each edge clie
 
 ## [](#prerequisites)Prerequisites
 
-* Couchbase Edge Server {version} or later.
+* Couchbase Edge Server 1.1 or later.
 * A users file configured for your deployment. See [Authentication](../configuration/authentication.md).
 * Users must authenticate using Basic Auth or mTLS client certificates.
 
@@ -88,5 +88,5 @@ __Table 1\. Keyspace Pattern Syntax__
 
 ## [](#next-steps)Next Steps
 
-* To restrict which named queries a user can execute, see [configuration:configure-query-access.adoc](#configuration:configure-query-access.adoc).
-* To review how Couchbase Edge Server enforces access control across REST operations, see [configuration:fine-grained-access-control.adoc](#configuration:fine-grained-access-control.adoc).
+* To restrict which named queries a user can execute, see [Configure Named Query Access Control](configure-query-access.md).
+* To review how Couchbase Edge Server enforces access control across REST operations, see [Access Control](access-control-concept.md).

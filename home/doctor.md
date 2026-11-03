@@ -1,6 +1,6 @@
 ---
 title: What&#8217;s Up, Doc? 🐇
-pubDate: 2026-11-02T04:23:22.769Z
+pubDate: 2026-11-03T04:28:31.731Z
 meta:
   component:
     title: Couchbase Documentation
@@ -14,7 +14,7 @@ antora:
 
 # What&#8217;s Up, Doc? 🐇
 
-Generated at Mon Nov 02 2026 04:23:22 GMT+0000 (Coordinated Universal Time)
+Generated at Tue Nov 03 2026 04:28:31 GMT+0000 (Coordinated Universal Time)
 
 ## Featured Pages
 
@@ -5106,40 +5106,41 @@ From this [antora playbook](../doctor/antora-playbook.json).
       * [ glossary.md](../kotlin-sdk/current/ref/glossary.md) [⚑ ](https://github.com/couchbase/docs-sdk-kotlin/blob/temp/3.13/modules/ref/pages/glossary.adoc)
       * [ travel-app-data-model.md](../kotlin-sdk/current/ref/travel-app-data-model.md) [⚑ ](https://github.com/couchbase/docs-sdk-kotlin/blob/temp/3.13/modules/ref/pages/travel-app-data-model.adoc)
 * mcp-server  
-  * configuration ⚑  
-    * [ choosing-a-setup.md](../mcp-server/configuration/choosing-a-setup.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/configuration/pages/choosing-a-setup.adoc)
-    * [ disabling-tools.md](../mcp-server/configuration/disabling-tools.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/configuration/pages/disabling-tools.adoc)
-    * [ elicitation-for-tools.md](../mcp-server/configuration/elicitation-for-tools.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/configuration/pages/elicitation-for-tools.adoc)
-    * [ environment-variables.md](../mcp-server/configuration/environment-variables.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/configuration/pages/environment-variables.adoc)
-    * [ idp-compatibility.md](../mcp-server/configuration/idp-compatibility.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/configuration/pages/idp-compatibility.adoc)
-    * [ index.md](../mcp-server/configuration/index.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/configuration/pages/index.adoc)
-    * [ logging.md](../mcp-server/configuration/logging.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/configuration/pages/logging.adoc)
-    * [ oauth-overview.md](../mcp-server/configuration/oauth-overview.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/configuration/pages/oauth-overview.adoc)
-    * [ read-only-mode.md](../mcp-server/configuration/read-only-mode.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/configuration/pages/read-only-mode.adoc)
-    * [ streamable-http.md](../mcp-server/configuration/streamable-http.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/configuration/pages/streamable-http.adoc)
-    * [ token-verification.md](../mcp-server/configuration/token-verification.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/configuration/pages/token-verification.adoc)
-  * get-started ⚑  
-    * [ overview.md](../mcp-server/get-started/overview.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/get-started/pages/overview.adoc)
-    * [ prerequisites.md](../mcp-server/get-started/prerequisites.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/get-started/pages/prerequisites.adoc)
-    * [ quickstart.md](../mcp-server/get-started/quickstart.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/get-started/pages/quickstart.adoc)
-    * [ registries.md](../mcp-server/get-started/registries.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/get-started/pages/registries.adoc)
-  * learn ⚑  
-    * [ architecture.md](../mcp-server/learn/architecture.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/learn/pages/architecture.adoc)
-    * [ tools.md](../mcp-server/learn/tools.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/learn/pages/tools.adoc)
-  * managed ⚑  
-    * [ about-managed-mcp.md](../mcp-server/managed/about-managed-mcp.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/cloud/modules/ROOT/pages/about-managed-mcp.adoc)
-    * [ deploy-connect-mcp.md](../mcp-server/managed/deploy-connect-mcp.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/cloud/modules/ROOT/pages/deploy-connect-mcp.adoc)
+  * 1.0 ⚑  
+    * configuration ⚑  
+      * [ choosing-a-setup.md](../mcp-server/1.0/configuration/choosing-a-setup.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/configuration/pages/choosing-a-setup.adoc)
+      * [ disabling-tools.md](../mcp-server/1.0/configuration/disabling-tools.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/configuration/pages/disabling-tools.adoc)
+      * [ elicitation-for-tools.md](../mcp-server/1.0/configuration/elicitation-for-tools.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/configuration/pages/elicitation-for-tools.adoc)
+      * [ environment-variables.md](../mcp-server/1.0/configuration/environment-variables.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/configuration/pages/environment-variables.adoc)
+      * [ idp-compatibility.md](../mcp-server/1.0/configuration/idp-compatibility.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/configuration/pages/idp-compatibility.adoc)
+      * [ index.md](../mcp-server/1.0/configuration/index.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/configuration/pages/index.adoc)
+      * [ logging.md](../mcp-server/1.0/configuration/logging.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/configuration/pages/logging.adoc)
+      * [ oauth-overview.md](../mcp-server/1.0/configuration/oauth-overview.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/configuration/pages/oauth-overview.adoc)
+      * [ read-only-mode.md](../mcp-server/1.0/configuration/read-only-mode.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/configuration/pages/read-only-mode.adoc)
+      * [ streamable-http.md](../mcp-server/1.0/configuration/streamable-http.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/configuration/pages/streamable-http.adoc)
+      * [ token-verification.md](../mcp-server/1.0/configuration/token-verification.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/configuration/pages/token-verification.adoc)
+    * get-started ⚑  
+      * [ overview.md](../mcp-server/1.0/get-started/overview.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/get-started/pages/overview.adoc)
+      * [ prerequisites.md](../mcp-server/1.0/get-started/prerequisites.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/get-started/pages/prerequisites.adoc)
+      * [ quickstart.md](../mcp-server/1.0/get-started/quickstart.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/get-started/pages/quickstart.adoc)
+      * [ registries.md](../mcp-server/1.0/get-started/registries.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/get-started/pages/registries.adoc)
     * learn ⚑  
-      * [ tools.md](../mcp-server/managed/learn/tools.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/cloud/modules/learn/pages/tools.adoc)
+      * [ architecture.md](../mcp-server/1.0/learn/architecture.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/learn/pages/architecture.adoc)
+      * [ tools.md](../mcp-server/1.0/learn/tools.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/learn/pages/tools.adoc)
     * reference ⚑  
-      * [ release-notes.md](../mcp-server/managed/reference/release-notes.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/cloud/modules/reference/pages/release-notes.adoc)
-  * reference ⚑  
-    * [ build-from-source.md](../mcp-server/reference/build-from-source.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/reference/pages/build-from-source.adoc)
-    * [ license.md](../mcp-server/reference/license.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/reference/pages/license.adoc)
-    * [ release-notes.md](../mcp-server/reference/release-notes.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/reference/pages/release-notes.adoc)
-    * [ troubleshooting.md](../mcp-server/reference/troubleshooting.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/reference/pages/troubleshooting.adoc)
-  * security ⚑  
-    * [ security.md](../mcp-server/security/security.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/security/pages/security.adoc)
+      * [ build-from-source.md](../mcp-server/1.0/reference/build-from-source.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/reference/pages/build-from-source.adoc)
+      * [ license.md](../mcp-server/1.0/reference/license.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/reference/pages/license.adoc)
+      * [ release-notes.md](../mcp-server/1.0/reference/release-notes.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/reference/pages/release-notes.adoc)
+      * [ troubleshooting.md](../mcp-server/1.0/reference/troubleshooting.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/reference/pages/troubleshooting.adoc)
+    * security ⚑  
+      * [ security.md](../mcp-server/1.0/security/security.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/release/1.0/modules/security/pages/security.adoc)
+  * current ⚑  
+    * [ about-managed-mcp.md](../mcp-server/current/about-managed-mcp.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/cloud/modules/ROOT/pages/about-managed-mcp.adoc)
+    * [ deploy-connect-mcp.md](../mcp-server/current/deploy-connect-mcp.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/cloud/modules/ROOT/pages/deploy-connect-mcp.adoc)
+    * learn ⚑  
+      * [ tools.md](../mcp-server/current/learn/tools.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/cloud/modules/learn/pages/tools.adoc)
+    * reference ⚑  
+      * [ release-notes.md](../mcp-server/current/reference/release-notes.md) [⚑ ](https://github.com/couchbaselabs/docs-mcp-server/blob/cloud/modules/reference/pages/release-notes.adoc)
 * nodejs-analytics-sdk  
   * 1.0 ⚑  
     * concept-docs ⚑  

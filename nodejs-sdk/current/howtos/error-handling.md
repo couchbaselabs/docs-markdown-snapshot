@@ -2,7 +2,7 @@
 title: Handling Errors
 description: Errors are inevitable. The developer’s job is to be prepared for
   whatever is likely to come up
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-03T04:28:31.731Z
 meta:
   component:
     title: Node.js SDK
@@ -28,7 +28,7 @@ The Node.js SDK works directly with the built in exception handling available in
 
 ```javascript
 try {
-  var result = await collection.get(docKey);
+  const result = await collection.get(docKey);
 } catch (e) {
   // we can handle any exceptions thrown here.
 }
@@ -42,10 +42,10 @@ If a particular key cannot be found it is return as a `DocumentNotFoundError`:
 
 ```javascript
 try {
-  var result = await collection.get("key-which-does-not-exist");
+  const result = await collection.get("key-which-does-not-exist");
 } catch (e) {
   if (e instanceof couchbase.DocumentNotFoundError) {
-    console.log("the document is missing")
+    console.log("the document is missing");
   }
 }
 ```
@@ -54,10 +54,10 @@ On the other hand if the key already exists and should not (e.g. on an insert) t
 
 ```javascript
 try {
-  var result = await collection.insert("key-which-exists", "hello");
+  const result = await collection.insert("key-which-exists", "hello");
 } catch (e) {
   if (e instanceof couchbase.DocumentExistsError) {
-    console.log("document unexpectedly exists")
+    console.log("document unexpectedly exists");
   }
 }
 ```
@@ -67,12 +67,12 @@ try {
 Couchbase provides optimistic concurrency using [CAS](concurrent-document-mutations.md). Each document gets a CAS value on the server, which is changed on each mutation. When you get a document you automatically receive its CAS value, and when replacing the document, if you provide that CAS the server can check that the document has not been concurrently modified by another agent. If it has, it returns `CasMismatchError`, and the most appropriate response is to simply retry it:
 
 ```javascript
-  for (var retryNum = 0; retryNum < 10; ++i) {
+  for (let retryNum = 0; retryNum < 10; ++retryNum) {
     try {
-      var result = await collection.get(docKey);
+      const result = await collection.get(docKey);
 
-      var airport = result.value;
-      airport.views++;
+      const airport = result.content;
+      airport.views = (airport.views || 0) + 1;
 
       await collection.replace(docKey, airport, { cas: result.cas });
 
@@ -80,7 +80,7 @@ Couchbase provides optimistic concurrency using [CAS](concurrent-document-mutati
       break;
     } catch (e) {
       if (e instanceof couchbase.CasMismatchError) {
-        console.log("CAS mismatch")
+        console.log("CAS mismatch");
         // We could now re-fetch the document and try again
         continue;
       }
@@ -104,21 +104,19 @@ This needs to be considered case-by-case, but the general strategy is to become 
 For instance, for inserts, they can simply be retried to see if they fail on `DocumentExistsError`, in which case the operation was successful:
 
 ```javascript
-  for (var retryNum = 0; retryNum < 10; ++i) {
+  for (let retryNum = 0; retryNum < 10; ++retryNum) {
     try {
-      var result = await collection.insert(docKey, "some value", {
+      const result = await collection.insert(docKey, "some value", {
         durabilityLevel: couchbase.DurabilityLevel.PersistToMajority,
       });
 
       // success!
       break;
     } catch (e) {
-      if (e instanceof couchbase.DocumentExistsError) {
-        if (retryNum > 0) {
-          // If this is a retry and the document now exists, we can assume it was
-          // written successfully by a previously ambiguous error.
-          continue;
-        }
+      if (e instanceof couchbase.DocumentExistsError && retryNum > 0) {
+        // If this is a retry and the document now exists, we can assume it was
+        // written successfully by a previously ambiguous error.
+        break;
       }
       if (e instanceof couchbase.DurabilityAmbiguousError) {
         // we can simply try the durable operation again...
@@ -149,18 +147,17 @@ A SQL++ (formerly N1QL) query either returns results or will throw an error with
 
 ```javascript
   try {
-    var results = cluster.query("SELECT * FROM `travel-sample`");
+    const result = await cluster.query("SELECT * FROM `no-such-bucket`");
   } catch (e) {
     if (e instanceof couchbase.IndexFailureError) {
-      console.log("index doesn't exist, do we need to create it")
+      console.log("index doesn't exist, do we need to create it");
     }
 
     if (e.context instanceof couchbase.QueryErrorContext) {
       // We have a SQL++ (N1QL) error context, we can print out some useful information:
       console.log(e.context.statement);
-      console.log(e.context.first_error_code);
-      console.log(e.context.first_error_message);
       console.log(e.context.client_context_id);
+      console.log(e.context.last_dispatched_to);
       console.log(e.context.http_response_code);
       console.log(e.context.http_response_body);
     }

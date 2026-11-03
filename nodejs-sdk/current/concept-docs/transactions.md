@@ -1,7 +1,7 @@
 ---
 title: Transaction Concepts
 description: A high-level overview of Distributed ACID Transactions with Couchbase.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-03T04:28:31.731Z
 meta:
   component:
     title: Node.js SDK
@@ -29,7 +29,7 @@ Couchbase Distributed [ACID (atomic, consistent, isolated, and durable)](../../.
 
 ```typescript
 await cluster.transactions().run(async (ctx) => {
-  ctx.insert(collection, 'doc1', { hello: 'world' })
+  await ctx.insert(collection, 'doc1', { hello: 'world' })
 
   const doc2 = await ctx.get(collection, "doc2")
   await ctx.replace(doc2, { foo: "bar" })
@@ -80,7 +80,7 @@ The application can use this to signal why it triggered a rollback, as so:
 
 ```typescript
 try {
-  cluster.transactions().run(async (ctx) => {
+  await cluster.transactions().run(async (ctx) => {
     const customer = await ctx.get(collection, 'customer-name')
 
     if (customer.content.balance < costOfItem) {

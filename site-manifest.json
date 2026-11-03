@@ -1,6 +1,6 @@
 {
   "$id": "https://schemas.antora.org/site-manifest/1-0-0/draft-01",
-  "generated": "2026-11-02T04:33:53.049Z",
+  "generated": "2026-11-03T04:41:00.648Z",
   "url": "https://docs.couchbase.com",
   "components": {
     "agent-mem": {
@@ -69864,189 +69864,189 @@
     },
     "mcp-server": {
       "title": "Couchbase MCP Server",
-      "latest": "",
+      "latest": "managed",
       "versions": {
-        "": {
-          "displayVersion": "Self-Managed",
-          "url": "/mcp-server/get-started/overview.html",
-          "pages": [
-            {
-              "path": "index.adoc",
-              "url": "/mcp-server/index.html",
-              "title": "Couchbase MCP Server",
-              "alias": {
-                "ref": "get-started:overview.adoc",
-                "url": "/mcp-server/get-started/overview.md"
-              }
-            },
-            {
-              "module": "configuration",
-              "path": "index.adoc",
-              "url": "/mcp-server/configuration/index.md",
-              "title": "Configuration"
-            },
-            {
-              "module": "configuration",
-              "path": "choosing-a-setup.adoc",
-              "url": "/mcp-server/configuration/choosing-a-setup.md",
-              "title": "Choosing a Setup"
-            },
-            {
-              "module": "configuration",
-              "path": "disabling-tools.adoc",
-              "url": "/mcp-server/configuration/disabling-tools.md",
-              "title": "Disabling Tools"
-            },
-            {
-              "module": "configuration",
-              "path": "elicitation-for-tools.adoc",
-              "url": "/mcp-server/configuration/elicitation-for-tools.md",
-              "title": "Elicitation / Confirmation for Tool Calls"
-            },
-            {
-              "module": "configuration",
-              "path": "environment-variables.adoc",
-              "url": "/mcp-server/configuration/environment-variables.md",
-              "title": "Environment Variables &amp; Command Line Arguments"
-            },
-            {
-              "module": "configuration",
-              "path": "idp-compatibility.adoc",
-              "url": "/mcp-server/configuration/idp-compatibility.md",
-              "title": "IDP Compatibility"
-            },
-            {
-              "module": "configuration",
-              "path": "logging.adoc",
-              "url": "/mcp-server/configuration/logging.md",
-              "title": "Logging"
-            },
-            {
-              "module": "configuration",
-              "path": "oauth-overview.adoc",
-              "url": "/mcp-server/configuration/oauth-overview.md",
-              "title": "OAuth Authentication"
-            },
-            {
-              "module": "configuration",
-              "path": "read-only-mode.adoc",
-              "url": "/mcp-server/configuration/read-only-mode.md",
-              "title": "Read-Only Mode"
-            },
-            {
-              "module": "configuration",
-              "path": "streamable-http.adoc",
-              "url": "/mcp-server/configuration/streamable-http.md",
-              "title": "Streamable HTTP Transport Mode"
-            },
-            {
-              "module": "configuration",
-              "path": "token-verification.adoc",
-              "url": "/mcp-server/configuration/token-verification.md",
-              "title": "Token Verification &amp; PRM"
-            },
-            {
-              "module": "get-started",
-              "path": "overview.adoc",
-              "url": "/mcp-server/get-started/overview.md",
-              "title": "Couchbase MCP Server"
-            },
-            {
-              "module": "get-started",
-              "path": "prerequisites.adoc",
-              "url": "/mcp-server/get-started/prerequisites.md",
-              "title": "Prerequisites"
-            },
-            {
-              "module": "get-started",
-              "path": "quickstart.adoc",
-              "url": "/mcp-server/get-started/quickstart.md",
-              "title": "Quick Start"
-            },
-            {
-              "module": "get-started",
-              "path": "registries.adoc",
-              "url": "/mcp-server/get-started/registries.md",
-              "title": "Registries"
-            },
-            {
-              "module": "learn",
-              "path": "architecture.adoc",
-              "url": "/mcp-server/learn/architecture.md",
-              "title": "Architecture"
-            },
-            {
-              "module": "learn",
-              "path": "tools.adoc",
-              "url": "/mcp-server/learn/tools.md",
-              "title": "Tools"
-            },
-            {
-              "module": "reference",
-              "path": "build-from-source.adoc",
-              "url": "/mcp-server/reference/build-from-source.md",
-              "title": "Build from Source"
-            },
-            {
-              "module": "reference",
-              "path": "license.adoc",
-              "url": "/mcp-server/reference/license.md",
-              "title": "License"
-            },
-            {
-              "module": "reference",
-              "path": "release-notes.adoc",
-              "url": "/mcp-server/reference/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "module": "reference",
-              "path": "troubleshooting.adoc",
-              "url": "/mcp-server/reference/troubleshooting.md",
-              "title": "Troubleshooting"
-            },
-            {
-              "module": "security",
-              "path": "security.adoc",
-              "url": "/mcp-server/security/security.md",
-              "title": "Security"
-            }
-          ]
-        },
         "managed": {
           "displayVersion": "Managed",
-          "url": "/mcp-server/managed/about-managed-mcp.html",
+          "url": "/mcp-server/current/about-managed-mcp.html",
           "pages": [
             {
               "path": "index.adoc",
-              "url": "/mcp-server/managed/index.html",
+              "url": "/mcp-server/current/index.html",
               "title": "Connect Data to Agents with Managed MCP Server",
               "alias": {
                 "ref": "about-managed-mcp.adoc",
-                "url": "/mcp-server/managed/about-managed-mcp.md"
+                "url": "/mcp-server/current/about-managed-mcp.md"
               }
             },
             {
               "path": "about-managed-mcp.adoc",
-              "url": "/mcp-server/managed/about-managed-mcp.md",
+              "url": "/mcp-server/current/about-managed-mcp.md",
               "title": "Connect Data to Agents with Managed MCP Server"
             },
             {
               "path": "deploy-connect-mcp.adoc",
-              "url": "/mcp-server/managed/deploy-connect-mcp.md",
+              "url": "/mcp-server/current/deploy-connect-mcp.md",
               "title": "Deploy and Connect to Your Managed MCP Server"
             },
             {
               "module": "learn",
               "path": "tools.adoc",
-              "url": "/mcp-server/managed/learn/tools.md",
+              "url": "/mcp-server/current/learn/tools.md",
               "title": "Managed MCP Server Tools Reference"
             },
             {
               "module": "reference",
               "path": "release-notes.adoc",
-              "url": "/mcp-server/managed/reference/release-notes.md",
+              "url": "/mcp-server/current/reference/release-notes.md",
               "title": "Release Notes"
+            }
+          ]
+        },
+        "1.0": {
+          "displayVersion": "Self-Managed V1.0",
+          "url": "/mcp-server/1.0/get-started/overview.html",
+          "pages": [
+            {
+              "path": "index.adoc",
+              "url": "/mcp-server/1.0/index.html",
+              "title": "Couchbase MCP Server",
+              "alias": {
+                "ref": "get-started:overview.adoc",
+                "url": "/mcp-server/1.0/get-started/overview.md"
+              }
+            },
+            {
+              "module": "configuration",
+              "path": "index.adoc",
+              "url": "/mcp-server/1.0/configuration/index.md",
+              "title": "Configuration"
+            },
+            {
+              "module": "configuration",
+              "path": "choosing-a-setup.adoc",
+              "url": "/mcp-server/1.0/configuration/choosing-a-setup.md",
+              "title": "Choosing a Setup"
+            },
+            {
+              "module": "configuration",
+              "path": "disabling-tools.adoc",
+              "url": "/mcp-server/1.0/configuration/disabling-tools.md",
+              "title": "Disabling Tools"
+            },
+            {
+              "module": "configuration",
+              "path": "elicitation-for-tools.adoc",
+              "url": "/mcp-server/1.0/configuration/elicitation-for-tools.md",
+              "title": "Elicitation / Confirmation for Tool Calls"
+            },
+            {
+              "module": "configuration",
+              "path": "environment-variables.adoc",
+              "url": "/mcp-server/1.0/configuration/environment-variables.md",
+              "title": "Environment Variables &amp; Command Line Arguments"
+            },
+            {
+              "module": "configuration",
+              "path": "idp-compatibility.adoc",
+              "url": "/mcp-server/1.0/configuration/idp-compatibility.md",
+              "title": "IDP Compatibility"
+            },
+            {
+              "module": "configuration",
+              "path": "logging.adoc",
+              "url": "/mcp-server/1.0/configuration/logging.md",
+              "title": "Logging"
+            },
+            {
+              "module": "configuration",
+              "path": "oauth-overview.adoc",
+              "url": "/mcp-server/1.0/configuration/oauth-overview.md",
+              "title": "OAuth Authentication"
+            },
+            {
+              "module": "configuration",
+              "path": "read-only-mode.adoc",
+              "url": "/mcp-server/1.0/configuration/read-only-mode.md",
+              "title": "Read-Only Mode"
+            },
+            {
+              "module": "configuration",
+              "path": "streamable-http.adoc",
+              "url": "/mcp-server/1.0/configuration/streamable-http.md",
+              "title": "Streamable HTTP Transport Mode"
+            },
+            {
+              "module": "configuration",
+              "path": "token-verification.adoc",
+              "url": "/mcp-server/1.0/configuration/token-verification.md",
+              "title": "Token Verification &amp; PRM"
+            },
+            {
+              "module": "get-started",
+              "path": "overview.adoc",
+              "url": "/mcp-server/1.0/get-started/overview.md",
+              "title": "Couchbase MCP Server"
+            },
+            {
+              "module": "get-started",
+              "path": "prerequisites.adoc",
+              "url": "/mcp-server/1.0/get-started/prerequisites.md",
+              "title": "Prerequisites"
+            },
+            {
+              "module": "get-started",
+              "path": "quickstart.adoc",
+              "url": "/mcp-server/1.0/get-started/quickstart.md",
+              "title": "Quick Start"
+            },
+            {
+              "module": "get-started",
+              "path": "registries.adoc",
+              "url": "/mcp-server/1.0/get-started/registries.md",
+              "title": "Registries"
+            },
+            {
+              "module": "learn",
+              "path": "architecture.adoc",
+              "url": "/mcp-server/1.0/learn/architecture.md",
+              "title": "Architecture"
+            },
+            {
+              "module": "learn",
+              "path": "tools.adoc",
+              "url": "/mcp-server/1.0/learn/tools.md",
+              "title": "Tools"
+            },
+            {
+              "module": "reference",
+              "path": "build-from-source.adoc",
+              "url": "/mcp-server/1.0/reference/build-from-source.md",
+              "title": "Build from Source"
+            },
+            {
+              "module": "reference",
+              "path": "license.adoc",
+              "url": "/mcp-server/1.0/reference/license.md",
+              "title": "License"
+            },
+            {
+              "module": "reference",
+              "path": "release-notes.adoc",
+              "url": "/mcp-server/1.0/reference/release-notes.md",
+              "title": "Release Notes"
+            },
+            {
+              "module": "reference",
+              "path": "troubleshooting.adoc",
+              "url": "/mcp-server/1.0/reference/troubleshooting.md",
+              "title": "Troubleshooting"
+            },
+            {
+              "module": "security",
+              "path": "security.adoc",
+              "url": "/mcp-server/1.0/security/security.md",
+              "title": "Security"
             }
           ]
         }

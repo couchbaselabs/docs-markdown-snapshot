@@ -2,7 +2,7 @@
 title: Using Couchbase Transactions
 description: A practical guide to using Couchbase distributed ACID transactions
   with the Python SDK.
-pubDate: 2026-10-23T04:31:18.652Z
+pubDate: 2026-11-03T04:28:31.731Z
 meta:
   component:
     title: Python SDK
@@ -279,8 +279,9 @@ __Table 1\. Supported Transaction Query Options__
 Key-Value operations and queries can be freely intermixed, and will interact with each other as you would expect. In this example we insert a document with a key-value operation, and read it with a `SELECT` query.
 
 ```python
+collection = cluster.bucket('travel-sample').default_collection()
+
 def txn_logic(ctx):
-    collection = cluster.defaultCollection()
     ctx.insert(collection, 'doc-greeting',
                {'greeting': 'hello world'})  (1)
     query_str = "SELECT greeting FROM `travel-sample` WHERE META().id = 'doc-greeting'"  (2)

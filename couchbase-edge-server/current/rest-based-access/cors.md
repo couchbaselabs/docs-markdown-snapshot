@@ -3,7 +3,7 @@ title: Configure CORS
 description: Configure Cross-Origin Resource Sharing (CORS) in Couchbase Edge
   Server to enable browser-based clients and JavaScript SDKs to replicate
   directly with Couchbase Edge Server.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-03T04:28:31.731Z
 meta:
   component:
     title: Couchbase Edge Server
@@ -22,7 +22,7 @@ Configure Cross-Origin Resource Sharing (CORS) to allow browser-based clients an
 
 ## [](#prerequisites)Prerequisites
 
-* Couchbase Edge Server {version} or later.
+* Couchbase Edge Server 1.1 or later.
 * CORS is disabled by default. You must explicitly enable it in the server configuration.
 
 ## [](#about-cors-in-couchbase-edge-server)About CORS in Couchbase Edge Server

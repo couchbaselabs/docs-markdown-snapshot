@@ -1,9 +1,9 @@
 ---
 title: Private Endpoints for App Services
-description: Private endpoints for App Services enable you to connect a client
-  app directly to Couchbase App Services, assuming that they both use the same
-  cloud service provider (CSP).
-pubDate: 2026-10-03T04:27:21.374Z
+description: Private endpoints for App Services let applications in your cloud
+  provider's private network connect to App Services without sending data across
+  the public Internet.
+pubDate: 2026-11-03T04:28:31.731Z
 meta:
   component:
     title: Capella App Services
@@ -19,26 +19,30 @@ antora:
 
 # Private Endpoints for App Services
 
-> Private endpoints for App Services enable you to connect a client app directly to Couchbase App Services, assuming that they both use the same cloud service provider (CSP). 
+> Private endpoints for App Services let applications in your cloud provider's private network connect to App Services without sending data across the public Internet. 
 
-This feature allows your mobile or IoT infrastructure to connect to the network encompassing your Capella infrastructure, so that your data does not have to flow over the internet. This can improve security whilst also lowering ingestion costs.
+A private endpoint connects the private network where your applications run to the network that contains your Capella infrastructure. Your application traffic stays on your cloud provider's network. This can improve security and lower data transfer costs.
 
-> [!NOTE]
-> Private endpoints for App Services cover all App Services connectivity, including:
-> 
-> * Couchbase Lite sync
-> * Admin API access
-> * Metrics API access (for example, Prometheus exporters)
+## [](#what-you-can-reach-over-a-private-endpoint)What You Can Reach Over a Private Endpoint
 
-Currently, private endpoints for App Services are only available using Amazon Web Services (AWS).
+Applications in your private network can reach the following over a private endpoint:
 
-> [!NOTE]
-> To use private endpoints for App Services, the client VPC and App Services VPC must be within the same region, for example `us-east-1`.
+* Couchbase Lite sync
+* Admin API access
+* Metrics API access, such as Prometheus exporters
 
-> [!TIP]
-> Both methods provide identical functionality. You can switch between methods for different operations.
+Private endpoint connections and public Internet connections provide the same App Services capabilities. You can use a private endpoint for some operations and the public Internet for others.
 
-## [](#procedures)Procedures
+## [](#private-endpoints-and-public-access)Private Endpoints and Public Access
+
+Private endpoints do not replace the public App Endpoint. Couchbase Lite clients outside your private network, such as mobile devices, still connect through the public Internet using TLS. Through the public Internet, the Admin API and Metrics API accept connections only from IP addresses on your allowed IP list.
+
+## [](#requirements)Requirements
+
+* Your application's private network and App Services must use the same cloud provider and run in the same region.
+* Capella supports private endpoints for App Services on Amazon Web Services only.
+
+## [](#see-also)See Also
 
 * [Manage AWS Private Endpoints Using the Capella UI](app-services-private-endpoints-aws-ui.md)
 * [Manage AWS Private Endpoints Using the Management API](app-services-private-endpoints-aws-api.md)

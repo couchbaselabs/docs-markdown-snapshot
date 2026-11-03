@@ -2,7 +2,7 @@
 title: Manage Your Billing
 description: Couchbase Capella bills you for the size and number of operational
   clusters in your organization.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-11-03T04:28:31.731Z
 meta:
   component:
     title: Capella Operational
@@ -183,7 +183,7 @@ For the AI Data Plane, Couchbase charges you for your usage of the following ser
   * [Deploying and using serverless LLMs and embedding models](../../ai/build/model-service/deploy-serverless-model.md)
   * [Deploying and using a provisioned embedding model](../../ai/build/model-service/deploy-embed-model.md)
   * [Deploying and using a provisioned LLM](../../ai/build/model-service/deploy-llm-model.md)
-* [Managed MCP Server](../../mcp-server/managed/about-managed-mcp.md)
+* [Managed MCP Server](../../mcp-server/current/about-managed-mcp.md)
 
 For a limited time, your [AI Functions](../../ai/build/ai-functions.md) usage is free of charge.
 
@@ -255,12 +255,12 @@ As a limited time promotional offer, Couchbase does not charge you for [AI Funct
 
 #### [](#managed-mcp-server)Managed MCP Server
 
-Couchbase charges by the clock hour for [Couchbase AI Data Plane Managed MCP Servers](../../mcp-server/managed/about-managed-mcp.md). The hourly rate is based on:
+Couchbase charges by the clock hour for [Couchbase AI Data Plane Managed MCP Servers](../../mcp-server/current/about-managed-mcp.md). The hourly rate is based on:
 
 * Compute costs, based on your chosen Managed MCP Server configuration.
 * The cloud service provider and region of the linked operational cluster.
 
-For more information about how to deploy a Managed MCP Server, see [Deploy and Connect to Your Managed MCP Server](../../mcp-server/managed/deploy-connect-mcp.md).
+For more information about how to deploy a Managed MCP Server, see [Deploy and Connect to Your Managed MCP Server](../../mcp-server/current/deploy-connect-mcp.md).
 
 ## [](#billing-system)Billing System
 

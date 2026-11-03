@@ -3,7 +3,7 @@ title: Error Handling
 description: Errors are inevitable. The developer's job is to be prepared for
   whatever is likely to come up -- and to try and be prepared for anything that
   conceivably could come up.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-03T04:28:31.731Z
 meta:
   component:
     title: Python SDK
@@ -50,19 +50,15 @@ If you do not catch the Exception, it will bubble up:
 
 ```python
 Traceback (most recent call last):
-  File "../sample_code/3x/docs/error_handling.py", line 21, in <module>
+  File "error_handling.py", line 6, in <module>
     res = collection.get("not-a-key")
-  File "../.virtualenvs/cb-sample-py3.9.5/lib/python3.9/site-packages/couchbase/collection.py", line 293, in wrapped
-    return func(self, *args, **kwargs)
-  File "../.virtualenvs/cb-sample-py3.9.5/lib/python3.9/site-packages/couchbase/result.py", line 507, in wrapped
-    x, options = func(*args, **kwargs)
-  File "../.virtualenvs/cb-sample-py3.9.5/lib/python3.9/site-packages/couchbase/collection.py", line 521, in get
-    return self._get_generic(key, kwargs, options)
-  File "../.virtualenvs/cb-sample-py3.9.5/lib/python3.9/site-packages/couchbase/collection.py", line 484, in _get_generic
-    x = CoreClient.get(self.bucket, key, **opts)
-  File "../.virtualenvs/cb-sample-py3.9.5/lib/python3.9/site-packages/couchbase_core/client.py", line 409, in get
-    return super(Client, self).get(*args, **kwargs)
-couchbase.exceptions.DocumentNotFoundException: <Key='not-a-key', RC=0x12D[LCB_ERR_DOCUMENT_NOT_FOUND (301)], Operational Error, Results=1, C Source=(src/multiresult.c,332), Context={'status_code': 1, 'opaque': 1, 'cas': 0, 'key': 'not-a-key', 'bucket': 'travel-sample', 'collection': 'hotel', 'scope': 'inventory', 'context': '', 'ref': '', 'endpoint': '172.23.111.139:11210', 'type': 'KVErrorContext'}, Tracing Output={"not-a-key": {"debug_info": {"FILE": "src/callbacks.c", "FUNC": "value_callback", "LINE": 848}}}>
+  File ".../site-packages/couchbase/collection.py", line 166, in get
+    return self._impl.get(req, transcoder, obs_handler)
+  File ".../site-packages/couchbase/logic/collection_impl.py", line 258, in get
+    ret = self._client_adapter.execute_collection_request(req.opcode, req, obs_handler=obs_handler)
+  File ".../site-packages/couchbase/logic/client_adapter.py", line 120, in execute_collection_request
+    raise ErrorMapper.build_exception(ret)
+couchbase.exceptions.DocumentNotFoundException: DocumentNotFoundException(<ec=101, category=couchbase.key_value, message=Operation failed, context=KeyValueErrorContext:{'key': 'not-a-key', 'bucket_name': 'travel-sample', 'scope_name': 'inventory', 'collection_name': 'hotel', 'opaque': 10, 'status_code': 1, 'retry_attempts': 0, 'retry_reasons': set()}, C Source=src/connection.hxx:395>)
 ```
 
 ### [](#logging)Logging
@@ -93,23 +89,24 @@ def allow_retries(retry_limit=3,                # type: int
     def handle_retries(func):
         @functools.wraps(func)
         def func_wrapper(*args, **kwargs):
-            for retry_num in reversed(range(retry_limit)):
+            for attempt in range(retry_limit):
                 try:
                     return func(*args, **kwargs)
                 except Exception as ex:
                     if allowed_exceptions is None or not isinstance(ex, allowed_exceptions):
                         raise
 
-                    if retry_num == 0:
+                    retries_left = retry_limit - attempt - 1
+                    if retries_left == 0:
                         raise
 
                     delay = backoff
                     if exponential_backoff is True:
-                        delay *= (2**retry_num)
+                        delay *= (2**attempt)
                     elif linear_backoff is True:
-                        delay *= (retry_num+1)
+                        delay *= (attempt + 1)
 
-                    print(f"Retries left: {retry_num}")
+                    print(f"Retries left: {retries_left}")
                     print(f"Backing Off: {delay} seconds")
                     time.sleep(delay)
 
@@ -119,10 +116,10 @@ def allow_retries(retry_limit=3,                # type: int
 
 @allow_retries(retry_limit=5,
                backoff=0.5,
-               allowed_exceptions=(CASMismatchException))
-def update_with_cas(collection,    # type: str
+               allowed_exceptions=(CASMismatchException,))
+def update_with_cas(collection,    # type: Collection
                     doc_key       # type: str
-                    ) -> bool:
+                    ) -> None:
 
     result = collection.get(doc_key)
     content = result.content_as[dict]
@@ -167,7 +164,7 @@ Couchbase provides optimistic concurrency using CAS. Each document gets a CAS va
 ```python
 try:
     result = collection.get("hotel_10026")
-    collection.replace("hotel_10026", {}, cas=result.cas)
+    collection.replace("hotel_10026", {}, ReplaceOptions(cas=result.cas))
 except CASMismatchException:
     # the CAS value has changed
     pass
@@ -186,22 +183,20 @@ This needs to be considered case-by-case, but the general strategy is to become 
 For instance, consider inserts: on an ambiguous Exception, you can simply **retry** the insert. If it now fails with a `DocumentExistsException`, we know that the previous operation was in fact successful:
 
 ```python
+durability = ServerDurability(level=DurabilityLevel.PERSIST_TO_MAJORITY)
 for i in range(5):
     try:
-        durability = ServerDurability(level=Durability.PERSIST_TO_MAJORITY)
         collection.insert(
             "my-key", {"title": "New Hotel"}, InsertOptions(durability=durability))
-    except (DocumentExistsException, DurabilitySyncWriteAmbiguousException,) as ex:
-        # if previously retried and the document now exists,
-        # we can assume it was written successfully by a previous ambiguous exception
-        if isinstance(ex, DocumentExistsException) and i > 0:
-            continue
-
-        # simply retry the durable operation again
-        if isinstance(ex, DurabilitySyncWriteAmbiguousException):
-            continue
-
-        # raise the exception if not DocumentExistsException, DurabilitySyncWriteAmbiguousException
+        break
+    except DurabilitySyncWriteAmbiguousException:
+        # the insert may or may not have been applied, so retry it
+        continue
+    except DocumentExistsException:
+        # if we are retrying and the document now exists, a previous
+        # ambiguous attempt was written successfully
+        if i > 0:
+            break
         raise
 ```
 
@@ -224,15 +219,15 @@ A SQL++ (formerly N1QL) query either returns results or will throw an error with
 
 ```python
 try:
-    cluster.query("SELECT * FROM no_such_bucket").rows()
+    cluster.query("SELECT * FROM no_such_bucket").execute()
 except CouchbaseException as ex:
-    if isinstance(ex.context, QueryErrorContext):
+    if isinstance(ex.error_context, QueryErrorContext):
         # We have a Query error context, we can print out some useful information:
-        print(ex.context.statement)
-        print(ex.context.first_error_code)
-        print(ex.context.first_error_message)
-        print(ex.context.client_context_id)
-        print(ex.context.endpoint)
+        print(ex.error_context.statement)
+        print(ex.error_context.first_error_code)
+        print(ex.error_context.first_error_message)
+        print(ex.error_context.client_context_id)
+        print(ex.error_context.last_dispatched_to)
 ```
 
 Analytics works in an identical fashion, potentially raising an analytics specific error and having an `AnalyticsErrorContext`.

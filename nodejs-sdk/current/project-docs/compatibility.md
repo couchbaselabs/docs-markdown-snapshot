@@ -3,7 +3,7 @@ title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
-pubDate: 2026-10-23T04:31:18.652Z
+pubDate: 2026-11-03T04:28:31.731Z
 meta:
   component:
     title: Node.js SDK
@@ -33,7 +33,7 @@ __Supported Node.js Versions__
 | ------------------- | ---------------- | -------------------------------- |
 | 20                  | until 2026-04-30 | from 4.2.5                       |
 | 22                  | until 2027-04-30 | from 4.5.0                       |
-| 24                  | until 2028-04-30 | from 4.7.0                       |
+| 24                  | until 2028-04-30 | from 4.6.0                       |
 | 26                  | until 2029-04-30 | from 4.7.0                       |
 
 ### [](#os-compatibility)OS Compatibility
