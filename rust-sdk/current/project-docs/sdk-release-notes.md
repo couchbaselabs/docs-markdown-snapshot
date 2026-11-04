@@ -2,7 +2,7 @@
 title: SDK Release Notes
 description: Release notes, brief installation instructions, and download
   archive for the Couchbase Rust Client.
-pubDate: 2026-10-16T07:26:40.932Z
+pubDate: 2026-11-04T04:27:01.805Z
 meta:
   component:
     title: Rust SDK
@@ -39,13 +39,30 @@ We always recommend using the latest version of the SDK — it contains all of t
 
 Binary compatibility is not guaranteed for any Rust SDK release, and you should rebuild your application when changing the SDK.
 
+### [](#version-1-1-1-3-november-2026)Version 1.1.1 (3 November 2026)
+
+Version 1.1.1 is a maintenance release for the Rust SDK 1.1.
+
+[API Documentation](https://docs.rs/couchbase/1.1.1/couchbase/)
+
+#### [](#new-features-and-behavioral-changes)New Features and Behavioral Changes
+
+* [RSCBC-320](https://jira.issues.couchbase.com/browse/RSCBC-320): Raised the minimum version of the `webpki-roots` dependency to `1.0.11`.
+
+#### [](#fixed-issues)Fixed issues
+
+* [RSCBC-298](https://jira.issues.couchbase.com/browse/RSCBC-298): Fixed a panic that could occur when a collection ID was invalidated whilst a request to resolve that collection ID was still in flight.
+* [RSCBC-299](https://jira.issues.couchbase.com/browse/RSCBC-299): Fixed an issue where a cluster config received in a `NotMyVbucket` response did not have `$HOST` substituted with the hostname of the node that sent it.
+* [RSCBC-300](https://jira.issues.couchbase.com/browse/RSCBC-300): Fixed an issue where the first cluster config fetched during bootstrap did not have `$HOST` substituted with the hostname of the node that sent it.
+* [RSCBC-318](https://jira.issues.couchbase.com/browse/RSCBC-318): Fixed an issue where IPv6 hostnames substituted for `$HOST` in a cluster config were wrapped in square brackets twice.
+
 ### [](#version-1-1-0-7-october-2026)Version 1.1.0 (7 October 2026)
 
 Version 1.1.0 is the first release of the Rust SDK 1.1, implementing the 3.10 SDK API. It adds reads from a specific replica, Score Fusion for hybrid Search, and log redaction.
 
 [API Documentation](https://docs.rs/couchbase/1.1.0/couchbase/)
 
-#### [](#new-features-and-behavioral-changes)New Features and Behavioral Changes
+#### [](#new-features-and-behavioral-changes-2)New Features and Behavioral Changes
 
 * [RSCBC-302](https://jira.issues.couchbase.com/browse/RSCBC-302): Added `Collection::get_replica`, which reads a document from a specific replica, chosen with a `GetReplicaStrategy`. For example, `GetReplicaStrategy::from_index(ReplicaIndex::First, None)` reads from the first replica.
 * [RSCBC-309](https://jira.issues.couchbase.com/browse/RSCBC-309): Added log redaction, enabled with `ClusterOptions::log_redaction(true)`. When enabled, the SDK wraps sensitive values in its log output in tags, so that a tool such as [cblogredaction](https://docs.couchbase.com/server/current/cli/cbcli/cblogredaction.html) can strip or hash them. Redaction is process-wide, and applies to log messages only, not to tracing span fields or metric events.
@@ -54,7 +71,7 @@ Version 1.1.0 is the first release of the Rust SDK 1.1, implementing the 3.10 SD
 * [RSCBC-286](https://jira.issues.couchbase.com/browse/RSCBC-286): Query error code 2120 is now reported as an authentication failure.
 * [RSCBC-313](https://jira.issues.couchbase.com/browse/RSCBC-313): The crates now declare a minimum supported Rust version (`rust-version`) of `1.88`.
 
-#### [](#fixed-issues)Fixed issues
+#### [](#fixed-issues-2)Fixed issues
 
 * [RSCBC-312](https://jira.issues.couchbase.com/browse/RSCBC-312): Fixed an issue where the query tracing span in query index management operations was not emitted under the `couchbase::tracing` target.
 
@@ -66,11 +83,11 @@ Version 1.0.3 is a maintenance release for the Rust SDK 1.0.
 
 [API Documentation](https://docs.rs/couchbase/1.0.3/couchbase/)
 
-#### [](#new-features-and-behavioral-changes-2)New Features and Behavioral Changes
+#### [](#new-features-and-behavioral-changes-3)New Features and Behavioral Changes
 
 * [RSCBC-303](https://jira.issues.couchbase.com/browse/RSCBC-303): Updated the `hickory-resolver` dependency to `0.26.1`.
 
-#### [](#fixed-issues-2)Fixed issues
+#### [](#fixed-issues-3)Fixed issues
 
 * [RSCBC-301](https://jira.issues.couchbase.com/browse/RSCBC-301): Fixed an issue where the SDK did not send its client name during the memcached HELO negotiation.
 
@@ -80,11 +97,11 @@ Version 1.0.2 is a maintenance release for the Rust SDK 1.0.
 
 [API Documentation](https://docs.rs/couchbase/1.0.2/couchbase/)
 
-#### [](#new-features-and-behavioral-changes-3)New Features and Behavioral Changes
+#### [](#new-features-and-behavioral-changes-4)New Features and Behavioral Changes
 
 * [RSCBC-282](https://jira.issues.couchbase.com/browse/RSCBC-282): Updated key-value error messages to include the underlying cause of the error, giving more context to warnings such as `failed to read frame`.
 
-#### [](#fixed-issues-3)Fixed issues
+#### [](#fixed-issues-4)Fixed issues
 
 * [RSCBC-281](https://jira.issues.couchbase.com/browse/RSCBC-281): Fixed an issue where an error was logged whilst closing connections during a graceful shutdown.
 * [RSCBC-289](https://jira.issues.couchbase.com/browse/RSCBC-289): Fixed an issue where connections to a service could fail over TLS after earlier connections had succeeded. TLS session resumption is now disabled.
@@ -95,12 +112,12 @@ Version 1.0.1 is a maintenance release for the Rust SDK 1.0.
 
 [API Documentation](https://docs.rs/couchbase/1.0.1/couchbase/)
 
-#### [](#new-features-and-behavioral-changes-4)New Features and Behavioral Changes
+#### [](#new-features-and-behavioral-changes-5)New Features and Behavioral Changes
 
 * [RSCBC-270](https://jira.issues.couchbase.com/browse/RSCBC-270): Updated queries to automatically retry when query engine errors indicate to do so.
 * [RSCBC-272](https://jira.issues.couchbase.com/browse/RSCBC-272): Updated logging output.
 
-#### [](#fixed-issues-4)Fixed issues
+#### [](#fixed-issues-5)Fixed issues
 
 * [RSCBC-267](https://jira.issues.couchbase.com/browse/RSCBC-267): Fixed an issue where a node unexpectedly going down could lead to a connection storm.
 * [RSCBC-268](https://jira.issues.couchbase.com/browse/RSCBC-268): Fixed an issue where metrics were missing the `db.system.name` field.
