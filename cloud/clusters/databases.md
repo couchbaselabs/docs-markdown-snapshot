@@ -2,7 +2,7 @@
 title: Configure Your Cluster
 description: Understand the different configuration options available to
   customize your Couchbase Capella cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Capella Operational
@@ -102,6 +102,13 @@ For deployment recommendations based on different use cases, see the following t
 ### [](#cidr-block)CIDR Block
 
 You can choose to customize the CIDR block for your Capella cluster or leave it as the default value. Use IPv4 syntax to define your CIDR block for your cluster.
+
+The supported prefix length depends on your cloud service provider:
+
+* AWS: `/16` to `/24`
+* GCP and Azure: `/16` to `/25`
+
+A CIDR block outside the supported range is rejected with an error.
 
 > [!CAUTION]
 > If you plan to use private networking, [VPC Peering](../clouds/private-network.md) or [private endpoints](#security:private-endpoints), with your Capella cluster, make sure to customize your CIDR block to avoid overlap between your VPC CIDR and Capella.

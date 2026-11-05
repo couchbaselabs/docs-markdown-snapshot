@@ -1,13 +1,13 @@
 ---
 title: Error Handling
 description: Handling transaction errors with Couchbase.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/concept-docs/pages/transactions-error-handling.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/concept-docs/pages/transactions-error-handling.adoc
   xref: xref:cxx-sdk:concept-docs:transactions-error-handling.adoc[]
 ---
 

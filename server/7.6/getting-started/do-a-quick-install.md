@@ -2,7 +2,7 @@
 title: Do a Quick Install
 description: First-time users can get Couchbase Server running simply and
   rapidly by using Docker.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -16,6 +16,9 @@ antora:
 [View original HTML](/server/7.6/getting-started/do-a-quick-install.html)
 
 # Do a Quick Install
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > First-time users can get Couchbase Server running simply and rapidly by using Docker. Once you install Docker, you can use a single command to download and install a pre-configured version of Couchbase Server Enterprise Edition on your computer. 
 

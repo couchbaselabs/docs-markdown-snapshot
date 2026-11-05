@@ -1,13 +1,13 @@
 ---
 title: Quickstart in Couchbase with C&#43;&#43;
 description: Quickstart app to build a REST API using Couchbase Capella in C&#43;&#43;.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/hello-world/pages/sample-application.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/hello-world/pages/sample-application.adoc
   xref: xref:cxx-sdk:hello-world:sample-application.adoc[]
 ---
 

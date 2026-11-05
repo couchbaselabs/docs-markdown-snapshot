@@ -1,6 +1,6 @@
 ---
 title: Creating Full Text Aliases
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -14,6 +14,9 @@ antora:
 [View original HTML](/server/7.6/fts/fts-create-index-aliases.html)
 
 # Creating Full Text Aliases
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Full Text Alias is the name that can be used in place of the actual full text index name. You can perform the searches across multiple buckets and multiple scopes by means of index aliases. 
 

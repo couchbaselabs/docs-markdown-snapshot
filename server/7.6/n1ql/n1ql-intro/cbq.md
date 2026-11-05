@@ -1,7 +1,7 @@
 ---
 title: "cbq: The Command Line Shell for SQL++"
 description: cbq is a comprehensive command line shell for SQL++.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -15,6 +15,9 @@ antora:
 [View original HTML](/server/7.6/n1ql/n1ql-intro/cbq.html)
 
 # cbq: The Command Line Shell for SQL++
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > cbq is a comprehensive command line shell for SQL++. It is a powerful, developer friendly tool that enables you to query and update data from Couchbase Server. The cbq shell enables you to perform all the operations that are supported by the Query Workbench and more, such as additional scripting functionality. 
 

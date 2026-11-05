@@ -2,14 +2,14 @@
 title: Error Messages
 description: The standardized error codes returned by the Couchbase Ruby SDK,
   from cloud connection to sub-document.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Ruby SDK
-    version: "3.8"
+    version: "3.9"
   topic_type: ref
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/ref/pages/error-codes.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/release/3.9/modules/ref/pages/error-codes.adoc
   xref: xref:ruby-sdk:ref:error-codes.adoc[]
 ---
 
@@ -406,5 +406,5 @@ Below is a list of log messages that you may see if you hit DNS SRV issues. Thes
 ## [](#further-reading)Further Reading
 
 * Our practical look at [error handling with the SDK](../howtos/error-handling.md).
-* [Discussion document](../concept-docs/errors.md) on handling exceptions.
+* [Discussion document](../concept-docs/best-practices.md) on handling exceptions.
 * Further reference material in the [API Guide](https://docs.couchbase.com/sdk-api/couchbase-ruby-client/).

@@ -2,7 +2,7 @@
 title: Risk Assessment
 description: This example illustrates how to leverage Eventing Service in the
   Banking and Financial domain.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/eventing/eventing-examples-high-risk.html)
 
 # Risk Assessment
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 **Goal**: This example illustrates how to leverage Eventing Service in the Banking and Financial domain. When a credit card transaction either 1) exceeds the user's available credit limit or 2) is made in a foreign currency, a high-risk transaction alert can be generated.
 

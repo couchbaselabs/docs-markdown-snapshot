@@ -3,7 +3,7 @@ title: Index Partitioning
 description: Index partitioning enables you to increase aggregate query
   performance by dividing and spreading a large index of documents across
   multiple nodes, horizontally scaling out an index as needed.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -19,6 +19,9 @@ antora:
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/index-partitioning.html)
 
 # Index Partitioning
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 Index partitioning enables you to increase aggregate query performance by dividing and spreading a large index of documents across multiple nodes, horizontally scaling out an index as needed. The system partitions the index across a number of index nodes using a hash partitioning strategy in a way that's transparent to queries.
 

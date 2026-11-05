@@ -2,7 +2,7 @@
 title: Adaptive Index
 description: Adaptive Indexes are a special type of GSI array index that can
   index all or specified fields of a document.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -16,6 +16,9 @@ antora:
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/adaptive-indexing.html)
 
 # Adaptive Index
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 Adaptive Indexes are a special type of GSI array index that can index all or specified fields of a document. Such an index is generic in nature, and it can efficiently index and lookup any of the index-key values. This enables efficient ad hoc queries (that may have WHERE clause predicates on any of the index-key fields) without requiring to create various composite indexes for different combinations of fields. Adaptive Index is a functional array index created using the SQL++ function [PAIRS()](metafun.md#pairs).
 

@@ -2,7 +2,7 @@
 title: Change a Cluster&#8217;s Plan and Support Timezone
 description: You can change the Support Plan for your Couchbase Capella clusters
   and their support timezones at any time.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Capella Operational
@@ -27,6 +27,7 @@ Change its support timezone to change when you can receive support for any issue
 ## [](#prerequisites)Prerequisites
 
 * You must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) role.
+* To change a cluster to the Basic plan, the cluster must not have the Analytics or Eventing services enabled. The Basic plan does not support these services, so the **Basic** option is unavailable for a cluster that uses them. To change such a cluster to the Basic plan, first [remove the Analytics and Eventing services](../clusters/modify-database.md) from the cluster.
 
 ## [](#change-a-cluster-support-plan)Change a Cluster Support Plan
 

@@ -3,14 +3,13 @@ title: Orphaned Requests Logging
 description: In addition to request tracing and metrics reporting, logging
   orphaned requests provides additional insight into why an operation might have
   timed out (or got cancelled for a different reason).
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Ruby SDK
-    version: "3.8"
-  topic_type: howto
+    version: "3.9"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/howtos/pages/observability-orphan-logger.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/release/3.9/modules/howtos/pages/observability-orphan-logger.adoc
   xref: xref:ruby-sdk:howtos:observability-orphan-logger.adoc[]
 ---
 

@@ -2,7 +2,7 @@
 title: Initialize a Node
 description: A new Couchbase Server node can be <em>initialized</em>, to
   establish node-specific paths for local storage.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -16,6 +16,9 @@ antora:
 [View original HTML](/server/7.6/manage/manage-nodes/initialize-node.html)
 
 # Initialize a Node
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > A new Couchbase Server node can be _initialized_, to establish node-specific paths for local storage. 
 

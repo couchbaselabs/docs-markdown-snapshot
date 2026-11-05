@@ -2,7 +2,7 @@
 title: SDK Doctor
 description: SDK doctor helps diagnose application-server-side connectivity
   issues with your Couchbase Cluster (among other things).
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -16,6 +16,9 @@ antora:
 [View original HTML](/server/7.6/sdk/sdk-doctor.html)
 
 # SDK Doctor
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > SDK doctor helps diagnose application-server-side connectivity issues with your Couchbase Cluster (among other things). 
 

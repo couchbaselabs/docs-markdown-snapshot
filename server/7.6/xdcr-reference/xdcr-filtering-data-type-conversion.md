@@ -2,7 +2,7 @@
 title: XDCR Data-Type Conversion
 description: <em>XDCR filtering expressions</em> are supported by data-type
   <em>conversion</em> and <em>collation</em>.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -16,6 +16,9 @@ antora:
 [View original HTML](/server/7.6/xdcr-reference/xdcr-filtering-data-type-conversion.html)
 
 # XDCR Data-Type Conversion
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > _XDCR filtering expressions_ are supported by data-type _conversion_ and _collation_. 
 

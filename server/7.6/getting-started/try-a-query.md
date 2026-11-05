@@ -3,7 +3,7 @@ title: Run Your First SQL++ Query
 description: Now that you have a basic understanding of buckets, scopes and
   collections, and documents, you can try querying them using SQL++, the
   Couchbase Server query language.
-pubDate: 2026-10-21T04:23:09.426Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/getting-started/try-a-query.html)
 
 # Run Your First SQL++ Query
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Now that you have a basic understanding of buckets, scopes and collections, and documents, you can try querying them using SQL++, the Couchbase Server query language. 
 

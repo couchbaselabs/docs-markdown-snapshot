@@ -2,7 +2,7 @@
 title: Re-reduce Argument
 description: For <code>reduce()</code> functions, they should be both
   transparent and standalone.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/learn/views/views-writing-rereduce.html)
 
 # Re-reduce Argument
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 For `reduce()` functions, they should be both transparent and standalone. For example, the `_sum` function did not rely on global variables or parsing of existing data, and didn't need to call itself, hence it is also transparent.
 

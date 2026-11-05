@@ -1,7 +1,7 @@
 ---
 title: Defer Indexes
 description: How to create deferred indexes and build them later.
-pubDate: 2026-10-16T07:26:40.932Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -16,6 +16,9 @@ antora:
 [View original HTML](/server/7.6/guides/defer-index.html)
 
 # Defer Indexes
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > How to create deferred indexes and build them later. 
 

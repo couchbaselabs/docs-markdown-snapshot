@@ -6,7 +6,7 @@ description: In connection with Couchbase’s provision of our on-premise
   the latest version available, and (2) collect information about use and
   experience with the product every time an administrator interacts with the
   administrator user interface (the “Admin UI”) using HTTPS Post.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -20,6 +20,9 @@ antora:
 [View original HTML](/server/7.6/product-privacy-faq.html)
 
 # Couchbase Server Privacy FAQ
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 In connection with Couchbase's provision of our on-premise products, Couchbase provides functionality that, if enabled, will automatically (1) check the version of the product you have installed against the latest version available, and (2) collect information about use and experience with the product every time an administrator interacts with the administrator user interface (the "Admin UI") using HTTPS Post. If you decide to keep this functionality enabled, we will collect configuration, usage and performance data, including cluster information (such as settings and configuration, software version, cluster ID, load levels, and resource quotas), and browser and network information (such as IP address, inferred geolocation only at the city level, and browser type) (collectively with the foregoing, the "Performance Data"). This Performance Data does not allow us to track your specific interactions or usage of the Couchbase products. We use the Performance Data to make our products more useful to all of our customers as a whole. We never access or collect any data stored within the products. Below you can find additional information about what kind of data we collect and how we handle all data securely. You can disable this feature at any time by accessing the Admin UI settings page and deselecting the checkbox.
 

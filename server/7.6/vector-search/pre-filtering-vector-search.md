@@ -2,7 +2,7 @@
 title: Pre-filtering Vector Searches
 description: You can specify filters as part of a Vector Search query object to
   restrict the documents searched in a Search index.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/vector-search/pre-filtering-vector-search.html)
 
 # Pre-filtering Vector Searches
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > You can specify filters as part of a Vector Search query object to restrict the documents searched in a Search index. 
 

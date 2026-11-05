@@ -3,7 +3,7 @@ title: XDCR Security and Networking
 description: Specific requirements must be satisfied in order to ensure the
   successful creation of XDCR replications over different network
   configurations.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/xdcr-reference/xdcr-security-and-networking.html)
 
 # XDCR Security and Networking
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Specific requirements must be satisfied in order to ensure the successful creation of XDCR replications over different network configurations. 
 

@@ -3,7 +3,7 @@ title: Manage and Monitor Queries
 description: Monitoring and profiling SQL++ queries, Query Service nodes, and
   corresponding system resources is important for smoother operational
   performance and efficiency of the system.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/n1ql/n1ql-manage/monitoring-n1ql-query.html)
 
 # Manage and Monitor Queries
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Monitoring and profiling SQL++ queries, Query Service nodes, and corresponding system resources is important for smoother operational performance and efficiency of the system. In fact, often it's vital for diagnosing and troubleshooting issues such as query performance, resource bottlenecks, and overloading of various services. 
 

@@ -2,13 +2,13 @@
 title: Async APIs
 description: The Couchbase C&#43;&#43; SDK allows the use, and mixing, of two
   asynchronous APIs.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/howtos/pages/concurrent-async-apis.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/howtos/pages/concurrent-async-apis.adoc
   xref: xref:cxx-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 
@@ -74,4 +74,7 @@ It's really down to you and the needs of your application. If you're already wri
 
 ### [](#bulk-operations)Bulk Operations
 
-The C++ source repo contains an example of [implementing a bulk get](https://github.com/couchbase/couchbase-cxx-client/blob/1.4.0/examples/bulk%5Fbase%5Fapi.cxx). Careful benchmarking would be required to ensure that this approach is beneficial for your particular workload.
+> [!TIP]
+> This bulk-get example is given for the C++ SDK as there are times when business logic dictates that all of, say five, results need to be returned before processing for the application's next step, then a bulk get will give you all of the results together, as needed by your app. This will not be more efficient — for Cluster or for network — but will comply with the results handling need of this particular case.
+
+The C++ source repo contains an example of [implementing a bulk get](https://github.com/couchbase/couchbase-cxx-client/blob/1.5.1/examples/bulk%5Fbase%5Fapi.cxx). Careful benchmarking would be required to ensure that this approach is beneficial for your particular workload.

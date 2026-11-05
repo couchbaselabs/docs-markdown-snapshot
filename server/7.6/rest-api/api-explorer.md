@@ -1,6 +1,6 @@
 ---
 title: Admin API Explorer
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -14,6 +14,9 @@ antora:
 [View original HTML](/server/7.6/rest-api/api-explorer.html)
 
 # Admin API Explorer
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > [!NOTE]
 > The Couchbase Server Admin API Explorer is currently in _beta_. This is likely to change in future and does not represent the finished version. Please leave feedback using the **Feedback?** button in the bottom right corner of this page.

@@ -3,7 +3,7 @@ title: Why Couchbase?
 description: Couchbase is the modern database for enterprise applications.
   Couchbase is a distributed, JSON document database, with all the desired
   capabilities of a relational DBMS.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -18,6 +18,9 @@ antora:
 [View original HTML](/server/7.6/introduction/why-couchbase.html)
 
 # Why Couchbase?
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 Couchbase is the modern database for enterprise applications. Couchbase is a distributed, JSON document database, with all the desired capabilities of a relational DBMS. It is a robust database, built for microservices and serverless consumption-based computing on the cloud on one end, and edge computing for occasionally and locally connected edge Mobile/IoT devices on the other.
 

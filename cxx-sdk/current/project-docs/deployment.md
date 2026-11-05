@@ -1,13 +1,13 @@
 ---
 title: Deployment
 description: Transition from dev environment to prod, and keep up with the latest fixes.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/project-docs/pages/deployment.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/project-docs/pages/deployment.adoc
   xref: xref:cxx-sdk:project-docs:deployment.adoc[]
 ---
 
@@ -54,7 +54,7 @@ __Table 1\. Couchbase Server and SDK Supported Version Matrix__
 | Distributed ACID Transactions                                                                | From 1.0.0   |                  |            |
 | DNS SRV refresh for serverless environments (AWS Lambda, Azure Functions, and GCP Functions) | From 1.0.0   |                  |            |
 | Circuit Breakers                                                                             | From 1.3.2   |                  |            |
-| OTel                                                                                         | From 1.3.0   |                  |            |
+| Response Time Observability with OTel                                                        | From 1.3.0   |                  |            |
 | Field Level Encryption                                                                       | From 1.2.0   |                  |            |
 | Cloud Native Gateway                                                                         | From 1.4.0 ② |                  |            |
 

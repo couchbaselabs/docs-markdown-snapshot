@@ -1,7 +1,7 @@
 ---
 title: Connect To Your Cluster
 description: Use the Connect page to choose how you want to connect to your cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Capella Operational
@@ -125,6 +125,24 @@ From the Capella UI:
   * [Couchbase VS Code extension on Open VSX](https://marketplace.visualstudio.com/items?itemName=Couchbase.vscode-cblite)
   * [Couchbase Plugin for JetBrains](https://plugins.jetbrains.com/plugin/22131-couchbase)
 8. Follow the specific installation instructions to get started and add a cluster connection.
+
+## [](#public-connection-strings)Public Connection Strings
+
+The public connection string is unique to each cluster. It is generated when the cluster is created, and it is not retained if the cluster is deleted.
+
+If you delete a cluster and create a new one with the same name, the new cluster gets a different public connection string. For example, a cluster named `nametest` might have the following connection string:
+
+```console
+couchbases://cb.wu4kcpowxujezno.cloudsupport.cloud.couchbase.com
+```
+
+After deleting that cluster and creating a new cluster with the same name, the connection string is different:
+
+```console
+couchbases://cb.39yft7jyhzhxfvht.cloudsupport.cloud.couchbase.com
+```
+
+Update any application, configuration file, or tool that stores the connection string whenever you recreate a cluster.
 
 ## [](#troubleshooting)Troubleshooting
 

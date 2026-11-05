@@ -1,6 +1,6 @@
 ---
 title: Manage Bucket Backups
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Capella Operational
@@ -20,6 +20,9 @@ antora:
 Use the procedures on this page to create on-demand bucket backups, schedule automatic bucket backups, and manage bucket backups. To learn more about how bucket backups work in Couchbase Capella, see [Back Up and Restore Bucket Data](backup-restore.md).
 
 To backup an entire cluster, see [Back Up and Restore An Entire Cluster](cloud-snapshots.md).
+
+> [!TIP]
+> If any bucket on your cluster is larger than 5 TB, Couchbase recommends that you configure [Cloud Snapshot cluster backups](cloud-snapshots.md) for that cluster. Cluster backups complete and restore faster than bucket backups at this scale.
 
 ## [](#view-and-manage-bucket-backups)View and Manage Bucket Backups
 

@@ -2,7 +2,7 @@
 title: Server Group Awareness
 description: Individual server-nodes can be assigned to specific
   <em>groups</em>, within a Couchbase Cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -16,6 +16,9 @@ antora:
 [View original HTML](/server/7.6/learn/clusters-and-availability/groups.html)
 
 # Server Group Awareness
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Individual server-nodes can be assigned to specific _groups_, within a Couchbase Cluster. This allows both _active vBuckets_ and GSI _indexes_ to be maintained on groups different from those of their corresponding _replica vBuckets_ and _index replicas_; so that if a group goes offline, and active vBuckets and indexes are thereby lost, replicas remain available on one or more other groups. 
 

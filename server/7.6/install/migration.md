@@ -2,7 +2,7 @@
 title: Enabling Timestamp-based Conflict Resolution for Migrated Data
 description: The Timestamp-based Conflict Resolution is a new conflict
   resolution type added in version 4.6.0.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -16,6 +16,9 @@ antora:
 [View original HTML](/server/7.6/install/migration.html)
 
 # Enabling Timestamp-based Conflict Resolution for Migrated Data
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > The Timestamp-based Conflict Resolution is a new conflict resolution type added in version 4.6.0\. This new feature is supported for **new** buckets that are created in Couchbase Server version 4.6.0\. You cannot change the conflict resolution mode to the _Timestamp-based Conflict Resolution_ for existing buckets after upgrading to version 4.6.0\. 
 

@@ -1,6 +1,6 @@
 ---
 title: disableFileTransferRebalance
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -14,6 +14,9 @@ antora:
 [View original HTML](/server/7.6/fts/fts-advanced-settings-disable-file-transfer-rebalance.html)
 
 # disableFileTransferRebalance
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 FTS index partitions are copied between nodes instead of regenerating them from scratch, to facilitate faster rebalancing.
 

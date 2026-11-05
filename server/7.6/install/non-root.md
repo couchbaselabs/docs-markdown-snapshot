@@ -3,7 +3,7 @@ title: Non-Root Install and Upgrade
 description: Couchbase Server can be installed on any supported Linux
   distribution by users who do not have <em>root</em> or <em>sudo</em>
   privileges.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/install/non-root.html)
 
 # Non-Root Install and Upgrade
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 Couchbase Server can be installed on any supported Linux distribution by users who do not have _root_ or _sudo_ privileges. A non-root server, once installed, can be upgraded by the same users.
 

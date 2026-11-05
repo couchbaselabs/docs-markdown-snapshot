@@ -2,13 +2,13 @@
 title: Error Messages
 description: The standardized error codes returned by the Couchbase C&#43;&#43;
   SDK, from cloud connection to sub-document.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/ref/pages/error-codes.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/ref/pages/error-codes.adoc
   xref: xref:cxx-sdk:ref:error-codes.adoc[]
 ---
 

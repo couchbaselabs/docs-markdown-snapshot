@@ -2,7 +2,7 @@
 title: Search Response
 description: Full Text Search provides a <em>response object</em>, which
   contains detailed information on the results of the search.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -16,6 +16,9 @@ antora:
 [View original HTML](/server/7.6/fts/fts-search-response.html)
 
 # Search Response
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Full Text Search provides a _response object_, which contains detailed information on the results of the search. Prior to the search, a _facet_ can be add to the response object, and information on _aggregations_ thereby returned. 
 

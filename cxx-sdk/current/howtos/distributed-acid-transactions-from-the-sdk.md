@@ -2,13 +2,13 @@
 title: Using Couchbase Transactions
 description: A practical guide on using Couchbase Distributed ACID transactions,
   via the C&#43;&#43; SDK.
-pubDate: 2026-10-23T04:31:18.652Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
   xref: xref:cxx-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 ---
 

@@ -2,13 +2,13 @@
 title: Best Practices
 description: Speed up your application development, with some best practices for
   using Couchbase SDKs.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/concept-docs/pages/best-practices.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/concept-docs/pages/best-practices.adoc
   xref: xref:cxx-sdk:concept-docs:best-practices.adoc[]
 ---
 
@@ -25,24 +25,9 @@ From batching and reactive APIs, to unit tests and handling errors. There's plen
 
 But before worrying about bottlenecks, let's put security concerns first.
 
-Security is a process, and not just a set of checkboxes — but
+Security is a process, and not just a set of checkboxes — but there are key areas you must check off as you move from development, through testing, to deploying in production.
 
 ### [](#roles-and-rbac)Roles and RBAC
-
-Self-managed Couchbase Server uses Role-Based Access Control (RBAC), which is reflected in our managed service as a nuanced set of Roles. Data security depends in part on only giving access to
-
-RBAC restrict resources on a Couchbase cluster to an identified user, allocated by role.
-
-#### [](#users-resources-roles-and-privileges)Users, Resources, Roles, and Privileges
-
-Couchbase Server Enterprise Edition uses _Role-Based Access Control_ for applications to restrict _resources_ on a Couchbase cluster to an identified _user_.
-
-Each user who attempts resource-access is identified by means of the _credentials_ they pass to Couchbase Server, for purposes of _authentication_: these consist of a _username_ and (typically) a _password_. Once the user is authenticated, an _authorization_ process checks the _roles_ with which the user is associated. If one or more of these roles correspond to _privileges_ that permit the user-requested level of resource-access, access is duly granted; otherwise, it is denied.
-
-Users who have been assigned the **Admin** role for the cluster are able to create, edit, and remove users. The SDK provides APIs to support these activities.
-
-> [!NOTE]
-> Introductory examples in the SDK documentation use the _Administrator_ user to ensure that developers can quickly get up and running; this _should not be used in production_. Elsewhere we use a general "user" which represents whichever permission levels are appropriate to your application.
 
 ## [](#performance)Performance
 
@@ -57,6 +42,16 @@ If you need pessimistic logging, in particular if you need to lock documents for
 ### [](#concurrency-and-async-apis)Concurrency and Async APIs
 
 See the [Async & Reactive APIs page](../howtos/concurrent-async-apis.md) for practical examples.
+
+### [](#bulk-get-multi-get-and-network-latency)Bulk Get, Multi-Get, and Network Latency
+
+In traditional databases, a bulk get or multi-get is often an efficient way of overcoming network latencies as a bottleneck, or simply making more efficent use of your database's performance.
+
+Couchbase is a distributed database, efficiently fetching data from vbuckets spread across several nodes: bulk gets can be an anti-pattern, holding things up on the Server side, compared with the efficiency of fetching your data asynchronously. However, this depends upon your platform language's availability of asynchronous APIs — see the [bulk get and async API page](../howtos/concurrent-async-apis.md) for the specifics for the C++ SDK.
+
+#### [](#when-to-use-bulk-get)When to Use Bulk Get
+
+As stated above, bulk gets are rarely the best way to fetch data from different documents efficently. Nevertheless, if your business logic dictates that all of, say five, results need to be returned before processing for the application's next step, then a bulk get will give you all of the results together, as needed by your app. For this reason we do provide a [batching example](../howtos/concurrent-async-apis.md#batching) for the C++ SDK.
 
 ## [](#error-handling)Error Handling
 
@@ -92,9 +87,3 @@ SDKs are client to Couchbase Server — whether Capella Database-As-A-Service, o
 * [Security for self-managed Couchbase Server](../../../server/current/learn/security/security-overview.md)
 
 ### [](#role-based-access-control)Role-Based Access Control
-
-All aspects of the Couchbase RBAC system are covered in the section [Authorization](../../../server/current/learn/security/authorization-overview.md). Specifically, for information on:
-
-* Adding _Users_ and assigning _roles_, by means of the Couchbase Web Console, see [Manage Users and Roles](../../../server/current/manage/manage-security/manage-users-and-roles.md).
-* _Roles_ required for resource-access, and the privileges they entail, see [Roles](../../../server/current/learn/security/roles.md).
-* _Resources_ controlled by Couchbase RBAC, see [Resources Under Access Control](../../../server/current/learn/security/roles.md).

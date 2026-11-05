@@ -1,6 +1,6 @@
 ---
 title: SDKs for Couchbase Operational Database
-pubDate: 2026-10-23T04:31:18.652Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Documentation
@@ -396,7 +396,7 @@ Easy to Connect & Get Started
 
 Search, Query, Analyze
 
-* [Query with a familiar, SQL-like language](#ruby-sdk:howtos:sqlpp-queries-with-sdk.adoc)
+* [Query with a familiar, SQL-like language](../ruby-sdk/current/howtos/sqlpp-queries-with-sdk.md)
 * [Vector Search for your AI app](../ruby-sdk/current/howtos/vector-searching-with-sdk.md)
 * [Fuzzy Search with text and Geo data](../ruby-sdk/current/howtos/full-text-searching-with-sdk.md)
 * [OLAP — long running analytical queries](../ruby-sdk/current/howtos/analytics-using-sdk.md)
@@ -431,7 +431,7 @@ Deployment
 * [Compatibility](../ruby-sdk/current/project-docs/compatibility.md)
 * [Older Versions Archive](https://docs-archive.couchbase.com/home/index.html)
 * [3rd Party Integrations](../ruby-sdk/current/project-docs/third-party-integrations.md)
-* [ruby-sdk:project-docs:sdk-full-installation.adoc](#ruby-sdk:project-docs:sdk-full-installation.adoc)
+* [Full Installation](../ruby-sdk/current/project-docs/sdk-full-installation.md)
 
 [Rust SDK Docs](../rust-sdk/current/hello-world/overview.md) | [Quickstart Guide](../rust-sdk/current/hello-world/start-using-sdk.md) | [SDK Release Notes](../rust-sdk/current/project-docs/sdk-release-notes.md) | [Rust API Reference](https://docs.rs/couchbase/latest/couchbase/)
 

@@ -1,6 +1,6 @@
 ---
 title: Set Up an External Data Source
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Operational Insights Capella
@@ -27,3 +27,14 @@ Operational Insights supports external links to data in [Amazon S3](external-s3.
 * TSV
 * Parquet
 * Avro
+
+## [](#apache-iceberg)Apache Iceberg
+
+Operational Insights also supports read-only access to Apache Iceberg tables through external catalogs. Unlike S3 and GCS external collections, Iceberg tables are registered through a catalog entity rather than a direct link to object storage.
+
+To query Iceberg data:
+
+1. Register a catalog using [CREATE CATALOG](../sqlpp/5%5Fddl%5Ficeberg%5Fcatalog.md).
+2. Register an Iceberg table on that catalog using [CREATE EXTERNAL COLLECTION](../sqlpp/5%5Fddl%5Ficeberg%5Ftable.md).
+
+See [Iceberg Tables](../sqlpp/5%5Fddl%5Ficeberg.md) for the full list of supported catalog types and prerequisites.

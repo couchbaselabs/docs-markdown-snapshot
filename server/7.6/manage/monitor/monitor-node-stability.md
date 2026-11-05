@@ -3,7 +3,7 @@ title: Monitor Node Stability
 description: Nodes that periodically become unavailable but recover before the
   auto failover timeout expires are considered unstable. This page describes how
   to monitor for unstable nodes and investigate the causes of instability.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -18,6 +18,9 @@ antora:
 [View original HTML](/server/7.6/manage/monitor/monitor-node-stability.html)
 
 # Monitor Node Stability
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Nodes that periodically become unavailable but recover before the auto failover timeout expires are considered unstable. This page describes how to monitor for unstable nodes and investigate the causes of instability. 
 

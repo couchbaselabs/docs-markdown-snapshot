@@ -2,7 +2,7 @@
 title: Search Service
 description: The <em>Search Service</em> supports the creation of specially
   purposed indexes for <em>Full Text Search</em>.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -16,6 +16,9 @@ antora:
 [View original HTML](/server/7.6/learn/services-and-indexes/services/search-service.html)
 
 # Search Service
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > The _Search Service_ supports the creation of specially purposed indexes for _Full Text Search_. 
 

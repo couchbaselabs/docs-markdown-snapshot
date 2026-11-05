@@ -1,13 +1,13 @@
 ---
 title: Logging
 description: ""
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/howtos/pages/collecting-information-and-logging.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/howtos/pages/collecting-information-and-logging.adoc
   xref: xref:cxx-sdk:howtos:collecting-information-and-logging.adoc[]
 ---
 
@@ -27,7 +27,7 @@ The following log levels are supported (in order of increasing amount of informa
 1. off
 2. critical
 3. error
-4. warning
+4. warn
 5. info
 6. debug
 7. trace

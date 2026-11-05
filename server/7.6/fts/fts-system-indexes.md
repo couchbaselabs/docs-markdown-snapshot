@@ -1,6 +1,6 @@
 ---
 title: System:indexes - FTS indexes which are eligible to be queried from SQL++
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -14,6 +14,9 @@ antora:
 [View original HTML](/server/7.6/fts/fts-system-indexes.html)
 
 # System:indexes - FTS indexes which are eligible to be queried from SQL++
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 Use the following command to find all the FTS indexes in the system table that can be queried from SQL++.
 

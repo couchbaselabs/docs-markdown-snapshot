@@ -3,7 +3,7 @@ title: Couchbase ODBC and JDBC Drivers
 description: The ODBC and JDBC drivers enable any application based on the
   ODBC/JDBC standards. For example, Microsoft Excel, QlikView, SAP Lumira, or
   Tableau, to connect to a Couchbase Server or cluster.
-pubDate: 2026-10-30T04:21:18.959Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/connectors/odbc-jdbc-drivers.html)
 
 # Couchbase ODBC and JDBC Drivers
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 The ODBC and JDBC drivers enable any application based on the ODBC/JDBC standards. For example, Microsoft Excel, QlikView, SAP Lumira, or Tableau, to connect to a Couchbase Server or cluster. These drivers enable fast and seamless access to Couchbase data. Using these drivers, the applications can leverage on the powerful SQL++ functionality to efficiently store and process JSON documents at scale.
 

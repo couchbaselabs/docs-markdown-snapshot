@@ -1,7 +1,7 @@
 ---
 title: Certificate Management API
 description: The REST API can be used to manage the root and node certificates of a cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -15,6 +15,9 @@ antora:
 [View original HTML](/server/7.6/rest-api/rest-certificate-management.html)
 
 # Certificate Management API
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > The REST API can be used to manage the root and node certificates of a cluster. 
 

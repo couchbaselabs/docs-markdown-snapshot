@@ -2,13 +2,13 @@
 title: Tracing
 description: Tracing and Metrics provide fine-grained insight into how an
   application is performing, and helps to diagnose when it is not.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/concept-docs/pages/response-time-observability.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/concept-docs/pages/response-time-observability.adoc
   xref: xref:cxx-sdk:concept-docs:response-time-observability.adoc[]
 ---
 

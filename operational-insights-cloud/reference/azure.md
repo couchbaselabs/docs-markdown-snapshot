@@ -1,7 +1,7 @@
 ---
 title: Microsoft Azure
 description: Operational Insights supports deploying clusters onto Microsoft Azure.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Operational Insights Capella
@@ -23,13 +23,21 @@ This page describes the regions and configurations available when using Operatio
 
 ## [](#supported-regions)Supported Regions
 
-| Azure Region      | Location               |
-| ----------------- | ---------------------- |
-| **swedencentral** | Sweden Central (Gävle) |
+Operational Insights supports the following Azure regions.
+
+| Azure Region | Location               | Availability Zones |
+| ------------ | ---------------------- | ------------------ |
+| **eastus2**  | East US 2 (Virginia)   | Single or multiple |
+| **westus2**  | West US 2 (Washington) | Single only        |
+
+> [!NOTE]
+> Sweden Central is no longer supported. Existing clusters in this region continue to run, but you need to migrate them to a supported region.
 
 ## [](#availability-zones)Availability Zones
 
-Each Operational Insights cluster on Azure must be deployed across a single Availability Zone (AZ) or two Availability Zones in a single region to verify fault tolerance. You can select the desired number of AZ deployments from the Operational Insights UI.
+Each Operational Insights cluster on Azure must run in a single region. Within that region, you can deploy the cluster in a single Availability Zone (AZ) or across multiple Availability Zones. Deploying across multiple Availability Zones helps keep your data highly available and protect against downtime. The available options depend on the region. For the options in each region, see [Supported Regions](#supported-regions).
+
+When you create a cluster, select **Single** or **Multiple** under **Availability Zones** in the Operational Insights UI.
 
 > [!NOTE]
 > The option to deploy a single node is only available for clusters that use a single Availability Zone and the Developer Pro plan.

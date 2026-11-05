@@ -2,14 +2,13 @@
 title: Data Operations
 description: Data service offers the simplest way to retrieve or mutate data
   where the key is known.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Ruby SDK
-    version: "3.8"
-  topic_type: howto
+    version: "3.9"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/howtos/pages/kv-operations.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/release/3.9/modules/howtos/pages/kv-operations.adoc
   xref: xref:ruby-sdk:howtos:kv-operations.adoc[]
 ---
 
@@ -352,6 +351,6 @@ result = users_collection.upsert("user-key", document)
 
 Working on just a specific path within a JSON document will reduce network bandwidth requirements - see the [Sub-Document](subdocument-operations.md) pages.
 
-Our [Query Engine](n1ql-queries-with-sdk.md) enables retrieval of information using the SQL-like syntax of SQL++ (formerly N1QL).
+Our [Query Engine](#n1ql-queries-with-sdk.adoc) enables retrieval of information using the SQL-like syntax of SQL++ (formerly N1QL).
 
 See the [Caching Example](caching-example.md) for ideas on integrating with Rails.

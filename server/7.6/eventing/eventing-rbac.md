@@ -2,7 +2,7 @@
 title: Eventing Role-Based Access Control (RBAC)
 description: Full Administrators or users with proper <em>Role-Based Access
   Control</em> (RBAC) roles can create and manage Eventing Functions.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -16,6 +16,9 @@ antora:
 [View original HTML](/server/7.6/eventing/eventing-rbac.html)
 
 # Eventing Role-Based Access Control (RBAC)
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Full Administrators or users with proper _Role-Based Access Control_ (RBAC) roles can create and manage Eventing Functions. 
 

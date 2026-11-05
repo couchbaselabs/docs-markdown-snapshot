@@ -1,6 +1,6 @@
 ---
 title: Zero Downtime Index Upgrades
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -14,5 +14,8 @@ antora:
 [View original HTML](/server/7.6/fts/fts-high-availability-for-search-zero-downtime-index-upgrades.html)
 
 # Zero Downtime Index Upgrades
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 Users can update/recreate/rebuild the indexes without interfering with the live systems by leveraging the index-alias feature. The index aliases permit indirection in the index naming, whereby applications refer to an alias-name that never changes, leaving administrators free to change the identity of the real index pointed to by the alias. This may be particularly useful when an index needs to be updated: to avoid downtime, while the current index remains in service, a clone of the current index can be created, modified, and tested. Then, when the clone is ready, the existing alias can be retargeted so that the clone becomes the current index; and the (now) previous index can be removed.

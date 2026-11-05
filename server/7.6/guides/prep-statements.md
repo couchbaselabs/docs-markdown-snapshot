@@ -2,7 +2,7 @@
 title: Prepare Statements for Reuse
 description: How to create and execute prepared statements, including
   placeholder parameters.
-pubDate: 2026-10-21T04:23:09.426Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/guides/prep-statements.html)
 
 # Prepare Statements for Reuse
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > How to create and execute prepared statements, including placeholder parameters. 
 
@@ -183,19 +186,13 @@ To supply values for placeholder parameters, use the `Parameter` method on the `
 The following example supplies a single positional parameter.
 
 ```csharp
-var result = await cluster.QueryAsync<dynamic>(
-    "SELECT t.* FROM `travel-sample` t WHERE t.type=$1",
-    options => options.Parameter("landmark")
-);
+Unresolved include directive in modules/guides/pages/prep-statements.adoc - include::3.5@dotnet-sdk:howtos:example$N1qlQueries.csx[]
 ```
 
 The following example supplies a single named parameter.
 
 ```csharp
-var result = await cluster.QueryAsync<dynamic>(
-    "SELECT t.* FROM `travel-sample` t WHERE t.type=$type",
-    options => options.Parameter("type", "landmark")
-);
+Unresolved include directive in modules/guides/pages/prep-statements.adoc - include::3.5@dotnet-sdk:howtos:example$N1qlQueries.csx[]
 ```
 
 For details, see [QueryOptions](https://docs.couchbase.com/sdk-api/couchbase-net-client/api/Couchbase.Query.QueryOptions.html).
@@ -584,7 +581,7 @@ Reference:
 
 Querying with SDKs:
 
-* [C](../../../c-sdk/current/howtos/n1ql-queries-with-sdk.md)| [C++](../../../cxx-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [.NET](../../../dotnet-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Go](../../../go-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Java](../../../java-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Kotlin](../../../kotlin-sdk/current/howtos/n1ql-queries.md)| [Node.js](../../../nodejs-sdk/current/howtos/n1ql-queries-with-sdk.md)| [PHP](../../../php-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Python](../../../python-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Ruby](../../../ruby-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Rust](../../../rust-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Scala](../../../scala-sdk/current/howtos/sqlpp-queries-with-sdk.md)
+* [C](../../../c-sdk/current/howtos/n1ql-queries-with-sdk.md)| [C++](../../../cxx-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [.NET](../../../dotnet-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Go](../../../go-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Java](../../../java-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Kotlin](../../../kotlin-sdk/current/howtos/n1ql-queries.md)| [Node.js](../../../nodejs-sdk/current/howtos/n1ql-queries-with-sdk.md)| [PHP](../../../php-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Python](../../../python-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Ruby](#ruby-sdk:howtos:n1ql-queries-with-sdk.adoc)| [Rust](../../../rust-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Scala](../../../scala-sdk/current/howtos/sqlpp-queries-with-sdk.md)
 
 Prepared statements with SDKs:
 

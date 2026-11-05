@@ -3,7 +3,7 @@ title: Explore the Server Configuration
 description: Once you have Couchbase Server running, you can log into the
   Couchbase Server Web Console and start to examine the different features that
   it provides.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/getting-started/look-at-the-results.html)
 
 # Explore the Server Configuration
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Once you have Couchbase Server running, you can log into the Couchbase Server Web Console and start to examine the different features that it provides. These features include an interface for inspecting Couchbase _documents_, organized within _buckets_. 
 

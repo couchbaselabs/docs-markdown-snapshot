@@ -3,7 +3,7 @@ title: Create a Custom Character Filter
 description: Create a custom character filter with the Couchbase Server Web
   Console to remove unwanted characters from a Search query or the contents of a
   Search index.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -18,6 +18,9 @@ antora:
 [View original HTML](/server/7.6/search/create-custom-character-filter.html)
 
 # Create a Custom Character Filter
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Create a custom character filter with the Couchbase Server Web Console to remove unwanted characters from a Search query or the contents of a Search index. 
 

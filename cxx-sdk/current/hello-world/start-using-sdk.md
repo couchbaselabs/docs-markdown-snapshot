@@ -2,13 +2,13 @@
 title: Hello World
 description: Install, connect, try. A quick start guide to get you up and
   running with Couchbase and the C++ SDK.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/hello-world/pages/start-using-sdk.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/hello-world/pages/start-using-sdk.adoc
   xref: xref:cxx-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -106,9 +106,9 @@ CPMAddPackage(
   NAME
   couchbase_cxx_client
   GIT_TAG
-  1.4.0
+  1.5.1
   VERSION
-  1.4.0
+  1.5.1
   GITHUB_REPOSITORY
   "couchbase/couchbase-cxx-client"
   OPTIONS
@@ -153,7 +153,7 @@ if (err) {
 }
 ```
 
-Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](../../../cloud-native-gateway/current/intro/about-cng.md):
+Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — compatible with recent versions of [Couchbase Autonomous Operator](../../../cloud-native-gateway/current/intro/about-cng.md) or [install alongside self-managed Server](../../../cloud-native-gateway/current/intro/about-cng.md):
 
 ```c++
 static constexpr auto connection_string{ "couchbase2://192.168.42.42" };  // replace with your IP address

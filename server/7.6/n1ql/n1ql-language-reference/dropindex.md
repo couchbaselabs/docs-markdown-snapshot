@@ -2,7 +2,7 @@
 title: DROP INDEX
 description: The DROP INDEX statement allows you to drop a named primary index
   or a secondary index.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/dropindex.html)
 
 # DROP INDEX
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 The DROP INDEX statement allows you to drop a named primary index or a secondary index. Dropping an index that has replicas will also drop all of the replica indexes too. You can drop unnamed primary indexes using the [DROP PRIMARY INDEX](dropprimaryindex.md) statement.
 

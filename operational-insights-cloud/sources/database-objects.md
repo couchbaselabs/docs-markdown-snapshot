@@ -2,7 +2,7 @@
 title: Access and Organize Data in Operational Insights Services
 description: This topic introduces the database objects that you use to access
   and organize data in Operational Insights.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Operational Insights Capella
@@ -27,7 +27,7 @@ All of the data that you use Operational Insights to query originates from some 
 * Remote operational databases, which are typically subject to rapid, ongoing modification. Operational Insights connects to Couchbase Capella operational and Couchbase Server databases.
 * Kafka distributed streaming platform to stream data from other data sources such as databases.
 * External data stores, logs, and archives to support analyses of historical data. Operational Insights can query data stored in [Amazon S3](external-s3.md) and [GCP](external-gcs.md). This data remains with the cloud provider. ​Operational Insights does not copy it into a collection. Supported formats are JSON, CSV, TSV, Parquet, or Avro files.
-* Data Lakes such as `delta`, residing in S3 buckets, can be queried.
+* Data lakes, including `delta` tables residing in S3 buckets and Apache Iceberg tables accessed through [Iceberg catalogs](../sqlpp/5%5Fddl%5Ficeberg.md). For more information, see [Create a Catalog](../sqlpp/5%5Fddl%5Ficeberg%5Fcatalog.md) and [Create an Iceberg Table](../sqlpp/5%5Fddl%5Ficeberg%5Ftable.md).
 
 ## [](#database-objects)Database Objects
 

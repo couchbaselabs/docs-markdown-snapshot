@@ -2,7 +2,7 @@
 title: Perform Hard Failover
 description: Hard failover allows a node to be removed from a cluster
   reactively, because the node has become unresponsive or unstable.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -16,6 +16,9 @@ antora:
 [View original HTML](/server/7.6/manage/manage-nodes/failover-hard.html)
 
 # Perform Hard Failover
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Hard failover allows a node to be removed from a cluster reactively, because the node has become unresponsive or unstable. 
 

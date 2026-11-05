@@ -3,7 +3,7 @@ title: MERGE
 description: A MERGE statement provides the ability to update, insert into, or
   delete from a keyspace based on the results of a join with another keyspace or
   subquery.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -18,6 +18,9 @@ antora:
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/merge.html)
 
 # MERGE
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > A MERGE statement provides the ability to update, insert into, or delete from a keyspace based on the results of a join with another keyspace or subquery. It is possible to specify actions (insert, update, delete) on the keyspace based on a match or no match in the join. Multiple actions can be specified in the same query. 
 

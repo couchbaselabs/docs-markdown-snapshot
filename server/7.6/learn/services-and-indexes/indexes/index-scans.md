@@ -2,7 +2,7 @@
 title: Index Scans
 description: This section discusses how index spans are generated from query
   predicates and provides a number of examples.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/learn/services-and-indexes/indexes/index-scans.html)
 
 # Index Scans
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > During query execution, when the index path is chosen, the query engine requests the scan by providing a range of values to return. This range is represented as a _span_ in the query plan. Index scans play a major role in optimizing the query plan generation and execution. This section discusses how index spans are generated from query predicates and provides a number of examples. 
 

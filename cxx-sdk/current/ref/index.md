@@ -1,13 +1,13 @@
 ---
 title: Reference Pages
 description: Essential reference infomation for developing with Couchbase.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/ref/pages/index.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/ref/pages/index.adoc
   xref: xref:cxx-sdk:ref:index.adoc[]
 ---
 
@@ -32,8 +32,6 @@ The Couchbase SDK docs aim to be practical, and example-led, to get you working 
 
 These are interspersed with the howto guides — but the complete set of discussion docs for the SDK is listed and linked below:
 
-* [Buckets & Clusters](../concept-docs/management-api.md)
-* [Collections & Scope](#concept-docs:collections.adoc)
 * [Compression](../concept-docs/compression.md)
 * [Data Model](../concept-docs/data-model.md)
 
@@ -41,26 +39,23 @@ These are interspersed with the howto guides — but the complete set of discuss
   * [Non-json Docs](../concept-docs/nonjson.md)
   * [Sub-Documents](../concept-docs/subdocument-operations.md)
   * [XATTR & Virtual XATTR](../concept-docs/xattr.md)
-* [Errors and Diagnostics](../concept-docs/best-practices.md)
+* [Errors and Diagnostics](../concept-docs/best-practices.md#error-handling)
 
   * [Health Check](../howtos/health-check.md)
   * [Tracing](../concept-docs/response-time-observability.md)
 * [Failure Considerations](../concept-docs/durability-replication-failure-considerations.md)
 * [Field Level Encryption](../concept-docs/encryption.md)
-* [Service Selection](../concept-docs/querying-your-data.md)
+* [Service Selection / Querying Your Data](../concept-docs/querying-your-data.md)
 
-  * [Analytics](../howtos/analytics-using-sdk.md)
-  * [Map Reduce Views](../project-docs/migrating-sdk-code-to-3.n.md)
+  * [Map Reduce Views](../project-docs/migrating-sdk-code-to-3.n.md) \[Deprecated\]
   * [Query](../concept-docs/n1ql-query.md)
   * [Search](../concept-docs/full-text-search-overview.md)
-* [User Management](#concept-docs:sdk-user-management-overview.adoc)
 
-  * [Cert Auth](../howtos/sdk-authentication.md)
-  * [RBAC](../concept-docs/best-practices.md)
+### [](#key-discussion-documents)Key Discussion Documents
 
-* [Data Modelling, Durability, and Consistency](../concept-docs/data-durability-acid-transactions.md)
-* [Querying Your Data](../concept-docs/querying-your-data.md)
-* [Failure Considerations](../concept-docs/durability-replication-failure-considerations.md)
 * [Best Practices](../concept-docs/best-practices.md)
+* [Data Modelling, Durability, and Consistency](../concept-docs/data-durability-acid-transactions.md)
+* [Failure Considerations](../concept-docs/durability-replication-failure-considerations.md)
 * [Managing Couchbase](../concept-docs/management-api.md)
+* [Querying Your Data](../concept-docs/querying-your-data.md)
 * [SDK Deployment](../project-docs/deployment.md)

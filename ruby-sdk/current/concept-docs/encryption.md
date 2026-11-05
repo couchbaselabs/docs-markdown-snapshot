@@ -1,24 +1,28 @@
 ---
-title: Field Level Encryption
-description: Fields within a document can be securely encrypted by the SDK, to
-  support FIPS-140-2 compliance.
-pubDate: 2026-10-03T04:27:21.374Z
+title: Field Level Encryption from the SDK
+description: The Field Level Encryption library enables encryption and
+  decryption of JSON fields, to support FIPS-140-2 compliance.
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Ruby SDK
-    version: "3.8"
-  topic_type: concept
+    version: "3.9"
   edition: Enterprise Edition
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/concept-docs/pages/encryption.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/release/3.9/modules/concept-docs/pages/encryption.adoc
   xref: xref:ruby-sdk:concept-docs:encryption.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/ruby-sdk/current/concept-docs/encryption.html)
 
-# Field Level Encryption
+# Field Level Encryption from the SDK
 
-> Fields within a document can be securely encrypted by the SDK, to support FIPS-140-2 compliance. 
+> The Field Level Encryption library enables encryption and decryption of JSON fields, to support FIPS-140-2 compliance. 
 
-Client-side implementation of Field Level Encryption is available in previous versions of the C, .NET, Go, Java, Node.js, PHP, and Python SDK. It will be enabled in a future release of the third generation SDK, including the Ruby SDK.
+Client-side implementation of Field Level Encryption is available in the [C++](../../../cxx-sdk/current/howtos/encrypting-using-sdk.md), [.NET](../../../dotnet-sdk/current/howtos/encrypting-using-sdk.md), [Go](../../../go-sdk/current/howtos/encrypting-using-sdk.md), [Java](../../../java-sdk/current/howtos/encrypting-using-sdk.md), [Node.js](../../../nodejs-sdk/current/howtos/encrypting-using-sdk.md), [Python](../../../python-sdk/current/howtos/encrypting-using-sdk.md), and [Scala](../../../scala-sdk/current/howtos/encrypting-using-sdk.md) SDKs.
+
+> [!TIP]
+> Native Encryption at Rest
+> 
+> Server 8.x (and new Capella Operational clusters) offer [encryption at rest](../../../server/current/learn/security/native-encryption-at-rest-overview.md). It's a comprehensive way of encrypting all data in a non-ephemeral bucket, as well as logs, configuration data, and audit data.

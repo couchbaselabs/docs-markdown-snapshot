@@ -3,13 +3,13 @@ title: Orphaned Requests Logging
 description: In addition to request tracing and metrics reporting, logging
   orphaned requests provides additional insight into why an operation might have
   timed out (or got cancelled for a different reason).
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/howtos/pages/observability-orphan-logger.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/howtos/pages/observability-orphan-logger.adoc
   xref: xref:cxx-sdk:howtos:observability-orphan-logger.adoc[]
 ---
 
@@ -132,4 +132,4 @@ __Table 2\. OrphanReporterConfig Properties__
 | emitInterval | 10,000 milliseconds | The interval where found orphans are emitted. |
 | sampleSize   | 10                  | The number of samples to store per service.   |
 
-Configuration details can be found in the [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.4.0/classcouchbase%5F1%5F1tracing%5F%5Foptions.html#a2872a66bcf62fa033181a3da656bec9e).
+Configuration details can be found in the [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.5.1/classcouchbase%5F1%5F1tracing%5F%5Foptions.html#a2872a66bcf62fa033181a3da656bec9e).

@@ -3,7 +3,7 @@ title: CREATE an External Collection
 description: This topic describes how you use the <code>CREATE</code> statement
   to create a collection so that you can query OLAP data on an external data
   source.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Operational Insights Capella
@@ -27,6 +27,9 @@ To create a link to an external data source, you use the Operational Insights UI
 
 > [!NOTE]
 > To be able to read or write data to or from external cloud storage, you need to configure your connection and permissions. For more information, see [AWS](../sources/required-permissions-aws.md), [GCS](../sources/required-permissions-gcs.md), and [Azure](../sources/required-permissions-azure.md).
+
+> [!NOTE]
+> To query Apache Iceberg tables, use [CREATE CATALOG](5%5Fddl%5Ficeberg%5Fcatalog.md) to register a catalog, then use `CREATE EXTERNAL COLLECTION` with an `ON` clause that references the catalog. This is a separate flow from the external collection syntax documented on this page. See [Iceberg Tables](5%5Fddl%5Ficeberg.md) for details.
 
 ## [](#syntax)Syntax
 

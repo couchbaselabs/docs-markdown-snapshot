@@ -2,7 +2,7 @@
 title: View Monitoring Dashboards
 description: Couchbase Capella provides monitoring dashboards with metrics for
   each cluster so you can view and monitor cluster performance.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Capella Operational
@@ -24,6 +24,8 @@ antora:
 > The [Metrics Explorer](#metrics-explorer-dashboard) dashboard is still available for you to view cluster metrics. Use this dashboard to add or remove specific metrics according to your monitoring needs.
 
 The metrics available on the **Monitoring** dashboards provide insight into your cluster's performance and can help identify runtime outliers. These dashboards can help you investigate intermittent issues with multi-metric views and adjustable timeframes.
+
+For a description of every graph on these dashboards, including the metric each one is calculated from, see [Monitoring Reference](../../reference/monitoring-reference.md).
 
 Capella has the following real-time monitoring dashboards:
 
@@ -138,6 +140,8 @@ The **Metrics Explorer** dashboard provides a customizable collection of Service
 
 You can select from a list of available cluster metrics, including those for your cluster's Services and nodes. Adjust your dashboard by adding or removing the metrics that suit your specific monitoring needs. You can customize the view to support detailed performance analysis and targeted troubleshooting workflows.
 
+The list includes SDK telemetry metrics, which your cluster collects from applications that connect to it through a Couchbase SDK. These graphs have `SDK` in their name, such as **Data: SDK Data Service Total Requests by Node**. For a description of each one, see [Monitoring Reference](../../reference/monitoring-reference.md).
+
 You can adjust the charts by timeframe and resolution. For more information, see [Adjust Metrics](#use-metrics).
 
 ### [](#add-metrics)Add Metrics
@@ -204,6 +208,7 @@ For **Workload Monitoring** dashboards, you can return to the default timeframe 
 
 ## [](#see-also)See Also
 
+* [Monitoring Reference](../../reference/monitoring-reference.md)
 * [View Health Advisor](health-advisor.md)
 * [View Activity Logs](activity-log.md)
 * [Receive Alerts](alerts.md)

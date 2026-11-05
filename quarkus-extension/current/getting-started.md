@@ -2,13 +2,13 @@
 title: Getting Started
 description: The Couchbase Quarkus extension integrates the Couchbase Java SDK
   within the Quarkus ecosystem.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Quarkus Java Extension
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-quarkus-extension/edit/release/1.4/modules/ROOT/pages/getting-started.adoc
+  editUrl: https://github.com/couchbase/docs-quarkus-extension/edit/release/1.5/modules/ROOT/pages/getting-started.adoc
   xref: xref:quarkus-extension::getting-started.adoc[]
 ---
 
@@ -37,13 +37,13 @@ Add this to your `pom.xml`:
 <dependency>
   <groupId>io.quarkiverse.couchbase</groupId>
   <artifactId>quarkus-couchbase</artifactId>
-  <version>1.3.0</version>
+  <version>1.5.0</version>
 </dependency>
 ```
 
 ```groovy
 dependencies {
-    implementation 'io.quarkiverse.couchbase:quarkus-couchbase:1.3.0'
+    implementation 'io.quarkiverse.couchbase:quarkus-couchbase:1.5.0'
 }
 ```
 

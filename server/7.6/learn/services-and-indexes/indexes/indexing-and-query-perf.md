@@ -3,7 +3,7 @@ title: Types of Primary and Secondary Index
 description: This topic provides an overview of the types of index that you can
   create using the Index Service, and explains how they help to query for data
   efficiently and improve query performance.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -18,6 +18,9 @@ antora:
 [View original HTML](/server/7.6/learn/services-and-indexes/indexes/indexing-and-query-perf.html)
 
 # Types of Primary and Secondary Index
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 Creating the right index — with the right keys, in the right order, and using the right expressions — is critical to query performance in any database system. This is true for Couchbase as well. This topic provides an overview of the types of index that you can create using the Index Service, and explains how they help to query for data efficiently and improve query performance.
 

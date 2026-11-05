@@ -2,7 +2,7 @@
 title: Deploy Couchbase Sync Gateway Using AWS Marketplace
 description: Couchbase partners with Amazon to provide a packaged solution on
   AWS Marketplace.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -16,6 +16,9 @@ antora:
 [View original HTML](/server/7.6/cloud/couchbase-aws-syncgateway-deployment.html)
 
 # Deploy Couchbase Sync Gateway Using AWS Marketplace
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Couchbase partners with Amazon to provide a packaged solution on AWS Marketplace. This solution is based on Amazon CloudFormation templates that incorporate the latest features and best practices for deploying Couchbase Server on Amazon Web Services. 
 

@@ -2,7 +2,7 @@
 title: Back Up and Restore An Entire Cluster
 description: With a Cloud Snapshot cluster backup, you can backup and restore an
   entire cluster and all of its buckets in a single backup.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Capella Operational
@@ -54,6 +54,8 @@ Cluster backups are stored at the project level in your organization, and can be
 Cluster backups support faster end-to-end recovery of your cluster, including restoring indexes. Use cluster backups to reduce the risk of downtime during disaster recovery and restore your cluster, typically within minutes.
 
 Cluster backups are stored within the same cloud provider and cloud region as your cluster, giving you better governance over your data and reducing performance issues related to backups.
+
+Couchbase recommends that you configure cluster backups if any bucket on your cluster is larger than 5 TB. At this scale, cluster backups complete and restore faster than [bucket backups](manage-backup.md).
 
 > [!TIP]
 > If your cluster has a write-heavy workload, try making the interval between your cluster backups as long as possible. This reduces your backup costs and increases the value of your individual backups.

@@ -1,13 +1,13 @@
 ---
 title: Compatibility Guide
-description: Quarkus Couchbase 1.1 needs Quarkus 3.20 or newer.
-pubDate: 2026-10-03T04:27:21.374Z
+description: Quarkus Couchbase 1.5 needs Quarkus 3.40 or newer.
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Quarkus Java Extension
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-quarkus-extension/edit/release/1.4/modules/ROOT/pages/compatibility.adoc
+  editUrl: https://github.com/couchbase/docs-quarkus-extension/edit/release/1.5/modules/ROOT/pages/compatibility.adoc
   xref: xref:quarkus-extension::compatibility.adoc[]
 ---
 
@@ -19,10 +19,10 @@ antora:
 Each Quarkus Couchbase release is built for a specific Quarkus and Couchbase Java SDK version, and the version is preset for you (see the [release notes](release-notes.md)):
 
 __Compatibility Matrix__
-| Quarkus Couchbase | 1.0.0  | 1.1.0  | 1.2.0  | 1.3.0  | 1.4.0  | 1.4.1  |
-| ----------------- | ------ | ------ | ------ | ------ | ------ | ------ |
-| Java SDK          | 3.7.7  | 3.8.0  | 3.9.2  | 3.10.1 | 3.10.1 | 3.10.1 |
-| Quarkus version   | 3.17.5 | 3.20.0 | 3.28.4 | 3.32.1 | 3.36.0 | 3.36.3 |
+| Quarkus Couchbase | 1.0.0  | 1.1.0  | 1.2.0  | 1.3.0  | 1.4.0  | 1.4.1  | 1.5.0  |
+| ----------------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
+| Java SDK          | 3.7.7  | 3.8.0  | 3.9.2  | 3.10.1 | 3.10.1 | 3.10.1 | 3.13.0 |
+| Quarkus version   | 3.17.5 | 3.20.0 | 3.28.4 | 3.32.1 | 3.36.0 | 3.36.3 | 3.40.1 |
 
 ## [](#platform-compatibility)Platform Compatibility
 

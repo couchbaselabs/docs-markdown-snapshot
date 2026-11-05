@@ -3,7 +3,7 @@ title: Fail a Node Over and Rebalance
 description: Nodes can be <em>failed over</em>, and thereby removed safely from
   a cluster in the event of unavoidable downtime, without any break in the
   serving of data to applications.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/manage/manage-nodes/fail-nodes-over.html)
 
 # Fail a Node Over and Rebalance
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Nodes can be _failed over_, and thereby removed safely from a cluster in the event of unavoidable downtime, without any break in the serving of data to applications. 
 

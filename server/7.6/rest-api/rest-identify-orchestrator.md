@@ -3,7 +3,7 @@ title: Identifying the Orchestrator Node
 description: The node currently running the <em>orchestrator</em> (sometimes
   referred to as the <em>Master Services</em>) can be identified by means of the
   REST API.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/rest-api/rest-identify-orchestrator.html)
 
 # Identifying the Orchestrator Node
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > The node currently running the _orchestrator_ (sometimes referred to as the _Master Services_) can be identified by means of the REST API. 
 

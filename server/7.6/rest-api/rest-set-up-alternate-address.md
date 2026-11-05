@@ -4,7 +4,7 @@ description: Alternate addresses and port-numbers can be established for and
   removed from nodes, by means of the <code>PUT</code> and <code>DELETE</code>
   HTTP methods, using the
   <code>/node/controller/setupAlternateAddresses/external</code> URI.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -19,6 +19,9 @@ antora:
 [View original HTML](/server/7.6/rest-api/rest-set-up-alternate-address.html)
 
 # Managing Alternate Addresses
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Alternate addresses and port-numbers can be established for and removed from nodes, by means of the `PUT` and `DELETE` HTTP methods, using the `/node/controller/setupAlternateAddresses/external` URI. 
 

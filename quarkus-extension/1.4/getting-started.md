@@ -1,0 +1,78 @@
+---
+title: Getting Started
+description: The Couchbase Quarkus extension integrates the Couchbase Java SDK
+  within the Quarkus ecosystem.
+pubDate: 2026-11-05T15:16:13.118Z
+meta:
+  component:
+    title: Quarkus Java Extension
+    version: "1.4"
+antora:
+  editUrl: https://github.com/couchbase/docs-quarkus-extension/edit/release/1.4/modules/ROOT/pages/getting-started.adoc
+  xref: xref:1.4@quarkus-extension::getting-started.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/quarkus-extension/1.4/getting-started.html)
+
+# Getting Started
+
+We recommend using SDKMAN to install the JDK, and Mandrel (the Quarkus-recommended version of GraalVM).
+
+```console
+sdk install java 25.0.1.r25-mandrel
+sdk use java 25.0.1.r25-mandrel
+```
+
+## [](#creating-a-quarkus-app)Creating a Quarkus App
+
+It is recommended to generate a starter app using the [Quarkus Code Starter](https://code.quarkus.io/?e=io.quarkiverse.couchbase%3Aquarkus-couchbase). If you already have a Quarkus app on hand, install with Maven or Gradle as follows:
+
+* Maven
+* Gradle
+
+Add this to your `pom.xml`:
+
+```xml
+<dependency>
+  <groupId>io.quarkiverse.couchbase</groupId>
+  <artifactId>quarkus-couchbase</artifactId>
+  <version>1.3.0</version>
+</dependency>
+```
+
+```groovy
+dependencies {
+    implementation 'io.quarkiverse.couchbase:quarkus-couchbase:1.3.0'
+}
+```
+
+## [](#configuring-couchbase)Configuring Couchbase
+
+Configure the connection in your `application.properties` file, typically located in `src/main/resources`:
+
+```properties
+quarkus.couchbase.connection-string=localhost
+quarkus.couchbase.username=username
+quarkus.couchbase.password=password
+```
+
+For additional configuration options, refer to the [Quarkus Configuration Guide](https://docs.quarkiverse.io/quarkus-couchbase/dev/configuration.html) or [API Reference](https://javadoc.io/doc/io.quarkiverse.couchbase/quarkus-couchbase/latest/index.html).
+
+## [](#using-the-extension)Using the Extension
+
+The extension produces an Application-scoped `Cluster` bean that can be injected using the jakarta annotation `@Inject`, as well as a `Bucket`:
+
+```java
+public class QuarkusExample {
+    @Inject
+    Cluster cluster;
+
+    @Inject
+    Bucket bucket;
+}
+```
+
+When using DevServices, the Bucket will automatically be created. When connecting to an existing Couchbase instance, the bucket must already exist, and the name can be configured using `quarkus.couchbase.bucket-name`.
+
+From there, you can use the Cluster object like you normally would with the Java SDK. Refer to the [Quarkus Guide](https://docs.quarkiverse.io/quarkus-couchbase/dev/index.html) for an example using `quarkus-rest` to create HTTP endpoints.

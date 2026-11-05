@@ -4,7 +4,7 @@ description: Diagnostic information can be retrieved by using the
   <code>GET</code> method with the <code>/diag</code> URI. The current content
   of a log file can be returned by using <code>GET</code> with the
   <code>/sasl_logs</code> URI.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -19,6 +19,9 @@ antora:
 [View original HTML](/server/7.6/rest-api/rest-logs-get.html)
 
 # Retrieving Diagnostic and Log Information
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Diagnostic information can be retrieved by using the `GET` method with the `/diag` URI. The current content of a log file can be returned by using `GET` with the `/sasl_logs` URI. 
 

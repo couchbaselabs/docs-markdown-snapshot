@@ -5,7 +5,7 @@ description: One or more nodes can be failed over automatically when they become
   auto-failover is performed only if all safety check conditions are met and the
   checks are done to maintain data safety; i.e. that no data loss occurs as a
   result of failover.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -19,6 +19,9 @@ antora:
 [View original HTML](/server/7.6/learn/clusters-and-availability/automatic-failover.html)
 
 # Automatic Failover
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > One or more nodes can be failed over automatically when they become unresponsive or experience a configured auto-failover triggering event. An auto-failover is performed only if all safety check conditions are met and the checks are done to maintain data safety; i.e. that no data loss occurs as a result of failover. 
 

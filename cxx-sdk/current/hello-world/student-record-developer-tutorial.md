@@ -2,13 +2,13 @@
 title: "Couchbase Tutorial: A Student Record System"
 description: A short tutorial that will guide the developer in downloading and
   installing Couchbase, then creating a database to store student records.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/hello-world/pages/student-record-developer-tutorial.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/hello-world/pages/student-record-developer-tutorial.adoc
   xref: xref:cxx-sdk:hello-world:student-record-developer-tutorial.adoc[]
 ---
 
@@ -225,9 +225,9 @@ CPMAddPackage(
   NAME
   couchbase_cxx_client
   GIT_TAG
-  1.4.0
+  1.5.1
   VERSION
-  1.4.0
+  1.5.1
   GITHUB_REPOSITORY
   "couchbase/couchbase-cxx-client"
   OPTIONS
@@ -248,7 +248,7 @@ pom.xml
 Unresolved directive in student-record-developer-tutorial.adoc - include::{java-sample-location}pom.xml[]
 ```
 
-| **1** | The dependencies section lists all the libraries required to build the application. In our case, we only need the Couchbase client SDK (version 1.4.0, in this case). |
+| **1** | The dependencies section lists all the libraries required to build the application. In our case, we only need the Couchbase client SDK (version 1.5.1, in this case). |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 Unresolved include directive in modules/hello-world/pages/student-record-developer-tutorial.adoc - include::partial$student-mvn-directory-structure.adoc\[\]

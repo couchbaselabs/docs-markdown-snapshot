@@ -2,7 +2,7 @@
 title: Indexes
 description: Couchbase Server indexes enhance the performance of query and
   search operations.
-pubDate: 2026-10-13T04:35:53.698Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -16,6 +16,9 @@ antora:
 [View original HTML](/server/7.6/learn/services-and-indexes/indexes/indexes.html)
 
 # Indexes
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Couchbase Server indexes enhance the performance of query and search operations. 
 

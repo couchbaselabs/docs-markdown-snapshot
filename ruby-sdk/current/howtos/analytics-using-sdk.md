@@ -2,15 +2,14 @@
 title: Analytics
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Ruby SDK
-    version: "3.8"
-  topic_type: howto
+    version: "3.9"
   edition: "Enterprise Edition:"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/howtos/pages/analytics-using-sdk.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/release/3.9/modules/howtos/pages/analytics-using-sdk.adoc
   xref: xref:ruby-sdk:howtos:analytics-using-sdk.adoc[]
 ---
 
@@ -30,7 +29,7 @@ This page covers using our operational Ruby SDK to connect to the Analytics Serv
 > 
 > Currently, different SDKs are needed to connect to [Operational Insights Capella](../../../operational-insights-cloud/intro/intro.md) — as this service does not have Operational Insights Enterprise's load balancer, and uses a different connection protocol. Operational Insights Capella SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Operational Insights Capella SDK pages](../../../home/columnar-sdk.md) for more information.
 
-For complex and long-running queries, involving large ad hoc join, set, aggregation, and grouping operations, Couchbase Data Platform offers the [Couchbase Analytics Service (CBAS)](../../../server/current/analytics/introduction.md). This is the analytic counterpart to our [operational data focussed Query Service](n1ql-queries-with-sdk.md). The analytics service is available in Couchbase Data Platform 6.0 and later (developer preview in 5.5).
+For complex and long-running queries, involving large ad hoc join, set, aggregation, and grouping operations, Couchbase Data Platform offers the [Couchbase Analytics Service (CBAS)](../../../server/current/analytics/introduction.md). This is the analytic counterpart to our [operational data focussed Query Service](#n1ql-queries-with-sdk.adoc). The analytics service is available in Couchbase Data Platform 6.0 and later (developer preview in 5.5).
 
 ## [](#getting-started)Getting Started
 
@@ -137,7 +136,7 @@ puts "Execution time: #{result.meta_data.metrics.execution_time}"
 
 ## [](#scan-consistency)Scan Consistency
 
-Like the [Couchbase Query Service](n1ql-queries-with-sdk.md#scan-consistency), and [Search](#full-text-searching-with-sdk.html#consistency), Analytics allows `:request_plus` queries — ensuring results contain information from updated indexes:
+Like the [Couchbase Query Service](#n1ql-queries-with-sdk.adoc#scan-consistency), and [Search](#full-text-searching-with-sdk.html#consistency), Analytics allows `:request_plus` queries — ensuring results contain information from updated indexes:
 
 ```ruby
 #options = Cluster::AnalyticsOptions.new

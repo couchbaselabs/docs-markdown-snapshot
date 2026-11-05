@@ -2,7 +2,7 @@
 title: Correlated Subqueries
 description: When a subquery refers to variables, aliases, attributes, or
   keyspaces in the outer statement, it is called a correlated subquery.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/correlated-subqueries.html)
 
 # Correlated Subqueries
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 When a subquery is independent of its parent query, it is called a **non-correlated** subquery. This means the subquery does not depend on any of the variables or aliases defined in the outer query, nor the specific document being processed by the outer query. For instance, in examples [Q1](subqueries.md#Q1), [Q2](subqueries.md#Q2), and [Q3](subqueries.md#Q3) on the Subqueries page, the subquery has no correlation with its outer query.
 

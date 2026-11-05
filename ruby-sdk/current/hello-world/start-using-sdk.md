@@ -1,13 +1,13 @@
 ---
 title: Start Using the Ruby SDK
 description: A quick start guide to get you up and running with Couchbase and the Ruby SDK.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Ruby SDK
-    version: "3.8"
+    version: "3.9"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/hello-world/pages/start-using-sdk.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/release/3.9/modules/hello-world/pages/start-using-sdk.adoc
   xref: xref:ruby-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -269,7 +269,7 @@ result.rows.each do |row|
 end
 ```
 
-You can learn more about SQL++ queries on the [Query page](../howtos/n1ql-queries-with-sdk.md).
+You can learn more about SQL++ queries on the [Query page](#howtos:n1ql-queries-with-sdk.adoc).
 
 After completing operations, finish with (otherwise resources will be released by garbage collector):
 
@@ -283,8 +283,8 @@ Now you're up and running, try one of the following:
 
 * Our [Travel Sample Application](sample-application.md) demonstrates all the basics you need to know;
 * Explore [Data Operations](../howtos/kv-operations.md) against a document database;
-* Or [Query](../howtos/n1ql-queries-with-sdk.md) with our SQL++ query language;
-* Or read up on [which service fits your use case](../concept-docs/data-services.md).
+* Or [howtos:n1ql-queries-with-sdk.adoc](#howtos:n1ql-queries-with-sdk.adoc) with our SQL++ query language;
+* Or read up on [which service fits your use case](../concept-docs/querying-your-data.md).
 
 ### [](#additional-resources)Additional Resources
 

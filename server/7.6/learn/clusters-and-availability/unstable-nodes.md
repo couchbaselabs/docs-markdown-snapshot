@@ -3,7 +3,7 @@ title: Unstable Nodes
 description: Nodes that periodically become unavailable but recover before the
   auto failover timeout expires are considered unstable. This page describes
   what unstable nodes are and how to detect them.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -18,6 +18,9 @@ antora:
 [View original HTML](/server/7.6/learn/clusters-and-availability/unstable-nodes.html)
 
 # Unstable Nodes
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Nodes that periodically become unavailable but recover before the auto failover timeout expires are considered unstable. This page describes what unstable nodes are and how to detect them. 
 

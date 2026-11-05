@@ -1,29 +1,28 @@
 ---
-title: Encrypting Your Data
+title: Field Level Encryption from the SDK
 description: The Field Level Encryption library enables encryption and
   decryption of JSON fields, to support FIPS-140-2 compliance.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Ruby SDK
-    version: "3.8"
-  topic_type: howto
+    version: "3.9"
   edition: Enterprise Edition
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/howtos/pages/encrypting-using-sdk.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/release/3.9/modules/howtos/pages/encrypting-using-sdk.adoc
   xref: xref:ruby-sdk:howtos:encrypting-using-sdk.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/ruby-sdk/current/howtos/encrypting-using-sdk.html)
 
-# Encrypting Your Data
+# Field Level Encryption from the SDK
 
 > The Field Level Encryption library enables encryption and decryption of JSON fields, to support FIPS-140-2 compliance. 
 
-Client-side implementation of Field Level Encryption is available in the previous versions of some of the other SDKs. It will be enabled in a future release of the third generation SDK.
+Client-side implementation of Field Level Encryption is available in the [C++](../../../cxx-sdk/current/howtos/encrypting-using-sdk.md), [.NET](../../../dotnet-sdk/current/howtos/encrypting-using-sdk.md), [Go](../../../go-sdk/current/howtos/encrypting-using-sdk.md), [Java](../../../java-sdk/current/howtos/encrypting-using-sdk.md), [Node.js](../../../nodejs-sdk/current/howtos/encrypting-using-sdk.md), [Python](../../../python-sdk/current/howtos/encrypting-using-sdk.md), and [Scala](../../../scala-sdk/current/howtos/encrypting-using-sdk.md) SDKs.
 
 > [!TIP]
 > Native Encryption at Rest
 > 
-> Server 8.x (and new Capella Operational clusters) offer [encryption at rest](../../../server/current/learn/security/native-encryption-at-rest-overview.md). It's a comprehensive way of encrypting all data in a non-ephemeral bucket, as well as logs, configuration data, and audit data. However, you may prefer the relative simplicity of key management in Field Level Encryption for use cases where there are a limited number of data to be encrypted.
+> Server 8.x (and new Capella Operational clusters) offer [encryption at rest](../../../server/current/learn/security/native-encryption-at-rest-overview.md). It's a comprehensive way of encrypting all data in a non-ephemeral bucket, as well as logs, configuration data, and audit data.

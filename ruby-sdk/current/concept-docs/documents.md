@@ -2,14 +2,13 @@
 title: Documents
 description: Couchbase supports CRUD operations, various data structures, and
   binary documents.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Ruby SDK
-    version: "3.8"
-  topic_type: concept
+    version: "3.9"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/concept-docs/pages/documents.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/release/3.9/modules/concept-docs/pages/documents.adoc
   xref: xref:ruby-sdk:concept-docs:documents.adoc[]
 ---
 
@@ -137,7 +136,7 @@ You can also specify additional options when storing a document in Couchbase
 
 ## [](#retrieving-documents)Retrieving Documents
 
-This section discusses retrieving documents using their IDs, or primary keys. Documents can also be accessed using secondary lookups via [SQL++ queries](n1ql-query.md) and [MapReduce Views](../howtos/view-queries-with-sdk.md). Primary key lookups are performed using the key-value API, which simplifies use and increases performance (as applications may interact with the KV store directly, rather than a secondary index or query processor).
+This section discusses retrieving documents using their IDs, or primary keys. Documents can also be accessed using secondary lookups via [SQL++ queries](n1ql-query.md) and [MapReduce Views](querying-your-data.md). Primary key lookups are performed using the key-value API, which simplifies use and increases performance (as applications may interact with the KV store directly, rather than a secondary index or query processor).
 
 In Couchbase, documents are stored with their IDs. Retrieving a document via its ID is the simplest and quickest operation in Couchbase.
 

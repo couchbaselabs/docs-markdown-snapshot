@@ -2,7 +2,7 @@
 title: Role-Based Access Control (RBAC)
 description: Full  and Security Administrators can manage the Couchbase
   <em>Role-Based Access Control</em> (RBAC) system, using the REST API.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -16,6 +16,9 @@ antora:
 [View original HTML](/server/7.6/rest-api/rbac.html)
 
 # Role-Based Access Control (RBAC)
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Full and Security Administrators can manage the Couchbase _Role-Based Access Control_ (RBAC) system, using the REST API. 
 

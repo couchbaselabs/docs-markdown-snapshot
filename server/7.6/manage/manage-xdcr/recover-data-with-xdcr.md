@@ -4,7 +4,7 @@ description: In the event of data-loss, the <strong>cbrecovery</strong> tool can
   be used to restore data. The tool accesses remotely replicated buckets,
   previously created with XDCR, and copies appropriate subsets of their data
   back onto the original source-cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -18,6 +18,9 @@ antora:
 [View original HTML](/server/7.6/manage/manage-xdcr/recover-data-with-xdcr.html)
 
 # Recover Data with XDCR
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > In the event of data-loss, the **cbrecovery** tool can be used to restore data. The tool accesses remotely replicated buckets, previously created with XDCR, and copies appropriate subsets of their data back onto the original source-cluster. 
 

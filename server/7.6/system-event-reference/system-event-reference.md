@@ -1,6 +1,6 @@
 ---
 title: System Event Reference
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -14,6 +14,9 @@ antora:
 [View original HTML](/server/7.6/system-event-reference/system-event-reference.html)
 
 # System Event Reference
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > A complete list of Couchbase-Server system events. 
 

@@ -2,7 +2,7 @@
 title: Cost-Based Optimizer for Operational Insights Services
 description: The cost-based optimizer for Operational Insights uses samples to
   choose the optimal plan to execute a query.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Operational Insights Capella
@@ -62,7 +62,7 @@ The query language provides ANALYZE statements which enable you to manage cost-b
 
 ![AnalyzeCollection | AnalyzeCollectionDrop](_images/AnalyzeStmnt.png) 
 
-## [](#Collecting%5Fsamples)Creating Samples
+## [](#Collecting%5Fsamples)Collecting Samples
 
 The `ANALYZE COLLECTION` statement creates a sample of randomly selected objects from the specified collection.
 

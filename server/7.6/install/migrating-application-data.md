@@ -4,7 +4,7 @@ description: With the introduction of scopes and collections, you can plan for a
   simpler mapping from RDBMS and consolidate hundreds of microservices and/or
   tenants in a single Couchbase cluster, resulting in much lower operational
   cost.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -18,6 +18,9 @@ antora:
 [View original HTML](/server/7.6/install/migrating-application-data.html)
 
 # Migrating Application Data to a Collections-Based Model
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > With the introduction of scopes and collections, you can plan for a simpler mapping from RDBMS and consolidate hundreds of microservices and/or tenants in a single Couchbase cluster, resulting in much lower operational cost. 
 

@@ -2,7 +2,7 @@
 title: Child Field Options
 description: You can configure a child field from the Couchbase Server Web
   Console to control how its data is added to your Search index.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/search/child-field-options-reference.html)
 
 # Child Field Options
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > You can configure a child field from the Couchbase Server Web Console to control how its data is added to your Search index. 
 

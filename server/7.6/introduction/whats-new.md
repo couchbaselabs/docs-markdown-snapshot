@@ -3,7 +3,7 @@ title: What&#8217;s New in Version 7.6
 description: Couchbase is the modern database for enterprise applications.
   Couchbase Server 7.6 combines the strengths of relational databases with the
   flexibility, performance, and scale of Couchbase.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/introduction/whats-new.html)
 
 # What&#8217;s New in Version 7.6
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Couchbase is the modern database for enterprise applications. Couchbase Server 7.6 combines the strengths of relational databases with the flexibility, performance, and scale of Couchbase. 
 

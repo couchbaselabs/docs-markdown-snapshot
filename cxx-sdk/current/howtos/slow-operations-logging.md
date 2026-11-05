@@ -2,13 +2,13 @@
 title: Slow Operations Logging
 description: Tracing information on slow operations can be found in the logs as
   threshold logging and orphan logging.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/howtos/pages/slow-operations-logging.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/howtos/pages/slow-operations-logging.adoc
   xref: xref:cxx-sdk:howtos:slow-operations-logging.adoc[]
 ---
 

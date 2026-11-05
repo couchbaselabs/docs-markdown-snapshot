@@ -1,6 +1,6 @@
 ---
 title: Couchbase AI Data Plane Release Notes
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase AI Data Plane
@@ -34,7 +34,7 @@ As a part of this release, the AI Data Plane is introducing new features to help
   * **Agent Memory**: Use Couchbase Agent Memory to get a unified, persistent memory layer for your agentic applications. Store your users' conversation history, extracted facts, and vector embeddings to improve the personalization and user experience of your agents.  
   For more information, see [Agent Memory for Persistent Memory Storage](../../agent-mem/current/about-agent-mem.md).
   * **MCP Server**: Use the Couchbase Model Context Protocol (MCP) Server to let LLMs interact directly with data stored in your Couchbase clusters. Use natural language querying to explore your cluster's setup and health, data models and schemas, directly query documents, or analyze query performance.  
-  For more information, see [mcp-server::intro.adoc](#mcp-server::intro.adoc).  
+  For more information, see [Couchbase MCP Server](../../mcp-server/1.1/reference/common-overview.md).  
 The Couchbase AI Data Plane also includes:
 
   * **Agent Catalog**: Use Couchbase Agent Catalog for a database-native, centralized catalog for all your agent components. Use it as a governed store where every tool, prompt, and piece of ground-truth data can live, evolve, and scale to simplify agent development and management.  

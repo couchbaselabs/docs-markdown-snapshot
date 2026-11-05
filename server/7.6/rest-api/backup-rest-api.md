@@ -3,7 +3,7 @@ title: Backup Service API
 description: The Backup Service API allows full and incremental data-backups to
   be planned and scheduled; allows the scheduling of <em>merges</em> of
   previously made backups; and allows existing backups to be archived.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -18,6 +18,9 @@ antora:
 [View original HTML](/server/7.6/rest-api/backup-rest-api.html)
 
 # Backup Service API
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > The Backup Service API allows full and incremental data-backups to be planned and scheduled; allows the scheduling of _merges_ of previously made backups; and allows existing backups to be archived. 
 

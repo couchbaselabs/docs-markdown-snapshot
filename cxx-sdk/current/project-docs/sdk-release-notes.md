@@ -2,13 +2,13 @@
 title: SDK Release Notes
 description: Release notes, brief installation instructions, and download
   archive for the Couchbase C&#43;&#43; Client.
-pubDate: 2026-10-23T04:31:18.652Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/project-docs/pages/sdk-release-notes.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/project-docs/pages/sdk-release-notes.adoc
   xref: xref:cxx-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -19,7 +19,7 @@ antora:
 
 > Release notes, brief installation instructions, and download archive for the Couchbase C++ Client. 
 
-Version 1.4 of the C++ SDK implements the 3.9 [SDK API](compatibility.md#api-version). See the [compatibility pages](compatibility.md#couchbase-feature-availability-matrix) for more information on feature compatibility with different versions of Couchbase Server.
+Version 1.5 of the C++ SDK implements the 3.10 [SDK API](compatibility.md#api-version). See the [compatibility pages](compatibility.md#couchbase-versionsdk-version-matrix) for more information on feature compatibility with different versions of Couchbase Server.
 
 ## [](#installation)Installation
 
@@ -41,18 +41,293 @@ CPMAddPackage(
   NAME
   couchbase_cxx_client
   GIT_TAG
-  1.4.0
+  1.5.1
   VERSION
-  1.4.0
+  1.5.1
   GITHUB_REPOSITORY
   "couchbase/couchbase-cxx-client"
   OPTIONS
   "COUCHBASE_CXX_CLIENT_STATIC_BORINGSSL ON")
 ```
 
-## [](#latest-release)C++ SDK 1.4 Releases
+## [](#latest-release)C++ SDK 1.5 Releases
 
 We always recommend using the latest version of the SDK — it contains all of the latest security patches and support for new and upcoming features. All patch releases for each dot minor release should be API compatible, and safe to upgrade; any changes to expected behavior are noted in the release notes that follow.
+
+### [](#version-1-5-1-26-october-2026)Version 1.5.1 (26 October 2026)
+
+This is the second GA release of the 1.5 C++ SDK.
+
+[API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.5.1) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.5.0...1.5.1)
+
+#### [](#downloads)Downloads
+
+| Platform                | Architecture | File                                                                                                                                                       |
+| ----------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Checksums               | Any          | [couchbase-cxx-client-1.5.1.sha256.txt](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1.sha256.txt)                                  |
+| Source Archive          | Any          | [couchbase-cxx-client-1.5.1.tar.gz](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1.tar.gz)                                          |
+| Amazon Linux 2023       | x86\_64      | [couchbase-cxx-client-1.5.1-1.amzn2023.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-1.amzn2023.x86%5F64.tar)         |
+| Amazon Linux 2023       | aarch64      | [couchbase-cxx-client-1.5.1-1.amzn2023.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-1.amzn2023.aarch64.tar)          |
+| Enterprise Linux 10     | x86\_64      | [couchbase-cxx-client-1.5.1-1.el10.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-1.el10.x86%5F64.tar)                 |
+| Enterprise Linux 10     | aarch64      | [couchbase-cxx-client-1.5.1-1.el10.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-1.el10.aarch64.tar)                  |
+| Enterprise Linux 9      | x86\_64      | [couchbase-cxx-client-1.5.1-1.el9.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-1.el9.x86%5F64.tar)                   |
+| Enterprise Linux 9      | aarch64      | [couchbase-cxx-client-1.5.1-1.el9.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-1.el9.aarch64.tar)                    |
+| Enterprise Linux 8      | x86\_64      | [couchbase-cxx-client-1.5.1-1.el8.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-1.el8.x86%5F64.tar)                   |
+| Enterprise Linux 8      | aarch64      | [couchbase-cxx-client-1.5.1-1.el8.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-1.el8.aarch64.tar)                    |
+| Debian 13 (Trixie)      | x86\_64      | [couchbase-cxx-client-1.5.1-1.trixie.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-1.trixie.x86%5F64.tar)             |
+| Debian 13 (Trixie)      | aarch64      | [couchbase-cxx-client-1.5.1-1.trixie.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-1.trixie.aarch64.tar)              |
+| Debian 12 (Bookworm)    | x86\_64      | [couchbase-cxx-client-1.5.1-1.bookworm.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-1.bookworm.x86%5F64.tar)         |
+| Debian 12 (Bookworm)    | aarch64      | [couchbase-cxx-client-1.5.1-1.bookworm.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-1.bookworm.aarch64.tar)          |
+| Ubuntu 26.04 (Resolute) | x86\_64      | [couchbase-cxx-client-1.5.1-1.resolute.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-1.resolute.x86%5F64.tar)         |
+| Ubuntu 26.04 (Resolute) | aarch64      | [couchbase-cxx-client-1.5.1-1.resolute.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-1.resolute.aarch64.tar)          |
+| Ubuntu 24.04 (Noble)    | x86\_64      | [couchbase-cxx-client-1.5.1-1.noble.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-1.noble.x86%5F64.tar)               |
+| Ubuntu 24.04 (Noble)    | aarch64      | [couchbase-cxx-client-1.5.1-1.noble.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-1.noble.aarch64.tar)                |
+| Ubuntu 22.04 (Jammy)    | x86\_64      | [couchbase-cxx-client-1.5.1-1.jammy.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-1.jammy.x86%5F64.tar)               |
+| Ubuntu 22.04 (Jammy)    | aarch64      | [couchbase-cxx-client-1.5.1-1.jammy.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-1.jammy.aarch64.tar)                |
+| Alpine Linux 3.24       | x86\_64      | [couchbase-cxx-client-1.5.1-r1-x86\_64-alpine-3.24.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-r1-x86%5F64-alpine-3.24.tar) |
+| Alpine Linux 3.24       | aarch64      | [couchbase-cxx-client-1.5.1-r1-aarch64-alpine-3.24.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-r1-aarch64-alpine-3.24.tar)  |
+| Alpine Linux 3.23       | x86\_64      | [couchbase-cxx-client-1.5.1-r1-x86\_64-alpine-3.23.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-r1-x86%5F64-alpine-3.23.tar) |
+| Alpine Linux 3.23       | aarch64      | [couchbase-cxx-client-1.5.1-r1-aarch64-alpine-3.23.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-r1-aarch64-alpine-3.23.tar)  |
+| Alpine Linux 3.22       | x86\_64      | [couchbase-cxx-client-1.5.1-r1-x86\_64-alpine-3.22.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-r1-x86%5F64-alpine-3.22.tar) |
+| Alpine Linux 3.22       | aarch64      | [couchbase-cxx-client-1.5.1-r1-aarch64-alpine-3.22.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-r1-aarch64-alpine-3.22.tar)  |
+| Alpine Linux 3.21       | x86\_64      | [couchbase-cxx-client-1.5.1-r1-x86\_64-alpine-3.21.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-r1-x86%5F64-alpine-3.21.tar) |
+| Alpine Linux 3.21       | aarch64      | [couchbase-cxx-client-1.5.1-r1-aarch64-alpine-3.21.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.1-r1-aarch64-alpine-3.21.tar)  |
+
+#### [](#bug-fixes)Bug Fixes
+
+* [CXXCBC-1112](https://jira.issues.couchbase.com/browse/CXXCBC-1112): **Embedded Mozilla CA Bundle** — A build now embeds every certificate of the curl.se CA bundle.
+
+  * Since 2026-10-20, the bundle puts a `# Fingerprint (SHA-256):` line between each certificate's name and its PEM block.
+  * The build extracted no certificate from that format, and configure still succeeded.
+  * The 1.5.0 source archive and packages carry a bundle in this format, so they embed no Mozilla certificate.
+  * With no explicit trust certificate, `couchbases://` connections, key-value and HTTP alike, then trusted only the system CAs and the Capella root. `couchbase2://` connections trusted only the Capella root.
+  * With `COUCHBASE_CXX_CLIENT_EMBED_MOZILLA_CA_BUNDLE` enabled, which is the default, configure now fails on a bundle it cannot embed in full.
+* [CXXCBC-1113](https://jira.issues.couchbase.com/browse/CXXCBC-1113): **Shared Library soname** — The soname now carries the major and minor version only, so later 1.5.x releases replace the library in place.
+
+  * The 1.5.1 soname is `libcouchbase_cxx_client.so.1.5`, and every later 1.5.x release keeps it.
+  * On macOS the install name is `libcouchbase_cxx_client.1.5.dylib`.
+  * A minor release changes the soname, because it may change the ABI.
+* [CXXCBC-1109](https://jira.issues.couchbase.com/browse/CXXCBC-1109): **Eventing Function Not Found** — Eventing management requests report `errc::management::eventing_function_not_found` when the server answers `ERR_APP_NOT_FOUND`.
+
+  * Only `ERR_APP_NOT_FOUND_TS` mapped to that code. `ERR_APP_NOT_FOUND` reported `invalid_argument` on HTTP 400, and `internal_server_failure` otherwise.
+* **Windows Builds** — Two compile errors are fixed.
+
+  * MSVC 19.29 (Visual Studio 2019) rejected `cluster::query_stream()` and `cluster::analytics_query_stream()` with error C2039.
+  * A 32-bit build failed in the WebSocket frame encoder with warning C4293, which the default `WARNINGS_AS_ERRORS` makes an error. To fill the 64-bit length field, a `std::size_t` was shifted by 32 to 56 bits, at or beyond its width where it is 32 bits.
+
+### [](#version-1-5-0-20-october-2026)Version 1.5.0 (20 October 2026)
+
+This is the first GA release of the 1.5 C++ SDK.
+
+[API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.5.0) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.4.0...1.5.0)
+
+> [!WARNING]
+> Upgrade to 1.5.1
+> 
+> The 1.5.0 source archive and packages embed no Mozilla CA certificate ([CXXCBC-1112](https://jira.issues.couchbase.com/browse/CXXCBC-1112)). Without an explicit trust certificate, `couchbases://` connections trust only the system CAs and the Capella root, and `couchbase2://` connections only the Capella root. Upgrading to 1.5.1, which restores the bundle, is recommended.
+
+> [!IMPORTANT]
+> Not binary compatible with 1.4.x
+> 
+> Applications built against 1.4.x must be recompiled.
+> 
+> * The library `SOVERSION` follows the release version, so it changes to 1.5.0.
+> * `search_options::built` gained a `scoring` member ([CXXCBC-911](https://jira.issues.couchbase.com/browse/CXXCBC-911)), which changes its layout.
+
+#### [](#downloads-2)Downloads
+
+| Platform                | Architecture | File                                                                                                                                                       |
+| ----------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Checksums               | Any          | [couchbase-cxx-client-1.5.0.sha256.txt](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0.sha256.txt)                                  |
+| Source Archive          | Any          | [couchbase-cxx-client-1.5.0.tar.gz](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0.tar.gz)                                          |
+| Amazon Linux 2023       | x86\_64      | [couchbase-cxx-client-1.5.0-1.amzn2023.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-1.amzn2023.x86%5F64.tar)         |
+| Amazon Linux 2023       | aarch64      | [couchbase-cxx-client-1.5.0-1.amzn2023.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-1.amzn2023.aarch64.tar)          |
+| Enterprise Linux 10     | x86\_64      | [couchbase-cxx-client-1.5.0-1.el10.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-1.el10.x86%5F64.tar)                 |
+| Enterprise Linux 10     | aarch64      | [couchbase-cxx-client-1.5.0-1.el10.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-1.el10.aarch64.tar)                  |
+| Enterprise Linux 9      | x86\_64      | [couchbase-cxx-client-1.5.0-1.el9.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-1.el9.x86%5F64.tar)                   |
+| Enterprise Linux 9      | aarch64      | [couchbase-cxx-client-1.5.0-1.el9.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-1.el9.aarch64.tar)                    |
+| Enterprise Linux 8      | x86\_64      | [couchbase-cxx-client-1.5.0-1.el8.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-1.el8.x86%5F64.tar)                   |
+| Enterprise Linux 8      | aarch64      | [couchbase-cxx-client-1.5.0-1.el8.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-1.el8.aarch64.tar)                    |
+| Debian 13 (Trixie)      | x86\_64      | [couchbase-cxx-client-1.5.0-1.trixie.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-1.trixie.x86%5F64.tar)             |
+| Debian 13 (Trixie)      | aarch64      | [couchbase-cxx-client-1.5.0-1.trixie.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-1.trixie.aarch64.tar)              |
+| Debian 12 (Bookworm)    | x86\_64      | [couchbase-cxx-client-1.5.0-1.bookworm.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-1.bookworm.x86%5F64.tar)         |
+| Debian 12 (Bookworm)    | aarch64      | [couchbase-cxx-client-1.5.0-1.bookworm.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-1.bookworm.aarch64.tar)          |
+| Ubuntu 26.04 (Resolute) | x86\_64      | [couchbase-cxx-client-1.5.0-1.resolute.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-1.resolute.x86%5F64.tar)         |
+| Ubuntu 26.04 (Resolute) | aarch64      | [couchbase-cxx-client-1.5.0-1.resolute.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-1.resolute.aarch64.tar)          |
+| Ubuntu 24.04 (Noble)    | x86\_64      | [couchbase-cxx-client-1.5.0-1.noble.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-1.noble.x86%5F64.tar)               |
+| Ubuntu 24.04 (Noble)    | aarch64      | [couchbase-cxx-client-1.5.0-1.noble.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-1.noble.aarch64.tar)                |
+| Ubuntu 22.04 (Jammy)    | x86\_64      | [couchbase-cxx-client-1.5.0-1.jammy.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-1.jammy.x86%5F64.tar)               |
+| Ubuntu 22.04 (Jammy)    | aarch64      | [couchbase-cxx-client-1.5.0-1.jammy.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-1.jammy.aarch64.tar)                |
+| Alpine Linux 3.24       | x86\_64      | [couchbase-cxx-client-1.5.0-r1-x86\_64-alpine-3.24.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-r1-x86%5F64-alpine-3.24.tar) |
+| Alpine Linux 3.24       | aarch64      | [couchbase-cxx-client-1.5.0-r1-aarch64-alpine-3.24.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-r1-aarch64-alpine-3.24.tar)  |
+| Alpine Linux 3.23       | x86\_64      | [couchbase-cxx-client-1.5.0-r1-x86\_64-alpine-3.23.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-r1-x86%5F64-alpine-3.23.tar) |
+| Alpine Linux 3.23       | aarch64      | [couchbase-cxx-client-1.5.0-r1-aarch64-alpine-3.23.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-r1-aarch64-alpine-3.23.tar)  |
+| Alpine Linux 3.22       | x86\_64      | [couchbase-cxx-client-1.5.0-r1-x86\_64-alpine-3.22.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-r1-x86%5F64-alpine-3.22.tar) |
+| Alpine Linux 3.22       | aarch64      | [couchbase-cxx-client-1.5.0-r1-aarch64-alpine-3.22.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-r1-aarch64-alpine-3.22.tar)  |
+| Alpine Linux 3.21       | x86\_64      | [couchbase-cxx-client-1.5.0-r1-x86\_64-alpine-3.21.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-r1-x86%5F64-alpine-3.21.tar) |
+| Alpine Linux 3.21       | aarch64      | [couchbase-cxx-client-1.5.0-r1-aarch64-alpine-3.21.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.5.0-r1-aarch64-alpine-3.21.tar)  |
+
+#### [](#new-features)New Features
+
+* [CXXCBC-980](https://jira.issues.couchbase.com/browse/CXXCBC-980): **Read a Named Replica** — `collection::get_replica()` reads one specific replica of a document, as defined by SDK-RFC 0053.
+
+  * `get_any_replica()` returns whichever copy answers first. `get_replica()` lets the application choose the copy.
+  * The copy is selected with `get_replica_strategy::from_index(replica_index::first)`, or `second` and `third`. The active copy cannot be selected.
+  * The result is a `get_replica_result`, the same type the other replica reads return.
+  * The operation has callback and `std::future` overloads, and is `@committed`.
+  * Three new `errc::key_value` codes describe why the chosen copy cannot answer:
+
+    * `replica_index_out_of_bounds`: the bucket has fewer replicas than the index. It is reported without a network round trip, and retrying cannot help.
+    * `replica_index_currently_unavailable`: the replica is configured but not placed on a node yet. A rebalance resolves it.
+    * `document_not_found_on_replica`: the replica answered but does not hold the document. `error::cause()` carries `document_not_found`.
+  * `get_replica_strategy_from_index_options::wrap(true)` reads the next readable replica instead of failing. It still fails if the bucket has no replicas, or if no replica is readable.
+* [CXXCBC-911](https://jira.issues.couchbase.com/browse/CXXCBC-911): **Hybrid Search Score Fusion** — `search_options::scoring()` controls how the server merges the FTS and vector result sets of a hybrid search into one ranked list.
+
+  * `search_scoring_reciprocal_rank_fusion` merges the two lists by rank, not by raw score. It is the recommended strategy and works well with the server defaults.
+
+    * `rank_constant()` sets the rank constant of the Reciprocal Rank Fusion formula.
+    * `window_size()` sets how many results from each list take part in the fusion.
+  * `search_scoring_relative_score_fusion` merges the two lists by normalized score. Its `window_size()` has the same meaning.
+  * `search_scoring_none` turns scoring off. It also works on servers older than 8.1.
+  * Both fusion strategies require Couchbase Server 8.1\. The SDK checks the cluster capability, and an older cluster fails the request with `errc::common::feature_not_available`.
+  * Without a hybrid request, the server re-scores the hits but keeps their order.
+  * `search_options::scoring()` is `@committed`. The two fusion classes are `@uncommitted`.
+  * Calling both `scoring()` and `disable_scoring(true)` throws `std::invalid_argument`, because both set the same request field.
+* [CXXCBC-978](https://jira.issues.couchbase.com/browse/CXXCBC-978): **Log Redaction** — The SDK can tag sensitive values in its logs. A tool such as `cblogredaction` then strips or hashes them before the logs are shared.
+
+  * Redaction is enabled with `log_redaction=true` in the connection string. It is off by default.
+  * When it is off, log output is unchanged.
+  * Values are tagged by category:
+
+    * `<ud>` user data: document keys and bodies, usernames, query statements.
+    * `<md>` metadata: bucket, scope, collection, design document, view and index names.
+    * `<sd>` system data: hostnames, IP addresses and ports.
+  * The SDK only adds tags. It does not remove or hash anything itself.
+  * The setting is process-wide and is applied when a cluster opens. No cluster can turn it off again.
+  * The `dump_configuration` option writes untagged cluster configurations to the log. Combining it with `log_redaction` logs a warning.
+  * Warnings about an unrecognised MCBP frame no longer print the frame body, which could hold document data.
+
+#### [](#improvements)Improvements
+
+* [CXXCBC-1037](https://jira.issues.couchbase.com/browse/CXXCBC-1037): **Tracing for Streaming Requests** — `query_stream()`, `analytics_query_stream()` and other streaming HTTP requests now create a `dispatch_to_server` span.
+
+  * The span is a child of the request's parent span, as for buffered requests.
+  * A tracer previously saw no dispatch span for a streaming request.
+* [CXXCBC-1087](https://jira.issues.couchbase.com/browse/CXXCBC-1087): **Faster Reopen After fork()** — `notify_fork(fork_event::child)` reopens the cluster in the child without waiting for the bootstrap to finish.
+
+  * A child whose seed nodes do not answer is no longer blocked for `bootstrap_timeout`.
+  * Requests issued while the cluster is opening are held, and sent once the bootstrap completes. Each request is still bounded by its own timeout.
+  * If the bootstrap fails, the held requests complete with `cluster_closed`.
+  * `open_bucket()` is the exception. It waits for the bootstrap to end.
+* [CXXCBC-920](https://jira.issues.couchbase.com/browse/CXXCBC-920): **cbc-pillowfight Document Bodies** — `--incompressible-body` is replaced by a set of options that control generated document bodies.
+
+  * The options are `--document-body-fill`, `--document-body-format`, `--document-body-size`, `--document-body-pool-size` and `--document-body-seed`.
+  * Every generated document now has its own body. The old option reused one body per thread, so the server compressed the load as repeated data.
+  * A random fill compresses 1.00x under lz4 and snappy in 4096-byte blocks. The load can therefore be used to size a dataset.
+  * Insert operations in `--operation-ratio` now insert documents. They previously called replace on new ids and failed with `document_not_found`.
+* [CXXCBC-1055](https://jira.issues.couchbase.com/browse/CXXCBC-1055), [CXXCBC-1092](https://jira.issues.couchbase.com/browse/CXXCBC-1092), [CXXCBC-1104](https://jira.issues.couchbase.com/browse/CXXCBC-1104), [CXXCBC-1107](https://jira.issues.couchbase.com/browse/CXXCBC-1107): **Build Portability** — The library builds on more toolchains:
+
+  * MinGW GCC on Windows, for the asio target.
+  * clang on Windows ARM64.
+  * libc++ 23, including with `_LIBCPP_REMOVE_TRANSITIVE_INCLUDES`.
+  * GCC 8 on Enterprise Linux 8.
+
+#### [](#security-fixes)Security Fixes
+
+* [CXXCBC-1072](https://jira.issues.couchbase.com/browse/CXXCBC-1072), [CXXCBC-1106](https://jira.issues.couchbase.com/browse/CXXCBC-1106): **Management Request Encoding** — Names and values passed by the application can no longer change the meaning of a management request.
+
+  * User and group upsert requests encoded their fields with a URL encoder that leaves `&`, `=` and `+` unescaped.
+  * A password such as `Pw123456&roles=admin` therefore added a `roles` field and granted the `admin` role.
+  * These request bodies are now form-encoded. The server decodes exactly the values the caller passed.
+  * Names placed into REST paths are now escaped. A `#`, `?` or `/` in a name could cut the path short or address a different entity.
+  * This covers user, group, eventing function, search index, design document, view, bucket, scope and link names.
+  * `url_encode()` no longer stops escaping after a `+` or an existing `%XX` sequence.
+  * `form_encode()` and `url_encode()` write each escaped byte with two hex digits.
+* [CXXCBC-981](https://jira.issues.couchbase.com/browse/CXXCBC-981): **vBucket Map Bounds Check** — Replica reads no longer index past the end of a vBucket map row.
+
+  * After replicas are added to a bucket, the replica count grows before the vBucket map does.
+  * Replica reads and durability polling read past the end of the shorter row. The read could route a request to a node that does not hold the vBucket.
+  * Rows are now bounds-checked. A missing entry is treated like an unassigned replica.
+  * Range scan rejects a map whose rows name no active node.
+  * A map with no rows no longer causes a division by zero.
+
+#### [](#bug-fixes-2)Bug Fixes
+
+* [CXXCBC-1057](https://jira.issues.couchbase.com/browse/CXXCBC-1057): **Client Certificate Rotation** — A new certificate set with `cluster::set_authenticator()` is used by the next HTTP request.
+
+  * Pooled HTTP connections were reused with the old certificate until their idle timeout.
+  * Open key-value connections keep the certificate they were opened with.
+  * Under TLS 1.3, a refused client certificate is now retried until the request times out. TLS 1.2 already behaved this way. If a valid certificate is set in time, the request succeeds.
+* [CXXCBC-984](https://jira.issues.couchbase.com/browse/CXXCBC-984), [CXXCBC-985](https://jira.issues.couchbase.com/browse/CXXCBC-985), [CXXCBC-986](https://jira.issues.couchbase.com/browse/CXXCBC-986), [CXXCBC-987](https://jira.issues.couchbase.com/browse/CXXCBC-987), [CXXCBC-1022](https://jira.issues.couchbase.com/browse/CXXCBC-1022), [CXXCBC-1023](https://jira.issues.couchbase.com/browse/CXXCBC-1023), [CXXCBC-1090](https://jira.issues.couchbase.com/browse/CXXCBC-1090), [CXXCBC-1093](https://jira.issues.couchbase.com/browse/CXXCBC-1093): **Request Completion** — Several paths no longer drop a key-value request without calling its handler.
+
+  * A request waiting in a retry backoff when the cluster closes now completes with an error. It previously waited for a deadline that never fired.
+  * A request whose retry or re-dispatch is refused now completes with an error.
+  * A request routed to a node that cannot bootstrap is retried or cancelled. It previously waited for its deadline without being sent.
+  * Requests that leave the operation queue, and requests whose collection id lookup cannot start, no longer leak.
+  * A key-value request's timeout now includes the time spent waiting for its bucket to open. Range scan and collection id lookups keep their own deadlines.
+  * A durable mutation completes within `max(timeout, 1.5 s)` of being issued.
+  * A range scan of a missing collection fails at once with `collection_not_found`. It previously timed out after the full scan timeout.
+  * `ping()` no longer completes before every ping request has been sent.
+* [CXXCBC-1032](https://jira.issues.couchbase.com/browse/CXXCBC-1032), [CXXCBC-1034](https://jira.issues.couchbase.com/browse/CXXCBC-1034), [CXXCBC-1035](https://jira.issues.couchbase.com/browse/CXXCBC-1035), [CXXCBC-1039](https://jira.issues.couchbase.com/browse/CXXCBC-1039), [CXXCBC-1046](https://jira.issues.couchbase.com/browse/CXXCBC-1046), [CXXCBC-1048](https://jira.issues.couchbase.com/browse/CXXCBC-1048): **HTTP Session Lifecycle** — HTTP session shutdown is now serialised and runs once.
+
+  * `close()` on a busy session no longer causes a use-after-free.
+  * A session stopped mid-response no longer throws `std::bad_function_call` on the IO thread.
+  * A reused connection no longer loses part of a streamed body.
+  * A streamed result that is dropped or abandoned early releases its connection. It previously held it until a timeout or until the cluster closed.
+  * A request deadline that fires just after the response no longer stops the pooled session.
+  * `cancel()` on a completed operation no longer stops a session that another request is using.
+  * A session that replaced a failed node is returned to the pool after the request.
+  * A row stream with a zero low-water mark no longer stalls.
+* [CXXCBC-882](https://jira.issues.couchbase.com/browse/CXXCBC-882), [CXXCBC-1049](https://jira.issues.couchbase.com/browse/CXXCBC-1049), [CXXCBC-1059](https://jira.issues.couchbase.com/browse/CXXCBC-1059): **Error Mapping** — HTTP errors map to more accurate error codes.
+
+  * An unrecognised HTTP 400 now reports `errc::common::invalid_argument`, as SDK-RFC 0058 requires.
+  * This applies to query, analytics, search, eventing and management requests.
+  * These requests previously reported `internal_server_failure`, `unsupported_operation`, `parsing_failure`, or even success.
+  * A 400 body that lacks an expected field no longer throws inside the SDK.
+  * Query error 2120 (`E_ADMIN_AUTH`) maps to `authentication_failure`.
+  * Dropping a query index that does not exist reports `index_not_found`, whatever HTTP status the server returns.
+* [CXXCBC-1063](https://jira.issues.couchbase.com/browse/CXXCBC-1063), [CXXCBC-1089](https://jira.issues.couchbase.com/browse/CXXCBC-1089), [CXXCBC-1091](https://jira.issues.couchbase.com/browse/CXXCBC-1091): **wait\_until\_ready** — The waits now complete in cases that previously timed out or never completed.
+
+  * `bucket::wait_until_ready()` waits only for the replicas the data nodes can hold. A one-replica bucket on a single node now reaches `online`.
+  * Over `couchbase2://`, both waits end once the gRPC channel to the gateway is connected.
+  * Over `couchbase2://`, opening a bucket fails at once with `feature_not_available`.
+  * A wait pending at `cluster::close()`, or started after it, completes with `cluster_closed`.
+* [CXXCBC-913](https://jira.issues.couchbase.com/browse/CXXCBC-913), [CXXCBC-914](https://jira.issues.couchbase.com/browse/CXXCBC-914): **fork() Handling** — A forked child no longer interferes with the parent's connections or transactions client record.
+
+  * The child closes the sockets it inherited before it starts its own I/O.
+  * The child previously ran the parent's pending reads, and took responses meant for the parent.
+  * Closing the inherited cluster in the child keeps the parent's entry in the transactions client record.
+* [CXXCBC-1011](https://jira.issues.couchbase.com/browse/CXXCBC-1011): **Big-Endian Hosts** — The SDK now connects from big-endian hosts.
+
+  * On a big-endian host, MCBP header fields were sent in the wrong byte order. The server closed the connection during bootstrap.
+  * Byte order is now converted for the host. An emulated s390x client connects and completes key-value operations.
+  * On every host, a server duration is now read when 16 or more bytes of framing extras precede it.
+* [CXXCBC-1052](https://jira.issues.couchbase.com/browse/CXXCBC-1052), [CXXCBC-1054](https://jira.issues.couchbase.com/browse/CXXCBC-1054), [CXXCBC-1086](https://jira.issues.couchbase.com/browse/CXXCBC-1086): **Transactions** — Fixes for expiry and for retry waits.
+
+  * On Windows, the ATR expiry was computed in 32 bits and wrapped above about 2.15 s. Lost-attempts cleanup could treat a live attempt as expired.
+  * Waits between retries now use a timer and no longer block the IO thread.
+  * With a single IO thread, the transaction being waited for can now commit. The waiting write previously failed with a write-write conflict.
+  * A query-mode transaction whose rollback finds it expired now raises `EXPIRY` instead of `FAIL`.
+* [CXXCBC-994](https://jira.issues.couchbase.com/browse/CXXCBC-994): **couchbase2 Close** — An operation in flight while the cluster closes now completes with `cluster_closed`. It previously reported `temporary_failure`, which suggests a retry.
+* [CXXCBC-1002](https://jira.issues.couchbase.com/browse/CXXCBC-1002): **Application Telemetry Units** — The latency histograms for HTTP services now report `_sum` in milliseconds, as SDK-RFC 0084 requires.
+
+  * This affects query, search, analytics, management and eventing.
+  * The sum was divided by 1000, so a mean latency computed from it was 1000 times too low.
+  * Dashboards and alerts built on the old values need review.
+
+#### [](#removals)Removals
+
+* [CXXCBC-782](https://jira.issues.couchbase.com/browse/CXXCBC-782): **Columnar Build Mode** — The `COUCHBASE_CXX_CLIENT_COLUMNAR` build option, deprecated in 1.4.0, is removed with the code it enabled.
+
+  * Setting the option now leaves an unused CMake cache entry.
+  * Connection string parameters accepted only by a Columnar build are no longer recognised. They include `security.trust_only_pem_file`, `timeout.dispatch_timeout` and `timeout.query_timeout`.
+  * The build-info map no longer has a `columnar` key.
+
+#### [](#deprecations)Deprecations
+
+* [CXXCBC-911](https://jira.issues.couchbase.com/browse/CXXCBC-911): **search\_options::disable\_scoring()** — Replaced by `search_options::scoring(search_scoring_none{})`, which sends the same request.
+
+## [](#c-sdk-1-4-releases)C++ SDK 1.4 Releases
 
 ### [](#version-1-4-0-13-august-2026)Version 1.4.0 (13 August 2026)
 
@@ -65,7 +340,7 @@ This is the first GA release of the 1.4 C++ SDK.
 > 
 > `couchbase::result` and `couchbase::error` gained a `node_id_` member ([CXXCBC-821](https://jira.issues.couchbase.com/browse/CXXCBC-821)). Both are non-pimpl public base classes, so the library `SOVERSION` is bumped and applications built against 1.3.x headers must be recompiled for 1.4.0.
 
-#### [](#downloads)Downloads
+#### [](#downloads-3)Downloads
 
 | Platform             | Architecture | File                                                                                                                                                       |
 | -------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -96,7 +371,7 @@ This is the first GA release of the 1.4 C++ SDK.
 | Alpine Linux 3.21    | x86\_64      | [couchbase-cxx-client-1.4.0-r1-x86\_64-alpine-3.21.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.4.0-r1-x86%5F64-alpine-3.21.tar) |
 | Alpine Linux 3.21    | aarch64      | [couchbase-cxx-client-1.4.0-r1-aarch64-alpine-3.21.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.4.0-r1-aarch64-alpine-3.21.tar)  |
 
-#### [](#new-features)New Features
+#### [](#new-features-2)New Features
 
 * [CXXCBC-886](https://jira.issues.couchbase.com/browse/CXXCBC-886): **Cloud Native Gateway Support (`couchbase2://`)** — A connection string with the `couchbase2://` scheme routes every operation over gRPC to a single Cloud Native Gateway endpoint, instead of opening MCBP and HTTP connections to each cluster node. The public API is unchanged: no type or method is specific to the transport. Key-value, query, analytics, search, views — and bucket, scope, collection, query index, and search index management — are all routed over it, together with the SDK retry strategy, value compression, level-based durability, and the transport-agnostic tracing and metrics recorders. The scheme implies TLS (default port 18098) and accepts exactly one host, since the gateway fronts the whole cluster. Support is a compile-time option and is off by default: a library built without `COUCHBASE_CXX_CLIENT_BUILD_COUCHBASE2` reports `errc::common::feature_not_available` from `cluster::connect()`. Operations the transport cannot carry — ping, diagnostics, replica reads, subdocument operations, range scan, and poll-based durability — are documented per entity in the API reference and on its dedicated page. The transport is uncommitted in `1.4.0`.
 * [CXXCBC-102](https://jira.issues.couchbase.com/browse/CXXCBC-102), [CXXCBC-485](https://jira.issues.couchbase.com/browse/CXXCBC-485), [CXXCBC-910](https://jira.issues.couchbase.com/browse/CXXCBC-910): **Streaming Query and Analytics Results** — Added `cluster::query_stream()` and `cluster::analytics_query_stream()`, which resolve as soon as the response preamble has been parsed and return a lazy result handle. Rows are pulled one at a time through `next()` (callback and `std::future` overloads), so a result of any size costs the same bounded amount of memory. The HTTP layer reads on demand with byte back-pressure and an idle timeout, and buffering limits are tunable through `cluster_options`. `query_row` and `analytics_row` decode individual rows, `signature()` is available before the stream is drained, `meta_data()` resolves once it is, and `cancel()` abandons a partially consumed stream. Streaming failures carry an error context and a new `errc::streaming_json_lexer` category. Prepared statements (`adhoc` set to false) fall back to the buffered path and replay their rows through the same handle. The API is volatile in `1.4.0`.
@@ -104,7 +379,7 @@ This is the first GA release of the 1.4 C++ SDK.
 * [CXXCBC-822](https://jira.issues.couchbase.com/browse/CXXCBC-822): **External Circuit Breaker Example** — Added a copy-pasteable per-node circuit breaker built on the node id API and modelled on Netflix `Hystrix` / `Resilience4j`. It demonstrates a sliding-window state machine, failure-rate and slow-call-rate tripping, per-node isolation, and a topology sweep that prunes tracker state using `collection::node_ids()`.
 * [CXXCBC-845](https://jira.issues.couchbase.com/browse/CXXCBC-845): **wait\_until\_ready on the Public API** — `cluster::wait_until_ready()` and `bucket::wait_until_ready()` actively ping the cluster services until they respond or the timeout elapses, in callback and `std::future` flavours. Readiness is configured through `wait_until_ready_options` (`desired_state`, `service_types`): `cluster_state::online` requires every reachable endpoint of every requested service to be responsive, `cluster_state::degraded` requires at least one endpoint of every requested service. The bucket variant additionally waits until every vBucket has its active and all replicas assigned, which majority-durable writes require.
 
-#### [](#improvements)Improvements
+#### [](#improvements-2)Improvements
 
 * [CXXCBC-75](https://jira.issues.couchbase.com/browse/CXXCBC-75), [CXXCBC-849](https://jira.issues.couchbase.com/browse/CXXCBC-849), [CXXCBC-850](https://jira.issues.couchbase.com/browse/CXXCBC-850), [CXXCBC-851](https://jira.issues.couchbase.com/browse/CXXCBC-851), [CXXCBC-854](https://jira.issues.couchbase.com/browse/CXXCBC-854), [CXXCBC-855](https://jira.issues.couchbase.com/browse/CXXCBC-855), [CXXCBC-856](https://jira.issues.couchbase.com/browse/CXXCBC-856), [CXXCBC-857](https://jira.issues.couchbase.com/browse/CXXCBC-857), [CXXCBC-858](https://jira.issues.couchbase.com/browse/CXXCBC-858), [CXXCBC-859](https://jira.issues.couchbase.com/browse/CXXCBC-859), [CXXCBC-860](https://jira.issues.couchbase.com/browse/CXXCBC-860): **Reduced Per-Operation Overhead** — A pass over the key-value hot path: log arguments are formatted only when a consumer exists, diagnostic and dispatch identifiers are built lazily, metrics value recorders and per-connection telemetry recorders are memoized, dispatch attributes are captured through typed span setters, in-flight handlers are tracked in a ring/slot table, send-path flush posts are coalesced, and response body buffers are recycled to avoid a per-operation `mmap` at large values. A typical completion handler previously took one to three heap allocations and now takes none. No throughput benchmarks are published for this release; these items are characterized by the allocations, syscalls, and locks removed per operation.
 * [CXXCBC-828](https://jira.issues.couchbase.com/browse/CXXCBC-828), [CXXCBC-829](https://jira.issues.couchbase.com/browse/CXXCBC-829): **Reduced `std::regex` Usage in Error Handling** — Errors built from server response text now use `std::string::find()` and a new `utils::contains_string()` helper with optional ASCII-only case folding. The remaining `std::regex` objects are `static const`, so they are compiled once.
@@ -113,13 +388,13 @@ This is the first GA release of the 1.4 C++ SDK.
 * [CXXCBC-827](https://jira.issues.couchbase.com/browse/CXXCBC-827): **Eventing Function Statuses** — Added the resuming and unknown function statuses to the Eventing core API.
 * **Platform and Packaging** — Added Windows ARM64 builds and test runs, and support for the GCC 16 and LLVM 22 toolchains. The package targets were refreshed: Ubuntu 26.04 (Resolute) and Fedora 44 were added, and Fedora 41, Fedora 42, and openSUSE Leap were dropped. Source archives and packages are now reproducible byte-for-byte, redistributable packages build their vendored dependencies from source, the bundled static archive is stripped, Debian packaging supports rootless sbuild, and RPM packaging gained a rootless podman path and gates gRPC-based components by platform.
 
-#### [](#security-fixes)Security Fixes
+#### [](#security-fixes-2)Security Fixes
 
 * [CXXCBC-838](https://jira.issues.couchbase.com/browse/CXXCBC-838): **TLS Hostname Verification (CWE-297)** — Outgoing TLS connections now send SNI and verify the certificate's SAN/CN against the dialed hostname. `verify_peer` previously only checked that the certificate chained to a trusted CA, so an on-path attacker could present any CA-issued certificate for any name. Disabling verification (`tls_verify=none`) logs a prominent warning and is refused for Capella hosts. **Behavior change**: a TLS connection whose certificate does not match the dialed hostname now fails the handshake where it previously succeeded.
 * [CXXCBC-837](https://jira.issues.couchbase.com/browse/CXXCBC-837): **mcbp\_parser Bounds Check** — A key-value response frame claiming a prefix length (framing extras + extras + key) larger than its body length drove the parser past the end of the receive buffer, so a single malformed or corrupted frame could crash the client. The prefix length is now validated against the body length and such frames are rejected.
 * [CXXCBC-836](https://jira.issues.couchbase.com/browse/CXXCBC-836): **Analytics Identifier Quoting** — Bucket, scope, and collection names are quoted and escaped when composing Analytics statements, closing a SQL++ injection vector on names taken from application input.
 
-#### [](#bug-fixes)Bug Fixes
+#### [](#bug-fixes-3)Bug Fixes
 
 * [CXXCBC-830](https://jira.issues.couchbase.com/browse/CXXCBC-830), [CXXCBC-842](https://jira.issues.couchbase.com/browse/CXXCBC-842), [CXXCBC-846](https://jira.issues.couchbase.com/browse/CXXCBC-846), [CXXCBC-852](https://jira.issues.couchbase.com/browse/CXXCBC-852), [CXXCBC-853](https://jira.issues.couchbase.com/browse/CXXCBC-853), [CXXCBC-864](https://jira.issues.couchbase.com/browse/CXXCBC-864), [CXXCBC-872](https://jira.issues.couchbase.com/browse/CXXCBC-872), [CXXCBC-912](https://jira.issues.couchbase.com/browse/CXXCBC-912), [CXXCBC-924](https://jira.issues.couchbase.com/browse/CXXCBC-924): **Lifetime and Thread-Safety Fixes** — Fixed a use-after-free in `mcbp_session` handler dispatch on a re-entrant `stop()`, a `cluster`/`bucket` `shared_ptr` cycle leaked by parked deferred operations, an `mcbp_command` leak on replica reads at `io_context` teardown, handler-drop lifetime in asynchronous public API operations, an in-flight bootstrap session left running when a bucket is closed, parked operations never completed on teardown mid-bucket-bootstrap, races in key-value operation routing and finalization, a use-after-free in the forked child that also damaged the parent, and a cluster reference held past close completion. Tearing down a cluster while a bucket was still bootstrapping could leave a `std::future` caller with `broken_promise` or hung; enqueues into a closed bucket are now rejected and parked operations are completed with `cluster_closed`. Observability members are stopped in place rather than moved out of `close()`, so a null dereference no longer follows `notify_fork(fork_event::child)`. The `*_any_replica` fan-out no longer shares one cancellation token across sibling commands, which let the first response cancel the others on an IO thread while the caller was still dispatching them.
 * [CXXCBC-785](https://jira.issues.couchbase.com/browse/CXXCBC-785), [CXXCBC-787](https://jira.issues.couchbase.com/browse/CXXCBC-787), [CXXCBC-788](https://jira.issues.couchbase.com/browse/CXXCBC-788), [CXXCBC-789](https://jira.issues.couchbase.com/browse/CXXCBC-789), [CXXCBC-797](https://jira.issues.couchbase.com/browse/CXXCBC-797), [CXXCBC-862](https://jira.issues.couchbase.com/browse/CXXCBC-862): **Key-Value Correctness** — A projected `get` requesting more than 16 paths no longer fails when one of the paths is missing, `lookup_in_all_replicas` captures subdocument paths correctly and reports total failure properly, `lookup_in` first-error tracking and the `subdoc_invalid_xattr_order` error mapping were corrected, a codec branch no longer rejects valid packets because a collection-id check was a standalone `if` rather than an `else if`, and an `unknown_collection` response now re-resolves the collection id on the `queue_request` path.
@@ -127,7 +402,7 @@ This is the first GA release of the 1.4 C++ SDK.
 * [CXXCBC-774](https://jira.issues.couchbase.com/browse/CXXCBC-774), [CXXCBC-847](https://jira.issues.couchbase.com/browse/CXXCBC-847), [CXXCBC-863](https://jira.issues.couchbase.com/browse/CXXCBC-863), [CXXCBC-865](https://jira.issues.couchbase.com/browse/CXXCBC-865), [CXXCBC-868](https://jira.issues.couchbase.com/browse/CXXCBC-868), [CXXCBC-873](https://jira.issues.couchbase.com/browse/CXXCBC-873), [CXXCBC-874](https://jira.issues.couchbase.com/browse/CXXCBC-874): **Transactions** — Since ExtBinarySupport, `content_as()` defaulted to the JSON transcoder and rejected a JSON document stored with non-JSON common flags. The lenient read is restored through a no-transcoder `content_as<Document>()` overload; passing a transcoder explicitly still enforces its flag handling. `get_multi` read-skew detection and resolution were fixed, per-document fetch errors are handled and the reads are bounded, `atr_entry::has_expired()` is hardened against missing timestamps and overflow, query result rows without a usable CAS are rejected, and an incorrect `std::move` on a `const Document&` parameter was removed. Lost-attempts cleanup scans up to 16 ATRs concurrently instead of strictly one at a time, so a loaded node no longer leaves expired transactions, and the documents they block, uncleaned for a window.
 * [CXXCBC-843](https://jira.issues.couchbase.com/browse/CXXCBC-843): **GCC 16 Build** — Fixed a `-Warray-bounds` diagnostic in `client_request::generate_payload`.
 
-#### [](#deprecations)Deprecations
+#### [](#deprecations-2)Deprecations
 
 * [CXXCBC-925](https://jira.issues.couchbase.com/browse/CXXCBC-925): **Columnar Build Mode** — `COUCHBASE_CXX_CLIENT_COLUMNAR` gates a prototype build mode scheduled for removal in `1.5.0`. Configuring with the option now emits a CMake warning and a compiler diagnostic naming the deprecating and removing versions. Neither can fail a build.
 
@@ -139,7 +414,7 @@ This is the third GA release of the 1.3 C++ SDK.
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.3.2/index.html) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.3.1...1.3.2)
 
-#### [](#downloads-2)Downloads
+#### [](#downloads-4)Downloads
 
 | Platform             | Architecture | File                                                                                                                                                       |
 | -------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -170,7 +445,7 @@ This is the third GA release of the 1.3 C++ SDK.
 | Alpine Linux 3.20    | x86\_64      | [couchbase-cxx-client-1.3.2-r1-x86\_64-alpine-3.20.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.3.2-r1-x86%5F64-alpine-3.20.tar) |
 | Alpine Linux 3.20    | aarch64      | [couchbase-cxx-client-1.3.2-r1-aarch64-alpine-3.20.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.3.2-r1-aarch64-alpine-3.20.tar)  |
 
-#### [](#new-features-2)New Features
+#### [](#new-features-3)New Features
 
 * [CXXCBC-820](https://jira.issues.couchbase.com/browse/CXXCBC-820): **Node Identification API** — Introduced `couchbase::node_id`, a value type that uniquely identifies a cluster node. On Server 8.0.1+ the identifier is the server-assigned `nodeUUID`; on older releases a stable CRC32-based hash is derived from the node's hostname and KV port. The type is equality-comparable, ordered, and hashable (a `std::hash` specialization is provided), so it can be used directly as a key in application-side maps.
 * [CXXCBC-821](https://jira.issues.couchbase.com/browse/CXXCBC-821): **Node Attribution for KV Operations** — `node_id` is now propagated through the entire key-value operation path. `couchbase::result` gains a `node_id()` accessor and `couchbase::error` gains a `node_id()` accessor, so callers can attribute every result and error to the serving cluster node. Replica reads expose a per-entry `node_id` on the results of `get_all_replicas()` and `lookup_in_all_replicas()`. A new client-side helper, `collection::node_id_for(document_id, options)`, resolves a key to its owning node from the vBucket map with no network round-trip.
@@ -178,12 +453,12 @@ This is the third GA release of the 1.3 C++ SDK.
 * [CXXCBC-822](https://jira.issues.couchbase.com/browse/CXXCBC-822): **External Circuit Breaker Example** — Added a copy-pastable circuit breaker example built on the `node_id` API and modelled on Netflix `Hystrix` and `Resilience4j`. It demonstrates a per-node registry keyed on `couchbase::node_id`, a sliding-window state machine (closed/open/half\_open/forced\_open/disabled), failure-rate and slow-call-rate tripping, per-node isolation, and a topology-sweep that prunes tracker state using `collection::node_ids()`.  
 Demonstration example: <https://github.com/couchbase/couchbase-cxx-client/blob/release-1.3/examples/external%5Fcircuit%5Fbreaker/circuit%5Fbreaker.hxx>
 
-#### [](#improvements-2)Improvements
+#### [](#improvements-3)Improvements
 
 * [CXXCBC-828](https://jira.issues.couchbase.com/browse/CXXCBC-828): **Reduced std::regex Usage in Error Handling** — Replaced inline `std::regex` construction with `std::string::find()` when building errors from server response text in collection and scope management operations. Where case-insensitive matching is still required, the `std::regex` objects are now `static const` so they are compiled once.
 * [CXXCBC-829](https://jira.issues.couchbase.com/browse/CXXCBC-829): **contains\_string Utility** — Added `utils::contains_string(input, substr, ignore_case = false)`, a substring match with optional ASCII-only case folding and no `std::locale` dependency, and replaced the remaining `std::regex_search` calls with it.
 
-#### [](#bug-fixes-2)Bug Fixes
+#### [](#bug-fixes-4)Bug Fixes
 
 * [CXXCBC-785](https://jira.issues.couchbase.com/browse/CXXCBC-785): **Projected Get with > 16 Paths** — A projected `get` requesting more than 16 paths no longer fails when one of the requested paths does not exist in the document. Missing paths are now skipped rather than aborting the whole projection.
 * [CXXCBC-823](https://jira.issues.couchbase.com/browse/CXXCBC-823): **HTTP Session Manager Cleanup** — Fixed `check_in()` not removing sessions from the pending/idle session maps when a session is not connected, and updated each session's `on_stop()` to remove itself from all session maps. Destruction of removed sessions is deferred until after the manager mutex is released, avoiding holding the lock across session teardown.
@@ -194,7 +469,7 @@ This is the second GA release of the 1.3 C++ SDK.
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.3.1/index.html) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.3.0...1.3.1)
 
-#### [](#downloads-3)Downloads
+#### [](#downloads-5)Downloads
 
 | Platform             | Architecture | File                                                                                                                                                       |
 | -------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -237,7 +512,7 @@ This is the first GA release of the 1.3 C++ SDK.
 
 [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.3.0) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.2.0...1.3.0)
 
-#### [](#downloads-4)Downloads
+#### [](#downloads-6)Downloads
 
 | Platform             | Architecture | File                                                                                                                                                       |
 | -------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -268,7 +543,7 @@ This is the first GA release of the 1.3 C++ SDK.
 | Alpine Linux 3.20    | x86\_64      | [couchbase-cxx-client-1.3.0-r1-x86\_64-alpine-3.20.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.3.0-r1-x86%5F64-alpine-3.20.tar) |
 | Alpine Linux 3.20    | aarch64      | [couchbase-cxx-client-1.3.0-r1-aarch64-alpine-3.20.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.3.0-r1-aarch64-alpine-3.20.tar)  |
 
-#### [](#new-features-3)New Features
+#### [](#new-features-4)New Features
 
 * [CXXCBC-691](https://jira.issues.couchbase.com/browse/CXXCBC-691): **OpenTelemetry Support** — Added initial `OpenTelemetry` support with tracing and metrics export via OTLP HTTP. The SDK now exposes spans and metrics following OpenTelemetry conventions. The feature can be enabled with `-DCOUCHBASE_CXX_CLIENT_BUILD_OPENTELEMETRY=ON` at build time.
 * [CXXCBC-740](https://jira.issues.couchbase.com/browse/CXXCBC-740): **JWT Authentication** — Added JWT-based authentication support via `jwt_authenticator`. The authenticator can refresh tokens automatically and supports reauthentication when tokens become stale.
@@ -277,7 +552,7 @@ This is the first GA release of the 1.3 C++ SDK.
 * [CXXCBC-751](https://jira.issues.couchbase.com/browse/CXXCBC-751): **cbc-get Replica Support** — Added `--replica` flag to `cbc-get` tool to fetch documents from replica nodes.
 * [CXXCBC-754](https://jira.issues.couchbase.com/browse/CXXCBC-754): **cbc-config Tool** — Added new `cbc-config` tool to dump cluster configuration to `stdout` for debugging.
 
-#### [](#improvements-3)Improvements
+#### [](#improvements-4)Improvements
 
 * [CXXCBC-719](https://jira.issues.couchbase.com/browse/CXXCBC-719): **Enhanced Tracing** — Added top-level spans in the Public API for all KV and HTTP operations, providing better observability into operation lifecycle.
 * [CXXCBC-750](https://jira.issues.couchbase.com/browse/CXXCBC-750): **Internal Tracer for Wrapper SDKs** — Added internal tracer interface (`tracer_wrapper::wrapped()`) for use by wrapper SDKs that want to integrate with the SDK's tracing.
@@ -286,7 +561,7 @@ This is the first GA release of the 1.3 C++ SDK.
 * [CXXCBC-768](https://jira.issues.couchbase.com/browse/CXXCBC-768): **DNS-SRV Refresh Fix** — Fixed an issue where `bucket_not_found` errors during bootstrap would trigger unnecessary DNS-SRV record refresh loops.
 * [CXXCBC-767](https://jira.issues.couchbase.com/browse/CXXCBC-767): Implemented `AuthStale` handling and JWT reauthentication support.
 
-#### [](#bug-fixes-3)Bug Fixes
+#### [](#bug-fixes-5)Bug Fixes
 
 * [CXXCBC-769](https://jira.issues.couchbase.com/browse/CXXCBC-769), [CXXCBC-770](https://jira.issues.couchbase.com/browse/CXXCBC-770), [CXXCBC-756](https://jira.issues.couchbase.com/browse/CXXCBC-756), [CXXCBC-761](https://jira.issues.couchbase.com/browse/CXXCBC-761), [CXXCBC-755](https://jira.issues.couchbase.com/browse/CXXCBC-755): Various OpenTelemetry integration fixes and improvements.
 * [CXXCBC-763](https://jira.issues.couchbase.com/browse/CXXCBC-763): Fixed `set_authenticator` not applying updated cert/key pairs to new TLS sessions.
@@ -295,7 +570,7 @@ This is the first GA release of the 1.3 C++ SDK.
 * [CXXCBC-743](https://jira.issues.couchbase.com/browse/CXXCBC-743): Fixed HTTP command handler signature to properly handle decoded response types.
 * [CXXCBC-766](https://jira.issues.couchbase.com/browse/CXXCBC-766): Fixed OpenSSL headers priority in BoringSSL builds.
 
-#### [](#deprecations-2)Deprecations
+#### [](#deprecations-3)Deprecations
 
 * [CXXCBC-752](https://jira.issues.couchbase.com/browse/CXXCBC-752): MapReduce Views are now deprecated. Use Query with SQL++ instead.
 * [CXXCBC-740](https://jira.issues.couchbase.com/browse/CXXCBC-740): `jwt_authenticator` is marked as `@uncommitted` and may change in future releases.
@@ -308,7 +583,7 @@ This is a second patch release of the 1.2 C++ SDK.
 
 [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.2.2) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.2.1...1.2.2)
 
-#### [](#downloads-5)Downloads
+#### [](#downloads-7)Downloads
 
 | Platform             | Architecture | File                                                                                                                                                       |
 | -------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -349,7 +624,7 @@ This is a first patch release of the 1.2 C++ SDK.
 
 [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.2.1) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.2.0...1.2.1)
 
-#### [](#downloads-6)Downloads
+#### [](#downloads-8)Downloads
 
 | Platform             | Architecture | File                                                                                                                                                       |
 | -------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -390,7 +665,7 @@ This is a first GA release of the 1.2 C++ SDK.
 
 [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.2.0) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.1.0...1.2.0)
 
-#### [](#downloads-7)Downloads
+#### [](#downloads-9)Downloads
 
 | Platform             | Architecture | File                                                                                                                                                       |
 | -------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -421,7 +696,7 @@ This is a first GA release of the 1.2 C++ SDK.
 | Alpine Linux 3.19    | x86\_64      | [couchbase-cxx-client-1.2.0-r1-x86\_64-alpine-3.19.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.0-r1-x86%5F64-alpine-3.19.tar) |
 | Alpine Linux 3.19    | aarch64      | [couchbase-cxx-client-1.2.0-r1-aarch64-alpine-3.19.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.0-r1-aarch64-alpine-3.19.tar)  |
 
-#### [](#new-features-4)New Features
+#### [](#new-features-5)New Features
 
 * [CXXCBC-567](https://jira.issues.couchbase.com/browse/CXXCBC-567): Added support for field-level encryption library ([#791](https://github.com/couchbase/couchbase-cxx-client/pull/791)).
 * [CXXCBC-713](https://jira.issues.couchbase.com/browse/CXXCBC-713), [CXXCBC-729](https://jira.issues.couchbase.com/browse/CXXCBC-729): Added `cbc-keygen`, a tool to generate keys for specific vBucket ([#799](https://github.com/couchbase/couchbase-cxx-client/pull/799), [#833](https://github.com/couchbase/couchbase-cxx-client/pull/833)).
@@ -481,7 +756,7 @@ This is a second GA release of the 1.1 C++ SDK. It contains features and fixes b
 
 [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.1.1) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.1.0...1.1.1)
 
-#### [](#downloads-8)Downloads
+#### [](#downloads-10)Downloads
 
 | Platform             | Architecture | File                                                                                                                                                       |
 | -------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -508,7 +783,7 @@ This is a second GA release of the 1.1 C++ SDK. It contains features and fixes b
 | Alpine Linux 3.22    | x86\_64      | [couchbase-cxx-client-1.1.1-r1-x86\_64-alpine-3.22.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.1.1-r1-x86%5F64-alpine-3.22.tar) |
 | Alpine Linux 3.22    | aarch64      | [couchbase-cxx-client-1.1.1-r1-aarch64-alpine-3.22.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.1.1-r1-aarch64-alpine-3.22.tar)  |
 
-#### [](#new-features-5)New Features
+#### [](#new-features-6)New Features
 
 * [CXXCBC-699](https://jira.issues.couchbase.com/browse/CXXCBC-699): By default the SDK will now shuffle the node list (including lists received via DNS-SRV request). To disable this behavior use the `preserve_bootstrap_nodes_order` option ([#778](https://github.com/couchbase/couchbase-cxx-client/pull/778)).
 
@@ -527,7 +802,7 @@ This is a first GA release of the 1.1 C++ SDK.
 
 [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.1.0) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.0.5...1.1.0)
 
-#### [](#downloads-9)Downloads
+#### [](#downloads-11)Downloads
 
 | Platform             | Architecture | File                                                                                                                                                       |
 | -------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -550,7 +825,7 @@ This is a first GA release of the 1.1 C++ SDK.
 | Alpine Linux 3.20    | x86\_64      | [couchbase-cxx-client-1.1.0-r1-x86\_64-alpine-3.20.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.1.0-r1-x86%5F64-alpine-3.20.tar) |
 | Alpine Linux 3.20    | aarch64      | [couchbase-cxx-client-1.1.0-r1-aarch64-alpine-3.20.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.1.0-r1-aarch64-alpine-3.20.tar)  |
 
-#### [](#new-features-6)New Features
+#### [](#new-features-7)New Features
 
 * [CXXCBC-672](https://jira.issues.couchbase.com/browse/CXXCBC-672): Added `add_named_parameter` and `add_positional_parameter` to query/analytics options ([#762](https://github.com/couchbase/couchbase-cxx-client/pull/762)).
 * [CXXCBC-684](https://jira.issues.couchbase.com/browse/CXXCBC-684): The SDK now allows the setting of both named and positional parameters for queries — previously named parameters would be cleared if positional parameters were set ([#759](https://github.com/couchbase/couchbase-cxx-client/pull/759)).
@@ -594,7 +869,7 @@ This is a maintenance release of the 1.0 C++ SDK.
 
 [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.0.7) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.0.5...1.0.7)
 
-#### [](#downloads-10)Downloads
+#### [](#downloads-12)Downloads
 
 | Platform             | Architecture | File                                                                                                                                                       |
 | -------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -629,7 +904,7 @@ This is a maintenance release of the 1.0 C++ SDK.
 
 [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.0.6) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.0.5...1.0.6)
 
-#### [](#downloads-11)Downloads
+#### [](#downloads-13)Downloads
 
 | Platform             | Architecture | File                                                                                                                                                       |
 | -------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -665,7 +940,7 @@ This is a maintenance release of the 1.0 C++ SDK.
 
 [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.0.5) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.0.4...1.0.5)
 
-#### [](#downloads-12)Downloads
+#### [](#downloads-14)Downloads
 
 | Platform             | Architecture | File                                                                                                                                                       |
 | -------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -706,7 +981,7 @@ This is a maintenance release of the 1.0 C++ SDK.
 
 [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.0.4) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.0.3...1.0.4)
 
-#### [](#downloads-13)Downloads
+#### [](#downloads-15)Downloads
 
 | Platform             | Architecture | File                                                                                                                                                       |
 | -------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -757,7 +1032,7 @@ This is a maintenance release of the 1.0 C++ SDK.
 
 [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.0.3) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.0.2...1.0.3)
 
-#### [](#downloads-14)Downloads
+#### [](#downloads-16)Downloads
 
 | Platform           | Architecture | File                                                                                                                                               |
 | ------------------ | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -806,7 +1081,7 @@ This is a maintenance release of the 1.0 C++ SDK.
 
 [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.0.2) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.0.1...1.0.2)
 
-#### [](#downloads-15)Downloads
+#### [](#downloads-17)Downloads
 
 | Platform           | Architecture | File                                                                                                                                               |
 | ------------------ | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -3,7 +3,7 @@ title: Nodes
 description: A Couchbase-Server <em>cluster</em> consists of one or more
   <em>nodes</em>, each of which is a system running an instance of Couchbase
   Server.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/learn/clusters-and-availability/nodes.html)
 
 # Nodes
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > A Couchbase-Server _cluster_ consists of one or more _nodes_, each of which is a system running an instance of Couchbase Server. 
 

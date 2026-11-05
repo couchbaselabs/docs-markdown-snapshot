@@ -2,7 +2,7 @@
 title: ADVISOR Function
 description: The ADVISOR function provides index recommendations to optimize
   query response time.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -18,6 +18,9 @@ antora:
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/advisor.html)
 
 # ADVISOR Function
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 The ADVISOR function provides index recommendations to optimize query response time. There are two main scenarios for using this function. One is to invoke the index advisor _immediately_ for a given query or set of queries; the other is to start a session in which every query of interest is collected for a set time period, then invoke the index advisor _asynchronously_ for that collection of queries when the session ends. Within these two scenarios, this function has several different usages. The operation and output of each usage depends on the function's single argument. For clarity, each usage is listed separately on this page.
 

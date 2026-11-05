@@ -2,14 +2,13 @@
 title: XATTR and Virtual XATTR
 description: Extended Attributes (XATTR) are metadata that can be provided on a
   per-application basis.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Ruby SDK
-    version: "3.8"
-  topic_type: concept
+    version: "3.9"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/concept-docs/pages/xattr.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/release/3.9/modules/concept-docs/pages/xattr.adoc
   xref: xref:ruby-sdk:concept-docs:xattr.adoc[]
 ---
 

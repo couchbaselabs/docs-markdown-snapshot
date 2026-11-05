@@ -2,7 +2,7 @@
 title: Timers
 description: Timers are asynchronous compute, which offers Eventing Functions
   the ability to execute in reference to wall-clock events.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/eventing/eventing-timers.html)
 
 # Timers
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 Timers are asynchronous compute, which offers Eventing Functions the ability to execute in reference to wall-clock events. Timers also measure and track the amount of elapsed time and can be used while archiving expired documents at a preconfigured time.
 

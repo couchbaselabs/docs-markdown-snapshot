@@ -2,13 +2,13 @@
 title: Client Settings
 description: The <code>cluster_options</code> class enables you to configure C++
   SDK options for bootstrapping, timeouts, reliability, and performance.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/ref/pages/client-settings.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/ref/pages/client-settings.adoc
   xref: xref:cxx-sdk:ref:client-settings.adoc[]
 ---
 

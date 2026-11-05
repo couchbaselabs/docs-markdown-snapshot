@@ -2,7 +2,7 @@
 title: Query and Explore with the Workbench
 description: The workbench for Operational Insights provides a graphical user
   interface for query development and data exploration.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Operational Insights Capella
@@ -22,8 +22,6 @@ antora:
 
 You use the workbench to manage your databases, scopes, and collections; create, run, and save SQL++ for Operational Insights Cloud queries; and view and save query results and metrics — all in a single window.
 
-![The Operational Insights workbench. The organizational pane lists the databases, scopes, and collections currently in the cluster. The query editor shows a query context of the travel-sample database and the inventory scope. The most recent query displays in the editor, with results displayed below in JSON format. To the other side is the History and iQ tabs.](_images/workbench.png)
-
 ## [](#prerequisites)Prerequisites
 
 To use the workbench for Operational Insights:
@@ -39,10 +37,12 @@ To use the workbench for Operational Insights:
 Features of the workbench include:
 
 * Controls for adding and managing databases, scopes, collections, and links. See [Access and Organize Data in Operational Insights Services](../sources/database-objects.md).
+* View a collection's primary key, source link, and indexes, or infer its schema, from the explorer. See [Managing Operational Insights Collections](../sources/manage-collections.md).
 * A single, integrated visual interface for query development and testing. The query editor offers multi-line formatting, copy-and-paste, syntax coloring, and easy cursor movement. See [Write and Run Queries](editor.md).
 * Query-writing assistance from Capella iQ. See [Get Assistance from Capella iQ](iq.md).
 * Immediate display of metrics for executed queries and access to the query plan. See [View Query Metrics or Plan](metrics-plan.md).
 * A query history for quick revision and re-execution. See [Use the Query History](history.md).
+* Index recommendations for the query in the active query editor, based on query patterns and data samples. See [Index Advisor](../sqlpp/5c-index-advisor.md).
 * Define query-specific settings, including a maximum time limit and positional parameters. See [Set Query Options](options.md).
 * Options for displaying query results in JSON or table format, for copying or downloading query results in JSON format, and for copying a flattened version of query results in TSV format. See [Work with Query Results](results.md).
 * Data visualization options for query results. See [Visualize Results in Charts](charts.md).
@@ -58,7 +58,7 @@ The workbench has the following working panes:
 * An explorer where you select, create, and manage entities.
 * The query editor.
 * Options for reviewing query results.
-* A query **History** tab that toggles with the **iQ** tab.
+* **History**, **iQ**, and **Index Advice** tabs that toggle with one another.
 
 ## [](#see-also)See Also
 

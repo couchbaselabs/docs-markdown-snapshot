@@ -2,14 +2,14 @@
 title: Analytics
 description: Parallel data management for complex queries over many records,
   using a familiar SQL++ syntax.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
   edition: "Enterprise Edition:"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/howtos/pages/analytics-using-sdk.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/howtos/pages/analytics-using-sdk.adoc
   xref: xref:cxx-sdk:howtos:analytics-using-sdk.adoc[]
 ---
 

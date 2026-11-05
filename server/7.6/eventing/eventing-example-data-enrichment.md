@@ -3,7 +3,7 @@ title: Data Enrichment
 description: Given a legacy document set containing attributes whose format
   makes them difficult to search on. In order to correct this search deficiency,
   new searchable attributes will be added to the document.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -18,6 +18,9 @@ antora:
 [View original HTML](/server/7.6/eventing/eventing-example-data-enrichment.html)
 
 # Data Enrichment
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 **Goal**: Given a legacy document set containing attributes whose format makes them difficult to search on. In order to correct this search deficiency, new searchable attributes will be added to the document. These new attributes related to and can be calculated from the original attributes. On any mutation (a document creation or modification), the new attributes should also be created (or updated)
 

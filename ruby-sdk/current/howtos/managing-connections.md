@@ -1,14 +1,14 @@
 ---
 title: Managing Connections
 description: This section describes how to connect the Ruby SDK to a Couchbase cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Ruby SDK
-    version: "3.8"
+    version: "3.9"
   topic_type: concept
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/howtos/pages/managing-connections.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/release/3.9/modules/howtos/pages/managing-connections.adoc
   xref: xref:ruby-sdk:howtos:managing-connections.adoc[]
 ---
 

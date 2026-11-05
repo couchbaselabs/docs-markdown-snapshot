@@ -42,6 +42,7 @@ Get enterprise support by registering for a trial here: https://www.couchbase.co
     - [Operational SDKs](https://docs.couchbase.com/llms-operational-sdks.txt)
 - Mobile / Edge
     - [Couchbase Lite](https://docs.couchbase.com/llms-couchbase-lite.txt)
+    - [Edge Server](https://docs.couchbase.com/llms-edge-server.txt)
     - [Sync Gateway](https://docs.couchbase.com/llms-sync-gateway.txt)
     - [App Services](https://docs.couchbase.com/llms-app-services.txt)
 - Operational Insights

@@ -3,7 +3,7 @@ title: Create a Custom Tokenizer
 description: Create a custom tokenizer with the Couchbase Server Web Console to
   change how the Search Service creates tokens for matching Search index content
   to a Search query.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -18,6 +18,9 @@ antora:
 [View original HTML](/server/7.6/search/create-custom-tokenizer.html)
 
 # Create a Custom Tokenizer
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Create a custom tokenizer with the Couchbase Server Web Console to change how the Search Service creates tokens for matching Search index content to a Search query. 
 

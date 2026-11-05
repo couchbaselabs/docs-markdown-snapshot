@@ -2,7 +2,7 @@
 title: Pattern-Matching Functions
 description: Pattern-matching functions allow you to find regular expression
   patterns in strings or attributes.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/patternmatchingfun.html)
 
 # Pattern-Matching Functions
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 Pattern-matching functions allow you to find regular expression patterns in strings or attributes. Regular expressions can formally represent various string search patterns using different special characters to indicate wildcards, positional characters, repetition, optional or mandatory sequences of letters, etc. SQL++ functions are available to find matching patterns, find position of matching pattern, or replace a pattern with a new string.
 

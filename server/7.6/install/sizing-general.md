@@ -3,7 +3,7 @@ title: Sizing Guidelines
 description: Evaluate the overall performance and capacity goals that you have
   for Couchbase, and use that information to determine the necessary resources
   that you'll need in your deployment.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/install/sizing-general.html)
 
 # Sizing Guidelines
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Evaluate the overall performance and capacity goals that you have for Couchbase, and use that information to determine the necessary resources that you'll need in your deployment. 
 

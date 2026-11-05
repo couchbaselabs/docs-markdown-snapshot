@@ -1,21 +1,21 @@
 ---
-title: Couchbase C++ SDK 1.4
-pubDate: 2026-11-02T04:23:22.769Z
+title: Couchbase C++ SDK 1.5
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/hello-world/pages/overview.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/hello-world/pages/overview.adoc
   xref: xref:cxx-sdk:hello-world:overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cxx-sdk/current/hello-world/overview.html)
 
-# Couchbase C++ SDK 1.4
+# Couchbase C++ SDK 1.5
 
-# Couchbase C++ SDK 1.4
+# Couchbase C++ SDK 1.5
 
 The Couchbase C++ SDK allows C++ applications to access a Couchbase cluster — Capella or self-managed.
 
@@ -131,6 +131,7 @@ Reference
 * [Client Settings](../ref/client-settings.md)
 * [Error Messages](../ref/error-codes.md)
 * [SDK source code](https://github.com/couchbaselabs/couchbase-cxx-client/)
+* [Glossary](../ref/glossary.md)
 
 Deployment
 
@@ -155,7 +156,7 @@ __Table 1\. Couchbase Server and SDK Supported Version Matrix__
 | Distributed ACID Transactions                                                                | From 1.0.0   |                  |            |
 | DNS SRV refresh for serverless environments (AWS Lambda, Azure Functions, and GCP Functions) | From 1.0.0   |                  |            |
 | Circuit Breakers                                                                             | From 1.3.2   |                  |            |
-| OTel                                                                                         | From 1.3.0   |                  |            |
+| Response Time Observability with OTel                                                        | From 1.3.0   |                  |            |
 | Field Level Encryption                                                                       | From 1.2.0   |                  |            |
 | Cloud Native Gateway                                                                         | From 1.4.0 ② |                  |            |
 

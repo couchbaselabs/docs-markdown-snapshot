@@ -3,7 +3,7 @@ title: Usernames and Passwords
 description: Couchbase Server requires that administrators and applications
   <em>authenticate</em>, in order to gain access to data, settings, and
   statistics.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/learn/security/usernames-and-passwords.html)
 
 # Usernames and Passwords
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Couchbase Server requires that administrators and applications _authenticate_, in order to gain access to data, settings, and statistics. Authentication may require that a _username_ and _password_ be provided. 
 

@@ -2,7 +2,7 @@
 title: Developer Intro
 description: This section contains tutorials, how-to guides, and information
   about Couchbase Services to help you develop applications.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -16,6 +16,9 @@ antora:
 [View original HTML](/server/7.6/develop/intro.html)
 
 # Developer Intro
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 This section contains tutorials, how-to guides, and information about Couchbase Services to help you develop applications. It also provides links to the documentation for software development kits and other integrations.
 

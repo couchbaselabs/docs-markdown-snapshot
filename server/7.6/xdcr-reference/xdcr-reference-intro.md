@@ -3,7 +3,7 @@ title: XDCR Reference
 description: XDCR can be configured by means of <em>Advanced Settings</em>, and
   the replicated content determined through <em>Advanced Filtering
   Expressions</em>.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/xdcr-reference/xdcr-reference-intro.html)
 
 # XDCR Reference
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > XDCR can be configured by means of _Advanced Settings_, and the replicated content determined through _Advanced Filtering Expressions_. This section provides a reference to each. 
 

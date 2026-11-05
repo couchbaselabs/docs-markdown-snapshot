@@ -2,7 +2,7 @@
 title: Manage Authentication
 description: To access Couchbase Server, administrators and applications must be
   authenticated.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -16,6 +16,9 @@ antora:
 [View original HTML](/server/7.6/manage/manage-security/manage-authentication.html)
 
 # Manage Authentication
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > To access Couchbase Server, administrators and applications must be authenticated. _Authentication_ is a process for identifying a user who is attempting to access a system. 
 

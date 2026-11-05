@@ -1,13 +1,13 @@
 ---
 title: Full Installation of the C&#43;&#43; SDK
 description: Installation instructions for the Couchbase C&#43;&#43; Client.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/project-docs/pages/sdk-full-installation.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/project-docs/pages/sdk-full-installation.adoc
   xref: xref:cxx-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -35,9 +35,9 @@ CPMAddPackage(
   NAME
   couchbase_cxx_client
   GIT_TAG
-  1.4.0
+  1.5.1
   VERSION
-  1.4.0
+  1.5.1
   GITHUB_REPOSITORY
   "couchbase/couchbase-cxx-client"
   OPTIONS

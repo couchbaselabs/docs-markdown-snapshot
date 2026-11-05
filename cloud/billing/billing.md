@@ -2,7 +2,7 @@
 title: Manage Your Billing
 description: Couchbase Capella bills you for the size and number of operational
   clusters in your organization.
-pubDate: 2026-11-03T04:28:31.731Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Capella Operational
@@ -52,7 +52,7 @@ Free plan clusters are community-supported through the Couchbase forums.
 
 ### [](#basic)Basic Support Plan
 
-Clusters and services on the Basic Plan receive technical support through the Couchbase forums. Basic clusters and services have limited capabilities, suited to development and non-mission critical production systems.
+Clusters and services on the Basic Plan receive technical support through the Couchbase forums. The Basic plan does not support the Analytics or Eventing services. Basic clusters and services have limited capabilities, suited to development and non-mission critical production systems.
 
 You can use the Basic plan with [credit card payments](#credit-cards), [pre-paid credits](#pre-paid-credits), or [pay-as-you-go](#pay-as-you-go-credits).
 

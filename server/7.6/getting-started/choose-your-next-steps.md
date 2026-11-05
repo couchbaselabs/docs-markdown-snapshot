@@ -2,7 +2,7 @@
 title: Choose Your Next Steps
 description: To complete the Getting Started sequence, consider your options as
   to what to do next to continue improving your knowledge.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -16,6 +16,9 @@ antora:
 [View original HTML](/server/7.6/getting-started/choose-your-next-steps.html)
 
 # Choose Your Next Steps
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > To complete the Getting Started sequence, consider your options as to what to do next to continue improving your knowledge. The Couchbase documentation set provides detailed information on all aspects of the platform; and this topic lists some of the important areas you can visit. 
 

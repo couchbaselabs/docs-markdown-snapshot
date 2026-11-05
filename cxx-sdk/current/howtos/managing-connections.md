@@ -1,13 +1,13 @@
 ---
 title: Managing Connections
 description: This section describes how to connect the C++ SDK to a Couchbase cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/howtos/pages/managing-connections.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/howtos/pages/managing-connections.adoc
   xref: xref:cxx-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -130,19 +130,19 @@ If your Couchbase Server cluster is running in a containerized, port mapped, or 
 
 ## [](#cloud-native-gateway)Cloud Native Gateway
 
-Couchbase's next generation connection protocol, introduced in C++ SDK 1.4.0 and [Couchbase Autonomous Operator 2.6.1](../../../cloud-native-gateway/current/intro/about-cng.md), can be enabled simply by changing the connection string to `couchbase2://` but there are a few differences to be aware of, described [below](#limitations).
+Cloud Native Gateway (CNG), Couchbase's next generation connection protocol, can be [installed alongside self-managed Server](../../../cloud-native-gateway/current/intro/about-cng.md). It is also compatible with all supported versions of [Couchbase Autonomous Operator](../../../cloud-native-gateway/current/intro/about-cng.md) (running on Kubernetes or OpenShift). The protocol implements a gRPC-style interface between the SDK and Couchbase Server.
 
-The protocol implements a gRPC-style interface between the SDK and Couchbase Server (in this case, only available in the Server running on Kubernetes or OpenShift, with a recent version of [Couchbase Autonomous Operator](../../../operator/current/overview.md)).
+It can be enabled by changing the connection string to `couchbase2://` but there are a few differences to be aware of, described [below](#limitations).
 
 ### [](#limitations)Limitations
 
-The underlying protocol will not work with certain legacy features: MapReduce Views (a deprecated Service — use [Query](sqlpp-queries-with-sdk.md) instead) and Memcached buckets (superseded by the improved [Ephemeral Buckets](#8.0.1@server:learn:buckets-memory-and-storage/buckets.adoc#bucket-types)).
+The underlying protocol will not work with certain legacy features: MapReduce Views (a deprecated Service — use [Query](sqlpp-queries-with-sdk.md) instead) and Memcached buckets (superseded by the improved [Ephemeral Buckets](#8.0.3@server:learn:buckets-memory-and-storage/buckets.adoc#bucket-types)).
 
 The following are not currently implemented over the `couchbase2://` protocol:
 
 * Authentication by client certificate.
 * Multi-document ACID transactions.
-* Analytics service.
+* Analytics service (CBAS).
 * Health Check.
 
 And the output from these features should be seen as volatile and subject to change:
@@ -154,7 +154,7 @@ There are some different behaviors seen with this protocol:
 * Some config options are unsupported — see the [Settings page](../ref/client-settings.md#cloud-native-gateway).
 * The SDK will poll the gRPC channels until they are in a good state, or return an error, or timeout while waiting — in our standard protocol there is an option of setting `waitUntilReady()` for just certain services to become available.
 * Some error codes are more generic — in cases where the client would not be expected to need to take specific action — but should cause no problem, unless you have written code looking at individual strings within the error messages.
-* Although documents continue to be stored compressed by Couchbase Server, they will not be transmitted in compressed form (to and from the client) over the wire, using `couchbase2://`.
+* Although documents continue to be stored compressed by Couchbase Server, they will not be transmitted in compressed form over the wire (to and from the client), using `couchbase2://`.
 
 ## [](#using-dns-srv-records)Using DNS SRV records
 

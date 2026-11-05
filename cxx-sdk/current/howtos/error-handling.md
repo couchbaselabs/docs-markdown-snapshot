@@ -2,13 +2,13 @@
 title: Handling Errors
 description: Errors are inevitable. C&#43;&#43; offers several flexible
   approaches to handling them.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/howtos/pages/error-handling.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/howtos/pages/error-handling.adoc
   xref: xref:cxx-sdk:howtos:error-handling.adoc[]
 ---
 

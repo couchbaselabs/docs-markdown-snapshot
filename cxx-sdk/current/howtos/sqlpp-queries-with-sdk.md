@@ -3,13 +3,13 @@ title: Querying with SQL++
 description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
   xref: xref:cxx-sdk:howtos:sqlpp-queries-with-sdk.adoc[]
 ---
 
@@ -22,9 +22,7 @@ antora:
 
 On this page we dive straight into using the Query Service API from the C++ SDK. For a deeper look at the concepts, to help you better understand the Query Service, the SQL++ language, and the Index Service, see the links in the [Further Information](#further-information) section at the end of this page.
 
-> You can query for documents in Couchbase using the SQL++ query language (formerly N1QL), a language based on SQL, but designed for structured and flexible JSON documents. 
-
-Our query service uses SQL++, which will be fairly familiar to anyone who's used any dialect of SQL. [Additional Resources](#additional-resources) for learning about SQL++ are listed at the bottom of the page. Before you get started you may wish to checkout the [SQL++ intro page](#6.5@server:n1ql:n1ql-language-reference/index.adoc).
+Our query service uses SQL++, which will be fairly familiar to anyone who's used any dialect of SQL. [Additional Resources](#additional-resources) for learning about SQL++ are listed at the end of this page. Before you get started you may wish to checkout the [SQL++ intro page](../../../server/current/n1ql/n1ql-language-reference/index.md).
 
 > [!TIP]
 > SQL++ Compared to Key-Value
@@ -201,7 +199,7 @@ if (err) {
 
 ## [](#querying-at-scope-level)Querying at Scope Level
 
-It is possible to query off the [scope level](#8.0.1@server:learn:data/scopes-and-collections.adoc) with _Couchbase Server version 7.0_ onwards, using the `scope.query()` method. It takes the statement as a required argument, and then allows additional options if needed.
+It is possible to query off the [scope level](#3.10@server:learn:data/scopes-and-collections.adoc) with _Couchbase Server version 7.0_ onwards, using the `scope.query()` method. It takes the statement as a required argument, and then allows additional options if needed.
 
 The code snippet below shows how to run a simple query to fetch 10 rows from travel-sample and print the results, the assumption is that the `airline` collection exists within the scope.
 
@@ -224,5 +222,3 @@ A complete list of `query_options` can be found in the [API docs](https://docs.c
 > SQL++ is not the only query option in Couchbase. Be sure to check that [your use case fits your selection of query service](../concept-docs/querying-your-data.md).
 
 The [SQL++ interactive tutorial](http://query.pub.couchbase.com/tutorial/#1) is a good introduction to the basics of SQL++ use.
-
-## [](#further-information)Further Information

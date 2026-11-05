@@ -4,7 +4,7 @@ description: <em>General</em> settings allow configuration of <em>cluster
   name</em>, <em>memory quotas</em>, <em>storage modes</em>, and <em>node
   availability</em> for the cluster; and of <em>advanced settings</em> for the
   Index and Query Services.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -18,6 +18,9 @@ antora:
 [View original HTML](/server/7.6/manage/manage-settings/general-settings.html)
 
 # General
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > _General_ settings allow configuration of _cluster name_, _memory quotas_, _storage modes_, and _node availability_ for the cluster; and of _advanced settings_ for the Index and Query Services. 
 

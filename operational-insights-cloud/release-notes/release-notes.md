@@ -1,6 +1,6 @@
 ---
 title: Operational Insights Release Notes
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Operational Insights Capella
@@ -15,6 +15,18 @@ antora:
 [View original HTML](/operational-insights-cloud/release-notes/release-notes.html)
 
 # Operational Insights Release Notes
+
+## [](#november-2026-changelog)November 2026 Changelog
+
+* New Azure Regions  
+Operational Insights Capella is now available in the East US 2 and West US 2 Azure regions. East US 2 supports single and multiple Availability Zone deployments. West US 2 supports single Availability Zone deployments only. Sweden Central is no longer supported.  
+For more information, see [Microsoft Azure](../reference/azure.md).
+* Apache Iceberg Support  
+Operational Insights Capella now supports read-only access to Apache Iceberg. You can register supported catalogs — such as AWS Glue and BigLake Metastore — and directly query Iceberg table data stored in external object storage using external collections.  
+For more information, see [Apache Iceberg Support](../sqlpp/5%5Fddl%5Ficeberg.md).
+* Index Advisor  
+The Index Advisor analyzes SQL++ queries and recommends secondary indexes that can improve query execution performance.  
+For more information, see [Index Advisor](../sqlpp/5c-index-advisor.md).
 
 ## [](#october-2026-changelog)October 2026 Changelog
 

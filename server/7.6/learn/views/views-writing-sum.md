@@ -3,7 +3,7 @@ title: Built-in _sum Function
 description: The built-in <code>_sum</code> function sums the values from the
   <code>map()</code> function call by summing up the information in the value
   for each row.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -18,6 +18,9 @@ antora:
 [View original HTML](/server/7.6/learn/views/views-writing-sum.html)
 
 # Built-in _sum Function
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > The built-in `_sum` function sums the values from the `map()` function call by summing up the information in the value for each row. 
 

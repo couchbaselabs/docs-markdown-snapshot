@@ -1,0 +1,25 @@
+---
+title: Migrating from SDK2 to SDK3 API
+description: The 3.x API breaks the existing 2.x APIs in order to provide a
+  number of improvements. Collections and Scopes are introduced.
+pubDate: 2026-11-05T15:16:13.118Z
+meta:
+  component:
+    title: Ruby SDK
+    version: "3.8"
+  topic_type: concept
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
+  xref: xref:3.8@ruby-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/ruby-sdk/3.8/project-docs/migrating-sdk-code-to-3.n.html)
+
+# Migrating from SDK2 to SDK3 API
+
+> The 3.x API breaks the existing 2.x APIs in order to provide a number of improvements. Collections and Scopes are introduced. The Document class and structure has been completely removed from the API, and the returned value is now `Result`. Retry behaviour is more proactive, and lazy bootstrapping moves all error handling to a single place. 
+
+The Ruby 2.x Couchbase SDK was not generally available as a supported product, working across all services, so no migration guide is necessary here.
+
+Versions of the documentation for Ruby SDK 1.x can be found in the [archive](https://docs-archive.couchbase.com/home/index.html).

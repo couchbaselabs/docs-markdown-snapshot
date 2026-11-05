@@ -2,7 +2,7 @@
 title: Deploy Couchbase Server Using GCP Marketplace
 description: Couchbase partners with Google to provide a packaged solution on
   GCP Marketplace.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -16,6 +16,9 @@ antora:
 [View original HTML](/server/7.6/cloud/couchbase-gcp-cloud-launcher.html)
 
 # Deploy Couchbase Server Using GCP Marketplace
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Couchbase partners with Google to provide a packaged solution on GCP Marketplace. This solution is based on Google Deployment Manager templates that incorporate the latest features and best practices for deploying Couchbase Server on Google Cloud Platform. 
 

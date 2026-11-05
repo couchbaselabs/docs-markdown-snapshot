@@ -3,7 +3,7 @@ title: Developer Preview Mode and Features
 description: Developer Preview mode (“Preview Mode”), provides early access to
   features which may become generally available (“GA”) in future releases and
   enables you to play with these features to get a sense of how they work.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/developer-preview/preview-mode.html)
 
 # Developer Preview Mode and Features
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Developer Preview mode ("Preview Mode"), provides early access to features which may become generally available ("GA") in future releases and enables you to play with these features to get a sense of how they work. Preview Mode features and their use are subject to Couchbase's "Non-GA Offering Supplemental Terms" set forth in the [License Agreement](https://www.couchbase.com/LA08242020). Preview Mode features may not be functionally complete and are not intended for production use. They are intended for development and testing purposes only. 
 

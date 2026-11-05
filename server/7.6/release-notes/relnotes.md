@@ -2,7 +2,7 @@
 title: Release Notes for Couchbase Server 7.6
 description: Couchbase Server 7.6.x introduces multiple new features and fixes,
   as well as some deprecations and removals.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -16,6 +16,9 @@ antora:
 [View original HTML](/server/7.6/release-notes/relnotes.html)
 
 # Release Notes for Couchbase Server 7.6
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > [!WARNING]
 > Data consistency issue for buckets using Magma storage engine

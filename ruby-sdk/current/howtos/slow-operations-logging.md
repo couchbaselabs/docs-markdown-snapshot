@@ -2,14 +2,14 @@
 title: Slow Operations Logging
 description: Tracing information on slow operations can be found in the logs as
   threshold logging, orphan logging, and other span metrics.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Ruby SDK
-    version: "3.8"
+    version: "3.9"
   topic_type: howto
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/howtos/pages/slow-operations-logging.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/release/3.9/modules/howtos/pages/slow-operations-logging.adoc
   xref: xref:ruby-sdk:howtos:slow-operations-logging.adoc[]
 ---
 
@@ -39,21 +39,6 @@ Metrics fall into the following categories:
 The information logged can be configured, although configurability does vary slightly between SDKs.
 
 Advanced users can build their own implementations of the interface:
-
-```java
-interface Meter {
-     Counter counter(String name, Map<String, String> tags)
-     ValueRecorder valueRecorder(String name, Map<String, String> tags)
-}
-
-interface Counter {
-    void incrementBy(ulong number)
-}
-
-interface ValueRecorder {
-    void recordValue(ulong value)
-}
-```
 
 At each emit/log interval, the AggregatingMeter outputs a JSON structure that is very similar to the `ThresholdRequestTracer` or the `OrphanResponseReporter`. The default value for the `emitInterval` is 600 seconds (10 minutes).
 

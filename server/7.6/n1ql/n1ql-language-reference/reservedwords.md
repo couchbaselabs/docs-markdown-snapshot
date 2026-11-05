@@ -2,7 +2,7 @@
 title: Reserved Words
 description: SQL++ defines an extensive list of keywords that are reserved
   words. You cannot use these keywords as identifiers unless you escape them.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -17,6 +17,9 @@ antora:
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/reservedwords.html)
 
 # Reserved Words
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > SQL++ defines an extensive list of keywords that are reserved words. You cannot use these keywords as identifiers unless you escape them. All of the SQL++ keywords are case-insensitive. 
 

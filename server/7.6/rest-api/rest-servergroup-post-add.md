@@ -3,7 +3,7 @@ title: Adding Nodes to Groups
 description: A node can be added to the cluster and simultaneously added to an
   existing server group with the <code>POST
   /pools/default/serverGroups/<:uuid>/addNode</code> HTTP method and URI.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -18,6 +18,9 @@ antora:
 [View original HTML](/server/7.6/rest-api/rest-servergroup-post-add.html)
 
 # Adding Nodes to Groups
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > A node can be added to the cluster and simultaneously added to an existing server group with the `POST /pools/default/serverGroups/<:uuid>/addNode` HTTP method and URI. 
 

@@ -2,13 +2,13 @@
 title: Sub-Document Operations
 description: Sub-Document operations can be used to efficiently access and
   change parts of documents.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/howtos/pages/subdocument-operations.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/howtos/pages/subdocument-operations.adoc
   xref: xref:cxx-sdk:howtos:subdocument-operations.adoc[]
 ---
 
@@ -625,4 +625,6 @@ If you need to combine both JSON _and_ path-syntax literals you can do so by esc
 
 ## [](#extended-attributes)Extended Attributes
 
-Extended Attributes (also known as XATTRs), built upon the Sub-Document API, allow developers to define application-specific metadata that will only be visible to those applications that request it or attempt to modify it. This might be, for example, meta-data specific to a programming framework that should be hidden by default from other frameworks or libraries, or possibly from other versions of the same framework. They are not intended for use in general applications, and data stored there cannot be accessed easily by some Couchbase services, such as Search.
+Extended Attributes (also known as XATTRs), built upon the Sub-Document API, allow developers to define application-specific metadata that will only be visible to those applications that request it or attempt to modify it. This might be, for example, meta-data specific to a programming framework that should be hidden by default from other frameworks or libraries, or possibly from other versions of the same framework.
+
+They are not intended for use in general applications, and data stored there cannot be accessed easily by some Couchbase services, such as Search.

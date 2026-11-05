@@ -2,7 +2,7 @@
 title: Manage Users, Groups, and Roles
 description: Couchbase Server allows defined <em>users</em> to be assigned
   roles, which permit access to resources.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -16,6 +16,9 @@ antora:
 [View original HTML](/server/7.6/manage/manage-security/manage-users-and-roles.html)
 
 # Manage Users, Groups, and Roles
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Couchbase Server allows defined _users_ to be assigned roles, which permit access to resources. Additionally, _groups_ of users can be established, and roles assigned to each group; so that each user is granted the roles of each group of which they are a member. 
 

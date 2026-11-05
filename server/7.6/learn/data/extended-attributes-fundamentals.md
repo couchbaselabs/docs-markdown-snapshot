@@ -1,7 +1,7 @@
 ---
 title: Extended Attributes
 description: Couchbase Server permits the definition of <em>extended attributes</em>.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -15,6 +15,9 @@ antora:
 [View original HTML](/server/7.6/learn/data/extended-attributes-fundamentals.html)
 
 # Extended Attributes
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Couchbase Server permits the definition of _extended attributes_. These allow developers to define application-specific metadata visible only to those applications that request it or attempt to modify it. This might be, for example, metadata specific to a programming framework that should be hidden by default from other frameworks, or possibly from other versions of the same framework. 
 

@@ -2,7 +2,7 @@
 title: Managing Operational Insights Collections
 description: This page describes how to manage collections with the Operational
   Insights Workbench.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Operational Insights Capella
@@ -45,7 +45,11 @@ You can also delete a collection using the `DELETE` statement. For more informat
 
 ## [](#view-metadata-for-a-collection)View Metadata for a Collection
 
-Each time you add a collection, Operational Insights records its metadata in the `System.Metadata.Dataset` collection. To view metadata for a collection, you need to query this system collection. For more information, see [Querying Metadata](../sqlpp/5%5Fddl%5Fmetadata.md).
+Each time you add a collection, Operational Insights records its metadata in the `System.Metadata.Dataset` collection. To view metadata for a collection, you can either query this system collection or use the explorer.
+
+To query the system collection, see [Querying Metadata](../sqlpp/5%5Fddl%5Fmetadata.md).
+
+To use the explorer, point to the name of the collection and choose **⋮ (More)** **Collection Details**. The details panel shows the collection's primary key and, for standalone and remote collections, its indexes. This includes each index's name, type (`Standard` or `Array`), and indexed fields. External collections show only their source link and primary key because you cannot index an external collection. For more information about indexes, see [Index Advisor](../sqlpp/5c-index-advisor.md).
 
 Operational Insights supports both column and row storage formats.
 
@@ -76,3 +80,9 @@ This document contributes 4 columns:
 Additional documents or array elements with the same column structure do not count towards the 4,000-column limit.
 
 Exceeding the recommended column limit may lead to degraded performance and high resource usage. To avoid this, design your schema and data model to minimize deeply nested or highly dynamic structures, and to prevent exceeding the column limit. Avoid naming fields in a way that causes each object to introduce new fields. For example, use a timestamp as the field name instead of storing it as a value.
+
+## [](#infer-a-collections-schema)Infer a Collection's Schema
+
+Clicking a collection's name in the explorer does not infer its schema.
+
+To infer a collection's schema, point to the name of the collection and choose **⋮ (More)** **Infer Schema**.

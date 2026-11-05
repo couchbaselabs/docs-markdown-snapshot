@@ -2,13 +2,13 @@
 title: Data Model
 description: Couchbase's use of JSON as a storage format allows powerful search
   and query over documents.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/concept-docs/pages/data-model.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/concept-docs/pages/data-model.adoc
   xref: xref:cxx-sdk:concept-docs:data-model.adoc[]
 ---
 

@@ -1,13 +1,12 @@
 ---
 title: Sub-Documents
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
-  topic_type: concept
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/concept-docs/pages/subdocument-operations.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/concept-docs/pages/subdocument-operations.adoc
   xref: xref:cxx-sdk:concept-docs:subdocument-operations.adoc[]
 ---
 
@@ -62,7 +61,7 @@ customer123.json
 }
 ```
 
-The paths `name`, `addresses.billing.country` and `purchases.complete[0]` are all valid paths.
+The paths `name`, `addresses.billing.country`, and `purchases.complete[0]` are all valid paths.
 
 ## [](#sub-doc-from-the-sdk)Sub-Doc from the SDK
 

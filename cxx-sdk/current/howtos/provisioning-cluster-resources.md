@@ -2,13 +2,13 @@
 title: Provisioning Cluster Resources
 description: Provisioning cluster resources is managed at the collection or
   bucket level, depending upon the service affected.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: C++ SDK
-    version: "1.4"
+    version: "1.5"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/howtos/pages/provisioning-cluster-resources.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.5/modules/howtos/pages/provisioning-cluster-resources.adoc
   xref: xref:cxx-sdk:howtos:provisioning-cluster-resources.adoc[]
 ---
 
@@ -35,7 +35,7 @@ The C++ SDK also comes with some convenience functionality for common Couchbase 
 Management operations in the SDK may be performed through several interfaces depending on the object:
 
 * BucketManager — `couchbase::bucket_manager` — see [API docs](https://docs.couchbase.com/sdk-api/couchbase-cxx-client/classcouchbase%5F1%5F1bucket%5F%5Fmanager.html).
-* QueryIndexManager — `couchbase::query_index_manager` — see <https://docs.couchbase.com/sdk-api/couchbase-cxx-client/classcouchbase%5F1%5F1query>_index_manager.html\[API docs\].
+* QueryIndexManager — `couchbase::query_index_manager` — see [API docs](https://docs.couchbase.com/sdk-api/couchbase-cxx-client/classcouchbase%5F1%5F1query%5F%5Findex%5F%5Fmanager.html).
 * CollectionManager — `couchbase::collection_manager` — see [API docs](https://docs.couchbase.com/sdk-api/couchbase-cxx-client/classcouchbase%5F1%5F1collection%5F%5Fmanager.html).
-* AnalyticsIndexManager — `couchbase::analytics_index_manager` — see <https://docs.couchbase.com/sdk-api/couchbase-cxx-client/classcouchbase%5F1%5F1analytics>_index_manager.html\[API docs\].
-* SearchIndexManager — `couchbase::search_index_manager` — see <https://docs.couchbase.com/sdk-api/couchbase-cxx-client/classcouchbase%5F1%5F1search>_index_manager.html\[API docs\].
+* AnalyticsIndexManager — `couchbase::analytics_index_manager` — see [API docs](https://docs.couchbase.com/sdk-api/couchbase-cxx-client/classcouchbase%5F1%5F1analytics%5F%5Findex%5F%5Fmanager.html).
+* SearchIndexManager — `couchbase::search_index_manager` — see [API docs](https://docs.couchbase.com/sdk-api/couchbase-cxx-client/classcouchbase%5F1%5F1search%5F%5Findex%5F%5Fmanager.html).

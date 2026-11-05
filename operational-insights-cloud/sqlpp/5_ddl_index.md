@@ -2,7 +2,7 @@
 title: CREATE INDEX Statements
 description: This topic describes how to use a <code>CREATE</code> statement to
   create an index on a remote or standalone collection.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Operational Insights Capella
@@ -148,3 +148,8 @@ If you omit this modifier, then the default is INCLUDE UNKNOWN KEY.
 
 > [!NOTE]
 > Array indexes cannot include NULL or MISSING values. For this reason, you must specify EXCLUDE UNKNOWN KEY when defining an array index.
+
+## [](#see-also)See Also
+
+* [Using Indexes](7%5Fusing%5Findex.md)
+* [Cost-Based Optimizer](5b%5Fcbo.md)

@@ -1,6 +1,6 @@
 ---
 title: Creating Index from UI
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -14,6 +14,9 @@ antora:
 [View original HTML](/server/7.6/fts/fts-creating-index-from-UI.html)
 
 # Creating Index from UI
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 The user interface for Full Text Search is provided by the Couchbase Web Console. To proceed, you must have permission to log into the console, create indexes, and perform searches. For information on Role-Based Access Control, see Authorization.
 

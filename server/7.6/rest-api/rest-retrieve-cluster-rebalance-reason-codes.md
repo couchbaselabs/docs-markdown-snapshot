@@ -1,6 +1,6 @@
 ---
 title: Getting Cluster Rebalance Reason Codes
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -14,6 +14,9 @@ antora:
 [View original HTML](/server/7.6/rest-api/rest-retrieve-cluster-rebalance-reason-codes.html)
 
 # Getting Cluster Rebalance Reason Codes
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > When the cluster/bucket/service needs to be rebalanced, you can retrieve the reason for the rebalance using the 'GET /pools/default' method. 
 

@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting and Best Practices
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -15,6 +15,9 @@ antora:
 [View original HTML](/server/7.6/eventing/troubleshooting-best-practices.html)
 
 # Troubleshooting and Best Practices
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 ## [](#why-do-similar-functions-that-i-write-seem-to-run-slower-in-7-0-0-than-6-6-2)Why do similar functions that I write seem to run slower in 7.0.0 than 6.6.2?
 

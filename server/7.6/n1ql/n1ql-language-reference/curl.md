@@ -3,7 +3,7 @@ title: CURL Function
 description: The CURL() function implements a subset of cURL functionality and
   enables SQL++ queries to interact and integrate with external JSON data
   sources available over HTTP/REST.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -18,6 +18,9 @@ antora:
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/curl.html)
 
 # CURL Function
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 The `CURL()` function implements a subset of [cURL](https://en.wikipedia.org/wiki/CURL) functionality and enables SQL++ queries to interact and integrate with external JSON data sources available over HTTP/REST. This allows federated queries against external data sources, such as the [Google geocoding API](https://maps.googleapis.com), [Yahoo API](https://developer.yahoo.com/api/), or other Couchbase clusters. The federated queries can use full querying capabilities of SQL++, including functions, expressions, subqueries, JOINs, NESTs, UNNESTs, and so on.
 

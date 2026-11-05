@@ -2,7 +2,7 @@
 title: Intra-Cluster Replication
 description: Intra-cluster replication replicates data across the nodes of a
   cluster, by means of the <em>Database Change Protocol</em>.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -16,6 +16,9 @@ antora:
 [View original HTML](/server/7.6/learn/clusters-and-availability/intra-cluster-replication.html)
 
 # Intra-Cluster Replication
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Intra-cluster replication replicates data across the nodes of a cluster, by means of the _Database Change Protocol_. 
 

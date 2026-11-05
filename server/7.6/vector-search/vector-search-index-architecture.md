@@ -3,7 +3,7 @@ title: Vector Search Index Architecture
 description: Vector Search indexes use features from traditional Search indexes,
   with unique indexing algorithms and features that allow you to compare vectors
   in nearest neighbor searches.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -18,6 +18,9 @@ antora:
 [View original HTML](/server/7.6/vector-search/vector-search-index-architecture.html)
 
 # Vector Search Index Architecture
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > Vector Search indexes use features from traditional Search indexes, with unique indexing algorithms and features that allow you to compare vectors in nearest neighbor searches. 
 

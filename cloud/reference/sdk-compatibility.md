@@ -1,6 +1,6 @@
 ---
 title: SDK Compatibility With Capella
-pubDate: 2026-10-16T07:26:40.932Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Capella Operational
@@ -26,7 +26,7 @@ The following minimum versions of Couchbase SDKs are supported by Capella (every
 | ---------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
 | C SDK (_libcouchbase_) | [3.3.14](../../c-sdk/current/hello-world/start-using-sdk.md) and up. | [3.3.18](../../c-sdk/current/hello-world/start-using-sdk.md) and up. |
 | C++ SDK                | [1.0.0](../../cxx-sdk/1.0/hello-world/overview.md) and up.           | [1.2.0](../../cxx-sdk/1.2/hello-world/overview.md) and up.           |
-| .NET                   | [3.5.3](../../dotnet-sdk/3.5/hello-world/start-using-sdk.md) and up. | [3.8.0](../../dotnet-sdk/3.8/hello-world/start-using-sdk.md) and up. |
+| .NET                   | [3.5.3](#3.5@dotnet-sdk:hello-world:start-using-sdk.adoc) and up.    | [3.8.0](../../dotnet-sdk/3.8/hello-world/start-using-sdk.md) and up. |
 | Go                     | [2.8.0](#2.8@go-sdk:hello-world:start-using-sdk.adoc) and up.        | [2.11.0](../../go-sdk/2.11/hello-world/start-using-sdk.md) and up.   |
 | Java                   | [3.6.0](#3.6@java-sdk:hello-world:start-using-sdk.adoc) and up.      | [3.11.0](../../java-sdk/3.10/hello-world/start-using-sdk.md) and up. |
 | Kotlin                 | [1.3.0](#1.3@java-sdk:hello-world:start-using-sdk.adoc) and up.      | [3.10.0](../../java-sdk/3.10/hello-world/start-using-sdk.md) and up. |

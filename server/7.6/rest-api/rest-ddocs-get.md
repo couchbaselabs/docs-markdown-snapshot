@@ -3,7 +3,7 @@ title: Getting Design Doc Information
 description: To retrieve a design document, use the <code>GET
   /bucket/_design/[ddoc-name]</code> HTTP method and URI on the
   <code>8092</code> port.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -18,6 +18,9 @@ antora:
 [View original HTML](/server/7.6/rest-api/rest-ddocs-get.html)
 
 # Getting Design Doc Information
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 > To retrieve a design document, use the `GET /bucket/_design/[ddoc-name]` HTTP method and URI on the `8092` port. 
 

@@ -2,14 +2,14 @@
 title: Sub-Document Operations
 description: <em>Sub-document</em> operations can be used to efficiently access
   <em>parts</em> of documents.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Ruby SDK
-    version: "3.8"
+    version: "3.9"
   topic_type: howto
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/howtos/pages/subdocument-operations.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/release/3.9/modules/howtos/pages/subdocument-operations.adoc
   xref: xref:ruby-sdk:howtos:subdocument-operations.adoc[]
 ---
 
@@ -25,7 +25,7 @@ antora:
 Starting with Couchbase Server 4.5 you can atomically and efficiently update and retrieve _parts_ of a document. These parts are called _sub-documents_. While full-document retrievals retrieve the entire document and full document updates require sending the entire document, sub-document retrievals only retrieve relevant parts of a document and sub-document updates only require sending the updated portions of a document. You should use sub-document operations when you are modifying only portions of a document, and full-document operations when the contents of a document is to change significantly.
 
 > [!IMPORTANT]
-> The sub-document operations described on this page are for _Key-Value_ requests only: they are not related to sub-document SQL++ queries. (Sub-document SQL++ (formerly N1QL) queries are explained in the section [Querying with SQL++](n1ql-queries-with-sdk.md).)
+> The sub-document operations described on this page are for _Key-Value_ requests only: they are not related to sub-document SQL++ queries. (Sub-document SQL++ (formerly N1QL) queries are explained in the section [Querying with SQL++](#n1ql-queries-with-sdk.adoc).)
 
 In order to use sub-document operations you need to specify a _path_ indicating the location of the sub-document. The _path_ follows SQL++ syntax [below^](#), and [SQL++ Queries and Results](../../../server/current/n1ql/n1ql-intro/queriesandresults.md)). Considering the document:
 
@@ -430,7 +430,9 @@ If you need to combine both JSON _and_ path-syntax literals you can do so by esc
 
 ## [](#extended-attributes)Extended Attributes
 
-Extended Attributes (also known as XATTRs), built upon the Sub-Document API, allow developers to define application-specific metadata that will only be visible to those applications that request it or attempt to modify it. This might be, for example, meta-data specific to a programming framework that should be hidden by default from other frameworks or libraries, or possibly from other versions of the same framework. They are not intended for use in general applications, and data stored there cannot be accessed easily by some Couchbase services, such as Search.
+Extended Attributes (also known as XATTRs), built upon the Sub-Document API, allow developers to define application-specific metadata that will only be visible to those applications that request it or attempt to modify it. This might be, for example, meta-data specific to a programming framework that should be hidden by default from other frameworks or libraries, or possibly from other versions of the same framework.
+
+They are not intended for use in general applications, and data stored there cannot be accessed easily by some Couchbase services, such as Search.
 
 ## [](#xdcr)XDCR
 

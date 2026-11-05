@@ -1,6 +1,6 @@
 ---
 title: maxFeedsPerDCPAgent
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Couchbase Server
@@ -14,6 +14,9 @@ antora:
 [View original HTML](/server/7.6/fts/fts-advanced-settings-maxFeedsPerDCPAgent.html)
 
 # maxFeedsPerDCPAgent
+
+> [!IMPORTANT]
+> Couchbase Server Enterprise Edition 7.6 reaches End of Life on March 31, 2027\. Please upgrade to 8.0.x by following [Upgrade](https://docs.couchbase.com/server/current/install/upgrade.html), or contact [Couchbase Support](https://support.couchbase.com/hc/en-us).
 
 The `maxFeedsPerDCPAgent` setting refers to the number of index partitions a single physical connection to KV will handle. This setting controls the sharing of feed Agent or the underlying connection per feed of various index partitions belonging to the same bucket.
 

@@ -2,13 +2,13 @@
 title: Data Structures Reference
 description: You can use complex data structures such as dictionaries and lists
   in Couchbase.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-05T15:16:13.118Z
 meta:
   component:
     title: Ruby SDK
-    version: "3.8"
+    version: "3.9"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/ref/pages/data-structures.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/release/3.9/modules/ref/pages/data-structures.adoc
   xref: xref:ruby-sdk:ref:data-structures.adoc[]
 ---
 
