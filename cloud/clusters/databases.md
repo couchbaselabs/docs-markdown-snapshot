@@ -2,7 +2,7 @@
 title: Configure Your Cluster
 description: Understand the different configuration options available to
   customize your Couchbase Capella cluster.
-pubDate: 2026-11-05T15:16:13.118Z
+pubDate: 2026-11-06T04:28:52.781Z
 meta:
   component:
     title: Capella Operational
@@ -153,12 +153,15 @@ For safe and reliable cluster operations, and to minimize the severity of cluste
 
 Server-level enforcement thresholds are designed to ensure the optimal and reliable usage of available system resources by various workloads. These thresholds are as follows:
 
-| Cluster Metric                           | Threshold               |
-| ---------------------------------------- | ----------------------- |
-| Data Service Resident Ratio (Couchstore) | <= 1%                   |
-| Data Service Resident Ratio (Magma)      | <= 0.1%                 |
-| Free Disk Space                          | <= 4%                   |
-| \# of Buckets                            | <= 0.2 cores per bucket |
+| Cluster Metric                           | Threshold                                                 |
+| ---------------------------------------- | --------------------------------------------------------- |
+| Data Service Resident Ratio (Couchstore) | <= 1%                                                     |
+| Data Service Resident Ratio (Magma)      | <= 0.2%                                                   |
+| Data Service Data Size (Couchstore)      | \>= 2 TB per bucket, per node                             |
+| Data Service Data Size (Magma)           | \>= 16 TB per bucket, per node                            |
+| Free Disk Space                          | <= 4%                                                     |
+| \# of Buckets                            | <= 0.2 cores per bucket                                   |
+| \# of Collections                        | More than 1 collection for each MB of bucket memory quota |
 
 ### [](#couchbase-services)Services and Service Groups
 

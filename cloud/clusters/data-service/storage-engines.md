@@ -1,7 +1,7 @@
 ---
 title: Storage Engines
 description: "Capella supports two different backend storage engines: Magma and Couchstore."
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-06T04:28:52.781Z
 meta:
   component:
     title: Capella Operational
@@ -26,11 +26,11 @@ The choice of which storage engine to use depends on your use case and the size 
 Understanding the strengths and weaknesses of each backend storage engine helps you choose the one that best suits your requirements.
 
 __Table 1\. Couchstore and Magma at a glance__
-|                              | Couchstore | Magma [\[1\]](#quota-note)                  |
-| ---------------------------- | ---------- | ------------------------------------------- |
-| Minimum bucket memory quota  | 100 MiB    | 100 MiB (128 vBuckets)1 GiB (1024 vBuckets) |
-| Minimum memory to data ratio | 10%        | 1%                                          |
-| Maximum data per node        | 1.6 TiB    | 16 TiB                                      |
+|                                   | Couchstore | Magma [\[1\]](#quota-note)                  |
+| --------------------------------- | ---------- | ------------------------------------------- |
+| Minimum bucket memory quota       | 100 MiB    | 100 MiB (128 vBuckets)1 GiB (1024 vBuckets) |
+| Minimum memory to data ratio      | 10%        | 1%                                          |
+| Maximum data per node, per bucket | 2 TB       | 16 TB                                       |
 
 | [\[1\]](#quota-ref) | Magma's minimum memory requirement depends on the number of vBuckets. |
 | ------------------- | --------------------------------------------------------------------- |

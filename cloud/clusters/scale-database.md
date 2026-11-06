@@ -2,7 +2,7 @@
 title: Cluster Scaling
 description: Clusters can be multi-dimensionally scaled by adding or removing
   Service instances and whole Services, and by adjusting Service instance sizes.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-06T04:28:52.781Z
 meta:
   component:
     title: Capella Operational
@@ -28,7 +28,7 @@ The dimensions of Multi-Dimensional Scaling are:
 3. Adding and removing whole Services
 
 > [!IMPORTANT]
-> To minimize the risk and severity of cluster outages, Couchbase Capella clusters using Couchbase Server 7.6 or later have guardrails that limit some cluster operations when cluster conditions meets certian thresholds. To learn more, see [Couchbase Server Guardrails](databases.md#guardrails).
+> To minimize the risk and severity of cluster outages, Couchbase Capella clusters using Couchbase Server 7.6 or later have guardrails that limit some cluster operations when cluster conditions meets certain thresholds. To learn more, see [Couchbase Server Guardrails](databases.md#guardrails).
 
 > [!NOTE]
 > For scaling a Single Node cluster, see the limitations of different [cluster configuration options](modify-database.md#modify-existing-service).

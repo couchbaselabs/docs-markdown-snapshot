@@ -2,7 +2,7 @@
 title: Upgrade
 description: To upgrade a Couchbase-Server cluster means to upgrade the version
   of Couchbase Server that's running on every node.
-pubDate: 2026-11-05T15:16:13.118Z
+pubDate: 2026-11-06T04:28:52.781Z
 meta:
   component:
     title: Couchbase Server
@@ -128,11 +128,11 @@ You can perform all supported upgrades with the cluster either offline or online
 
 ### [](#table-upgrade-community)Community Edition Upgrade Paths
 
-| Starting Version | Path to Current Version                                                           |
-| ---------------- | --------------------------------------------------------------------------------- |
-| 5.x              | Any 5.0.x / 5.1.x / 5.5.x → 6.6 → 7.2.3 → any 8.0.x                               |
-| 6.x              | Any 6.0.x / 6.5.x → 6.6 → 7.2.3 → any 8.0.x                                       |
-| 7.x              | Any 7.0.x / 7.1.x → 7.2.3 → any 8.0.x Any 7.2.x → any 8.0.x Any 7.6.x → any 8.0.x |
+| Starting Version | Path to Current Version                                                         |
+| ---------------- | ------------------------------------------------------------------------------- |
+| 5.x              | Any 5.0.x / 5.1.x / 5.5.x → 6.6 → 7.2.3 → any 8.0.x                             |
+| 6.x              | Any 6.0.x / 6.5.x → 6.6 → 7.2.3 → any 8.0.x                                     |
+| 7.x              | Any 7.0.x / 7.1.x → 7.2.3 → any 8.0.xAny 7.2.x → any 8.0.xAny 7.6.x → any 8.0.x |
 
 > [!NOTE]
 > Important note when upgrading from 7.0.4 to 7.2.x on Windows 2019

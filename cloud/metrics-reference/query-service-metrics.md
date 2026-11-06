@@ -1,7 +1,7 @@
 ---
 title: Query Service Metrics
 description: A list of the metrics provided by the Query Service.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-06T04:28:52.781Z
 meta:
   component:
     title: Capella Operational
@@ -316,7 +316,7 @@ antora:
 
 `n1ql_load_factor`
 
-7.6.0 gauge The total load factor of the query node.
+7.6.0 gauge The total load factor of the query node. The load factor is a value from 0 to 100, and is the maximum of three values: the servicer load, the CPU usage, and the memory usage. It is calculated every 30 seconds and reported as a moving average over the last 15 minutes.
 
 `n1ql_mem_quota_exceeded_errors`
 
