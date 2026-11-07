@@ -1,6 +1,6 @@
 ---
 title: Release Notes
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-11-07T04:28:35.379Z
 meta:
   component:
     title: Spark Connector
@@ -17,6 +17,59 @@ antora:
 # Release Notes
 
 > Release notes for the Couchbase Spark Connector. 
+
+## [](#couchbase-spark-connector-4-0-3-6-november-2026)Couchbase Spark Connector 4.0.3 (6 November 2026)
+
+This release bumps dependencies, including dcp-client to 0.58.0, and is tested against Spark 4.1.4 and 4.2.1.
+
+### [](#improvements)Improvements
+
+* [SPARKC-245](https://issues.couchbase.com/browse/SPARKC-245): Schema inference for Query, Analytics, Enterprise Analytics and Columnar reads now runs as a single Spark task, rather than one per executor core.
+
+### [](#bug-fixes)Bug fixes
+
+* [SPARKC-246](https://issues.couchbase.com/browse/SPARKC-246): Query DataFrame reads once again apply backpressure, bounding executor memory when Spark consumes rows more slowly than the query service returns them.
+* [SPARKC-247](https://issues.couchbase.com/browse/SPARKC-247): Fixed incorrect and duplicated results when a user-supplied filter option containing OR was combined with pushed-down filters or query partitioning.
+* [SPARKC-248](https://issues.couchbase.com/browse/SPARKC-248): Passwords and other secrets in a connection identifier are no longer written to the connector's log output.
+* [SPARKC-249](https://issues.couchbase.com/browse/SPARKC-249): KV DataFrame writes now reject SaveMode.Append before writing any documents, instead of after.
+* [SPARKC-250](https://issues.couchbase.com/browse/SPARKC-250): On Spark 4, filters on collated string columns are now applied correctly, rather than being ignored.
+* [SPARKC-251](https://issues.couchbase.com/browse/SPARKC-251): Fixed pushed-down aggregations returning altered group-by values, null results with ten or more aggregates, and reduced-precision AVG results.
+* [SPARKC-252](https://issues.couchbase.com/browse/SPARKC-252): Filters pushed down to SQL++ now correctly handle string values containing quotes or LIKE wildcards, and nested fields in isin.
+
+#### [](#support-matrix)Support matrix
+
+This connector release was built against these versions:
+
+| Dependency                         | Version |
+| ---------------------------------- | ------- |
+| Scala                              | 2.13.18 |
+| Couchbase operational SDK          | 3.13.0  |
+| Couchbase Enterprise Analytics SDK | 1.1.0   |
+| Jackson                            | 2.21.2  |
+| Jackson annotations                | 2.21    |
+
+Spark versions actively tested:
+
+| Profile | Spark | Jackson | Jackson annotations |
+| ------- | ----- | ------- | ------------------- |
+| 4.1     | 4.1.4 | 2.21.2  | 2.21                |
+| 4.2     | 4.2.1 | 2.21.2  | 2.21                |
+
+The support matrix for Apache Spark releases is:
+
+| Apache Spark version | Supported by Apache until | Status                                                                                         |
+| -------------------- | ------------------------- | ---------------------------------------------------------------------------------------------- |
+| 4.3 and above        | \-                        | Currently unreleased; status unknown                                                           |
+| 4.2.1                | 2028-01-11                | Tested and supported                                                                           |
+| 4.1.4                | 2027-07-11                | Tested and supported                                                                           |
+| 4.0.X                | 2026-11-23                | Untested and unsupported; may not work due to very low Jackson version (2.18.2) Spark 4.0 uses |
+| 3.X                  | \-                        | Does not work due to Apache Spark binary changes at 4.x                                        |
+
+The source of the Apache support dates is the community site [endoflife.date](https://endoflife.date/apache-spark) along with the [Apache Spark versioning policy](https://spark.apache.org/versioning-policy.html).
+
+Users may try Apache Spark 4.x releases that are not listed here, though untested combinations will not be officially supported.
+
+The 4.x series is built exclusively with Scala 2.13.
 
 ## [](#couchbase-spark-connector-4-0-2-19-october-2026)Couchbase Spark Connector 4.0.2 (19 October 2026)
 
@@ -47,11 +100,11 @@ Extensive logging has been added. Users can search the Spark worker logs for lin
 26/10/16 13:17:26 INFO PartitionWriteStats: Partition 3 of 200: last 11.9s: succeeded=43541 (3674/s) failed=0 ignored=0 | op latency min=0.19 p50=4.15 p95=16.58 max=65.24ms | conversion min=0.01 p50=0.03 p95=0.14 max=47.21ms | upstream read min=0.01 p50=0.04 p95=0.16 max=779.26ms | queue size min=0 p50=15 p95=16 max=16 (percentiles from first 10000 of 43819) | totals in 11.9s: read=43819 succeeded=43786 failed=0 ignored=0
 ```
 
-### [](#bug-fixes)Bug fixes
+### [](#bug-fixes-2)Bug fixes
 
 * [SPARKC-243](https://issues.couchbase.com/browse/SPARKC-243): Handle larger document ids during error handling. Error handling documents are now written with a short hash instead of the previous construct that included the full document id, bucket, scope and collection.
 
-#### [](#support-matrix)Support matrix
+#### [](#support-matrix-2)Support matrix
 
 This connector release was built against these versions:
 
@@ -214,7 +267,7 @@ The main feature in this release is support for Couchbase Enterprise Analytics.
 * [SPARKC-231](https://couchbasecloud.atlassian.net/browse/SPARKC-231): Add KV replace support for DataFrame writes
 * [SPARKC-230](https://couchbasecloud.atlassian.net/browse/SPARKC-230): Add failure reporting and handling for individual operations.
 
-### [](#bug-fixes-2)Bug fixes
+### [](#bug-fixes-3)Bug fixes
 
 * [SPARKC-213](https://couchbasecloud.atlassian.net/browse/SPARKC-213): `couchbase.query` write with `SaveMode.Ignore` throwing unexpected `DocumentExistsException`.
 
@@ -233,7 +286,7 @@ Version 3.3.6 is built and tested against Spark 3.3.4, and uses Couchbase Scala 
 * [SPARKC-230](https://couchbasecloud.atlassian.net/browse/SPARKC-230): Add failure reporting and handling for individual operations.
 * [SPARKC-233](https://couchbasecloud.atlassian.net/browse/SPARKC-233): Add CAS to query DataFrame reads and KV DataFrame writes.
 
-### [](#improvements)Improvements
+### [](#improvements-2)Improvements
 
 * [SPARKC-212](https://couchbasecloud.atlassian.net/browse/SPARKC-212): Better distribute query read partitions so they are all approximately the same size, resulting in a performance improvement.
 * [SPARKC-209](https://couchbasecloud.atlassian.net/browse/SPARKC-209): Limits are now pushed down in DataFrame query reads, for a performance improvement.
@@ -251,7 +304,7 @@ Version 3.5.2 is built and tested against Spark 3.5.3, and supports Scala 2.12 a
 
 This release focuses on the performance of query DataFrame reads (`spark.read.format("couchbase.query")`), with several major performance improvements resulting. All users are encouraged to upgrade to this version.
 
-### [](#improvements-2)Improvements
+### [](#improvements-3)Improvements
 
 * [SPARKC-212](https://couchbasecloud.atlassian.net/browse/SPARKC-212): Better distribute query read partitions so they are all approximately the same size, resulting in a performance improvement.
 * [SPARKC-209](https://couchbasecloud.atlassian.net/browse/SPARKC-209): Limits are now pushed down in DataFrame query reads, for a performance improvement.
@@ -268,7 +321,7 @@ This release focuses on the performance of query DataFrame reads (`spark.read.fo
 
 Version 3.5.1 is built and tested against Spark 3.5.1, and supports Scala 2.12 and 2.13.
 
-### [](#improvements-3)Improvements
+### [](#improvements-4)Improvements
 
 * [SPARKC-196](https://issues.couchbase.com/browse/SPARKC-196): Support authentication with client certificates. See [Client Certificates](configuration.md) for more information.
 
@@ -278,7 +331,7 @@ Version 3.5.0 is built and tested against Spark 3.5.1, and supports Scala 2.12 a
 
 This is the first version of the connector to support Spark 3.5 and Scala 2.13\. It also adds support for [PySpark](pyspark.md) at `Stability.Volatile` level, and [Capella Columnar](columnar.md) at `Stability.Uncommitted` level.
 
-### [](#improvements-4)Improvements
+### [](#improvements-5)Improvements
 
 * [SPARKC-184](https://issues.couchbase.com/browse/SPARKC-184): Support Spark 3.5.
 * [SPARKC-185](https://issues.couchbase.com/browse/SPARKC-185): Support Scala 2.13.
@@ -288,7 +341,7 @@ This is the first version of the connector to support Spark 3.5 and Scala 2.13\.
 
 Version 3.3.5 is built and tested against Spark 3.3.4.
 
-### [](#improvements-5)Improvements
+### [](#improvements-6)Improvements
 
 * [SPARKC-194](https://issues.couchbase.com/browse/SPARKC-194): Partitioning options added for DataFrame query reads.
 

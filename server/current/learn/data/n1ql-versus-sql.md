@@ -1,7 +1,7 @@
 ---
 title: SQL++ versus SQL
 description: The most important difference between SQL++ and SQL is the <em>data model</em>.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-07T04:28:35.379Z
 meta:
   component:
     title: Couchbase Server
@@ -112,21 +112,21 @@ SELECT Name FROM HRData
 
 Each document can also regard itself as a data source, and run a query over its nested elements. Such nested elements are addressed using the dot (.) operator to descend a level, and the square-bracket ( \[ \] ) operator to index into an array element.
 
-  SELECT FullTime FROM HRData.Status
+  SELECT Status.FullTime FROM HRData
 {
      'FullTime': true
 }
 
 The selected fields can also be renamed using the `AS` operator, as in SQL:
 
-SELECT firstjob FROM HRData.History[0] AS firstjob
+SELECT History[0] AS firstjob FROM HRData
 {
      'firstjob': ['Yahoo', 2005, 2006]
 }
 
-SELECT firstjob[2] FROM HRData.History[0] AS firstjob
+SELECT History[0][2] AS firstjob FROM HRData
 {
-     'firstjob[2]': 2006
+     'firstjob': 2006
 }
 
 ## [](#data-filtering)Data Filtering

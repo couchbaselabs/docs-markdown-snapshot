@@ -2,7 +2,7 @@
 title: Client Settings
 description: The <code>ClusterEnvironment</code> class enables you to configure
   Java SDK options for security, timeouts, reliability, and performance.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-07T04:28:35.379Z
 meta:
   component:
     title: Java SDK
@@ -303,7 +303,7 @@ The idle time after which a TCP keepalive gets fired. (This setting has no effec
 | Builder           | env.ioConfig(it -> it.numKvConnections(int)) |
 | Default Value     | 1                                            |
 
-The number of actual endpoints (sockets) to open per node in the cluster against the Key/Value service. By default, for every node in the cluster one socket is opened where all traffic is pushed through. That way the SDK implicitly benefits from network batching characteristics when the workload increases. If you suspect based on profiling and benchmarking that the socket is saturated you can think about slightly increasing it to have more "parallel pipelines". This might be especially helpful if you need to push large documents through it. The recommendation is keeping it at 1 unless there is other evidence.
+The number of actual endpoints (sockets) to open per node in the cluster against the Key/Value service. The SDK opens this many sockets to each node for each bucket your application opens, and one further set per node for cluster-level operations. The total number of Key/Value sockets is therefore this value multiplied by the number of open buckets plus one, multiplied by the number of nodes. By default, for every node in the cluster one socket is opened where all traffic is pushed through. That way the SDK implicitly benefits from network batching characteristics when the workload increases. If you suspect based on profiling and benchmarking that the socket is saturated you can think about slightly increasing it to have more "parallel pipelines". This might be especially helpful if you need to push large documents through it. The recommendation is keeping it at 1 unless there is other evidence.
 
 > [!NOTE]
 > [Durable Write](../concept-docs/durability-replication-failure-considerations.md#synchronous-writes) operations with Couchbase Server 6.5 and above require up to 16 kvEndpoints per node, for most efficient operation, unless the environment dictates something a little lower.

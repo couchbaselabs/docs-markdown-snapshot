@@ -1,7 +1,7 @@
 ---
 title: Select Indexes
 description: How to select an index for a query.
-pubDate: 2026-11-05T15:16:13.118Z
+pubDate: 2026-11-07T04:28:35.379Z
 meta:
   component:
     title: Couchbase Server
@@ -24,7 +24,7 @@ antora:
 
 ## [](#introduction)Introduction
 
-Couchbase Server attempts to select an appropriate secondary index for a query, based on the filters in the WHERE clause. If it cannot select a secondary query, the Query Service falls back on the primary index for the keyspace, if one exists.
+Couchbase Server attempts to select an appropriate secondary index for a query, based on the filters in the WHERE clause. If it cannot select a secondary index, the Query Service falls back on the primary index for the keyspace, if one exists.
 
 If you want to try out the examples in this section, follow the instructions given in [Do a Quick Install](../getting-started/do-a-quick-install.md) to install Couchbase Server, configure a cluster, and load a sample dataset. Read the following for further information about the tools available for editing and executing queries:
 

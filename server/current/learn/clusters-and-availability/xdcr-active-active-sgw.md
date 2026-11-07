@@ -5,7 +5,7 @@ description: You can use XDCR with Sync Gateway mobile clusters in a
   the Server and the Sync Gateway versions support this option. Otherwise, using
   XDCR with Sync Gateway buckets in a bi-directional replication can cause data
   corruption.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-07T04:28:35.379Z
 meta:
   component:
     title: Couchbase Server
@@ -25,7 +25,7 @@ antora:
 ## [](#xdcr-active-active-sgw-intro)Introduction
 
 > [!NOTE]
-> To set up XDCR bi-directional replication with Sync Gateway (SGW), the minimum required version for Server is 7.6.6 and SGW is 4.0.0\.
+> To set up XDCR bi-directional replication with Sync Gateway (SGW), the minimum required version for Server is 7.6.6 and SGW is 4.0.0\. Couchbase Lite 3.x is compatible with this configuration. Couchbase Lite 4.0 is required only if Couchbase Lite clients need to move between the XDCR clusters.
 
 In the versions earlier than Server 7.6.6 and Sync Gateway (SGW) 4.0.0, only an active-passive setup was supported with both XDCR and SGW. XDCR Active-Active replication with Sync Gateway for XDCR-Mobile interoperability configuration was introduced in the Server 7.6.6 version, where you can configure an active-active XDCR setup with Sync Gateway (SGW) and mobile applications both on the XDCR source and target clusters.
 

@@ -2,7 +2,7 @@
 title: Capella App Services Release Notes
 description: Release notes for Capella App Services, including new features,
   enhancements, and updates.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-07T04:28:35.379Z
 meta:
   component:
     title: Capella App Services
@@ -79,6 +79,24 @@ For more information, see [System Metadata Migration](../migrating/migrate-sync-
 Customize alert payloads with either standard or advanced templates for Slack and Microsoft Teams integrations. To configure an alert integration, see [Configure a Slack Alert Integration for App Services](../monitoring/configure-slack-integration.md)and [Configure a Microsoft Teams Alert Integration for App Services](../monitoring/configure-microsoft-integration.md).  
 For more information about alert integrations, see [Alert Integrations for App Services](../monitoring/alert-integration.md).
 * Access to the Metrics and Admin REST APIs over private endpoints no longer requires configuration of IP allow list for the associated Metrics or Admin user.
+* New App Services deployments now deploy Sync Gateway 4.0.5  
+This release includes the following fixed issues and enhancements:
+
+  * [CBG-5255](https://issues.couchbase.com/browse/CBG-5255) — Fixed an issue where upgrading from a non-persistent to a persistent configuration caused the database to require a resync.
+  * [CBG-5287](https://issues.couchbase.com/browse/CBG-5287) — Fixed an issue where `_changes` feeds using `active_only=true` with a `limit` parameter could miss expected changes when revocations were present.
+  * [CBG-5361](https://issues.couchbase.com/browse/CBG-5361) — Fixed a panic in revoked feed handling.
+  * [CBG-5368](https://issues.couchbase.com/browse/CBG-5368) — Fixed an issue with channel removal macro expansion when channel names contained a period.
+  * [CBG-5383](https://issues.couchbase.com/browse/CBG-5383) — Fixed an issue where resync with regenerated sequences did not set the `_default` metadata ID on completion.  
+This release has a known issue, [CBG-5554](https://issues.couchbase.com/browse/CBG-5554) — activeOnly replication can miss documents for channels over the pagination limit. Upgrade to Sync Gateway 4.0.7 or later, or 4.1.1 or later to receive critical fixes.  
+For more information about all changes within this maintenance release, see the [Sync Gateway 4.0.5 Release Notes](../../sync-gateway/4.0/product-notes/release-notes.md#maint-4-0-5).
+* New App Services deployments now deploy Sync Gateway 3.3.5  
+This release includes the following fixed issues and enhancements:
+
+  * [CBG-5286](https://issues.couchbase.com/browse/CBG-5286) — Fixed an issue where `_changes` feeds using `active_only=true` with a `limit` parameter could miss expected changes when revocations were present.
+  * [CBG-5382](https://issues.couchbase.com/browse/CBG-5382) — Fixed an issue where resync with regenerated sequences did not set the `_default` metadata ID on completion.
+  * [CBG-5384](https://issues.couchbase.com/browse/CBG-5384) — Fixed a panic in revoked feed handling.  
+This release has a known issue, [CBG-5554](https://issues.couchbase.com/browse/CBG-5554) — activeOnly replication can miss documents for channels over the pagination limit. Upgrade to Sync Gateway 3.3.7 or later to receive critical fixes.  
+For more information about all changes within this maintenance release, see the [Sync Gateway 3.3.5 Release Notes](../../sync-gateway/3.3/product-notes/release-notes.md#maint-3-3-5).
 
 ## [](#may-2026)May 2026
 

@@ -3,7 +3,7 @@ title: SELECT Overview
 description: With the SELECT statement, you can query and manipulate JSON data.
   You can select, join, project, nest, unnest, group, and sort in a single
   SELECT statement.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-07T04:28:35.379Z
 meta:
   component:
     title: Couchbase Server
@@ -583,7 +583,7 @@ Results
 
 ### [](#index-selection)Index Selection
 
-The optimizer attempts to select an appropriate secondary index for a query based on the filters in the WHERE clause. If it cannot select a secondary query, the query service falls back on the primary index for the keyspace.
+The optimizer attempts to select an appropriate secondary index for a query based on the filters in the WHERE clause. If it cannot select a secondary index, the query service falls back on the primary index for the keyspace.
 
 By default, secondary indexes don't index a document if the leading index key is MISSING in the document. This means that when a query selects a field which is MISSING in some documents, the optimizer will not be able to choose a secondary index which uses that field as a leading key. There are two ways to resolve this:
 

@@ -2,7 +2,7 @@
 title: Certificates
 description: Couchbase Server supports using certificates for client and server
   security and  authentication.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-07T04:28:35.379Z
 meta:
   component:
     title: Couchbase Server
@@ -80,13 +80,18 @@ See [Create and Deploy Cluster and Node Certificates](../../manage/manage-securi
 
 The certificates described so far identify a node as a server, or an application as a client. A node also acts as a _client_ when it connects to another node in the cluster. It presents an internal client certificate to do so.
 
-Couchbase Server generates internal client certificates automatically, signed by the default self-signed root certificate. If you delete that root certificate from the trust store, the internal client certificates it signed are no longer trusted, and the Couchbase Server Web Console reports them as invalid. Replace the internal client certificates before removing the root certificate that signed them.
+Couchbase Server generates internal client certificates automatically, signed by the default self-signed root certificate. Replace the internal client certificates before removing the root certificate that signed them. Until you do, deleting that root certificate fails with `400 Bad Request` and a message reporting that it is in use by the listed nodes. If the certificate is removed by other means, the internal client certificates it signed are no longer trusted, and the Couchbase Server Web Console reports them as invalid.
 
 An internal client certificate must meet the following requirements:
 
 * It must be signed by a certificate that the cluster trusts.
-* Its key usage and extended key usage must be suitable for a TLS client.
-* It must carry the internal identity as an email subject alternative name, `internal@internal.couchbase.com`. A certificate without that SAN is rejected.
+* Its key usage must be `critical`, `Digital Signature` and `Key Encipherment`, and its extended key usage must be `TLS Web Client Authentication`.
+* It must carry an email subject alternative name in the `internal.couchbase.com` domain, for example `internal@internal.couchbase.com`. The domain is what the server checks; the local part before the `@` is not. A certificate without such a SAN is rejected with `400 Bad Request`.
+
+> [!WARNING]
+> An email subject alternative name in the `internal.couchbase.com` domain grants full administrator access, bypassing role-based access control. A certificate carrying one authenticates as the built-in `@internal` administrator whatever its common name, and whatever `clientCertificatePaths` the cluster is configured with.
+> 
+> Never put such a SAN on an application or RBAC-mapped client certificate. Give the internal client certificate a common name that matches no RBAC user, so that it is unambiguous which identity is in play.
 
 #### [](#uploading-custom-internal-client-certificates)Uploading Custom Internal Client Certificates
 

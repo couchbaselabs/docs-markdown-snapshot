@@ -3,7 +3,7 @@ title: What&#8217;s New in Version 7.6
 description: Couchbase is the modern database for enterprise applications.
   Couchbase Server 7.6 combines the strengths of relational databases with the
   flexibility, performance, and scale of Couchbase.
-pubDate: 2026-11-05T15:16:13.118Z
+pubDate: 2026-11-07T04:28:35.379Z
 meta:
   component:
     title: Couchbase Server
@@ -292,6 +292,7 @@ For more information about vector search, see [Use Vector Search for AI Applicat
   * In earlier versions, you could only set a collection's `maxTTL` setting when creating the collection. You can now change the `maxTTL` setting on a collection after creation.
   * You can now set a collection's `maxTTL` to -1 to prevent a bucket's non-zero `maxTTL` setting from causing documents in the collection to expire automatically. This new setting is useful if you want most of the documents in a bucket to automatically expire, but want to prevent the documents in one or more collections from expiring by default.  
 See [Expiration](../learn/data/expiration.md) for more information.
+* Subdocument `mutate_in` and `lookup_in` operations can now reference more than one distinct top-level extended attribute (xattr) key in a single call. Earlier versions rejected an operation that referenced more than one. This applies to both user-defined and system extended attributes. Within a single operation, all extended attribute paths must still appear before any document body paths.
 
 ### [](#query-service)Query Service
 

@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting and Best Practices
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-07T04:28:35.379Z
 meta:
   component:
     title: Capella Operational
@@ -129,19 +129,9 @@ Although not encouraged, in some cases a client may still require the creation o
 
 For example trying to run [ConvertBucketToCollections](eventing-handler-ConvertBucketToCollections.md) in a single bucket (as both source and target) will emit an 'ERR\_INTER\_FUNCTION\_RECURSION' error.
 
-To allow recursion and thus the above Function to run a special configuration flag may be toggled via a REST API call to any Eventing node as follows:
+In a self-managed Couchbase Server deployment, you can turn these checks off by setting the `allow_interbucket_recursion` configuration flag through a REST API call to an Eventing node.
 
-To disable recursion checks (requires admin privileges):
-
-```console
-curl -X POST -u Administrator:password http://192.168.1.5:8091/_p/event/api/v1/config -d '{"allow_interbucket_recursion":true}'
-```
-
-To re-enable recursion checks (requires admin privileges):
-
-```console
-curl -X POST -u Administrator:password http://192.168.1.5:8091/_p/event/api/v1/config -d '{"allow_interbucket_recursion":false}'
-```
+Capella does not support inter-bucket recursion. The `allow_interbucket_recursion` flag cannot be changed on a Capella cluster, and Capella provides no equivalent setting in the UI or the Management API. Design your Eventing Functions so that they do not create recursive loops.
 
 ## [](#in-the-cluster-i-notice-a-sharp-increase-in-the-timeout-statistics-what-are-my-next-steps)In the cluster, I notice a sharp increase in the Timeout Statistics. What are my next steps?
 

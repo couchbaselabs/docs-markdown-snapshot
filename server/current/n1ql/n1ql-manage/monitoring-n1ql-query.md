@@ -3,7 +3,7 @@ title: Manage and Monitor Queries
 description: Monitoring and profiling SQL++ queries, Query Service nodes, and
   corresponding system resources is important for smoother operational
   performance and efficiency of the system.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-07T04:28:35.379Z
 meta:
   component:
     title: Couchbase Server
@@ -682,6 +682,18 @@ curl $BASE_URL/admin/settings -u $USER:$PASSWORD \
 This property is a file size in MiB. When set to `0` (the default), completed request streaming is disabled.
 
 When set to any size greater than `0`, completed requests are streamed to archive files. The value of this property determines the size of the data to retain, per node. The configuration for completed requests determines which requests are saved.
+
+Couchbase Server 8.0
+
+In Couchbase Server 8.0 and later, you can enable completed request streaming for every Query node in the cluster at once. To do so, use the `queryCompletedStreamSize` cluster-level query setting, which takes the same file size in MiB and has the same default of `0`. Specify it with the [cluster-level query settings](query-settings.md#cluster-level-query-settings) REST API, on the cluster manager port.
+
+```sh
+curl -v -X POST -u $USER:$PASSWORD \
+http://localhost:8091/settings/querySettings \
+-d 'queryCompletedStreamSize=500'
+```
+
+Setting `queryCompletedStreamSize` overwrites the node-level `completed-stream-size` property on all Query nodes in the cluster. For more information, see [How Cluster-Level Settings Affect Node-Level Settings](query-settings.md#cluster-level-and-node-level).
 
 > [!NOTE]
 > The additional processing required to save completed requests to disk may limit overall request throughput on a Query node, but typically only when every completed request is being recorded, and requests are small or short-lived. The speed of the file system on which the server logs directory resides may affect the request throughput also.

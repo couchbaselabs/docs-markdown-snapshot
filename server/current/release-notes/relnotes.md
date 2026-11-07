@@ -2,7 +2,7 @@
 title: Release Notes for Couchbase Server 8.0
 description: Couchbase Server 8.0.0 introduces many fixes, as well as some
   deprecations and removals.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-07T04:28:35.379Z
 meta:
   component:
     title: Couchbase Server
@@ -614,6 +614,16 @@ Previously, it was possible to remove backups which would cause dependent increm
 For Couchbase Server 8.0.0 was released in October 2025, these are the known issues that aren't yet resolved.
 
 ### [](#dlist-known-issues-800-index-service)Index Service
+
+**[MB-52097](https://jira.issues.couchbase.com/browse/MB-52097/)**
+
+**Client-Certificate Authentication Fails on a Mixed-Version Cluster**
+
+Full mutual TLS support for the Index Service was introduced in Couchbase Server 8.0\. It is not supported on 7.6 clusters or on mixed-version clusters, even though it can be enabled on them.
+
+During a rolling upgrade from 7.6 to 8.0 of a cluster that has both node-to-node encryption and client-certificate authentication enabled, an upgraded Index Service node enforces client-certificate verification on its internal ports, which nodes still running 7.6 cannot satisfy. The rebalance that brings the first upgraded Index Service node into the cluster fails.
+
+**Workaround:** Disable client-certificate authentication before starting the upgrade, and re-enable it once every node is running 8.0 or later. See [Before You Upgrade](../install/upgrade.md#before-you-upgrade) for the procedure.
 
 **[MB-68626](https://jira.issues.couchbase.com/browse/MB-68626/)**
 

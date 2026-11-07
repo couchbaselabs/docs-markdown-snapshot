@@ -2,7 +2,7 @@
 title: Integrate an Agent with the Agent Catalog
 description: Use the Couchbase Agent Catalog to create your own custom AI agents
   with your preferred Large Language Model (LLM) and agent framework.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-07T04:28:35.379Z
 meta:
   component:
     title: Couchbase AI Data Plane
@@ -38,7 +38,7 @@ The Agent Catalog also helps you:
 * Version your user and system prompts and other agent-specific metadata.
 * Search for tools based on the question you want to answer, with support for catalogs of hundreds of tools.
 
-The Agent Catalog is not an agent framework, but works with agent frameworks to help you develop and manage your tools and prompts. You can use any Python-based agent framework, such as [LangChain](https://www.langchain.com/) or [ControlFlow](https://controlflow.ai/welcome). Any agent framework that expects lists of Python functions and strings for prompts can use the Agent Catalog.
+The Agent Catalog is not an agent framework, but works with agent frameworks to help you develop and manage your tools and prompts. You can use any Python-based agent framework, such as [LangChain](https://www.langchain.com/) or [LlamaIndex](https://www.llamaindex.ai/). Any agent framework that expects lists of Python functions and strings for prompts can use the Agent Catalog.
 
 The Agent Catalog does not execute tools itself - tool execution is managed by your chosen framework. The Agent Catalog lets you manage and audit agent application activity, such as:
 
