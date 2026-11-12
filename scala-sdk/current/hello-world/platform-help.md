@@ -2,7 +2,7 @@
 title: Platform Introduction
 description: A simple Scala orientation intro for <em>non-Scala</em> folk who
   are evaluating the Couchbase Scala SDK.
-pubDate: 2026-10-16T07:26:40.932Z
+pubDate: 2026-11-12T04:25:19.052Z
 meta:
   component:
     title: Scala SDK
@@ -117,7 +117,7 @@ SBT will take a while to start up as it upgrades various things for you and buil
 ## [](#running-your-project)Running Your Project
 
 ```sbt
-libraryDependencies += "com.couchbase.client" %% "scala-client" % "3.13.0"
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "3.13.1"
 ```
 
 **TODO**some intermediate steps…​.

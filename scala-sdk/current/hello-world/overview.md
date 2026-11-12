@@ -1,6 +1,6 @@
 ---
 title: Couchbase Scala SDK 3.13
-pubDate: 2026-10-28T04:21:06.350Z
+pubDate: 2026-11-12T04:25:19.052Z
 meta:
   component:
     title: Scala SDK
@@ -55,7 +55,7 @@ Couchbase is a large platform — covering many services — and Couchbase SDKs 
 Installing the SDK via Scala Build Tool
 
 ```sbt
-libraryDependencies += "com.couchbase.client" %% "scala-client" % "3.13.0"
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "3.13.1"
 ```
 
 The Scala SDK is provided with builds for Scala 2.12, 2.13, and 3.3 through 3.7 (inclusive). `%%` takes care of selecting the right version in Scala Build Tool. If you are using another build tool such as Maven or Gradle, then specify `scala-client_2.12`, `scala-client_2.13`, or `scala-client_3`, as appropriate. The Scala 3 build can be used from applications compiled with Scala 3.3 through 3.7 inclusive, and even Scala 2.13\. It is the recommended build for all users, except those on 2.12.

@@ -2,7 +2,7 @@
 title: "Developer Tutorial: Student Record System"
 description: Learn how to create and deploy a student records database on
   Capella Operational and connect it to your application, using the Java SDK.
-pubDate: 2026-10-16T07:26:40.932Z
+pubDate: 2026-11-12T04:25:19.052Z
 meta:
   component:
     title: Java SDK
@@ -254,7 +254,7 @@ To set up the Java SDK:
         <dependency>  
             <groupId>com.couchbase.client</groupId>  
             <artifactId>java-client</artifactId>  
-            <version>3.13.0</version>  
+            <version>3.13.1</version>  
         </dependency>  
         <dependency>  
             <groupId>org.slf4j</groupId>  

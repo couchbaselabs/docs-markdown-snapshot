@@ -2,7 +2,7 @@
 title: Start Using the Kotlin SDK
 description: A Kotlin application running on the JVM can use the Couchbase
   Kotlin SDK to access a Couchbase cluster.
-pubDate: 2026-10-16T07:26:40.932Z
+pubDate: 2026-11-12T04:25:19.052Z
 meta:
   component:
     title: Kotlin SDK
@@ -41,18 +41,18 @@ You can use your favorite dependency management tool to include the SDK in your 
 * Maven
 
 ```kotlin
-implementation("com.couchbase.client:kotlin-client:3.13.0")
+implementation("com.couchbase.client:kotlin-client:3.13.1")
 ```
 
 ```groovy
-implementation "com.couchbase.client:kotlin-client:3.13.0"
+implementation "com.couchbase.client:kotlin-client:3.13.1"
 ```
 
 ```xml
 <dependency>
   <groupId>com.couchbase.client</groupId>
   <artifactId>kotlin-client</artifactId>
-  <version>3.13.0</version>
+  <version>3.13.1</version>
 </dependency>
 ```
 

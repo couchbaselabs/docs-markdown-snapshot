@@ -2,7 +2,7 @@
 title: Hello World
 description: Install, connect, try. A quick start guide to get you up and
   running with Couchbase and the Scala SDK.
-pubDate: 2026-10-16T07:26:40.932Z
+pubDate: 2026-11-12T04:25:19.052Z
 meta:
   component:
     title: Scala SDK
@@ -95,7 +95,7 @@ More details of the installation process are in the [full installation guide](..
 * Maven
 
 ```sbt
-libraryDependencies += "com.couchbase.client" %% "scala-client" % "3.13.0"
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "3.13.1"
 ```
 
 This will automatically use the correct build for your Scala version.
@@ -104,7 +104,7 @@ For Scala 2.13 or Scala 3.3 through 3.7, include the following in your `build.gr
 
 ```groovy
 dependencies {
-    compile group: 'com.couchbase.client', name: 'scala-client_3', version: '3.13.0'
+    compile group: 'com.couchbase.client', name: 'scala-client_3', version: '3.13.1'
 }
 ```
 
@@ -117,7 +117,7 @@ For Scala 2.13 or Scala 3.3 through 3.7, include the following in your Maven `po
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>scala-client_3</artifactId>
-        <version>3.13.0</version>
+        <version>3.13.1</version>
     </dependency>
 </dependencies>
 ```

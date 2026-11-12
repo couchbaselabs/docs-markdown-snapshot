@@ -1,6 +1,6 @@
 ---
 title: Couchbase Java SDK 3.13
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-11-12T04:25:19.052Z
 meta:
   component:
     title: Java SDK
@@ -54,7 +54,7 @@ Installing the SDK via Maven
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>java-client</artifactId>
-        <version>3.13.0</version>
+        <version>3.13.1</version>
     </dependency>
 </dependencies>
 ```

@@ -1,7 +1,7 @@
 ---
 title: Full Installation
 description: Installation instructions for the Couchbase Java Client.
-pubDate: 2026-10-16T07:26:40.932Z
+pubDate: 2026-11-12T04:25:19.052Z
 meta:
   component:
     title: Java SDK
@@ -30,7 +30,7 @@ The Java SDK is tested against LTS versions of OpenJDK — see our [compatibilit
 
 At least Java 8 is required for current releases; see the [Compatibility](compatibility.md#jdk-compat) section for details. We recommend running the latest Java LTS version (i.e. at the time of writing JDK 25) with the highest patch version available.
 
-Couchbase publishes all stable artifacts to [Maven Central](https://central.sonatype.com/namespace/com.couchbase.client). The latest version of the 3.13 SDK is [3.13.0](https://central.sonatype.com/artifact/com.couchbase.client/java-client/3.13.0/jar).
+Couchbase publishes all stable artifacts to [Maven Central](https://central.sonatype.com/namespace/com.couchbase.client). The latest version of the 3.13 SDK is [3.13.1](https://central.sonatype.com/artifact/com.couchbase.client/java-client/3.13.1/jar).
 
 You can use your favorite dependency management tool to install the SDK.
 
@@ -43,7 +43,7 @@ For [Maven](https://maven.apache.org), you can insert the following into the dep
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>java-client</artifactId>
-        <version>3.13.0</version>
+        <version>3.13.1</version>
     </dependency>
 ```
 
@@ -52,7 +52,7 @@ Refer to the [Maven Documentation](https://maven.apache.org/guides/introduction/
 For [Gradle](https://gradle.org/), you can use:
 
 ```groovy
-implementation 'com.couchbase.client:java-client:3.13.0'
+implementation 'com.couchbase.client:java-client:3.13.1'
 ```
 
 Alternatively, we provide a zip file with all the dependencies bundled if you wish to manually include the `jar` files in your classpath. Refer to the [Release Notes](sdk-release-notes.md) for further details. You can also find links to the hosted javadocs there.

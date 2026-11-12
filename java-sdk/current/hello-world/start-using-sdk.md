@@ -2,7 +2,7 @@
 title: Hello World
 description: Install, connect, try. A quick start guide to get you up and
   running with Couchbase and the Java SDK.
-pubDate: 2026-10-16T07:26:40.932Z
+pubDate: 2026-11-12T04:25:19.052Z
 meta:
   component:
     title: Java SDK
@@ -84,7 +84,7 @@ The code examples also assume:
 
 We recommend running the latest Java LTS version (i.e. at the time of writing JDK 25) with the highest patch version available. Couchbase publishes all stable artifacts to [Maven Central](https://central.sonatype.com/namespace/com.couchbase.client).
 
-The latest version of 3.13.x is [3.13.0](https://central.sonatype.com/artifact/com.couchbase.client/java-client/3.13.0/jar).
+The latest version of 3.13.x is [3.13.1](https://central.sonatype.com/artifact/com.couchbase.client/java-client/3.13.1/jar).
 
 More details of the installation process are in the [full installation guide](../project-docs/sdk-full-installation.md). In most cases, given the above prerequisites, use your favorite dependency management tool to install the SDK.
 
@@ -96,13 +96,13 @@ More details of the installation process are in the [full installation guide](..
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>java-client</artifactId>
-        <version>3.13.0</version>
+        <version>3.13.1</version>
     </dependency>
 </dependencies>
 ```
 
 ```groovy
-implementation 'com.couchbase.client:java-client:3.13.0'
+implementation 'com.couchbase.client:java-client:3.13.1'
 ```
 
 ### [](#ide-plugins)IDE Plugins

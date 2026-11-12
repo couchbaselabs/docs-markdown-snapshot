@@ -1,6 +1,6 @@
 ---
 title: Couchbase Capella Management API Reference
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-11-12T04:25:19.052Z
 meta:
   component:
     title: Capella Operational
@@ -357,12 +357,12 @@ antora:
     * postAccept or Associate Operational Insights Private Endpoint Request
     * postReject or Disassociate Operational Insights Private Endpoint Connection.
 * AI Data Plane
+  * AI Data Plane Management API Overview
   * AI Agent Memory Allowed CIDRs
     * getList Agent Memory Server Allowed CIDRs
     * postCreate Agent Memory Server Allowed CIDR
     * delDelete Agent Memory Server Allowed CIDR
     * getList Organization Agent Memory Allowed CIDRs
-  * AI Data Plane Management API Overview
   * AI Agent Memory API Keys
     * getList Agent Memory API Keys
     * postCreate Agent Memory API Key
@@ -395,6 +395,15 @@ antora:
     * getGet AI Workflow Run
     * getGet AI Workflow Run Processed Files
     * getGet Supported External Embedding Models
+  * Allowed CIDRs (MCP Server)
+    * getList MCP Server Allowed CIDRs
+    * postCreate MCP Server Allowed CIDR
+    * delDelete MCP Server Allowed CIDR
+  * MCP Server API Keys
+    * getList MCP Server API Keys
+    * postCreate MCP Server API Key
+    * getGet MCP Server API Key
+    * delDelete MCP Server API Key
   * MCP Servers
     * getList MCP Servers
     * postCreate MCP Server
@@ -6508,7 +6517,7 @@ _token_
 | memoryAllocationInMb     | integer The amount of memory to allocate for the bucket memory in MiB. This is the maximum limit is dependent on the allocation of the KV service. For example, 80% of the allocation. For Couchbase buckets, the default and minimum memory allocation changes according to the Storage Backend type as follows: For Couchstore, the default and minimum memory allocation is 100 MiB. For Magma, the default and minimum memory allocation is 1024 MiB with 1024 buckets for Couchbase server below 8.0\. The default and minimum memory allocation is 100 MiB with 128 vbuckets for Couchbase server version 8.0 and above. For Ephemeral buckets, the default and minimum memory allocation is 100 MiB. |
 | bucketConflictResolution | string (BucketConflictResolution) Default: "seqno" Enum: "seqno" "lww" The means by which conflicts are resolved during replication. This field may be referred to as "conflict resolution" in the Couchbase documentation, and seqno and lww may be referred to as "sequence number" and "timestamp" respectively. This field cannot be changed later.  To learn more, see [Conflict Resolution](https://docs.couchbase.com/cloud/clusters/xdcr/xdcr.html#conflict-resolution).                                                                                                                                                                                                                            |
 | durabilityLevel          | string (DurabilityLevel) Default: "none" Enum: "none" "majority" "majorityAndPersistActive" "persistToMajority" This is the minimum level at which all writes to the bucket must occur.  The options for Durability level are as follows, according to the bucket type. For a Couchbase bucket: None Replicate to Majority Majority and Persist to Active Persist to Majority For an Ephemeral bucket: None Replicate to Majority  To learn more, see [Create a Bucket](https://docs.couchbase.com/cloud/clusters/data-service/manage-buckets.html#add-bucket).                                                                                                                                             |
-| replicas                 | integer (Replicas) Default: 1 Enum: 1 2 3 The number of replicas for the bucket. To learn more, see [Create a Bucket](https://docs.couchbase.com/cloud/clusters/data-service/manage-buckets.html#add-bucket).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| replicas                 | integer (Replicas) Default: 1 Enum: 0 1 2 3 The number of replicas for the bucket. Single-node clusters need 0\. To learn more, see [Create a Bucket](https://docs.couchbase.com/cloud/clusters/data-service/manage-buckets.html#add-bucket).                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | flush                    | boolean Deprecated Default: false Replaced by flushEnabled. This property is deprecated and will be removed in a future release. Determines whether flushing is enabled on the bucket. Enable Flush to delete all items in this bucket at the earliest opportunity. Disable Flush to avoid inadvertent data loss.                                                                                                                                                                                                                                                                                                                                                                                           |
 | flushEnabled             | boolean Default: false Determines whether bucket flush is enabled. Set flushEnabled to true to be able to delete all items in this bucket using the /flush endpoint. Disable flushEnabled to avoid inadvertent data loss by calling the /flush endpoint .                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | timeToLiveInSeconds      | integer Default: 0 Specify the time to live (TTL) value in seconds. This is the maximum time to live for items in the bucket. Default is 0, that means TTL is disabled. This is a non-negative value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
@@ -6824,7 +6833,7 @@ _token_
 | memoryAllocationInMbrequired | integer The new amount of memory to allocate for the bucket memory in MiB. The maximum limit is dependent on the allocation of the KV service; for example, 80% of the allocation. For Couchbase buckets, the default and minimum memory allocation changes according to the Storage Backend type, as follows: For Couchstore, the default and minimum memory allocation is 100 MiB. For Magma, the default and minimum memory allocation is 1024 MiB. For Ephemeral buckets, the default and minimum memory allocation is 100 MiB.                                                                                                  |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | durabilityLevelrequired      | string Enum: "none" "majority" "majorityAndPersistActive" "persistToMajority" This is the minimum level at which all writes to the bucket must occur. The options for Durability level are as follows, according to the bucket type. For a Couchbase bucket: None Replicate to Majority Majority and Persist to Active Persist to Majority For an Ephemeral bucket: None Replicate to Majority A Durability other than None cannot be set on a bucket that is linked with an App Endpoint. To learn more, see [Create a Bucket](https://docs.couchbase.com/cloud/clusters/data-service/manage-buckets.html#add-bucket).              |
-| replicasrequired             | integer Enum: 1 2 3 The number of replicas for the bucket. To learn more, see [Create a Bucket](https://docs.couchbase.com/cloud/clusters/data-service/manage-buckets.html#add-bucket).                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| replicasrequired             | integer Enum: 0 1 2 3 The number of replicas for the bucket. Single-node clusters need 0\. To learn more, see [Create a Bucket](https://docs.couchbase.com/cloud/clusters/data-service/manage-buckets.html#add-bucket).                                                                                                                                                                                                                                                                                                                                                                                                              |
 | flush                        | boolean Deprecated Default: false Replaced by flushEnabled. This property is deprecated and will be removed in a future release. The new value of flush property. This determines whether bucket flush is enabled. Enable Flush to be able to delete all items in this bucket at the earliest opportunity using /flush endpoint. Disable Flush to avoid inadvertent data loss by calling the /flush endpoint                                                                                                                                                                                                                         |
 | flushEnabled                 | boolean Default: false This determines whether bucket flush is enabled. Enable flushEnabled to delete all items in this bucket at the earliest opportunity by calling the /flush endpoint. Disable flushEnabled to avoid inadvertent data loss by calling the /flush endpoint.                                                                                                                                                                                                                                                                                                                                                       |
 | timeToLiveInSecondsrequired  | integer Specify the new time to live (TTL) value in seconds. This is the maximum time to live for items in the bucket. If specified as 0, TTL is disabled. This is a non-negative value. A bucket that is linked with an App Endpoint cannot have a TTL configured.                                                                                                                                                                                                                                                                                                                                                                  |
@@ -6870,7 +6879,7 @@ Copy
 `{
 * "memoryAllocationInMb": 100,
 * "durabilityLevel": "none",
-* "replicas": 1,
+* "replicas": 0,
 * "flush": false,
 * "flushEnabled": false,
 * "timeToLiveInSeconds": 100,
@@ -9534,7 +9543,7 @@ _token_
 | serviceGroupsrequired      | Array of objects (ServiceGroup) non-empty The couchbase service groups to be run. - The set of nodes that share the same disk, number of nodes and services. - At least one service group must contain the data service.                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | availabilityrequired       | object (Availability)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | supportrequired            | object (Support)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| zones                      | Array of strings Zones is the cloud services provider availability zones for the cluster. Currently Supported only for single AZ clusters so only 1 zone is allowed in list.                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| zones                      | Array of strings The IDs of the availability zones for the cluster. Supported only for AWS. Single AZ clusters: 0 or 1 zone. Multi AZ clusters: 0 or exactly 3 unique zones, all in the cluster's region. If omitted, the availability zones are chosen automatically.                                                                                                                                                                                                                                                                                                                                                                   |
 | cmekId                     | string <uuid\> The ID of the CMEK Key.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | enablePrivateDNSResolution | boolean EnablePrivateDNSResolution signals that the cluster should have hostnames that are hosted in a public DNS zone that resolve to a private DNS address. This exists to support the use case of customers connecting from their own data centers where it is not possible to make use of a cloud service provider DNS zone.                                                                                                                                                                                                                                                                                                         |
 
@@ -9796,7 +9805,11 @@ Copy
     * "cmekId": "ffffffff-aaaa-1414-eeee-000000000000",
     * "enablePrivateDNSResolution": true,
     * "deletionProtection": false,
-    * "expressScaling": "enabled"  
+    * "zones": [
+      * "use1-az1",
+      * "use1-az2",
+      * "use1-az4"  
+      ]  
   }  
 ],
 * "cursor": {
@@ -9937,7 +9950,11 @@ Copy
 * "cmekId": "ffffffff-aaaa-1414-eeee-000000000000",
 * "enablePrivateDNSResolution": true,
 * "deletionProtection": false,
-* "expressScaling": "enabled"
+* "zones": [
+  * "use1-az1",
+  * "use1-az2",
+  * "use1-az4"  
+]
 }`
 
 ## [](#tag/Clusters/operation/putCluster)Update Cluster 
@@ -19720,6 +19737,7 @@ Copy
   }  
 ],
 * "direction": "oneWay",
+* "mobileSyncMode": "off",
 * "audit": {
   * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
   * "createdAt": "2021-09-01T12:34:56Z"  
@@ -19860,12 +19878,14 @@ _token_
 
 required
 
-| priority          | string Default: "high" Enum: "low" "medium" "high" Priority represents the resource allocation to the replication. low: Resource constraints are applied when competing with high priority replications medium: Resource constraints are applied during initial processing when competing with high priority replications, then operates as high priority high: No resource constraints are applied (default priority) |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| networkUsageLimit | integer Default: 0 Network usage limit in MiB per second. Default is 0 meaning it is unlimited.                                                                                                                                                                                                                                                                                                                        |
-| filter            | object (filter) Filter contains the replication settings which are passed to the Couchbase server API while creating a replication.                                                                                                                                                                                                                                                                                    |
-| allScopes         | boolean Default: false If true, all scopes will be replicated. If false, the scopes specified in the mappings field will be replicated.                                                                                                                                                                                                                                                                                |
-| mappings          | Array of objects (mappings) Defines mappings from source to target scopes and collections. This field is only required if you are replicating specific scopes and collections. Note: If the collections array is empty or omitted, it implies all collections under that scope would be replicated.                                                                                                                    |
+| priority          | string Default: "high" Enum: "low" "medium" "high" Priority represents the resource allocation to the replication. low: Resource constraints are applied when competing with high priority replications. medium: Resource constraints are applied during initial processing when competing with high priority replications, then operates as high priority. high: No resource constraints are applied (default priority).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| networkUsageLimit | integer Default: 0 Network usage limit in MiB per second. Default is 0 meaning it is unlimited. The maximum is 1000000.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| filter            | object (filter) Filter contains the replication settings which are passed to the Couchbase server API while creating a replication.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| allScopes         | boolean Default: false If true, all scopes will be replicated. If false, the scopes specified in the mappings field will be replicated.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| mappings          | Array of objects (mappings) Defines mappings from source to target scopes and collections. This field is only required if you are replicating specific scopes and collections. Note: If the collections array is empty or omitted, it implies all collections under that scope would be replicated.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| mobileSyncMode    | string (MobileSyncMode) Default: "off" Enum: "off" "active" Controls Active-Active XDCR compatibility with App Services (Mobile XDCR). Defaults to off when omitted on create; omitting it on update leaves the current value unchanged. off: the replication is not compatible with App Services running on both sides. active: the replication preserves mobile metadata so that App Services can run on both the source and the target. Requires clusters on 7.6.6 or greater and any associated App Services on 4.0 or greater. Setting this to active requires Cross Cluster Versioning on both the source and the target bucket. When creating a replication, this is enabled for you. When updating an existing replication, it is not, so enable it on both buckets first.                                                                                                                                                                                                                              |
+| conflictLogging   | object (ConflictLogging) XDCR conflict logging configuration (Server 8.0). Requires the source and target clusters to be on Server 8.0 or greater and Cross Cluster Versioning (enableCrossClusterVersioning) to be enabled on both the source and target buckets. The configuration can be specified with disabled set to true, so that the conflict-log targets are staged before logging is turned on. Enable or disable by updating the replication with the desired disabled value. On update, omitting this field leaves the existing configuration unchanged; when the object is present it replaces the existing configuration, and an empty object clears it. On create there is nothing to clear, so an empty object simply means no conflict logging. Send disabled, bucket and collection together. An object carrying only some of the three is rejected. On a two-way replication the same configuration is applied to both directions, so the bucket and collection must exist on both clusters. |
 
 ### Responses
 
@@ -19893,6 +19913,10 @@ The requested resource was not found.
 
 Returned when there is a conflict with the current state of a resource.
 
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
 **422** 
 
 Request validation error.
@@ -19915,7 +19939,7 @@ application/json
 
 Example
 
-updateReplicationupdateReplicationAllScopesupdateReplicationScopesupdateReplicationAllFiltersupdateReplicationFilterExpressionsupdateReplication
+updateReplicationupdateReplicationAllScopesupdateReplicationScopesupdateReplicationAllFiltersupdateReplicationFilterExpressionsupdateReplicationMobileupdateReplicationConflictLoggingupdateReplicationConflictLoggingClearupdateReplication
 
 Copy
 
@@ -19961,6 +19985,7 @@ Copy
 * 403
 * 404
 * 409
+* 412
 * 422
 * 500
 
@@ -20197,15 +20222,17 @@ _token_
 
 required
 
-| sourceBucketrequired | string The ID of the source bucket.                                                                                                                                                                                                                                                                                                                                                                                    |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| targetrequired       | object Target contains all the metadata about a replication target.                                                                                                                                                                                                                                                                                                                                                    |
-| mode                 | string Default: "async" Enum: "async" "sync" This specifies the replication creation mode.                                                                                                                                                                                                                                                                                                                             |
-| mappings             | Array of objects (mappings) Defines mappings from source to target scopes and collections. This field is only required if you are replicating specific scopes and collections. Note: If the collections array is empty or omitted, it implies all collections under that scope would be replicated.                                                                                                                    |
-| direction            | string Default: "oneWay" Enum: "oneWay" "twoWay" Direction specifies the replication flow — whether it's oneWay (source to target only) or twoWay (also from target back to source).                                                                                                                                                                                                                                   |
-| priority             | string Default: "high" Enum: "low" "medium" "high" Priority represents the resource allocation to the replication. low: Resource constraints are applied when competing with high priority replications medium: Resource constraints are applied during initial processing when competing with high priority replications, then operates as high priority high: No resource constraints are applied (default priority) |
-| networkUsageLimit    | integer Default: 0 Network usage limit in MiB per second. 0 means unlimited.                                                                                                                                                                                                                                                                                                                                           |
-| filter               | object (filter) Filter contains the replication settings which are passed to the Couchbase server API while creating a replication.                                                                                                                                                                                                                                                                                    |
+| sourceBucketrequired | string The ID of the source bucket.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| targetrequired       | object Target contains all the metadata about a replication target.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| mode                 | string Default: "async" Enum: "async" "sync" This specifies the replication creation mode.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| mappings             | Array of objects (mappings) Defines mappings from source to target scopes and collections. This field is only required if you are replicating specific scopes and collections. Note: If the collections array is empty or omitted, it implies all collections under that scope would be replicated.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| direction            | string Default: "oneWay" Enum: "oneWay" "twoWay" Direction specifies the replication flow — whether it's oneWay (source to target only) or twoWay (also from target back to source).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| priority             | string Default: "high" Enum: "low" "medium" "high" Priority represents the resource allocation to the replication. low: Resource constraints are applied when competing with high priority replications. medium: Resource constraints are applied during initial processing when competing with high priority replications, then operates as high priority. high: No resource constraints are applied (default priority).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| networkUsageLimit    | integer Default: 0 Network usage limit in MiB per second. 0 means unlimited. The maximum is 1000000.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| mobileSyncMode       | string (MobileSyncMode) Default: "off" Enum: "off" "active" Controls Active-Active XDCR compatibility with App Services (Mobile XDCR). Defaults to off when omitted on create; omitting it on update leaves the current value unchanged. off: the replication is not compatible with App Services running on both sides. active: the replication preserves mobile metadata so that App Services can run on both the source and the target. Requires clusters on 7.6.6 or greater and any associated App Services on 4.0 or greater. Setting this to active requires Cross Cluster Versioning on both the source and the target bucket. When creating a replication, this is enabled for you. When updating an existing replication, it is not, so enable it on both buckets first.                                                                                                                                                                                                                              |
+| filter               | object (filter) Filter contains the replication settings which are passed to the Couchbase server API while creating a replication.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| conflictLogging      | object (ConflictLogging) XDCR conflict logging configuration (Server 8.0). Requires the source and target clusters to be on Server 8.0 or greater and Cross Cluster Versioning (enableCrossClusterVersioning) to be enabled on both the source and target buckets. The configuration can be specified with disabled set to true, so that the conflict-log targets are staged before logging is turned on. Enable or disable by updating the replication with the desired disabled value. On update, omitting this field leaves the existing configuration unchanged; when the object is present it replaces the existing configuration, and an empty object clears it. On create there is nothing to clear, so an empty object simply means no conflict logging. Send disabled, bucket and collection together. An object carrying only some of the three is rejected. On a two-way replication the same configuration is applied to both directions, so the bucket and collection must exist on both clusters. |
 
 ### Responses
 
@@ -20237,6 +20264,10 @@ The requested resource was not found.
 
 Returned when there is a conflict with the current state of a resource.
 
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
 **422** 
 
 Request validation error.
@@ -20259,7 +20290,7 @@ application/json
 
 Example
 
-createReplicationcreateReplicationAsynccreateReplicationSynccreateReplicationAllScopescreateReplicationAllCollectionscreateReplicationWithFilterscreateReplicationSelfManagedTargetcreateReplication
+createReplicationcreateReplicationAsynccreateReplicationSynccreateReplicationAllScopescreateReplicationAllCollectionscreateReplicationWithFilterscreateReplicationSelfManagedTargetcreateReplicationMobilecreateReplicationConflictLoggingcreateReplication
 
 Copy
 
@@ -20298,6 +20329,7 @@ Copy
 * 403
 * 404
 * 409
+* 412
 * 422
 * 500
 
@@ -25257,6 +25289,9 @@ In order to access this endpoint, the provided API key must have at least one of
 * Organization Owner
 * Project Owner
 * Project Manager
+* Project Viewer
+* Database Data Writer
+* Database Data Reader
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -31342,6 +31377,10 @@ Copy
 * "hint": "The request was malformed or invalid."
 }`
 
+## [](#tag/AI-Data-Plane-Management-API-Overview)AI Data Plane Management API Overview
+
+Manage Couchbase AI Data Plane instances with REST APIs. Use these APIs to manage AI workflows, model services and agent memory servers with their API keys, MCP servers and tools, and external AI provider configurations.
+
 ## [](#tag/AI-Agent-Memory-Allowed-CIDRs)AI Agent Memory Allowed CIDRs
 
 Agent memory server IP allowlists control which IPv4 addresses can reach the agent memory server data plane. The allowlist is deny-by-default: a freshly deployed server has no allowed CIDRs and is unreachable until at least one CIDR is added.
@@ -31363,9 +31402,6 @@ In order to access this endpoint, the provided API key must have at least one of
 * Project Viewer
 * Database Data Reader/Writer
 * Database Data Reader
-* Cluster Owner
-* Cluster Data Writer
-* Cluster Data Viewer
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -31477,7 +31513,6 @@ In order to access this endpoint, the provided API key must have at least one of
 * Organization Owner
 * Project Creator
 * Project Owner
-* Cluster Owner
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -31589,7 +31624,6 @@ In order to access this endpoint, the provided API key must have at least one of
 * Organization Owner
 * Project Creator
 * Project Owner
-* Cluster Owner
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -31691,9 +31725,6 @@ In order to access this endpoint, the provided API key must have at least one of
 * Project Viewer
 * Database Data Reader/Writer
 * Database Data Reader
-* Cluster Owner
-* Cluster Data Writer
-* Cluster Data Viewer
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -31802,10 +31833,6 @@ Copy
 }
 }`
 
-## [](#tag/AI-Data-Plane-Management-API-Overview)AI Data Plane Management API Overview
-
-Manage Couchbase AI Data Plane instances with REST APIs. Use these APIs to manage AI workflows, model services and agent memory servers with their API keys, MCP servers and tools, and external AI provider configurations.
-
 ## [](#tag/AI-Agent-Memory-API-Keys)AI Agent Memory API Keys
 
 Agent memory API keys authenticate agent applications against the agent memory server data plane. Each key is scoped to a single agent memory server, and the agent memory server rejects any key minted for another deployment.
@@ -31827,9 +31854,6 @@ In order to access this endpoint, the provided API key must have at least one of
 * Project Viewer
 * Database Data Reader/Writer
 * Database Data Reader
-* Cluster Owner
-* Cluster Data Writer
-* Cluster Data Viewer
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -31919,7 +31943,6 @@ Copy
         * "ams_rw"  
             ]  
       },
-    * "lastUsedAt": "2026-08-06T10:30:00Z",
     * "audit": {
       * "createdBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
       * "createdAt": "2026-08-06T01:04:25Z",
@@ -31940,7 +31963,6 @@ Copy
         * "ams_ro"  
             ]  
       },
-    * "lastUsedAt": "2026-08-12T14:02:11Z",
     * "audit": {
       * "createdBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
       * "createdAt": "2026-08-07T11:20:00Z",
@@ -31977,7 +31999,6 @@ In order to access this endpoint, the provided API key must have at least one of
 * Organization Owner
 * Project Creator
 * Project Owner
-* Cluster Owner
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -32114,9 +32135,6 @@ In order to access this endpoint, the provided API key must have at least one of
 * Project Viewer
 * Database Data Reader/Writer
 * Database Data Reader
-* Cluster Owner
-* Cluster Data Writer
-* Cluster Data Viewer
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -32197,7 +32215,6 @@ Copy
     * "ams_rw"  
   ]  
 },
-* "lastUsedAt": "2026-08-06T10:30:00Z",
 * "audit": {
   * "createdBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
   * "createdAt": "2026-08-06T01:04:25Z",
@@ -32218,7 +32235,6 @@ In order to access this endpoint, the provided API key must have at least one of
 * Organization Owner
 * Project Creator
 * Project Owner
-* Cluster Owner
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -32301,9 +32317,6 @@ In order to access this endpoint, the provided API key must have at least one of
 * Project Viewer
 * Database Data Reader/Writer
 * Database Data Reader
-* Cluster Owner
-* Cluster Data Writer
-* Cluster Data Viewer
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -32392,7 +32405,6 @@ Copy
         * "ams_rw"  
             ]  
       },
-    * "lastUsedAt": "2026-08-06T10:30:00Z",
     * "audit": {
       * "createdBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
       * "createdAt": "2026-08-06T01:04:25Z",
@@ -32416,7 +32428,6 @@ Copy
         * "ams_ro"  
             ]  
       },
-    * "lastUsedAt": "2026-08-13T07:45:33Z",
     * "audit": {
       * "createdBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
       * "createdAt": "2026-08-11T16:00:00Z",
@@ -32449,7 +32460,7 @@ Copy
 
 Agent memory servers give AI agents a persistent, searchable memory backed by a Capella operational cluster. Each agent memory server stores memory blocks in a bucket on its cluster, embeds them with a configured embedding model, and summarizes them with a configured language model.
 
-A cluster can host at most one agent memory server. A cluster is eligible only when it runs all of the data, index, query, and search services, and runs Couchbase Server 8.0.0 or later.
+A cluster can host at most one agent memory server. A cluster is eligible only when it is on the Developer Pro or Enterprise support plan, runs all of the data, index, query, and search services, and runs Couchbase Server 8.0.0 or later.
 
 ## [](#tag/AI-Agent-Memory-Servers/operation/listAgentMemoryServers)List Agent Memory Servers 
 
@@ -32466,9 +32477,6 @@ In order to access this endpoint, the provided API key must have at least one of
 * Project Viewer
 * Database Data Reader/Writer
 * Database Data Reader
-* Cluster Owner
-* Cluster Data Writer
-* Cluster Data Viewer
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -32620,14 +32628,13 @@ Copy
 
 Creates and deploys a new agent memory server for a specific cluster.
 
-The mapping between a cluster and an agent memory server is one to one, so a cluster that already has an agent memory server cannot have another one. A cluster is eligible only when it runs all of the data, index, query, and search services, and runs Couchbase Server 8.0.0 or later.
+The mapping between a cluster and an agent memory server is one to one, so a cluster that already has an agent memory server cannot have another one. A cluster is eligible only when it is on the Developer Pro or Enterprise support plan, runs all of the data, index, query, and search services, and runs Couchbase Server 8.0.0 or later.
 
 In order to access this endpoint, the provided API key must have at least one of the following roles:
 
 * Organization Owner
 * Project Creator
 * Project Owner
-* Cluster Owner
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -32774,9 +32781,6 @@ In order to access this endpoint, the provided API key must have at least one of
 * Project Viewer
 * Database Data Reader/Writer
 * Database Data Reader
-* Cluster Owner
-* Cluster Data Writer
-* Cluster Data Viewer
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -32910,7 +32914,6 @@ In order to access this endpoint, the provided API key must have at least one of
 * Organization Owner
 * Project Creator
 * Project Owner
-* Cluster Owner
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -32997,7 +33000,6 @@ In order to access this endpoint, the provided API key must have at least one of
 * Organization Owner
 * Project Creator
 * Project Owner
-* Cluster Owner
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -33122,9 +33124,6 @@ In order to access this endpoint, the provided API key must have at least one of
 * Project Viewer
 * Database Data Reader/Writer
 * Database Data Reader
-* Cluster Owner
-* Cluster Data Writer
-* Cluster Data Viewer
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -33244,9 +33243,6 @@ In order to access this endpoint, the provided API key must have at least one of
 * Project Viewer
 * Database Data Reader/Writer
 * Database Data Reader
-* Cluster Owner
-* Cluster Data Writer
-* Cluster Data Viewer
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -33451,6 +33447,7 @@ Lists the clusters that are eligible for an agent memory server deployment.
 
 A cluster is eligible only when all of the following hold:
 
+* It is on the Developer Pro or Enterprise support plan.
 * It runs all of the data, index, query, and search services.
 * It runs Couchbase Server 8.0.0 or later.
 * It does not already have an agent memory server deployed, because the mapping between a cluster and an agent memory server is one to one.
@@ -33464,9 +33461,6 @@ In order to access this endpoint, the provided API key must have at least one of
 * Project Viewer
 * Database Data Reader/Writer
 * Database Data Reader
-* Cluster Owner
-* Cluster Data Writer
-* Cluster Data Viewer
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -34083,8 +34077,8 @@ Workflows can vectorize data stored either in Capella operational clusters or in
 
 **Workflow types:**
 
-* `structuredDataProcessing`: For importing and vectorizing structured data in JSON format.
-* `unstructuredDataProcessing`: For processing and vectorizing unstructured data in formats such as PDF, JPG, PNG, DOC, and DOCX.
+* `structuredDataProcessing`: For importing and vectorizing structured data in formats such as JSON and CSV.
+* `unstructuredDataProcessing`: For processing and vectorizing unstructured data in formats such as PDF, JPG, PNG, DOC, DOCX, TXT, and MD.
 * `vectorization`: For vectorizing JSON data stored in Capella operational clusters.
 
 ## [](#tag/AI-Workflows/operation/listAiWorkflows)List AI Workflows 
@@ -34184,7 +34178,7 @@ Copy
             },
       * "structuredDataProcessingConfig": {
         * "keyFieldName": "document_id",
-        * "jsonType": "jsonlines"  
+        * "fileType": "jsonlines"  
             },
       * "vectorizationConfig": {
         * "createIndexes": true,
@@ -34323,7 +34317,7 @@ Copy
     * "collection": "my-collection"  
   },
   * "structuredDataProcessingConfig": {
-    * "jsonType": "jsonlist"  
+    * "fileType": "jsonlist"  
   },
   * "vectorizationConfig": {
     * "createIndexes": true,
@@ -35022,8 +35016,7 @@ Copy
 Retrieves a list of supported external embedding models that can be used for vectorization. This endpoint allows you to see which models are available for use in your projects. In order to access this endpoint, the provided API key must have at least one of the following roles:
 
 * Organization Owner
-* Project Owner
-* Cluster Owner To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+* Project Owner To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
 ##### Authorizations:
 
@@ -35178,11 +35171,1063 @@ Copy
 }
 }`
 
+## [](#tag/Allowed-CIDRs-%28MCP-Server%29)Allowed CIDRs (MCP Server)
+
+The allowed CIDRs of an MCP server are its IP allowlist, enforced by a firewall that denies by default. A newly deployed MCP server is unreachable until at least one CIDR is allowed, and removing the last entry blocks it again. The allowlist applies to the MCP server as a whole and is independent of its API keys.
+
+An entry is the CIDR itself: there is no per-entry ID, so entries are addressed by value. An MCP server holds at most 50 entries. Every change is applied to the firewall before it is saved, so it requires the MCP server to be healthy.
+
+## [](#tag/Allowed-CIDRs-%28MCP-Server%29/operation/listMcpServerAllowedCidrs)List MCP Server Allowed CIDRs 
+
+Lists the CIDRs allowed to reach a specific MCP server, each with who allowed it and when.
+
+An empty list means the MCP server is blocked: nothing can reach it. The list is not paginated; it holds at most 50 entries.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| mcpServerIdrequired    | string <uuid\> Example: 09a08787-a925-4e57-a1f9-90bc2dcfa091The GUID4 ID of the MCP server.   |
+
+### Responses
+
+**200** 
+
+Successfully listed the allowed CIDRs of the MCP server.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/mcpServers/{mcpServerId}/allowedCidrs
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/mcpServers/{mcpServerId}/allowedCidrs
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Example
+
+Two CIDRs allowedEmpty allowlist, so the MCP server is unreachableTwo CIDRs allowed
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "cidr": "10.0.0.0/8",
+    * "createdAt": "2026-09-01T10:00:00Z",
+    * "createdByUserId": "3f9d3d4e-0000-4e57-b1f9-90bc2dcfa010",
+    * "createdByUserName": "Jane Doe"  
+  },
+  * {
+    * "cidr": "192.168.1.100/32",
+    * "createdAt": "2026-08-20T08:30:00Z",
+    * "createdByUserId": "7c1a2b3c-0000-4e57-b1f9-90bc2dcfa011",
+    * "createdByUserName": "John Smith"  
+  }  
+]
+}`
+
+## [](#tag/Allowed-CIDRs-%28MCP-Server%29/operation/createMcpServerAllowedCidr)Create MCP Server Allowed CIDR 
+
+Adds a CIDR to the allowlist of a specific MCP server and applies the new allowlist to the firewall. On success the endpoint returns `201 Created` with no response body.
+
+The CIDR must be an IPv4 network address: the prefix is required and the host bits must be clear. The request is rejected with:
+
+* `409 Conflict` when the CIDR is already allowed, or when the MCP server is not healthy. Allowlist changes are applied to the firewall first, so they require a deployed, healthy MCP server.
+* `422 Unprocessable Entity` when the CIDR does not parse, is not IPv4, or has host bits set (the error suggests the network address), or when the allowlist already holds 50 entries.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| mcpServerIdrequired    | string <uuid\> Example: 09a08787-a925-4e57-a1f9-90bc2dcfa091The GUID4 ID of the MCP server.   |
+
+##### Request Body schema: application/json
+
+required
+
+| cidrrequired | string The IPv4 CIDR range to allow, as a network address such as 10.0.0.0/8. The prefix is required, the range must be IPv4, and the host bits must be clear. A bare IP address, an IPv6 range, or a value with host bits set, such as 10.0.0.1/8, is rejected with 422 Unprocessable Entity. For a value with host bits set, the error suggests the network address. |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### Responses
+
+**201** 
+
+Successfully added the CIDR to the allowlist. No response body.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/mcpServers/{mcpServerId}/allowedCidrs
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/mcpServers/{mcpServerId}/allowedCidrs
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "cidr": "10.0.0.0/8"
+}`
+
+### Response samples 
+
+* 400
+* 401
+* 403
+* 404
+* 409
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/Allowed-CIDRs-%28MCP-Server%29/operation/deleteMcpServerAllowedCidr)Delete MCP Server Allowed CIDR 
+
+Removes a CIDR from the allowlist of a specific MCP server and applies the new allowlist to the firewall.
+
+The CIDR is identified by value through the `cidr` query parameter. Removing the last entry returns the MCP server to blocked. The request is rejected with:
+
+* `404 Not Found` when the CIDR is not on the allowlist.
+* `409 Conflict` when the MCP server is not healthy.
+* `422 Unprocessable Entity` when the `cidr` value is not a valid IPv4 network address.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| mcpServerIdrequired    | string <uuid\> Example: 09a08787-a925-4e57-a1f9-90bc2dcfa091The GUID4 ID of the MCP server.   |
+
+##### query Parameters
+
+| cidrrequired | string Example: cidr=10.0.0.0/8The CIDR to remove, exactly as the List MCP Server Allowed CIDRs endpoint returns it. It is passed as a query parameter rather than a path segment because a CIDR contains a slash. |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+### Responses
+
+**204** 
+
+Successfully removed the CIDR from the allowlist.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/mcpServers/{mcpServerId}/allowedCidrs
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/mcpServers/{mcpServerId}/allowedCidrs
+
+### Response samples 
+
+* 400
+* 401
+* 403
+* 404
+* 409
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/MCP-Server-API-Keys)MCP Server API Keys
+
+MCP server API keys authenticate MCP clients against an MCP server. Each API key is bound to a single MCP server and carries an access policy: the tools it may call, drawn from the List MCP Tools endpoint, and the data it may reach, in the same privileges and resources shape a database credential uses. Creating an API key provisions a Couchbase database user with those data permissions.
+
+The API key secret is returned exactly once, at creation, and cannot be retrieved afterwards. Replace a lost secret by creating a new API key.
+
+## [](#tag/MCP-Server-API-Keys/operation/listMcpServerApiKeys)List MCP Server API Keys 
+
+Lists the API keys of a specific MCP server.
+
+The API key secret is never returned by this endpoint.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| mcpServerIdrequired    | string <uuid\> Example: 09a08787-a925-4e57-a1f9-90bc2dcfa091The GUID4 ID of the MCP server.   |
+
+##### query Parameters
+
+| page          | integer Sets the page you would like to view.                                                                                                                                                                                                                                                                                                                                                               |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                                                                                                                                                                                                                                     |
+| sortBy        | Array of strings Example: sortBy=name Sets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **name**, **createdAt**, **expiry**, **lastUsedAt**. In ascending order, sorting by **expiry** puts never-expiring API keys last and sorting by **lastUsedAt** puts never-used API keys first. Descending order reverses both. |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                                                                                                                                                                                                                                            |
+
+### Responses
+
+**200** 
+
+Successfully listed the API keys of the MCP server.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/mcpServers/{mcpServerId}/apiKeys
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/mcpServers/{mcpServerId}/apiKeys
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "id": "c56a4180-65aa-42ec-a945-5fd21dec0538",
+    * "name": "restricted-api-key",
+    * "description": "API key limited to specific collections and tools",
+    * "mcpServerId": "09a08787-a925-4e57-a1f9-90bc2dcfa091",
+    * "mcpServerName": "my-test-mcp",
+    * "expiry": 90,
+    * "accessPolicy": {
+      * "allowedTools": [
+        * {
+          * "id": "run_sql_plus_plus_query",
+          * "name": "Run SQL++ Query"  
+                    },
+        * {
+          * "id": "get_collections_in_scope",
+          * "name": "Get Collections in Scope"  
+                    },
+        * {
+          * "id": "get_document_by_id",
+          * "name": "Get Document by ID"  
+                    }  
+            ],
+      * "access": [
+        * {
+          * "privileges": [
+            * "read"  
+                              ],
+          * "resources": {
+            * "buckets": [
+              * {
+                * "name": "travel-sample",
+                * "scopes": [
+                  * {
+                    * "name": "inventory",
+                    * "collections": [
+                      * "products"  
+                                                                                                              ]  
+                                                                                          }  
+                                                                        ]  
+                                                        }  
+                                          ]  
+                              }  
+                    },
+        * {
+          * "privileges": [
+            * "read",
+            * "write"  
+                              ],
+          * "resources": {
+            * "buckets": [
+              * {
+                * "name": "travel-sample",
+                * "scopes": [
+                  * {
+                    * "name": "inventory",
+                    * "collections": [
+                      * "orders"  
+                                                                                                              ]  
+                                                                                          }  
+                                                                        ]  
+                                                        }  
+                                          ]  
+                              }  
+                    }  
+            ]  
+      },
+    * "audit": {
+      * "createdBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+      * "createdAt": "2026-07-20T09:15:00Z",
+      * "modifiedBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+      * "modifiedAt": "2026-07-20T09:15:00Z",
+      * "version": 1  
+      }  
+  },
+  * {
+    * "id": "d67b5291-76bb-43fd-ba56-6ae32efd1649",
+    * "name": "all-tools-reader",
+    * "description": "Non-expiring read-only key for a production agent",
+    * "mcpServerId": "09a08787-a925-4e57-a1f9-90bc2dcfa091",
+    * "mcpServerName": "my-test-mcp",
+    * "expiry": -1,
+    * "accessPolicy": {
+      * "allowedTools": [
+        * {
+          * "id": "*",
+          * "name": "All Tools"  
+                    }  
+            ],
+      * "access": [
+        * {
+          * "privileges": [
+            * "read"  
+                              ]  
+                    }  
+            ]  
+      },
+    * "audit": {
+      * "createdBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+      * "createdAt": "2026-07-22T14:02:11Z",
+      * "modifiedBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+      * "modifiedAt": "2026-07-22T14:02:11Z",
+      * "version": 1  
+      }  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 1,
+    * "last": 1,
+    * "perPage": 10,
+    * "totalItems": 2  
+  },
+  * "hrefs": {
+    * "first": "<https://cloudapi.cloud.couchbase.com/v4/organizations/f59e8a62-0000-4e57-b1f9-90bc2dcfa000/projects/a3b2c1d0-0000-4e57-b1f9-90bc2dcfa001/clusters/13d745eb-9861-4e1d-88f5-eaacfef416a2/mcpServers/09a08787-a925-4e57-a1f9-90bc2dcfa091/apiKeys?page=1&perPage=10>",
+    * "last": "<https://cloudapi.cloud.couchbase.com/v4/organizations/f59e8a62-0000-4e57-b1f9-90bc2dcfa000/projects/a3b2c1d0-0000-4e57-b1f9-90bc2dcfa001/clusters/13d745eb-9861-4e1d-88f5-eaacfef416a2/mcpServers/09a08787-a925-4e57-a1f9-90bc2dcfa091/apiKeys?page=1&perPage=10>",
+    * "previous": "",
+    * "next": ""  
+  }  
+}
+}`
+
+## [](#tag/MCP-Server-API-Keys/operation/createMcpServerApiKey)Create MCP Server API Key 
+
+Creates an API key for a specific MCP server.
+
+The access policy names the tools the API key may call and the data it may reach:
+
+* `accessPolicy.allowedTools` takes the tool IDs returned by the List MCP Tools endpoint, or `["*"]` as the only entry to allow every tool, including tools added to the catalog later.
+* `accessPolicy.access` pairs privileges with the buckets, scopes, and collections they apply to, the same shape a database credential uses. Omit `resources` from an entry to grant its privileges on every bucket in the cluster.
+
+Creating an API key provisions a Couchbase database user on the cluster with the data permissions of the access policy.
+
+The API key secret is returned exactly once, in the response to this request, and cannot be retrieved afterwards. Replace a lost secret by creating a new API key. The response also carries `clientConfig`, a ready-to-use MCP client configuration with the new secret filled in. It is omitted while the MCP server has no endpoint yet.
+
+An API key cannot be created while the MCP server is `pending`, `deploying`, `deploymentFailed`, `destroying`, or `destroyFailed`. Such a request is rejected with `409 Conflict`.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| mcpServerIdrequired    | string <uuid\> Example: 09a08787-a925-4e57-a1f9-90bc2dcfa091The GUID4 ID of the MCP server.   |
+
+##### Request Body schema: application/json
+
+required
+
+| namerequired         | string \[ 1 .. 100 \] characters The name of the API key.                                                                                                                                                                                                                                                                                 |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| description          | string <= 500 characters A short description of the API key.                                                                                                                                                                                                                                                                              |
+| expiryrequired       | number <float\> \[ -1 .. 365 \] Lifetime of the API key in days: -1 for an API key that never expires, otherwise more than 0 and at most 365\. Fractions of a day are accepted. There is no default: 0 is rejected as a missing expiry (400), and any other value outside these rules, including one between -1 and 0, is rejected (422). |
+| accessPolicyrequired | object (McpApiKeyAccessPolicy) The tools the API key may call and the data it may reach. Both are required: an API key grants nothing implicitly.                                                                                                                                                                                         |
+
+### Responses
+
+**201** 
+
+Successfully created the API key.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/mcpServers/{mcpServerId}/apiKeys
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/mcpServers/{mcpServerId}/apiKeys
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Example
+
+API key with restricted tool and data accessNon-expiring API key that can call every tool and read every bucketAPI key with restricted tool and data access
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "name": "restricted-api-key",
+* "description": "API key limited to specific collections and tools",
+* "expiry": 90,
+* "accessPolicy": {
+  * "allowedTools": [
+    * "run_sql_plus_plus_query",
+    * "get_collections_in_scope",
+    * "get_document_by_id"  
+  ],
+  * "access": [
+    * {
+      * "privileges": [
+        * "read"  
+            ],
+      * "resources": {
+        * "buckets": [
+          * {
+            * "name": "travel-sample",
+            * "scopes": [
+              * {
+                * "name": "inventory",
+                * "collections": [
+                  * "products"  
+                                                                        ]  
+                                                        }  
+                                          ]  
+                              }  
+                    ]  
+            }  
+      },
+    * {
+      * "privileges": [
+        * "read",
+        * "write"  
+            ],
+      * "resources": {
+        * "buckets": [
+          * {
+            * "name": "travel-sample",
+            * "scopes": [
+              * {
+                * "name": "inventory",
+                * "collections": [
+                  * "orders"  
+                                                                        ]  
+                                                        }  
+                                          ]  
+                              }  
+                    ]  
+            }  
+      }  
+  ]  
+}
+}`
+
+### Response samples 
+
+* 201
+* 400
+* 401
+* 403
+* 404
+* 409
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "id": "c56a4180-65aa-42ec-a945-5fd21dec0538",
+* "name": "restricted-api-key",
+* "description": "API key limited to specific collections and tools",
+* "apiKeySecret": "IS9DrRsw4KWFS72Zhbj4xmhllHvPcdCL",
+* "expiry": 90,
+* "accessPolicy": {
+  * "allowedTools": [
+    * {
+      * "id": "run_sql_plus_plus_query",
+      * "name": "Run SQL++ Query"  
+      },
+    * {
+      * "id": "get_collections_in_scope",
+      * "name": "Get Collections in Scope"  
+      },
+    * {
+      * "id": "get_document_by_id",
+      * "name": "Get Document by ID"  
+      }  
+  ],
+  * "access": [
+    * {
+      * "privileges": [
+        * "read"  
+            ],
+      * "resources": {
+        * "buckets": [
+          * {
+            * "name": "travel-sample",
+            * "scopes": [
+              * {
+                * "name": "inventory",
+                * "collections": [
+                  * "products"  
+                                                                        ]  
+                                                        }  
+                                          ]  
+                              }  
+                    ]  
+            }  
+      },
+    * {
+      * "privileges": [
+        * "read",
+        * "write"  
+            ],
+      * "resources": {
+        * "buckets": [
+          * {
+            * "name": "travel-sample",
+            * "scopes": [
+              * {
+                * "name": "inventory",
+                * "collections": [
+                  * "orders"  
+                                                                        ]  
+                                                        }  
+                                          ]  
+                              }  
+                    ]  
+            }  
+      }  
+  ]  
+},
+* "clientConfig": {
+  * "mcpServers": {
+    * "couchbase-capella": {
+      * "type": "http",
+      * "url": "<https://mcp-09a08787.example.com>",
+      * "headers": {
+        * "Authorization": "Bearer IS9DrRsw4KWFS72Zhbj4xmhllHvPcdCL"  
+            }  
+      }  
+  }  
+}
+}`
+
+## [](#tag/MCP-Server-API-Keys/operation/getMcpServerApiKey)Get MCP Server API Key 
+
+Fetches the details of a specific MCP server API key, including its access policy and when it was last used.
+
+The API key secret is never returned by this endpoint.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.       |
+| ---------------------- | --------------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.            |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.            |
+| mcpServerIdrequired    | string <uuid\> Example: 09a08787-a925-4e57-a1f9-90bc2dcfa091The GUID4 ID of the MCP server.         |
+| apiKeyIdrequired       | string <uuid\> Example: c56a4180-65aa-42ec-a945-5fd21dec0538The GUID4 ID of the MCP server API key. |
+
+### Responses
+
+**200** 
+
+Successfully fetched the API key.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/mcpServers/{mcpServerId}/apiKeys/{apiKeyId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/mcpServers/{mcpServerId}/apiKeys/{apiKeyId}
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "id": "c56a4180-65aa-42ec-a945-5fd21dec0538",
+* "name": "restricted-api-key",
+* "description": "API key limited to specific collections and tools",
+* "mcpServerId": "09a08787-a925-4e57-a1f9-90bc2dcfa091",
+* "mcpServerName": "my-test-mcp",
+* "expiry": 90,
+* "accessPolicy": {
+  * "allowedTools": [
+    * {
+      * "id": "run_sql_plus_plus_query",
+      * "name": "Run SQL++ Query"  
+      },
+    * {
+      * "id": "get_collections_in_scope",
+      * "name": "Get Collections in Scope"  
+      },
+    * {
+      * "id": "get_document_by_id",
+      * "name": "Get Document by ID"  
+      }  
+  ],
+  * "access": [
+    * {
+      * "privileges": [
+        * "read"  
+            ],
+      * "resources": {
+        * "buckets": [
+          * {
+            * "name": "travel-sample",
+            * "scopes": [
+              * {
+                * "name": "inventory",
+                * "collections": [
+                  * "products"  
+                                                                        ]  
+                                                        }  
+                                          ]  
+                              }  
+                    ]  
+            }  
+      },
+    * {
+      * "privileges": [
+        * "read",
+        * "write"  
+            ],
+      * "resources": {
+        * "buckets": [
+          * {
+            * "name": "travel-sample",
+            * "scopes": [
+              * {
+                * "name": "inventory",
+                * "collections": [
+                  * "orders"  
+                                                                        ]  
+                                                        }  
+                                          ]  
+                              }  
+                    ]  
+            }  
+      }  
+  ]  
+},
+* "audit": {
+  * "createdBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+  * "createdAt": "2026-07-20T09:15:00Z",
+  * "modifiedBy": "f1575aad-0e8f-4add-b9ae-de660553cc96",
+  * "modifiedAt": "2026-07-20T09:15:00Z",
+  * "version": 1  
+}
+}`
+
+## [](#tag/MCP-Server-API-Keys/operation/deleteMcpServerApiKey)Delete MCP Server API Key 
+
+Deletes a specific MCP server API key and the Couchbase database user behind it.
+
+This action cannot be undone. An API key can be deleted whatever the status of the MCP server, so a leaked API key can always be revoked.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.       |
+| ---------------------- | --------------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.            |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.            |
+| mcpServerIdrequired    | string <uuid\> Example: 09a08787-a925-4e57-a1f9-90bc2dcfa091The GUID4 ID of the MCP server.         |
+| apiKeyIdrequired       | string <uuid\> Example: c56a4180-65aa-42ec-a945-5fd21dec0538The GUID4 ID of the MCP server API key. |
+
+### Responses
+
+**204** 
+
+Successfully deleted the API key.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**401** 
+
+The client does not have the valid credentials to access this resource.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/mcpServers/{mcpServerId}/apiKeys/{apiKeyId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/mcpServers/{mcpServerId}/apiKeys/{apiKeyId}
+
+### Response samples 
+
+* 400
+* 401
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
 ## [](#tag/MCP-Servers)MCP Servers
 
 MCP servers expose a Capella operational cluster to AI agents over the Model Context Protocol (MCP). Each MCP server connects to exactly one cluster and serves the tools listed by the List MCP Tools endpoint, which agents call to inspect the cluster and work with its data.
 
-A cluster can host at most one MCP server. A cluster is eligible only when it is healthy, runs on AWS in a region where MCP servers are offered, and runs Couchbase Server 8.0.0 or later.
+A cluster can host at most one MCP server. A cluster is eligible only when it is healthy, is on the Developer Pro or Enterprise support plan, runs on AWS in a region where MCP servers are offered, and runs Couchbase Server 8.0.0 or later.
 
 The configuration of an MCP server is immutable after creation. There is no update endpoint, so changing the configuration currently means deleting the MCP server and creating a new one.
 
@@ -35198,7 +36243,6 @@ In order to access this endpoint, the provided API key must have at least one of
 * Project Owner
 * Project Manager
 * Project Viewer
-* Cluster Owner
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -35340,7 +36384,7 @@ Copy
 
 Creates and deploys a new MCP server for a specific cluster.
 
-The mapping between a cluster and an MCP server is one to one, so a cluster that already has an MCP server cannot have another one. A second create request for the same cluster is rejected with `409 Conflict`. The cluster must be healthy, run on AWS in a region where MCP servers are offered, and run Couchbase Server 8.0.0 or later. A request for a cluster that does not meet these rules is rejected with `422 Unprocessable Entity`, naming the unmet rule.
+The mapping between a cluster and an MCP server is one to one, so a cluster that already has an MCP server cannot have another one. A second create request for the same cluster is rejected with `409 Conflict`. The cluster must be healthy, be on the Developer Pro or Enterprise support plan, run on AWS in a region where MCP servers are offered, and run Couchbase Server 8.0.0 or later. A request for a cluster that does not meet these rules is rejected with `422 Unprocessable Entity`, naming the unmet rule.
 
 Deployment is asynchronous: this endpoint returns `202 Accepted` and provisions the MCP server in the background. It usually completes within about a minute. Track the progress with the Get MCP Server endpoint. Its `status` transitions from `pending` to `deploying` to `healthy`. A `deploymentFailed` status means that provisioning failed, and `initError` carries the reason.
 
@@ -35349,7 +36393,6 @@ In order to access this endpoint, the provided API key must have at least one of
 * Organization Owner
 * Project Owner
 * Project Manager
-* Cluster Owner
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -35368,10 +36411,10 @@ _token_
 
 required
 
-| namerequired   | string \[ 1 .. 100 \] characters The name of the MCP server.                                                                                                                                                                                       |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| description    | string <= 500 characters An optional short description of the MCP server.                                                                                                                                                                          |
-| configrequired | object (McpServerConfig) The deployment configuration of the MCP server. The configuration is immutable after creation. There is no update endpoint, so changing the configuration currently means deleting the MCP server and creating a new one. |
+| namerequired   | string \[ 2 .. 128 \] characters The name of the MCP server, following the Capella resource naming rules. Length is measured in UTF-8 bytes, so a multi-byte character uses more than one of the 2-128 allowed. It must not be whitespace-only or contain <, \>, ", ' or backticks. |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| description    | string <= 500 characters An optional short description of the MCP server.                                                                                                                                                                                                           |
+| configrequired | object (McpServerConfig) The deployment configuration of the MCP server. The configuration is immutable after creation. There is no update endpoint, so changing the configuration currently means deleting the MCP server and creating a new one.                                  |
 
 ### Responses
 
@@ -35469,7 +36512,6 @@ In order to access this endpoint, the provided API key must have at least one of
 * Project Owner
 * Project Manager
 * Project Viewer
-* Cluster Owner
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -35597,7 +36639,6 @@ In order to access this endpoint, the provided API key must have at least one of
 * Organization Owner
 * Project Owner
 * Project Manager
-* Cluster Owner
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -35678,7 +36719,7 @@ Copy
 
 Fetches an MCP client configuration template for a specific MCP server. Add it to an MCP client, such as Claude Desktop or Cursor, to connect the client to the MCP server.
 
-The template carries the placeholder `Bearer <YOUR_API_KEY_SECRET>` in its `Authorization` header. Replace `<YOUR_API_KEY_SECRET>` with the secret of an API key for this MCP server.
+The template carries the placeholder `Bearer <YOUR_API_KEY_SECRET>` in its `Authorization` header. Replace `<YOUR_API_KEY_SECRET>` with the secret of an API key for this MCP server. The Create MCP Server API Key endpoint returns the same configuration with the new secret filled in.
 
 Until the deployment assigns the MCP server an endpoint, this endpoint returns `200 OK` with an empty `mcpServers` object.
 
@@ -35688,7 +36729,6 @@ In order to access this endpoint, the provided API key must have at least one of
 * Project Owner
 * Project Manager
 * Project Viewer
-* Cluster Owner
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -35787,7 +36827,6 @@ In order to access this endpoint, the provided API key must have at least one of
 * Organization Owner
 * Project Creator
 * Organization Member
-* Cluster Owner
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
