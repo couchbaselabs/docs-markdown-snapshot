@@ -4,10 +4,10 @@ description: Couchbase MCP Server lets AI agents connect to Couchbase clusters,
   on Capella or self-managed. It provides tools for cluster health, schema
   discovery, key-value operations, and query performance. Read-only mode and
   fine-grained tool controls keep it safe to use.
-pubDate: 2026-11-03T04:28:31.731Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
-    title: Couchbase MCP Server
+    title: Couchbase MCP Server Self-Managed
     version: "1.0"
   topic_type: concept
 antora:

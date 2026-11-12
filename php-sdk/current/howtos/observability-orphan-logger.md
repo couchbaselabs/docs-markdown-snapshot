@@ -3,14 +3,13 @@ title: Orphaned Requests Logging
 description: In addition to request tracing and metrics reporting, logging
   orphaned requests provides additional insight into why an operation might have
   timed out (or got cancelled for a different reason).
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
     title: PHP SDK
-    version: "4.5"
-  topic_type: howto
+    version: "4.6"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/howtos/pages/observability-orphan-logger.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/release/4.6/modules/howtos/pages/observability-orphan-logger.adoc
   xref: xref:php-sdk:howtos:observability-orphan-logger.adoc[]
 ---
 

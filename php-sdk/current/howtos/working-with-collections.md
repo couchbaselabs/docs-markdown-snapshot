@@ -1,13 +1,13 @@
 ---
 title: Working with Collections
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
     title: PHP SDK
-    version: "4.5"
+    version: "4.6"
   topic_type: howto
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/howtos/pages/working-with-collections.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/release/4.6/modules/howtos/pages/working-with-collections.adoc
   xref: xref:php-sdk:howtos:working-with-collections.adoc[]
 ---
 
@@ -23,7 +23,7 @@ The [Collections feature](../../../server/current/learn/data/scopes-and-collecti
 > [!NOTE]
 > When working with versions earlier than 7.0, the `defaultcollection` is used from the SDK.
 
-Read more about [Collections and Scopes](../concept-docs/collections.md).
+Read more about [Collections and Scopes](#concept-docs:collections.adoc).
 
 ## [](#sample-application)Sample Application
 

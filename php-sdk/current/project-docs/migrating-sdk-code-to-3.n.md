@@ -3,14 +3,14 @@ title: Migrating to SDK 3 API
 description: The SDK API 3 (used in PHP SDK 3.x and 4.x) introduces breaking
   changes to the previous SDK API 2 APIs (used in PHP SDK 2.x) in order to
   provide a number of improvements. Collections and Scopes are introduced.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
     title: PHP SDK
-    version: "4.5"
+    version: "4.6"
   topic_type: concept
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/release/4.6/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
   xref: xref:php-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 ---
 
@@ -28,50 +28,7 @@ The intent of this migration guide is to provide detail information on the chang
 > [!NOTE]
 > For the most part, migration from SDK API 2._x_ versions remains the same. The few 4.0-specific changes can be found at the end of this document. If you are an existing PHP SDK 3._x_ user considering migrating to SDK 4.0, you may wish to skip to the [SDK 4.0 specifics](#sdk4-specifics) below.
 
-This release of the SDK is written to version 3.9 of the SDK API specification (and matching the features available in Couchbase 8.0.1 and earlier). For most developers, just using the latest version will be all that matters, and few will need to look at another of our SDKs. Just for those few that do, the table below shows each Couchbase SDK release version that matches the API version (and a table that covers the earliest versions of the 3.x SDK API can be found in documentation for earlier versions of the SDK).
-
-Whilst these two numbers match for the .NET SDK, this is not the case for the others, as version numbers for individual SDKs are bumped up in line with [Semantic Versioning](https://semver.org/) — check the [release notes](#sdk-release-notes) of each SDK for individual details.
-
-__Table 1\. SDK API Versions__
-|                                                                    | API 3.4   | API 3.5 | API 3.6 | API 3.7 | API 3.8      | API 3.9     |
-| ------------------------------------------------------------------ | --------- | ------- | ------- | ------- | ------------ | ----------- |
-| [.NET](../../../dotnet-sdk/current/hello-world/overview.md)        | 3.4       | 3.5     | 3.6     | 3.7     | 3.8          | 3.9         |
-| [C (libcouchbase)](../../../c-sdk/current/hello-world/overview.md) | 3.3.3 ①   | N/A ②   | N/A ②   | N/A ②   | N/A ②        | N/A ②       |
-| [C++](../../../cxx-sdk/current/hello-world/overview.md)            | \-        | \-      | 1.0     | 1.1     | 1.2          | 1.3 & 1.4   |
-| [Go](../../../go-sdk/current/hello-world/overview.md)              | 2.6 & 2.7 | 2.8     | 2.9     | 2.10    | 2.11         | 2.12        |
-| [Java](../../../java-sdk/current/hello-world/overview.md)          | 3.4 & 3.5 | 3.6     | 3.7     | 3.8     | 3.9 & 3.10   | 3.11 & 3.12 |
-| [Kotlin](../../../kotlin-sdk/current/hello-world/overview.md)      | 1.1 & 1.2 | 1.3     | 1.4     | 1.5     | 3.9 & 3.10 ③ | 3.11 & 3.12 |
-| [Node.js](../../../nodejs-sdk/current/hello-world/overview.md)     | 4.2       | 4.3     | 4.4     | 4.5     | 4.6          | 4.7         |
-| [PHP](../hello-world/overview.md)                                  | 4.1       | 4.2     | 4.2.2   | 4.3     | 4.4          | 4.5         |
-| [Python](../../../python-sdk/current/hello-world/overview.md)      | 4.1       | 4.2     | 4.3     | 4.4     | 4.5          | 4.6         |
-| [Ruby](../../../ruby-sdk/current/hello-world/overview.md)          | 3.4       | 3.5     | 3.5.2   | 3.6     | 3.7          | 3.8         |
-| [Rust](../../../rust-sdk/current/hello-world/overview.md)          | \-        | \-      | \-      | \-      | \-           | 1.0         |
-| [Scala](../../../scala-sdk/current/hello-world/overview.md)        | 1.4 & 1.5 | 1.6     | 1.7     | 1.8     | 3.9 & 3.10 ③ | 3.11 & 3.12 |
-
-| **1** | Excludes DNS SRV refresh support in Serverless Environments.                                                                                                                                              |
-| ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **2** | For most purposes better productivity and functionality can be found in our [C++ SDK](../../../cxx-sdk/current/hello-world/overview.md).                                                                  |
-| **3** | With the Java 3.9 release, the other JVM SDKs hosted in the Java SDK monorepo adopted common release versions. This includes a number of other artifacts, as can be seen referenced in the release notes. |
-
-**SDK API 3.9**: Provides support for JWT based authentication, as well as mTLS Certs Refresh (without restart). Deprecates SDK support for MapReduce Views.
-
-**SDK API 3.8**: Introduced alongside Couchbase Server 8.0, which adds support for 128 vBuckets on Magma. Server 8.0 introduced vector query using Global Secondary Indexes (GSI), the Query Service index — using either a fast Hyperscale index, or a composite index to combine scalar queries with semantic search.
-
-**SDK API 3.7**: Introduced support for KV reads from preferred server groups. The .NET SDK has been updated to support the latest Transactions specification — and the library is now incorporated within the .NET SDK. A new `getMulti()` interface batch reads with read committed isolation. Additionally, the Java SDK now includes a Quarkus extension with GraalVM support.
-
-**SDK API 3.6**: Introduced support for base 64 encoded vector types alongside Server 7.6.2 (and Capella). General Availability of our C++ SDK — now available as a supported, stand-alone SDK, this SDK is also the core of our Node.js, PHP, Python, and Ruby SDKs.
-
-**SDK API 3.5**: Introduced support for Vector Search alongside Server 7.6 (and Capella). Adds scoped indexes to Search (for Vector Seach and traditional FTS). Read from Replica for Query and Sub-Doc operations. KV Range Scan for querying documents through the Data Service, even if you don't know the document IDs (for use cases that require relatively low concurrency and tolerate relatively high latency). Transactions now implemented as a native library in all SDKs (except libcouchbase).
-
-**SDK API 3.4**: Introduced support for ARM v8 on Ubuntu 20.04, Transactions on Spring Data Couchbase, and compatibility with running in serverless environments, such as AWS λ. The `couchbase2://` connection string was introduced in Go 2.7, Java 3.5, Kotlin 1.2, and Scala 1.5, for Cloud Native Gateway with [Couchbase Autonomous Operator](../../../operator/current/overview.md) (from CAO 2.6.1).
-
-**SDK API 3.3**: Introduced alongside Couchbase Server 7.1, adds Management API for Eventing and Index Management for Scopes & Collections; extends Bucket Management API to support Custom Conflict Resolution and Storage Options; adds new platform support for Linux Alpine OS, Apple M1, and AWS Graviton2; provides improved error messages for better error handling; and an upgraded Spark Connector that runs on Spark 3.0 & 3.1 Platform.
-
-**SDK API 3.2**: Introduced alongside Couchbase Server 7.0, provides features in support of Scopes and Collections, extends capabilities around Open Telemetry API to instrument telemetry data, enhanced client side field level encryption to add an additional layer of security to protect sensitive data, adds new platform support such as Ubuntu 20.04 LTS.
-
-**SDK API 3.1**: Introduced alongside Couchbase Server 6.6, focuses on Bucket Management API, adds capabilities around Full Text Search features such-as Geo-Polygon support, Flex Index, and Scoring.
-
-**SDK API 3.0**: Introduced alongside Couchbase Server 6.5, is a major overhaul from its predecessor, has simplified surface area, removed long-standing bugs and deprecated/removed old API, introduces new programming languages Scala and Ruby, written in anticipation to support Scopes and Collections.
+Unresolved include directive in modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc - include::3.10@sdk:shared:partial$api-version.adoc\[\]
 
 ## [](#fundamentals)Fundamentals
 
@@ -166,7 +123,7 @@ Most of the KV APIs have moved from bucket-level (in SDK API 2.x) to collection-
 
 The following table describes the mappings from SDK API 2 KV to those of SDK API 3:
 
-__Table 2\. KV changes__
+__Table 1\. KV changes__
 | SDK API 2              | SDK API 3                                                   |
 | ---------------------- | ----------------------------------------------------------- |
 | Bucket->upsert         | Collection->upsert                                          |
@@ -320,7 +277,7 @@ In SDK API 2, the management APIs were centralized in the `ClusterManager` at th
 
 The following tables provide a mapping from the SDK API 2 management APIs to those of SDK API 3:
 
-__Table 3\. ClusterManager changes__
+__Table 2\. ClusterManager changes__
 | SDK API 2                    | SDK API 3                    |
 | ---------------------------- | ---------------------------- |
 | ClusterManager->info         | removed                      |
@@ -333,7 +290,7 @@ __Table 3\. ClusterManager changes__
 | ClusterManager->listUsers    | UserManager->getAllUsers     |
 | ClusterManager->getUser      | UserManager->getUser         |
 
-__Table 4\. BucketManager changes__
+__Table 3\. BucketManager changes__
 | SDK API 2                             | SDK API 3                               |
 | ------------------------------------- | --------------------------------------- |
 | BucketManager->info                   | removed                                 |

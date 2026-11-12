@@ -2,13 +2,13 @@
 title: Licenses
 description: Couchbase SDKs' source code and binaries are licensed under the
   Apache Licence 2.0.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
     title: PHP SDK
-    version: "4.5"
+    version: "4.6"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/project-docs/pages/sdk-licenses.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/release/4.6/modules/project-docs/pages/sdk-licenses.adoc
   xref: xref:php-sdk:project-docs:sdk-licenses.adoc[]
 ---
 
@@ -34,4 +34,4 @@ Any dependencies may have their [own, separate licenses](https://www.couchbase.c
 
 ## [](#documentation-license)Documentation License
 
-This documentation is copyright Couchbase Inc. The docs' source is licensed under the Creative Commons [CC-by-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en) license, see <https://github.com/couchbase/docs-sdk-php/blob/release/4.5/LICENSE>.
+This documentation is copyright Couchbase Inc. The docs' source is licensed under the Creative Commons [CC-by-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en) license, see <https://github.com/couchbase/docs-sdk-php/blob/release/4.6/LICENSE>.

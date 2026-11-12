@@ -2,10 +2,10 @@
 title: Configuration
 description: Overview of the environment variable and command-line options
   available for configuring the Couchbase MCP Server.
-pubDate: 2026-11-03T04:28:31.731Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
-    title: Couchbase MCP Server
+    title: Couchbase MCP Server Self-Managed
     version: "1.0"
   topic_type: concept
 antora:

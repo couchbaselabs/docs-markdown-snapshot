@@ -2,10 +2,10 @@
 title: Troubleshooting
 description: Common issues and fixes for the Couchbase MCP Server, covering
   connections, transport, OAuth, and logging.
-pubDate: 2026-11-03T04:28:31.731Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
-    title: Couchbase MCP Server
+    title: Couchbase MCP Server Self-Managed
     version: "1.0"
   topic_type: reference
 antora:

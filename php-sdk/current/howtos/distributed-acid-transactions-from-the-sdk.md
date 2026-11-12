@@ -1,14 +1,14 @@
 ---
 title: Using Couchbase Transactions
 description: Distributed ACID Transactions in Couchbase SDKs
-pubDate: 2026-10-23T04:31:18.652Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
     title: PHP SDK
-    version: "4.5"
+    version: "4.6"
   topic_type: howto
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/release/4.6/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
   xref: xref:php-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 ---
 
@@ -29,12 +29,12 @@ Refer to the [Transaction Concepts](../concept-docs/transactions.md) material fo
 * Couchbase Server
 
 * Couchbase Capella account.
-* You should know how to perform [key-value](kv-operations.md) or [query](n1ql-queries-with-sdk.md) operations with the SDK.
+* You should know how to perform [key-value](kv-operations.md) or [query](sqlpp-queries-with-sdk.md) operations with the SDK.
 * Your application should have the relevant roles and permissions on the required buckets, scopes, and collections, to perform transactional operations. Refer to the [Organizations & Access](../../../cloud/organizations/organization-projects-overview.md) page for more details.
 * If your application is using [extended attributes (XATTRs)](../concept-docs/xattr.md), you should avoid using the XATTR field `txn` — this is reserved for Couchbase use.
 
 * Couchbase Server (6.6.1 or above).
-* You should know how to perform [key-value](kv-operations.md) or [query](n1ql-queries-with-sdk.md) operations with the SDK.
+* You should know how to perform [key-value](kv-operations.md) or [query](sqlpp-queries-with-sdk.md) operations with the SDK.
 * Your application should have the relevant roles and permissions on the required buckets, scopes, and collections, to perform transactional operations. Refer to the [Roles](../../../server/current/learn/security/roles.md) page for more details.
 * If your application is using [extended attributes (XATTRs)](../concept-docs/xattr.md), you should avoid using the XATTR field `txn` — this is reserved for Couchbase use.
 * NTP should be configured so nodes of the Couchbase cluster are in sync with time.

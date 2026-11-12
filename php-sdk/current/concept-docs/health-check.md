@@ -2,14 +2,13 @@
 title: Health Check
 description: Health Check provides ping() and diagnostics() tests for the health
   of the network and the cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
     title: PHP SDK
-    version: "4.5"
-  topic_type: concept
+    version: "4.6"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/concept-docs/pages/health-check.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/release/4.6/modules/concept-docs/pages/health-check.adoc
   xref: xref:php-sdk:concept-docs:health-check.adoc[]
 ---
 
@@ -20,9 +19,9 @@ antora:
 
 > Health Check provides ping() and diagnostics() tests for the health of the network and the cluster. 
 
-Working in distributed environments is _hard_. Latencies come and go, so do connections in their entirety. Is it a network glitch, or is the remote cluster down? Sometimes just knowing the likely cause is enough to get a good start on a workaround, or at least avoid hours wasted on an inappropriate solution.
+In today's distributed and virtual environments, users will often not have full administrative control over their whole network. Working in distributed environments is hard. Latencies come and go, so do connections in their entirety. Is it a network glitch, or is the remote cluster down? Sometimes just knowing the likely cause is enough to get a good start on a workaround, or at least avoid hours wasted on an inappropriate solution.
 
-Health Check enables useful diagnostics on the state of Couchbase Clusters across networks. `Ping` and `diagnostics` methods on the bucket and cluster objects respectively, can give us information about the current state of nodes, and their connections.
+Health Check features _Ping_ to check nodes are still healthy, and to force idle connections to be kept alive in environments with eager shutdowns of unused resources. _Diagnostics_ requests a report from a node, giving instant health check information.
 
 ## [](#ping)Ping
 

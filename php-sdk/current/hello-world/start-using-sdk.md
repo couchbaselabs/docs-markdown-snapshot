@@ -1,14 +1,14 @@
 ---
 title: Start Using the PHP SDK
 description: Installing the Couchbase PHP SDK &amp; a Hello World example program.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
     title: PHP SDK
-    version: "4.5"
+    version: "4.6"
   topic_type: tutorial
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/hello-world/pages/start-using-sdk.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/release/4.6/modules/hello-world/pages/start-using-sdk.adoc
   xref: xref:php-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -137,7 +137,7 @@ $ pecl install couchbase
 **Alpine Linux** is very slim and uses `musl libc` and the `apk` package manager. As a result, the installation is a little different from other Unix-Like systems and `pecl` equivalent packages are used instead.
 
 ```console
-$ apk add php81-pecl-couchbase
+$ apk add php83-pecl-couchbase
 ```
 
 Windows downloads and instructions for the PHP SDK are available from [the installation page](../project-docs/sdk-full-installation.md#installing-on-microsoft-windows).
@@ -153,9 +153,9 @@ Additionally, if you are using [Composer](https://getcomposer.org/doc/00-intro.m
 ```json
 "require": {
   ...
-  "ext-couchbase": "^4.5",
-  "couchbase/couchbase": "^4.5"
-  "couchbase/couchbase-opentelemetry": "^4.5"
+  "ext-couchbase": "^4.6",
+  "couchbase/couchbase": "^4.6"
+  "couchbase/couchbase-opentelemetry": "^4.6"
 }
 ```
 
@@ -210,7 +210,16 @@ Connect to your cluster by instantiating a new `Cluster` object and pass it your
 From version 4.0, the PHP SDK includes Capella's standard certificates by default, so you do not need to additional configuration. You do need to enable TLS, which can be done by simply using `couchbases://` in the connection string as in this example.
 
 ```php
-Unresolved include directive in modules/hello-world/pages/start-using-sdk.adoc - include::devguide:example$cloud.php[]
+// Update these credentials for your Capella instance!
+$connectionString = "couchbases://cb.<your-instance>.cloud.couchbase.com";
+$options = new ClusterOptions();
+
+$options->credentials("username", "Password!123");
+// Sets a pre-configured profile called "wan_development" to help avoid latency issues
+// when accessing Capella from a different Wide Area Network
+// or Availability Zone (e.g. your laptop).
+$options->applyProfile("wan_development");
+$cluster = new Cluster($connectionString, $options);
 ```
 
 When accessing Capella from a different Wide Area Network or Availability Zone, you may experience latency issues with the default connection settings. SDK 4.1 introduces a `wan_development` Configuration Profile, which provides pre-configured timeout settings suitable for working in high latency environments. Basic usage is shown in the example above, but if you want to learn more see [Constrained Network Environments](../ref/client-settings.md#constrained-network-environments).
@@ -219,7 +228,12 @@ When accessing Capella from a different Wide Area Network or Availability Zone, 
 > The Configuration Profiles feature is currently a [Volatile API](../project-docs/compatibility.md#interface-stability) and may be subject to change.
 
 ```php
-Unresolved include directive in modules/hello-world/pages/start-using-sdk.adoc - include::devguide:example$start-using.php[]
+// Update these credentials for your Local instance!
+$connectionString = "couchbase://localhost";
+$options = new ClusterOptions();
+
+$options->credentials("Administrator", "password");
+$cluster = new Cluster($connectionString, $options);
 ```
 
 For developing locally on the same machine as Couchbase Server, your URI can be `couchbase://localhost` as shown here. For production deployments, you will want to use a secure server, with `couchbases://`.
@@ -227,7 +241,8 @@ For developing locally on the same machine as Couchbase Server, your URI can be 
 Following successful authentication, add this code snippet to access your `Bucket`:
 
 ```php
-Unresolved include directive in modules/hello-world/pages/start-using-sdk.adoc - include::devguide:example$start-using.php[]
+// get a bucket reference
+$bucket = $cluster->bucket("travel-sample");
 ```
 
 > [!TIP]
@@ -244,7 +259,9 @@ Collections allow Documents to be grouped by purpose or theme, according to spec
 Here we refer to the `users` collection within the `tenant_agent_00` scope from the Travel Sample bucket as an example, but you may replace this with your own data.
 
 ```php
-Unresolved include directive in modules/hello-world/pages/start-using-sdk.adoc - include::devguide:example$cloud.php[]
+// get a user-defined collection reference
+$scope = $bucket->scope("tenant_agent_00");
+$collection = $scope->collection("users");
 ```
 
 [Data operations](../howtos/kv-operations.md), like storing and retrieving documents, can be done using simple methods on the `Collection` class such as `Collection→get()` and `Collection→upsert()`.
@@ -252,7 +269,11 @@ Unresolved include directive in modules/hello-world/pages/start-using-sdk.adoc -
 Add the following code to create a new document and retrieve it:
 
 ```php
-Unresolved include directive in modules/hello-world/pages/start-using-sdk.adoc - include::devguide:example$cloud.php[]
+$upsertResult = $collection->upsert("my-document-key", ["name" => "Ted", "Age" => 31]);
+
+$getResult = $collection->get("my-document-key");
+
+print_r($getResult->content());
 ```
 
 ### [](#sql-lookup)SQL++ Lookup
@@ -262,10 +283,16 @@ Couchbase SQL++ queries can be performed at the `Cluster` or `Scope` level by in
 Cluster level queries require you to specify the fully qualified keyspace each time (e.g. `travel-sample.inventory.airline`). However, with a Scope level query you only need to specify the Collection name — which in this case is `airline`:
 
 ```php
-Unresolved include directive in modules/hello-world/pages/start-using-sdk.adoc - include::devguide:example$cloud.php[]
+$inventoryScope = $bucket->scope("inventory");
+$queryResult = $inventoryScope->query("SELECT * FROM airline WHERE id = 10");
+
+// Print result data to the terminal.
+foreach ($queryResult->rows() as $row) {
+    print_r($row);
+}
 ```
 
-You can learn more about SQL++ queries on the [Query](../howtos/n1ql-queries-with-sdk.md) page.
+You can learn more about SQL++ queries on the [Query](../howtos/sqlpp-queries-with-sdk.md) page.
 
 ## [](#next-steps)Next Steps
 
@@ -273,8 +300,8 @@ Now you're up and running, try one of the following:
 
 * Our [Travel Sample Application](sample-application.md) demonstrates all the basics you need to know;
 * Explore [Key Value Operations](../howtos/kv-operations.md) against a document database;
-* Or [Query](../howtos/n1ql-queries-with-sdk.md) with our SQL-based SQL++ query language;
-* Or read up on [which service fits your use case](../concept-docs/data-services.md).
+* Or [Query](../howtos/sqlpp-queries-with-sdk.md) with our SQL-based SQL++ query language;
+* Or read up on [which service fits your use case](../concept-docs/querying-your-data.md).
 
 ### [](#additional-resources)Additional Resources
 

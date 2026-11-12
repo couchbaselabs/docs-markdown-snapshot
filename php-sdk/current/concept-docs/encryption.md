@@ -2,15 +2,14 @@
 title: Field Level Encryption
 description: Fields within a document can be securely encrypted by the SDK, to
   support FIPS-140-2 compliance.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
     title: PHP SDK
-    version: "4.5"
-  topic_type: concept
+    version: "4.6"
   edition: Enterprise Edition
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/concept-docs/pages/encryption.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/release/4.6/modules/concept-docs/pages/encryption.adoc
   xref: xref:php-sdk:concept-docs:encryption.adoc[]
 ---
 
@@ -21,6 +20,9 @@ antora:
 
 > Fields within a document can be securely encrypted by the SDK, to support FIPS-140-2 compliance. 
 
-Client-side implementation of Field Level Encryption was available in previous versions of the C, .NET, Go, Java, Node.js, PHP, and Python SDK.
+Client-side implementation of Field Level Encryption is available in the [C++](../../../cxx-sdk/current/howtos/encrypting-using-sdk.md), [.NET](../../../dotnet-sdk/current/howtos/encrypting-using-sdk.md), [Go](../../../go-sdk/current/howtos/encrypting-using-sdk.md), [Java](../../../java-sdk/current/howtos/encrypting-using-sdk.md), [Node.js](../../../nodejs-sdk/current/howtos/encrypting-using-sdk.md), [Python](../../../python-sdk/current/howtos/encrypting-using-sdk.md), and [Scala](../../../scala-sdk/current/howtos/encrypting-using-sdk.md) SDKs.
 
-It is being enabled in the 3.x SDKs, including PHP in near future. In the meantime, please check one of the currently enabled SDKs such as [Python](../../../python-sdk/current/concept-docs/encryption.md) for a detailed overview of what to expect.
+> [!TIP]
+> Native Encryption at Rest
+> 
+> Server 8.x (and new Capella Operational clusters) offer [encryption at rest](../../../server/current/learn/security/native-encryption-at-rest-overview.md). It's a comprehensive way of encrypting all data in a non-ephemeral bucket, as well as logs, configuration data, and audit data.

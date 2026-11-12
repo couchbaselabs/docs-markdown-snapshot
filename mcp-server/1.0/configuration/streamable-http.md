@@ -2,10 +2,10 @@
 title: Streamable HTTP Transport Mode
 description: Run the Couchbase MCP Server in Streamable HTTP transport mode to
   allow multiple clients to connect over HTTP.
-pubDate: 2026-11-03T04:28:31.731Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
-    title: Couchbase MCP Server
+    title: Couchbase MCP Server Self-Managed
     version: "1.0"
   topic_type: procedure
 antora:

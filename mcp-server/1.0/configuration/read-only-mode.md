@@ -2,10 +2,10 @@
 title: Read-Only Mode
 description: Control write access to your Couchbase cluster from the MCP server;
   enabled by default for safety.
-pubDate: 2026-11-03T04:28:31.731Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
-    title: Couchbase MCP Server
+    title: Couchbase MCP Server Self-Managed
     version: "1.0"
   topic_type: reference
 antora:

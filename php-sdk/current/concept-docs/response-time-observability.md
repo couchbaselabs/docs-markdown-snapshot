@@ -2,13 +2,13 @@
 title: Tracing
 description: Tracing and Metrics provide fine-grained insight into how an
   application is performing, and helps to diagnose when it is not.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
     title: PHP SDK
-    version: "4.5"
+    version: "4.6"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/concept-docs/pages/response-time-observability.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/release/4.6/modules/concept-docs/pages/response-time-observability.adoc
   xref: xref:php-sdk:concept-docs:response-time-observability.adoc[]
 ---
 

@@ -1,0 +1,27 @@
+---
+title: Get Involved
+pubDate: 2026-11-12T06:49:41.760Z
+meta:
+  component:
+    title: PHP SDK
+    version: "4.5"
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/project-docs/pages/get-involved.adoc
+  xref: xref:4.5@php-sdk:project-docs:get-involved.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/php-sdk/4.5/project-docs/get-involved.html)
+
+# Get Involved
+
+## [](#contributing)Contributing
+
+Couchbase welcomes community contributions to the PHP SDK. The [PHP SDK source code](https://github.com/couchbase/couchbase-php-client) is available on GitHub. Please see the [README](https://github.com/couchbase/php-couchbase/blob/master/README.md) file for further information.
+
+## [](#other-ways-to-contribute)Other Ways to Contribute
+
+Other Ways to Contribute
+
+* Join the discussion in our [forum](https://forums.couchbase.com/) and on our [Discord server](https://discord.com/invite/sQ5qbPZuTh).
+* Improve the documentation — [bug reports and pull requests are welcome](https://docs.couchbase.com/home/contribute/index.html).

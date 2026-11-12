@@ -3,15 +3,14 @@ title: Compression
 description: In response to increasing volumes of data being sent over the wire,
   Couchbase Data Platform now provides data compression between the SDK and
   Couchbase Server.
-pubDate: 2026-10-14T04:27:20.555Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
     title: PHP SDK
-    version: "4.5"
-  topic_type: concept
+    version: "4.6"
   edition: Enterprise Edition
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/concept-docs/pages/compression.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/release/4.6/modules/concept-docs/pages/compression.adoc
   xref: xref:php-sdk:concept-docs:compression.adoc[]
 ---
 

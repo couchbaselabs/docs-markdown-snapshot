@@ -2,7 +2,7 @@
 title: Prepare Statements for Reuse
 description: How to create and execute prepared statements, including
   placeholder parameters.
-pubDate: 2026-11-05T15:16:13.118Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
     title: Capella Operational
@@ -577,7 +577,7 @@ Reference:
 
 Querying with SDKs:
 
-* [C](../../c-sdk/current/howtos/n1ql-queries-with-sdk.md)| [C++](../../cxx-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [.NET](../../dotnet-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Go](../../go-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Java](../../java-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Kotlin](../../kotlin-sdk/current/howtos/n1ql-queries.md)| [Node.js](../../nodejs-sdk/current/howtos/n1ql-queries-with-sdk.md)| [PHP](../../php-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Python](../../python-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Ruby](#ruby-sdk:howtos:n1ql-queries-with-sdk.adoc)| [Rust](../../rust-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Scala](../../scala-sdk/current/howtos/sqlpp-queries-with-sdk.md)
+* [C](../../c-sdk/current/howtos/n1ql-queries-with-sdk.md)| [C++](../../cxx-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [.NET](../../dotnet-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Go](../../go-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Java](../../java-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Kotlin](../../kotlin-sdk/current/howtos/n1ql-queries.md)| [Node.js](../../nodejs-sdk/current/howtos/n1ql-queries-with-sdk.md)| [PHP](../../php-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Python](../../python-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Ruby](#ruby-sdk:howtos:n1ql-queries-with-sdk.adoc)| [Rust](../../rust-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Scala](../../scala-sdk/current/howtos/sqlpp-queries-with-sdk.md)
 
 Prepared statements with SDKs:
 

@@ -3,10 +3,10 @@ title: Choosing a Setup
 description: Decide between stdio and Streamable HTTP with OAuth (M2M, non-DCR,
   or DCR) for the Couchbase MCP Server, based on who connects and what your
   identity provider supports.
-pubDate: 2026-11-03T04:28:31.731Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
-    title: Couchbase MCP Server
+    title: Couchbase MCP Server Self-Managed
     version: "1.0"
   topic_type: guide
 antora:

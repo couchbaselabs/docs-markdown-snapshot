@@ -2,15 +2,14 @@
 title: Analytics
 description: Parallel data management for complex queries over many records,
   using a familiar SQL++ syntax.
-pubDate: 2026-10-19T14:21:08.937Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
     title: PHP SDK
-    version: "4.5"
-  topic_type: howto
+    version: "4.6"
   edition: Enterprise Edition
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/howtos/pages/analytics-using-sdk.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/release/4.6/modules/howtos/pages/analytics-using-sdk.adoc
   xref: xref:php-sdk:howtos:analytics-using-sdk.adoc[]
 ---
 
@@ -30,7 +29,7 @@ This page covers using our operational PHP SDK to connect to the Analytics Servi
 > 
 > Currently, different SDKs are needed to connect to [Operational Insights Capella](../../../operational-insights-cloud/intro/intro.md) — as this service does not have Operational Insights Enterprise's load balancer, and uses a different connection protocol. Operational Insights Capella SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Operational Insights Capella SDK pages](../../../home/columnar-sdk.md) for more information.
 
-For complex and long-running queries, involving large ad hoc join, set, aggregation, and grouping operations, Couchbase Data Platform offers the [Couchbase Analytics Service (CBAS)](../../../server/current/analytics/introduction.md). This is the analytic counterpart to our [operational data focussed Query Service](n1ql-queries-with-sdk.md).
+For complex and long-running queries, involving large ad hoc join, set, aggregation, and grouping operations, Couchbase Data Platform offers the [Couchbase Analytics Service (CBAS)](../../../server/current/analytics/introduction.md). This is the analytic counterpart to our [operational data focussed Query Service](sqlpp-queries-with-sdk.md).
 
 The analytics service is available in [Capella operational](../../../cloud/clusters/analytics-service/analytics-service.md)or the Enterprise Edition of self-managed Couchbase Server.
 
@@ -38,7 +37,7 @@ The analytics service is available in [Capella operational](../../../cloud/clust
 
 After familiarizing yourself with our [introductory primer](../../../server/current/analytics/primer-beer.md), in particular creating a dataset and linking it to a bucket to shadow the operational data, try Couchbase Analytics using the PHP SDK. Intentionally, the API for analytics is very similar to that of the query service. In these examples we will be using an `airports` dataset created on the `travel-sample` bucket.
 
-In PHP SDK 2.x, Analytics was only available on the `Bucket` object; in PHP SDK 3.x, Analytics queries are submitted using the Cluster reference, not a Bucket or Collection:
+In the PHP SDK Analytics queries are submitted using the Cluster reference, not a Bucket or Collection:
 
 ```php
 $options = new \Couchbase\AnalyticsOptions();
@@ -139,7 +138,7 @@ foreach ($result->rows() as $row) {
 }
 ```
 
-For a listing of available `Metrics` in `MetaData`, see the [Understanding Analytics](../concept-docs/analytics-for-sdk-users.md) SDK doc.
+For a listing of available `Metrics` in `MetaData`, see the [Understanding Analytics](#concept-docs:analytics-for-sdk-users.adoc) SDK doc.
 
 ## [](#scoped-queries-on-named-collections)Scoped Queries on Named Collections
 

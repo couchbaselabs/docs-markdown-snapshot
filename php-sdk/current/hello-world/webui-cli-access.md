@@ -1,13 +1,13 @@
 ---
 title: Browser and CLI Access
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
     title: PHP SDK
-    version: "4.5"
+    version: "4.6"
   topic_type: landing-page
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/hello-world/pages/webui-cli-access.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/release/4.6/modules/hello-world/pages/webui-cli-access.adoc
   xref: xref:php-sdk:hello-world:webui-cli-access.adoc[]
 ---
 

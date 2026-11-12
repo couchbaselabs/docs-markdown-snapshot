@@ -1,14 +1,13 @@
 ---
 title: Client Settings
 description: Client settings
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
     title: PHP SDK
-    version: "4.5"
-  topic_type: reference
+    version: "4.6"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/ref/pages/client-settings.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/release/4.6/modules/ref/pages/client-settings.adoc
   xref: xref:php-sdk:ref:client-settings.adoc[]
 ---
 
@@ -20,7 +19,7 @@ antora:
 > Client settings 
 
 > [!TIP]
-> The backend implementation of client settings changed substantially in 4.0\. Full details can be found in [the API Reference](https://docs.couchbase.com/sdk-api/couchbase-php-client-4.0.0/classes/Couchbase-ClusterOptions.html).
+> The backend implementation of client settings changed substantially in 4.0\. Full details can be found in [the API Reference](https://docs.couchbase.com/sdk-api/couchbase-php-client/classes/Couchbase-ClusterOptions.html).
 
 ## [](#commonly-used-options)Commonly Used Options
 

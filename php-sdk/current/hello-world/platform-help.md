@@ -2,14 +2,14 @@
 title: Platform Introduction
 description: Discover how to get up and running developing applications with the
   Couchbase PHP SDK 4.0+ using <code>Visual Studio Code</code>.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
     title: PHP SDK
-    version: "4.5"
+    version: "4.6"
   topic_type: tutorial
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/hello-world/pages/platform-help.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/release/4.6/modules/hello-world/pages/platform-help.adoc
   xref: xref:php-sdk:hello-world:platform-help.adoc[]
 ---
 
@@ -31,7 +31,7 @@ A simple PHP orientation intro for _non-PHP_ folk who are evaluating the Couchba
 
 The Couchbase PHP SDK generally tracks PHP's own [supported versions](https://www.php.net/supported-versions.php), and recommends the most recent "Active Support" version, except as specified in our documentation and especially the [release notes](../project-docs/sdk-release-notes.md).
 
-As of June 2024, these versions are PHP 8.3 (Latest Active Support), 8.2 (Active Support), and 8.1 (Security Support) — see the table below for [supported versions and dates](#php-version-compatibility).
+As of October 2026, these versions are PHP 8.5 (Latest Active Support), 8.4 (Active Support), and 8.3 (Security Support). — see the table below for [supported versions and dates](#php-version-compatibility).
 
 In this section, we'll recommend a known good installation path here for **the purposes of evaluating** Couchbase. Though we'll call out some key sections where you may wish to override that for your needs, you and your in-house PHP experts will want to make a decision for ongoing development and deployment.
 
@@ -45,7 +45,7 @@ Install PHP using Homebrew. Once you have installed PHP, simply use `pecl` to in
 
 ```console
 $ brew install php
-$ pecl install https://packages.couchbase.com/clients/php/couchbase-4.1.0.tgz
+$ pecl install https://packages.couchbase.com/clients/php/couchbase-4.6.0.tgz
 ```
 
 <https://www.php.net/manual/en/install.unix.php> has information on installing on various Linux systems. Where there are no specific instructions on the official PHP page, or in our tested guidance below, it is worth consulting your distro's trusted documentation, as there may be known-good repositories with PHP binaries to evaluate.
@@ -53,24 +53,24 @@ $ pecl install https://packages.couchbase.com/clients/php/couchbase-4.1.0.tgz
 Once you have installed PHP, simply use `pecl` to install the Couchbase PHP SDK.
 
 ```console
-$ pecl install https://packages.couchbase.com/clients/php/couchbase-4.1.0.tgz
+$ pecl install https://packages.couchbase.com/clients/php/couchbase-4.6.0.tgz
 ```
 
 On **Debian**, you can do:
 
 ```console
 $ apt install php php-common php-cli
-$ pecl install https://packages.couchbase.com/clients/php/couchbase-4.1.0.tgz
+$ pecl install https://packages.couchbase.com/clients/php/couchbase-4.6.0.tgz
 ```
 
 **Alpine Linux** is very slim and uses `musl libc` and the `apk` package manager. As a result, the installation is a little different from other Unix-Like systems and `pecl` equivalent packages are used instead.
 
 ```console
-$ apk add php81
-$ apk add php81-pecl-couchbase
+$ apk add php83
+$ apk add php83-pecl-couchbase
 ```
 
-Windows downloads for PHP are available from <https://windows.php.net/download/>A handy sidebar on the left explores the various considerations you will want to consider. For most environments, the first option (PHP 8.1 VS16 x64 Non Thread Safe) should be fine for evaluation purposes.
+Windows downloads for PHP are available from <https://windows.php.net/download/>A handy sidebar on the left explores the various considerations you will want to consider. For most environments, the first option (PHP 8.5 VS17 x64 Non Thread Safe) should be fine for evaluation purposes.
 
 Windows downloads and instructions for the PHP SDK are available from [the installation page](../project-docs/sdk-full-installation.md#installing-on-microsoft-windows).
 
@@ -126,7 +126,32 @@ $ code example.php
 Create a file with some sample PHP. (You will want to alter the username and password details to match your local cluster.)
 
 ```php
-Unresolved include directive in modules/hello-world/pages/platform-help.adoc - include::howtos:example$auth.php[]
+<?php
+
+use Couchbase\ClusterOptions;
+use Couchbase\Cluster;
+
+$options = new ClusterOptions();
+$options->credentials("Administrator", "password");
+$cluster = new Cluster("couchbase://localhost", $options);
+$bucket = $cluster->bucket("travel-sample");
+
+$options = new ClusterOptions();
+$options->credentials("Administrator", "password");
+
+# authentication with TLS client certificate
+$connectionString = "couchbases://localhost?" .
+    "truststorepath=/path/to/ca/certificates.pem&" .
+    "certpath=/path/to/client/certificate.pem&" .
+    "keypath=/path/to/client/key.pem";
+
+$cluster = new Cluster($connectionString, $options);
+$bucket = $cluster->bucket("travel-sample");
+
+$options = new ClusterOptions();
+$options->credentials("Administrator", "password");
+$cluster = new Cluster("couchbase://localhost?sasl_mech_force=PLAIN", $options);
+$bucket = $cluster->bucket("travel-sample");
 ```
 
 ### [](#running-couchbase-examples)Running Couchbase examples

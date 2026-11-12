@@ -51,5 +51,8 @@ Get enterprise support by registering for a trial here: https://www.couchbase.co
     - [Operational Insights SDKs](https://docs.couchbase.com/llms-operational-insights-sdks.txt)
     - [Analytics SDKs](https://docs.couchbase.com/llms-analytics-sdks.txt)
     - [Operational Insights Connectors](https://docs.couchbase.com/llms-operational-insights-connectors.txt)
-- [AI Data Plane](https://docs.couchbase.com/llms-ai-data-plane.txt)
+- AI Data Plane
+    - [AI Data Plane](https://docs.couchbase.com/llms-ai-data-plane.txt)
+    - [Agent Memory](https://docs.couchbase.com/llms-agent-memory.txt)
+    - [MCP Server](https://docs.couchbase.com/llms-mcp-server.txt)
 - [Contribute](https://docs.couchbase.com/llms-contribute.txt)

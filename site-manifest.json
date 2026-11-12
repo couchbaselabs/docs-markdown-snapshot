@@ -1,6 +1,6 @@
 {
   "$id": "https://schemas.antora.org/site-manifest/1-0-0/draft-01",
-  "generated": "2026-11-12T04:35:00.968Z",
+  "generated": "2026-11-12T07:00:16.568Z",
   "url": "https://docs.couchbase.com",
   "components": {
     "agent-mem": {
@@ -69402,334 +69402,337 @@
         }
       }
     },
-    "mcp-server": {
-      "title": "Couchbase MCP Server",
-      "latest": "managed",
+    "managed-mcp-server": {
+      "title": "Couchbase MCP Server Managed",
+      "latest": "",
       "versions": {
-        "managed": {
-          "displayVersion": "Managed",
-          "url": "/mcp-server/current/about-managed-mcp.html",
+        "": {
+          "url": "/managed-mcp-server/about-managed-mcp.html",
           "pages": [
             {
               "path": "index.adoc",
-              "url": "/mcp-server/current/index.html",
+              "url": "/managed-mcp-server/index.html",
               "title": "Connect Data to Agents with Managed MCP Server",
               "alias": {
                 "ref": "about-managed-mcp.adoc",
-                "url": "/mcp-server/current/about-managed-mcp.md"
+                "url": "/managed-mcp-server/about-managed-mcp.md"
               }
             },
             {
               "path": "about-managed-mcp.adoc",
-              "url": "/mcp-server/current/about-managed-mcp.md",
+              "url": "/managed-mcp-server/about-managed-mcp.md",
               "title": "Connect Data to Agents with Managed MCP Server"
             },
             {
               "path": "deploy-connect-mcp.adoc",
-              "url": "/mcp-server/current/deploy-connect-mcp.md",
+              "url": "/managed-mcp-server/deploy-connect-mcp.md",
               "title": "Deploy and Connect to Your Managed MCP Server"
             },
             {
               "module": "learn",
               "path": "tools.adoc",
-              "url": "/mcp-server/current/learn/tools.md",
+              "url": "/managed-mcp-server/learn/tools.md",
               "title": "Managed MCP Server Tools Reference"
+            },
+            {
+              "module": "reference",
+              "path": "release-notes.adoc",
+              "url": "/managed-mcp-server/reference/release-notes.md",
+              "title": "Release Notes"
+            }
+          ]
+        }
+      }
+    },
+    "mcp-server": {
+      "title": "Couchbase MCP Server Self-Managed",
+      "latest": "1.1",
+      "versions": {
+        "1.1": {
+          "url": "/mcp-server/current/reference/common-overview.html",
+          "pages": [
+            {
+              "path": "index.adoc",
+              "url": "/mcp-server/current/index.html",
+              "title": "Couchbase MCP Server",
+              "alias": {
+                "ref": "reference:common-overview.adoc",
+                "url": "/mcp-server/current/reference/common-overview.md"
+              }
+            },
+            {
+              "module": "configuration",
+              "path": "index.adoc",
+              "url": "/mcp-server/current/configuration/index.md",
+              "title": "Configuration"
+            },
+            {
+              "module": "configuration",
+              "path": "audit-logging.adoc",
+              "url": "/mcp-server/current/configuration/audit-logging.md",
+              "title": "Audit Logging"
+            },
+            {
+              "module": "configuration",
+              "path": "choosing-a-setup.adoc",
+              "url": "/mcp-server/current/configuration/choosing-a-setup.md",
+              "title": "Choosing a Setup"
+            },
+            {
+              "module": "configuration",
+              "path": "disabling-tools.adoc",
+              "url": "/mcp-server/current/configuration/disabling-tools.md",
+              "title": "Disabling Tools"
+            },
+            {
+              "module": "configuration",
+              "path": "elicitation-for-tools.adoc",
+              "url": "/mcp-server/current/configuration/elicitation-for-tools.md",
+              "title": "Elicitation / Confirmation for Tool Calls"
+            },
+            {
+              "module": "configuration",
+              "path": "environment-variables.adoc",
+              "url": "/mcp-server/current/configuration/environment-variables.md",
+              "title": "Environment Variables &amp; Command Line Arguments"
+            },
+            {
+              "module": "configuration",
+              "path": "idp-compatibility.adoc",
+              "url": "/mcp-server/current/configuration/idp-compatibility.md",
+              "title": "IDP Compatibility"
+            },
+            {
+              "module": "configuration",
+              "path": "logging.adoc",
+              "url": "/mcp-server/current/configuration/logging.md",
+              "title": "Logging"
+            },
+            {
+              "module": "configuration",
+              "path": "oauth-overview.adoc",
+              "url": "/mcp-server/current/configuration/oauth-overview.md",
+              "title": "OAuth Authentication"
+            },
+            {
+              "module": "configuration",
+              "path": "read-only-mode.adoc",
+              "url": "/mcp-server/current/configuration/read-only-mode.md",
+              "title": "Read-Only Mode"
+            },
+            {
+              "module": "configuration",
+              "path": "streamable-http.adoc",
+              "url": "/mcp-server/current/configuration/streamable-http.md",
+              "title": "Streamable HTTP Transport Mode"
+            },
+            {
+              "module": "configuration",
+              "path": "token-verification.adoc",
+              "url": "/mcp-server/current/configuration/token-verification.md",
+              "title": "Token Verification &amp; PRM"
+            },
+            {
+              "module": "configuration",
+              "path": "troubleshooting.adoc",
+              "url": "/mcp-server/current/configuration/troubleshooting.md",
+              "title": "Troubleshooting"
+            },
+            {
+              "module": "configuration-oi",
+              "path": "audit-logging-oi.adoc",
+              "url": "/mcp-server/current/configuration-oi/audit-logging-oi.md",
+              "title": "Audit Logging"
+            },
+            {
+              "module": "configuration-oi",
+              "path": "choosing-a-setup-oi.adoc",
+              "url": "/mcp-server/current/configuration-oi/choosing-a-setup-oi.md",
+              "title": "Choosing a Setup"
+            },
+            {
+              "module": "configuration-oi",
+              "path": "disabling-tools-oi.adoc",
+              "url": "/mcp-server/current/configuration-oi/disabling-tools-oi.md",
+              "title": "Disabling Tools"
+            },
+            {
+              "module": "configuration-oi",
+              "path": "elicitation-for-tools-oi.adoc",
+              "url": "/mcp-server/current/configuration-oi/elicitation-for-tools-oi.md",
+              "title": "Elicitation / Confirmation for Tool Calls"
+            },
+            {
+              "module": "configuration-oi",
+              "path": "environment-variables-oi.adoc",
+              "url": "/mcp-server/current/configuration-oi/environment-variables-oi.md",
+              "title": "Environment Variables &amp; Command Line Arguments"
+            },
+            {
+              "module": "configuration-oi",
+              "path": "idp-compatibility-oi.adoc",
+              "url": "/mcp-server/current/configuration-oi/idp-compatibility-oi.md",
+              "title": "IDP Compatibility"
+            },
+            {
+              "module": "configuration-oi",
+              "path": "index-oi.adoc",
+              "url": "/mcp-server/current/configuration-oi/index-oi.md",
+              "title": "Configuration"
+            },
+            {
+              "module": "configuration-oi",
+              "path": "large-results-oi.adoc",
+              "url": "/mcp-server/current/configuration-oi/large-results-oi.md",
+              "title": "Large Result Handling"
+            },
+            {
+              "module": "configuration-oi",
+              "path": "logging-oi.adoc",
+              "url": "/mcp-server/current/configuration-oi/logging-oi.md",
+              "title": "Logging"
+            },
+            {
+              "module": "configuration-oi",
+              "path": "oauth-overview-oi.adoc",
+              "url": "/mcp-server/current/configuration-oi/oauth-overview-oi.md",
+              "title": "OAuth Authentication"
+            },
+            {
+              "module": "configuration-oi",
+              "path": "read-only-mode-oi.adoc",
+              "url": "/mcp-server/current/configuration-oi/read-only-mode-oi.md",
+              "title": "Read-Only Mode"
+            },
+            {
+              "module": "configuration-oi",
+              "path": "streamable-http-oi.adoc",
+              "url": "/mcp-server/current/configuration-oi/streamable-http-oi.md",
+              "title": "Streamable HTTP Transport Mode"
+            },
+            {
+              "module": "configuration-oi",
+              "path": "token-verification-oi.adoc",
+              "url": "/mcp-server/current/configuration-oi/token-verification-oi.md",
+              "title": "Token Verification &amp; PRM"
+            },
+            {
+              "module": "configuration-oi",
+              "path": "troubleshooting-oi.adoc",
+              "url": "/mcp-server/current/configuration-oi/troubleshooting-oi.md",
+              "title": "Troubleshooting"
+            },
+            {
+              "module": "get-started",
+              "path": "overview.adoc",
+              "url": "/mcp-server/current/get-started/overview.md",
+              "title": "Couchbase MCP Server for Couchbase Server"
+            },
+            {
+              "module": "get-started",
+              "path": "prerequisites.adoc",
+              "url": "/mcp-server/current/get-started/prerequisites.md",
+              "title": "Prerequisites"
+            },
+            {
+              "module": "get-started",
+              "path": "quickstart.adoc",
+              "url": "/mcp-server/current/get-started/quickstart.md",
+              "title": "Quick Start"
+            },
+            {
+              "module": "get-started-oi",
+              "path": "overview-oi.adoc",
+              "url": "/mcp-server/current/get-started-oi/overview-oi.md",
+              "title": "Couchbase MCP Server for Operational Insights"
+            },
+            {
+              "module": "get-started-oi",
+              "path": "prerequisites-oi.adoc",
+              "url": "/mcp-server/current/get-started-oi/prerequisites-oi.md",
+              "title": "Prerequisites"
+            },
+            {
+              "module": "get-started-oi",
+              "path": "quickstart-oi.adoc",
+              "url": "/mcp-server/current/get-started-oi/quickstart-oi.md",
+              "title": "Quick Start"
+            },
+            {
+              "module": "learn",
+              "path": "architecture.adoc",
+              "url": "/mcp-server/current/learn/architecture.md",
+              "title": "Architecture"
+            },
+            {
+              "module": "learn",
+              "path": "tools.adoc",
+              "url": "/mcp-server/current/learn/tools.md",
+              "title": "Tools"
+            },
+            {
+              "module": "learn-oi",
+              "path": "architecture-oi.adoc",
+              "url": "/mcp-server/current/learn-oi/architecture-oi.md",
+              "title": "Architecture"
+            },
+            {
+              "module": "learn-oi",
+              "path": "tools-oi.adoc",
+              "url": "/mcp-server/current/learn-oi/tools-oi.md",
+              "title": "Tools"
+            },
+            {
+              "module": "reference",
+              "path": "build-from-source.adoc",
+              "url": "/mcp-server/current/reference/build-from-source.md",
+              "title": "Build from Source"
+            },
+            {
+              "module": "reference",
+              "path": "common-architecture.adoc",
+              "url": "/mcp-server/current/reference/common-architecture.md",
+              "title": "Architecture"
+            },
+            {
+              "module": "reference",
+              "path": "common-overview.adoc",
+              "url": "/mcp-server/current/reference/common-overview.md",
+              "title": "Couchbase MCP Server"
+            },
+            {
+              "module": "reference",
+              "path": "license.adoc",
+              "url": "/mcp-server/current/reference/license.md",
+              "title": "License"
+            },
+            {
+              "module": "reference",
+              "path": "registries.adoc",
+              "url": "/mcp-server/current/reference/registries.md",
+              "title": "Registries"
             },
             {
               "module": "reference",
               "path": "release-notes.adoc",
               "url": "/mcp-server/current/reference/release-notes.md",
               "title": "Release Notes"
-            }
-          ]
-        },
-        "1.1": {
-          "displayVersion": "Self-Managed V1.1",
-          "url": "/mcp-server/1.1/reference/common-overview.html",
-          "pages": [
-            {
-              "path": "index.adoc",
-              "url": "/mcp-server/1.1/index.html",
-              "title": "Couchbase MCP Server",
-              "alias": {
-                "ref": "reference:common-overview.adoc",
-                "url": "/mcp-server/1.1/reference/common-overview.md"
-              }
-            },
-            {
-              "module": "configuration",
-              "path": "index.adoc",
-              "url": "/mcp-server/1.1/configuration/index.md",
-              "title": "Configuration"
-            },
-            {
-              "module": "configuration",
-              "path": "audit-logging.adoc",
-              "url": "/mcp-server/1.1/configuration/audit-logging.md",
-              "title": "Audit Logging"
-            },
-            {
-              "module": "configuration",
-              "path": "choosing-a-setup.adoc",
-              "url": "/mcp-server/1.1/configuration/choosing-a-setup.md",
-              "title": "Choosing a Setup"
-            },
-            {
-              "module": "configuration",
-              "path": "disabling-tools.adoc",
-              "url": "/mcp-server/1.1/configuration/disabling-tools.md",
-              "title": "Disabling Tools"
-            },
-            {
-              "module": "configuration",
-              "path": "elicitation-for-tools.adoc",
-              "url": "/mcp-server/1.1/configuration/elicitation-for-tools.md",
-              "title": "Elicitation / Confirmation for Tool Calls"
-            },
-            {
-              "module": "configuration",
-              "path": "environment-variables.adoc",
-              "url": "/mcp-server/1.1/configuration/environment-variables.md",
-              "title": "Environment Variables &amp; Command Line Arguments"
-            },
-            {
-              "module": "configuration",
-              "path": "idp-compatibility.adoc",
-              "url": "/mcp-server/1.1/configuration/idp-compatibility.md",
-              "title": "IDP Compatibility"
-            },
-            {
-              "module": "configuration",
-              "path": "logging.adoc",
-              "url": "/mcp-server/1.1/configuration/logging.md",
-              "title": "Logging"
-            },
-            {
-              "module": "configuration",
-              "path": "oauth-overview.adoc",
-              "url": "/mcp-server/1.1/configuration/oauth-overview.md",
-              "title": "OAuth Authentication"
-            },
-            {
-              "module": "configuration",
-              "path": "read-only-mode.adoc",
-              "url": "/mcp-server/1.1/configuration/read-only-mode.md",
-              "title": "Read-Only Mode"
-            },
-            {
-              "module": "configuration",
-              "path": "streamable-http.adoc",
-              "url": "/mcp-server/1.1/configuration/streamable-http.md",
-              "title": "Streamable HTTP Transport Mode"
-            },
-            {
-              "module": "configuration",
-              "path": "token-verification.adoc",
-              "url": "/mcp-server/1.1/configuration/token-verification.md",
-              "title": "Token Verification &amp; PRM"
-            },
-            {
-              "module": "configuration",
-              "path": "troubleshooting.adoc",
-              "url": "/mcp-server/1.1/configuration/troubleshooting.md",
-              "title": "Troubleshooting"
-            },
-            {
-              "module": "configuration-oi",
-              "path": "audit-logging-oi.adoc",
-              "url": "/mcp-server/1.1/configuration-oi/audit-logging-oi.md",
-              "title": "Audit Logging"
-            },
-            {
-              "module": "configuration-oi",
-              "path": "choosing-a-setup-oi.adoc",
-              "url": "/mcp-server/1.1/configuration-oi/choosing-a-setup-oi.md",
-              "title": "Choosing a Setup"
-            },
-            {
-              "module": "configuration-oi",
-              "path": "disabling-tools-oi.adoc",
-              "url": "/mcp-server/1.1/configuration-oi/disabling-tools-oi.md",
-              "title": "Disabling Tools"
-            },
-            {
-              "module": "configuration-oi",
-              "path": "elicitation-for-tools-oi.adoc",
-              "url": "/mcp-server/1.1/configuration-oi/elicitation-for-tools-oi.md",
-              "title": "Elicitation / Confirmation for Tool Calls"
-            },
-            {
-              "module": "configuration-oi",
-              "path": "environment-variables-oi.adoc",
-              "url": "/mcp-server/1.1/configuration-oi/environment-variables-oi.md",
-              "title": "Environment Variables &amp; Command Line Arguments"
-            },
-            {
-              "module": "configuration-oi",
-              "path": "idp-compatibility-oi.adoc",
-              "url": "/mcp-server/1.1/configuration-oi/idp-compatibility-oi.md",
-              "title": "IDP Compatibility"
-            },
-            {
-              "module": "configuration-oi",
-              "path": "index-oi.adoc",
-              "url": "/mcp-server/1.1/configuration-oi/index-oi.md",
-              "title": "Configuration"
-            },
-            {
-              "module": "configuration-oi",
-              "path": "large-results-oi.adoc",
-              "url": "/mcp-server/1.1/configuration-oi/large-results-oi.md",
-              "title": "Large Result Handling"
-            },
-            {
-              "module": "configuration-oi",
-              "path": "logging-oi.adoc",
-              "url": "/mcp-server/1.1/configuration-oi/logging-oi.md",
-              "title": "Logging"
-            },
-            {
-              "module": "configuration-oi",
-              "path": "oauth-overview-oi.adoc",
-              "url": "/mcp-server/1.1/configuration-oi/oauth-overview-oi.md",
-              "title": "OAuth Authentication"
-            },
-            {
-              "module": "configuration-oi",
-              "path": "read-only-mode-oi.adoc",
-              "url": "/mcp-server/1.1/configuration-oi/read-only-mode-oi.md",
-              "title": "Read-Only Mode"
-            },
-            {
-              "module": "configuration-oi",
-              "path": "streamable-http-oi.adoc",
-              "url": "/mcp-server/1.1/configuration-oi/streamable-http-oi.md",
-              "title": "Streamable HTTP Transport Mode"
-            },
-            {
-              "module": "configuration-oi",
-              "path": "token-verification-oi.adoc",
-              "url": "/mcp-server/1.1/configuration-oi/token-verification-oi.md",
-              "title": "Token Verification &amp; PRM"
-            },
-            {
-              "module": "configuration-oi",
-              "path": "troubleshooting-oi.adoc",
-              "url": "/mcp-server/1.1/configuration-oi/troubleshooting-oi.md",
-              "title": "Troubleshooting"
-            },
-            {
-              "module": "get-started",
-              "path": "overview.adoc",
-              "url": "/mcp-server/1.1/get-started/overview.md",
-              "title": "Couchbase MCP Server for Couchbase Server"
-            },
-            {
-              "module": "get-started",
-              "path": "prerequisites.adoc",
-              "url": "/mcp-server/1.1/get-started/prerequisites.md",
-              "title": "Prerequisites"
-            },
-            {
-              "module": "get-started",
-              "path": "quickstart.adoc",
-              "url": "/mcp-server/1.1/get-started/quickstart.md",
-              "title": "Quick Start"
-            },
-            {
-              "module": "get-started-oi",
-              "path": "overview-oi.adoc",
-              "url": "/mcp-server/1.1/get-started-oi/overview-oi.md",
-              "title": "Couchbase MCP Server for Operational Insights"
-            },
-            {
-              "module": "get-started-oi",
-              "path": "prerequisites-oi.adoc",
-              "url": "/mcp-server/1.1/get-started-oi/prerequisites-oi.md",
-              "title": "Prerequisites"
-            },
-            {
-              "module": "get-started-oi",
-              "path": "quickstart-oi.adoc",
-              "url": "/mcp-server/1.1/get-started-oi/quickstart-oi.md",
-              "title": "Quick Start"
-            },
-            {
-              "module": "learn",
-              "path": "architecture.adoc",
-              "url": "/mcp-server/1.1/learn/architecture.md",
-              "title": "Architecture"
-            },
-            {
-              "module": "learn",
-              "path": "tools.adoc",
-              "url": "/mcp-server/1.1/learn/tools.md",
-              "title": "Tools"
-            },
-            {
-              "module": "learn-oi",
-              "path": "architecture-oi.adoc",
-              "url": "/mcp-server/1.1/learn-oi/architecture-oi.md",
-              "title": "Architecture"
-            },
-            {
-              "module": "learn-oi",
-              "path": "tools-oi.adoc",
-              "url": "/mcp-server/1.1/learn-oi/tools-oi.md",
-              "title": "Tools"
-            },
-            {
-              "module": "reference",
-              "path": "build-from-source.adoc",
-              "url": "/mcp-server/1.1/reference/build-from-source.md",
-              "title": "Build from Source"
-            },
-            {
-              "module": "reference",
-              "path": "common-architecture.adoc",
-              "url": "/mcp-server/1.1/reference/common-architecture.md",
-              "title": "Architecture"
-            },
-            {
-              "module": "reference",
-              "path": "common-overview.adoc",
-              "url": "/mcp-server/1.1/reference/common-overview.md",
-              "title": "Couchbase MCP Server"
-            },
-            {
-              "module": "reference",
-              "path": "license.adoc",
-              "url": "/mcp-server/1.1/reference/license.md",
-              "title": "License"
-            },
-            {
-              "module": "reference",
-              "path": "registries.adoc",
-              "url": "/mcp-server/1.1/reference/registries.md",
-              "title": "Registries"
-            },
-            {
-              "module": "reference",
-              "path": "release-notes.adoc",
-              "url": "/mcp-server/1.1/reference/release-notes.md",
-              "title": "Release Notes"
             },
             {
               "module": "security",
               "path": "security.adoc",
-              "url": "/mcp-server/1.1/security/security.md",
+              "url": "/mcp-server/current/security/security.md",
               "title": "Security"
             },
             {
               "module": "security-oi",
               "path": "security-oi.adoc",
-              "url": "/mcp-server/1.1/security-oi/security-oi.md",
+              "url": "/mcp-server/current/security-oi/security-oi.md",
               "title": "Security"
             }
           ]
         },
         "1.0": {
-          "displayVersion": "Self-Managed V1.0",
           "url": "/mcp-server/1.0/get-started/overview.html",
           "pages": [
             {
@@ -79555,15 +79558,15 @@
     },
     "php-sdk": {
       "title": "PHP SDK",
-      "latest": "4.5",
+      "latest": "4.6",
       "versions": {
-        "4.5": {
+        "4.6": {
           "url": "/php-sdk/current/hello-world/overview.html",
           "pages": [
             {
               "path": "index.adoc",
               "url": "/php-sdk/current/index.html",
-              "title": "Couchbase PHP SDK 4.5",
+              "title": "Couchbase PHP SDK 4.6",
               "alias": {
                 "ref": "hello-world:overview.adoc",
                 "url": "/php-sdk/current/hello-world/overview.md"
@@ -79768,15 +79771,6 @@
               }
             },
             {
-              "path": "managing-views.adoc",
-              "url": "/php-sdk/current/managing-views.html",
-              "title": "MapReduce Views",
-              "alias": {
-                "ref": "concept-docs:understanding-views.adoc",
-                "url": "/php-sdk/current/concept-docs/understanding-views.md"
-              }
-            },
-            {
               "path": "migrate.adoc",
               "url": "/php-sdk/current/migrate.html",
               "title": "Migrating to SDK 3 API",
@@ -79810,15 +79804,6 @@
               "alias": {
                 "ref": "project-docs:compatibility.adoc",
                 "url": "/php-sdk/current/project-docs/compatibility.md"
-              }
-            },
-            {
-              "path": "querying-views.adoc",
-              "url": "/php-sdk/current/querying-views.html",
-              "title": "MapReduce Views",
-              "alias": {
-                "ref": "concept-docs:understanding-views.adoc",
-                "url": "/php-sdk/current/concept-docs/understanding-views.md"
               }
             },
             {
@@ -79951,15 +79936,6 @@
               }
             },
             {
-              "path": "view-queries-with-sdk.adoc",
-              "url": "/php-sdk/current/view-queries-with-sdk.html",
-              "title": "MapReduce Views",
-              "alias": {
-                "ref": "howtos:view-queries-with-sdk.adoc",
-                "url": "/php-sdk/current/howtos/view-queries-with-sdk.md"
-              }
-            },
-            {
               "path": "webui-cli-access.adoc",
               "url": "/php-sdk/current/webui-cli-access.html",
               "title": "Browser and CLI Access",
@@ -79970,47 +79946,19 @@
             },
             {
               "module": "concept-docs",
-              "path": "analytics-for-sdk-users.adoc",
-              "url": "/php-sdk/current/concept-docs/analytics-for-sdk-users.md",
-              "title": "Analytics"
-            },
-            {
-              "module": "concept-docs",
-              "path": "analytics.adoc",
-              "url": "/php-sdk/current/concept-docs/analytics.html",
-              "title": "Analytics",
-              "alias": {
-                "ref": "analytics-for-sdk-users.adoc",
-                "url": "/php-sdk/current/concept-docs/analytics-for-sdk-users.md"
-              }
-            },
-            {
-              "module": "concept-docs",
-              "path": "buckets-and-clusters.adoc",
-              "url": "/php-sdk/current/concept-docs/buckets-and-clusters.md",
-              "title": "Buckets and Clusters"
-            },
-            {
-              "module": "concept-docs",
-              "path": "certificate-based-authentication.adoc",
-              "url": "/php-sdk/current/concept-docs/certificate-based-authentication.md",
-              "title": "Certificate-Based Authentication"
+              "path": "best-practices.adoc",
+              "url": "/php-sdk/current/concept-docs/best-practices.md",
+              "title": "Best Practices"
             },
             {
               "module": "concept-docs",
               "path": "choosing-the-right-service.adoc",
               "url": "/php-sdk/current/concept-docs/choosing-the-right-service.html",
-              "title": "Service Selection",
+              "title": "Querying Your Data",
               "alias": {
-                "ref": "data-services.adoc",
-                "url": "/php-sdk/current/concept-docs/data-services.md"
+                "ref": "querying-your-data.adoc",
+                "url": "/php-sdk/current/concept-docs/querying-your-data.md"
               }
-            },
-            {
-              "module": "concept-docs",
-              "path": "collections.adoc",
-              "url": "/php-sdk/current/concept-docs/collections.md",
-              "title": "Collections and Scopes"
             },
             {
               "module": "concept-docs",
@@ -80021,8 +79969,18 @@
             {
               "module": "concept-docs",
               "path": "concepts.adoc",
-              "url": "/php-sdk/current/concept-docs/concepts.md",
-              "title": "Overview"
+              "url": "/php-sdk/current/concept-docs/concepts.html",
+              "title": "Reference Pages",
+              "alias": {
+                "ref": "ref:index.adoc",
+                "url": "/php-sdk/current/ref/index.md"
+              }
+            },
+            {
+              "module": "concept-docs",
+              "path": "data-durability-acid-transactions.adoc",
+              "url": "/php-sdk/current/concept-docs/data-durability-acid-transactions.md",
+              "title": "Data Modelling, Durability, and Consistency"
             },
             {
               "module": "concept-docs",
@@ -80033,8 +79991,12 @@
             {
               "module": "concept-docs",
               "path": "data-services.adoc",
-              "url": "/php-sdk/current/concept-docs/data-services.md",
-              "title": "Service Selection"
+              "url": "/php-sdk/current/concept-docs/data-services.html",
+              "title": "Querying Your Data",
+              "alias": {
+                "ref": "querying-your-data.adoc",
+                "url": "/php-sdk/current/concept-docs/querying-your-data.md"
+              }
             },
             {
               "module": "concept-docs",
@@ -80057,8 +80019,12 @@
             {
               "module": "concept-docs",
               "path": "errors.adoc",
-              "url": "/php-sdk/current/concept-docs/errors.md",
-              "title": "Errors and Diagnostics"
+              "url": "/php-sdk/current/concept-docs/errors.html",
+              "title": "Best Practices",
+              "alias": {
+                "ref": "best-practices.adoc",
+                "url": "/php-sdk/current/concept-docs/best-practices.md"
+              }
             },
             {
               "module": "concept-docs",
@@ -80076,21 +80042,17 @@
               "module": "concept-docs",
               "path": "http-services.adoc",
               "url": "/php-sdk/current/concept-docs/http-services.html",
-              "title": "Service Selection",
+              "title": "Querying Your Data",
               "alias": {
-                "ref": "data-services.adoc",
-                "url": "/php-sdk/current/concept-docs/data-services.md"
+                "ref": "querying-your-data.adoc",
+                "url": "/php-sdk/current/concept-docs/querying-your-data.md"
               }
             },
             {
               "module": "concept-docs",
-              "path": "managing-clusters.adoc",
-              "url": "/php-sdk/current/concept-docs/managing-clusters.html",
-              "title": "Buckets and Clusters",
-              "alias": {
-                "ref": "buckets-and-clusters.adoc",
-                "url": "/php-sdk/current/concept-docs/buckets-and-clusters.md"
-              }
+              "path": "management-api.adoc",
+              "url": "/php-sdk/current/concept-docs/management-api.md",
+              "title": "Managing Couchbase Clusters from the SDK"
             },
             {
               "module": "concept-docs",
@@ -80106,9 +80068,19 @@
             },
             {
               "module": "concept-docs",
+              "path": "querying-your-data.adoc",
+              "url": "/php-sdk/current/concept-docs/querying-your-data.md",
+              "title": "Querying Your Data"
+            },
+            {
+              "module": "concept-docs",
               "path": "rbac.adoc",
-              "url": "/php-sdk/current/concept-docs/rbac.md",
-              "title": "RBAC"
+              "url": "/php-sdk/current/concept-docs/rbac.html",
+              "title": "Best Practices",
+              "alias": {
+                "ref": "best-practices.adoc",
+                "url": "/php-sdk/current/concept-docs/best-practices.md"
+              }
             },
             {
               "module": "concept-docs",
@@ -80158,12 +80130,6 @@
             },
             {
               "module": "concept-docs",
-              "path": "understanding-views.adoc",
-              "url": "/php-sdk/current/concept-docs/understanding-views.md",
-              "title": "MapReduce Views"
-            },
-            {
-              "module": "concept-docs",
               "path": "xattr.adoc",
               "url": "/php-sdk/current/concept-docs/xattr.md",
               "title": "XATTR and Virtual XATTR"
@@ -80182,7 +80148,7 @@
               "module": "hello-world",
               "path": "overview.adoc",
               "url": "/php-sdk/current/hello-world/overview.md",
-              "title": "Couchbase PHP SDK 4.5"
+              "title": "Couchbase PHP SDK 4.6"
             },
             {
               "module": "hello-world",
@@ -80331,8 +80297,12 @@
             {
               "module": "howtos",
               "path": "n1ql-queries-with-sdk.adoc",
-              "url": "/php-sdk/current/howtos/n1ql-queries-with-sdk.md",
-              "title": "Query"
+              "url": "/php-sdk/current/howtos/n1ql-queries-with-sdk.html",
+              "title": "Query",
+              "alias": {
+                "ref": "sqlpp-queries-with-sdk.adoc",
+                "url": "/php-sdk/current/howtos/sqlpp-queries-with-sdk.md"
+              }
             },
             {
               "module": "howtos",
@@ -80340,8 +80310,8 @@
               "url": "/php-sdk/current/howtos/n1ql-query.html",
               "title": "Query",
               "alias": {
-                "ref": "n1ql-queries-with-sdk.adoc",
-                "url": "/php-sdk/current/howtos/n1ql-queries-with-sdk.md"
+                "ref": "sqlpp-queries-with-sdk.adoc",
+                "url": "/php-sdk/current/howtos/sqlpp-queries-with-sdk.md"
               }
             },
             {
@@ -80388,6 +80358,12 @@
             },
             {
               "module": "howtos",
+              "path": "sqlpp-queries-with-sdk.adoc",
+              "url": "/php-sdk/current/howtos/sqlpp-queries-with-sdk.md",
+              "title": "Query"
+            },
+            {
+              "module": "howtos",
               "path": "subdocument-operations.adoc",
               "url": "/php-sdk/current/howtos/subdocument-operations.md",
               "title": "Sub-Document Operations"
@@ -80402,11 +80378,6 @@
                 "ref": "distributed-acid-transactions-from-the-sdk.adoc",
                 "url": "/php-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md"
               }
-            },
-            {
-              "module": "howtos",
-              "path": "transactions-tracing.adoc",
-              "url": "/php-sdk/current/howtos/transactions-tracing.md"
             },
             {
               "module": "howtos",
@@ -80429,8 +80400,12 @@
             {
               "module": "howtos",
               "path": "view-queries-with-sdk.adoc",
-              "url": "/php-sdk/current/howtos/view-queries-with-sdk.md",
-              "title": "MapReduce Views"
+              "url": "/php-sdk/current/howtos/view-queries-with-sdk.html",
+              "title": "Querying Your Data",
+              "alias": {
+                "ref": "concept-docs:querying-your-data.adoc",
+                "url": "/php-sdk/current/concept-docs/querying-your-data.md"
+              }
             },
             {
               "module": "howtos",
@@ -80471,6 +80446,12 @@
               "path": "compatibility.adoc",
               "url": "/php-sdk/current/project-docs/compatibility.md",
               "title": "Compatibility"
+            },
+            {
+              "module": "project-docs",
+              "path": "deployment.adoc",
+              "url": "/php-sdk/current/project-docs/deployment.md",
+              "title": "Deployment"
             },
             {
               "module": "project-docs",
@@ -80523,6 +80504,12 @@
             },
             {
               "module": "ref",
+              "path": "index.adoc",
+              "url": "/php-sdk/current/ref/index.md",
+              "title": "Reference Pages"
+            },
+            {
+              "module": "ref",
               "path": "client-settings.adoc",
               "url": "/php-sdk/current/ref/client-settings.md",
               "title": "Client Settings"
@@ -80548,6 +80535,1001 @@
               "module": "ref",
               "path": "travel-app-data-model.adoc",
               "url": "/php-sdk/current/ref/travel-app-data-model.md",
+              "title": "Travel Sample Data Model"
+            }
+          ]
+        },
+        "4.5": {
+          "url": "/php-sdk/4.5/hello-world/overview.html",
+          "pages": [
+            {
+              "path": "index.adoc",
+              "url": "/php-sdk/4.5/index.html",
+              "title": "Couchbase PHP SDK 4.5",
+              "alias": {
+                "ref": "hello-world:overview.adoc",
+                "url": "/php-sdk/4.5/hello-world/overview.md"
+              }
+            },
+            {
+              "path": "async-programming.adoc",
+              "url": "/php-sdk/4.5/async-programming.html",
+              "title": "Batching",
+              "alias": {
+                "ref": "howtos:concurrent-async-apis.adoc",
+                "url": "/php-sdk/4.5/howtos/concurrent-async-apis.md"
+              }
+            },
+            {
+              "path": "batching-operations.adoc",
+              "url": "/php-sdk/4.5/batching-operations.html",
+              "title": "Batching",
+              "alias": {
+                "ref": "howtos:concurrent-async-apis.adoc",
+                "url": "/php-sdk/4.5/howtos/concurrent-async-apis.md"
+              }
+            },
+            {
+              "path": "client-settings.adoc",
+              "url": "/php-sdk/4.5/client-settings.html",
+              "title": "Client Settings",
+              "alias": {
+                "ref": "ref:client-settings.adoc",
+                "url": "/php-sdk/4.5/ref/client-settings.md"
+              }
+            },
+            {
+              "path": "compatibility-versions-features.adoc",
+              "url": "/php-sdk/4.5/compatibility-versions-features.html",
+              "title": "Compatibility",
+              "alias": {
+                "ref": "project-docs:compatibility.adoc",
+                "url": "/php-sdk/4.5/project-docs/compatibility.md"
+              }
+            },
+            {
+              "path": "concurrent-document-mutations.adoc",
+              "url": "/php-sdk/4.5/concurrent-document-mutations.html",
+              "title": "Concurrent Document Mutations",
+              "alias": {
+                "ref": "howtos:concurrent-document-mutations.adoc",
+                "url": "/php-sdk/4.5/howtos/concurrent-document-mutations.md"
+              }
+            },
+            {
+              "path": "connecting.adoc",
+              "url": "/php-sdk/4.5/connecting.html",
+              "title": "Managing Connections",
+              "alias": {
+                "ref": "howtos:managing-connections.adoc",
+                "url": "/php-sdk/4.5/howtos/managing-connections.md"
+              }
+            },
+            {
+              "path": "connection-advanced.adoc",
+              "url": "/php-sdk/4.5/connection-advanced.html",
+              "title": "Managing Connections",
+              "alias": {
+                "ref": "howtos:managing-connections.adoc",
+                "url": "/php-sdk/4.5/howtos/managing-connections.md"
+              }
+            },
+            {
+              "path": "core-operations.adoc",
+              "url": "/php-sdk/4.5/core-operations.html",
+              "title": "Data Model",
+              "alias": {
+                "ref": "concept-docs:data-model.adoc",
+                "url": "/php-sdk/4.5/concept-docs/data-model.md"
+              }
+            },
+            {
+              "path": "datastructures.adoc",
+              "url": "/php-sdk/4.5/datastructures.html",
+              "title": "Data Model",
+              "alias": {
+                "ref": "concept-docs:data-model.adoc",
+                "url": "/php-sdk/4.5/concept-docs/data-model.md"
+              }
+            },
+            {
+              "path": "documents-atomic.adoc",
+              "url": "/php-sdk/4.5/documents-atomic.html",
+              "title": "Documents",
+              "alias": {
+                "ref": "concept-docs:documents.adoc",
+                "url": "/php-sdk/4.5/concept-docs/documents.md"
+              }
+            },
+            {
+              "path": "documents-basics.adoc",
+              "url": "/php-sdk/4.5/documents-basics.html",
+              "title": "Documents",
+              "alias": {
+                "ref": "concept-docs:documents.adoc",
+                "url": "/php-sdk/4.5/concept-docs/documents.md"
+              }
+            },
+            {
+              "path": "documents.adoc",
+              "url": "/php-sdk/4.5/documents.html",
+              "title": "Documents",
+              "alias": {
+                "ref": "concept-docs:documents.adoc",
+                "url": "/php-sdk/4.5/concept-docs/documents.md"
+              }
+            },
+            {
+              "path": "durability.adoc",
+              "url": "/php-sdk/4.5/durability.html",
+              "title": "Failure Considerations",
+              "alias": {
+                "ref": "concept-docs:durability-replication-failure-considerations.adoc",
+                "url": "/php-sdk/4.5/concept-docs/durability-replication-failure-considerations.md"
+              }
+            },
+            {
+              "path": "encrypting-using-sdk.adoc",
+              "url": "/php-sdk/4.5/encrypting-using-sdk.html",
+              "title": "Field Level Encryption from the SDK",
+              "alias": {
+                "ref": "howtos:encrypting-using-sdk.adoc",
+                "url": "/php-sdk/4.5/howtos/encrypting-using-sdk.md"
+              }
+            },
+            {
+              "path": "encryption.adoc",
+              "url": "/php-sdk/4.5/encryption.html",
+              "title": "Field Level Encryption",
+              "alias": {
+                "ref": "concept-docs:encryption.adoc",
+                "url": "/php-sdk/4.5/concept-docs/encryption.md"
+              }
+            },
+            {
+              "path": "failure-considerations.adoc",
+              "url": "/php-sdk/4.5/failure-considerations.html",
+              "title": "Failure Considerations",
+              "alias": {
+                "ref": "concept-docs:durability-replication-failure-considerations.adoc",
+                "url": "/php-sdk/4.5/concept-docs/durability-replication-failure-considerations.md"
+              }
+            },
+            {
+              "path": "full-text-search-overview.adoc",
+              "url": "/php-sdk/4.5/full-text-search-overview.html",
+              "title": "Search",
+              "alias": {
+                "ref": "concept-docs:full-text-search-overview.adoc",
+                "url": "/php-sdk/4.5/concept-docs/full-text-search-overview.md"
+              }
+            },
+            {
+              "path": "getting-started.adoc",
+              "url": "/php-sdk/4.5/getting-started.html",
+              "title": "Start Using the PHP SDK",
+              "alias": {
+                "ref": "hello-world:start-using-sdk.adoc",
+                "url": "/php-sdk/4.5/hello-world/start-using-sdk.md"
+              }
+            },
+            {
+              "path": "health-check.adoc",
+              "url": "/php-sdk/4.5/health-check.html",
+              "title": "Health Check",
+              "alias": {
+                "ref": "concept-docs:health-check.adoc",
+                "url": "/php-sdk/4.5/concept-docs/health-check.md"
+              }
+            },
+            {
+              "path": "hello-couchbase.adoc",
+              "url": "/php-sdk/4.5/hello-couchbase.html",
+              "title": "Start Using the PHP SDK",
+              "alias": {
+                "ref": "hello-world:start-using-sdk.adoc",
+                "url": "/php-sdk/4.5/hello-world/start-using-sdk.md"
+              }
+            },
+            {
+              "path": "managing-clusters.adoc",
+              "url": "/php-sdk/4.5/managing-clusters.html",
+              "title": "Provisioning Cluster Resources",
+              "alias": {
+                "ref": "howtos:provisioning-cluster-resources.adoc",
+                "url": "/php-sdk/4.5/howtos/provisioning-cluster-resources.md"
+              }
+            },
+            {
+              "path": "managing-connections.adoc",
+              "url": "/php-sdk/4.5/managing-connections.html",
+              "title": "Managing Connections",
+              "alias": {
+                "ref": "howtos:managing-connections.adoc",
+                "url": "/php-sdk/4.5/howtos/managing-connections.md"
+              }
+            },
+            {
+              "path": "managing-views.adoc",
+              "url": "/php-sdk/4.5/managing-views.html",
+              "title": "MapReduce Views",
+              "alias": {
+                "ref": "concept-docs:understanding-views.adoc",
+                "url": "/php-sdk/4.5/concept-docs/understanding-views.md"
+              }
+            },
+            {
+              "path": "migrate.adoc",
+              "url": "/php-sdk/4.5/migrate.html",
+              "title": "Migrating to SDK 3 API",
+              "alias": {
+                "ref": "project-docs:migrating-sdk-code-to-3.n.adoc",
+                "url": "/php-sdk/4.5/project-docs/migrating-sdk-code-to-3.n.md"
+              }
+            },
+            {
+              "path": "n1ql-query.adoc",
+              "url": "/php-sdk/4.5/n1ql-query.html",
+              "title": "Querying with SQL++",
+              "alias": {
+                "ref": "concept-docs:n1ql-query.adoc",
+                "url": "/php-sdk/4.5/concept-docs/n1ql-query.md"
+              }
+            },
+            {
+              "path": "nonjson.adoc",
+              "url": "/php-sdk/4.5/nonjson.html",
+              "title": "Non-JSON Documents",
+              "alias": {
+                "ref": "concept-docs:nonjson.adoc",
+                "url": "/php-sdk/4.5/concept-docs/nonjson.md"
+              }
+            },
+            {
+              "path": "overview.adoc",
+              "url": "/php-sdk/4.5/overview.html",
+              "title": "Compatibility",
+              "alias": {
+                "ref": "project-docs:compatibility.adoc",
+                "url": "/php-sdk/4.5/project-docs/compatibility.md"
+              }
+            },
+            {
+              "path": "querying-views.adoc",
+              "url": "/php-sdk/4.5/querying-views.html",
+              "title": "MapReduce Views",
+              "alias": {
+                "ref": "concept-docs:understanding-views.adoc",
+                "url": "/php-sdk/4.5/concept-docs/understanding-views.md"
+              }
+            },
+            {
+              "path": "release-notes.adoc",
+              "url": "/php-sdk/4.5/release-notes.html",
+              "title": "SDK Release Notes",
+              "navtitle": "Release Notes",
+              "alias": {
+                "ref": "project-docs:sdk-release-notes.adoc",
+                "url": "/php-sdk/4.5/project-docs/sdk-release-notes.md"
+              }
+            },
+            {
+              "path": "relnotes-php-sdk.adoc",
+              "url": "/php-sdk/4.5/relnotes-php-sdk.html",
+              "title": "SDK Release Notes",
+              "navtitle": "Release Notes",
+              "alias": {
+                "ref": "project-docs:sdk-release-notes.adoc",
+                "url": "/php-sdk/4.5/project-docs/sdk-release-notes.md"
+              }
+            },
+            {
+              "path": "sample-app-backend.adoc",
+              "url": "/php-sdk/4.5/sample-app-backend.html",
+              "title": "Sample Application",
+              "alias": {
+                "ref": "hello-world:sample-application.adoc",
+                "url": "/php-sdk/4.5/hello-world/sample-application.md"
+              }
+            },
+            {
+              "path": "sample-application.adoc",
+              "url": "/php-sdk/4.5/sample-application.html",
+              "title": "Sample Application",
+              "alias": {
+                "ref": "hello-world:sample-application.adoc",
+                "url": "/php-sdk/4.5/hello-world/sample-application.md"
+              }
+            },
+            {
+              "path": "sdk-authentication-overview.adoc",
+              "url": "/php-sdk/4.5/sdk-authentication-overview.html",
+              "title": "Authentication",
+              "alias": {
+                "ref": "howtos:sdk-authentication.adoc",
+                "url": "/php-sdk/4.5/howtos/sdk-authentication.md"
+              }
+            },
+            {
+              "path": "sdk-licenses.adoc",
+              "url": "/php-sdk/4.5/sdk-licenses.html",
+              "title": "Licenses",
+              "alias": {
+                "ref": "project-docs:sdk-licenses.adoc",
+                "url": "/php-sdk/4.5/project-docs/sdk-licenses.md"
+              }
+            },
+            {
+              "path": "sdk-release-notes.adoc",
+              "url": "/php-sdk/4.5/sdk-release-notes.html",
+              "title": "SDK Release Notes",
+              "navtitle": "Release Notes",
+              "alias": {
+                "ref": "project-docs:sdk-release-notes.adoc",
+                "url": "/php-sdk/4.5/project-docs/sdk-release-notes.md"
+              }
+            },
+            {
+              "path": "sdk-user-management-overview.adoc",
+              "url": "/php-sdk/4.5/sdk-user-management-overview.html",
+              "title": "User Management",
+              "alias": {
+                "ref": "concept-docs:sdk-user-management-overview.adoc",
+                "url": "/php-sdk/4.5/concept-docs/sdk-user-management-overview.md"
+              }
+            },
+            {
+              "path": "sdk-xattr-example.adoc",
+              "url": "/php-sdk/4.5/sdk-xattr-example.html",
+              "title": "Sub-Document Operations",
+              "alias": {
+                "ref": "howtos:subdocument-operations.adoc",
+                "url": "/php-sdk/4.5/howtos/subdocument-operations.md"
+              }
+            },
+            {
+              "path": "sdk-xattr-overview.adoc",
+              "url": "/php-sdk/4.5/sdk-xattr-overview.html",
+              "title": "XATTR and Virtual XATTR",
+              "alias": {
+                "ref": "concept-docs:xattr.adoc",
+                "url": "/php-sdk/4.5/concept-docs/xattr.md"
+              }
+            },
+            {
+              "path": "start-using-sdk.adoc",
+              "url": "/php-sdk/4.5/start-using-sdk.html",
+              "title": "Start Using the PHP SDK",
+              "alias": {
+                "ref": "hello-world:start-using-sdk.adoc",
+                "url": "/php-sdk/4.5/hello-world/start-using-sdk.md"
+              }
+            },
+            {
+              "path": "start-using.adoc",
+              "url": "/php-sdk/4.5/start-using.html",
+              "title": "Start Using the PHP SDK",
+              "alias": {
+                "ref": "hello-world:start-using-sdk.adoc",
+                "url": "/php-sdk/4.5/hello-world/start-using-sdk.md"
+              }
+            },
+            {
+              "path": "threshold-logging.adoc",
+              "url": "/php-sdk/4.5/threshold-logging.html",
+              "title": "Tracing",
+              "alias": {
+                "ref": "concept-docs:response-time-observability.adoc",
+                "url": "/php-sdk/4.5/concept-docs/response-time-observability.md"
+              }
+            },
+            {
+              "path": "tutorial4.adoc",
+              "url": "/php-sdk/4.5/tutorial4.html",
+              "title": "Sample Application",
+              "alias": {
+                "ref": "hello-world:sample-application.adoc",
+                "url": "/php-sdk/4.5/hello-world/sample-application.md"
+              }
+            },
+            {
+              "path": "view-queries-with-sdk.adoc",
+              "url": "/php-sdk/4.5/view-queries-with-sdk.html",
+              "title": "MapReduce Views",
+              "alias": {
+                "ref": "howtos:view-queries-with-sdk.adoc",
+                "url": "/php-sdk/4.5/howtos/view-queries-with-sdk.md"
+              }
+            },
+            {
+              "path": "webui-cli-access.adoc",
+              "url": "/php-sdk/4.5/webui-cli-access.html",
+              "title": "Browser and CLI Access",
+              "alias": {
+                "ref": "hello-world:webui-cli-access.adoc",
+                "url": "/php-sdk/4.5/hello-world/webui-cli-access.md"
+              }
+            },
+            {
+              "module": "concept-docs",
+              "path": "analytics-for-sdk-users.adoc",
+              "url": "/php-sdk/4.5/concept-docs/analytics-for-sdk-users.md",
+              "title": "Analytics"
+            },
+            {
+              "module": "concept-docs",
+              "path": "analytics.adoc",
+              "url": "/php-sdk/4.5/concept-docs/analytics.html",
+              "title": "Analytics",
+              "alias": {
+                "ref": "analytics-for-sdk-users.adoc",
+                "url": "/php-sdk/4.5/concept-docs/analytics-for-sdk-users.md"
+              }
+            },
+            {
+              "module": "concept-docs",
+              "path": "buckets-and-clusters.adoc",
+              "url": "/php-sdk/4.5/concept-docs/buckets-and-clusters.md",
+              "title": "Buckets and Clusters"
+            },
+            {
+              "module": "concept-docs",
+              "path": "certificate-based-authentication.adoc",
+              "url": "/php-sdk/4.5/concept-docs/certificate-based-authentication.md",
+              "title": "Certificate-Based Authentication"
+            },
+            {
+              "module": "concept-docs",
+              "path": "choosing-the-right-service.adoc",
+              "url": "/php-sdk/4.5/concept-docs/choosing-the-right-service.html",
+              "title": "Service Selection",
+              "alias": {
+                "ref": "data-services.adoc",
+                "url": "/php-sdk/4.5/concept-docs/data-services.md"
+              }
+            },
+            {
+              "module": "concept-docs",
+              "path": "collections.adoc",
+              "url": "/php-sdk/4.5/concept-docs/collections.md",
+              "title": "Collections and Scopes"
+            },
+            {
+              "module": "concept-docs",
+              "path": "compression.adoc",
+              "url": "/php-sdk/4.5/concept-docs/compression.md",
+              "title": "Compression"
+            },
+            {
+              "module": "concept-docs",
+              "path": "concepts.adoc",
+              "url": "/php-sdk/4.5/concept-docs/concepts.md",
+              "title": "Overview"
+            },
+            {
+              "module": "concept-docs",
+              "path": "data-model.adoc",
+              "url": "/php-sdk/4.5/concept-docs/data-model.md",
+              "title": "Data Model"
+            },
+            {
+              "module": "concept-docs",
+              "path": "data-services.adoc",
+              "url": "/php-sdk/4.5/concept-docs/data-services.md",
+              "title": "Service Selection"
+            },
+            {
+              "module": "concept-docs",
+              "path": "documents.adoc",
+              "url": "/php-sdk/4.5/concept-docs/documents.md",
+              "title": "Documents"
+            },
+            {
+              "module": "concept-docs",
+              "path": "durability-replication-failure-considerations.adoc",
+              "url": "/php-sdk/4.5/concept-docs/durability-replication-failure-considerations.md",
+              "title": "Failure Considerations"
+            },
+            {
+              "module": "concept-docs",
+              "path": "encryption.adoc",
+              "url": "/php-sdk/4.5/concept-docs/encryption.md",
+              "title": "Field Level Encryption"
+            },
+            {
+              "module": "concept-docs",
+              "path": "errors.adoc",
+              "url": "/php-sdk/4.5/concept-docs/errors.md",
+              "title": "Errors and Diagnostics"
+            },
+            {
+              "module": "concept-docs",
+              "path": "full-text-search-overview.adoc",
+              "url": "/php-sdk/4.5/concept-docs/full-text-search-overview.md",
+              "title": "Search"
+            },
+            {
+              "module": "concept-docs",
+              "path": "health-check.adoc",
+              "url": "/php-sdk/4.5/concept-docs/health-check.md",
+              "title": "Health Check"
+            },
+            {
+              "module": "concept-docs",
+              "path": "http-services.adoc",
+              "url": "/php-sdk/4.5/concept-docs/http-services.html",
+              "title": "Service Selection",
+              "alias": {
+                "ref": "data-services.adoc",
+                "url": "/php-sdk/4.5/concept-docs/data-services.md"
+              }
+            },
+            {
+              "module": "concept-docs",
+              "path": "managing-clusters.adoc",
+              "url": "/php-sdk/4.5/concept-docs/managing-clusters.html",
+              "title": "Buckets and Clusters",
+              "alias": {
+                "ref": "buckets-and-clusters.adoc",
+                "url": "/php-sdk/4.5/concept-docs/buckets-and-clusters.md"
+              }
+            },
+            {
+              "module": "concept-docs",
+              "path": "n1ql-query.adoc",
+              "url": "/php-sdk/4.5/concept-docs/n1ql-query.md",
+              "title": "Querying with SQL++"
+            },
+            {
+              "module": "concept-docs",
+              "path": "nonjson.adoc",
+              "url": "/php-sdk/4.5/concept-docs/nonjson.md",
+              "title": "Non-JSON Documents"
+            },
+            {
+              "module": "concept-docs",
+              "path": "rbac.adoc",
+              "url": "/php-sdk/4.5/concept-docs/rbac.md",
+              "title": "RBAC"
+            },
+            {
+              "module": "concept-docs",
+              "path": "response-time-observability.adoc",
+              "url": "/php-sdk/4.5/concept-docs/response-time-observability.md",
+              "title": "Tracing"
+            },
+            {
+              "module": "concept-docs",
+              "path": "sdk-user-management-overview.adoc",
+              "url": "/php-sdk/4.5/concept-docs/sdk-user-management-overview.md",
+              "title": "User Management"
+            },
+            {
+              "module": "concept-docs",
+              "path": "sdk-xattr-overview.adoc",
+              "url": "/php-sdk/4.5/concept-docs/sdk-xattr-overview.html",
+              "title": "XATTR and Virtual XATTR",
+              "alias": {
+                "ref": "xattr.adoc",
+                "url": "/php-sdk/4.5/concept-docs/xattr.md"
+              }
+            },
+            {
+              "module": "concept-docs",
+              "path": "subdocument-operations.adoc",
+              "url": "/php-sdk/4.5/concept-docs/subdocument-operations.md",
+              "title": "Sub-Documents"
+            },
+            {
+              "module": "concept-docs",
+              "path": "transactions-cleanup.adoc",
+              "url": "/php-sdk/4.5/concept-docs/transactions-cleanup.md",
+              "title": "Cleanup"
+            },
+            {
+              "module": "concept-docs",
+              "path": "transactions-error-handling.adoc",
+              "url": "/php-sdk/4.5/concept-docs/transactions-error-handling.md",
+              "title": "Error Handling"
+            },
+            {
+              "module": "concept-docs",
+              "path": "transactions.adoc",
+              "url": "/php-sdk/4.5/concept-docs/transactions.md",
+              "title": "Transaction Concepts"
+            },
+            {
+              "module": "concept-docs",
+              "path": "understanding-views.adoc",
+              "url": "/php-sdk/4.5/concept-docs/understanding-views.md",
+              "title": "MapReduce Views"
+            },
+            {
+              "module": "concept-docs",
+              "path": "xattr.adoc",
+              "url": "/php-sdk/4.5/concept-docs/xattr.md",
+              "title": "XATTR and Virtual XATTR"
+            },
+            {
+              "module": "hello-world",
+              "path": "cbc.adoc",
+              "url": "/php-sdk/4.5/hello-world/cbc.html",
+              "title": "Browser and CLI Access",
+              "alias": {
+                "ref": "webui-cli-access.adoc",
+                "url": "/php-sdk/4.5/hello-world/webui-cli-access.md"
+              }
+            },
+            {
+              "module": "hello-world",
+              "path": "overview.adoc",
+              "url": "/php-sdk/4.5/hello-world/overview.md",
+              "title": "Couchbase PHP SDK 4.5"
+            },
+            {
+              "module": "hello-world",
+              "path": "platform-help.adoc",
+              "url": "/php-sdk/4.5/hello-world/platform-help.md",
+              "title": "Platform Introduction"
+            },
+            {
+              "module": "hello-world",
+              "path": "sample-application.adoc",
+              "url": "/php-sdk/4.5/hello-world/sample-application.md",
+              "title": "Sample Application"
+            },
+            {
+              "module": "hello-world",
+              "path": "start-using-sdk.adoc",
+              "url": "/php-sdk/4.5/hello-world/start-using-sdk.md",
+              "title": "Start Using the PHP SDK"
+            },
+            {
+              "module": "hello-world",
+              "path": "webui-cli-access.adoc",
+              "url": "/php-sdk/4.5/hello-world/webui-cli-access.md",
+              "title": "Browser and CLI Access"
+            },
+            {
+              "module": "howtos",
+              "path": "advanced-analytics-querying.adoc",
+              "url": "/php-sdk/4.5/howtos/advanced-analytics-querying.md",
+              "title": "Advanced Analytics Querying"
+            },
+            {
+              "module": "howtos",
+              "path": "analytics-using-sdk.adoc",
+              "url": "/php-sdk/4.5/howtos/analytics-using-sdk.md",
+              "title": "Analytics"
+            },
+            {
+              "module": "howtos",
+              "path": "collecting-information-and-logging.adoc",
+              "url": "/php-sdk/4.5/howtos/collecting-information-and-logging.md",
+              "title": "Logging"
+            },
+            {
+              "module": "howtos",
+              "path": "concurrent-async-apis.adoc",
+              "url": "/php-sdk/4.5/howtos/concurrent-async-apis.md",
+              "title": "Batching"
+            },
+            {
+              "module": "howtos",
+              "path": "concurrent-document-mutations.adoc",
+              "url": "/php-sdk/4.5/howtos/concurrent-document-mutations.md",
+              "title": "Concurrent Document Mutations"
+            },
+            {
+              "module": "howtos",
+              "path": "distributed-acid-transactions-from-the-sdk.adoc",
+              "url": "/php-sdk/4.5/howtos/distributed-acid-transactions-from-the-sdk.md",
+              "title": "Using Couchbase Transactions",
+              "xreftext": "Distributed ACID Transactions from the PHP SDK"
+            },
+            {
+              "module": "howtos",
+              "path": "document-operations.adoc",
+              "url": "/php-sdk/4.5/howtos/document-operations.html",
+              "title": "Data Operations",
+              "alias": {
+                "ref": "kv-operations.adoc",
+                "url": "/php-sdk/4.5/howtos/kv-operations.md"
+              }
+            },
+            {
+              "module": "howtos",
+              "path": "encrypting-using-sdk.adoc",
+              "url": "/php-sdk/4.5/howtos/encrypting-using-sdk.md",
+              "title": "Field Level Encryption from the SDK"
+            },
+            {
+              "module": "howtos",
+              "path": "error-handling.adoc",
+              "url": "/php-sdk/4.5/howtos/error-handling.md",
+              "title": "Handling Errors"
+            },
+            {
+              "module": "howtos",
+              "path": "full-text-searching-with-sdk.adoc",
+              "url": "/php-sdk/4.5/howtos/full-text-searching-with-sdk.md",
+              "title": "Search"
+            },
+            {
+              "module": "howtos",
+              "path": "handling-error-conditions.adoc",
+              "url": "/php-sdk/4.5/howtos/handling-error-conditions.html",
+              "title": "Handling Errors",
+              "alias": {
+                "ref": "error-handling.adoc",
+                "url": "/php-sdk/4.5/howtos/error-handling.md"
+              }
+            },
+            {
+              "module": "howtos",
+              "path": "health-check.adoc",
+              "url": "/php-sdk/4.5/howtos/health-check.md",
+              "title": "Diagnosing and preventing Network Problems with Health Check",
+              "navtitle": "Health Check"
+            },
+            {
+              "module": "howtos",
+              "path": "json.adoc",
+              "url": "/php-sdk/4.5/howtos/json.md",
+              "title": "Choosing &amp; Using a JSON Library"
+            },
+            {
+              "module": "howtos",
+              "path": "kv-operations.adoc",
+              "url": "/php-sdk/4.5/howtos/kv-operations.md",
+              "title": "Data Operations"
+            },
+            {
+              "module": "howtos",
+              "path": "managing-connections.adoc",
+              "url": "/php-sdk/4.5/howtos/managing-connections.md",
+              "title": "Managing Connections"
+            },
+            {
+              "module": "howtos",
+              "path": "multi-network.adoc",
+              "url": "/php-sdk/4.5/howtos/multi-network.html",
+              "title": "Managing Connections",
+              "alias": {
+                "ref": "managing-connections.adoc",
+                "url": "/php-sdk/4.5/howtos/managing-connections.md"
+              }
+            },
+            {
+              "module": "howtos",
+              "path": "multiple-apis.adoc",
+              "url": "/php-sdk/4.5/howtos/multiple-apis.html",
+              "title": "Batching",
+              "alias": {
+                "ref": "concurrent-async-apis.adoc",
+                "url": "/php-sdk/4.5/howtos/concurrent-async-apis.md"
+              }
+            },
+            {
+              "module": "howtos",
+              "path": "n1ql-queries-with-sdk.adoc",
+              "url": "/php-sdk/4.5/howtos/n1ql-queries-with-sdk.md",
+              "title": "Query"
+            },
+            {
+              "module": "howtos",
+              "path": "n1ql-query.adoc",
+              "url": "/php-sdk/4.5/howtos/n1ql-query.html",
+              "title": "Query",
+              "alias": {
+                "ref": "n1ql-queries-with-sdk.adoc",
+                "url": "/php-sdk/4.5/howtos/n1ql-queries-with-sdk.md"
+              }
+            },
+            {
+              "module": "howtos",
+              "path": "observability-metrics.adoc",
+              "url": "/php-sdk/4.5/howtos/observability-metrics.md",
+              "title": "Metrics Reporting"
+            },
+            {
+              "module": "howtos",
+              "path": "observability-orphan-logger.adoc",
+              "url": "/php-sdk/4.5/howtos/observability-orphan-logger.md",
+              "title": "Orphaned Requests Logging"
+            },
+            {
+              "module": "howtos",
+              "path": "observability-tracing.adoc",
+              "url": "/php-sdk/4.5/howtos/observability-tracing.md",
+              "title": "Request Tracing"
+            },
+            {
+              "module": "howtos",
+              "path": "provisioning-cluster-resources.adoc",
+              "url": "/php-sdk/4.5/howtos/provisioning-cluster-resources.md",
+              "title": "Provisioning Cluster Resources"
+            },
+            {
+              "module": "howtos",
+              "path": "sdk-authentication.adoc",
+              "url": "/php-sdk/4.5/howtos/sdk-authentication.md",
+              "title": "Authentication"
+            },
+            {
+              "module": "howtos",
+              "path": "sdk-user-management-example.adoc",
+              "url": "/php-sdk/4.5/howtos/sdk-user-management-example.md",
+              "title": "User Management"
+            },
+            {
+              "module": "howtos",
+              "path": "slow-operations-logging.adoc",
+              "url": "/php-sdk/4.5/howtos/slow-operations-logging.md",
+              "title": "Slow Operations Logging"
+            },
+            {
+              "module": "howtos",
+              "path": "subdocument-operations.adoc",
+              "url": "/php-sdk/4.5/howtos/subdocument-operations.md",
+              "title": "Sub-Document Operations"
+            },
+            {
+              "module": "howtos",
+              "path": "transactions-single-query.adoc",
+              "url": "/php-sdk/4.5/howtos/transactions-single-query.html",
+              "title": "Using Couchbase Transactions",
+              "xreftext": "Distributed ACID Transactions from the PHP SDK",
+              "alias": {
+                "ref": "distributed-acid-transactions-from-the-sdk.adoc",
+                "url": "/php-sdk/4.5/howtos/distributed-acid-transactions-from-the-sdk.md"
+              }
+            },
+            {
+              "module": "howtos",
+              "path": "transactions-tracing.adoc",
+              "url": "/php-sdk/4.5/howtos/transactions-tracing.md"
+            },
+            {
+              "module": "howtos",
+              "path": "transcoders-nonjson.adoc",
+              "url": "/php-sdk/4.5/howtos/transcoders-nonjson.md",
+              "title": "Transcoders and Non-JSON Documents"
+            },
+            {
+              "module": "howtos",
+              "path": "troubleshooting-cloud-connections.adoc",
+              "url": "/php-sdk/4.5/howtos/troubleshooting-cloud-connections.md",
+              "title": "Troubleshooting Cloud Connections"
+            },
+            {
+              "module": "howtos",
+              "path": "vector-searching-with-sdk.adoc",
+              "url": "/php-sdk/4.5/howtos/vector-searching-with-sdk.md",
+              "title": "Vector Search"
+            },
+            {
+              "module": "howtos",
+              "path": "view-queries-with-sdk.adoc",
+              "url": "/php-sdk/4.5/howtos/view-queries-with-sdk.md",
+              "title": "MapReduce Views"
+            },
+            {
+              "module": "howtos",
+              "path": "working-with-collections.adoc",
+              "url": "/php-sdk/4.5/howtos/working-with-collections.md",
+              "title": "Working with Collections"
+            },
+            {
+              "module": "project-docs",
+              "path": "3.0-pre-release-notes.adoc",
+              "url": "/php-sdk/4.5/project-docs/3.0-pre-release-notes.md",
+              "title": "Pre-release Archive Release Notes",
+              "navtitle": "α &amp; β Release Notes"
+            },
+            {
+              "module": "project-docs",
+              "path": "3.0αλφα-sdk-release-notes.adoc",
+              "url": "/php-sdk/4.5/project-docs/3.0αλφα-sdk-release-notes.html",
+              "title": "Pre-release Archive Release Notes",
+              "navtitle": "α &amp; β Release Notes",
+              "alias": {
+                "ref": "3.0-pre-release-notes.adoc",
+                "url": "/php-sdk/4.5/project-docs/3.0-pre-release-notes.md"
+              }
+            },
+            {
+              "module": "project-docs",
+              "path": "compatibility-versions-features.adoc",
+              "url": "/php-sdk/4.5/project-docs/compatibility-versions-features.html",
+              "title": "Compatibility",
+              "alias": {
+                "ref": "compatibility.adoc",
+                "url": "/php-sdk/4.5/project-docs/compatibility.md"
+              }
+            },
+            {
+              "module": "project-docs",
+              "path": "compatibility.adoc",
+              "url": "/php-sdk/4.5/project-docs/compatibility.md",
+              "title": "Compatibility"
+            },
+            {
+              "module": "project-docs",
+              "path": "get-involved.adoc",
+              "url": "/php-sdk/4.5/project-docs/get-involved.md",
+              "title": "Get Involved"
+            },
+            {
+              "module": "project-docs",
+              "path": "metadoc-about-these-sdk-docs.adoc",
+              "url": "/php-sdk/4.5/project-docs/metadoc-about-these-sdk-docs.md",
+              "title": "About These Docs"
+            },
+            {
+              "module": "project-docs",
+              "path": "migrating-sdk-code-3.x-to-4.x.adoc",
+              "url": "/php-sdk/4.5/project-docs/migrating-sdk-code-3.x-to-4.x.md",
+              "title": "3.x to 4.x Migration Guide"
+            },
+            {
+              "module": "project-docs",
+              "path": "migrating-sdk-code-to-3.n.adoc",
+              "url": "/php-sdk/4.5/project-docs/migrating-sdk-code-to-3.n.md",
+              "title": "Migrating to SDK 3 API"
+            },
+            {
+              "module": "project-docs",
+              "path": "sdk-full-installation.adoc",
+              "url": "/php-sdk/4.5/project-docs/sdk-full-installation.md",
+              "title": "Full Installation"
+            },
+            {
+              "module": "project-docs",
+              "path": "sdk-licenses.adoc",
+              "url": "/php-sdk/4.5/project-docs/sdk-licenses.md",
+              "title": "Licenses"
+            },
+            {
+              "module": "project-docs",
+              "path": "sdk-release-notes.adoc",
+              "url": "/php-sdk/4.5/project-docs/sdk-release-notes.md",
+              "title": "SDK Release Notes",
+              "navtitle": "Release Notes"
+            },
+            {
+              "module": "project-docs",
+              "path": "third-party-integrations.adoc",
+              "url": "/php-sdk/4.5/project-docs/third-party-integrations.md",
+              "title": "3<sup>rd</sup> Party Integrations"
+            },
+            {
+              "module": "ref",
+              "path": "client-settings.adoc",
+              "url": "/php-sdk/4.5/ref/client-settings.md",
+              "title": "Client Settings"
+            },
+            {
+              "module": "ref",
+              "path": "data-structures.adoc",
+              "url": "/php-sdk/4.5/ref/data-structures.md"
+            },
+            {
+              "module": "ref",
+              "path": "error-codes.adoc",
+              "url": "/php-sdk/4.5/ref/error-codes.md",
+              "title": "Error Messages"
+            },
+            {
+              "module": "ref",
+              "path": "glossary.adoc",
+              "url": "/php-sdk/4.5/ref/glossary.md",
+              "title": "Glossary"
+            },
+            {
+              "module": "ref",
+              "path": "travel-app-data-model.adoc",
+              "url": "/php-sdk/4.5/ref/travel-app-data-model.md",
               "title": "Travel Sample Data Model"
             }
           ]

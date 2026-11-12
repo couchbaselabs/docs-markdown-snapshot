@@ -2,14 +2,13 @@
 title: Documents
 description: Couchbase supports CRUD operations, various data structures, and
   binary documents.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
     title: PHP SDK
-    version: "4.5"
-  topic_type: concept
+    version: "4.6"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/concept-docs/pages/documents.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/release/4.6/modules/concept-docs/pages/documents.adoc
   xref: xref:php-sdk:concept-docs:documents.adoc[]
 ---
 
@@ -124,7 +123,7 @@ You can also specify additional options when storing a document in Couchbase
 > If you wish to only modify certain parts of a document, you can use [sub-document](subdocument-operations.md) operations which operate on specific subsets of documents:
 > 
 > ```php
-> Unresolved include directive in modules/concept-docs/pages/documents.adoc - include::example$documents-concept.php[]
+> Unresolved include directive in modules/concept-docs/pages/documents.adoc - include::devguide:example$php/ocuments-concept.php[]
 > ```
 > 
 > or [N1QL UPDATE](../../../server/current/n1ql/n1ql-language-reference/update.md) to update documents based on specific query criteria:
@@ -135,7 +134,7 @@ You can also specify additional options when storing a document in Couchbase
 
 ## [](#retrieving-documents)Retrieving Documents
 
-This section discusses retrieving documents using their IDs, or primary keys. Documents can also be accessed using secondary lookups via [SQL++ queries](n1ql-query.md) and [MapReduce Views](../howtos/view-queries-with-sdk.md). Primary key lookups are performed using the key-value API, which simplifies use and increases performance (as applications may interact with the KV store directly, rather than a secondary index or query processor).
+This section discusses retrieving documents using their IDs, or primary keys. Documents can also be accessed using secondary lookups via [SQL++ queries](n1ql-query.md) and [MapReduce Views](querying-your-data.md). Primary key lookups are performed using the key-value API, which simplifies use and increases performance (as applications may interact with the KV store directly, rather than a secondary index or query processor).
 
 In Couchbase, documents are stored with their IDs. Retrieving a document via its ID is the simplest and quickest operation in Couchbase.
 
@@ -168,7 +167,11 @@ SELECT * FROM `travel-sample`.inventory.airport WHERE META().id = "airport_1254"
 You can also retrieve _parts_ of documents using [sub-document operations](subdocument-operations.md), by specifying one or more sections of the document to be retrieved
 
 ```php
-Unresolved include directive in modules/concept-docs/pages/documents.adoc - include::example$documents-concept.php[]
+$usersCollection = $bucket->scope('tenant_agent_00')->collection('users');
+$usersCollection->lookupIn('1', [
+    new LookupGetSpec('credit_cards[0].type'),
+    new LookupGetSpec('credit_cards[0].expiration')
+]);
 ```
 
 ## [](#counters)Counters
@@ -181,7 +184,17 @@ You can atomically increment or decrement the numerical value of special counter
 A document may be used as a counter if its value is a simple ASCII number, like `42`. Couchbase allows you to increment and decrement these values atomically using a special `counter` operation in the `Binary.Collection`. The example below shows a counter being initialised, then being incremented and decremented:
 
 ```php
-Unresolved include directive in modules/concept-docs/pages/documents.adoc - include::example$documents-concept.php[]
+$counterDocId = 'counter-doc';
+$decrementOpts = new DecrementOptions();
+$incrementOpts = new IncrementOptions();
+// Increment by 1, creating doc if needed.
+// By using `initial(1)` we set the starting count(non-negative) to 1 if the document needs to be created.
+// If it already exists, the count will increase by 1.
+$collection->binary()->increment($counterDocId, $incrementOpts->initial(1));
+// Decrement by 1
+$collection->binary()->decrement($counterDocId);
+// Decrement by 5
+$collection->binary()->decrement($counterDocId, $decrementOpts->delta(5));
 ```
 
 In the above example, a counter is created by using the `counter` method with an `initial` value. The initial value is the value the counter uses if the counter ID does not yet exist.
@@ -195,7 +208,15 @@ Couchbase counters are 64-bit unsigned integers in Couchbase and do not wrap aro
 [CAS](../howtos/concurrent-document-mutations.md) values are not used with counter operations since counter operations are atomic. The intent of the counter operation is to simply increment the current server-side value of the document. If you wish to only increment the document if it is at a certain value, then you may use a normal `replace` function with CAS:
 
 ```php
-Unresolved include directive in modules/concept-docs/pages/documents.adoc - include::example$documents-concept.php[]
+$result = $collection->get('counter-doc');
+$value = $result->content();
+$incrementAmnt = 5;
+
+if (shouldIncrementValue($value)) {
+    $opts = new ReplaceOptions();
+    $opts->cas($result->cas());
+    $collection->replace('counter-doc', $value + $incrementAmnt, $opts);
+}
 ```
 
 You can also use [sub-document counter operations](subdocument-operations.md) to increment numeric values _within_ a document containing other content. An example can be found in the [practical sub-doc page](../howtos/subdocument-operations.md#counters-and-numeric-fields).

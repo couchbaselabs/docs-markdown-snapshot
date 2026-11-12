@@ -2,15 +2,14 @@
 title: Field Level Encryption from the SDK
 description: The Field Level Encryption library enables encryption and
   decryption of JSON fields, to support FIPS-140-2 compliance.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
     title: PHP SDK
-    version: "4.5"
-  topic_type: howto
+    version: "4.6"
   edition: Enterprise Edition
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/howtos/pages/encrypting-using-sdk.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/release/4.6/modules/howtos/pages/encrypting-using-sdk.adoc
   xref: xref:php-sdk:howtos:encrypting-using-sdk.adoc[]
 ---
 
@@ -21,7 +20,7 @@ antora:
 
 > The Field Level Encryption library enables encryption and decryption of JSON fields, to support FIPS-140-2 compliance. 
 
-Client-side implementation of Field Level Encryption is available in the previous version of the SDK. It will be enabled in a future release of the third generation SDK.
+Client-side implementation of Field Level Encryption is available in the [C++](../../../cxx-sdk/current/howtos/encrypting-using-sdk.md), [.NET](../../../dotnet-sdk/current/howtos/encrypting-using-sdk.md), [Go](../../../go-sdk/current/howtos/encrypting-using-sdk.md), [Java](../../../java-sdk/current/howtos/encrypting-using-sdk.md), [Node.js](../../../nodejs-sdk/current/howtos/encrypting-using-sdk.md), [Python](../../../python-sdk/current/howtos/encrypting-using-sdk.md), and [Scala](../../../scala-sdk/current/howtos/encrypting-using-sdk.md) SDKs.
 
 > [!TIP]
 > Native Encryption at Rest

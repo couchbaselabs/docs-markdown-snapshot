@@ -2,10 +2,10 @@
 title: Disabling Tools
 description: Disable specific Couchbase MCP Server tools so they aren't loaded,
   discovered, or callable by the LLM.
-pubDate: 2026-11-03T04:28:31.731Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
-    title: Couchbase MCP Server
+    title: Couchbase MCP Server Self-Managed
     version: "1.0"
   topic_type: reference
 antora:

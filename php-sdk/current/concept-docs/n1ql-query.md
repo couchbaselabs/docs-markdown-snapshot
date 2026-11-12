@@ -2,14 +2,13 @@
 title: Querying with SQL++
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
     title: PHP SDK
-    version: "4.5"
-  topic_type: concept
+    version: "4.6"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/concept-docs/pages/n1ql-query.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/release/4.6/modules/concept-docs/pages/n1ql-query.adoc
   xref: xref:php-sdk:concept-docs:n1ql-query.adoc[]
 ---
 
@@ -20,7 +19,7 @@ antora:
 
 > Parallel data management for complex queries over many records, using a familiar SQL-like syntax. 
 
-The [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) Query Language provides a familiar, SQL-like experience for querying documents stored in Couchbase. You can [read up on the language in our reference guide](../../../server/current/n1ql/n1ql-language-reference/index.md), but you probably just want to [dive into a practical example](../howtos/n1ql-queries-with-sdk.md).
+The [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) Query Language provides a familiar, SQL-like experience for querying documents stored in Couchbase. You can [read up on the language in our reference guide](../../../server/current/n1ql/n1ql-language-reference/index.md), but you probably just want to [dive into a practical example](../howtos/sqlpp-queries-with-sdk.md).
 
 Below, we fill in some of the gaps between reference and rolling-up-your-sleeves practicality, with discussion of a few areas of the Query Service where more background knowledge will help you to better program your application.
 
@@ -39,7 +38,15 @@ If your queries are highly dynamic, we recommend using parameterized queries if 
 For the PHP SDK, the `adhoc` parameter should be set to `false` for a plan to be prepared, or a prepared plan to be reused. Do not turn off the `adhoc` flag for _every_ query to Server 6.0 and earlier, since only a finite number of query plans (currently 5000) can be stored in the SDK.
 
 ```php
-Unresolved include directive in modules/concept-docs/pages/n1ql-query.adoc - include::example$n1ql-concept.php[]
+$query = "SELECT count(*) FROM `travel-sample`.inventory.airport where country = $1";
+$opts = new QueryOptions();
+$opts->adhoc(false);
+$opts->positionalParameters(['France']);
+
+$result = $cluster->query($query, $opts);
+foreach ($result->rows() as $row) {
+    // do something
+}
 ```
 
 > [!CAUTION]
@@ -78,7 +85,11 @@ Indexes help improve the performance of a query. When an index includes the actu
 You can also create and define indexes in the SDK using:
 
 ```php
-Unresolved include directive in modules/concept-docs/pages/n1ql-query.adoc - include::example$n1ql-concept.php[]
+$mgr = $cluster->queryIndexes();
+
+$mgr->createPrimaryIndex('travel-sample');
+$mgr->createIndex('travel-sample', 'ix_name', ['name']);
+$mgr->createIndex('travel-sample', 'ix_email', ['email']);
 ```
 
 ## [](#index-building)Index Building
@@ -97,7 +108,15 @@ The indexes are not built until the `BUILD INDEX` statement is executed. At this
 Building deferred indexes can also be done via the SDK:
 
 ```php
-Unresolved include directive in modules/concept-docs/pages/n1ql-query.adoc - include::example$n1ql-concept.php[]
+$indexOpts = new CreateQueryIndexOptions();
+$primaryIndexOpts = new CreateQueryPrimaryIndexOptions();
+
+$mgr->createPrimaryIndex('travel-sample', $primaryIndexOpts->deferred(true));
+$mgr->createIndex('travel-sample', 'ix_name', ['name'], $indexOpts->deferred(true));
+$mgr->createIndex('travel-sample', 'ix_email', ['email'], $indexOpts->deferred(true));
+
+$indexesToBuild = $mgr->buildDeferredIndexes('travel-sample');
+$mgr->watchIndexes('travel-sample', $indexesToBuild, 2);
 ```
 
 ## [](#index-consistency)Index Consistency
@@ -120,7 +139,15 @@ For SQL++, the default consistency is `not_bounded`.
 Consider the following snippet:
 
 ```php
-Unresolved include directive in modules/concept-docs/pages/n1ql-query.adoc - include::example$n1ql-concept.php[]
+$indexOpts = new CreateQueryIndexOptions();
+$primaryIndexOpts = new CreateQueryPrimaryIndexOptions();
+
+$mgr->createPrimaryIndex('travel-sample', $primaryIndexOpts->deferred(true));
+$mgr->createIndex('travel-sample', 'ix_name', ['name'], $indexOpts->deferred(true));
+$mgr->createIndex('travel-sample', 'ix_email', ['email'], $indexOpts->deferred(true));
+
+$indexesToBuild = $mgr->buildDeferredIndexes('travel-sample');
+$mgr->watchIndexes('travel-sample', $indexesToBuild, 2);
 ```
 
 The above query may not return the newly inserted document because it has not yet been indexed. The query is issued immediately after document creation, and in this case the query engine may process the query before the index has been updated.
@@ -128,7 +155,12 @@ The above query may not return the newly inserted document because it has not ye
 If the above code is modified to use _RequestPlus_, query processing will wait until all updates have been processed and recalculated into the index from the point in time the query was received:
 
 ```php
-Unresolved include directive in modules/concept-docs/pages/n1ql-query.adoc - include::example$n1ql-concept.php[]
+$queryOpts->scanConsistency(QueryScanConsistency::REQUEST_PLUS);
+$queryOpts->positionalParameters(['Brass']);
+$cluster->query(
+    "SELECT name, email, random, META().id FROM `travel-sample`.inventory.airport WHERE $1 IN name",
+    $queryOpts,
+);
 ```
 
 This gives the application developer more control over the balance between performance (latency) and consistency, and allows optimization on a case-by-case basis.

@@ -2,14 +2,13 @@
 title: Search
 description: You can use the Search service (FTS) to create queryable Search
   indexes in Couchbase Server.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
     title: PHP SDK
-    version: "4.5"
-  topic_type: howto
+    version: "4.6"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/howtos/pages/full-text-searching-with-sdk.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/release/4.6/modules/howtos/pages/full-text-searching-with-sdk.adoc
   xref: xref:php-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -30,7 +29,7 @@ There are two APIs for querying search: `cluster.searchQuery()`, and `cluster.se
 
 The former API supports FTS queries (`SearchQuery`), while the latter additionally supports the `VectorSearch` added in 7.6\. Most of this documentation will focus on the former API, as the latter is in @Stability.Volatile status.
 
-We will perform an FTS query here - see the [\[vector-search\]](#vector-search) section for examples of that.
+We will perform an FTS query here - see the [Vector Search page](vector-searching-with-sdk.md) for examples of that.
 
 ## [](#examples)Examples
 

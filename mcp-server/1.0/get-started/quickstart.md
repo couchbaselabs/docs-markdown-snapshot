@@ -2,10 +2,10 @@
 title: Quick Start
 description: Get the Couchbase MCP Server running in under 5 minutes by
   configuring an MCP client, connection string, and authentication.
-pubDate: 2026-11-03T04:28:31.731Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
-    title: Couchbase MCP Server
+    title: Couchbase MCP Server Self-Managed
     version: "1.0"
   topic_type: procedure
 antora:

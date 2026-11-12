@@ -2,14 +2,13 @@
 title: Error Messages
 description: The standardized error codes returned by the Couchbase PHP SDK,
   from cloud connection to sub-document.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
     title: PHP SDK
-    version: "4.5"
-  topic_type: reference
+    version: "4.6"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/ref/pages/error-codes.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/release/4.6/modules/ref/pages/error-codes.adoc
   xref: xref:php-sdk:ref:error-codes.adoc[]
 ---
 
@@ -424,5 +423,5 @@ Could not get configuration
 ## [](#further-reading)Further Reading
 
 * Our practical look at [error handling with the SDK](../howtos/error-handling.md).
-* [Discussion document](../concept-docs/errors.md) on handling exceptions.
+* [Discussion document](../concept-docs/best-practices.md) on handling exceptions.
 * Further reference material in the [API Guide](https://docs.couchbase.com/sdk-api/couchbase-php-client/namespaces/couchbase.html).

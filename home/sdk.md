@@ -1,6 +1,6 @@
 ---
 title: SDKs for Couchbase Operational Database
-pubDate: 2026-11-05T15:16:13.118Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
     title: Couchbase Documentation
@@ -284,7 +284,7 @@ Easy to Connect & Get Started
 
 Search, Query, Analyze
 
-* [Query with a familiar, SQL-like language](#php-sdk:howtos:sqlpp-queries-with-sdk.adoc)
+* [Query with a familiar, SQL-like language](../php-sdk/current/howtos/sqlpp-queries-with-sdk.md)
 * [Vector Search for your AI app](../php-sdk/current/howtos/vector-searching-with-sdk.md)
 * [Fuzzy Search with text and Geo data](../php-sdk/current/howtos/full-text-searching-with-sdk.md)
 * [OLAP — long running analytical queries](../php-sdk/current/howtos/analytics-using-sdk.md)

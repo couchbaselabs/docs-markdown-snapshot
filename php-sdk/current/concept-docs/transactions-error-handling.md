@@ -1,14 +1,13 @@
 ---
 title: Error Handling
 description: Handling transaction errors with Couchbase.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
     title: PHP SDK
-    version: "4.5"
-  topic_type: reference
+    version: "4.6"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/concept-docs/pages/transactions-error-handling.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/release/4.6/modules/concept-docs/pages/transactions-error-handling.adoc
   xref: xref:php-sdk:concept-docs:transactions-error-handling.adoc[]
 ---
 
@@ -84,5 +83,25 @@ If you regularly see this flag false, consider increasing the transaction timeou
 Pulling all of the above together, this is the suggested best practice for error handling:
 
 ```php
-Unresolved include directive in modules/concept-docs/pages/transactions-error-handling.adoc - include::howtos:example$transactions-example.php[]
+try {
+  $result = $cluster->transactions()->run(
+    function (TransactionAttemptContext $ctx) use ($collection, $costOfItem) {
+      // ... transactional code here ...
+    }
+  );
+
+  // The transaction definitely reached the commit point. Unstaging
+  // the individual documents may or may not have completed
+
+  if (!$result->unstagingComplete) {
+    // In rare cases, the application may require the commit to have
+    // completed.  (Recall that the asynchronous cleanup process is
+    // still working to complete the commit.)
+    // The next step is application-dependent.
+  }
+} catch (\Couchbase\Exception\TransactionFailedException $e) {
+  echo "Transaction did not reach commit point\n";
+} catch (\Couchbase\Exception\TransactionCommitAmbiguousException $e) {
+  echo "Transaction possibly committed\n";
+}
 ```

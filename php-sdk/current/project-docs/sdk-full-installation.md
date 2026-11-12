@@ -1,14 +1,13 @@
 ---
 title: Full Installation
 description: Installation instructions, and download archive for the Couchbase PHP Client.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-11-12T06:49:41.760Z
 meta:
   component:
     title: PHP SDK
-    version: "4.5"
-  topic_type: howto
+    version: "4.6"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/project-docs/pages/sdk-full-installation.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/release/4.6/modules/project-docs/pages/sdk-full-installation.adoc
   xref: xref:php-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -23,7 +22,7 @@ For release notes, download links, and installation methods for [earlier release
 
 The Couchbase PHP SDK generally tracks PHP's own [supported versions](https://www.php.net/supported-versions.php), and recommends the most recent "Active Support" version, except as specified in our documentation and especially the [release notes](sdk-release-notes.md).
 
-As of June 2024, these versions are PHP 8.3 (Latest Active Support), 8.2 (Active Support), and 8.1 (Security Support) — see the table below for [supported versions and dates](#php-version-compatibility).
+As of October 2026, these versions are PHP 8.5 (Latest Active Support), 8.4 (Active Support), and 8.3 (Security Support). — see the table below for [supported versions and dates](#php-version-compatibility).
 
 ## [](#sdk-installation)SDK Installation
 
@@ -32,7 +31,7 @@ As of June 2024, these versions are PHP 8.3 (Latest Active Support), 8.2 (Active
 Before installing the PHP SDK, the following dependencies must be installed. We recommend using OS specific utilities such as `brew`, `apt-get`, and similar package management utilities (depending on your environment):
 
 * cmake >= 3.20.0+
-* c++ compiler >= std\_17
+* C++ compiler >= std\_17
 * openssl >= 1.1+
 
 For more details regarding platform support refer to the [Compatibility page](compatibility.md#os-compatibility).
@@ -55,7 +54,7 @@ $ pecl install couchbase
 Or install from the Couchbase repository:
 
 ```console
-$ pecl install https://packages.couchbase.com/clients/php/couchbase-4.0.0.tgz
+$ pecl install https://packages.couchbase.com/clients/php/couchbase-4.6.0.tgz
 ```
 
 Then follow the [post-installation steps](#post-installation).
@@ -76,8 +75,8 @@ Then follow the [post-installation steps](#post-installation).
 Using `apk`, you would install your preferred `php` version, install `libcouchbase`, and then install the equivalent `pecl` package for the version of `php` that you're using.
 
 ```console
-$ apk add php81
-$ apk add php81-pecl-couchbase
+$ apk add php83
+$ apk add php83-pecl-couchbase
 ```
 
 Then follow the [post-installation steps](#post-installation).
@@ -86,7 +85,7 @@ Then follow the [post-installation steps](#post-installation).
 
 When using Microsoft Windows, instead of using PECL, download the pre-built binary package matching your environment. You may also download the [php-couchbase source code](https://github.com/couchbase/php-couchbase) for the SDK and build it directly in your environment if you have a complete build toolchain.
 
-From [PHP SDK version 4.2.1](sdk-release-notes.md#version-4-2-1-23-april-2024)Windows binaries are available to download — see the [Release Notes page](sdk-release-notes.md) for links to the binary built for your preferred PHP version.
+Windows binaries are available to download — see the [Release Notes page](sdk-release-notes.md) for links to the binary built for your preferred PHP version.
 
 > [!TIP]
 > PECL Packages
@@ -104,14 +103,13 @@ Once the PHP SDK has been installed, you need to specify that the PHP interprete
 1. Locate your `php.ini` file. This can be done using the command `php --ini`  
 ```console  
 $ php --ini  
-Configuration File (php.ini) Path: /usr/local/etc/php/8.1  
-Loaded Configuration File:         /usr/local/etc/php/8.1/php.ini  
-Scan for additional .ini files in: /usr/local/etc/php/8.1/conf.d  
+Configuration File (php.ini) Path: /usr/local/etc/php/8.3  
+Loaded Configuration File:         /usr/local/etc/php/8.3/php.ini  
+Scan for additional .ini files in: /usr/local/etc/php/8.3/conf.d  
 Additional .ini files parsed:      (none)  
 ```
 2. Insert a line in the `php.ini` file specifying the extension to be loaded; this should be in the `[PHP]` section. If you don't know where that is, simply search for existing commented or uncommented `extension=` entries in the file.  
 ```ini  
-extension=json      ; not needed with PHP 8.0.0+  
 extension=couchbase  
 ```  
 > [!NOTE]  
@@ -125,7 +123,8 @@ Ensure that you have installed [Composer](https://getcomposer.org/doc/00-intro.m
 
 ```console
 $ composer --version
-Composer version 2.3.5 2022-04-13 16:43:00
+Composer version 2.11.0 2026-10-29 10:23:20
+PHP version 8.5.12 (/opt/homebrew/Cellar/php/8.5.12_1/bin/php)
 ```
 
 To add Couchbase to your project's dependency list, simply update your `composer.json` file with the following dependencies:
@@ -133,12 +132,18 @@ To add Couchbase to your project's dependency list, simply update your `composer
 ```json
 "require": {
   ...
-  "ext-couchbase": "^4.0",
-  "couchbase/couchbase": "^4.0"
+  "ext-couchbase": "4.6.0",
+  "couchbase/couchbase": "4.6.0"
 }
 ```
 
 Run `composer update` to lock the change in the generated `composer.lock` file.
+
+### [](#containers)SDK Versions and Containers
+
+The `couchbase` extension and the `couchbase/couchbase` Composer package loaded by a PHP process have to come from the same release. The library checks only that the `couchbase` module is loaded. Pin the Composer package to the release of the installed extension, as in the example above.
+
+Loading two SDK versions in one PHP process is not supported. Applications that need different SDK versions have to run in separate processes. Running each application in its own container is recommended. [CONTAINERS.md](https://github.com/couchbase/couchbase-php-client/blob/4.6.0/CONTAINERS.md) shows how to install a release archive into an official PHP image.
 
 ### [](#note-on-extension-dependencies)Note on Extension Dependencies
 
